@@ -15,6 +15,18 @@ func save(name_text: String,settled := true) -> void:
         push_error("Tactical screenshot failed")
         quit(1)
         return
+    if name_text == "tactics_start":
+        var edge := picture.get_pixel(picture.get_width()/2,0)
+        for x in picture.get_width():
+            if not picture.get_pixel(x,0).is_equal_approx(edge):
+                push_error("Top bar has a visible gap along its top edge")
+                quit(1)
+                return
+        for y in 72:
+            if not picture.get_pixel(0,y).is_equal_approx(edge) or not picture.get_pixel(1919,y).is_equal_approx(edge):
+                push_error("Top bar has a visible gap at a side edge")
+                quit(1)
+                return
     print("TACTICAL_CAPTURE: ",name_text)
 func run() -> void:
     if not OS.get_cmdline_user_args().is_empty(): output = OS.get_cmdline_user_args()[0]

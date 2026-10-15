@@ -2,6 +2,8 @@ class_name TacticalUI
 extends Control
 ## Trial view. Combat decisions are resolved by TacticalBattle before presentation.
 const W = preload("res://scripts/ui/combat_widgets.gd")
+const SKILL_KEYS := [KEY_Q,KEY_W,KEY_E,KEY_R]
+const SKILL_LABELS := ["Q","W","E","R"]
 const GOLD := Color("edcb80")
 const CREAM := Color("eee5cd")
 const MINT := Color("b5e1c3")
@@ -9,6 +11,12 @@ var battle: TacticalBattle
 var catalog := VisualCatalog.new()
 var stage := PixelStage.new()
 var busy := false
+var top_bar: ColorRect
+var ally_roster: Panel
+var enemy_roster: Panel
+var enemy_names: Array[Label] = []
+var enemy_values: Array[Label] = []
+var enemy_bars: Array[ColorRect] = []
 var skills: Array[Button] = []
 var party_buttons: Array[Button] = []
 var relic_buttons: Dictionary = {}
@@ -113,22 +121,25 @@ func _theme() -> void:
     theme.set_font_size("font_size","TooltipLabel",18)
 
 func _build() -> void:
-    W.panel(self,Rect2(0,0,1920,72),Color(0.035,0.075,0.095,0.95),Color.TRANSPARENT,0)
+    # A borderless, opaque rectangle fills every edge; transparent style borders
+    # previously exposed the stage along the top and sides of this bar.
+    top_bar = ColorRect.new()
+    top_bar.color = Color("09151b")
+    top_bar.anchor_right = 1.0
+    top_bar.offset_bottom = 72
+    top_bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    add_child(top_bar)
     W.icon(self,"grass",Rect2(42,23,28,28))
     _label("햇살숲",Rect2(86,16,190,40),23)
     relic_chip = W.button(self,Rect2(274,16,208,40),func(): _open_overlay(menu_panel))
     W.icon(relic_chip,"seed",Rect2(12,8,24,24)).name = "Icon"
     W.label(relic_chip,"",Rect2(48,0,146,40),17,W.MUTED).name = "Title"
     status_label = _label("",Rect2(830,18,260,36),20,CREAM,HORIZONTAL_ALIGNMENT_CENTER)
-    queue_label = _label("",Rect2(1280,19,180,34),16,W.MUTED,HORIZONTAL_ALIGNMENT_RIGHT)
-    for i in battle.enemies.size():
-        var slot := W.button(self,Rect2(1620-(battle.enemies.size()-i)*58,12,48,48),func(): pass)
-        W.sprite(slot,battle.enemies[i].species_id,Rect2(0,0,48,48))
-        enemy_slots.append(slot)
     history_button = W.icon_button(self,"history",Rect2(1660,14,48,44),func(): _open_overlay(log_panel),"전투 기록")
     help_button = W.icon_button(self,"help",Rect2(1724,14,48,44),func(): _open_overlay(help_panel),"전투 도움말 · F1")
     menu_button = W.icon_button(self,"menu",Rect2(1788,14,84,44),func(): _open_overlay(menu_panel),"메뉴 · Esc")
     _build_combat_hud()
+    _build_rosters()
     _build_actions()
     menu_panel = _build_menu()
     help_panel = _build_help()
@@ -187,50 +198,69 @@ func _build_combat_hud() -> void:
         break_pips.append(W.panel(break_box,Rect2(112+i*39,10,30,12),Color("34484e"),Color.TRANSPARENT,3))
     W.label(break_box,"",Rect2(235,1,45,30),16,GOLD,HORIZONTAL_ALIGNMENT_CENTER).name = "Burst"
 
+func _roster_row(panel: Panel,index: int,pokemon: BattlePokemon,action: Callable) -> Button:
+    var row := W.button(panel,Rect2(12,44+index*66,216,58),action)
+    W.sprite(row,pokemon.species_id,Rect2(6,5,48,48))
+    return row
+
+func _build_rosters() -> void:
+    ally_roster = W.panel(self,Rect2(36,104,240,54+battle.party.size()*66),Color(0.04,0.08,0.10,0.83),Color("344b51"))
+    W.label(ally_roster,"내 파티",Rect2(12,9,94,27),16,CREAM)
+    switch_label = W.label(ally_roster,"",Rect2(100,9,128,27),12,MINT,HORIZONTAL_ALIGNMENT_RIGHT)
+    for i in battle.party.size():
+        var row := _roster_row(ally_roster,i,battle.party[i],func(): _switch(battle.party[i].uid))
+        party_names.append(W.label(row,"",Rect2(66,4,114,25),16))
+        W.label(row,str(i+1),Rect2(187,6,20,22),12,MINT,HORIZONTAL_ALIGNMENT_CENTER)
+        party_values.append(W.label(row,"",Rect2(66,27,132,22),12,W.MUTED))
+        party_bars.append(W.bar(row,Rect2(66,51,132,3)))
+        party_buttons.append(row)
+    enemy_roster = W.panel(self,Rect2(1644,104,240,54+battle.enemies.size()*66),Color(0.04,0.08,0.10,0.83),Color("344b51"))
+    W.label(enemy_roster,"상대 파티",Rect2(12,9,120,27),16,CREAM)
+    queue_label = W.label(enemy_roster,"",Rect2(144,9,82,27),13,W.MUTED,HORIZONTAL_ALIGNMENT_RIGHT)
+    for i in battle.enemies.size():
+        var row := _roster_row(enemy_roster,i,battle.enemies[i],func(): pass)
+        row.mouse_default_cursor_shape = Control.CURSOR_ARROW
+        enemy_names.append(W.label(row,"",Rect2(66,4,114,25),16))
+        W.icon(row,"next",Rect2(188,9,16,16)).name = "Active"
+        enemy_values.append(W.label(row,"",Rect2(66,27,132,22),12,W.MUTED))
+        enemy_bars.append(W.bar(row,Rect2(66,51,132,3)))
+        enemy_slots.append(row)
+
 func _build_actions() -> void:
     # Pokemon skills sit beside the actor; only trainer cards occupy the hand table.
     for i in 7:
         _shade(Rect2(0,736+i*8,1920,8),Color(0.025,0.06,0.075,0.12+i*0.12))
     _shade(Rect2(0,792,1920,288),Color(0.025,0.06,0.075,0.98))
-    skill_panel = W.panel(self,Rect2(36,394,270,274),Color(0.04,0.08,0.10,0.93),Color("3d555a"))
+    skill_panel = W.panel(self,Rect2(36,394,270,312),Color(0.04,0.08,0.10,0.93),Color("3d555a"))
     skill_title = _label("",Rect2(52,406,230,31),17,MINT)
-    for i in 3:
-        var button := W.button(self,Rect2(48,446+i*70,246,60),func(): _skill(TacticalContent.SKILLS[battle.active().species_id][i]))
-        skill_icons.append(W.icon(button,"grass",Rect2(12,17,28,28)))
-        skill_names.append(W.label(button,"",Rect2(51,4,150,27),18))
-        skill_values.append(W.label(button,"",Rect2(51,31,170,24),14,W.MUTED))
-        skill_costs.append(W.badge(button,"",Rect2(205,9,30,30)))
+    for i in SKILL_KEYS.size():
+        var button := W.button(self,Rect2(48,446+i*62,246,54),_skill_slot.bind(i))
+        skill_icons.append(W.icon(button,"grass",Rect2(12,13,28,28)))
+        skill_names.append(W.label(button,"",Rect2(51,3,150,26),18))
+        skill_values.append(W.label(button,"",Rect2(51,28,150,22),13,W.MUTED))
+        skill_costs.append(W.badge(button,"",Rect2(205,5,30,30)))
+        W.label(button,SKILL_LABELS[i],Rect2(209,36,22,15),11,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
         skills.append(button)
-    _label("파티",Rect2(48,840,80,28),15,W.MUTED)
-    switch_label = _label("",Rect2(142,840,212,28),15,MINT,HORIZONTAL_ALIGNMENT_RIGHT)
-    for i in 3:
-        var button := W.button(self,Rect2(48+i*106,882,96,158),func(): _switch(battle.party[i].uid))
-        W.sprite(button,battle.party[i].species_id,Rect2(16,4,64,64))
-        W.label(button,["Q","W","E"][i],Rect2(7,3,20,20),11,W.MUTED)
-        party_names.append(W.label(button,"",Rect2(2,68,92,28),14,CREAM,HORIZONTAL_ALIGNMENT_CENTER))
-        party_values.append(W.label(button,"",Rect2(2,103,92,24),13,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER))
-        party_bars.append(W.bar(button,Rect2(12,140,72,4)))
-        party_buttons.append(button)
-    W.panel(self,Rect2(410,878,112,112),Color("2d3d3c"),Color("aa975f"),56)
-    W.icon(self,"energy",Rect2(450,889,32,32))
-    energy_label = _label("",Rect2(411,924,110,53),38,GOLD,HORIZONTAL_ALIGNMENT_CENTER)
-    var energy_tip := W.button(self,Rect2(410,878,112,112),func(): pass)
+    W.panel(self,Rect2(48,878,112,112),Color("2d3d3c"),Color("aa975f"),56)
+    W.icon(self,"energy",Rect2(88,889,32,32))
+    energy_label = _label("",Rect2(49,924,110,53),38,GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+    var energy_tip := W.button(self,Rect2(48,878,112,112),func(): pass)
     energy_tip.flat = true
     energy_tip.name = "Energy"
     # A transparent hit surface gives the energy orb its complete tooltip.
     for state: String in ["normal","hover","pressed","focus"]:
         energy_tip.add_theme_stylebox_override(state,W.box(Color.TRANSPARENT,Color.TRANSPARENT,56))
-    _label("에너지",Rect2(410,839,112,30),15,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
-    hand_scroll.position = Vector2(548,746)
+    _label("에너지",Rect2(48,839,112,30),15,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+    hand_scroll.position = Vector2(426,746)
     hand_scroll.size = Vector2(1074,328)
     hand_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
     hand_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
     add_child(hand_scroll)
     hand_row.add_theme_constant_override("separation",12)
     hand_scroll.add_child(hand_row)
-    draw_button = _pile_button("draw",Rect2(432,1007,72,44),"뽑을 더미",func(): _show_pile("draw"))
+    draw_button = _pile_button("draw",Rect2(184,899,100,78),"뽑을 더미",func(): _show_pile("draw"))
     draw_count = draw_button.get_node("Count")
-    discard_button = _pile_button("discard",Rect2(1620,1023,72,44),"버린 더미",func(): _show_pile("discard"))
+    discard_button = _pile_button("discard",Rect2(296,899,100,78),"버린 더미",func(): _show_pile("discard"))
     discard_count = discard_button.get_node("Count")
     end_button = W.button(self,Rect2(1640,900,232,76),_end)
     end_button.add_theme_stylebox_override("normal",W.box(Color("a7915d"),Color("e6c97f")))
@@ -241,8 +271,9 @@ func _build_actions() -> void:
 
 func _pile_button(key: String,rect: Rect2,title: String,action: Callable) -> Button:
     var button := W.button(self,rect,action)
-    W.icon(button,key,Rect2(9,10,24,24))
-    W.label(button,"",Rect2(36,0,30,44),17,CREAM,HORIZONTAL_ALIGNMENT_CENTER).name = "Count"
+    W.icon(button,key,Rect2(12,36,24,24))
+    W.label(button,"",Rect2(43,29,44,38),23,CREAM,HORIZONTAL_ALIGNMENT_CENTER).name = "Count"
+    W.label(button,"남은 카드" if key == "draw" else "버린 카드",Rect2(6,4,88,26),13,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
     button.tooltip_text = title+" · 클릭하여 확인"
     return button
 
@@ -278,12 +309,12 @@ func _build_menu() -> Control:
         relic_buttons[key] = button
         index += 1
     _label("특성 변경 시 전투를 처음부터 시작합니다.",Rect2(32,356,558,28),15,W.MUTED,HORIZONTAL_ALIGNMENT_LEFT,body)
-    restart_button = _menu_action(body,"restart","다시 시작","R",420,restart)
+    restart_button = _menu_action(body,"restart","다시 시작","",420,restart)
     old_button = _menu_action(body,"route","짧은 원정","F3",492,_old_run)
     lab_button = _menu_action(body,"lab","아트 랩","F2",564,_open_lab)
     _menu_action(body,"normal","화면 전환","F11",636,_fullscreen)
     _menu_action(body,"exhaust","소진된 카드","",708,func(): _show_pile("exhausted"))
-    _label("1 / 2 / 3  기술     Q / W / E  교체",Rect2(32,821,558,32),16,W.MUTED,HORIZONTAL_ALIGNMENT_LEFT,body)
+    _label("1 / 2 / 3  교체     Q / W / E / R  기술",Rect2(32,821,558,32),16,W.MUTED,HORIZONTAL_ALIGNMENT_LEFT,body)
     return overlay
 
 func _menu_action(body: Node,icon_key: String,title: String,key: String,y: int,action: Callable) -> Button:
@@ -310,7 +341,8 @@ func _build_help() -> Control:
     W.icon(body,"switch",Rect2(60,446,32,32))
     W.label(body,"첫 교체 무료 · 추가 교체는 에너지 1",Rect2(112,437,860,44),21)
     W.label(body,"1턴: 씨뿌리기 + 분석 → 턴 종료\n2턴: 파이리 교체 → 불꽃세례 → 화염방사",Rect2(60,495,940,70),18,W.MUTED)
-    W.label(body,"아이콘과 카드에 마우스를 올리면 자세한 효과를 확인할 수 있습니다.",Rect2(36,627,1008,40),18,W.MUTED)
+    W.label(body,"교체 1 / 2 / 3     기술 Q / W / E / R     턴 종료 Enter",Rect2(36,609,1008,32),18,MINT)
+    W.label(body,"아이콘과 카드에 마우스를 올리면 자세한 효과를 확인할 수 있습니다.",Rect2(36,654,1008,32),17,W.MUTED)
     return overlay
 
 func _build_log() -> void:
@@ -371,12 +403,18 @@ func _refresh() -> void:
     stage.canvas.ally_statuses.assign(battle.active().statuses.keys())
     stage.canvas.enemy_statuses.assign(foe.statuses.keys())
     UiMotion.text(status_label,"턴 %d" % battle.turn)
-    queue_label.text = "상대 %d / %d" % [battle.enemy_index+1,battle.enemies.size()]
+    queue_label.text = "%d / %d" % [battle.enemy_index+1,battle.enemies.size()]
     for i in enemy_slots.size():
         var p := battle.enemies[i]
-        enemy_slots[i].tooltip_text = "%s · HP %d / %d%s" % [p.display_name,p.hp,p.max_hp," · 기절" if not p.alive() else ""]
-        enemy_slots[i].get_child(0).modulate.a = 0.25 if not p.alive() else 1.0
-        enemy_slots[i].add_theme_stylebox_override("normal",W.box(Color("1a2e35"),GOLD if i == battle.enemy_index else Color.TRANSPARENT))
+        var slot := enemy_slots[i]
+        slot.tooltip_text = "%s · HP %d / %d%s" % [p.display_name,p.hp,p.max_hp," · 기절" if not p.alive() else ""]
+        slot.get_child(0).modulate.a = 0.25 if not p.alive() else 1.0
+        slot.get_node("Active").visible = i == battle.enemy_index and p.alive()
+        enemy_names[i].text = p.display_name
+        enemy_names[i].modulate.a = 1.0 if p.alive() else 0.4
+        enemy_values[i].text = "%d / %d" % [p.hp,p.max_hp] if p.alive() else "기절"
+        W.fill_bar(enemy_bars[i],p.hp,p.max_hp)
+        slot.add_theme_stylebox_override("normal",W.box(Color("20353a") if i == battle.enemy_index else Color("152930"),GOLD if i == battle.enemy_index else Color("30474d")))
     W.fill_bar(ally_bar,battle.active().hp,battle.active().max_hp)
     W.fill_bar(enemy_bar,foe.hp,foe.max_hp)
     ally_label.text = battle.active().display_name
@@ -415,7 +453,7 @@ func _refresh() -> void:
     end_button.get_node("Title").text = "교체 선택" if battle.phase == TacticalBattle.REPLACE else "턴 종료"
     end_button.get_node("Title").add_theme_color_override("font_color",W.MUTED if end_button.disabled else Color("10232b"))
     end_button.get_child(1).modulate.a = 0.35 if end_button.disabled else 1.0
-    switch_label.text = "무료 교체" if not battle.switched or battle.phase == TacticalBattle.REPLACE else "교체 1 에너지"
+    switch_label.text = "무료 교체" if not battle.switched or battle.phase == TacticalBattle.REPLACE else "교체 비용 1"
     for i in party_buttons.size():
         var pokemon := battle.party[i]
         var button := party_buttons[i]
@@ -423,7 +461,7 @@ func _refresh() -> void:
         party_values[i].text = "기절" if not pokemon.alive() else "%d / %d" % [pokemon.hp,pokemon.max_hp]
         W.fill_bar(party_bars[i],pokemon.hp,pokemon.max_hp)
         button.disabled = busy or not battle.switch_reason(pokemon.uid).is_empty()
-        button.tooltip_text = "%s · %s\n%s" % [pokemon.display_name,catalog.type_name(pokemon.type),"출전 중" if pokemon == battle.active() else (battle.switch_reason(pokemon.uid) if not battle.switch_reason(pokemon.uid).is_empty() else switch_label.text)]
+        button.tooltip_text = "%d · %s · %s\n%s" % [i+1,pokemon.display_name,catalog.type_name(pokemon.type),"출전 중" if pokemon == battle.active() else (battle.switch_reason(pokemon.uid) if not battle.switch_reason(pokemon.uid).is_empty() else switch_label.text)]
         var border := MINT if pokemon == battle.active() else Color("3d555a")
         button.add_theme_stylebox_override("disabled",W.box(Color("203a3d") if pokemon == battle.active() else Color("17262e"),border))
         button.get_child(0).modulate.a = 0.25 if not pokemon.alive() else 1.0
@@ -438,7 +476,18 @@ func _refresh() -> void:
         _shown_enemy = foe.uid
     var support := {"seed":"씨앗 3회 · 회당 2 흡수","growth":"공격력 +2","fire_guard":"보호막 +8","shell":"보호막 +8"}
     for i in skills.size():
-        var key: String = TacticalContent.SKILLS[battle.active().species_id][i]
+        var learned: Array = TacticalContent.SKILLS[battle.active().species_id]
+        if i >= learned.size():
+            skill_names[i].text = "미습득"
+            skill_values[i].text = "빈 기술 슬롯"
+            skill_values[i].add_theme_color_override("font_color",W.MUTED)
+            skill_icons[i].texture = W.texture("normal")
+            skill_costs[i].text = "—"
+            skills[i].tooltip_text = SKILL_LABELS[i]+" · 아직 배우지 않은 기술 슬롯입니다."
+            skills[i].disabled = true
+            W.fade(skills[i])
+            continue
+        var key: String = learned[i]
         var view := battle.skill_view(key)
         var reason := battle.skill_reason(key)
         skill_names[i].text = view["name"]
@@ -449,7 +498,7 @@ func _refresh() -> void:
             skill_icons[i].texture = W.texture("check")
             skill_values[i].text = "다음 턴에 사용"
         skill_costs[i].text = str(view["cost"])
-        skills[i].tooltip_text = "%s\n%s\n%s" % [view["name"],view["description"],reason if not reason.is_empty() else "이 포켓몬으로 턴 1회 사용"]
+        skills[i].tooltip_text = "%s · %s\n%s\n%s" % [SKILL_LABELS[i],view["name"],view["description"],reason if not reason.is_empty() else "이 포켓몬으로 턴 1회 사용"]
         skills[i].disabled = busy or not reason.is_empty()
         W.fade(skills[i])
     _refresh_hand()
@@ -536,6 +585,10 @@ func _fly_card(card: TrainerActionCard,used := true,delay := 0.0) -> void:
     tween.parallel().tween_property(copy,"scale",Vector2.ONE*0.12,0.24)
     tween.parallel().tween_property(copy,"modulate:a",0.0,0.24)
     tween.chain().tween_callback(copy.queue_free)
+
+func _skill_slot(index: int) -> void:
+    var learned: Array = TacticalContent.SKILLS[battle.active().species_id]
+    if index >= 0 and index < learned.size(): _skill(learned[index])
 
 func _skill(key: String) -> void:
     if busy: return
@@ -661,17 +714,15 @@ func _unhandled_key_input(event: InputEvent) -> void:
     if _overlay_open(): return
     if result.visible:
         match event.keycode:
-            KEY_R: restart()
             KEY_F3: _old_run()
             KEY_F11: _fullscreen()
         return
+    if event.keycode in SKILL_KEYS:
+        _skill_slot(SKILL_KEYS.find(event.keycode))
+        return
     match event.keycode:
-        KEY_1,KEY_2,KEY_3: _skill(TacticalContent.SKILLS[battle.active().species_id][event.keycode-KEY_1])
-        KEY_Q: _switch(battle.party[0].uid)
-        KEY_W: _switch(battle.party[1].uid)
-        KEY_E: _switch(battle.party[2].uid)
+        KEY_1,KEY_2,KEY_3: _switch(battle.party[event.keycode-KEY_1].uid)
         KEY_ENTER: _end()
-        KEY_R: restart()
         KEY_F1: _open_overlay(help_panel)
         KEY_F2: _open_lab()
         KEY_F3: _old_run()

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Run the graphical X11 pointer regression with Python stdlib + system XTest.
+"""Run the graphical X11 pointer and shortcut regression with Python stdlib + system XTest.
 
 Activate Godot 4.7.2 and DISPLAY first. No signal emission or synthetic Godot
-input is used: XTest injects mouse movement and button events at screen pixels.
+input is used: XTest injects mouse movement, button events, and keyboard events.
 """
 import argparse
 import ctypes
@@ -21,6 +21,11 @@ def main():
     x11.XOpenDisplay.argtypes = [ctypes.c_char_p]
     x11.XOpenDisplay.restype = ctypes.c_void_p
     x11.XSetInputFocus.argtypes = [ctypes.c_void_p, ctypes.c_ulong, ctypes.c_int, ctypes.c_ulong]
+    x11.XStringToKeysym.argtypes = [ctypes.c_char_p]
+    x11.XStringToKeysym.restype = ctypes.c_ulong
+    x11.XKeysymToKeycode.argtypes = [ctypes.c_void_p, ctypes.c_ulong]
+    x11.XKeysymToKeycode.restype = ctypes.c_ubyte
+    xtest.XTestFakeKeyEvent.argtypes = [ctypes.c_void_p, ctypes.c_uint, ctypes.c_int, ctypes.c_ulong]
     x11.XFlush.argtypes = [ctypes.c_void_p]
     x11.XCloseDisplay.argtypes = [ctypes.c_void_p]
     xtest.XTestFakeMotionEvent.argtypes = [ctypes.c_void_p, ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_ulong]
@@ -34,10 +39,18 @@ def main():
     process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
     try:
         for line in process.stdout:
-            if not line.startswith("OS_CLICK "):
+            if not line.startswith(("OS_CLICK ", "OS_KEY ")):
                 print(line, end="", flush=True)
             if line.startswith("OS_FOCUS "):
                 x11.XSetInputFocus(display, int(line.split()[1]), 2, 0)
+                x11.XFlush(display)
+            if line.startswith("OS_KEY "):
+                symbol = line.split()[1]
+                code = x11.XKeysymToKeycode(display, x11.XStringToKeysym(symbol.encode("ascii")))
+                if not code:
+                    raise RuntimeError(f"Unknown X11 key symbol: {symbol}")
+                xtest.XTestFakeKeyEvent(display, code, 1, 20)
+                xtest.XTestFakeKeyEvent(display, code, 0, 20)
                 x11.XFlush(display)
             if line.startswith("OS_CLICK "):
                 _, pos_x, pos_y = line.split()

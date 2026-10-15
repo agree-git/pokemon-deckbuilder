@@ -56,7 +56,7 @@ func verify_animation_input() -> void:
     for other: int in ui.trainer_buttons:
         check(ui.trainer_buttons[other] == untouched[other],"Unplayed cards keep identity through action and VFX refresh")
     var committed := ui.battle.snapshot()
-    key(KEY_2)
+    key(KEY_W)
     check(ui.battle.snapshot() == committed,"Card flight cannot allow a second gameplay action during VFX")
     await create_timer(0.76).timeout
     check(ui.card_effects.get_child_count() == 0 and not ui.busy,"Flight visuals clean up and input returns")
@@ -67,7 +67,7 @@ func verify_animation_input() -> void:
     check(ui.menu_panel.visible and is_equal_approx(ui.menu_panel.modulate.a,1),"Rapid modal reopen cancels its old closing callback")
     committed = ui.battle.snapshot()
     UiMotion.close(ui.menu_panel)
-    key(KEY_2)
+    key(KEY_W)
     check(ui.battle.snapshot() == committed,"Closing overlay shields gameplay input until fade ends")
     await create_timer(0.16).timeout
     check(not ui.menu_panel.visible,"Closing fade releases the modal")
@@ -98,6 +98,73 @@ func verify_animation_input() -> void:
     await process_frame
     TacticalUIPlayer.settle(ui)
 
+func press_action(code: Key) -> void:
+    key(code)
+    await process_frame
+    TacticalUIPlayer.finish(ui)
+    await process_frame
+    TacticalUIPlayer.settle(ui)
+func verify_keymap() -> void:
+    ui.restart("seed_relay")
+    await process_frame
+    TacticalUIPlayer.settle(ui)
+    await press_action(KEY_1)
+    check(ui.battle.active().uid == 4 and ui.battle.energy == 3,"1 switches to first party member using the free switch")
+    await press_action(KEY_Q)
+    check(ui.battle.enemy().hp == 34 and ui.battle.energy == 2,"Q uses first skill instead of switching party")
+    var committed := ui.battle.snapshot()
+    await press_action(KEY_R)
+    check(ui.battle.snapshot() == committed and ui.skills[3].disabled,"Unlearned R slot is safe and never restarts the battle")
+    await press_action(KEY_2)
+    check(ui.battle.active().uid == 1 and ui.battle.energy == 1,"2 switches to second member and pays additional switch cost")
+    await press_action(KEY_E)
+    check(ui.battle.active().strength == 2,"E uses third skill")
+    await press_action(KEY_3)
+    check(ui.battle.active().uid == 7 and ui.battle.energy == 0,"3 switches to third member")
+    await press_action(KEY_ENTER)
+    await press_action(KEY_W)
+    check(ui.battle.active().block == 8,"W uses second skill on newly active Pokemon")
+    await press_action(KEY_E)
+    check(ui.battle.used_skills.has("7:tackle"),"E remains the third skill after switching")
+    await press_action(KEY_Q)
+    check(ui.battle.used_skills.has("7:water_gun"),"Q remains the first skill after switching")
+    ui.restart("seed_relay")
+    ui.battle.active().hp = 1
+    await press_action(KEY_ENTER)
+    check(ui.battle.phase == TacticalBattle.REPLACE,"KO pauses for numeric forced replacement")
+    await press_action(KEY_3)
+    check(ui.battle.active().uid == 7 and not ui.battle.switched and ui.battle.energy == 3,"Numeric replacement also obeys free forced-switch rules")
+    ui.restart("seed_relay")
+    await process_frame
+    TacticalUIPlayer.settle(ui)
+func verify_roster_capacity() -> void:
+    var six: Array = []
+    for i in 6: six.append(TacticalContent.ENEMIES[i%2].duplicate(true))
+    var session := root.get_node("BattleSession")
+    var retained: TacticalBattle = session.get("tactics")
+    var fixture := TacticalBattle.new(42,"seed_relay",six)
+    session.set("tactics",fixture)
+    ui.free()
+    ui = load("res://scenes/tactical_battle.tscn").instantiate()
+    root.add_child(ui)
+    await process_frame
+    TacticalUIPlayer.settle(ui)
+    check(ui.enemy_slots.size() == 6,"Opponent rail displays all six roster entries")
+    for slot: Button in ui.enemy_slots:
+        check(ui.enemy_roster.get_global_rect().encloses(slot.get_global_rect()),"Every opponent row fits inside the rail")
+        check(not ui.hand_scroll.get_global_rect().intersects(slot.get_global_rect()),"Six-member roster does not cover trainer hand")
+    check(not ui.enemy_roster.get_global_rect().intersects(ui.enemy_bar.get_global_rect()),"Opponent rail stays clear of active enemy HP")
+    fixture._damage(fixture.enemy(),999,true)
+    fixture._outcome()
+    ui._refresh()
+    check(ui.enemy_values[0].text == "기절" and ui.enemy_slots[1].get_node("Active").visible,"Roster marks the defeated member and highlights the next enemy")
+    ui.free()
+    session.set("tactics",retained)
+    ui = load("res://scenes/tactical_battle.tscn").instantiate()
+    root.add_child(ui)
+    await process_frame
+    TacticalUIPlayer.settle(ui)
+
 func run() -> void:
     root.mode = Window.MODE_WINDOWED
     ui = load("res://scenes/tactical_battle.tscn").instantiate()
@@ -115,6 +182,12 @@ func run() -> void:
         for c: BattleCardInstance in ui.battle.hand:
             if c.key == "analysis": analysis = ui.trainer_buttons[c.uid]
         check(not ui.menu_panel.visible and not ui.help_panel.visible,"Rules and trial settings stay hidden during combat")
+        check(ui.top_bar.get_global_rect().position == Vector2.ZERO and is_equal_approx(ui.top_bar.size.x,ui.size.x),"Top bar reaches both viewport edges without an inset")
+        check(ui.ally_roster.get_global_rect().end.x < ui.stage.canvas.source_anchor.x and ui.enemy_roster.position.x > ui.stage.canvas.target_anchor.x,"Party rails sit on their corresponding outer edges")
+        check(not ui.ally_roster.get_global_rect().intersects(ui.skill_panel.get_global_rect()),"Allied roster does not obstruct Pokemon skills")
+        check(not ui.enemy_roster.get_global_rect().intersects(ui.hand_scroll.get_global_rect()),"Opponent roster does not obstruct trainer cards")
+        var energy: Control = ui.get_node("Energy")
+        check(energy.get_global_rect().end.x < ui.draw_button.position.x and ui.draw_button.get_global_rect().end.x < ui.discard_button.position.x and ui.discard_button.get_global_rect().end.x < ui.hand_scroll.position.x,"Energy, draw, discard and hand stay ordered without overlap")
         for control: Button in [ui.history_button,ui.menu_button,ui.help_button,ui.draw_button,ui.discard_button,ui.end_button,ui.party_buttons[0],ui.skills[1],analysis]:
             await hover_edges(control,dimensions)
         TacticalUIPlayer.click(self,ui.history_button)
@@ -122,7 +195,7 @@ func run() -> void:
         TacticalUIPlayer.settle(ui)
         check(ui.log_panel.visible,"History icon opens log via pointer")
         var unchanged := ui.battle.snapshot()
-        key(KEY_2)
+        key(KEY_W)
         await process_frame
         TacticalUIPlayer.settle(ui)
         check(ui.battle.snapshot() == unchanged,"Modal blocks gameplay hotkeys")
@@ -178,6 +251,8 @@ func run() -> void:
         await process_frame
         TacticalUIPlayer.settle(ui)
         check(ui.battle.relic == "break_focus","Restart keeps selected trait")
+    await verify_keymap()
+    await verify_roster_capacity()
     await verify_animation_input()
     # An entire legal battle through rendered controls, without calling action handlers.
     ui.restart("seed_relay")
@@ -197,6 +272,9 @@ func run() -> void:
         await process_frame
         TacticalUIPlayer.settle(ui)
     check(ui.battle.phase == TacticalBattle.WON and ui.result.visible,"Full pointer battle reaches victory modal")
+    var finished := ui.battle.snapshot()
+    key(KEY_R)
+    check(ui.battle.snapshot() == finished,"R cannot restart from the result screen either")
     key(KEY_F1)
     await process_frame
     TacticalUIPlayer.settle(ui)

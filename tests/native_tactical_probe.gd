@@ -2,6 +2,7 @@ extends SceneTree
 ## OS pointer companion; every action is injected by XTest, not a Button signal.
 var failures := 0
 var clicks := 0
+var keys := 0
 var ui: TacticalUI
 func _initialize() -> void:
     call_deferred("run")
@@ -17,6 +18,12 @@ func click(control: Control,local := Vector2(-1,-1)) -> void:
     await create_timer(0.22).timeout
     TacticalUIPlayer.finish(ui)
     await process_frame
+    await create_timer(0.34).timeout
+func key(symbol: String) -> void:
+    print("OS_KEY ",symbol)
+    keys += 1
+    await create_timer(0.22).timeout
+    TacticalUIPlayer.finish(ui)
     await create_timer(0.34).timeout
 func analysis_button() -> Button:
     for card: BattleCardInstance in ui.battle.hand:
@@ -34,7 +41,7 @@ func run() -> void:
         root.position = Vector2i(20,20)
         await create_timer(0.2).timeout
         for position_index in 3:
-            for kind: String in ["history","end","switch","skill","card","trait","restart","help","draw"]:
+            for kind: String in ["history","end","switch","skill","card","trait","restart","help","draw","discard"]:
                 ui.restart("seed_relay")
                 await create_timer(0.48).timeout
                 if kind in ["trait","restart"]:
@@ -43,6 +50,7 @@ func run() -> void:
                 match kind:
                     "help": button = ui.help_button
                     "draw": button = ui.draw_button
+                    "discard": button = ui.discard_button
                     "history": button = ui.history_button
                     "end": button = ui.end_button
                     "switch": button = ui.party_buttons[0]
@@ -59,6 +67,7 @@ func run() -> void:
                 match kind:
                     "help": valid = ui.help_panel.visible
                     "draw": valid = ui.pile_panel.visible
+                    "discard": valid = ui.pile_panel.visible
                     "history": valid = ui.log_panel.visible
                     "end": valid = ui.battle.turn == 2
                     "switch": valid = ui.battle.active().uid == 4
@@ -67,6 +76,30 @@ func run() -> void:
                     "trait": valid = ui.battle.relic == "break_focus"
                     "restart": valid = ui.battle.active().strength == 0
                 check(valid,"Real OS click missed %s in %s at local %s" % [kind,dimensions,local])
+    ui.restart("seed_relay")
+    await create_timer(0.48).timeout
+    await key("1")
+    check(ui.battle.active().uid == 4,"OS key 1 switches to first party member")
+    await key("q")
+    check(ui.battle.used_skills.has("4:ember"),"OS Q uses first skill")
+    await key("2")
+    check(ui.battle.active().uid == 1,"OS key 2 switches to second party member")
+    await key("e")
+    check(ui.battle.active().strength == 2,"OS E uses third skill")
+    await key("3")
+    check(ui.battle.active().uid == 7,"OS key 3 switches to third party member")
+    var committed := ui.battle.snapshot()
+    await key("r")
+    check(ui.battle.snapshot() == committed,"OS R never restarts when fourth skill is unlearned")
+    await key("Return")
+    await key("w")
+    check(ui.battle.active().block == 8,"OS W uses second skill")
+    await key("e")
+    await key("q")
+    check(ui.battle.used_skills.has("7:tackle") and ui.battle.used_skills.has("7:water_gun"),"OS Q/E act on the active Pokemon")
+    committed = ui.battle.snapshot()
+    await key("r")
+    check(ui.battle.snapshot() == committed,"OS R preserves progressed state")
     ui.restart("seed_relay")
     while ui.battle.hand.size() < 10: ui.battle.hand.append(ui.battle._new_card("guard"))
     ui._refresh()
@@ -84,8 +117,11 @@ func run() -> void:
         if ui.battle.phase in [TacticalBattle.WON,TacticalBattle.LOST]: break
         await click(TacticalUIPlayer.button(ui,TacticalPolicy.action(ui.battle)))
     check(ui.battle.phase == TacticalBattle.WON and ui.result.visible,"Entire battle wins through real OS pointer")
+    var won := ui.battle.snapshot()
+    await key("r")
+    check(ui.battle.snapshot() == won,"OS R cannot restart from victory")
     await click(ui.result_restart)
     check(ui.battle.phase == TacticalBattle.PLAYER and not ui.result.visible,"OS modal restart")
     ui.free()
-    print("NATIVE_TACTICAL: ",failures," failures, ",clicks," real OS clicks; 3 window sizes and full encounter")
+    print("NATIVE_TACTICAL: ",failures," failures, ",clicks," real OS clicks and ",keys," OS key presses; 3 window sizes and full encounter")
     quit(0 if failures == 0 else 1)
