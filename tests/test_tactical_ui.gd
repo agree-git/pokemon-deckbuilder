@@ -187,7 +187,7 @@ func run() -> void:
         check(not ui.ally_roster.get_global_rect().intersects(ui.skill_panel.get_global_rect()),"Allied roster does not obstruct Pokemon skills")
         check(not ui.enemy_roster.get_global_rect().intersects(ui.hand_scroll.get_global_rect()),"Opponent roster does not obstruct trainer cards")
         var energy: Control = ui.get_node("Energy")
-        check(energy.get_global_rect().end.x < ui.draw_button.position.x and ui.draw_button.get_global_rect().end.x < ui.discard_button.position.x and ui.discard_button.get_global_rect().end.x < ui.hand_scroll.position.x,"Energy, draw, discard and hand stay ordered without overlap")
+        check(energy.get_global_rect().end.x < ui.draw_button.position.x and ui.draw_button.position.x == ui.discard_button.position.x and ui.draw_button.get_global_rect().end.y < ui.discard_button.position.y and ui.discard_button.get_global_rect().end.x < ui.hand_scroll.position.x,"Draw and discard stack vertically immediately right of energy and clear of hand")
         for control: Button in [ui.history_button,ui.menu_button,ui.help_button,ui.draw_button,ui.discard_button,ui.end_button,ui.party_buttons[0],ui.skills[1],analysis]:
             await hover_edges(control,dimensions)
         TacticalUIPlayer.click(self,ui.history_button)

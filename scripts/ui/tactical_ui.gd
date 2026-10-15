@@ -258,9 +258,9 @@ func _build_actions() -> void:
     add_child(hand_scroll)
     hand_row.add_theme_constant_override("separation",12)
     hand_scroll.add_child(hand_row)
-    draw_button = _pile_button("draw",Rect2(184,899,100,78),"뽑을 더미",func(): _show_pile("draw"))
+    draw_button = _pile_button("draw",Rect2(184,864,204,62),"뽑을 더미",func(): _show_pile("draw"))
     draw_count = draw_button.get_node("Count")
-    discard_button = _pile_button("discard",Rect2(296,899,100,78),"버린 더미",func(): _show_pile("discard"))
+    discard_button = _pile_button("discard",Rect2(184,936,204,62),"버린 더미",func(): _show_pile("discard"))
     discard_count = discard_button.get_node("Count")
     end_button = W.button(self,Rect2(1640,900,232,76),_end)
     end_button.add_theme_stylebox_override("normal",W.box(Color("a7915d"),Color("e6c97f")))
@@ -271,9 +271,9 @@ func _build_actions() -> void:
 
 func _pile_button(key: String,rect: Rect2,title: String,action: Callable) -> Button:
     var button := W.button(self,rect,action)
-    W.icon(button,key,Rect2(12,36,24,24))
-    W.label(button,"",Rect2(43,29,44,38),23,CREAM,HORIZONTAL_ALIGNMENT_CENTER).name = "Count"
-    W.label(button,"남은 카드" if key == "draw" else "버린 카드",Rect2(6,4,88,26),13,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+    W.icon(button,key,Rect2(12,19,24,24))
+    W.label(button,"",Rect2(146,10,44,42),23,CREAM,HORIZONTAL_ALIGNMENT_CENTER).name = "Count"
+    W.label(button,"남은 카드" if key == "draw" else "버린 카드",Rect2(44,2,102,58),14,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
     button.tooltip_text = title+" · 클릭하여 확인"
     return button
 
