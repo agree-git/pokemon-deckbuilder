@@ -72,7 +72,7 @@ func run() -> void:
                 match j.phase:
                     TacticalJourney.BATTLE:
                         if j.step == 4:
-                            check(j.battle.enemies.size() == 6 and j.battle.enemies.all(func(p: BattlePokemon): return p.species_id <= 151 and p.type == "grass"),"Gym fields six Kanto grass Pokemon")
+                            check(j.battle.enemies.size() == 6 and j.battle.enemies.all(func(p: BattlePokemon): return p.species_id <= 386 and p.type == "grass"),"Gym fields six generation 1–3 grass Pokemon")
                         finish_battle(j)
                         j.settle()
                     TacticalJourney.REWARD: j.choose_reward(run_seed%3)

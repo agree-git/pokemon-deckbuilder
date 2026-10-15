@@ -13,8 +13,18 @@ func _capture() -> void:
     var lab: ArtLab = load("res://scenes/art_lab.tscn").instantiate()
     root.add_child(lab)
     await create_timer(0.4).timeout
-    for config: Array in [[3, 52, "forest"], [1, 53, "volcano"], [13, 109, "ghost"], [17, 105, "fairy"]]:
+    for config: Array in [[3, 52, "forest"], [1, 53, "volcano"], [13, 109, "ghost"], [17, 105, "fairy"],
+            [2,55,"johto_starters",158,160,0], [3,22,"hoenn_starters",252,254,0],
+            [13,109,"ghost_gym",200,356,1], [14,82,"dragon_gym",371,373,1],
+            [15,44,"dark_gym",197,359,1], [10,93,"deoxys",280,386,0]]:
+        lab.roster_select.select(int(config[5]) if config.size() > 5 else 0)
         lab.select_biome(config[0])
+        if config.size() > 3:
+            lab.source_id = int(config[3])
+            lab.target_id = int(config[4])
+            lab.source_select.select(lab.source_id-1)
+            lab.target_select.select(lab.target_id-1)
+            lab._update_species()
         lab.select_move(config[1])
         lab.play_selected()
         # Fix the sampled animation phase for reproducible screenshot review.

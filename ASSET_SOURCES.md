@@ -1,19 +1,19 @@
 # 에셋 출처와 재사용
 
-## 관동 포켓몬 스프라이트
+## 1~3세대 포켓몬 스프라이트
 
 - 출처: [PokéAPI/sprites](https://github.com/PokeAPI/sprites), 커밋 `0dc105d5b12416932f29b594078282ab4be045f5`.
-- 경로: `sprites/pokemon/{1..151}.png`, `sprites/pokemon/back/{1..151}.png`. 96×96 투명 PNG, 원본 픽셀을 변형하지 않고 포함한다.
-- 로컬 경로: `assets/pokemon/front/001.png` ~ `151.png`, `assets/pokemon/back/001.png` ~ `151.png`.
+- 경로: `sprites/pokemon/{1..386}.png`, `sprites/pokemon/back/{1..386}.png`. 96×96 투명 PNG, 원본 픽셀을 변형하지 않고 포함한다. 앞·뒤 총 772장이다.
+- 로컬 경로: `assets/pokemon/front/001.png` ~ `386.png`, `assets/pokemon/back/001.png` ~ `386.png`.
 - [업스트림 라이선스](assets/sources/POKEAPI_SPRITES_LICENSE.txt)는 **이미지 저작권이 The Pokémon Company에 있음**을 명시한다. 저장소의 CC0 표기는 원작 포켓몬 이미지의 권리를 이전하지 않는다. 출처를 유지하고 외부 배포 시 권리 범위를 별도로 확인한다.
 
 ## 이름·타입·기술 데이터
 
 - 출처: [PokéAPI/pokeapi](https://github.com/PokeAPI/pokeapi), 커밋 `81d20919845b6a445969b9265aab5cec6b04cece`, `data/v2/csv`.
 - 원본 CSV와 [라이선스](assets/sources/POKEAPI_DATA_LICENSE.txt)를 `assets/sources/`에 보관했다.
-- `data/catalog.json`은 관동 원종 151종과 1세대 기술 165종만 추린 로컬 카탈로그다. 타입은 현대 분류다.
+- `data/catalog.json`은 1~3세대 원종 386종과 1세대 기술 165종을 추린 로컬 카탈로그다. 타입은 현대 분류와 복합타입을 유지하며 세대·지역·진화 전 종·아기·전설·환상 플래그를 기록한다. 지역폼·메가진화·별도 폼은 포함하지 않는다.
 - 기술의 VFX 프로필은 이 프로젝트가 작성한 표현용 매핑이다. 상태 확률·피해량·사용 가능 기술을 구현한 데이터가 아니다. 프리뷰에서는 어떤 포켓몬으로도 연출을 확인할 수 있다.
-- 바이옴의 출현 등급과 가중치 8:3:1은 종별 상대 가중치 초안이다. 등급 전체의 출현 확률이나 실제 원작 서식 분포를 뜻하지 않는다. 전설·환상 포켓몬은 일반 가중치 풀에서 제외했다.
+- 바이옴의 출현 등급과 가중치 8:3:1은 종별 상대 가중치 초안이다. 등급 전체의 출현 확률이나 실제 원작 서식 분포를 뜻하지 않는다. 전설·환상 21종은 일반 가중치 풀과 관장 편성에서 제외했다. 18개 타입 관장의 6마리 파티는 이 프로젝트가 작성한 편성이며 특정 원작 버전의 파티를 복제하지 않는다.
 
 ## 배경과 기술 이펙트
 
@@ -40,4 +40,4 @@
 
 ## 재현
 
-`python3 tools/import_kanto_assets.py`로 고정 커밋에서 원본을 가져온다. 모든 다운로드는 HTTPS 검증을 유지하며, 파일별 URL과 SHA-256은 `assets/sources/manifest.json`에 기록한다. 동일한 파일은 재사용한다. 배경은 생성 에셋이므로 네트워크 임포터가 덮어쓰지 않는다.
+`python3 tools/import_pokemon_assets.py`로 고정 커밋에서 원본을 가져오고 `python3 tools/build_biomes.py`로 출현·관장 데이터와 목록 문서를 재생성한다. 이전 `import_kanto_assets.py`는 호환용 진입점으로 유지한다. 모든 다운로드는 HTTPS 검증을 유지하며, 파일별 URL과 SHA-256은 `assets/sources/manifest.json`에 기록한다. 동일한 파일은 재사용하며 실패한 다운로드가 있어도 완료된 파일을 재사용할 수 있다. 배경은 생성 에셋이므로 네트워크 임포터가 덮어쓰지 않는다.

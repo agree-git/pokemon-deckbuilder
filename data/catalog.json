@@ -1,10 +1,21 @@
 {
-  "region": "kanto",
+  "regions": [
+    "kanto",
+    "johto",
+    "hoenn"
+  ],
+  "max_generation": 3,
   "pokemon": [
     {
       "id": 1,
       "key": "bulbasaur",
       "name": "이상해씨",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "grass",
         "poison"
@@ -16,6 +27,12 @@
       "id": 2,
       "key": "ivysaur",
       "name": "이상해풀",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 1,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "grass",
         "poison"
@@ -27,6 +44,12 @@
       "id": 3,
       "key": "venusaur",
       "name": "이상해꽃",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 2,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "grass",
         "poison"
@@ -38,6 +61,12 @@
       "id": 4,
       "key": "charmander",
       "name": "파이리",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "fire"
       ],
@@ -48,6 +77,12 @@
       "id": 5,
       "key": "charmeleon",
       "name": "리자드",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 4,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "fire"
       ],
@@ -58,6 +93,12 @@
       "id": 6,
       "key": "charizard",
       "name": "리자몽",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 5,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "fire",
         "flying"
@@ -69,6 +110,12 @@
       "id": 7,
       "key": "squirtle",
       "name": "꼬부기",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water"
       ],
@@ -79,6 +126,12 @@
       "id": 8,
       "key": "wartortle",
       "name": "어니부기",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 7,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water"
       ],
@@ -89,6 +142,12 @@
       "id": 9,
       "key": "blastoise",
       "name": "거북왕",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 8,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water"
       ],
@@ -99,6 +158,12 @@
       "id": 10,
       "key": "caterpie",
       "name": "캐터피",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "bug"
       ],
@@ -109,6 +174,12 @@
       "id": 11,
       "key": "metapod",
       "name": "단데기",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 10,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "bug"
       ],
@@ -119,6 +190,12 @@
       "id": 12,
       "key": "butterfree",
       "name": "버터플",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 11,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "bug",
         "flying"
@@ -130,6 +207,12 @@
       "id": 13,
       "key": "weedle",
       "name": "뿔충이",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "bug",
         "poison"
@@ -141,6 +224,12 @@
       "id": 14,
       "key": "kakuna",
       "name": "딱충이",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 13,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "bug",
         "poison"
@@ -152,6 +241,12 @@
       "id": 15,
       "key": "beedrill",
       "name": "독침붕",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 14,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "bug",
         "poison"
@@ -163,6 +258,12 @@
       "id": 16,
       "key": "pidgey",
       "name": "구구",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "normal",
         "flying"
@@ -174,6 +275,12 @@
       "id": 17,
       "key": "pidgeotto",
       "name": "피죤",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 16,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "normal",
         "flying"
@@ -185,6 +292,12 @@
       "id": 18,
       "key": "pidgeot",
       "name": "피죤투",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 17,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "normal",
         "flying"
@@ -196,6 +309,12 @@
       "id": 19,
       "key": "rattata",
       "name": "꼬렛",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "normal"
       ],
@@ -206,6 +325,12 @@
       "id": 20,
       "key": "raticate",
       "name": "레트라",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 19,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "normal"
       ],
@@ -216,6 +341,12 @@
       "id": 21,
       "key": "spearow",
       "name": "깨비참",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "normal",
         "flying"
@@ -227,6 +358,12 @@
       "id": 22,
       "key": "fearow",
       "name": "깨비드릴조",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 21,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "normal",
         "flying"
@@ -238,6 +375,12 @@
       "id": 23,
       "key": "ekans",
       "name": "아보",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "poison"
       ],
@@ -248,6 +391,12 @@
       "id": 24,
       "key": "arbok",
       "name": "아보크",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 23,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "poison"
       ],
@@ -258,6 +407,12 @@
       "id": 25,
       "key": "pikachu",
       "name": "피카츄",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 172,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "electric"
       ],
@@ -268,6 +423,12 @@
       "id": 26,
       "key": "raichu",
       "name": "라이츄",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 25,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "electric"
       ],
@@ -278,6 +439,12 @@
       "id": 27,
       "key": "sandshrew",
       "name": "모래두지",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "ground"
       ],
@@ -288,6 +455,12 @@
       "id": 28,
       "key": "sandslash",
       "name": "고지",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 27,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "ground"
       ],
@@ -298,6 +471,12 @@
       "id": 29,
       "key": "nidoran-f",
       "name": "니드런♀",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "poison"
       ],
@@ -308,6 +487,12 @@
       "id": 30,
       "key": "nidorina",
       "name": "니드리나",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 29,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "poison"
       ],
@@ -318,6 +503,12 @@
       "id": 31,
       "key": "nidoqueen",
       "name": "니드퀸",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 30,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "poison",
         "ground"
@@ -329,6 +520,12 @@
       "id": 32,
       "key": "nidoran-m",
       "name": "니드런♂",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "poison"
       ],
@@ -339,6 +536,12 @@
       "id": 33,
       "key": "nidorino",
       "name": "니드리노",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 32,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "poison"
       ],
@@ -349,6 +552,12 @@
       "id": 34,
       "key": "nidoking",
       "name": "니드킹",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 33,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "poison",
         "ground"
@@ -360,6 +569,12 @@
       "id": 35,
       "key": "clefairy",
       "name": "삐삐",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 173,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "fairy"
       ],
@@ -370,6 +585,12 @@
       "id": 36,
       "key": "clefable",
       "name": "픽시",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 35,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "fairy"
       ],
@@ -380,6 +601,12 @@
       "id": 37,
       "key": "vulpix",
       "name": "식스테일",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "fire"
       ],
@@ -390,6 +617,12 @@
       "id": 38,
       "key": "ninetales",
       "name": "나인테일",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 37,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "fire"
       ],
@@ -400,6 +633,12 @@
       "id": 39,
       "key": "jigglypuff",
       "name": "푸린",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 174,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "normal",
         "fairy"
@@ -411,6 +650,12 @@
       "id": 40,
       "key": "wigglytuff",
       "name": "푸크린",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 39,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "normal",
         "fairy"
@@ -422,6 +667,12 @@
       "id": 41,
       "key": "zubat",
       "name": "주뱃",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "poison",
         "flying"
@@ -433,6 +684,12 @@
       "id": 42,
       "key": "golbat",
       "name": "골뱃",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 41,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "poison",
         "flying"
@@ -444,6 +701,12 @@
       "id": 43,
       "key": "oddish",
       "name": "뚜벅쵸",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "grass",
         "poison"
@@ -455,6 +718,12 @@
       "id": 44,
       "key": "gloom",
       "name": "냄새꼬",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 43,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "grass",
         "poison"
@@ -466,6 +735,12 @@
       "id": 45,
       "key": "vileplume",
       "name": "라플레시아",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 44,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "grass",
         "poison"
@@ -477,6 +752,12 @@
       "id": 46,
       "key": "paras",
       "name": "파라스",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "bug",
         "grass"
@@ -488,6 +769,12 @@
       "id": 47,
       "key": "parasect",
       "name": "파라섹트",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 46,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "bug",
         "grass"
@@ -499,6 +786,12 @@
       "id": 48,
       "key": "venonat",
       "name": "콘팡",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "bug",
         "poison"
@@ -510,6 +803,12 @@
       "id": 49,
       "key": "venomoth",
       "name": "도나리",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 48,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "bug",
         "poison"
@@ -521,6 +820,12 @@
       "id": 50,
       "key": "diglett",
       "name": "디그다",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "ground"
       ],
@@ -531,6 +836,12 @@
       "id": 51,
       "key": "dugtrio",
       "name": "닥트리오",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 50,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "ground"
       ],
@@ -541,6 +852,12 @@
       "id": 52,
       "key": "meowth",
       "name": "나옹",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "normal"
       ],
@@ -551,6 +868,12 @@
       "id": 53,
       "key": "persian",
       "name": "페르시온",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 52,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "normal"
       ],
@@ -561,6 +884,12 @@
       "id": 54,
       "key": "psyduck",
       "name": "고라파덕",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water"
       ],
@@ -571,6 +900,12 @@
       "id": 55,
       "key": "golduck",
       "name": "골덕",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 54,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water"
       ],
@@ -581,6 +916,12 @@
       "id": 56,
       "key": "mankey",
       "name": "망키",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "fighting"
       ],
@@ -591,6 +932,12 @@
       "id": 57,
       "key": "primeape",
       "name": "성원숭",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 56,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "fighting"
       ],
@@ -601,6 +948,12 @@
       "id": 58,
       "key": "growlithe",
       "name": "가디",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "fire"
       ],
@@ -611,6 +964,12 @@
       "id": 59,
       "key": "arcanine",
       "name": "윈디",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 58,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "fire"
       ],
@@ -621,6 +980,12 @@
       "id": 60,
       "key": "poliwag",
       "name": "발챙이",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water"
       ],
@@ -631,6 +996,12 @@
       "id": 61,
       "key": "poliwhirl",
       "name": "슈륙챙이",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 60,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water"
       ],
@@ -641,6 +1012,12 @@
       "id": 62,
       "key": "poliwrath",
       "name": "강챙이",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 61,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water",
         "fighting"
@@ -652,6 +1029,12 @@
       "id": 63,
       "key": "abra",
       "name": "캐이시",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "psychic"
       ],
@@ -662,6 +1045,12 @@
       "id": 64,
       "key": "kadabra",
       "name": "윤겔라",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 63,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "psychic"
       ],
@@ -672,6 +1061,12 @@
       "id": 65,
       "key": "alakazam",
       "name": "후딘",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 64,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "psychic"
       ],
@@ -682,6 +1077,12 @@
       "id": 66,
       "key": "machop",
       "name": "알통몬",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "fighting"
       ],
@@ -692,6 +1093,12 @@
       "id": 67,
       "key": "machoke",
       "name": "근육몬",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 66,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "fighting"
       ],
@@ -702,6 +1109,12 @@
       "id": 68,
       "key": "machamp",
       "name": "괴력몬",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 67,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "fighting"
       ],
@@ -712,6 +1125,12 @@
       "id": 69,
       "key": "bellsprout",
       "name": "모다피",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "grass",
         "poison"
@@ -723,6 +1142,12 @@
       "id": 70,
       "key": "weepinbell",
       "name": "우츠동",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 69,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "grass",
         "poison"
@@ -734,6 +1159,12 @@
       "id": 71,
       "key": "victreebel",
       "name": "우츠보트",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 70,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "grass",
         "poison"
@@ -745,6 +1176,12 @@
       "id": 72,
       "key": "tentacool",
       "name": "왕눈해",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water",
         "poison"
@@ -756,6 +1193,12 @@
       "id": 73,
       "key": "tentacruel",
       "name": "독파리",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 72,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water",
         "poison"
@@ -767,6 +1210,12 @@
       "id": 74,
       "key": "geodude",
       "name": "꼬마돌",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "rock",
         "ground"
@@ -778,6 +1227,12 @@
       "id": 75,
       "key": "graveler",
       "name": "데구리",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 74,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "rock",
         "ground"
@@ -789,6 +1244,12 @@
       "id": 76,
       "key": "golem",
       "name": "딱구리",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 75,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "rock",
         "ground"
@@ -800,6 +1261,12 @@
       "id": 77,
       "key": "ponyta",
       "name": "포니타",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "fire"
       ],
@@ -810,6 +1277,12 @@
       "id": 78,
       "key": "rapidash",
       "name": "날쌩마",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 77,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "fire"
       ],
@@ -820,6 +1293,12 @@
       "id": 79,
       "key": "slowpoke",
       "name": "야돈",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water",
         "psychic"
@@ -831,6 +1310,12 @@
       "id": 80,
       "key": "slowbro",
       "name": "야도란",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 79,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water",
         "psychic"
@@ -842,6 +1327,12 @@
       "id": 81,
       "key": "magnemite",
       "name": "코일",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "electric",
         "steel"
@@ -853,6 +1344,12 @@
       "id": 82,
       "key": "magneton",
       "name": "레어코일",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 81,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "electric",
         "steel"
@@ -864,6 +1361,12 @@
       "id": 83,
       "key": "farfetchd",
       "name": "파오리",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "normal",
         "flying"
@@ -875,6 +1378,12 @@
       "id": 84,
       "key": "doduo",
       "name": "두두",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "normal",
         "flying"
@@ -886,6 +1395,12 @@
       "id": 85,
       "key": "dodrio",
       "name": "두트리오",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 84,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "normal",
         "flying"
@@ -897,6 +1412,12 @@
       "id": 86,
       "key": "seel",
       "name": "쥬쥬",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water"
       ],
@@ -907,6 +1428,12 @@
       "id": 87,
       "key": "dewgong",
       "name": "쥬레곤",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 86,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water",
         "ice"
@@ -918,6 +1445,12 @@
       "id": 88,
       "key": "grimer",
       "name": "질퍽이",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "poison"
       ],
@@ -928,6 +1461,12 @@
       "id": 89,
       "key": "muk",
       "name": "질뻐기",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 88,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "poison"
       ],
@@ -938,6 +1477,12 @@
       "id": 90,
       "key": "shellder",
       "name": "셀러",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water"
       ],
@@ -948,6 +1493,12 @@
       "id": 91,
       "key": "cloyster",
       "name": "파르셀",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 90,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water",
         "ice"
@@ -959,6 +1510,12 @@
       "id": 92,
       "key": "gastly",
       "name": "고오스",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "ghost",
         "poison"
@@ -970,6 +1527,12 @@
       "id": 93,
       "key": "haunter",
       "name": "고우스트",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 92,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "ghost",
         "poison"
@@ -981,6 +1544,12 @@
       "id": 94,
       "key": "gengar",
       "name": "팬텀",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 93,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "ghost",
         "poison"
@@ -992,6 +1561,12 @@
       "id": 95,
       "key": "onix",
       "name": "롱스톤",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "rock",
         "ground"
@@ -1003,6 +1578,12 @@
       "id": 96,
       "key": "drowzee",
       "name": "슬리프",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "psychic"
       ],
@@ -1013,6 +1594,12 @@
       "id": 97,
       "key": "hypno",
       "name": "슬리퍼",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 96,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "psychic"
       ],
@@ -1023,6 +1610,12 @@
       "id": 98,
       "key": "krabby",
       "name": "크랩",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water"
       ],
@@ -1033,6 +1626,12 @@
       "id": 99,
       "key": "kingler",
       "name": "킹크랩",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 98,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water"
       ],
@@ -1043,6 +1642,12 @@
       "id": 100,
       "key": "voltorb",
       "name": "찌리리공",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "electric"
       ],
@@ -1053,6 +1658,12 @@
       "id": 101,
       "key": "electrode",
       "name": "붐볼",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 100,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "electric"
       ],
@@ -1063,6 +1674,12 @@
       "id": 102,
       "key": "exeggcute",
       "name": "아라리",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "grass",
         "psychic"
@@ -1074,6 +1691,12 @@
       "id": 103,
       "key": "exeggutor",
       "name": "나시",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 102,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "grass",
         "psychic"
@@ -1085,6 +1708,12 @@
       "id": 104,
       "key": "cubone",
       "name": "탕구리",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "ground"
       ],
@@ -1095,6 +1724,12 @@
       "id": 105,
       "key": "marowak",
       "name": "텅구리",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 104,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "ground"
       ],
@@ -1105,6 +1740,12 @@
       "id": 106,
       "key": "hitmonlee",
       "name": "시라소몬",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 236,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "fighting"
       ],
@@ -1115,6 +1756,12 @@
       "id": 107,
       "key": "hitmonchan",
       "name": "홍수몬",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 236,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "fighting"
       ],
@@ -1125,6 +1772,12 @@
       "id": 108,
       "key": "lickitung",
       "name": "내루미",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "normal"
       ],
@@ -1135,6 +1788,12 @@
       "id": 109,
       "key": "koffing",
       "name": "또가스",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "poison"
       ],
@@ -1145,6 +1804,12 @@
       "id": 110,
       "key": "weezing",
       "name": "또도가스",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 109,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "poison"
       ],
@@ -1155,6 +1820,12 @@
       "id": 111,
       "key": "rhyhorn",
       "name": "뿔카노",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "ground",
         "rock"
@@ -1166,6 +1837,12 @@
       "id": 112,
       "key": "rhydon",
       "name": "코뿌리",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 111,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "ground",
         "rock"
@@ -1177,6 +1854,12 @@
       "id": 113,
       "key": "chansey",
       "name": "럭키",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 440,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "normal"
       ],
@@ -1187,6 +1870,12 @@
       "id": 114,
       "key": "tangela",
       "name": "덩쿠리",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "grass"
       ],
@@ -1197,6 +1886,12 @@
       "id": 115,
       "key": "kangaskhan",
       "name": "캥카",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "normal"
       ],
@@ -1207,6 +1902,12 @@
       "id": 116,
       "key": "horsea",
       "name": "쏘드라",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water"
       ],
@@ -1217,6 +1918,12 @@
       "id": 117,
       "key": "seadra",
       "name": "시드라",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 116,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water"
       ],
@@ -1227,6 +1934,12 @@
       "id": 118,
       "key": "goldeen",
       "name": "콘치",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water"
       ],
@@ -1237,6 +1950,12 @@
       "id": 119,
       "key": "seaking",
       "name": "왕콘치",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 118,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water"
       ],
@@ -1247,6 +1966,12 @@
       "id": 120,
       "key": "staryu",
       "name": "별가사리",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water"
       ],
@@ -1257,6 +1982,12 @@
       "id": 121,
       "key": "starmie",
       "name": "아쿠스타",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 120,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water",
         "psychic"
@@ -1268,6 +1999,12 @@
       "id": 122,
       "key": "mr-mime",
       "name": "마임맨",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 439,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "psychic",
         "fairy"
@@ -1279,6 +2016,12 @@
       "id": 123,
       "key": "scyther",
       "name": "스라크",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "bug",
         "flying"
@@ -1290,6 +2033,12 @@
       "id": 124,
       "key": "jynx",
       "name": "루주라",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 238,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "ice",
         "psychic"
@@ -1301,6 +2050,12 @@
       "id": 125,
       "key": "electabuzz",
       "name": "에레브",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 239,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "electric"
       ],
@@ -1311,6 +2066,12 @@
       "id": 126,
       "key": "magmar",
       "name": "마그마",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 240,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "fire"
       ],
@@ -1321,6 +2082,12 @@
       "id": 127,
       "key": "pinsir",
       "name": "쁘사이저",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "bug"
       ],
@@ -1331,6 +2098,12 @@
       "id": 128,
       "key": "tauros",
       "name": "켄타로스",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "normal"
       ],
@@ -1341,6 +2114,12 @@
       "id": 129,
       "key": "magikarp",
       "name": "잉어킹",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water"
       ],
@@ -1351,6 +2130,12 @@
       "id": 130,
       "key": "gyarados",
       "name": "갸라도스",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 129,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water",
         "flying"
@@ -1362,6 +2147,12 @@
       "id": 131,
       "key": "lapras",
       "name": "라프라스",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water",
         "ice"
@@ -1373,6 +2164,12 @@
       "id": 132,
       "key": "ditto",
       "name": "메타몽",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "normal"
       ],
@@ -1383,6 +2180,12 @@
       "id": 133,
       "key": "eevee",
       "name": "이브이",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "normal"
       ],
@@ -1393,6 +2196,12 @@
       "id": 134,
       "key": "vaporeon",
       "name": "샤미드",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 133,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "water"
       ],
@@ -1403,6 +2212,12 @@
       "id": 135,
       "key": "jolteon",
       "name": "쥬피썬더",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 133,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "electric"
       ],
@@ -1413,6 +2228,12 @@
       "id": 136,
       "key": "flareon",
       "name": "부스터",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 133,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "fire"
       ],
@@ -1423,6 +2244,12 @@
       "id": 137,
       "key": "porygon",
       "name": "폴리곤",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "normal"
       ],
@@ -1433,6 +2260,12 @@
       "id": 138,
       "key": "omanyte",
       "name": "암나이트",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "rock",
         "water"
@@ -1444,6 +2277,12 @@
       "id": 139,
       "key": "omastar",
       "name": "암스타",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 138,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "rock",
         "water"
@@ -1455,6 +2294,12 @@
       "id": 140,
       "key": "kabuto",
       "name": "투구",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "rock",
         "water"
@@ -1466,6 +2311,12 @@
       "id": 141,
       "key": "kabutops",
       "name": "투구푸스",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 140,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "rock",
         "water"
@@ -1477,6 +2328,12 @@
       "id": 142,
       "key": "aerodactyl",
       "name": "프테라",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "rock",
         "flying"
@@ -1488,6 +2345,12 @@
       "id": 143,
       "key": "snorlax",
       "name": "잠만보",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 446,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "normal"
       ],
@@ -1498,6 +2361,12 @@
       "id": 144,
       "key": "articuno",
       "name": "프리져",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": true,
+      "is_mythical": false,
       "types": [
         "ice",
         "flying"
@@ -1509,6 +2378,12 @@
       "id": 145,
       "key": "zapdos",
       "name": "썬더",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": true,
+      "is_mythical": false,
       "types": [
         "electric",
         "flying"
@@ -1520,6 +2395,12 @@
       "id": 146,
       "key": "moltres",
       "name": "파이어",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": true,
+      "is_mythical": false,
       "types": [
         "fire",
         "flying"
@@ -1531,6 +2412,12 @@
       "id": 147,
       "key": "dratini",
       "name": "미뇽",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "dragon"
       ],
@@ -1541,6 +2428,12 @@
       "id": 148,
       "key": "dragonair",
       "name": "신뇽",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 147,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "dragon"
       ],
@@ -1551,6 +2444,12 @@
       "id": 149,
       "key": "dragonite",
       "name": "망나뇽",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 148,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
       "types": [
         "dragon",
         "flying"
@@ -1562,6 +2461,12 @@
       "id": 150,
       "key": "mewtwo",
       "name": "뮤츠",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": true,
+      "is_mythical": false,
       "types": [
         "psychic"
       ],
@@ -1572,11 +2477,3892 @@
       "id": 151,
       "key": "mew",
       "name": "뮤",
+      "generation": 1,
+      "region": "kanto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": true,
       "types": [
         "psychic"
       ],
       "front": "res://assets/pokemon/front/151.png",
       "back": "res://assets/pokemon/back/151.png"
+    },
+    {
+      "id": 152,
+      "key": "chikorita",
+      "name": "치코리타",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "grass"
+      ],
+      "front": "res://assets/pokemon/front/152.png",
+      "back": "res://assets/pokemon/back/152.png"
+    },
+    {
+      "id": 153,
+      "key": "bayleef",
+      "name": "베이리프",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 152,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "grass"
+      ],
+      "front": "res://assets/pokemon/front/153.png",
+      "back": "res://assets/pokemon/back/153.png"
+    },
+    {
+      "id": 154,
+      "key": "meganium",
+      "name": "메가니움",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 153,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "grass"
+      ],
+      "front": "res://assets/pokemon/front/154.png",
+      "back": "res://assets/pokemon/back/154.png"
+    },
+    {
+      "id": 155,
+      "key": "cyndaquil",
+      "name": "브케인",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "fire"
+      ],
+      "front": "res://assets/pokemon/front/155.png",
+      "back": "res://assets/pokemon/back/155.png"
+    },
+    {
+      "id": 156,
+      "key": "quilava",
+      "name": "마그케인",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 155,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "fire"
+      ],
+      "front": "res://assets/pokemon/front/156.png",
+      "back": "res://assets/pokemon/back/156.png"
+    },
+    {
+      "id": 157,
+      "key": "typhlosion",
+      "name": "블레이범",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 156,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "fire"
+      ],
+      "front": "res://assets/pokemon/front/157.png",
+      "back": "res://assets/pokemon/back/157.png"
+    },
+    {
+      "id": 158,
+      "key": "totodile",
+      "name": "리아코",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/158.png",
+      "back": "res://assets/pokemon/back/158.png"
+    },
+    {
+      "id": 159,
+      "key": "croconaw",
+      "name": "엘리게이",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 158,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/159.png",
+      "back": "res://assets/pokemon/back/159.png"
+    },
+    {
+      "id": 160,
+      "key": "feraligatr",
+      "name": "장크로다일",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 159,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/160.png",
+      "back": "res://assets/pokemon/back/160.png"
+    },
+    {
+      "id": 161,
+      "key": "sentret",
+      "name": "꼬리선",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/161.png",
+      "back": "res://assets/pokemon/back/161.png"
+    },
+    {
+      "id": 162,
+      "key": "furret",
+      "name": "다꼬리",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 161,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/162.png",
+      "back": "res://assets/pokemon/back/162.png"
+    },
+    {
+      "id": 163,
+      "key": "hoothoot",
+      "name": "부우부",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/163.png",
+      "back": "res://assets/pokemon/back/163.png"
+    },
+    {
+      "id": 164,
+      "key": "noctowl",
+      "name": "야부엉",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 163,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/164.png",
+      "back": "res://assets/pokemon/back/164.png"
+    },
+    {
+      "id": 165,
+      "key": "ledyba",
+      "name": "레디바",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "bug",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/165.png",
+      "back": "res://assets/pokemon/back/165.png"
+    },
+    {
+      "id": 166,
+      "key": "ledian",
+      "name": "레디안",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 165,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "bug",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/166.png",
+      "back": "res://assets/pokemon/back/166.png"
+    },
+    {
+      "id": 167,
+      "key": "spinarak",
+      "name": "페이검",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "bug",
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/167.png",
+      "back": "res://assets/pokemon/back/167.png"
+    },
+    {
+      "id": 168,
+      "key": "ariados",
+      "name": "아리아도스",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 167,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "bug",
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/168.png",
+      "back": "res://assets/pokemon/back/168.png"
+    },
+    {
+      "id": 169,
+      "key": "crobat",
+      "name": "크로뱃",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 42,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "poison",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/169.png",
+      "back": "res://assets/pokemon/back/169.png"
+    },
+    {
+      "id": 170,
+      "key": "chinchou",
+      "name": "초라기",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water",
+        "electric"
+      ],
+      "front": "res://assets/pokemon/front/170.png",
+      "back": "res://assets/pokemon/back/170.png"
+    },
+    {
+      "id": 171,
+      "key": "lanturn",
+      "name": "랜턴",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 170,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water",
+        "electric"
+      ],
+      "front": "res://assets/pokemon/front/171.png",
+      "back": "res://assets/pokemon/back/171.png"
+    },
+    {
+      "id": 172,
+      "key": "pichu",
+      "name": "피츄",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": true,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "electric"
+      ],
+      "front": "res://assets/pokemon/front/172.png",
+      "back": "res://assets/pokemon/back/172.png"
+    },
+    {
+      "id": 173,
+      "key": "cleffa",
+      "name": "삐",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": true,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "fairy"
+      ],
+      "front": "res://assets/pokemon/front/173.png",
+      "back": "res://assets/pokemon/back/173.png"
+    },
+    {
+      "id": 174,
+      "key": "igglybuff",
+      "name": "푸푸린",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": true,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal",
+        "fairy"
+      ],
+      "front": "res://assets/pokemon/front/174.png",
+      "back": "res://assets/pokemon/back/174.png"
+    },
+    {
+      "id": 175,
+      "key": "togepi",
+      "name": "토게피",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": true,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "fairy"
+      ],
+      "front": "res://assets/pokemon/front/175.png",
+      "back": "res://assets/pokemon/back/175.png"
+    },
+    {
+      "id": 176,
+      "key": "togetic",
+      "name": "토게틱",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 175,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "fairy",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/176.png",
+      "back": "res://assets/pokemon/back/176.png"
+    },
+    {
+      "id": 177,
+      "key": "natu",
+      "name": "네이티",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "psychic",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/177.png",
+      "back": "res://assets/pokemon/back/177.png"
+    },
+    {
+      "id": 178,
+      "key": "xatu",
+      "name": "네이티오",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 177,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "psychic",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/178.png",
+      "back": "res://assets/pokemon/back/178.png"
+    },
+    {
+      "id": 179,
+      "key": "mareep",
+      "name": "메리프",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "electric"
+      ],
+      "front": "res://assets/pokemon/front/179.png",
+      "back": "res://assets/pokemon/back/179.png"
+    },
+    {
+      "id": 180,
+      "key": "flaaffy",
+      "name": "보송송",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 179,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "electric"
+      ],
+      "front": "res://assets/pokemon/front/180.png",
+      "back": "res://assets/pokemon/back/180.png"
+    },
+    {
+      "id": 181,
+      "key": "ampharos",
+      "name": "전룡",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 180,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "electric"
+      ],
+      "front": "res://assets/pokemon/front/181.png",
+      "back": "res://assets/pokemon/back/181.png"
+    },
+    {
+      "id": 182,
+      "key": "bellossom",
+      "name": "아르코",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 44,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "grass"
+      ],
+      "front": "res://assets/pokemon/front/182.png",
+      "back": "res://assets/pokemon/back/182.png"
+    },
+    {
+      "id": 183,
+      "key": "marill",
+      "name": "마릴",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 298,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water",
+        "fairy"
+      ],
+      "front": "res://assets/pokemon/front/183.png",
+      "back": "res://assets/pokemon/back/183.png"
+    },
+    {
+      "id": 184,
+      "key": "azumarill",
+      "name": "마릴리",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 183,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water",
+        "fairy"
+      ],
+      "front": "res://assets/pokemon/front/184.png",
+      "back": "res://assets/pokemon/back/184.png"
+    },
+    {
+      "id": 185,
+      "key": "sudowoodo",
+      "name": "꼬지모",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 438,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "rock"
+      ],
+      "front": "res://assets/pokemon/front/185.png",
+      "back": "res://assets/pokemon/back/185.png"
+    },
+    {
+      "id": 186,
+      "key": "politoed",
+      "name": "왕구리",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 61,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/186.png",
+      "back": "res://assets/pokemon/back/186.png"
+    },
+    {
+      "id": 187,
+      "key": "hoppip",
+      "name": "통통코",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "grass",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/187.png",
+      "back": "res://assets/pokemon/back/187.png"
+    },
+    {
+      "id": 188,
+      "key": "skiploom",
+      "name": "두코",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 187,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "grass",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/188.png",
+      "back": "res://assets/pokemon/back/188.png"
+    },
+    {
+      "id": 189,
+      "key": "jumpluff",
+      "name": "솜솜코",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 188,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "grass",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/189.png",
+      "back": "res://assets/pokemon/back/189.png"
+    },
+    {
+      "id": 190,
+      "key": "aipom",
+      "name": "에이팜",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/190.png",
+      "back": "res://assets/pokemon/back/190.png"
+    },
+    {
+      "id": 191,
+      "key": "sunkern",
+      "name": "해너츠",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "grass"
+      ],
+      "front": "res://assets/pokemon/front/191.png",
+      "back": "res://assets/pokemon/back/191.png"
+    },
+    {
+      "id": 192,
+      "key": "sunflora",
+      "name": "해루미",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 191,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "grass"
+      ],
+      "front": "res://assets/pokemon/front/192.png",
+      "back": "res://assets/pokemon/back/192.png"
+    },
+    {
+      "id": 193,
+      "key": "yanma",
+      "name": "왕자리",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "bug",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/193.png",
+      "back": "res://assets/pokemon/back/193.png"
+    },
+    {
+      "id": 194,
+      "key": "wooper",
+      "name": "우파",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water",
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/194.png",
+      "back": "res://assets/pokemon/back/194.png"
+    },
+    {
+      "id": 195,
+      "key": "quagsire",
+      "name": "누오",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 194,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water",
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/195.png",
+      "back": "res://assets/pokemon/back/195.png"
+    },
+    {
+      "id": 196,
+      "key": "espeon",
+      "name": "에브이",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 133,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/196.png",
+      "back": "res://assets/pokemon/back/196.png"
+    },
+    {
+      "id": 197,
+      "key": "umbreon",
+      "name": "블래키",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 133,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "dark"
+      ],
+      "front": "res://assets/pokemon/front/197.png",
+      "back": "res://assets/pokemon/back/197.png"
+    },
+    {
+      "id": 198,
+      "key": "murkrow",
+      "name": "니로우",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "dark",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/198.png",
+      "back": "res://assets/pokemon/back/198.png"
+    },
+    {
+      "id": 199,
+      "key": "slowking",
+      "name": "야도킹",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 79,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water",
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/199.png",
+      "back": "res://assets/pokemon/back/199.png"
+    },
+    {
+      "id": 200,
+      "key": "misdreavus",
+      "name": "무우마",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "ghost"
+      ],
+      "front": "res://assets/pokemon/front/200.png",
+      "back": "res://assets/pokemon/back/200.png"
+    },
+    {
+      "id": 201,
+      "key": "unown",
+      "name": "안농",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/201.png",
+      "back": "res://assets/pokemon/back/201.png"
+    },
+    {
+      "id": 202,
+      "key": "wobbuffet",
+      "name": "마자용",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 360,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/202.png",
+      "back": "res://assets/pokemon/back/202.png"
+    },
+    {
+      "id": 203,
+      "key": "girafarig",
+      "name": "키링키",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal",
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/203.png",
+      "back": "res://assets/pokemon/back/203.png"
+    },
+    {
+      "id": 204,
+      "key": "pineco",
+      "name": "피콘",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "bug"
+      ],
+      "front": "res://assets/pokemon/front/204.png",
+      "back": "res://assets/pokemon/back/204.png"
+    },
+    {
+      "id": 205,
+      "key": "forretress",
+      "name": "쏘콘",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 204,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "bug",
+        "steel"
+      ],
+      "front": "res://assets/pokemon/front/205.png",
+      "back": "res://assets/pokemon/back/205.png"
+    },
+    {
+      "id": 206,
+      "key": "dunsparce",
+      "name": "노고치",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/206.png",
+      "back": "res://assets/pokemon/back/206.png"
+    },
+    {
+      "id": 207,
+      "key": "gligar",
+      "name": "글라이거",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "ground",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/207.png",
+      "back": "res://assets/pokemon/back/207.png"
+    },
+    {
+      "id": 208,
+      "key": "steelix",
+      "name": "강철톤",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 95,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "steel",
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/208.png",
+      "back": "res://assets/pokemon/back/208.png"
+    },
+    {
+      "id": 209,
+      "key": "snubbull",
+      "name": "블루",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "fairy"
+      ],
+      "front": "res://assets/pokemon/front/209.png",
+      "back": "res://assets/pokemon/back/209.png"
+    },
+    {
+      "id": 210,
+      "key": "granbull",
+      "name": "그랑블루",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 209,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "fairy"
+      ],
+      "front": "res://assets/pokemon/front/210.png",
+      "back": "res://assets/pokemon/back/210.png"
+    },
+    {
+      "id": 211,
+      "key": "qwilfish",
+      "name": "침바루",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water",
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/211.png",
+      "back": "res://assets/pokemon/back/211.png"
+    },
+    {
+      "id": 212,
+      "key": "scizor",
+      "name": "핫삼",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 123,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "bug",
+        "steel"
+      ],
+      "front": "res://assets/pokemon/front/212.png",
+      "back": "res://assets/pokemon/back/212.png"
+    },
+    {
+      "id": 213,
+      "key": "shuckle",
+      "name": "단단지",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "bug",
+        "rock"
+      ],
+      "front": "res://assets/pokemon/front/213.png",
+      "back": "res://assets/pokemon/back/213.png"
+    },
+    {
+      "id": 214,
+      "key": "heracross",
+      "name": "헤라크로스",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "bug",
+        "fighting"
+      ],
+      "front": "res://assets/pokemon/front/214.png",
+      "back": "res://assets/pokemon/back/214.png"
+    },
+    {
+      "id": 215,
+      "key": "sneasel",
+      "name": "포푸니",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "dark",
+        "ice"
+      ],
+      "front": "res://assets/pokemon/front/215.png",
+      "back": "res://assets/pokemon/back/215.png"
+    },
+    {
+      "id": 216,
+      "key": "teddiursa",
+      "name": "깜지곰",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/216.png",
+      "back": "res://assets/pokemon/back/216.png"
+    },
+    {
+      "id": 217,
+      "key": "ursaring",
+      "name": "링곰",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 216,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/217.png",
+      "back": "res://assets/pokemon/back/217.png"
+    },
+    {
+      "id": 218,
+      "key": "slugma",
+      "name": "마그마그",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "fire"
+      ],
+      "front": "res://assets/pokemon/front/218.png",
+      "back": "res://assets/pokemon/back/218.png"
+    },
+    {
+      "id": 219,
+      "key": "magcargo",
+      "name": "마그카르고",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 218,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "fire",
+        "rock"
+      ],
+      "front": "res://assets/pokemon/front/219.png",
+      "back": "res://assets/pokemon/back/219.png"
+    },
+    {
+      "id": 220,
+      "key": "swinub",
+      "name": "꾸꾸리",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "ice",
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/220.png",
+      "back": "res://assets/pokemon/back/220.png"
+    },
+    {
+      "id": 221,
+      "key": "piloswine",
+      "name": "메꾸리",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 220,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "ice",
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/221.png",
+      "back": "res://assets/pokemon/back/221.png"
+    },
+    {
+      "id": 222,
+      "key": "corsola",
+      "name": "코산호",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water",
+        "rock"
+      ],
+      "front": "res://assets/pokemon/front/222.png",
+      "back": "res://assets/pokemon/back/222.png"
+    },
+    {
+      "id": 223,
+      "key": "remoraid",
+      "name": "총어",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/223.png",
+      "back": "res://assets/pokemon/back/223.png"
+    },
+    {
+      "id": 224,
+      "key": "octillery",
+      "name": "대포무노",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 223,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/224.png",
+      "back": "res://assets/pokemon/back/224.png"
+    },
+    {
+      "id": 225,
+      "key": "delibird",
+      "name": "딜리버드",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "ice",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/225.png",
+      "back": "res://assets/pokemon/back/225.png"
+    },
+    {
+      "id": 226,
+      "key": "mantine",
+      "name": "만타인",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 458,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/226.png",
+      "back": "res://assets/pokemon/back/226.png"
+    },
+    {
+      "id": 227,
+      "key": "skarmory",
+      "name": "무장조",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "steel",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/227.png",
+      "back": "res://assets/pokemon/back/227.png"
+    },
+    {
+      "id": 228,
+      "key": "houndour",
+      "name": "델빌",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "dark",
+        "fire"
+      ],
+      "front": "res://assets/pokemon/front/228.png",
+      "back": "res://assets/pokemon/back/228.png"
+    },
+    {
+      "id": 229,
+      "key": "houndoom",
+      "name": "헬가",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 228,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "dark",
+        "fire"
+      ],
+      "front": "res://assets/pokemon/front/229.png",
+      "back": "res://assets/pokemon/back/229.png"
+    },
+    {
+      "id": 230,
+      "key": "kingdra",
+      "name": "킹드라",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 117,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water",
+        "dragon"
+      ],
+      "front": "res://assets/pokemon/front/230.png",
+      "back": "res://assets/pokemon/back/230.png"
+    },
+    {
+      "id": 231,
+      "key": "phanpy",
+      "name": "코코리",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/231.png",
+      "back": "res://assets/pokemon/back/231.png"
+    },
+    {
+      "id": 232,
+      "key": "donphan",
+      "name": "코리갑",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 231,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/232.png",
+      "back": "res://assets/pokemon/back/232.png"
+    },
+    {
+      "id": 233,
+      "key": "porygon2",
+      "name": "폴리곤2",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 137,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/233.png",
+      "back": "res://assets/pokemon/back/233.png"
+    },
+    {
+      "id": 234,
+      "key": "stantler",
+      "name": "노라키",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/234.png",
+      "back": "res://assets/pokemon/back/234.png"
+    },
+    {
+      "id": 235,
+      "key": "smeargle",
+      "name": "루브도",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/235.png",
+      "back": "res://assets/pokemon/back/235.png"
+    },
+    {
+      "id": 236,
+      "key": "tyrogue",
+      "name": "배루키",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": true,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "fighting"
+      ],
+      "front": "res://assets/pokemon/front/236.png",
+      "back": "res://assets/pokemon/back/236.png"
+    },
+    {
+      "id": 237,
+      "key": "hitmontop",
+      "name": "카포에라",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 236,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "fighting"
+      ],
+      "front": "res://assets/pokemon/front/237.png",
+      "back": "res://assets/pokemon/back/237.png"
+    },
+    {
+      "id": 238,
+      "key": "smoochum",
+      "name": "뽀뽀라",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": true,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "ice",
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/238.png",
+      "back": "res://assets/pokemon/back/238.png"
+    },
+    {
+      "id": 239,
+      "key": "elekid",
+      "name": "에레키드",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": true,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "electric"
+      ],
+      "front": "res://assets/pokemon/front/239.png",
+      "back": "res://assets/pokemon/back/239.png"
+    },
+    {
+      "id": 240,
+      "key": "magby",
+      "name": "마그비",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": true,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "fire"
+      ],
+      "front": "res://assets/pokemon/front/240.png",
+      "back": "res://assets/pokemon/back/240.png"
+    },
+    {
+      "id": 241,
+      "key": "miltank",
+      "name": "밀탱크",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/241.png",
+      "back": "res://assets/pokemon/back/241.png"
+    },
+    {
+      "id": 242,
+      "key": "blissey",
+      "name": "해피너스",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 113,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/242.png",
+      "back": "res://assets/pokemon/back/242.png"
+    },
+    {
+      "id": 243,
+      "key": "raikou",
+      "name": "라이코",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": true,
+      "is_mythical": false,
+      "types": [
+        "electric"
+      ],
+      "front": "res://assets/pokemon/front/243.png",
+      "back": "res://assets/pokemon/back/243.png"
+    },
+    {
+      "id": 244,
+      "key": "entei",
+      "name": "앤테이",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": true,
+      "is_mythical": false,
+      "types": [
+        "fire"
+      ],
+      "front": "res://assets/pokemon/front/244.png",
+      "back": "res://assets/pokemon/back/244.png"
+    },
+    {
+      "id": 245,
+      "key": "suicune",
+      "name": "스이쿤",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": true,
+      "is_mythical": false,
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/245.png",
+      "back": "res://assets/pokemon/back/245.png"
+    },
+    {
+      "id": 246,
+      "key": "larvitar",
+      "name": "애버라스",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "rock",
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/246.png",
+      "back": "res://assets/pokemon/back/246.png"
+    },
+    {
+      "id": 247,
+      "key": "pupitar",
+      "name": "데기라스",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 246,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "rock",
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/247.png",
+      "back": "res://assets/pokemon/back/247.png"
+    },
+    {
+      "id": 248,
+      "key": "tyranitar",
+      "name": "마기라스",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 247,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "rock",
+        "dark"
+      ],
+      "front": "res://assets/pokemon/front/248.png",
+      "back": "res://assets/pokemon/back/248.png"
+    },
+    {
+      "id": 249,
+      "key": "lugia",
+      "name": "루기아",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": true,
+      "is_mythical": false,
+      "types": [
+        "psychic",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/249.png",
+      "back": "res://assets/pokemon/back/249.png"
+    },
+    {
+      "id": 250,
+      "key": "ho-oh",
+      "name": "칠색조",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": true,
+      "is_mythical": false,
+      "types": [
+        "fire",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/250.png",
+      "back": "res://assets/pokemon/back/250.png"
+    },
+    {
+      "id": 251,
+      "key": "celebi",
+      "name": "세레비",
+      "generation": 2,
+      "region": "johto",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": true,
+      "types": [
+        "psychic",
+        "grass"
+      ],
+      "front": "res://assets/pokemon/front/251.png",
+      "back": "res://assets/pokemon/back/251.png"
+    },
+    {
+      "id": 252,
+      "key": "treecko",
+      "name": "나무지기",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "grass"
+      ],
+      "front": "res://assets/pokemon/front/252.png",
+      "back": "res://assets/pokemon/back/252.png"
+    },
+    {
+      "id": 253,
+      "key": "grovyle",
+      "name": "나무돌이",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 252,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "grass"
+      ],
+      "front": "res://assets/pokemon/front/253.png",
+      "back": "res://assets/pokemon/back/253.png"
+    },
+    {
+      "id": 254,
+      "key": "sceptile",
+      "name": "나무킹",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 253,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "grass"
+      ],
+      "front": "res://assets/pokemon/front/254.png",
+      "back": "res://assets/pokemon/back/254.png"
+    },
+    {
+      "id": 255,
+      "key": "torchic",
+      "name": "아차모",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "fire"
+      ],
+      "front": "res://assets/pokemon/front/255.png",
+      "back": "res://assets/pokemon/back/255.png"
+    },
+    {
+      "id": 256,
+      "key": "combusken",
+      "name": "영치코",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 255,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "fire",
+        "fighting"
+      ],
+      "front": "res://assets/pokemon/front/256.png",
+      "back": "res://assets/pokemon/back/256.png"
+    },
+    {
+      "id": 257,
+      "key": "blaziken",
+      "name": "번치코",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 256,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "fire",
+        "fighting"
+      ],
+      "front": "res://assets/pokemon/front/257.png",
+      "back": "res://assets/pokemon/back/257.png"
+    },
+    {
+      "id": 258,
+      "key": "mudkip",
+      "name": "물짱이",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/258.png",
+      "back": "res://assets/pokemon/back/258.png"
+    },
+    {
+      "id": 259,
+      "key": "marshtomp",
+      "name": "늪짱이",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 258,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water",
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/259.png",
+      "back": "res://assets/pokemon/back/259.png"
+    },
+    {
+      "id": 260,
+      "key": "swampert",
+      "name": "대짱이",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 259,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water",
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/260.png",
+      "back": "res://assets/pokemon/back/260.png"
+    },
+    {
+      "id": 261,
+      "key": "poochyena",
+      "name": "포챠나",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "dark"
+      ],
+      "front": "res://assets/pokemon/front/261.png",
+      "back": "res://assets/pokemon/back/261.png"
+    },
+    {
+      "id": 262,
+      "key": "mightyena",
+      "name": "그라에나",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 261,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "dark"
+      ],
+      "front": "res://assets/pokemon/front/262.png",
+      "back": "res://assets/pokemon/back/262.png"
+    },
+    {
+      "id": 263,
+      "key": "zigzagoon",
+      "name": "지그제구리",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/263.png",
+      "back": "res://assets/pokemon/back/263.png"
+    },
+    {
+      "id": 264,
+      "key": "linoone",
+      "name": "직구리",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 263,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/264.png",
+      "back": "res://assets/pokemon/back/264.png"
+    },
+    {
+      "id": 265,
+      "key": "wurmple",
+      "name": "개무소",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "bug"
+      ],
+      "front": "res://assets/pokemon/front/265.png",
+      "back": "res://assets/pokemon/back/265.png"
+    },
+    {
+      "id": 266,
+      "key": "silcoon",
+      "name": "실쿤",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 265,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "bug"
+      ],
+      "front": "res://assets/pokemon/front/266.png",
+      "back": "res://assets/pokemon/back/266.png"
+    },
+    {
+      "id": 267,
+      "key": "beautifly",
+      "name": "뷰티플라이",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 266,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "bug",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/267.png",
+      "back": "res://assets/pokemon/back/267.png"
+    },
+    {
+      "id": 268,
+      "key": "cascoon",
+      "name": "카스쿤",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 265,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "bug"
+      ],
+      "front": "res://assets/pokemon/front/268.png",
+      "back": "res://assets/pokemon/back/268.png"
+    },
+    {
+      "id": 269,
+      "key": "dustox",
+      "name": "독케일",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 268,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "bug",
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/269.png",
+      "back": "res://assets/pokemon/back/269.png"
+    },
+    {
+      "id": 270,
+      "key": "lotad",
+      "name": "연꽃몬",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water",
+        "grass"
+      ],
+      "front": "res://assets/pokemon/front/270.png",
+      "back": "res://assets/pokemon/back/270.png"
+    },
+    {
+      "id": 271,
+      "key": "lombre",
+      "name": "로토스",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 270,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water",
+        "grass"
+      ],
+      "front": "res://assets/pokemon/front/271.png",
+      "back": "res://assets/pokemon/back/271.png"
+    },
+    {
+      "id": 272,
+      "key": "ludicolo",
+      "name": "로파파",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 271,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water",
+        "grass"
+      ],
+      "front": "res://assets/pokemon/front/272.png",
+      "back": "res://assets/pokemon/back/272.png"
+    },
+    {
+      "id": 273,
+      "key": "seedot",
+      "name": "도토링",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "grass"
+      ],
+      "front": "res://assets/pokemon/front/273.png",
+      "back": "res://assets/pokemon/back/273.png"
+    },
+    {
+      "id": 274,
+      "key": "nuzleaf",
+      "name": "잎새코",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 273,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "grass",
+        "dark"
+      ],
+      "front": "res://assets/pokemon/front/274.png",
+      "back": "res://assets/pokemon/back/274.png"
+    },
+    {
+      "id": 275,
+      "key": "shiftry",
+      "name": "다탱구",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 274,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "grass",
+        "dark"
+      ],
+      "front": "res://assets/pokemon/front/275.png",
+      "back": "res://assets/pokemon/back/275.png"
+    },
+    {
+      "id": 276,
+      "key": "taillow",
+      "name": "테일로",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/276.png",
+      "back": "res://assets/pokemon/back/276.png"
+    },
+    {
+      "id": 277,
+      "key": "swellow",
+      "name": "스왈로",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 276,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/277.png",
+      "back": "res://assets/pokemon/back/277.png"
+    },
+    {
+      "id": 278,
+      "key": "wingull",
+      "name": "갈모매",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/278.png",
+      "back": "res://assets/pokemon/back/278.png"
+    },
+    {
+      "id": 279,
+      "key": "pelipper",
+      "name": "패리퍼",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 278,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/279.png",
+      "back": "res://assets/pokemon/back/279.png"
+    },
+    {
+      "id": 280,
+      "key": "ralts",
+      "name": "랄토스",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "psychic",
+        "fairy"
+      ],
+      "front": "res://assets/pokemon/front/280.png",
+      "back": "res://assets/pokemon/back/280.png"
+    },
+    {
+      "id": 281,
+      "key": "kirlia",
+      "name": "킬리아",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 280,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "psychic",
+        "fairy"
+      ],
+      "front": "res://assets/pokemon/front/281.png",
+      "back": "res://assets/pokemon/back/281.png"
+    },
+    {
+      "id": 282,
+      "key": "gardevoir",
+      "name": "가디안",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 281,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "psychic",
+        "fairy"
+      ],
+      "front": "res://assets/pokemon/front/282.png",
+      "back": "res://assets/pokemon/back/282.png"
+    },
+    {
+      "id": 283,
+      "key": "surskit",
+      "name": "비구술",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "bug",
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/283.png",
+      "back": "res://assets/pokemon/back/283.png"
+    },
+    {
+      "id": 284,
+      "key": "masquerain",
+      "name": "비나방",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 283,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "bug",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/284.png",
+      "back": "res://assets/pokemon/back/284.png"
+    },
+    {
+      "id": 285,
+      "key": "shroomish",
+      "name": "버섯꼬",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "grass"
+      ],
+      "front": "res://assets/pokemon/front/285.png",
+      "back": "res://assets/pokemon/back/285.png"
+    },
+    {
+      "id": 286,
+      "key": "breloom",
+      "name": "버섯모",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 285,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "grass",
+        "fighting"
+      ],
+      "front": "res://assets/pokemon/front/286.png",
+      "back": "res://assets/pokemon/back/286.png"
+    },
+    {
+      "id": 287,
+      "key": "slakoth",
+      "name": "게을로",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/287.png",
+      "back": "res://assets/pokemon/back/287.png"
+    },
+    {
+      "id": 288,
+      "key": "vigoroth",
+      "name": "발바로",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 287,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/288.png",
+      "back": "res://assets/pokemon/back/288.png"
+    },
+    {
+      "id": 289,
+      "key": "slaking",
+      "name": "게을킹",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 288,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/289.png",
+      "back": "res://assets/pokemon/back/289.png"
+    },
+    {
+      "id": 290,
+      "key": "nincada",
+      "name": "토중몬",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "bug",
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/290.png",
+      "back": "res://assets/pokemon/back/290.png"
+    },
+    {
+      "id": 291,
+      "key": "ninjask",
+      "name": "아이스크",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 290,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "bug",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/291.png",
+      "back": "res://assets/pokemon/back/291.png"
+    },
+    {
+      "id": 292,
+      "key": "shedinja",
+      "name": "껍질몬",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 290,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "bug",
+        "ghost"
+      ],
+      "front": "res://assets/pokemon/front/292.png",
+      "back": "res://assets/pokemon/back/292.png"
+    },
+    {
+      "id": 293,
+      "key": "whismur",
+      "name": "소곤룡",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/293.png",
+      "back": "res://assets/pokemon/back/293.png"
+    },
+    {
+      "id": 294,
+      "key": "loudred",
+      "name": "노공룡",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 293,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/294.png",
+      "back": "res://assets/pokemon/back/294.png"
+    },
+    {
+      "id": 295,
+      "key": "exploud",
+      "name": "폭음룡",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 294,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/295.png",
+      "back": "res://assets/pokemon/back/295.png"
+    },
+    {
+      "id": 296,
+      "key": "makuhita",
+      "name": "마크탕",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "fighting"
+      ],
+      "front": "res://assets/pokemon/front/296.png",
+      "back": "res://assets/pokemon/back/296.png"
+    },
+    {
+      "id": 297,
+      "key": "hariyama",
+      "name": "하리뭉",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 296,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "fighting"
+      ],
+      "front": "res://assets/pokemon/front/297.png",
+      "back": "res://assets/pokemon/back/297.png"
+    },
+    {
+      "id": 298,
+      "key": "azurill",
+      "name": "루리리",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": true,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal",
+        "fairy"
+      ],
+      "front": "res://assets/pokemon/front/298.png",
+      "back": "res://assets/pokemon/back/298.png"
+    },
+    {
+      "id": 299,
+      "key": "nosepass",
+      "name": "코코파스",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "rock"
+      ],
+      "front": "res://assets/pokemon/front/299.png",
+      "back": "res://assets/pokemon/back/299.png"
+    },
+    {
+      "id": 300,
+      "key": "skitty",
+      "name": "에나비",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/300.png",
+      "back": "res://assets/pokemon/back/300.png"
+    },
+    {
+      "id": 301,
+      "key": "delcatty",
+      "name": "델케티",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 300,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/301.png",
+      "back": "res://assets/pokemon/back/301.png"
+    },
+    {
+      "id": 302,
+      "key": "sableye",
+      "name": "깜까미",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "dark",
+        "ghost"
+      ],
+      "front": "res://assets/pokemon/front/302.png",
+      "back": "res://assets/pokemon/back/302.png"
+    },
+    {
+      "id": 303,
+      "key": "mawile",
+      "name": "입치트",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "steel",
+        "fairy"
+      ],
+      "front": "res://assets/pokemon/front/303.png",
+      "back": "res://assets/pokemon/back/303.png"
+    },
+    {
+      "id": 304,
+      "key": "aron",
+      "name": "가보리",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "steel",
+        "rock"
+      ],
+      "front": "res://assets/pokemon/front/304.png",
+      "back": "res://assets/pokemon/back/304.png"
+    },
+    {
+      "id": 305,
+      "key": "lairon",
+      "name": "갱도라",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 304,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "steel",
+        "rock"
+      ],
+      "front": "res://assets/pokemon/front/305.png",
+      "back": "res://assets/pokemon/back/305.png"
+    },
+    {
+      "id": 306,
+      "key": "aggron",
+      "name": "보스로라",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 305,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "steel",
+        "rock"
+      ],
+      "front": "res://assets/pokemon/front/306.png",
+      "back": "res://assets/pokemon/back/306.png"
+    },
+    {
+      "id": 307,
+      "key": "meditite",
+      "name": "요가랑",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "fighting",
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/307.png",
+      "back": "res://assets/pokemon/back/307.png"
+    },
+    {
+      "id": 308,
+      "key": "medicham",
+      "name": "요가램",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 307,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "fighting",
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/308.png",
+      "back": "res://assets/pokemon/back/308.png"
+    },
+    {
+      "id": 309,
+      "key": "electrike",
+      "name": "썬더라이",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "electric"
+      ],
+      "front": "res://assets/pokemon/front/309.png",
+      "back": "res://assets/pokemon/back/309.png"
+    },
+    {
+      "id": 310,
+      "key": "manectric",
+      "name": "썬더볼트",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 309,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "electric"
+      ],
+      "front": "res://assets/pokemon/front/310.png",
+      "back": "res://assets/pokemon/back/310.png"
+    },
+    {
+      "id": 311,
+      "key": "plusle",
+      "name": "플러시",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "electric"
+      ],
+      "front": "res://assets/pokemon/front/311.png",
+      "back": "res://assets/pokemon/back/311.png"
+    },
+    {
+      "id": 312,
+      "key": "minun",
+      "name": "마이농",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "electric"
+      ],
+      "front": "res://assets/pokemon/front/312.png",
+      "back": "res://assets/pokemon/back/312.png"
+    },
+    {
+      "id": 313,
+      "key": "volbeat",
+      "name": "볼비트",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "bug"
+      ],
+      "front": "res://assets/pokemon/front/313.png",
+      "back": "res://assets/pokemon/back/313.png"
+    },
+    {
+      "id": 314,
+      "key": "illumise",
+      "name": "네오비트",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "bug"
+      ],
+      "front": "res://assets/pokemon/front/314.png",
+      "back": "res://assets/pokemon/back/314.png"
+    },
+    {
+      "id": 315,
+      "key": "roselia",
+      "name": "로젤리아",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 406,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/315.png",
+      "back": "res://assets/pokemon/back/315.png"
+    },
+    {
+      "id": 316,
+      "key": "gulpin",
+      "name": "꼴깍몬",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/316.png",
+      "back": "res://assets/pokemon/back/316.png"
+    },
+    {
+      "id": 317,
+      "key": "swalot",
+      "name": "꿀꺽몬",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 316,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/317.png",
+      "back": "res://assets/pokemon/back/317.png"
+    },
+    {
+      "id": 318,
+      "key": "carvanha",
+      "name": "샤프니아",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water",
+        "dark"
+      ],
+      "front": "res://assets/pokemon/front/318.png",
+      "back": "res://assets/pokemon/back/318.png"
+    },
+    {
+      "id": 319,
+      "key": "sharpedo",
+      "name": "샤크니아",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 318,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water",
+        "dark"
+      ],
+      "front": "res://assets/pokemon/front/319.png",
+      "back": "res://assets/pokemon/back/319.png"
+    },
+    {
+      "id": 320,
+      "key": "wailmer",
+      "name": "고래왕자",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/320.png",
+      "back": "res://assets/pokemon/back/320.png"
+    },
+    {
+      "id": 321,
+      "key": "wailord",
+      "name": "고래왕",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 320,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/321.png",
+      "back": "res://assets/pokemon/back/321.png"
+    },
+    {
+      "id": 322,
+      "key": "numel",
+      "name": "둔타",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "fire",
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/322.png",
+      "back": "res://assets/pokemon/back/322.png"
+    },
+    {
+      "id": 323,
+      "key": "camerupt",
+      "name": "폭타",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 322,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "fire",
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/323.png",
+      "back": "res://assets/pokemon/back/323.png"
+    },
+    {
+      "id": 324,
+      "key": "torkoal",
+      "name": "코터스",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "fire"
+      ],
+      "front": "res://assets/pokemon/front/324.png",
+      "back": "res://assets/pokemon/back/324.png"
+    },
+    {
+      "id": 325,
+      "key": "spoink",
+      "name": "피그점프",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/325.png",
+      "back": "res://assets/pokemon/back/325.png"
+    },
+    {
+      "id": 326,
+      "key": "grumpig",
+      "name": "피그킹",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 325,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/326.png",
+      "back": "res://assets/pokemon/back/326.png"
+    },
+    {
+      "id": 327,
+      "key": "spinda",
+      "name": "얼루기",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/327.png",
+      "back": "res://assets/pokemon/back/327.png"
+    },
+    {
+      "id": 328,
+      "key": "trapinch",
+      "name": "톱치",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/328.png",
+      "back": "res://assets/pokemon/back/328.png"
+    },
+    {
+      "id": 329,
+      "key": "vibrava",
+      "name": "비브라바",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 328,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "ground",
+        "dragon"
+      ],
+      "front": "res://assets/pokemon/front/329.png",
+      "back": "res://assets/pokemon/back/329.png"
+    },
+    {
+      "id": 330,
+      "key": "flygon",
+      "name": "플라이곤",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 329,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "ground",
+        "dragon"
+      ],
+      "front": "res://assets/pokemon/front/330.png",
+      "back": "res://assets/pokemon/back/330.png"
+    },
+    {
+      "id": 331,
+      "key": "cacnea",
+      "name": "선인왕",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "grass"
+      ],
+      "front": "res://assets/pokemon/front/331.png",
+      "back": "res://assets/pokemon/back/331.png"
+    },
+    {
+      "id": 332,
+      "key": "cacturne",
+      "name": "밤선인",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 331,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "grass",
+        "dark"
+      ],
+      "front": "res://assets/pokemon/front/332.png",
+      "back": "res://assets/pokemon/back/332.png"
+    },
+    {
+      "id": 333,
+      "key": "swablu",
+      "name": "파비코",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/333.png",
+      "back": "res://assets/pokemon/back/333.png"
+    },
+    {
+      "id": 334,
+      "key": "altaria",
+      "name": "파비코리",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 333,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "dragon",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/334.png",
+      "back": "res://assets/pokemon/back/334.png"
+    },
+    {
+      "id": 335,
+      "key": "zangoose",
+      "name": "쟝고",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/335.png",
+      "back": "res://assets/pokemon/back/335.png"
+    },
+    {
+      "id": 336,
+      "key": "seviper",
+      "name": "세비퍼",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/336.png",
+      "back": "res://assets/pokemon/back/336.png"
+    },
+    {
+      "id": 337,
+      "key": "lunatone",
+      "name": "루나톤",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "rock",
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/337.png",
+      "back": "res://assets/pokemon/back/337.png"
+    },
+    {
+      "id": 338,
+      "key": "solrock",
+      "name": "솔록",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "rock",
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/338.png",
+      "back": "res://assets/pokemon/back/338.png"
+    },
+    {
+      "id": 339,
+      "key": "barboach",
+      "name": "미꾸리",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water",
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/339.png",
+      "back": "res://assets/pokemon/back/339.png"
+    },
+    {
+      "id": 340,
+      "key": "whiscash",
+      "name": "메깅",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 339,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water",
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/340.png",
+      "back": "res://assets/pokemon/back/340.png"
+    },
+    {
+      "id": 341,
+      "key": "corphish",
+      "name": "가재군",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/341.png",
+      "back": "res://assets/pokemon/back/341.png"
+    },
+    {
+      "id": 342,
+      "key": "crawdaunt",
+      "name": "가재장군",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 341,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water",
+        "dark"
+      ],
+      "front": "res://assets/pokemon/front/342.png",
+      "back": "res://assets/pokemon/back/342.png"
+    },
+    {
+      "id": 343,
+      "key": "baltoy",
+      "name": "오뚝군",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "ground",
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/343.png",
+      "back": "res://assets/pokemon/back/343.png"
+    },
+    {
+      "id": 344,
+      "key": "claydol",
+      "name": "점토도리",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 343,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "ground",
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/344.png",
+      "back": "res://assets/pokemon/back/344.png"
+    },
+    {
+      "id": 345,
+      "key": "lileep",
+      "name": "릴링",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "rock",
+        "grass"
+      ],
+      "front": "res://assets/pokemon/front/345.png",
+      "back": "res://assets/pokemon/back/345.png"
+    },
+    {
+      "id": 346,
+      "key": "cradily",
+      "name": "릴리요",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 345,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "rock",
+        "grass"
+      ],
+      "front": "res://assets/pokemon/front/346.png",
+      "back": "res://assets/pokemon/back/346.png"
+    },
+    {
+      "id": 347,
+      "key": "anorith",
+      "name": "아노딥스",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "rock",
+        "bug"
+      ],
+      "front": "res://assets/pokemon/front/347.png",
+      "back": "res://assets/pokemon/back/347.png"
+    },
+    {
+      "id": 348,
+      "key": "armaldo",
+      "name": "아말도",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 347,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "rock",
+        "bug"
+      ],
+      "front": "res://assets/pokemon/front/348.png",
+      "back": "res://assets/pokemon/back/348.png"
+    },
+    {
+      "id": 349,
+      "key": "feebas",
+      "name": "빈티나",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/349.png",
+      "back": "res://assets/pokemon/back/349.png"
+    },
+    {
+      "id": 350,
+      "key": "milotic",
+      "name": "밀로틱",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 349,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/350.png",
+      "back": "res://assets/pokemon/back/350.png"
+    },
+    {
+      "id": 351,
+      "key": "castform",
+      "name": "캐스퐁",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/351.png",
+      "back": "res://assets/pokemon/back/351.png"
+    },
+    {
+      "id": 352,
+      "key": "kecleon",
+      "name": "켈리몬",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/352.png",
+      "back": "res://assets/pokemon/back/352.png"
+    },
+    {
+      "id": 353,
+      "key": "shuppet",
+      "name": "어둠대신",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "ghost"
+      ],
+      "front": "res://assets/pokemon/front/353.png",
+      "back": "res://assets/pokemon/back/353.png"
+    },
+    {
+      "id": 354,
+      "key": "banette",
+      "name": "다크펫",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 353,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "ghost"
+      ],
+      "front": "res://assets/pokemon/front/354.png",
+      "back": "res://assets/pokemon/back/354.png"
+    },
+    {
+      "id": 355,
+      "key": "duskull",
+      "name": "해골몽",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "ghost"
+      ],
+      "front": "res://assets/pokemon/front/355.png",
+      "back": "res://assets/pokemon/back/355.png"
+    },
+    {
+      "id": 356,
+      "key": "dusclops",
+      "name": "미라몽",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 355,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "ghost"
+      ],
+      "front": "res://assets/pokemon/front/356.png",
+      "back": "res://assets/pokemon/back/356.png"
+    },
+    {
+      "id": 357,
+      "key": "tropius",
+      "name": "트로피우스",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "grass",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/357.png",
+      "back": "res://assets/pokemon/back/357.png"
+    },
+    {
+      "id": 358,
+      "key": "chimecho",
+      "name": "치렁",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 433,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/358.png",
+      "back": "res://assets/pokemon/back/358.png"
+    },
+    {
+      "id": 359,
+      "key": "absol",
+      "name": "앱솔",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "dark"
+      ],
+      "front": "res://assets/pokemon/front/359.png",
+      "back": "res://assets/pokemon/back/359.png"
+    },
+    {
+      "id": 360,
+      "key": "wynaut",
+      "name": "마자",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": true,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/360.png",
+      "back": "res://assets/pokemon/back/360.png"
+    },
+    {
+      "id": 361,
+      "key": "snorunt",
+      "name": "눈꼬마",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "ice"
+      ],
+      "front": "res://assets/pokemon/front/361.png",
+      "back": "res://assets/pokemon/back/361.png"
+    },
+    {
+      "id": 362,
+      "key": "glalie",
+      "name": "얼음귀신",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 361,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "ice"
+      ],
+      "front": "res://assets/pokemon/front/362.png",
+      "back": "res://assets/pokemon/back/362.png"
+    },
+    {
+      "id": 363,
+      "key": "spheal",
+      "name": "대굴레오",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "ice",
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/363.png",
+      "back": "res://assets/pokemon/back/363.png"
+    },
+    {
+      "id": 364,
+      "key": "sealeo",
+      "name": "씨레오",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 363,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "ice",
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/364.png",
+      "back": "res://assets/pokemon/back/364.png"
+    },
+    {
+      "id": 365,
+      "key": "walrein",
+      "name": "씨카이저",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 364,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "ice",
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/365.png",
+      "back": "res://assets/pokemon/back/365.png"
+    },
+    {
+      "id": 366,
+      "key": "clamperl",
+      "name": "진주몽",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/366.png",
+      "back": "res://assets/pokemon/back/366.png"
+    },
+    {
+      "id": 367,
+      "key": "huntail",
+      "name": "헌테일",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 366,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/367.png",
+      "back": "res://assets/pokemon/back/367.png"
+    },
+    {
+      "id": 368,
+      "key": "gorebyss",
+      "name": "분홍장이",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 366,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/368.png",
+      "back": "res://assets/pokemon/back/368.png"
+    },
+    {
+      "id": 369,
+      "key": "relicanth",
+      "name": "시라칸",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water",
+        "rock"
+      ],
+      "front": "res://assets/pokemon/front/369.png",
+      "back": "res://assets/pokemon/back/369.png"
+    },
+    {
+      "id": 370,
+      "key": "luvdisc",
+      "name": "사랑동이",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/370.png",
+      "back": "res://assets/pokemon/back/370.png"
+    },
+    {
+      "id": 371,
+      "key": "bagon",
+      "name": "아공이",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "dragon"
+      ],
+      "front": "res://assets/pokemon/front/371.png",
+      "back": "res://assets/pokemon/back/371.png"
+    },
+    {
+      "id": 372,
+      "key": "shelgon",
+      "name": "쉘곤",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 371,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "dragon"
+      ],
+      "front": "res://assets/pokemon/front/372.png",
+      "back": "res://assets/pokemon/back/372.png"
+    },
+    {
+      "id": 373,
+      "key": "salamence",
+      "name": "보만다",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 372,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "dragon",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/373.png",
+      "back": "res://assets/pokemon/back/373.png"
+    },
+    {
+      "id": 374,
+      "key": "beldum",
+      "name": "메탕",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "steel",
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/374.png",
+      "back": "res://assets/pokemon/back/374.png"
+    },
+    {
+      "id": 375,
+      "key": "metang",
+      "name": "메탕구",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 374,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "steel",
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/375.png",
+      "back": "res://assets/pokemon/back/375.png"
+    },
+    {
+      "id": 376,
+      "key": "metagross",
+      "name": "메타그로스",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 375,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": false,
+      "types": [
+        "steel",
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/376.png",
+      "back": "res://assets/pokemon/back/376.png"
+    },
+    {
+      "id": 377,
+      "key": "regirock",
+      "name": "레지락",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": true,
+      "is_mythical": false,
+      "types": [
+        "rock"
+      ],
+      "front": "res://assets/pokemon/front/377.png",
+      "back": "res://assets/pokemon/back/377.png"
+    },
+    {
+      "id": 378,
+      "key": "regice",
+      "name": "레지아이스",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": true,
+      "is_mythical": false,
+      "types": [
+        "ice"
+      ],
+      "front": "res://assets/pokemon/front/378.png",
+      "back": "res://assets/pokemon/back/378.png"
+    },
+    {
+      "id": 379,
+      "key": "registeel",
+      "name": "레지스틸",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": true,
+      "is_mythical": false,
+      "types": [
+        "steel"
+      ],
+      "front": "res://assets/pokemon/front/379.png",
+      "back": "res://assets/pokemon/back/379.png"
+    },
+    {
+      "id": 380,
+      "key": "latias",
+      "name": "라티아스",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": true,
+      "is_mythical": false,
+      "types": [
+        "dragon",
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/380.png",
+      "back": "res://assets/pokemon/back/380.png"
+    },
+    {
+      "id": 381,
+      "key": "latios",
+      "name": "라티오스",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": true,
+      "is_mythical": false,
+      "types": [
+        "dragon",
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/381.png",
+      "back": "res://assets/pokemon/back/381.png"
+    },
+    {
+      "id": 382,
+      "key": "kyogre",
+      "name": "가이오가",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": true,
+      "is_mythical": false,
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/382.png",
+      "back": "res://assets/pokemon/back/382.png"
+    },
+    {
+      "id": 383,
+      "key": "groudon",
+      "name": "그란돈",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": true,
+      "is_mythical": false,
+      "types": [
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/383.png",
+      "back": "res://assets/pokemon/back/383.png"
+    },
+    {
+      "id": 384,
+      "key": "rayquaza",
+      "name": "레쿠쟈",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": true,
+      "is_mythical": false,
+      "types": [
+        "dragon",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/384.png",
+      "back": "res://assets/pokemon/back/384.png"
+    },
+    {
+      "id": 385,
+      "key": "jirachi",
+      "name": "지라치",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": true,
+      "types": [
+        "steel",
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/385.png",
+      "back": "res://assets/pokemon/back/385.png"
+    },
+    {
+      "id": 386,
+      "key": "deoxys",
+      "name": "테오키스",
+      "generation": 3,
+      "region": "hoenn",
+      "evolves_from": 0,
+      "is_baby": false,
+      "is_legendary": false,
+      "is_mythical": true,
+      "types": [
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/386.png",
+      "back": "res://assets/pokemon/back/386.png"
     }
   ],
   "types": [

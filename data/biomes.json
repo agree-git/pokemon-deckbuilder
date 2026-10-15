@@ -7,15 +7,15 @@
     "background": "res://assets/biomes/atlas_1.png",
     "cell": 3,
     "encounter_mode": "type",
-    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounter_note": "1~3세대 원종 · 현대 타입 기준 · 전설/환상은 별도 이벤트 후보",
     "encounters": [
       {
-        "pokemon_id": 19,
+        "pokemon_id": 16,
         "tier": "common",
         "weight": 8
       },
       {
-        "pokemon_id": 16,
+        "pokemon_id": 19,
         "tier": "common",
         "weight": 8
       },
@@ -25,14 +25,124 @@
         "weight": 8
       },
       {
+        "pokemon_id": 39,
+        "tier": "common",
+        "weight": 8
+      },
+      {
         "pokemon_id": 52,
         "tier": "common",
         "weight": 8
       },
       {
-        "pokemon_id": 39,
+        "pokemon_id": 83,
         "tier": "common",
         "weight": 8
+      },
+      {
+        "pokemon_id": 84,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 161,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 163,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 190,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 203,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 206,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 216,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 234,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 235,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 241,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 263,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 276,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 287,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 293,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 300,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 327,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 333,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 335,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 351,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 352,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 17,
+        "tier": "uncommon",
+        "weight": 3
       },
       {
         "pokemon_id": 20,
@@ -60,7 +170,37 @@
         "weight": 3
       },
       {
+        "pokemon_id": 288,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 294,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 18,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 40,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 85,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
         "pokemon_id": 113,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 115,
         "tier": "rare",
         "weight": 1
       },
@@ -75,17 +215,72 @@
         "weight": 1
       },
       {
+        "pokemon_id": 137,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
         "pokemon_id": 143,
         "tier": "rare",
         "weight": 1
       },
       {
-        "pokemon_id": 115,
+        "pokemon_id": 162,
         "tier": "rare",
         "weight": 1
       },
       {
-        "pokemon_id": 137,
+        "pokemon_id": 164,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 174,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 217,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 233,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 242,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 264,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 277,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 289,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 295,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 298,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 301,
         "tier": "rare",
         "weight": 1
       }
@@ -100,7 +295,7 @@
     "background": "res://assets/biomes/atlas_1.png",
     "cell": 0,
     "encounter_mode": "type",
-    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounter_note": "1~3세대 원종 · 현대 타입 기준 · 전설/환상은 별도 이벤트 후보",
     "encounters": [
       {
         "pokemon_id": 4,
@@ -123,12 +318,42 @@
         "weight": 8
       },
       {
+        "pokemon_id": 218,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 228,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 322,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 324,
+        "tier": "common",
+        "weight": 8
+      },
+      {
         "pokemon_id": 5,
         "tier": "uncommon",
         "weight": 3
       },
       {
         "pokemon_id": 126,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 156,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 256,
         "tier": "uncommon",
         "weight": 3
       },
@@ -156,11 +381,59 @@
         "pokemon_id": 136,
         "tier": "rare",
         "weight": 1
+      },
+      {
+        "pokemon_id": 155,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 157,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 219,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 229,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 240,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 255,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 257,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 323,
+        "tier": "rare",
+        "weight": 1
       }
     ],
     "landmarks": [
       {
         "pokemon_id": 146,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      },
+      {
+        "pokemon_id": 244,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      },
+      {
+        "pokemon_id": 250,
         "note": "별도 이벤트 후보 · 일반 출현 제외"
       }
     ]
@@ -173,7 +446,7 @@
     "background": "res://assets/biomes/atlas_1.png",
     "cell": 1,
     "encounter_mode": "type",
-    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounter_note": "1~3세대 원종 · 현대 타입 기준 · 전설/환상은 별도 이벤트 후보",
     "encounters": [
       {
         "pokemon_id": 7,
@@ -197,6 +470,11 @@
       },
       {
         "pokemon_id": 79,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 86,
         "tier": "common",
         "weight": 8
       },
@@ -227,6 +505,91 @@
       },
       {
         "pokemon_id": 129,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 170,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 194,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 211,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 222,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 223,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 270,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 278,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 283,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 318,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 320,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 339,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 341,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 349,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 363,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 366,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 369,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 370,
         "tier": "common",
         "weight": 8
       },
@@ -272,6 +635,31 @@
       },
       {
         "pokemon_id": 121,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 159,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 183,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 259,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 271,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 364,
         "tier": "uncommon",
         "weight": 3
       },
@@ -331,12 +719,126 @@
         "weight": 1
       },
       {
-        "pokemon_id": 86,
-        "tier": "common",
-        "weight": 8
+        "pokemon_id": 158,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 160,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 171,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 184,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 186,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 195,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 199,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 224,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 226,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 230,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 258,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 260,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 272,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 279,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 319,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 321,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 340,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 342,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 350,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 365,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 367,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 368,
+        "tier": "rare",
+        "weight": 1
       }
     ],
-    "landmarks": []
+    "landmarks": [
+      {
+        "pokemon_id": 245,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      },
+      {
+        "pokemon_id": 382,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      }
+    ]
   },
   {
     "id": "grass",
@@ -346,7 +848,7 @@
     "background": "res://assets/biomes/atlas_1.png",
     "cell": 2,
     "encounter_mode": "type",
-    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounter_note": "1~3세대 원종 · 현대 타입 기준 · 전설/환상은 별도 이벤트 후보",
     "encounters": [
       {
         "pokemon_id": 1,
@@ -379,6 +881,46 @@
         "weight": 8
       },
       {
+        "pokemon_id": 187,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 191,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 270,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 273,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 285,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 331,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 345,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 357,
+        "tier": "common",
+        "weight": 8
+      },
+      {
         "pokemon_id": 2,
         "tier": "uncommon",
         "weight": 3
@@ -395,6 +937,31 @@
       },
       {
         "pokemon_id": 70,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 153,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 188,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 253,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 271,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 274,
         "tier": "uncommon",
         "weight": 3
       },
@@ -417,9 +984,79 @@
         "pokemon_id": 103,
         "tier": "rare",
         "weight": 1
+      },
+      {
+        "pokemon_id": 152,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 154,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 182,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 189,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 192,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 252,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 254,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 272,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 275,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 286,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 315,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 332,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 346,
+        "tier": "rare",
+        "weight": 1
       }
     ],
-    "landmarks": []
+    "landmarks": [
+      {
+        "pokemon_id": 251,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      }
+    ]
   },
   {
     "id": "electric",
@@ -429,7 +1066,7 @@
     "background": "res://assets/biomes/atlas_1.png",
     "cell": 4,
     "encounter_mode": "type",
-    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounter_note": "1~3세대 원종 · 현대 타입 기준 · 전설/환상은 별도 이벤트 후보",
     "encounters": [
       {
         "pokemon_id": 25,
@@ -443,6 +1080,31 @@
       },
       {
         "pokemon_id": 100,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 170,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 179,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 309,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 311,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 312,
         "tier": "common",
         "weight": 8
       },
@@ -462,6 +1124,11 @@
         "weight": 3
       },
       {
+        "pokemon_id": 180,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
         "pokemon_id": 125,
         "tier": "rare",
         "weight": 1
@@ -470,11 +1137,40 @@
         "pokemon_id": 135,
         "tier": "rare",
         "weight": 1
+      },
+      {
+        "pokemon_id": 171,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 172,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 181,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 239,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 310,
+        "tier": "rare",
+        "weight": 1
       }
     ],
     "landmarks": [
       {
         "pokemon_id": 145,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      },
+      {
+        "pokemon_id": 243,
         "note": "별도 이벤트 후보 · 일반 출현 제외"
       }
     ]
@@ -487,10 +1183,35 @@
     "background": "res://assets/biomes/atlas_1.png",
     "cell": 5,
     "encounter_mode": "type",
-    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounter_note": "1~3세대 원종 · 현대 타입 기준 · 전설/환상은 별도 이벤트 후보",
     "encounters": [
       {
         "pokemon_id": 87,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 215,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 220,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 225,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 361,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 363,
         "tier": "common",
         "weight": 8
       },
@@ -505,7 +1226,32 @@
         "weight": 3
       },
       {
+        "pokemon_id": 364,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
         "pokemon_id": 131,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 221,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 238,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 362,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 365,
         "tier": "rare",
         "weight": 1
       }
@@ -513,6 +1259,10 @@
     "landmarks": [
       {
         "pokemon_id": 144,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      },
+      {
+        "pokemon_id": 378,
         "note": "별도 이벤트 후보 · 일반 출현 제외"
       }
     ]
@@ -525,7 +1275,7 @@
     "background": "res://assets/biomes/atlas_2.png",
     "cell": 0,
     "encounter_mode": "type",
-    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounter_note": "1~3세대 원종 · 현대 타입 기준 · 전설/환상은 별도 이벤트 후보",
     "encounters": [
       {
         "pokemon_id": 56,
@@ -538,12 +1288,32 @@
         "weight": 8
       },
       {
+        "pokemon_id": 214,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 296,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 307,
+        "tier": "common",
+        "weight": 8
+      },
+      {
         "pokemon_id": 57,
         "tier": "uncommon",
         "weight": 3
       },
       {
         "pokemon_id": 67,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 256,
         "tier": "uncommon",
         "weight": 3
       },
@@ -566,6 +1336,36 @@
         "pokemon_id": 107,
         "tier": "rare",
         "weight": 1
+      },
+      {
+        "pokemon_id": 236,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 237,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 257,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 286,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 297,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 308,
+        "tier": "rare",
+        "weight": 1
       }
     ],
     "landmarks": []
@@ -578,8 +1378,18 @@
     "background": "res://assets/biomes/atlas_2.png",
     "cell": 1,
     "encounter_mode": "type",
-    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounter_note": "1~3세대 원종 · 현대 타입 기준 · 전설/환상은 별도 이벤트 후보",
     "encounters": [
+      {
+        "pokemon_id": 1,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 13,
+        "tier": "common",
+        "weight": 8
+      },
       {
         "pokemon_id": 23,
         "tier": "common",
@@ -611,6 +1421,11 @@
         "weight": 8
       },
       {
+        "pokemon_id": 69,
+        "tier": "common",
+        "weight": 8
+      },
+      {
         "pokemon_id": 72,
         "tier": "common",
         "weight": 8
@@ -621,9 +1436,44 @@
         "weight": 8
       },
       {
+        "pokemon_id": 92,
+        "tier": "common",
+        "weight": 8
+      },
+      {
         "pokemon_id": 109,
         "tier": "common",
         "weight": 8
+      },
+      {
+        "pokemon_id": 167,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 211,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 316,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 336,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 2,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 14,
+        "tier": "uncommon",
+        "weight": 3
       },
       {
         "pokemon_id": 24,
@@ -656,6 +1506,11 @@
         "weight": 3
       },
       {
+        "pokemon_id": 70,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
         "pokemon_id": 73,
         "tier": "uncommon",
         "weight": 3
@@ -666,12 +1521,22 @@
         "weight": 3
       },
       {
+        "pokemon_id": 93,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
         "pokemon_id": 110,
         "tier": "uncommon",
         "weight": 3
       },
       {
         "pokemon_id": 3,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 15,
         "tier": "rare",
         "weight": 1
       },
@@ -699,6 +1564,31 @@
         "pokemon_id": 94,
         "tier": "rare",
         "weight": 1
+      },
+      {
+        "pokemon_id": 168,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 169,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 269,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 315,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 317,
+        "tier": "rare",
+        "weight": 1
       }
     ],
     "landmarks": []
@@ -711,7 +1601,7 @@
     "background": "res://assets/biomes/atlas_2.png",
     "cell": 2,
     "encounter_mode": "type",
-    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounter_note": "1~3세대 원종 · 현대 타입 기준 · 전설/환상은 별도 이벤트 후보",
     "encounters": [
       {
         "pokemon_id": 27,
@@ -735,6 +1625,56 @@
       },
       {
         "pokemon_id": 111,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 194,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 207,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 220,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 231,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 246,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 290,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 322,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 328,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 339,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 343,
         "tier": "common",
         "weight": 8
       },
@@ -764,6 +1704,21 @@
         "weight": 3
       },
       {
+        "pokemon_id": 247,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 259,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 329,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
         "pokemon_id": 31,
         "tier": "rare",
         "weight": 1
@@ -782,9 +1737,59 @@
         "pokemon_id": 112,
         "tier": "rare",
         "weight": 1
+      },
+      {
+        "pokemon_id": 195,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 208,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 221,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 232,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 260,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 323,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 330,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 340,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 344,
+        "tier": "rare",
+        "weight": 1
       }
     ],
-    "landmarks": []
+    "landmarks": [
+      {
+        "pokemon_id": 383,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      }
+    ]
   },
   {
     "id": "flying",
@@ -794,7 +1799,7 @@
     "background": "res://assets/biomes/atlas_2.png",
     "cell": 3,
     "encounter_mode": "type",
-    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounter_note": "1~3세대 원종 · 현대 타입 기준 · 전설/환상은 별도 이벤트 후보",
     "encounters": [
       {
         "pokemon_id": 16,
@@ -822,6 +1827,71 @@
         "weight": 8
       },
       {
+        "pokemon_id": 163,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 165,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 177,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 187,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 193,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 198,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 207,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 225,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 227,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 276,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 278,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 333,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 357,
+        "tier": "common",
+        "weight": 8
+      },
+      {
         "pokemon_id": 17,
         "tier": "uncommon",
         "weight": 3
@@ -838,6 +1908,11 @@
       },
       {
         "pokemon_id": 85,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 188,
         "tier": "uncommon",
         "weight": 3
       },
@@ -875,6 +1950,76 @@
         "pokemon_id": 149,
         "tier": "rare",
         "weight": 1
+      },
+      {
+        "pokemon_id": 164,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 166,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 169,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 176,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 178,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 189,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 226,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 267,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 277,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 279,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 284,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 291,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 334,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 373,
+        "tier": "rare",
+        "weight": 1
       }
     ],
     "landmarks": [
@@ -889,6 +2034,18 @@
       {
         "pokemon_id": 146,
         "note": "별도 이벤트 후보 · 일반 출현 제외"
+      },
+      {
+        "pokemon_id": 249,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      },
+      {
+        "pokemon_id": 250,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      },
+      {
+        "pokemon_id": 384,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
       }
     ]
   },
@@ -900,7 +2057,7 @@
     "background": "res://assets/biomes/atlas_2.png",
     "cell": 4,
     "encounter_mode": "type",
-    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounter_note": "1~3세대 원종 · 현대 타입 기준 · 전설/환상은 별도 이벤트 후보",
     "encounters": [
       {
         "pokemon_id": 63,
@@ -919,6 +2076,56 @@
       },
       {
         "pokemon_id": 102,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 177,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 201,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 203,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 280,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 307,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 325,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 337,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 338,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 343,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 374,
         "tier": "common",
         "weight": 8
       },
@@ -948,6 +2155,16 @@
         "weight": 3
       },
       {
+        "pokemon_id": 281,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 375,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
         "pokemon_id": 65,
         "tier": "rare",
         "weight": 1
@@ -961,6 +2178,66 @@
         "pokemon_id": 121,
         "tier": "rare",
         "weight": 1
+      },
+      {
+        "pokemon_id": 178,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 196,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 199,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 202,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 238,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 282,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 308,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 326,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 344,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 358,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 360,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 376,
+        "tier": "rare",
+        "weight": 1
       }
     ],
     "landmarks": [
@@ -970,6 +2247,30 @@
       },
       {
         "pokemon_id": 151,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      },
+      {
+        "pokemon_id": 249,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      },
+      {
+        "pokemon_id": 251,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      },
+      {
+        "pokemon_id": 380,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      },
+      {
+        "pokemon_id": 381,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      },
+      {
+        "pokemon_id": 385,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      },
+      {
+        "pokemon_id": 386,
         "note": "별도 이벤트 후보 · 일반 출현 제외"
       }
     ]
@@ -982,7 +2283,7 @@
     "background": "res://assets/biomes/atlas_2.png",
     "cell": 5,
     "encounter_mode": "type",
-    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounter_note": "1~3세대 원종 · 현대 타입 기준 · 전설/환상은 별도 이벤트 후보",
     "encounters": [
       {
         "pokemon_id": 10,
@@ -1001,6 +2302,66 @@
       },
       {
         "pokemon_id": 48,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 165,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 167,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 193,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 204,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 213,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 214,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 265,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 283,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 290,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 313,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 314,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 347,
         "tier": "common",
         "weight": 8
       },
@@ -1025,6 +2386,16 @@
         "weight": 3
       },
       {
+        "pokemon_id": 266,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 268,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
         "pokemon_id": 12,
         "tier": "rare",
         "weight": 1
@@ -1043,6 +2414,56 @@
         "pokemon_id": 127,
         "tier": "rare",
         "weight": 1
+      },
+      {
+        "pokemon_id": 166,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 168,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 205,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 212,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 267,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 269,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 284,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 291,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 292,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 348,
+        "tier": "rare",
+        "weight": 1
       }
     ],
     "landmarks": []
@@ -1055,7 +2476,7 @@
     "background": "res://assets/biomes/atlas_3.png",
     "cell": 0,
     "encounter_mode": "type",
-    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounter_note": "1~3세대 원종 · 현대 타입 기준 · 전설/환상은 별도 이벤트 후보",
     "encounters": [
       {
         "pokemon_id": 74,
@@ -1073,6 +2494,56 @@
         "weight": 8
       },
       {
+        "pokemon_id": 213,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 222,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 246,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 299,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 304,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 337,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 338,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 345,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 347,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 369,
+        "tier": "common",
+        "weight": 8
+      },
+      {
         "pokemon_id": 75,
         "tier": "uncommon",
         "weight": 3
@@ -1084,6 +2555,16 @@
       },
       {
         "pokemon_id": 140,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 247,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 305,
         "tier": "uncommon",
         "weight": 3
       },
@@ -1111,9 +2592,44 @@
         "pokemon_id": 142,
         "tier": "rare",
         "weight": 1
+      },
+      {
+        "pokemon_id": 185,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 219,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 248,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 306,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 346,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 348,
+        "tier": "rare",
+        "weight": 1
       }
     ],
-    "landmarks": []
+    "landmarks": [
+      {
+        "pokemon_id": 377,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      }
+    ]
   },
   {
     "id": "ghost",
@@ -1123,10 +2639,30 @@
     "background": "res://assets/biomes/atlas_3.png",
     "cell": 1,
     "encounter_mode": "type",
-    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounter_note": "1~3세대 원종 · 현대 타입 기준 · 전설/환상은 별도 이벤트 후보",
     "encounters": [
       {
         "pokemon_id": 92,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 200,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 302,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 353,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 355,
         "tier": "common",
         "weight": 8
       },
@@ -1137,6 +2673,21 @@
       },
       {
         "pokemon_id": 94,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 292,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 354,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 356,
         "tier": "rare",
         "weight": 1
       }
@@ -1151,10 +2702,15 @@
     "background": "res://assets/biomes/atlas_3.png",
     "cell": 2,
     "encounter_mode": "type",
-    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounter_note": "1~3세대 원종 · 현대 타입 기준 · 전설/환상은 별도 이벤트 후보",
     "encounters": [
       {
         "pokemon_id": 147,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 371,
         "tier": "common",
         "weight": 8
       },
@@ -1164,12 +2720,55 @@
         "weight": 3
       },
       {
+        "pokemon_id": 329,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 372,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
         "pokemon_id": 149,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 230,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 330,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 334,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 373,
         "tier": "rare",
         "weight": 1
       }
     ],
-    "landmarks": []
+    "landmarks": [
+      {
+        "pokemon_id": 380,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      },
+      {
+        "pokemon_id": 381,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      },
+      {
+        "pokemon_id": 384,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      }
+    ]
   },
   {
     "id": "dark",
@@ -1178,51 +2777,86 @@
     "description": "달빛이 닿지 않는 숲. 관동 야행성 포켓몬이 모인다.",
     "background": "res://assets/biomes/atlas_3.png",
     "cell": 3,
-    "encounter_mode": "nocturnal_theme",
-    "encounter_note": "관동 원종에는 악타입이 없습니다. 아래 목록은 야행성 서식 테마이며 타입을 바꾸지 않습니다.",
+    "encounter_mode": "type",
+    "encounter_note": "1~3세대 원종 · 현대 타입 기준 · 전설/환상은 별도 이벤트 후보",
     "encounters": [
       {
-        "pokemon_id": 19,
+        "pokemon_id": 198,
         "tier": "common",
         "weight": 8
       },
       {
-        "pokemon_id": 41,
+        "pokemon_id": 215,
         "tier": "common",
         "weight": 8
       },
       {
-        "pokemon_id": 52,
+        "pokemon_id": 228,
         "tier": "common",
         "weight": 8
       },
       {
-        "pokemon_id": 20,
+        "pokemon_id": 261,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 302,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 318,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 359,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 274,
         "tier": "uncommon",
         "weight": 3
       },
       {
-        "pokemon_id": 42,
-        "tier": "uncommon",
-        "weight": 3
-      },
-      {
-        "pokemon_id": 53,
-        "tier": "uncommon",
-        "weight": 3
-      },
-      {
-        "pokemon_id": 92,
-        "tier": "uncommon",
-        "weight": 3
-      },
-      {
-        "pokemon_id": 93,
+        "pokemon_id": 197,
         "tier": "rare",
         "weight": 1
       },
       {
-        "pokemon_id": 94,
+        "pokemon_id": 229,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 248,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 262,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 275,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 319,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 332,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 342,
         "tier": "rare",
         "weight": 1
       }
@@ -1237,7 +2871,7 @@
     "background": "res://assets/biomes/atlas_3.png",
     "cell": 4,
     "encounter_mode": "type",
-    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounter_note": "1~3세대 원종 · 현대 타입 기준 · 전설/환상은 별도 이벤트 후보",
     "encounters": [
       {
         "pokemon_id": 81,
@@ -1245,12 +2879,76 @@
         "weight": 8
       },
       {
+        "pokemon_id": 227,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 303,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 304,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 374,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 305,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 375,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
         "pokemon_id": 82,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 205,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 208,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 212,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 306,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 376,
         "tier": "rare",
         "weight": 1
       }
     ],
-    "landmarks": []
+    "landmarks": [
+      {
+        "pokemon_id": 379,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      },
+      {
+        "pokemon_id": 385,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      }
+    ]
   },
   {
     "id": "fairy",
@@ -1260,7 +2958,7 @@
     "background": "res://assets/biomes/atlas_3.png",
     "cell": 5,
     "encounter_mode": "type",
-    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounter_note": "1~3세대 원종 · 현대 타입 기준 · 전설/환상은 별도 이벤트 후보",
     "encounters": [
       {
         "pokemon_id": 35,
@@ -1269,6 +2967,21 @@
       },
       {
         "pokemon_id": 39,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 209,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 280,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 303,
         "tier": "common",
         "weight": 8
       },
@@ -1283,7 +2996,57 @@
         "weight": 3
       },
       {
+        "pokemon_id": 183,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 281,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
         "pokemon_id": 36,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 173,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 174,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 175,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 176,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 184,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 210,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 282,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 298,
         "tier": "rare",
         "weight": 1
       }

@@ -18,19 +18,26 @@ func _run() -> void:
     var catalog := VisualCatalog.new()
     check(int(ProjectSettings.get_setting("display/window/size/viewport_width")) == 1920, "Viewport must be 1920 pixels wide")
     check(int(ProjectSettings.get_setting("display/window/size/viewport_height")) == 1080, "Viewport must be 1080 pixels high")
-    check(catalog.pokemon.size() == 151, "Expected exactly Kanto 151")
+    check(catalog.pokemon.size() == 386, "Expected all generation 1–3 species")
     check(catalog.moves.size() == 165, "Expected 165 first-generation moves")
     check(catalog.biomes.size() == 18, "Expected 18 biome definitions")
     check(catalog.types.size() == 18, "Expected 18 modern types")
-    for id in range(1, 152):
+    var generations := {1:0,2:0,3:0}
+    var special_count := 0
+    for id in range(1, 387):
         var species := catalog.species(id)
         check(not species.is_empty(), "Missing species %d" % id)
+        var generation := 1 if id <= 151 else (2 if id <= 251 else 3)
+        check(int(species["generation"]) == generation and not str(species["name"]).is_empty(),"Generation and localized name for %d" % id)
+        generations[generation] += 1
+        if species["is_legendary"] or species["is_mythical"]: special_count += 1
         for back: bool in [false, true]:
             var texture: Texture2D = load(VisualCatalog.sprite_path(id, back))
             check(texture != null and texture.get_size() == Vector2(96, 96), "Bad sprite %d/%s" % [id, back])
             if texture:
                 var image := texture.get_image()
                 check(image.detect_alpha() != Image.ALPHA_NONE, "Sprite must retain transparency: %d" % id)
+    check(generations == {1:151,2:100,3:135} and special_count == 21,"Complete generation coverage and special-species flags")
     var encountered: Dictionary = {}
     var cells: Dictionary = {}
     for biome: Dictionary in catalog.biomes:
@@ -45,19 +52,29 @@ func _run() -> void:
         for entry: Dictionary in biome["encounters"]:
             var id := int(entry["pokemon_id"])
             var species := catalog.species(id)
-            check(not species.is_empty(), "Non-Kanto encounter")
+            check(not species.is_empty(), "Encounter must belong to generation 1–3 catalog")
             check(not seen.has(id), "Duplicate encounter in " + biome["id"])
             check(int(entry["weight"]) > 0, "Encounter weight must be positive")
-            check(id not in [144, 145, 146, 150, 151], "Legendary/mythical must be event-only")
-            if biome["encounter_mode"] == "type":
-                check(biome["type"] in species["types"], "Type mismatch: %s/%s" % [biome["id"], species["name"]])
-            else:
-                check(biome["id"] == "dark" and "관동 원종에는 악타입이 없습니다" in biome["encounter_note"], "Themed exception must be explicit")
+            check(not species["is_legendary"] and not species["is_mythical"], "Legendary/mythical must be event-only")
+            check(biome["encounter_mode"] == "type" and biome["type"] in species["types"], "Type mismatch: %s/%s" % [biome["id"], species["name"]])
             encountered[id] = true
             seen[id] = true
         for entry: Dictionary in biome["landmarks"]:
+            var special := catalog.species(int(entry["pokemon_id"]))
+            check((special["is_legendary"] or special["is_mythical"]) and biome["type"] in special["types"],"Event candidates have actual biome type and special flag")
             encountered[int(entry["pokemon_id"])] = true
-    check(encountered.size() == 151, "All Kanto species need biome/event placement")
+    check(encountered.size() == 386, "All 386 species need biome/event placement")
+    check(catalog.gyms.size() == 18,"Every biome has a gym roster")
+    var gym_types: Dictionary = {}
+    for gym: Dictionary in catalog.gyms:
+        var party: Dictionary = {}
+        for id: float in gym["party"]:
+            var species := catalog.species(int(id))
+            check(not party.has(id) and gym["type"] in species["types"] and not species["is_legendary"] and not species["is_mythical"],"Gym member must be distinct, typed and non-special")
+            party[id] = true
+        check(party.size() == 6 and not gym_types.has(gym["type"]),"Exactly six distinct species for each unique gym type")
+        gym_types[gym["type"]] = true
+    check(catalog.gym_for_type("grass")["party"].map(func(id: float): return int(id)) == TacticalJourneyContent.GYM_PARTY.map(func(p: Dictionary): return p["id"]),"Playable Erika party agrees with biome roster data")
     for move: Dictionary in catalog.moves:
         check(VisualCatalog.EFFECT_NAMES.has(move["vfx"]["primary"]), "Unknown primary VFX")
         check(VisualCatalog.TYPE_COLORS.has(move["type"]), "Missing type palette")
@@ -78,7 +95,7 @@ func _run() -> void:
     check(lab.stage.canvas.scale == Vector2.ONE, "Stage must render at native UI resolution")
     check(not lab.stage.get_child(0) is SubViewport, "Do not downsample the complete preview")
     check(lab.stage.texture_filter == CanvasItem.TEXTURE_FILTER_NEAREST, "Preview must use nearest filtering")
-    check(lab.source_select.item_count == 151 and lab.target_select.item_count == 151, "All sprites must be selectable")
+    check(lab.source_select.item_count == 386 and lab.target_select.item_count == 386, "All sprites must be selectable")
     for i in catalog.biomes.size():
         lab.biome_buttons[i].pressed.emit()
         check(lab.biome_index == i, "Biome button routing failed")
@@ -86,6 +103,16 @@ func _run() -> void:
         lab.encounter_buttons[-1].pressed.emit()
         var expected := int(catalog.biomes[i]["encounters"][-1]["pokemon_id"])
         check(lab.target_id == expected and lab.target_select.get_selected_id() == expected, "Encounter selection did not update sprite")
+    lab.roster_select.select(1)
+    lab.roster_select.item_selected.emit(1)
+    for i in catalog.biomes.size():
+        lab.biome_buttons[i].pressed.emit()
+        var gym := catalog.gym_for_type(catalog.biomes[i]["type"])
+        check(lab.encounter_buttons.size() == 6 and str(gym["leader"]) in lab.encounter_note.text,"Gym inspector shows six members and correct leader")
+        lab.encounter_buttons[-1].pressed.emit()
+        check(lab.target_id == int(gym["party"][-1]),"Gym preview selection updates sprite")
+    lab.roster_select.select(0)
+    lab.roster_select.item_selected.emit(0)
     lab.move_search.text = "정말없는기술"
     lab.move_search.text_changed.emit(lab.move_search.text)
     check(lab.filtered_moves.is_empty() and lab.play_button.disabled, "Empty search must not replay stale moves")
@@ -237,7 +264,7 @@ func _run() -> void:
     battle.queue_free()
     await process_frame
     if failures.is_empty():
-        print("VISUAL_TESTS_OK: %d checks; 302 sprites, 18 biomes, 165 move lifecycles, native 1080p UI integration" % checks)
+        print("VISUAL_TESTS_OK: %d checks; 772 sprites, 18 biomes and gym rosters, 165 move lifecycles, native 1080p UI integration" % checks)
         quit(0)
     else:
         print("VISUAL_TESTS_FAILED: %d failures / %d checks" % [failures.size(), checks])

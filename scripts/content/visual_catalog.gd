@@ -27,6 +27,7 @@ var pokemon: Array = []
 var moves: Array = []
 var biomes: Array = []
 var types: Array = []
+var gyms: Array = []
 var _pokemon_by_id: Dictionary = {}
 var _moves_by_id: Dictionary = {}
 var _type_names: Dictionary = {}
@@ -37,6 +38,7 @@ func _init() -> void:
     moves = content["moves"]
     types = content["types"]
     biomes = JSON.parse_string(FileAccess.get_file_as_string("res://data/biomes.json"))
+    gyms = JSON.parse_string(FileAccess.get_file_as_string("res://data/gyms.json"))
     for entry: Dictionary in pokemon:
         _pokemon_by_id[int(entry["id"])] = entry
     for entry: Dictionary in moves:
@@ -49,6 +51,11 @@ func species(id: int) -> Dictionary:
 
 func move_by_id(id: int) -> Dictionary:
     return _moves_by_id.get(id, {})
+
+func gym_for_type(key: String) -> Dictionary:
+    for gym: Dictionary in gyms:
+        if gym["type"] == key: return gym
+    return {}
 
 func type_name(key: String) -> String:
     return _type_names.get(key, key)

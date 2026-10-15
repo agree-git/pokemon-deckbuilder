@@ -21,6 +21,7 @@ var encounter_buttons: Array[Button] = []
 var biome_title := Label.new()
 var biome_description := Label.new()
 var encounter_note := Label.new()
+var roster_select := OptionButton.new()
 var encounter_list := VBoxContainer.new()
 var move_search := LineEdit.new()
 var type_filter := OptionButton.new()
@@ -96,11 +97,11 @@ func _build_ui() -> void:
     root.add_theme_constant_override("separation", 14)
     margin.add_child(root)
     var header := HBoxContainer.new()
-    header.add_child(_label("관동 원정대", 28, TEXT))
+    header.add_child(_label("포켓몬 원정대", 28, TEXT))
     var subtitle := _label("   ART LAB  /  스프라이트 · 기술 · 바이옴", 15, MUTED)
     subtitle.size_flags_horizontal = Control.SIZE_EXPAND_FILL
     header.add_child(subtitle)
-    header.add_child(_label("151종  ·  18개 지역  ·  PIXEL ART", 14, ACCENT))
+    header.add_child(_label("386종  ·  1~3세대  ·  18개 지역", 14, ACCENT))
     root.add_child(header)
     var body := HBoxContainer.new()
     body.add_theme_constant_override("separation", 16)
@@ -130,7 +131,7 @@ func _build_biome_sidebar(body: HBoxContainer) -> void:
     body.add_child(panel)
     var column := VBoxContainer.new()
     column.add_child(_label("탐험 지역", 18, ACCENT))
-    column.add_child(_label("타입별 바이옴  /  관동 한정", 11, MUTED))
+    column.add_child(_label("타입별 바이옴  /  관동·성도·호연", 11, MUTED))
     panel.add_child(column)
     var scroll := ScrollContainer.new()
     scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -227,7 +228,11 @@ func _build_inspector(body: HBoxContainer) -> void:
     var column := VBoxContainer.new()
     column.add_theme_constant_override("separation", 12)
     panel.add_child(column)
-    column.add_child(_label("지역 출현 포켓몬", 18, ACCENT))
+    column.add_child(_label("바이옴 포켓몬", 18, ACCENT))
+    roster_select.add_item("야생 출현 후보")
+    roster_select.add_item("관장 파티 · 6마리")
+    roster_select.item_selected.connect(func(_index: int): select_biome(biome_index))
+    column.add_child(roster_select)
     column.add_child(_label("선택하면 상대 스프라이트로 표시", 11, MUTED))
     encounter_note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     encounter_note.custom_minimum_size.x = 222
@@ -271,13 +276,17 @@ func select_biome(index: int) -> void:
     _clear()
     for i in biome_buttons.size():
         biome_buttons[i].set_pressed_no_signal(i == biome_index)
-    encounter_note.text = biome["encounter_note"]
+    var gym := catalog.gym_for_type(biome["type"])
+    var show_gym := roster_select.selected == 1
+    encounter_note.text = "%s · %s\n편성 프리뷰 · 전투 수치는 별도" % [gym["name"],gym["leader"]] if show_gym else biome["encounter_note"]
     for child in encounter_list.get_children():
         encounter_list.remove_child(child)
         child.queue_free()
     encounter_buttons.clear()
-    var tier_labels := {"common": "자주", "uncommon": "가끔", "rare": "희귀"}
-    for entry: Dictionary in biome["encounters"]:
+    var tier_labels := {"common": "자주", "uncommon": "가끔", "rare": "희귀", "gym":"관장"}
+    var entries: Array = biome["encounters"]
+    if show_gym: entries = gym["party"].map(func(id: float): return {"pokemon_id":int(id),"tier":"gym"})
+    for entry: Dictionary in entries:
         var id: int = int(entry["pokemon_id"])
         var button := Button.new()
         button.text = "%s   · %s" % [catalog.species(id)["name"], tier_labels[entry["tier"]]]
@@ -295,14 +304,14 @@ func select_biome(index: int) -> void:
             _update_species())
         encounter_list.add_child(button)
         encounter_buttons.append(button)
-    if not biome["landmarks"].is_empty():
+    if not show_gym and not biome["landmarks"].is_empty():
         var names := PackedStringArray()
         for entry: Dictionary in biome["landmarks"]:
             names.append(catalog.species(int(entry["pokemon_id"]))["name"])
         var note := _label("별도 이벤트 후보\n" + " · ".join(names), 11, Color("c9b28b"))
         note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
         encounter_list.add_child(note)
-    target_id = int(biome["encounters"][0]["pokemon_id"])
+    target_id = int(entries[0]["pokemon_id"])
     target_select.select(target_id - 1)
     _update_species()
 
