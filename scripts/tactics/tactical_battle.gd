@@ -86,6 +86,25 @@ func restart(battle_seed: int = 2026, selected_relic: String = "seed_relay", opp
                 break
     _record("turn","턴 1 · 에너지 3")
 
+func start_with(members: Array[BattlePokemon], cards: Array[BattleCardInstance], opponents: Array, battle_seed: int, selected_relic: String) -> void:
+    restart(battle_seed,selected_relic,opponents)
+    party.assign(members)
+    active_index = 1 if party[1].alive() else 0
+    for i in party.size():
+        var pokemon := party[i]
+        pokemon.block = 0
+        pokemon.strength = 0
+        pokemon.statuses.clear()
+        pokemon.knocked_out = not pokemon.alive()
+        if not party[active_index].alive() and pokemon.alive(): active_index = i
+    hand.clear()
+    draw_pile.assign(cards)
+    _next_uid = 1
+    for card: BattleCardInstance in cards: _next_uid = maxi(_next_uid,card.uid+1)
+    _rng.seed = battle_seed
+    _shuffle(draw_pile)
+    _draw(5)
+
 func active() -> BattlePokemon:
     return party[active_index]
 func enemy() -> BattlePokemon:
@@ -343,7 +362,9 @@ func _damage(target: BattlePokemon, amount: int, piercing: bool = false) -> void
             _record("chain","브레이크 격파! 다음 적에게 연계")
             _refund("finish")
     else:
-        discard.append(_new_card("injury"))
+        var injury := _new_card("injury")
+        injury.injury_owner_uid = target.uid
+        discard.append(injury)
     target.statuses.clear()
     _record("knockout",target.display_name+" 기절")
 func _outcome() -> bool:

@@ -1,6 +1,6 @@
 class_name TacticalUI
 extends Control
-## Trial view. Combat decisions are resolved by TacticalBattle before presentation.
+## Shared battle view. Combat rules resolve before presentation; the journey owns travel.
 const W = preload("res://scripts/ui/combat_widgets.gd")
 const SKILL_KEYS := [KEY_Q,KEY_W,KEY_E,KEY_R]
 const SKILL_LABELS := ["Q","W","E","R"]
@@ -8,6 +8,11 @@ const GOLD := Color("edcb80")
 const CREAM := Color("eee5cd")
 const MINT := Color("b5e1c3")
 var battle: TacticalBattle
+var run_mode := false
+var run_title := ""
+signal run_continue_requested
+signal run_restart_requested(selected_relic: String)
+var result_next: Button
 var catalog := VisualCatalog.new()
 var stage := PixelStage.new()
 var busy := false
@@ -84,7 +89,7 @@ var _damage_events: Array[Dictionary] = []
 
 func _ready() -> void:
     set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-    battle = get_node("/root/BattleSession").get("tactics")
+    if battle == null: battle = get_node("/root/BattleSession").get("tactics")
     _theme()
     stage.source_ratio = Vector2(0.25,0.425)
     stage.target_ratio = Vector2(0.73,0.42)
@@ -98,6 +103,9 @@ func _ready() -> void:
     stage.canvas.effect.finished.connect(_finished)
     stage.canvas.effect.impact.connect(_impact)
     _build()
+    if run_mode:
+        W.panel(self,Rect2(640,88,640,38),Color(0.035,0.075,0.095,0.9),Color.TRANSPARENT,19)
+        W.label(self,run_title,Rect2(640,88,640,38),17,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
     _refresh()
 
 func _theme() -> void:
@@ -305,16 +313,17 @@ func _build_menu() -> Control:
         W.icon(button,relic_icons[key],Rect2(18,12,32,32))
         W.label(button,TacticalContent.RELICS[key]["name"],Rect2(68,0,410,56),19)
         W.icon(button,"check",Rect2(510,16,24,24)).name = "Selected"
-        button.tooltip_text = TacticalContent.RELICS[key]["description"]+"\n선택하면 같은 시드로 전투를 새로 시작합니다."
+        button.tooltip_text = TacticalContent.RELICS[key]["description"]+"\n선택하면 같은 시드로 "+("원정" if run_mode else "전투")+"을 새로 시작합니다."
         relic_buttons[key] = button
         index += 1
-    _label("특성 변경 시 전투를 처음부터 시작합니다.",Rect2(32,356,558,28),15,W.MUTED,HORIZONTAL_ALIGNMENT_LEFT,body)
+    _label("특성 변경 시 "+("원정" if run_mode else "전투")+"을 처음부터 시작합니다.",Rect2(32,356,558,28),15,W.MUTED,HORIZONTAL_ALIGNMENT_LEFT,body)
     restart_button = _menu_action(body,"restart","다시 시작","",420,restart)
-    old_button = _menu_action(body,"route","짧은 원정","F3",492,_old_run)
+    old_button = _menu_action(body,"route","기존 원정","F3",492,_old_run)
     lab_button = _menu_action(body,"lab","아트 랩","F2",564,_open_lab)
     _menu_action(body,"normal","화면 전환","F11",636,_fullscreen)
     _menu_action(body,"exhaust","소진된 카드","",708,func(): _show_pile("exhausted"))
-    _label("1 / 2 / 3  교체     Q / W / E / R  기술",Rect2(32,821,558,32),16,W.MUTED,HORIZONTAL_ALIGNMENT_LEFT,body)
+    _menu_action(body,"route","전술 시험" if run_mode else "전술 원정","F4",780,_toggle_journey)
+    _label("1 / 2 / 3  교체     Q / W / E / R  기술",Rect2(32,848,558,32),16,W.MUTED,HORIZONTAL_ALIGNMENT_LEFT,body)
     return overlay
 
 func _menu_action(body: Node,icon_key: String,title: String,key: String,y: int,action: Callable) -> Button:
@@ -362,8 +371,10 @@ func _build_result() -> void:
     result_title = W.label(body,"",Rect2(36,50,688,80),46,GOLD,HORIZONTAL_ALIGNMENT_CENTER)
     for i in 3: W.sprite(body,battle.party[i].species_id,Rect2(202+i*104,165,96,96))
     result_detail = W.label(body,"",Rect2(36,290,688,50),20,CREAM,HORIZONTAL_ALIGNMENT_CENTER)
-    result_restart = W.button(body,Rect2(200,395,360,68),restart,"다시 하기")
-    W.button(body,Rect2(200,483,360,56),_old_run,"짧은 원정으로")
+    result_restart = W.button(body,Rect2(200,395,360,68),restart,"원정 다시 하기" if run_mode else "다시 하기")
+    result_next = W.button(body,Rect2(200,483,360,56),func():
+        if run_mode: run_continue_requested.emit()
+        else: _old_run(),"계속 진행" if run_mode else "짧은 원정으로")
 
 func _open_overlay(overlay: Control) -> void:
     if result.visible: return
@@ -673,6 +684,9 @@ func _finished(_move: Dictionary = {}) -> void:
     _visual_enemy = null
     _refresh()
 func restart(selected_relic: String = "") -> void:
+    if run_mode:
+        run_restart_requested.emit(battle.relic if selected_relic.is_empty() else selected_relic)
+        return
     stage.canvas.clear_effects()
     if _shake: _shake.kill()
     if _banner_tween: _banner_tween.kill()
@@ -699,8 +713,10 @@ func restart(selected_relic: String = "") -> void:
 func _old_run() -> void:
     get_tree().change_scene_to_file("res://scenes/battle_preview.tscn")
 func _open_lab() -> void:
-    get_node("/root/BattleSession").set("return_scene","res://scenes/tactical_battle.tscn")
+    get_node("/root/BattleSession").set("return_scene","res://scenes/tactical_journey.tscn" if run_mode else "res://scenes/tactical_battle.tscn")
     get_tree().change_scene_to_file("res://scenes/art_lab.tscn")
+func _toggle_journey() -> void:
+    get_tree().change_scene_to_file("res://scenes/tactical_battle.tscn" if run_mode else "res://scenes/tactical_journey.tscn")
 func _fullscreen() -> void:
     var mode := DisplayServer.window_get_mode()
     DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED if mode == DisplayServer.WINDOW_MODE_FULLSCREEN else DisplayServer.WINDOW_MODE_FULLSCREEN)
@@ -715,6 +731,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
     if result.visible:
         match event.keycode:
             KEY_F3: _old_run()
+            KEY_F4: _toggle_journey()
             KEY_F11: _fullscreen()
         return
     if event.keycode in SKILL_KEYS:
@@ -726,6 +743,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
         KEY_F1: _open_overlay(help_panel)
         KEY_F2: _open_lab()
         KEY_F3: _old_run()
+        KEY_F4: _toggle_journey()
         KEY_F11: _fullscreen()
 func _notify(message: String) -> void:
     notice.text = message

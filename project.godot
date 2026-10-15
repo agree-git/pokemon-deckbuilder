@@ -3,7 +3,7 @@ config_version=5
 
 [application]
 config/name="포켓몬 원정대"
-run/main_scene="res://scenes/tactical_battle.tscn"
+run/main_scene="res://scenes/tactical_journey.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [autoload]

@@ -1,6 +1,6 @@
 class_name TacticalContent
 extends RefCounted
-## A small comparison encounter; no run/capture/reward migration is implied.
+## Shared skills and trainer cards for the single encounter and tactical journey.
 const PARTY := [
     {"id":4,"uid":4,"name":"파이리","type":"fire","max_hp":45},
     {"id":1,"uid":1,"name":"이상해씨","type":"grass","max_hp":48},
