@@ -121,12 +121,25 @@ func run() -> void:
             await click(ui.rest_button)
             await click(ui.camp_tabs["shop"])
             await click(ui.page.find_child("Buy_ball",true,false))
+            var cheapest := 0
+            for i in j.shop_cards().size():
+                if j.shop_cards()[i]["price"] < j.shop_cards()[cheapest]["price"]: cheapest = i
+            var cards := j.deck.size()
+            var coins := j.gold
+            var price: int = j.shop_cards()[cheapest]["price"]
+            await click(ui.page.find_child("BuyCard_%d" % cheapest,true,false))
+            check(j.deck.size() == cards+1 and j.gold == coins-price and j.shop_cards()[cheapest]["sold"],"Card purchase commits its exact price and stock before process exit")
             expected(j,true)
             await save_picture("camp_before_exit")
         elif stage == "camp_read":
             check(j.phase == TacticalJourney.REST and ui.rest_button.disabled,"Restart cannot repeat camp rest")
             await click(ui.camp_tabs["shop"])
             check(j.shop_stock["ball"] == 3,"Merchant stock survives process restart")
+            var sold: Array = j.shop_cards().filter(func(o: Dictionary): return o["sold"])
+            check(sold.size() == 1,"Card sold receipt survives fresh process restart")
+            for i in j.shop_cards().size():
+                if j.shop_cards()[i]["sold"]:
+                    check(ui.page.find_child("BuyCard_%d" % i,true,false).disabled and not j.shop_card_reason(i).is_empty(),"Resumed sold quote cannot be purchased again")
             var reference := JourneySnapshot.restore(JourneySnapshot.encode(j))
             reference.buy("ball")
             await click(ui.page.find_child("Buy_ball",true,false))

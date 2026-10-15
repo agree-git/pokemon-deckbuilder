@@ -240,26 +240,7 @@ func _rest() -> void:
             upgrade.disabled = journey.step in journey.rested_steps or not journey.deck.any(func(card: BattleCardInstance): return TacticalContent.can_upgrade(card))
             actions.append(upgrade)
         "encounter": _encounter()
-        "shop":
-            var i := 0
-            for key: String in journey.items():
-                if journey.full_campaign and key not in encounter.get("offers",[]): continue
-                var item: Dictionary = journey.items()[key]
-                var y := 356+i*120
-                W.panel(page,Rect2(550,y,1190,114),Color("172d32"))
-                _item_sprite(page,key,Rect2(574,y+28,60,60))
-                W.label(page,"%s · %d 골드" % [item["name"],item["price"]],Rect2(650,y+12,600,40),24,W.TEXT)
-                W.label(page,("야생 전투에서 포획 · C" if key == "ball" else ("기절한 동료의 HP 50% 회복" if key == "revive" else "최대 HP의 %s 회복" % PokemonStats.percent(int(journey.items()[key]["heal"]))))+" · 재고 %d / 보유 %d" % [journey.shop_stock.get(key,0),journey.quantity(key)],Rect2(650,y+61,600,34),18,W.MUTED)
-                var button := W.button(page,Rect2(1440,y+22,270,70),_buy.bind(key),"구매")
-                button.name = "Buy_"+key
-                button.disabled = not journey.buy_reason(key).is_empty()
-                button.tooltip_text = journey.buy_reason(key)
-                actions.append(button)
-                i += 1
-            var remove := W.button(page,Rect2(870,760,560,64),_select_deck_action.bind("remove"),"카드 제거 · %d 골드" % journey.removal_price())
-            remove.name = "Remove"
-            remove.disabled = journey.camp().get("removed",false) or journey.gold < journey.removal_price()
-            actions.append(remove)
+        "shop": _shop()
         "gear": _gear()
         "bag":
             var i := 0
@@ -274,6 +255,57 @@ func _rest() -> void:
                 button.tooltip_text = "야생 전투에서 C로 포획" if key == "ball" else ("기절한 동료 HP 50% 회복" if key == "revive" else "최대 HP의 %s 회복" % PokemonStats.percent(int(item["heal"])))
                 i += 1
     W.label(page,camp_notice,Rect2(550,870,1190,40),20,W.GOLD)
+func _shop() -> void:
+    W.label(page,"카드",Rect2(550,345,650,38),23,W.GOLD)
+    W.label(page,"보급품",Rect2(1250,345,490,38),23,W.GOLD)
+    var offers := journey.shop_cards()
+    if offers.is_empty():
+        W.label(page,"이번 상인은 보급품만 판매합니다.",Rect2(550,490,650,100),22,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+    for i in offers.size():
+        var offer: Dictionary = offers[i]
+        var x := 550+i*224
+        var view := journey.reward_view(offer)
+        var card := TrainerActionCard.new()
+        card.name = "ShopCard_%d" % i
+        card.key = offer["key"]
+        card.definition = view
+        card.position = Vector2(x,362)
+        page.add_child(card)
+        card.update_card(view,"",false)
+        card.disabled = true
+        card.mouse_default_cursor_shape = Control.CURSOR_ARROW
+        if offer["sold"]: card.modulate = Color(0.55,0.62,0.63)
+        var owned := journey.deck.filter(func(c: BattleCardInstance): return c.key == offer["key"] and c.owner_uid == offer["owner_uid"]).size()
+        W.label(page,"보유 %d장" % owned+(" · 20골드 할인" if offer["sale"] else ""),Rect2(x,686,202,32),15,W.GOLD if offer["sale"] else W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+        var button := W.button(page,Rect2(x,730,202,56),_buy_card.bind(i),"판매 완료" if offer["sold"] else "%d 골드 · 구매" % offer["price"])
+        button.name = "BuyCard_%d" % i
+        button.add_theme_font_size_override("font_size",17)
+        button.disabled = not journey.shop_card_reason(i).is_empty()
+        button.tooltip_text = ("원가 %d → %d 골드\n" % [offer["full_price"],offer["price"]] if offer["sale"] else "")+journey.shop_card_reason(i)
+        actions.append(button)
+    var row := 0
+    for key: String in journey.items():
+        if journey.full_campaign and key not in journey.camp().get("offers",[]): continue
+        var item: Dictionary = journey.items()[key]
+        var y := 390+row*(122 if journey.full_campaign else 104)
+        var panel := W.panel(page,Rect2(1250,y,490,114 if journey.full_campaign else 100),Color("172d32"))
+        _item_sprite(panel,key,Rect2(16,15,54,54))
+        W.label(panel,"%s · %d골드" % [item["name"],item["price"]],Rect2(84,12,270,34),19,W.TEXT)
+        W.label(panel,"재고 %d · 보유 %d" % [journey.shop_stock.get(key,0),journey.quantity(key)],Rect2(84,52,270,28),16,W.MUTED)
+        var button := W.button(panel,Rect2(368,19,106,68),_buy.bind(key),"구매")
+        button.name = "Buy_"+key
+        button.disabled = not journey.buy_reason(key).is_empty()
+        button.tooltip_text = journey.buy_reason(key)
+        panel.mouse_filter = Control.MOUSE_FILTER_PASS
+        panel.tooltip_text = "야생 전투에서 포획 · C" if key == "ball" else ("기절한 동료의 HP 50% 회복" if key == "revive" else "최대 HP의 %s 회복" % PokemonStats.percent(int(item["heal"])))
+        actions.append(button)
+        row += 1
+    var remove := W.button(page,Rect2(550,812,650,54),_select_deck_action.bind("remove"),"카드 제거 완료" if journey.camp().get("removed",false) else "카드 제거 · %d 골드" % journey.removal_price())
+    remove.name = "Remove"
+    remove.disabled = journey.camp().get("removed",false) or journey.gold < journey.removal_price()
+    remove.tooltip_text = "상인당 1장 · 다음 제거 비용 +25골드. 휴식·강화 행동은 소비하지 않습니다."
+    actions.append(remove)
+    if row <= 3: W.label(page,"구매한 카드는 원정 덱에 추가됩니다.\n가방의 회복약을 쓰면 휴식 대신 강화할 수 있습니다.",Rect2(1250,790,490,80),16,W.MUTED)
 func _item_sprite(parent: Node, key: String, rect: Rect2) -> TextureRect:
     var texture := TextureRect.new()
     texture.texture = load("res://assets/items/%s.png" % key)
@@ -410,6 +442,12 @@ func _camp_rest() -> void:
 func _buy(key: String) -> void:
     var reason := journey.buy(key)
     camp_notice = reason if not reason.is_empty() else str(journey.items()[key]["name"])+" 구매 완료"
+    refresh()
+func _buy_card(index: int) -> void:
+    if travelling: return
+    var card_name := str(journey.reward_view(journey.shop_cards()[index])["name"])
+    var reason := journey.buy_shop_card(index)
+    camp_notice = reason if not reason.is_empty() else card_name+" · 원정 덱에 추가했습니다."
     refresh()
 func _use_item(key: String,index: int) -> void:
     var reason := journey.use_item(key,index)

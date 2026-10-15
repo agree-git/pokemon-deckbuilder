@@ -320,6 +320,27 @@ func buy(key: String) -> String:
     if key == "ball": balls += 1
     else: inventory[key] = int(inventory[key])+1
     return notify_changed()
+func shop_cards() -> Array:
+    return camp().get("card_offers",[])
+func shop_card_reason(index: int) -> String:
+    if phase != REST or camp().get("kind","") != "merchant": return "상인이 있는 야영지에서 카드를 구매하세요."
+    var offers := shop_cards()
+    if index < 0 or index >= offers.size(): return "진열된 카드를 선택하세요."
+    var offer: Dictionary = offers[index]
+    if offer["sold"]: return "이미 판매된 카드입니다."
+    if int(offer["owner_uid"]) != 0 and not party.any(func(p: BattlePokemon): return p.uid == offer["owner_uid"]): return "파티를 떠난 동료의 기술입니다."
+    if gold < int(offer["price"]): return "골드가 부족합니다."
+    return ""
+func buy_shop_card(index: int) -> String:
+    var reason := shop_card_reason(index)
+    if not reason.is_empty(): return reason
+    var offer: Dictionary = shop_cards()[index]
+    var card := _allocate_card(offer["key"],int(offer["owner_uid"]))
+    gold -= int(offer["price"])
+    deck.append(card)
+    offer["sold"] = true
+    history.append("상인 카드 구매 · %s · %d 골드" % [TacticalContent.definition(card)["name"],offer["price"]])
+    return notify_changed()
 func item_reason(key: String,index: int) -> String:
     if key == "ball": return "야생 전투에서 C 또는 포획 버튼을 사용하세요."
     if phase != REST: return "가방의 회복 아이템은 야영지에서 사용하세요. 전투에서는 도구 카드를 사용합니다."
@@ -366,6 +387,7 @@ func _prepare_camp() -> void:
         state["stock"] = {}
         if state["kind"] == "merchant":
             for key: String in state["offers"]: state["stock"][key] = items()[key]["stock"]
+            state["card_offers"] = MerchantContent.generate(seed_value,step,int(current().get("chapter",0)),deck,party,relics)
         camp_states[step] = state
     shop_stock = camp_states[step]["stock"]
 func camp() -> Dictionary:

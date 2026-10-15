@@ -196,6 +196,9 @@ static func validate(data: Variant) -> bool:
             if camp.get(key) != route.stops[step]["camp"][key]: return false
         for key: Variant in camp["stock"]:
             if key not in ["potion","super_potion","revive","ball"] or not integer(camp["stock"][key],0,4): return false
+        if camp.has("card_offers"):
+            if camp["kind"] != "merchant" or not MerchantContent.valid_offers(camp["card_offers"],int(route.stops[step]["chapter"])): return false
+        if camp.has("removed") and not camp["removed"] is bool: return false
     for step: Variant in r["rested_steps"]:
         if not integer(step,0,136) or route.stops[step]["kind"] != "rest": return false
     for entry: Variant in r["loot"]:

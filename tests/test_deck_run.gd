@@ -97,6 +97,7 @@ func run() -> void:
         j = TacticalJourney.new(run_seed,"field_kit",[1,4,7],true)
         var guard := 0
         var selected := 0
+        var purchases := 0
         while j.phase not in [TacticalJourney.CLEARED,TacticalJourney.FAILED] and guard < 20000:
             guard += 1
             if not seen.has(j.phase):
@@ -123,6 +124,18 @@ func run() -> void:
                 TacticalJourney.MAP: reason = j.enter_next()
                 TacticalJourney.REST:
                     CampaignPolicy.camp(j)
+                    if purchases < 3 and j.camp()["kind"] == "merchant":
+                        for i in j.shop_cards().size():
+                            var offer: Dictionary = j.shop_cards()[i]
+                            var view := j.reward_view(offer)
+                            var useful: bool = offer["key"] in ["guard","counter","potion_card","boost_card","ether_card","focus","analysis"] or (int(offer["owner_uid"]) != 0 and view.has("damage"))
+                            if not useful or not j.shop_card_reason(i).is_empty(): continue
+                            var purchase_gold := j.gold
+                            var purchase_count := j.deck.size()
+                            check(j.buy_shop_card(i).is_empty() and j.gold == purchase_gold-int(offer["price"]) and j.deck.size() == purchase_count+1,"Real campaign buys a useful quote for the exact price")
+                            purchases += 1
+                            j = reload(j)
+                            break
                     if not j.held_inventory.is_empty(): j.equip_held(j.held_inventory[0],j.party[0].uid)
                     if j.camp()["kind"] in ["event","discovery"] and not j.camp()["resolved"] and j.camp_choice_reason(0).is_empty(): j.resolve_camp(0)
                     if j.step%16 == 1: j = reload(j)
@@ -130,7 +143,8 @@ func run() -> void:
             if not reason.is_empty():
                 check(false,"Public run action failed: "+reason)
                 break
-        print("DECK_RUN seed=",run_seed," phase=",j.phase," wins=",j.wins," relics=",j.relics.size()," deck=",j.deck.size()," actions=",guard)
+        print("DECK_RUN seed=",run_seed," phase=",j.phase," wins=",j.wins," relics=",j.relics.size()," deck=",j.deck.size()," purchases=",purchases," actions=",guard)
+        check(purchases == 3,"Complete campaign purchases three finite shop cards through public actions")
         check(j.phase == TacticalJourney.CLEARED and j.wins == 69 and j.badges == 8 and j.elite_wins == 4,"69-battle run completes with mixed rewards, equipment and saved state")
     print("DECK_RUN: ",checks," checks, ",failures," failures")
     quit(0 if failures == 0 else 1)
