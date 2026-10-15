@@ -99,7 +99,7 @@ func run() -> void:
     actor.progression_initialized = true
     actor.learned_skills.assign(["move_85","move_33"])
     var members: Array[BattlePokemon] = [actor]
-    var cards: Array[BattleCardInstance] = []
+    var cards: Array[BattleCardInstance] = [BattleCardInstance.new(1,"move_85",10),BattleCardInstance.new(2,"move_33",10)]
     var foe := {"id":130,"name":"테스트 적","type":"water","types":["water","flying"],"max_hp":999,"intents":[{"kind":"attack","value":10,"type":"electric","move_id":85}]}
     typed_battle.start_with(members,cards,[foe],42,"seed_relay",true)
     typed_battle.full_type_chart = true
@@ -118,12 +118,14 @@ func run() -> void:
     for seed_value in range(30):
         var j := TacticalJourney.new(seed_value,"seed_relay",[1,4,7],true)
         var guard := 0
+        var no_knockouts := true
         while j.phase not in [TacticalJourney.CLEARED,TacticalJourney.FAILED] and guard < 20000:
             guard += 1
             var reason := ""
             match j.phase:
                 TacticalJourney.BATTLE:
                     if j.battle.phase in [TacticalBattle.WON,TacticalBattle.LOST]:
+                        no_knockouts = no_knockouts and j.party.all(func(p: BattlePokemon): return p.alive())
                         reason = j.settle()
                         var coins := j.gold
                         var count := j.badges
@@ -135,7 +137,7 @@ func run() -> void:
                 TacticalJourney.LEARN: reason = j.resolve_learning(CampaignPolicy.learn(j))
                 TacticalJourney.REWARD: reason = j.choose_reward(-1)
                 TacticalJourney.MAP:
-                    if j.current()["kind"] == "champion": check(j.party.all(func(p: BattlePokemon): return p.level == 100),"Smooth play reaches Lv.100 before champion")
+                    if j.current()["kind"] == "champion" and no_knockouts: check(j.party.all(func(p: BattlePokemon): return p.level == 100),"Smooth play reaches Lv.100 before champion")
                     reason = j.enter_next()
                 TacticalJourney.REST:
                     CampaignPolicy.camp(j)

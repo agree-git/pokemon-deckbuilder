@@ -46,7 +46,6 @@ var status_label: Label
 var ally_label: Label
 var enemy_label: Label
 var intent_label: Label
-var opening_label: Label
 var queue_label: Label
 var notice: Label
 var banner: Label
@@ -58,7 +57,6 @@ var _hand_turn := -1
 var _shown_active := 0
 var _shown_enemy := 0
 var _shown_intent := ""
-var _shown_points := 0
 var hand_row := HBoxContainer.new()
 var hand_scroll := ScrollContainer.new()
 var log_panel: Control
@@ -77,7 +75,6 @@ var discard_button: Button
 var relic_chip: Button
 var ally_statuses := Control.new()
 var enemy_statuses := Control.new()
-var break_pips: Array[Panel] = []
 var enemy_slots: Array[Button] = []
 var skill_names: Array[Label] = []
 var skill_values: Array[Label] = []
@@ -208,13 +205,6 @@ func _build_combat_hud() -> void:
     W.icon(intent_box,"attack",Rect2(16,15,32,32)).name = "Icon"
     intent_label = W.label(intent_box,"",Rect2(54,7,60,48),29,Color("f1b69b"),HORIZONTAL_ALIGNMENT_CENTER)
     W.label(intent_box,"",Rect2(0,53,128,27),14,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER).name = "Title"
-    var break_box := W.button(self,Rect2(1257,657,290,32),func(): pass)
-    break_box.name = "Break"
-    W.icon(break_box,"break",Rect2(9,6,20,20))
-    opening_label = W.label(break_box,"빈틈",Rect2(37,1,65,30),15,W.MUTED)
-    for i in 3:
-        break_pips.append(W.panel(break_box,Rect2(112+i*39,10,30,12),Color("34484e"),Color.TRANSPARENT,3))
-    W.label(break_box,"",Rect2(235,1,45,30),16,GOLD,HORIZONTAL_ALIGNMENT_CENTER).name = "Burst"
 
 func _roster_row(panel: Panel,index: int,pokemon: BattlePokemon,action: Callable) -> Button:
     var row := W.button(panel,Rect2(12,44+index*66,216,58),action)
@@ -249,16 +239,6 @@ func _build_actions() -> void:
     for i in 7:
         _shade(Rect2(0,736+i*8,1920,8),Color(0.025,0.06,0.075,0.12+i*0.12))
     _shade(Rect2(0,792,1920,288),Color(0.025,0.06,0.075,0.98))
-    skill_panel = W.panel(self,Rect2(36,394,270,312),Color(0.04,0.08,0.10,0.93),Color("3d555a"))
-    skill_title = _label("",Rect2(52,406,230,31),17,MINT)
-    for i in SKILL_KEYS.size():
-        var button := W.button(self,Rect2(48,446+i*62,246,54),_skill_slot.bind(i))
-        skill_icons.append(W.icon(button,"grass",Rect2(12,13,28,28)))
-        skill_names.append(W.label(button,"",Rect2(51,3,150,26),18))
-        skill_values.append(W.label(button,"",Rect2(51,28,150,22),13,W.MUTED))
-        skill_costs.append(W.badge(button,"",Rect2(205,5,30,30)))
-        W.label(button,SKILL_LABELS[i],Rect2(209,36,22,15),11,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
-        skills.append(button)
     W.panel(self,Rect2(48,878,112,112),Color("2d3d3c"),Color("aa975f"),56)
     W.icon(self,"energy",Rect2(88,889,32,32))
     energy_label = _label("",Rect2(49,924,110,53),38,GOLD,HORIZONTAL_ALIGNMENT_CENTER)
@@ -319,18 +299,13 @@ func _modal(title: String,rect: Rect2) -> Control:
 func _build_menu() -> Control:
     var overlay := _modal("메뉴",Rect2(1250,96,622,900))
     var body: Panel = overlay.get_node("Body")
-    _label("전투 특성",Rect2(32,96,470,32),17,W.MUTED,HORIZONTAL_ALIGNMENT_LEFT,body)
-    var relic_icons := {"seed_relay":"seed","switch_power":"switch","break_focus":"break"}
-    var index := 0
-    for key: String in TacticalContent.RELICS:
-        var button := W.button(body,Rect2(32,146+index*68,558,56),restart.bind(key))
-        W.icon(button,relic_icons[key],Rect2(18,12,32,32))
-        W.label(button,TacticalContent.RELICS[key]["name"],Rect2(68,0,410,56),19)
-        W.icon(button,"check",Rect2(510,16,24,24)).name = "Selected"
-        button.tooltip_text = TacticalContent.RELICS[key]["description"]+"\n선택하면 같은 시드로 "+("원정" if run_mode else "전투")+"을 새로 시작합니다."
-        relic_buttons[key] = button
-        index += 1
-    _label("특성 변경 시 "+("원정" if run_mode else "전투")+"을 처음부터 시작합니다.",Rect2(32,356,558,28),15,W.MUTED,HORIZONTAL_ALIGNMENT_LEFT,body)
+    _label("파티 유물",Rect2(32,94,470,32),17,W.MUTED,HORIZONTAL_ALIGNMENT_LEFT,body)
+    for index in battle.relics.size():
+        var key := battle.relics[index]
+        var definition: Dictionary = TacticalContent.RELICS[key]
+        W.icon(body,definition["icon"],Rect2(36,139+index*36,24,24))
+        var label := W.label(body,definition["name"],Rect2(76,132+index*36,480,36),17)
+        label.tooltip_text = definition["description"]
     restart_button = _menu_action(body,"restart","다시 시작","",420,restart)
     if run_mode:
         home_button = _menu_action(body,"home","시작 화면","",492,_home)
@@ -341,7 +316,7 @@ func _build_menu() -> Control:
     _menu_action(body,"normal","화면 전환","F11",636,_fullscreen)
     _menu_action(body,"exhaust","소진된 카드","",708,func(): _show_pile("exhausted"))
     if not run_mode: _menu_action(body,"route","전술 원정","F4",780,_toggle_journey)
-    _label("1 / 2 / 3  교체     Q / W / E / R  기술",Rect2(32,848,558,32),16,W.MUTED,HORIZONTAL_ALIGNMENT_LEFT,body)
+    _label("1 / 2 / 3 교대 · Q / W / E / R 손패 1~4장",Rect2(32,848,558,32),16,W.MUTED,HORIZONTAL_ALIGNMENT_LEFT,body)
     return overlay
 
 func _menu_action(body: Node,icon_key: String,title: String,key: String,y: int,action: Callable) -> Button:
@@ -355,9 +330,9 @@ func _build_help() -> Control:
     var overlay := _modal("전투 도움말",Rect2(420,175,1080,720))
     var body: Panel = overlay.get_node("Body")
     var steps := [
-        ["energy","기술과 카드","기술과 손패는 에너지를 공유합니다.\n턴마다 에너지 3 · 카드 5장\n각 기술은 포켓몬당 턴 1회"],
-        ["break","빈틈 3 → 브레이크","약점 · 상태 · 분석 · 견제\n서로 다른 방법을 3번 사용하세요.\n적 행동 취소 · 다음 공격 ×2"],
-        ["next","격파하고 이어가기","브레이크와 직접 격파 시 환급\n에너지 환급은 합쳐서 턴당 2회\n다음 적도 같은 턴에 공격할 수 있습니다."],
+        ["draw","하나의 공유 덱","기술 · 도구 · 트레이너 카드를 뽑습니다.\n턴마다 에너지 3 · 카드 5장\n남은 카드는 턴 종료 시 버립니다."],
+        ["switch","기술 사용 → 자동 교대","다른 동료의 기술을 쓰면 즉시 교대.\n자동 교대에는 추가 비용이 없습니다.\n마지막 출전 동료가 공격을 받습니다."],
+        ["boost","카드와 유물의 조합","지속 카드는 사용한 전투 동안 유지.\n유물은 파티 전체에 적용됩니다.\n소진 카드는 다음 전투에 돌아옵니다."],
     ]
     for i in steps.size():
         var x := 36+i*340
@@ -366,8 +341,8 @@ func _build_help() -> Control:
         W.label(body,steps[i][2],Rect2(x,247,320,125),16,CREAM)
     W.panel(body,Rect2(36,420,1008,164),Color("203940"),Color.TRANSPARENT)
     W.icon(body,"switch",Rect2(60,446,32,32))
-    W.label(body,"첫 교체 무료 · 추가 교체는 에너지 1",Rect2(112,437,860,44),21)
-    W.label(body,"초반: 울음소리·꼬리흔들기 + 분석으로 빈틈 만들기\n기술 습득 후: 약점·상태·교체로 이어 공격하기" if run_mode else "1턴: 씨뿌리기 + 분석 → 턴 종료\n2턴: 파이리 교체 → 불꽃세례 → 화염방사",Rect2(60,495,940,70),18,W.MUTED)
+    W.label(body,"기술 카드 자동 교대 무료 · 직접 교대는 에너지 1",Rect2(112,437,860,44),21)
+    W.label(body,"공격 순서와 마지막 출전 포켓몬을 함께 생각하세요.\n포켓몬별 보호막과 강화 · 도구 카드 · 유물로 전술을 만드세요.",Rect2(60,495,940,70),19,W.MUTED)
     W.label(body,"교체 1 / 2 / 3     기술 Q / W / E / R     턴 종료 Enter",Rect2(36,609,1008,32),18,MINT)
     W.label(body,"아이콘과 카드에 마우스를 올리면 자세한 효과를 확인할 수 있습니다.",Rect2(36,654,1008,32),17,W.MUTED)
     return overlay
@@ -406,7 +381,7 @@ func _overlay_open() -> bool:
     return menu_panel.visible or help_panel.visible or log_panel.visible or pile_panel.visible or (bag_panel != null and bag_panel.visible)
 func _show_bag() -> void:
     if busy or run_journey == null: return
-    if bag_panel == null: bag_panel = _modal("가방 · 전투 중 사용은 에너지 1",Rect2(410,200,1100,650))
+    if bag_panel == null: bag_panel = _modal("가방 · 회복 아이템은 야영지에서 사용",Rect2(410,200,1100,650))
     var body: Panel = bag_panel.get_node("Body")
     if body.has_node("Items"):
         var previous := body.get_node("Items")
@@ -446,11 +421,15 @@ func _show_pile(key: String) -> void:
     if pile.is_empty(): text.text += "카드가 없습니다."
     # Inspection groups equal cards and does not reveal the hidden draw order.
     var counts: Dictionary = {}
-    for card: BattleCardInstance in pile: counts[card.key] = int(counts.get(card.key,0))+1
-    for card_key: String in TacticalContent.CARDS:
-        if counts.has(card_key):
-            var card: Dictionary = TacticalContent.CARDS[card_key]
-            text.text += "%s  ×%d\n%s\n\n" % [card["name"],counts[card_key],card["description"]]
+    var views: Dictionary = {}
+    for card: BattleCardInstance in pile:
+        var view := battle.card_view(card)
+        var group := "%s:%d:%s" % [card.key,card.owner_uid,card.upgraded]
+        counts[group] = int(counts.get(group,0))+1
+        views[group] = view
+    for group: String in counts:
+        var view: Dictionary = views[group]
+        text.text += "%s%s ×%d\n%s\n\n" % [view["name"]," · "+str(view.get("owner_name","")) if view.get("owner_uid",0) != 0 else "",counts[group],view["description"]]
     body.add_child(text)
     _open_overlay(pile_panel)
 
@@ -489,32 +468,24 @@ func _refresh() -> void:
     var action := battle.intent()
     var names := {"charge":"강공격","attack":"공격","block":"방어","boost":"강화"}
     var intent_icon := {"charge":"attack","attack":"attack","block":"shield","boost":"boost"}
-    var cancelled: bool = battle.opening()["cancel"] or action.get("asleep",false)
+    var cancelled: bool = action.get("asleep",false)
     var intent_signature := str([battle.enemy().uid,action,cancelled])
     if _shown_intent != intent_signature:
         UiMotion.pulse(get_node("Intent/Icon"))
         _shown_intent = intent_signature
-    get_node("Intent/Icon").texture = W.texture("break" if cancelled else intent_icon[action["kind"]])
+    get_node("Intent/Icon").texture = W.texture("counter" if cancelled else intent_icon[action["kind"]])
     get_node("Intent/Title").text = "행동 취소" if cancelled else names[action["kind"]]
     intent_label.text = "—" if cancelled else str(action["value"])
-    get_node("Intent").tooltip_text = ("수면으로 다음 행동을 취소합니다." if action.get("asleep",false) else "브레이크로 다음 행동을 취소합니다.") if cancelled else "다음 적 행동: %s %d\n상성과 적 강화가 적용된 수치입니다." % [names[action["kind"]],action["value"]]
-    var state := battle.opening()
-    for i in break_pips.size():
-        if i >= _shown_points and i < state["points"]: UiMotion.pulse(break_pips[i])
-        break_pips[i].add_theme_stylebox_override("panel",W.box(GOLD if i < state["points"] else Color("34484e"),Color.TRANSPARENT,3))
-    _shown_points = state["points"]
-    opening_label.text = "브레이크" if state["broken"] else "빈틈"
-    get_node("Break/Burst").text = "×2" if state["burst"] else ""
-    get_node("Break").tooltip_text = "빈틈 %d / 3 · %s\n약점 / 상태 / 분석 / 견제는 적마다 각각 한 번씩 빈틈을 만듭니다." % [state["points"],"다음 공격 ×2" if state["burst"] else ("브레이크 사용 완료" if state["broken"] else "서로 다른 전술로 채우세요.")]
+    get_node("Intent").tooltip_text = "수면으로 다음 행동을 취소합니다." if cancelled else "다음 적 행동: %s %d\n상성과 적 강화가 적용된 수치입니다." % [names[action["kind"]],action["value"]]
     UiMotion.text(energy_label,str(battle.energy))
-    get_node("Energy").tooltip_text = "에너지 %d · 턴 시작 시 3\n브레이크·격파 에너지 환급 %d / %d회" % [battle.energy,battle.refunds,TacticalBattle.REFUND_LIMIT]
+    get_node("Energy").tooltip_text = "에너지 %d · 턴 시작 시 3\n기술·도구·트레이너 카드가 공유합니다. 기술 자동 교대는 무료입니다." % battle.energy
     UiMotion.text(draw_count,str(battle.draw_pile.size()))
     UiMotion.text(discard_count,str(battle.discard.size()))
     end_button.disabled = busy or battle.phase != TacticalBattle.PLAYER
     end_button.get_node("Title").text = "교체 선택" if battle.phase == TacticalBattle.REPLACE else "턴 종료"
     end_button.get_node("Title").add_theme_color_override("font_color",W.MUTED if end_button.disabled else Color("10232b"))
     end_button.get_child(1).modulate.a = 0.35 if end_button.disabled else 1.0
-    switch_label.text = "무료 교체" if not battle.switched or battle.phase == TacticalBattle.REPLACE else "교체 비용 1"
+    switch_label.text = "교대 선택" if battle.phase == TacticalBattle.REPLACE else "직접 교대 1"
     for i in party_buttons.size():
         var pokemon := battle.party[i]
         var button := party_buttons[i]
@@ -523,55 +494,24 @@ func _refresh() -> void:
         W.fill_bar(party_bars[i],pokemon.hp,pokemon.max_hp)
         button.disabled = busy or not battle.switch_reason(pokemon.uid).is_empty()
         button.tooltip_text = "%d · %s · Lv.%d · %s\n%s · 성장 공격 +%d\n%s" % [i+1,pokemon.display_name,pokemon.level,catalog.type_name(pokemon.type),TacticalGrowth.progress_text(pokemon),TacticalGrowth.attack_bonus(pokemon),"출전 중" if pokemon == battle.active() else (battle.switch_reason(pokemon.uid) if not battle.switch_reason(pokemon.uid).is_empty() else switch_label.text)]
+        if not pokemon.held_item.is_empty(): button.tooltip_text += "\n"+str(TacticalContent.HELD_ITEMS[pokemon.held_item]["name"])+" · "+str(TacticalContent.HELD_ITEMS[pokemon.held_item]["description"])
         var border := MINT if pokemon == battle.active() else Color("3d555a")
         button.add_theme_stylebox_override("disabled",W.box(Color("203a3d") if pokemon == battle.active() else Color("17262e"),border))
         button.get_child(0).modulate.a = 0.25 if not pokemon.alive() else 1.0
-    skill_title.text = battle.active().display_name+"의 기술"
     if _shown_active != battle.active().uid:
         UiMotion.appear(stage.canvas.source_sprite)
-        UiMotion.appear(skill_panel)
         UiMotion.appear(party_buttons[battle.active_index].get_child(0))
         _shown_active = battle.active().uid
     if _shown_enemy != foe.uid:
         UiMotion.appear(stage.canvas.target_sprite)
         _shown_enemy = foe.uid
-    var support := {"seed":"씨앗 3회 · 회당 2 흡수","growth":"공격력 +2","fire_guard":"보호막 +8","shell":"보호막 +8"}
-    for i in skills.size():
-        var learned: Array = TacticalContent.skills_for(battle.active())
-        if i >= learned.size():
-            skill_names[i].text = "미습득"
-            skill_values[i].text = "빈 기술 슬롯"
-            skill_values[i].add_theme_color_override("font_color",W.MUTED)
-            skill_icons[i].texture = W.texture("normal")
-            skill_costs[i].text = "—"
-            skills[i].tooltip_text = SKILL_LABELS[i]+" · 다음 레벨의 기술을 배울 수 있는 빈 슬롯입니다."
-            skills[i].disabled = true
-            W.fade(skills[i])
-            continue
-        var key: String = learned[i]
-        var view := battle.skill_view(key)
-        var reason := battle.skill_reason(key)
-        skill_names[i].text = view["name"]
-        skill_values[i].text = "피해 %d%s" % [view["preview_damage"]," · 화상" if view.has("burn") else ""] if view.has("preview_damage") else support.get(key,view["description"].replace("\n"," "))
-        skill_values[i].add_theme_color_override("font_color",GOLD if state["burst"] and view.has("damage") else W.MUTED)
-        skill_icons[i].texture = W.texture("shield" if view.has("block") else ("seed" if key == "seed" else ("boost" if key == "growth" else view["type"])))
-        if battle.used_skills.has("%d:%s" % [battle.active().uid,key]):
-            skill_icons[i].texture = W.texture("check")
-            skill_values[i].text = "다음 턴에 사용"
-        skill_costs[i].text = str(view["cost"])
-        skills[i].tooltip_text = "%s · %s\n%s\n%s" % [SKILL_LABELS[i],view["name"],view["description"],reason if not reason.is_empty() else "이 포켓몬으로 턴 1회 사용"]
-        if battle.full_type_chart and view.has("damage"):
-            var affinity := battle.multiplier(view["type"],foe)
-            skills[i].tooltip_text += "\n타입 상성 ×%s" % String.num(affinity,2)
-            if affinity == 0.0: skill_values[i].text = "효과 없음"
-        skills[i].disabled = busy or not reason.is_empty()
-        W.fade(skills[i])
     _refresh_hand()
-    var relic_icons := {"seed_relay":"seed","switch_power":"switch","break_focus":"break"}
-    relic_chip.get_node("Icon").texture = W.texture(relic_icons[battle.relic])
-    relic_chip.get_node("Title").text = TacticalContent.RELICS[battle.relic]["name"]
-    relic_chip.tooltip_text = TacticalContent.RELICS[battle.relic]["description"]+"\n클릭하여 특성 변경"
-    for key: String in relic_buttons: relic_buttons[key].get_node("Selected").visible = key == battle.relic
+    relic_chip.get_node("Icon").texture = W.texture("badge")
+    relic_chip.get_node("Title").text = "파티 유물 · %d" % battle.relics.size()
+    var descriptions: Array[String] = []
+    for key: String in battle.relics: descriptions.append(str(TacticalContent.RELICS[key]["name"])+" · "+str(TacticalContent.RELICS[key]["description"]))
+    for key: String in battle.powers: descriptions.append("지속 작전 · %s ×%d" % [{"relay":"릴레이","ace":"에이스","supply":"보급"}[key],battle.powers[key]])
+    relic_chip.tooltip_text = "\n".join(descriptions)
     log_text.text = "\n".join(battle.history)
     if run_mode and capture_status.is_valid():
         var capture_state: Dictionary = capture_status.call()
@@ -587,7 +527,7 @@ func _refresh() -> void:
             UiMotion.open(result)
         result_title.text = "승리!" if battle.phase == TacticalBattle.WON else "파티가 쓰러졌습니다"
         var captures := battle.enemy_states.filter(func(s: Dictionary): return s.get("captured",false)).size()
-        result_detail.text = "%d턴  ·  격파 %d  ·  포획 %d  ·  브레이크 %d회" % [battle.turn,battle.enemies.filter(func(p: BattlePokemon): return not p.alive()).size()-captures,captures,battle.enemy_states.filter(func(s: Dictionary): return s["broken"]).size()]
+        result_detail.text = "%d턴  ·  격파 %d  ·  포획 %d" % [battle.turn,battle.enemies.filter(func(p: BattlePokemon): return not p.alive()).size()-captures,captures]
     else:
         UiMotion.close(result,true)
 
@@ -603,7 +543,7 @@ func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
         items.append(["boost","+%d" % battle.next_attack_bonus,"강화 지시 · 다음 공격 기본 피해 +%d" % battle.next_attack_bonus])
     if pokemon == battle.active() and battle.switch_bonus.has(pokemon.uid):
         items.append(["switch","+3","교체 연계 · 다음 공격 기본 피해 +3"])
-    if pokemon == battle.enemy() and battle.opening()["analyzed"]: items.append(["analysis","1","분석 · 다음 공격에 빈틈 +1"])
+
     var signature := str([pokemon.uid,items])
     if row.get_meta("status_signature","") == signature: return
     row.set_meta("status_signature",signature)
@@ -634,6 +574,7 @@ func _refresh_hand() -> void:
             var new_button := TrainerActionCard.new()
             new_button.uid = card.uid
             new_button.key = card.key
+            new_button.definition = battle.card_view(card)
             new_button.pressed.connect(_card.bind(card.uid))
             hand_row.add_child(new_button)
             trainer_buttons[card.uid] = new_button
@@ -646,7 +587,7 @@ func _refresh_hand() -> void:
 func _fly_card(card: TrainerActionCard,used := true,delay := 0.0) -> void:
     var copy := card.copy_face(card_effects)
     copy.mouse_filter = Control.MOUSE_FILTER_IGNORE
-    var exhausted := used and card.key == "focus"
+    var exhausted: bool = used and (card.definition.get("exhaust",false) or card.definition.has("power"))
     var middle := Vector2(885,500)
     var destination := middle+Vector2(0,-72) if exhausted else discard_button.get_global_rect().get_center()
     var tween := UiMotion.begin(copy,"flight",true)
@@ -660,8 +601,7 @@ func _fly_card(card: TrainerActionCard,used := true,delay := 0.0) -> void:
     tween.chain().tween_callback(copy.queue_free)
 
 func _skill_slot(index: int) -> void:
-    var learned: Array = TacticalContent.skills_for(battle.active())
-    if index >= 0 and index < learned.size(): _skill(learned[index])
+    if index >= 0 and index < battle.hand.size(): _card(battle.hand[index].uid)
 
 func _skill(key: String) -> void:
     if busy: return
@@ -704,19 +644,14 @@ func _present(reason: String) -> void:
             move_id = event["move_id"]
             from_enemy = event["kind"] == "enemy_action"
     notice.text = ""
-    if battle.events.any(func(e: Dictionary): return e["kind"] in ["chain","break","cancel"]):
-        var kinds := battle.events.map(func(event: Dictionary): return event["kind"])
-        if "chain" in kinds:
-            banner.text = "연쇄 격파!\n"+("에너지 +1 · 카드 +1" if battle.events.any(func(e: Dictionary): return e["kind"] == "refund" and e.get("reason","") == "finish") else "다음 적에게 이어서 공격")
-        elif "break" in kinds:
-            banner.text = "BREAK!\n다음 공격 ×2"
-        elif "cancel" in kinds:
-            banner.text = "행동 취소"
+    if battle.events.any(func(event: Dictionary): return event["kind"] in ["relic","power","cancel"]):
+        var highlights := battle.events.filter(func(event: Dictionary): return event["kind"] in ["relic","power","cancel"])
+        banner.text = highlights.back()["text"]
         banner.modulate.a = 1.0
         UiMotion.pulse(banner)
         if _banner_tween: _banner_tween.kill()
         _banner_tween = create_tween()
-        _banner_tween.tween_interval(1.9)
+        _banner_tween.tween_interval(1.2)
         _banner_tween.tween_property(banner,"modulate:a",0.0,0.35)
     busy = move_id > 0
     _refresh()
@@ -774,7 +709,6 @@ func restart(selected_relic: String = "") -> void:
     _shown_active = 0
     _shown_enemy = 0
     _shown_intent = ""
-    _shown_points = 0
     battle.restart(battle.seed_value,battle.relic if selected_relic.is_empty() else selected_relic)
     notice.text = ""
     _refresh()

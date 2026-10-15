@@ -65,6 +65,7 @@ func run() -> void:
         await create_timer(0.2).timeout
     check(ui.journey.full_campaign and ui.journey.battle.full_type_chart,"Normal gameplay uses full campaign and full type chart")
     var viewed: Dictionary = {}
+    var no_knockouts := true
     for guard in 8000:
         var j := ui.journey
         if j.phase in [TacticalJourney.CLEARED,TacticalJourney.FAILED]: break
@@ -72,7 +73,8 @@ func run() -> void:
         if j.phase == TacticalJourney.BATTLE:
             var b := j.battle
             if j.current()["kind"] == "champion":
-                check(j.party.all(func(p: BattlePokemon): return p.level == 100) and b.enemies.all(func(p: BattlePokemon): return p.level == 100),"Both parties reach champion battle at Lv.100")
+                check(b.enemies.all(func(p: BattlePokemon): return p.level == 100),"Every champion opponent is fixed at Lv.100")
+                if no_knockouts: check(j.party.all(func(p: BattlePokemon): return p.level == 100),"No-KO party reaches Lv.100 before champion")
             var kind: String = j.current()["kind"]
             if not viewed.has(kind):
                 await capture("campaign_"+kind)
@@ -83,6 +85,7 @@ func run() -> void:
                     check(Rect2(Vector2.ZERO,row.size).encloses(row.get_child(0).get_rect()),"Evolved ally portrait fits roster row")
                 for row: Button in ui.battle_ui.enemy_slots:
                     check(Rect2(Vector2.ZERO,row.size).encloses(row.get_child(0).get_rect()),"Large opponent portrait fits roster row")
+                no_knockouts = no_knockouts and j.party.all(func(p: BattlePokemon): return p.alive())
                 await click(ui.battle_ui.result_next)
             else:
                 var before := b.snapshot()

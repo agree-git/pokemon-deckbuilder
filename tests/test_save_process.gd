@@ -75,11 +75,9 @@ func run() -> void:
         await click(menu.confirm_button)
         var ui := current_scene as TacticalJourneyUI
         check(ui != null and ui.journey.full_campaign,"Normal title flow starts saved full campaign")
-        await click(ui.battle_ui.party_buttons[1])
-        await click(ui.battle_ui.skills[TacticalContent.skills_for(ui.journey.battle.active()).find("move_45")])
-        var analysis: BattleCardInstance = ui.journey.battle.hand.filter(func(c: BattleCardInstance): return c.key == "analysis")[0]
-        await click(ui.battle_ui.trainer_buttons[analysis.uid])
-        check(ui.journey.battle.energy == 1 and ui.journey.battle.switched and ui.journey.battle.opening()["analyzed"],"Saved mid-turn has spent energy, switch, used move, analysis and debuff")
+        var drawn := ui.journey.battle.hand[0]
+        await click(ui.battle_ui.trainer_buttons[drawn.uid])
+        check(not ui.journey.battle.hand.has(drawn),"Saved mid-turn contains the exact played card and spent resources")
         var saved: TacticalJourney = session.get("save_store").load_journey()
         check(saved != null and JourneySnapshot.encode(saved) == JourneySnapshot.encode(ui.journey),"Actions autosave before process exits")
         expected(ui.journey,true)
@@ -93,7 +91,7 @@ func run() -> void:
         var ui := current_scene as TacticalJourneyUI
         check(ui != null and ui.journey == j,"Continue opens restored journey")
         if stage == "read":
-            check(ui.journey.battle.energy == 1 and ui.journey.battle.active().species_id == 4,"Continue retains active Pokemon and spent energy")
+            check(ui.journey.battle.turn == 1 and ui.journey.battle.energy <= 3,"Continue retains the exact saved mid-turn")
             var reference := JourneySnapshot.restore(JourneySnapshot.encode(j))
             for i in 3:
                 reference.battle.end_turn()

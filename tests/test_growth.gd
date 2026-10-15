@@ -15,9 +15,11 @@ func run() -> void:
         var battle := TacticalBattle.new()
         var key := TacticalMoves.key_for(move_id)
         battle.active().learned_skills.assign([key])
+        battle.hand.assign([BattleCardInstance.new(10000,key,battle.active().uid)])
         check(battle.use_skill(key).is_empty(),"Every canonical move can execute through battle rules")
     var asleep := TacticalBattle.new()
     asleep.active().learned_skills.assign(["move_95"])
+    asleep.hand.assign([BattleCardInstance.new(10000,"move_95",asleep.active().uid)])
     var hp := asleep.active().hp
     asleep.use_skill("move_95")
     check(asleep.intent().get("asleep",false),"Sleep is reflected in enemy intent")
@@ -135,12 +137,15 @@ func run() -> void:
     j.enter_next()
     j.party[0].hp -= 5
     var energy := j.battle.energy
-    check(j.use_item("potion",0).is_empty() and j.battle.energy == energy-1,"Battle bag charges energy for useful healing")
+    check(not j.use_item("potion",0).is_empty() and j.battle.energy == energy,"Battle bag cannot bypass drawn tool cards")
     j.inventory["revive"] = 1
     check(not j.use_item("revive",0).is_empty() and j.inventory["revive"] == 1,"Revive cannot be wasted on a living member")
     j.party[1].hp = 0
     j.party[1].knocked_out = true
+    check(not j.use_item("revive",1).is_empty(),"Battle bag cannot revive outside the card system")
+    j.phase = TacticalJourney.REST # Isolated camp inventory fixture.
     check(j.use_item("revive",1).is_empty() and j.party[1].hp == ceili(j.party[1].max_hp*0.5) and not j.party[1].knocked_out,"Revive restores a KO member through the combat bag")
+    j.phase = TacticalJourney.BATTLE
     j.battle.energy = 0
     quantity = j.inventory["super_potion"]
     check(not j.use_item("super_potion",0).is_empty() and j.inventory["super_potion"] == quantity,"Energy failure cannot consume an item")

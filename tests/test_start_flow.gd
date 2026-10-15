@@ -47,7 +47,7 @@ func run() -> void:
     check(not j.capture().is_empty() and j.battle.snapshot() == before and j.balls == 2,"Capture above threshold is atomic")
     j.battle.enemy().hp = 10
     check(j.capture().is_empty() and j.balls == 1 and j.battle.energy == 2 and j.battle.phase == TacticalBattle.WON,"Legal capture costs a ball/energy and resolves wild encounter")
-    check(j.battle.opening().get("captured",false) and j.battle.refunds == 0,"Capture does not grant knockout chain refunds")
+    check(j.battle.opening().get("captured",false) and not j.battle.events.any(func(event: Dictionary): return event["kind"] == "refund"),"Capture does not grant knockout chain refunds")
     j.settle()
     check(j.phase == TacticalJourney.CAPTURE and j.pending_captures.size() == 1,"Captured member waits for explicit join decision")
     check(j.resolve_capture(99) != "" and j.pending_captures.size() == 1,"Invalid join does not consume capture")

@@ -24,14 +24,14 @@ func run() -> void:
                         else:
                             check(TacticalPolicy.apply(j.battle,JourneyPolicy.action(j.battle)).is_empty(),"Public tactical action is legal")
                     TacticalJourney.LEARN:
-                        j.resolve_learning(-1)
+                        j.resolve_learning(CampaignPolicy.learn(j))
                     TacticalJourney.REWARD: j.choose_reward(seed_value%3)
                     TacticalJourney.MAP:
                         j.enter_next()
                         if j.phase == TacticalJourney.BATTLE and j.step == 4:
                             check(j.battle.enemies.size() == 6 and j.battle.enemies.all(func(p: BattlePokemon): return p.type == "grass" and p.level == 14),"Gym has six stage-scaled Pokemon")
                     TacticalJourney.REST:
-                        j.rest()
+                        CampaignPolicy.camp(j)
                         j.leave_camp()
             check(j.phase == TacticalJourney.CLEARED and j.badges == 1 and j.wins == 3,"Seed %d / %s completes scaled expedition (%s)" % [seed_value,relic,j.phase])
             var xp := j.party.map(func(p: BattlePokemon): return p.experience)

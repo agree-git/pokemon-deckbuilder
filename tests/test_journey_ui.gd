@@ -99,7 +99,7 @@ func run() -> void:
                             await click(ui.battle_ui.menu_button)
                             await click(ui.battle_ui.bag_button)
                             await click(ui.battle_ui.bag_panel.get_node("Body/Items/Use_potion_%d" % index))
-                            check(pokemon.hp > hp and battle.energy == energy-1,"Battle bag heals through real button and consumes one energy")
+                            check(pokemon.hp == hp and battle.energy == energy,"Battle bag cannot bypass the tool-card hand")
                             await click(ui.battle_ui.bag_panel.get_node("Body/Close"))
                             bag_checked = true
                             break
@@ -151,11 +151,11 @@ func run() -> void:
     await process_frame
     check(ui.journey == retained and ui.journey.phase == TacticalJourney.CLEARED,"Scene reentry retains final run state")
     await click(ui.actions[0])
-    check(ui.journey.phase == TacticalJourney.BATTLE and ui.journey.badges == 0 and ui.journey.deck.size() == 10,"Result restart resets entire journey")
+    check(ui.journey.phase == TacticalJourney.BATTLE and ui.journey.badges == 0 and ui.journey.deck.size() == TacticalContent.starting_deck(ui.journey.party).size(),"Result restart resets entire journey")
     # Run-specific menu restart must also reset the expedition, with selected trait.
     await click(ui.battle_ui.menu_button)
-    await click(ui.battle_ui.relic_buttons["switch_power"])
-    check(ui.journey.relic == "switch_power" and ui.battle_ui.battle == ui.journey.battle and ui.journey.step == 0,"Trait menu restarts the run and binds new battle")
+    await click(ui.battle_ui.restart_button)
+    check(ui.journey.relic == "field_kit" and ui.battle_ui.battle == ui.journey.battle and ui.journey.step == 0,"Menu restart resets acquired items and binds new battle")
     if not native:
         # Failure fixture still takes actual pointer path to result and new run.
         for pokemon: BattlePokemon in ui.journey.party: ui.journey.battle._damage(pokemon,999,true)

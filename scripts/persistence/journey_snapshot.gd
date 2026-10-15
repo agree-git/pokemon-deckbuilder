@@ -1,9 +1,9 @@
 class_name JourneySnapshot
 extends RefCounted
 ## A plain Variant graph. UID references preserve shared Pokemon/card instances.
-const RUN_FIELDS := ["phase","seed_value","relic","step","wins","total_turns","badges","full_campaign","badge_records","elite_wins","reward_options","history","starter_ids","balls","_next_pokemon_uid","growth_reports","pending_learning","gold","inventory","loot","rested_steps","camp_states","run_id","captured_ids"]
-const BATTLE_FIELDS := ["full_type_chart","enemy_definitions","enemy_states","active_index","enemy_index","phase","energy","turn","switched","used_skills","events","history","seed_value","relic","refunds","next_attack_bonus","switch_bonus","free_card","_next_uid","_pending","_direct","_relay"]
-const POKEMON_FIELDS := ["uid","species_id","display_name","type","types","max_hp","hp","block","strength","statuses","knocked_out","level","evolution_power","learned_skills","progression_initialized","_experience_tenths"]
+const RUN_FIELDS := ["phase","seed_value","relic","step","wins","total_turns","badges","full_campaign","badge_records","elite_wins","reward_options","history","starter_ids","balls","_next_pokemon_uid","growth_reports","pending_learning","gold","inventory","loot","rested_steps","camp_states","run_id","captured_ids","relics","held_inventory","_next_card_uid"]
+const BATTLE_FIELDS := ["full_type_chart","enemy_definitions","enemy_states","active_index","enemy_index","phase","energy","turn","events","history","seed_value","relic","relics","powers","turn_flags","turn_actors","retained","next_attack_bonus","switch_bonus","temporary_strength","_turn_changed","_ace_uid","_next_uid","_pending","_relay"]
+const POKEMON_FIELDS := ["uid","species_id","display_name","type","types","max_hp","hp","block","strength","statuses","knocked_out","level","evolution_power","learned_skills","progression_initialized","_experience_tenths","held_item"]
 const CARD_FIELDS := ["uid","key","owner_uid","injury_owner_uid","upgraded"]
 static func fields(object: Object, names: Array) -> Dictionary:
     var result := {}
@@ -94,6 +94,15 @@ static func validate(data: Variant) -> bool:
     if not same_shape(b,fields(TacticalBattle.new(),BATTLE_FIELDS)) or not b.get("rng") is int: return false
     if not r["full_campaign"] or r["run_id"].length() != 32 or not r["run_id"].is_valid_hex_number(): return false
     if not TacticalContent.RELICS.has(r["relic"]) or b["relic"] != r["relic"] or not b["full_type_chart"]: return false
+    for row: Dictionary in [r,b]:
+        var seen := {}
+        for key: Variant in row["relics"]:
+            if not key is String or not TacticalContent.RELICS.has(key) or seen.has(key): return false
+            seen[key] = true
+        if row["relic"] not in row["relics"]: return false
+    if not integer(r["_next_card_uid"],1,1000000): return false
+    for key: Variant in r["held_inventory"]:
+        if not key is String or not TacticalContent.HELD_ITEMS.has(key): return false
     if not integer(r["step"],0,136) or not integer(r["wins"],0,69) or not integer(r["badges"],0,8) or not integer(r["elite_wins"],0,4): return false
     if r["phase"] not in [TacticalJourney.BATTLE,TacticalJourney.LEARN,TacticalJourney.CAPTURE,TacticalJourney.REWARD,TacticalJourney.MAP,TacticalJourney.REST,TacticalJourney.CLEARED,TacticalJourney.FAILED]: return false
     for key: String in ["gold","balls","total_turns"]:
@@ -116,6 +125,7 @@ static func validate(data: Variant) -> bool:
         if not integer(p["max_hp"],1,100000) or not integer(p["hp"],0,p["max_hp"]) or not integer(p["block"],0,100000): return false
         if not integer(p["_experience_tenths"],0,1000000000) or p["learned_skills"].size() > 4 or p["types"] != catalog.species(p["species_id"])["types"]: return false
         if p["type"] != p["types"][0] or p["display_name"] != catalog.species(p["species_id"])["name"]: return false
+        if not p["held_item"].is_empty() and not TacticalContent.HELD_ITEMS.has(p["held_item"]): return false
         for key: Variant in p["learned_skills"]:
             if not move(key): return false
         for key: Variant in p["statuses"]:
@@ -125,7 +135,10 @@ static func validate(data: Variant) -> bool:
     for uid: Variant in cs:
         var c: Variant = cs[uid]
         if not uid is int or not c is Dictionary or not same_shape(c,fields(BattleCardInstance.new(1,"guard",0),CARD_FIELDS)): return false
-        if uid <= 0 or c["uid"] != uid or not TacticalContent.CARDS.has(c["key"]): return false
+        if uid <= 0 or c["uid"] != uid: return false
+        if c["owner_uid"] == 0:
+            if not TacticalContent.CARDS.has(c["key"]): return false
+        elif c["owner_uid"] < 1 or not ps.has(c["owner_uid"]) or not move(c["key"]): return false
     if not references(r.get("party"),ps,1,3) or not references(r.get("pending_captures"),ps,0,3) or not references(r.get("deck"),cs,1,512): return false
     if not references(b.get("party"),ps,1,3) or not references(b.get("enemies"),ps,1,6): return false
     if not b.get("piles") is Array or b["piles"].size() != 4: return false
@@ -136,8 +149,8 @@ static func validate(data: Variant) -> bool:
             if pile_ids.has(uid): return false
             pile_ids[uid] = true
     if not integer(b["active_index"],0,b["party"].size()-1) or not integer(b["enemy_index"],0,b["enemies"].size()-1): return false
-    if b["phase"] not in [TacticalBattle.PLAYER,TacticalBattle.REPLACE,TacticalBattle.WON,TacticalBattle.LOST] or b["_direct"]: return false
-    if not integer(b["energy"],0,10) or not integer(b["turn"],1,1000000) or not integer(b["refunds"],0,2): return false
+    if b["phase"] not in [TacticalBattle.PLAYER,TacticalBattle.REPLACE,TacticalBattle.WON,TacticalBattle.LOST]: return false
+    if not integer(b["energy"],0,10000) or not integer(b["turn"],1,1000000): return false
     if b["enemy_states"].size() != b["enemies"].size() or b["enemy_definitions"].size() != b["enemies"].size(): return false
     if b["_pending"] not in ["","player","enemy"]: return false
     if b["phase"] == TacticalBattle.REPLACE and b["_pending"].is_empty(): return false
@@ -147,15 +160,22 @@ static func validate(data: Variant) -> bool:
             if not intent is Dictionary or intent.get("kind") not in ["attack","charge","block","boost"]: return false
             if not integer(intent.get("value"),0,100000) or not integer(intent.get("move_id"),1,354): return false
             if intent["kind"] in ["attack","charge"] and intent.get("type") not in VisualCatalog.TYPE_COLORS: return false
-    for key: Variant in b["used_skills"]:
-        if not key is String or not b["used_skills"][key] is bool: return false
+    for key: Variant in b["powers"]:
+        if key not in ["relay","ace","supply"] or not integer(b["powers"][key],1,512): return false
+    for key: Variant in b["turn_flags"]:
+        if not key is String or not b["turn_flags"][key] is bool: return false
+    for uid: Variant in b["turn_actors"]:
+        if not uid is int or uid not in b["party"]: return false
+    for uid: Variant in b["retained"]:
+        if not uid is int or uid not in b["piles"][0]: return false
     for event: Variant in b["events"]:
         if not event is Dictionary or not event.get("kind") is String or not event.get("text") is String: return false
     for state: Variant in b["enemy_states"]:
-        if not state is Dictionary or not same_shape(state,{"points":0,"sources":[],"broken":false,"burst":false,"cancel":false,"analyzed":false,"intent":0}): return false
-        if not integer(state["points"],0,3) or not integer(state["intent"],0,1000000): return false
-    for uid: Variant in b["switch_bonus"]:
-        if not uid is int or not ps.has(uid) or not b["switch_bonus"][uid] is int: return false
+        if not state is Dictionary or not same_shape(state,{"intent":0}): return false
+        if not integer(state["intent"],0,1000000): return false
+    for mapping: Dictionary in [b["switch_bonus"],b["temporary_strength"]]:
+        for uid: Variant in mapping:
+            if not uid is int or uid not in b["party"] or not integer(mapping[uid],0,100000): return false
     for key: String in ["potion","super_potion","revive"]:
         if not integer(r["inventory"].get(key),0,100000): return false
     if r["badge_records"].size() != r["badges"]: return false
@@ -188,8 +208,19 @@ static func validate(data: Variant) -> bool:
     if r["phase"] in [TacticalJourney.LEARN,TacticalJourney.REWARD,TacticalJourney.CAPTURE,TacticalJourney.CLEARED,TacticalJourney.FAILED] and not r["settled"]: return false
     if r["phase"] == TacticalJourney.REWARD:
         if r["reward_options"].size() != 3: return false
-        for key: Variant in r["reward_options"]:
-            if not TacticalContent.CARDS.has(key): return false
+        for option: Variant in r["reward_options"]:
+            if not option is Dictionary or not option.get("key") is String: return false
+            match option.get("kind",""):
+                "card":
+                    if not option.get("owner_uid") is int or not option.get("upgraded") is bool: return false
+                    if option["owner_uid"] == 0:
+                        if not TacticalContent.CARDS.has(option["key"]) or option["key"] == "injury": return false
+                    elif option["owner_uid"] not in r["party"] or not move(option["key"]): return false
+                "relic":
+                    if not TacticalContent.RELICS.has(option["key"]) or option["key"] in r["relics"]: return false
+                "held":
+                    if not TacticalContent.HELD_ITEMS.has(option["key"]): return false
+                _: return false
     if r["phase"] == TacticalJourney.BATTLE:
         if r["settled"] or r["party"] != b["party"] or route.stops[r["step"]]["kind"] == "rest": return false
     return true

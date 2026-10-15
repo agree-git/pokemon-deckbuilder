@@ -24,7 +24,7 @@ func start_journey(starters: Array[int],run_seed: int, full_campaign := true) ->
     for id: int in starters:
         if id not in allowed or id in seen: return "해금된 포켓몬을 중복 없이 선택하세요."
         seen.append(id)
-    adopt_journey(TacticalJourney.new(run_seed,"seed_relay",starters,full_campaign))
+    adopt_journey(TacticalJourney.new(run_seed,"field_kit",starters,full_campaign))
     return ""
 
 func _ready() -> void:

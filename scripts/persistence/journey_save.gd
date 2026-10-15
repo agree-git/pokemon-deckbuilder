@@ -4,7 +4,7 @@ extends RefCounted
 const VERSION := 1
 const SAVE_PATH := "user://journey.json"
 const MAX_FILE_BYTES := 4*1024*1024
-const RULESET := "campaign-69-level100-v1"
+const RULESET := "campaign-69-unified-deck-v2"
 const CONTENT := ["res://data/catalog.json","res://data/biomes.json","res://data/gyms.json","res://data/league.json","res://data/progression.json","res://data/evolutions.json","res://data/type_chart.json"]
 static var _fingerprint := ""
 var path: String
@@ -81,7 +81,10 @@ func load_journey() -> TacticalJourney:
         data = _read(path+".bak")
         # A backup belongs only to the last committed run, never an older attempt.
         if data.is_empty() or not head is Dictionary or data["run"]["run_id"] != head.get("run_id"):
-            if FileAccess.file_exists(path) or FileAccess.file_exists(path+".bak"): last_error = "원정 저장을 불러오지 못했습니다. 파일이 손상되었거나 게임 버전이 다릅니다."
+            if FileAccess.file_exists(path) or FileAccess.file_exists(path+".bak"):
+                var previous: Variant = _json(path)
+                var incompatible: bool = previous is Dictionary and previous.get("content","") != fingerprint()
+                last_error = "전투 규칙이 바뀌어 이전 원정은 이어할 수 없습니다. 새 원정을 시작하세요. 포획 도감과 스타팅 해금은 유지됩니다." if incompatible else "원정 저장을 불러오지 못했습니다. 파일이 손상되었거나 게임 버전이 다릅니다."
             return null
         recovered = true
     if head is Dictionary and data["run"]["run_id"] == head.get("run_id") and head.get("finished",false): return null

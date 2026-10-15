@@ -8,6 +8,8 @@ var battle_ui: TacticalUI
 var page := Control.new()
 var actions: Array[Button] = []
 var deck_open := false
+var deck_action := ""
+var gear_open_for := 0
 var deck_button: Button
 var deck_close: Button
 var camp_tab := "rest"
@@ -91,6 +93,7 @@ func refresh() -> void:
         _: _result()
     W.label(page,"ESC 시작 화면     F11 전체 화면",Rect2(96,1014,1728,34),15,W.MUTED)
     if deck_open: _deck()
+    if gear_open_for != 0: _gear_picker()
     UiMotion.appear(page)
 func _party() -> void:
     var panel := W.panel(page,Rect2(96,280,340,420),Color("14282f"),Color("405960"))
@@ -113,17 +116,28 @@ func _action(title: String, rect: Rect2, callback: Callable, icon := "next") -> 
     actions.append(button)
     return button
 func _rewards() -> void:
-    W.label(page,("배지 획득! · %d / 8  ·  " % journey.badges if journey.full_campaign and journey.current()["kind"] == "gym" else "")+"트레이너 카드 1장을 덱에 추가합니다.",Rect2(550,225,1200,48),22,W.MUTED)
+    W.label(page,("배지 획득! · %d / 8  ·  " % journey.badges if journey.full_campaign and journey.current()["kind"] == "gym" else "")+"카드 · 유물 · 지닌 물건 중 보상 하나를 선택하세요.",Rect2(550,225,1200,48),22,W.MUTED)
     for i in journey.reward_options.size():
-        var key := journey.reward_options[i]
-        var card := TrainerActionCard.new()
-        card.key = key
-        card.position = Vector2(650+i*254,310)
-        card.pressed.connect(_reward.bind(i))
-        page.add_child(card)
-        card.update_card(TacticalContent.CARDS[key],"",false)
-        card.deal(i*0.06)
-        actions.append(card)
+        var option := journey.reward_options[i]
+        var view := journey.reward_view(option)
+        if option["kind"] == "card":
+            var card := TrainerActionCard.new()
+            card.key = option["key"]
+            card.definition = view
+            card.position = Vector2(650+i*320,310)
+            card.pressed.connect(_reward.bind(i))
+            page.add_child(card)
+            card.update_card(view,"",false)
+            card.deal(i*0.06)
+            actions.append(card)
+        else:
+            var button := W.button(page,Rect2(642+i*320,350,266,266),_reward.bind(i))
+            W.icon(button,view["icon"],Rect2(101,22,64,64))
+            W.label(button,"유물 · 파티 전체" if option["kind"] == "relic" else "지닌 물건 · 야영지에서 장착",Rect2(10,98,246,28),14,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+            W.label(button,view["name"],Rect2(10,134,246,40),23)
+            var detail := W.label(button,view["description"],Rect2(16,182,234,72),16,W.MUTED)
+            detail.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+            actions.append(button)
     _action("보상 넘기기",Rect2(870,720,420,64),_reward.bind(-1),"next")
     _growth_summary()
 func _growth_summary() -> void:
@@ -178,7 +192,7 @@ func _learning() -> void:
     W.label(page,"%s · Lv.%d" % [pokemon.display_name,pokemon.level],Rect2(550,385,1190,44),26,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
     W.label(page,"Lv.%d에 %s 습득 가능" % [offer["level"],move["name"]],Rect2(550,440,1190,48),27,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
     W.label(page,move["description"],Rect2(550,502,1190,44),20,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
-    W.label(page,"기술은 네 개까지 · 잊을 기술을 선택하세요.",Rect2(550,570,1190,40),20,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+    W.label(page,"기술은 네 개까지 · 교체한 기술의 덱 사본도 함께 바뀝니다. 강화는 유지됩니다.",Rect2(550,570,1190,40),20,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
     for i in pokemon.learned_skills.size():
         var known := TacticalMoves.definition(pokemon.learned_skills[i])
         var button := _action("QWER"[i]+" · "+str(known["name"]),Rect2(550+(i%2)*606,636+floori(i/2.0)*92,584,76),_learn.bind(i),"switch")
@@ -195,12 +209,12 @@ func _rest() -> void:
     var encounter := journey.camp()
     W.label(page,encounter.get("description","필요한 만큼 준비한 뒤 출발하세요."),Rect2(550,204,1190,40),20,W.MUTED)
     var encounter_tab := "shop" if encounter.get("kind","") == "merchant" else "encounter"
-    var keys := ["rest",encounter_tab,"bag","loot"]
-    var labels := ["휴식",encounter.get("title","아이템 구매"),"가방","전리품"]
+    var keys := ["rest",encounter_tab,"bag","gear","loot"]
+    var labels := ["휴식·강화",encounter.get("title","아이템 구매"),"가방","장비·유물","전리품"]
     if camp_tab not in keys: camp_tab = "rest"
-    for i in 4:
+    for i in keys.size():
         var key: String = keys[i]
-        var button := W.button(page,Rect2(550+i*303,266,282,64),_camp_tab.bind(key),labels[i])
+        var button := W.button(page,Rect2(550+i*242,266,224,64),_camp_tab.bind(key),labels[i])
         if key == camp_tab: button.add_theme_stylebox_override("normal",W.box(Color("29443f"),W.GOLD))
         camp_tabs[key] = button
     _action("준비 완료 · 출발",Rect2(1260,930,480,72),_leave_camp,"next")
@@ -208,10 +222,14 @@ func _rest() -> void:
         "rest":
             W.icon(page,"heal",Rect2(1065,390,96,96))
             W.label(page,"전원 체력 50% 회복 · 기절 회복 · 부상 제거",Rect2(550,530,1190,60),25,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
-            W.label(page,"이번 야영지에서 한 번 휴식할 수 있습니다.
-휴식 후에도 이번 만남·아이템 사용·전리품 확인을 계속할 수 있습니다.",Rect2(550,610,1190,90),20,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
-            rest_button = W.button(page,Rect2(870,742,560,78),_camp_rest,"휴식 완료" if journey.step in journey.rested_steps else "휴식하기")
+            W.label(page,"휴식과 카드 강화 중 하나를 선택하세요.
+가방·장비·만남은 별도로 이용할 수 있습니다.",Rect2(550,610,1190,90),20,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+            rest_button = W.button(page,Rect2(650,742,500,78),_camp_rest,"휴식 완료" if journey.step in journey.rested_steps else "휴식하기")
             rest_button.disabled = journey.step in journey.rested_steps
+            var upgrade := W.button(page,Rect2(1190,742,500,78),_select_deck_action.bind("upgrade"),"카드 강화 선택")
+            upgrade.name = "Upgrade"
+            upgrade.disabled = journey.step in journey.rested_steps or not journey.deck.any(func(card: BattleCardInstance): return TacticalContent.can_upgrade(card))
+            actions.append(upgrade)
         "encounter": _encounter()
         "shop":
             var i := 0
@@ -229,6 +247,11 @@ func _rest() -> void:
                 button.tooltip_text = journey.buy_reason(key)
                 actions.append(button)
                 i += 1
+            var remove := W.button(page,Rect2(870,760,560,64),_select_deck_action.bind("remove"),"카드 제거 · %d 골드" % journey.removal_price())
+            remove.name = "Remove"
+            remove.disabled = journey.camp().get("removed",false) or journey.gold < journey.removal_price()
+            actions.append(remove)
+        "gear": _gear()
         "bag":
             var i := 0
             for key: String in journey.items():
@@ -258,6 +281,66 @@ func _rest() -> void:
             page.add_child(list)
             W.label(page,"전리품은 전투 종료 시 가방과 골드에 자동 반영됩니다.",Rect2(600,815,1090,40),18,W.MUTED)
     W.label(page,camp_notice,Rect2(550,870,1190,40),20,W.GOLD)
+func _gear() -> void:
+    W.label(page,"지닌 물건 · 동료당 하나, 야영지에서 자유롭게 교환",Rect2(550,354,1190,36),21,W.GOLD)
+    for i in journey.party.size():
+        var pokemon := journey.party[i]
+        var y := 406+i*100
+        W.label(page,pokemon.display_name,Rect2(550,y,250,40),22)
+        var selector := W.button(page,Rect2(830,y,440,52),_open_gear.bind(pokemon.uid),"물건 선택" if pokemon.held_item.is_empty() else str(TacticalContent.HELD_ITEMS[pokemon.held_item]["name"]))
+        selector.name = "Equipment_%d" % pokemon.uid
+        if not pokemon.held_item.is_empty():
+            W.label(page,TacticalContent.HELD_ITEMS[pokemon.held_item]["description"],Rect2(550,y+52,1190,34),17,W.MUTED)
+    W.label(page,"파티 유물 · %d개" % journey.relics.size(),Rect2(550,732,1190,36),21,W.GOLD)
+    for i in journey.relics.size():
+        var definition: Dictionary = TacticalContent.RELICS[journey.relics[i]]
+        var button := W.button(page,Rect2(550+(i%4)*298,780+floori(i/4.0)*46,282,40),func(): pass,definition["name"])
+        button.tooltip_text = definition["description"]
+func _open_gear(uid: int) -> void:
+    gear_open_for = uid
+    refresh()
+func _close_gear() -> void:
+    gear_open_for = 0
+    refresh()
+func _gear_picker() -> void:
+    var overlay := W.button(page,Rect2(0,0,1920,1080),_close_gear)
+    overlay.name = "EquipmentPicker"
+    for state: String in ["normal","hover","pressed","focus"]:
+        overlay.add_theme_stylebox_override(state,W.box(Color(0.01,0.025,0.04,0.85),Color.TRANSPARENT,0))
+    var panel := W.panel(overlay,Rect2(550,150,1040,780),Color("14282f"),W.GOLD)
+    panel.mouse_filter = Control.MOUSE_FILTER_STOP
+    W.label(panel,"지닌 물건 선택",Rect2(32,22,820,52),28,W.GOLD)
+    W.icon_button(panel,"close",Rect2(950,28,48,48),_close_gear,"닫기 · Esc")
+    var keys: Array[String] = [""]
+    for pokemon: BattlePokemon in journey.party:
+        if pokemon.uid == gear_open_for and not pokemon.held_item.is_empty(): keys.append(pokemon.held_item)
+    for key: String in journey.held_inventory:
+        if key not in keys: keys.append(key)
+    var scroll := ScrollContainer.new()
+    scroll.position = Vector2(32,100)
+    scroll.size = Vector2(976,640)
+    panel.add_child(scroll)
+    var rows := VBoxContainer.new()
+    rows.custom_minimum_size.x = 950
+    rows.add_theme_constant_override("separation",12)
+    scroll.add_child(rows)
+    for key: String in keys:
+        var definition: Dictionary = TacticalContent.HELD_ITEMS.get(key,{"name":"장착 해제","description":"지닌 물건을 가방에 돌려놓습니다.","icon":"switch"})
+        var button := W.button(rows,Rect2(0,0,950,98),_equip.bind(key,gear_open_for))
+        button.custom_minimum_size = Vector2(950,98)
+        button.name = "Equip_"+key
+        W.icon(button,definition["icon"],Rect2(18,28,36,36))
+        W.label(button,definition["name"],Rect2(76,10,850,36),22,W.TEXT)
+        W.label(button,definition["description"],Rect2(76,52,850,36),17,W.MUTED)
+func _equip(key: String,uid: int) -> void:
+    var reason := journey.equip_held(key,uid)
+    camp_notice = reason if not reason.is_empty() else "지닌 물건을 정리했습니다."
+    if reason.is_empty(): gear_open_for = 0
+    refresh()
+func _select_deck_action(action: String) -> void:
+    deck_action = action
+    deck_open = true
+    refresh()
 func _encounter() -> void:
     var encounter := journey.camp()
     W.icon(page,encounter["icon"],Rect2(1060,366,80,80))
@@ -346,16 +429,46 @@ func _deck() -> void:
     panel.mouse_filter = Control.MOUSE_FILTER_STOP
     W.label(panel,"원정 덱 · %d장" % journey.deck.size(),Rect2(32,24,720,60),28,W.GOLD)
     deck_close = W.icon_button(panel,"close",Rect2(796,30,48,48),_close_deck,"닫기 · Esc")
-    var text := RichTextLabel.new()
-    text.position = Vector2(32,110)
-    text.size = Vector2(816,690)
-    text.add_theme_font_size_override("normal_font_size",21)
-    var counts: Dictionary = {}
-    for card: BattleCardInstance in journey.deck: counts[card.key] = int(counts.get(card.key,0))+1
-    for key: String in TacticalContent.CARDS:
-        if counts.has(key): text.text += "%s ×%d\n%s\n\n" % [TacticalContent.CARDS[key]["name"],counts[key],TacticalContent.CARDS[key]["description"]]
-    panel.add_child(text)
+    var scroll := ScrollContainer.new()
+    scroll.position = Vector2(32,110)
+    scroll.size = Vector2(816,690)
+    var rows := VBoxContainer.new()
+    rows.custom_minimum_size.x = 790
+    rows.add_theme_constant_override("separation",8)
+    scroll.add_child(rows)
+    panel.add_child(scroll)
+    if not deck_action.is_empty():
+        W.label(panel,"강화할 카드 선택 · 휴식과 공유" if deck_action == "upgrade" else "영구 제거할 카드 선택 · %d 골드" % journey.removal_price(),Rect2(32,78,720,30),17,W.MUTED)
+    for card: BattleCardInstance in journey.deck:
+        var view := TacticalContent.definition(card)
+        var owner := ""
+        for pokemon: BattlePokemon in journey.party:
+            if pokemon.uid == card.owner_uid: owner = " · "+pokemon.display_name
+        var button := Button.new()
+        button.custom_minimum_size = Vector2(790,80)
+        button.text = str(view["name"])+owner+"\n"+str(view["description"])
+        button.add_theme_font_size_override("font_size",16)
+        button.tooltip_text = view["description"]
+        button.name = "Card_%d" % card.uid
+        rows.add_child(button)
+        if deck_action == "upgrade":
+            button.disabled = not TacticalContent.can_upgrade(card) or journey.step in journey.rested_steps
+            button.pressed.connect(_deck_select.bind(card.uid))
+        elif deck_action == "remove":
+            button.disabled = not journey.remove_card_reason(card.uid).is_empty()
+            button.tooltip_text = journey.remove_card_reason(card.uid)
+            button.pressed.connect(_deck_select.bind(card.uid))
+        else: button.mouse_default_cursor_shape = Control.CURSOR_ARROW
+func _deck_select(uid: int) -> void:
+    var reason := journey.rest("upgrade",uid) if deck_action == "upgrade" else journey.remove_card(uid)
+    if reason.is_empty():
+        camp_notice = "카드를 강화했습니다." if deck_action == "upgrade" else "카드를 제거했습니다."
+        deck_open = false
+        deck_action = ""
+    else: camp_notice = reason
+    refresh()
 func _close_deck() -> void:
+    deck_action = ""
     deck_open = false
     refresh()
 func _settle() -> void:
@@ -391,6 +504,9 @@ func _home() -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
     if travelling: return
     if journey.phase == TacticalJourney.BATTLE or not event is InputEventKey or not event.pressed or event.echo: return
+    if gear_open_for != 0:
+        if event.keycode == KEY_ESCAPE: _close_gear()
+        return
     if deck_open:
         if event.keycode == KEY_ESCAPE: _close_deck()
         return

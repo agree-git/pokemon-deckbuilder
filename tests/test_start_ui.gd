@@ -94,8 +94,13 @@ func run() -> void:
     # Bring Oddish into capture range with the starter's real level-five attack.
     for guard in 100:
         if ui.journey.battle.capture_reason().is_empty(): break
-        if ui.journey.battle.enemy().strength > -6 and ui.journey.battle.skill_reason("move_45").is_empty(): await click(ui.battle_ui.skills[1])
-        elif ui.journey.battle.skill_reason("move_10").is_empty(): await click(ui.battle_ui.skills[0])
+        var selected := -1
+        for card: BattleCardInstance in ui.journey.battle.hand:
+            var view := ui.journey.battle.card_view(card)
+            if ui.journey.battle.card_reason(card.uid).is_empty() and view.has("damage") and int(view["preview_damage"]) < ui.journey.battle.enemy().hp and ui.journey.battle.enemy().hp*4 > ui.journey.battle.enemy().max_hp:
+                selected = card.uid
+                break
+        if selected >= 0: await click(ui.battle_ui.trainer_buttons[selected])
         else: await click(ui.battle_ui.end_button)
     check(not ui.battle_ui.capture_button.disabled,"Low HP activates capture button")
     if ui.battle_ui.capture_button.disabled:
@@ -151,8 +156,15 @@ func run() -> void:
     await click(menu.confirm_button)
     ui = current_scene as TacticalJourneyUI
     check(ui.journey.party.size() == 1 and ui.journey.party[0].species_id == 43,"Unlocked starter can begin solo run")
-    await click(ui.battle_ui.skills[0])
-    check(ui.journey.battle.used_skills.has("43:move_71"),"Newly unlocked starter's skills are functional")
+    var owned := -1
+    for card: BattleCardInstance in ui.journey.battle.hand:
+        if card.owner_uid == 43:
+            owned = card.uid
+            break
+    check(owned >= 0,"Newly unlocked solo starter has a technique in its opening hand")
+    if owned >= 0:
+        await click(ui.battle_ui.trainer_buttons[owned])
+        check(ui.journey.battle.events.any(func(event: Dictionary): return event["kind"] == "skill" and event.get("actor",0) == 43),"Newly unlocked starter plays its technique through the shared hand")
     session.set("profile",saved_profile)
     for suffix: String in ["",".bak",".tmp"]:
         var file_path := ProjectSettings.globalize_path(path+suffix)

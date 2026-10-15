@@ -23,35 +23,7 @@ static func score(move: Dictionary) -> float:
     if move.has("block"): return 5
     return 0
 static func action(j: TacticalJourney) -> Array:
-    var b := j.battle
-    if b.phase == TacticalBattle.REPLACE: return JourneyPolicy.action(b)
-    var best := -1000.0
-    var preferred := b.active().uid
-    for p: BattlePokemon in b.party:
-        if not p.alive(): continue
-        var damage := 0.0
-        for key: String in TacticalContent.skills_for(p):
-            var view := TacticalMoves.definition(key)
-            if view.has("damage"):
-                damage = maxf(damage,(int(view["damage"])+TacticalGrowth.attack_bonus(p)+p.strength)*b.multiplier(view["type"],b.enemy())/maxi(1,int(view["cost"])))
-        var value := damage+float(p.hp)/p.max_hp*4.0
-        if value > best:
-            best = value
-            preferred = p.uid
-    if preferred != b.active().uid and b.switch_reason(preferred).is_empty(): return ["switch",preferred]
-    var dangerous := int(b.intent().get("value",0)) >= b.active().hp
-    if dangerous:
-        for key: String in ["super_potion","potion"]:
-            if j.item_reason(key,b.active_index).is_empty(): return ["item",key,b.active_index]
-    # JourneyPolicy handles setup, break sources, efficient attacks, and guard.
-    # Retain its choice only when it doesn't undo our matchup selection.
-    var choice := JourneyPolicy.action(b)
-    if choice[0] != "switch": return choice
-    var skills: Array = TacticalContent.skills_for(b.active()).filter(func(key: String): return TacticalMoves.definition(key).has("damage"))
-    skills.sort_custom(func(a: String,c: String): return b.skill_view(a)["preview_damage"] > b.skill_view(c)["preview_damage"])
-    for key: String in skills:
-        if b.skill_reason(key).is_empty(): return ["skill",key]
-    return ["end"]
+    return TacticalPolicy.action(j.battle)
 static func apply(j: TacticalJourney, action_value: Array) -> String:
     return j.use_item(action_value[1],action_value[2]) if action_value[0] == "item" else TacticalPolicy.apply(j.battle,action_value)
 static func camp(j: TacticalJourney) -> void:

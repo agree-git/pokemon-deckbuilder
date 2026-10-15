@@ -13,6 +13,7 @@ var block := 0
 var strength := 0
 var statuses: Dictionary = {}
 var knocked_out := false
+var held_item := ""
 var level := 5
 var evolution_power := 0
 var learned_skills: Array[String] = []
@@ -45,6 +46,6 @@ func experience_text() -> String:
     return String.num(experience,1).trim_suffix(".0")
 
 func snapshot() -> Dictionary:
-    return {"types":types.duplicate(),"uid": uid, "id": species_id, "hp": hp, "max_hp": max_hp, "block": block,
+    return {"held_item":held_item,"types":types.duplicate(),"uid": uid, "id": species_id, "hp": hp, "max_hp": max_hp, "block": block,
         "experience": experience, "level": level, "evolution_power": evolution_power,
         "skills": learned_skills.duplicate(), "strength": strength, "statuses": statuses.duplicate(true), "knocked_out": knocked_out}
