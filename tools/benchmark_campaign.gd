@@ -1,5 +1,6 @@
 extends SceneTree
 ## Developer measurement only: public rules, fixed policy, no forced drops or stats.
+const CampPolicy = preload("res://tools/campaign_camp_policy.gd")
 const CASES := {
     "kanto":[1,4,7],"johto":[152,155,158],"hoenn":[252,255,258],
     "bugs":[10,13,265],"babies":[172,173,174],"psychic":[63,280,360],
@@ -9,13 +10,13 @@ const CASES := {
 }
 const STYLES := ["baseline","relay","ace","status","shield","supply"]
 const HELD := {"relay":["relay_ribbon"],"ace":["ace_band","power_band"],"status":["seed_charm"],"shield":["guard_charm"],"supply":["healing_bell"]}
-var options := {"seeds":"0,42,2026","parties":",".join(CASES.keys()),"styles":"baseline","output":"/tmp/pokemon-campaign-balance.json"}
+var options := {"seeds":"0,42,2026","parties":",".join(CASES.keys()),"styles":"baseline","camps":"rest","max-turns":"100","output":"/tmp/pokemon-campaign-balance.json"}
 func _initialize() -> void: call_deferred("run")
 func rules_fingerprint() -> String:
     var hash := HashingContext.new()
     hash.start(HashingContext.HASH_SHA256)
     hash.update(JourneySave.fingerprint().to_utf8_buffer())
-    var sources: Array[String] = ["res://tests/campaign_policy.gd","res://tests/tactical_policy.gd","res://tools/benchmark_campaign.gd","res://scripts/content/visual_catalog.gd"]
+    var sources: Array[String] = ["res://tests/campaign_policy.gd","res://tests/tactical_policy.gd","res://tools/benchmark_campaign.gd","res://tools/campaign_camp_policy.gd","res://scripts/content/visual_catalog.gd"]
     for directory: String in ["res://scripts/tactics","res://scripts/battle"]:
         for file: String in DirAccess.get_files_at(directory):
             if file.ends_with(".gd"): sources.append(directory+"/"+file)
@@ -34,18 +35,21 @@ func reward(j: TacticalJourney, style: String) -> int:
             var offer := j.reward_options[i]
             if affinity(offer,style) and (offer["kind"] != "card" or j.deck.size() < 24): return i
     return CampaignPolicy.reward(j)
-func camp(j: TacticalJourney, style: String) -> void:
+func camp(j: TacticalJourney, style: String, camp_policy: String) -> String:
     # Baseline is deliberately the existing policy, for comparisons to old checks.
-    CampaignPolicy.camp(j)
-    if style == "baseline": return
+    if camp_policy == "develop":
+        var error: String = CampPolicy.apply(j,style)
+        if not error.is_empty(): return error
+    else: CampaignPolicy.camp(j)
+    if style == "baseline": return ""
     if j.camp()["kind"] in ["event","discovery"] and not j.camp()["resolved"] and j.camp_choice_reason(0).is_empty(): j.resolve_camp(0)
-    if j.deck.size() >= 24: return
+    if j.deck.size() >= 24: return ""
     for i in j.shop_cards().size():
         var offer: Dictionary = j.shop_cards()[i]
         if affinity(offer,style) and j.gold-int(offer["price"]) >= 100 and j.shop_card_reason(i).is_empty():
-            j.buy_shop_card(i)
-            break
-func measure(case_key: String, style: String, seed_value: int) -> Dictionary:
+            return j.buy_shop_card(i)
+    return ""
+func measure(case_key: String, style: String, seed_value: int, camp_policy: String) -> Dictionary:
     var starters: Array[int] = []
     starters.assign(CASES[case_key])
     var j := TacticalJourney.new(seed_value,"field_kit",starters,true)
@@ -56,7 +60,7 @@ func measure(case_key: String, style: String, seed_value: int) -> Dictionary:
         actions += 1
         match j.phase:
             TacticalJourney.BATTLE:
-                if j.battle.turn > 100:
+                if j.battle.phase not in [TacticalBattle.WON,TacticalBattle.LOST] and j.battle.turn > int(options["max-turns"]):
                     stop = "battle_turn_limit"
                     break
                 if j.battle.phase in [TacticalBattle.WON,TacticalBattle.LOST]: error = j.settle()
@@ -65,19 +69,22 @@ func measure(case_key: String, style: String, seed_value: int) -> Dictionary:
             TacticalJourney.REWARD: error = j.choose_reward(reward(j,style))
             TacticalJourney.MAP: error = j.enter_next()
             TacticalJourney.REST:
-                camp(j,style)
-                error = j.leave_camp()
+                error = camp(j,style,camp_policy)
+                if error.is_empty(): error = j.leave_camp()
             _: error = "Unexpected phase: "+j.phase
         if not error.is_empty(): break
     if actions >= 15000: stop = "action_limit"
     var combat: Dictionary = j.statistics["combat"]
     var row := {"party":case_key,"starters":starters,"style":style,"seed":seed_value,"phase":j.phase,"wins":j.wins,"badges":j.badges,"step":j.step,"last_place":j.current()["name"],"last_kind":j.current()["kind"],"last_type":j.biome()["type"],"turns":j.total_turns,"actions":actions,"error":error,"incomplete":stop,"damage_taken":combat["damage_taken"],"knockouts":combat["knockouts"],"auto_switches":combat["auto_switches"],"drawn":combat["drawn"],"gold_spent":RunStatistics.spent(j.statistics),"deck_size":j.deck.size(),"relics":j.relics.duplicate(),"cards":j.statistics["cards"].duplicate(),"levels":j.party.map(func(p: BattlePokemon): return p.level),"statistics_valid":RunStatistics.valid_run(j.statistics)}
-    print("BALANCE ",case_key,"/",style," seed=",seed_value," ",j.phase," wins=",j.wins," turns=",j.total_turns)
+    row["camp_policy"] = camp_policy
+    row["economy"] = j.statistics["counts"].duplicate()
+    row["final_species"] = j.party.map(func(p: BattlePokemon): return p.species_id)
+    print("BALANCE ",case_key,"/",style,"/",camp_policy," seed=",seed_value," ",j.phase," wins=",j.wins," turns=",j.total_turns)
     return row
 func run() -> void:
     var args := OS.get_cmdline_user_args()
     if args.size()%2 != 0:
-        printerr("Expected paired --seeds, --parties, --styles, --output options")
+        printerr("Expected paired --seeds, --parties, --styles, --camps, --max-turns, --output options")
         quit(2)
         return
     for i in range(0,args.size(),2):
@@ -90,7 +97,12 @@ func run() -> void:
     var parties: PackedStringArray = options["parties"].split(",",false)
     var styles: PackedStringArray = options["styles"].split(",",false)
     var seeds: PackedStringArray = options["seeds"].split(",",false)
-    if parties.is_empty() or styles.is_empty() or seeds.is_empty() or parties.size()*styles.size()*seeds.size() > 1000:
+    var camps: PackedStringArray = options["camps"].split(",",false)
+    if not options["max-turns"].is_valid_int() or int(options["max-turns"]) < 1 or int(options["max-turns"]) > 1000:
+        printerr("Choose a battle turn limit between 1 and 1000")
+        quit(2)
+        return
+    if parties.is_empty() or styles.is_empty() or seeds.is_empty() or camps.is_empty() or parties.size()*styles.size()*seeds.size()*camps.size() > 1000:
         printerr("Choose 1–1000 measurements")
         quit(2)
         return
@@ -109,7 +121,12 @@ func run() -> void:
             printerr("Invalid seed: ",value)
             quit(2)
             return
-    for values: Array in [Array(parties),Array(styles),Array(seeds).map(func(value: String): return int(value))]:
+    for key: String in camps:
+        if key not in ["rest","develop"]:
+            printerr("Unknown camp policy: ",key)
+            quit(2)
+            return
+    for values: Array in [Array(parties),Array(styles),Array(camps),Array(seeds).map(func(value: String): return int(value))]:
         var seen := {}
         for value: Variant in values:
             if seen.has(value):
@@ -122,10 +139,12 @@ func run() -> void:
     for party_key: String in parties:
         for style: String in styles:
             for seed_value: String in seeds:
-                var row := measure(party_key,style,int(seed_value))
-                failed = failed or not row["error"].is_empty() or not row["incomplete"].is_empty() or not row["statistics_valid"]
-                rows.append(row)
-    var report := {"version":1,"engine":Engine.get_version_info()["string"],"ruleset":JourneySave.RULESET,"rules_fingerprint":rules_fingerprint(),"policy":"CampaignPolicy + preferred reward/shop theme v1","scope":"No capture, rare hunts, evolution items or stat/resource overrides. Baseline rests each camp and uses only ordinary medicine; themed styles prefer matching rewards/shop cards and resolve camp encounters. Combat and learning policy stay the same.","rows":rows}
+                for camp_policy: String in camps:
+                    var row := measure(party_key,style,int(seed_value),camp_policy)
+                    failed = failed or not row["error"].is_empty() or not row["incomplete"].is_empty() or not row["statistics_valid"]
+                    rows.append(row)
+    var report := {"version":2,"engine":Engine.get_version_info()["string"],"ruleset":JourneySave.RULESET,"stat_basis":PokemonStats.BASIS,"rules_fingerprint":rules_fingerprint(),"policy":"CampaignPolicy + preferred reward/shop theme + rest/develop camps v2","scope":"No capture, rare hunts or stat/resource overrides. Rest preserves the original camp policy. Develop resolves encounters, purchases usable evolution items with a 100-gold reserve, rests below 75% HP or for friendship, otherwise upgrades; it removes low-rated or duplicate non-damaging techniques. Combat and learning policy stay the same.","rows":rows}
+    report["limits"] = {"battle_turns":int(options["max-turns"]),"actions":15000}
     var target: String = options["output"]
     if DirAccess.make_dir_recursive_absolute(target.get_base_dir()) != OK:
         printerr("Cannot create report directory: ",target)

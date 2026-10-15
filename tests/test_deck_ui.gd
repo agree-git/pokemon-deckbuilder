@@ -151,6 +151,8 @@ func run() -> void:
             var candidates: Array = ui.page.find_children("Card_*","Button",true,false).filter(func(button: Button): return not button.disabled)
             var uid := int(candidates[0].name.trim_prefix("Card_"))
             await click(candidates[0])
+            check(ui.upgrade_preview_uid == uid and not j.deck.any(func(card: BattleCardInstance): return card.uid == uid and card.upgraded),"Selecting a card previews the upgrade before spending the camp action")
+            await click(ui.page.find_child("UpgradeConfirm",true,false))
             check(not ui.deck_open and j.deck.any(func(card: BattleCardInstance): return card.uid == uid and card.upgraded),"Upgrade pointer selects the intended card instance")
             check(ui.rest_button.disabled,"Upgrade disables the alternative rest action")
             await picture("camp-upgrade")

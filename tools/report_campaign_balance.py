@@ -14,6 +14,7 @@ PARTIES = {
     'mythical': '환상 포함', 'superlegend': '초전설 포함', 'solo': '이상해씨 단독',
     'solo_fish': '잉어킹 단독',
 }
+CAMPS = {'rest': '매번 휴식', 'develop': '육성·덱 관리'}
 STYLES = {'baseline': '기존 기준', 'relay': '교대', 'ace': '에이스', 'status': '상태',
           'shield': '보호막', 'supply': '도구'}
 
@@ -24,14 +25,34 @@ def load_reports(paths):
     seen = set()
     for path in paths:
         data = json.loads(path.read_text())
-        if data.get('version') != 1 or not isinstance(data.get('rows'), list) or not data['rows']:
+        if data.get('version') not in (1, 2) or not isinstance(data.get('rows'), list) or not data['rows']:
             raise ValueError(f'{path}: missing version or measurements')
+        fields = ('version', 'engine', 'ruleset', 'rules_fingerprint', 'policy', 'scope')
+        if data['version'] == 2:
+            fields += ('stat_basis', 'limits')
+            if data.get('stat_basis') != 'species-level-v1':
+                raise ValueError(f'{path}: missing or unsupported stat basis')
+            limits = data.get('limits')
+            if not isinstance(limits, dict) or any(type(limits.get(key)) is not int or limits[key] <= 0 for key in ('battle_turns', 'actions')):
+                raise ValueError(f'{path}: invalid measurement limits')
         if report is None:
-            report = {key: data[key] for key in ('version', 'engine', 'ruleset', 'rules_fingerprint', 'policy', 'scope')}
-        elif any(report[key] != data.get(key) for key in ('engine', 'ruleset', 'rules_fingerprint', 'policy', 'scope')):
+            report = {key: data[key] for key in fields}
+        elif any(report.get(key) != data.get(key) for key in fields):
             raise ValueError(f'{path}: measurements use different engine, rules or policies')
         for row in data['rows']:
-            identity = (row['party'], row['style'], row['seed'])
+            identity = (row['party'], row['style'], row['seed'], row.get('camp_policy', 'rest'))
+            if data['version'] == 2:
+                if row.get('camp_policy') not in CAMPS:
+                    raise ValueError(f'{path}: invalid camp policy {identity}')
+                economy = row.get('economy')
+                keys = ('rests', 'cards_upgraded', 'cards_removed', 'items_used',
+                        'gold_cards', 'gold_supplies', 'gold_removal', 'gold_events')
+                if not isinstance(economy, dict) or any(type(economy.get(key)) is not int or economy[key] < 0 for key in keys):
+                    raise ValueError(f'{path}: invalid economy {identity}')
+                if row['gold_spent'] != sum(economy[key] for key in keys[4:]):
+                    raise ValueError(f'{path}: inconsistent spending {identity}')
+                if economy['rests'] + economy['cards_upgraded'] > min(row['wins'], 68):
+                    raise ValueError(f'{path}: too many camp actions {identity}')
             if identity in seen:
                 raise ValueError(f'{path}: duplicate measurement {identity}')
             seen.add(identity)
@@ -52,23 +73,30 @@ def format_report(report):
     names = {entry['id']: entry['name'] for entry in catalog}
     groups = defaultdict(list)
     for row in report['rows']:
-        groups[(row['party'], row['style'])].append(row)
+        groups[(row['party'], row['style'], row.get('camp_policy', 'rest'))].append(row)
     lines = ['# 스타팅·빌드 원정 측정', '',
              f"엔진: `{report['engine']}` · 규칙: `{report['ruleset']}` · {len(report['rows'])}개 원정.", '']
     lines += [f"코드·데이터 지문: `{report['rules_fingerprint']}`.", '']
     if report.get('rules_revision'):
         lines += [f"전투 규칙 기준 커밋: `{report['rules_revision']}`.", '']
+    if report.get('stat_basis'):
+        lines += [f"능력치 기준: `{report['stat_basis']}` — 개체값·노력치 없이 종족값과 레벨만 적용.", '']
+        lines += [f"안전 제한: 전투당 {report['limits']['battle_turns']}턴 · 원정당 {report['limits']['actions']:,}행동. 제한에 걸린 미완료 결과는 합산하지 않는다.", '']
     lines += ['## 측정 조건', '',
               '같은 시드·같은 전투/기술 선택 정책으로 비교한다. HP·경험치·골드·카드·유물·에너지를 직접 바꾸지 않고 공개 행동만 사용한다. '
               '기존 기준은 매 야영지에서 휴식·장비·일반 회복약을 사용한다. 다른 전략은 같은 정책에 선호 주제의 보상·상점 구매와 야영지 만남 선택을 더한다. '
               '카드·유물을 강제로 지급하지 않는다.', '',
-              '**포획·희귀 조우·진화 재료 구매·카드 강화/제거는 사용하지 않는다.** '
-              '단독/보조형 편성도 동료를 영입하지 않는 조건이다. 희귀 포함 편성은 이미 포획하여 해금한 계정을 가정한다. '
-              '이 정책의 결과이며 사람의 승률이나 모든 파티·모든 빌드의 균형을 뜻하지 않는다.', '',
+              '**포획·희귀 조우는 사용하지 않는다.** 단독/보조형 편성도 동료를 영입하지 않는 조건이다. '
+              '희귀 포함 편성은 이미 포획하여 해금한 계정을 가정한다. 이 정책의 결과이며 사람의 승률이나 모든 파티·모든 빌드의 균형을 뜻하지 않는다.', '',
+              '야영지 `매번 휴식`은 이전 정책을 유지한다. `육성·덱 관리`는 만남을 해결하고 현재 쓸 수 있는 진화 재료를 구매·사용한다. '
+              'HP 75% 미만·기절·미완료 친밀도 진화에는 휴식하고, 그 외에는 카드를 강화한다. 상인에게 낮게 평가한 보조 기술을 제거하며 '
+              '공격·씨앗·회복 기술과 동료의 마지막 기술은 보존한다. 재료·제거·주제 카드 구매 후 100골드를 남긴다. '
+              '재료는 먼저 사용 가능한 분기를 택하며 원작 기술표를 고려한 최적 진화 시점을 찾지는 않는다. '
+              '전투·기술 학습 정책은 두 야영지 정책에서 같다. 이전 v1 측정에는 육성 정책이 없다.', '',
               '## 파티별 기존 기준', '',
-              '| 편성 | 포켓몬 | 시드 | 완주 | 승리 전투 수 | 완주한 원정의 평균 턴 |',
-              '|---|---|---|---:|---|---:|']
-    for (party, style), rows in groups.items():
+              '| 편성 | 포켓몬 | 야영지 | 시드 | 완주 | 승리 전투 수 | 완주한 원정의 평균 턴 |',
+              '|---|---|---|---|---:|---|---:|']
+    for (party, style, camp), rows in groups.items():
         if style != 'baseline':
             continue
         cleared = [row for row in rows if row['phase'] == 'cleared']
@@ -76,31 +104,62 @@ def format_report(report):
         wins = ', '.join(str(row['wins']) for row in rows)
         turns = f"{mean(row['turns'] for row in cleared):.1f}" if cleared else '—'
         members = '·'.join(names[value] for value in rows[0]['starters'])
-        lines.append(f"| {PARTIES.get(party, party)} | {members} | {seeds} | {len(cleared)}/{len(rows)} | {wins} | {turns} |")
+        lines.append(f"| {PARTIES.get(party, party)} | {members} | {CAMPS[camp]} | {seeds} | {len(cleared)}/{len(rows)} | {wins} | {turns} |")
     lines += ['', '## 같은 파티의 전략별 선택', '',
               '턴·피해·기절·지출·덱은 해당 묶음의 모든 원정 평균이다. 서로 다른 파티끼리 승패를 섞어 비교하지 않는다. '
               '지출은 카드·일반 보급·만남을 합산한다. 시작 때 쓰는 공용 카드도 전체 덱 크기에 포함한다.', '',
-              '| 파티 | 선호 전략 | 완주 | 평균 턴 | 받은 HP 피해 | 기절 | 골드 지출 | 최종 덱 |',
-              '|---|---|---:|---:|---:|---:|---:|---:|']
-    varied = {party for party, style in groups if style != 'baseline'}
-    for (party, style), rows in groups.items():
+              '| 파티 | 선호 전략 | 야영지 | 완주 | 평균 턴 | 받은 HP 피해 | 기절 | 골드 지출 | 최종 덱 |',
+              '|---|---|---|---:|---:|---:|---:|---:|---:|']
+    varied = {party for party, style, camp in groups if style != 'baseline'}
+    for (party, style, camp), rows in groups.items():
         if party not in varied:
             continue
         clears = sum(row['phase'] == 'cleared' for row in rows)
         metrics = [f"{mean(row[key] for row in rows):.1f}" for key in ('turns', 'damage_taken', 'knockouts', 'gold_spent', 'deck_size')]
-        lines.append(f"| {PARTIES.get(party, party)} | {STYLES.get(style, style)} | {clears}/{len(rows)} | " + ' | '.join(metrics) + ' |')
+        lines.append(f"| {PARTIES.get(party, party)} | {STYLES.get(style, style)} | {CAMPS[camp]} | {clears}/{len(rows)} | " + ' | '.join(metrics) + ' |')
     lines.append('')
-    for party in dict.fromkeys(party for party, style in groups if style != 'baseline'):
-        measured = [row for row in report['rows'] if row['party'] == party]
+    for party in dict.fromkeys(party for party, style, camp in groups if style != 'baseline'):
+        measured = [row for row in report['rows'] if row['party'] == party and row['phase'] == 'cleared']
         relic_sets = {tuple(sorted(row['relics'])) for row in measured}
         if len(relic_sets) == 1:
-            lines += [f"{PARTIES.get(party, party)} {len(measured)}개 측정은 최종 유물 {len(next(iter(relic_sets)))}종의 구성이 같았다. "
+            lines += [f"{PARTIES.get(party, party)} 완주 {len(measured)}개 측정은 최종 유물 {len(next(iter(relic_sets)))}종의 구성이 같았다. "
                       '유물을 우선하는 정책의 영향과 작은 공용 유물 풀의 수렴 양상을 다음 콘텐츠 조정에서 함께 검토한다.', '']
+    if report['version'] == 2:
+        lines += ['## 야영지 경제', '',
+                  '각 행은 같은 편성·보상 선호·야영지 정책의 평균이다. 초반 전멸과 완주를 합친 값이므로 오래 진행한 그룹의 지출·강화 횟수가 커질 수 있다.', '',
+                  '| 파티 | 선호 전략 | 야영지 | 휴식 | 강화 | 제거 | 아이템 사용 | 카드 지출 | 보급·진화 재료 | 제거 지출 | 만남 지출 |',
+                  '|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|']
+        for (party, style, camp), rows in groups.items():
+            keys = ('rests', 'cards_upgraded', 'cards_removed', 'items_used',
+                    'gold_cards', 'gold_supplies', 'gold_removal', 'gold_events')
+            metrics = [f"{mean(row['economy'][key] for row in rows):.1f}" for key in keys]
+            lines.append(f"| {PARTIES.get(party, party)} | {STYLES.get(style, style)} | {CAMPS[camp]} | " + ' | '.join(metrics) + ' |')
+        lines.append('')
+        paired = defaultdict(dict)
+        for row in report['rows']:
+            paired[(row['party'], row['style'])].setdefault(row['seed'], {})[row['camp_policy']] = row
+        if any({'rest', 'develop'} <= set(pair) for seeds in paired.values() for pair in seeds.values()):
+            lines += ['## 같은 시드에서 두 운영 모두 완주한 경우', '',
+                      '같은 파티·보상 주제·시드에서 양쪽 모두 완주한 쌍만 비교한다. 한쪽이 일찍 전멸한 원정의 짧은 턴 수를 속도 향상으로 계산하지 않는다. '
+                      '전체 완주/전멸 결과는 앞 표와 함께 본다.', '',
+                      '| 파티 | 선호 전략 | 완주한 쌍 | 휴식 턴 | 육성 턴 | 턴 변화 | 휴식 HP 피해 | 육성 HP 피해 |',
+                      '|---|---|---:|---:|---:|---:|---:|---:|']
+            for (party, style), seeds in paired.items():
+                matches = [pair for pair in seeds.values() if {'rest', 'develop'} <= set(pair)
+                           and all(pair[camp]['phase'] == 'cleared' for camp in CAMPS)]
+                if not matches:
+                    continue
+                turns = [mean(pair[camp]['turns'] for pair in matches) for camp in CAMPS]
+                damage = [mean(pair[camp]['damage_taken'] for pair in matches) for camp in CAMPS]
+                change = (turns[1]/turns[0]-1)*100 if turns[0] else 0
+                lines.append(f"| {PARTIES.get(party, party)} | {STYLES.get(style, style)} | {len(matches)} | "
+                             f"{turns[0]:.1f} | {turns[1]:.1f} | {change:+.1f}% | {damage[0]:.1f} | {damage[1]:.1f} |")
+            lines.append('')
     lines += ['## 해석 범위', '',
-              '- 세 시드의 작은 표본이다. 자동 전투 정책이 특정 기술·상태·교대를 더 선호하며 전략별 최적 플레이를 구현한 것은 아니다.',
+              f"- 시드 {len({row['seed'] for row in report['rows']})}개의 고정 표본이다. 자동 전투 정책이 특정 기술·상태·교대를 더 선호하며 전략별 최적 플레이를 구현한 것은 아니다.",
               '- 보조형·아기·단독 편성의 초반 탈락은 원작 능력치/기술과 영입을 하지 않는 조건의 영향을 함께 받는다. 종족값이나 관장 레벨을 즉시 일괄 조정할 근거로 쓰지 않는다.',
               '- 스타팅 화면의 출발 덱·Lv.5 능력치 미리보기로 실제 공격 카드와 발버둥 여부를 알린다. 초기 기술·진화·희귀 포획 조건을 바꾸지 않는다.',
-              '- 다음 비교에서는 초반 포획, 진화 재료, 강화/제거와 휴식 선택, 더 많은 시드, 수동 플레이를 함께 다룬다.', '']
+              '- 다음 비교에서는 초반 포획, 정책의 진화 시점·전투 판단, 더 많은 시드와 수동 플레이를 함께 다룬다.', '']
     return '\n'.join(lines)
 
 

@@ -10,6 +10,7 @@ var actions: Array[Button] = []
 var deck_open := false
 var report_open := false
 var deck_action := ""
+var upgrade_preview_uid := 0
 var gear_open_for := 0
 var deck_button: Button
 var deck_close: Button
@@ -99,6 +100,7 @@ func refresh() -> void:
         _: _result()
     W.label(page,"ESC 시작 화면     F11 전체 화면",Rect2(96,1014,1728,34),15,W.MUTED)
     if deck_open: _deck()
+    if deck_open and upgrade_preview_uid != 0: _upgrade_preview()
     if gear_open_for != 0: _gear_picker()
     if not bag_item.is_empty(): _item_picker()
     if report_open: _report()
@@ -588,6 +590,7 @@ func _equip(key: String,uid: int) -> void:
     if reason.is_empty(): gear_open_for = 0
     refresh()
 func _select_deck_action(action: String) -> void:
+    upgrade_preview_uid = 0
     deck_action = action
     deck_open = true
     refresh()
@@ -727,14 +730,64 @@ func _deck() -> void:
             button.pressed.connect(_deck_select.bind(card.uid))
         else: button.mouse_default_cursor_shape = Control.CURSOR_ARROW
 func _deck_select(uid: int) -> void:
+    if deck_action == "upgrade":
+        if not journey.deck.any(func(card: BattleCardInstance): return card.uid == uid and TacticalContent.can_upgrade(card)): return
+        if journey.phase != TacticalJourney.REST or journey.step in journey.rested_steps: return
+        upgrade_preview_uid = uid
+        refresh()
+        return
+    _apply_deck_action(uid)
+func _apply_deck_action(uid: int) -> void:
     var reason := journey.rest("upgrade",uid) if deck_action == "upgrade" else journey.remove_card(uid)
     if reason.is_empty():
         camp_notice = "카드를 강화했습니다." if deck_action == "upgrade" else "카드를 제거했습니다."
         deck_open = false
         deck_action = ""
+        upgrade_preview_uid = 0
     else: camp_notice = reason
     refresh()
+func _close_upgrade_preview() -> void:
+    upgrade_preview_uid = 0
+    refresh()
+func _confirm_upgrade() -> void:
+    if upgrade_preview_uid == 0 or deck_action != "upgrade": return
+    _apply_deck_action(upgrade_preview_uid)
+func _upgrade_preview() -> void:
+    var selected: BattleCardInstance
+    for card: BattleCardInstance in journey.deck:
+        if card.uid == upgrade_preview_uid: selected = card
+    if selected == null:
+        upgrade_preview_uid = 0
+        return
+    var overlay := W.button(page,Rect2(0,0,1920,1080),_close_upgrade_preview)
+    overlay.name = "UpgradePreview"
+    overlay.z_index = 85
+    for state: String in ["normal","hover","pressed","focus"]: overlay.add_theme_stylebox_override(state,W.box(Color(0.01,0.025,0.04,0.85),Color.TRANSPARENT,0))
+    var panel := W.panel(overlay,Rect2(420,150,1080,780),Color("14282f"),W.GOLD)
+    panel.mouse_filter = Control.MOUSE_FILTER_STOP
+    W.icon_button(panel,"close",Rect2(998,24,48,48),_close_upgrade_preview,"목록으로 · Esc")
+    for i in 2:
+        W.label(panel,"현재 카드" if i == 0 else "강화 후",Rect2(100+i*470,24,400,48),27,W.TEXT if i == 0 else W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+        var view := journey.reward_view({"kind":"card","key":selected.key,"owner_uid":selected.owner_uid,"upgraded":i == 1})
+        var face := TrainerActionCard.new()
+        face.name = "UpgradeBefore" if i == 0 else "UpgradeAfter"
+        face.key = selected.key
+        face.definition = view
+        face.position = Vector2(160+i*470,80)
+        face.scale = Vector2.ONE*1.35
+        panel.add_child(face)
+        face.update_card(view,"",false)
+        face.disabled = true
+        face.mouse_default_cursor_shape = Control.CURSOR_ARROW
+    W.label(panel,"→",Rect2(488,264,100,64),46,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+    W.label(panel,"이번 야영지 행동 · 카드 1장 강화\n휴식·희귀 단서 조사와 같은 행동을 사용합니다.",Rect2(44,520,992,88),22,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+    W.button(panel,Rect2(130,650,350,72),_close_upgrade_preview,"목록으로").name = "UpgradeCancel"
+    var confirm := W.button(panel,Rect2(600,650,350,72),_confirm_upgrade,"이 카드 강화")
+    confirm.name = "UpgradeConfirm"
+    confirm.disabled = journey.phase != TacticalJourney.REST or journey.step in journey.rested_steps or not TacticalContent.can_upgrade(selected)
+    UiMotion.appear(overlay)
 func _close_deck() -> void:
+    upgrade_preview_uid = 0
     deck_action = ""
     deck_open = false
     refresh()
@@ -798,7 +851,10 @@ func _unhandled_key_input(event: InputEvent) -> void:
         get_viewport().set_input_as_handled()
         return
     if deck_open:
-        if event.keycode == KEY_ESCAPE: _close_deck()
+        if event.keycode == KEY_ESCAPE:
+            if upgrade_preview_uid != 0: _close_upgrade_preview()
+            else: _close_deck()
+        get_viewport().set_input_as_handled()
         return
     match event.keycode:
         KEY_ESCAPE: _home()
