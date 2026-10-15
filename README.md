@@ -8,6 +8,7 @@
 - 언어: GDScript
 - 첫 실행 대상: Windows PC
 - 게임 기획: [docs/game-design.md](docs/game-design.md)
+- 다음 전투 개편 방향: [슬더스라이크 전투·원정 설계](docs/deckbuilder-direction.md) — 통합 카드 덱·자동 교대·유물·선택 보상. 구현 전 설계이며 아래 현재 상태와 구분한다.
 - Codex 작업 기준: [AGENTS.md](AGENTS.md)
 
 ## 현재 상태
