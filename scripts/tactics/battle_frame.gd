@@ -8,4 +8,6 @@ static func member(p: BattlePokemon) -> Dictionary:
 static func restore(row: Dictionary) -> BattlePokemon:
     var p := BattlePokemon.new({"id":row["id"],"name":row["name"],"type":row["type"],"types":row["types"],"max_hp":row["max_hp"],"level":row["level"]},row["uid"])
     for field: String in ["hp","block","strength","statuses","stat_stages","held_item","experience","knocked_out"]: p.set(field,row[field])
+    for field: String in ["friendship","beauty","evolution_personality","evolution_training"]:
+        if row.has(field): p.set(field,row[field])
     return p

@@ -18,6 +18,7 @@ var camp_tabs: Dictionary = {}
 var camp_notice := ""
 var bag_item := ""
 var evolution_result: Dictionary = {}
+var special_open := false
 var _evolution_catalog := VisualCatalog.new()
 var rest_button: Button
 var learn_buttons: Array[Button] = []
@@ -100,6 +101,7 @@ func refresh() -> void:
     if gear_open_for != 0: _gear_picker()
     if not bag_item.is_empty(): _item_picker()
     if report_open: _report()
+    if special_open: _special_picker()
     if not evolution_result.is_empty(): _evolution_reveal()
     UiMotion.appear(page)
 func _party() -> void:
@@ -112,9 +114,11 @@ func _party() -> void:
         title.mouse_filter = Control.MOUSE_FILTER_PASS
         title.tooltip_text = PokemonStats.summary(pokemon)
         title.tooltip_text += "\n"+TacticalGrowth.progress_text(pokemon)+"\n"+FriendshipEvolution.summary(pokemon,journey.current_time(),_evolution_catalog)
+        if SpecialEvolution.eligible(pokemon.species_id): title.tooltip_text += "\n"+SpecialEvolution.summary(pokemon,journey.party.size(),journey.balls,_evolution_catalog)
         for key: String in EvolutionItems.options(pokemon.species_id):
             title.tooltip_text += "\n%s → %s · 야영지 가방" % [EvolutionItems.ITEMS[key]["name"],_evolution_catalog.species(EvolutionItems.target(key,pokemon.species_id))["name"]]
         var growth := "친밀 %d/220" % FriendshipEvolution.value(pokemon) if FriendshipEvolution.eligible(pokemon.species_id) else TacticalGrowth.progress_text(pokemon)
+        if pokemon.species_id == 349: growth = "아름다움 %d/170" % SpecialEvolution.beauty(pokemon)
         var detail := W.label(panel,("%d / %d HP" % [pokemon.hp,pokemon.max_hp] if pokemon.alive() else "기절")+" · "+growth,Rect2(102,111+i*82,218,28),12,W.MUTED)
         detail.name = "Growth_%d" % pokemon.uid
         W.fill_bar(W.bar(panel,Rect2(102,141+i*82,200,4)),pokemon.hp,pokemon.max_hp)
@@ -174,7 +178,7 @@ func _growth_summary() -> void:
         if not report["evolutions"].is_empty(): title = report["name"]+" → "+str(report["evolutions"].back()["name"])
         W.label(panel,title,Rect2(54,10,312,40),19,W.GOLD)
         W.label(panel,"+%s XP  ·  최대 HP +%d" % [String.num(report["xp"],1).trim_suffix(".0"),report["hp"]],Rect2(18,58,348,28),16,W.MUTED)
-        W.label(panel," · ".join(report["learned"])+" 습득" if not report["learned"].is_empty() else ("자동 진화!" if not report["evolutions"].is_empty() else "다음 레벨을 향해!"),Rect2(18,96,348,28),17,W.TEXT)
+        W.label(panel,report.get("companion"," · ".join(report["learned"])+" 습득" if not report["learned"].is_empty() else ("자동 진화!" if not report["evolutions"].is_empty() else "다음 레벨을 향해!")),Rect2(18,96,348,28),17,W.TEXT)
 func _map() -> void:
     W.label(page,journey.progress_title(),Rect2(550,225,1200,48),24)
     var stops: Array = journey.route.stops if journey.full_campaign else TacticalJourneyContent.STOPS
@@ -252,6 +256,10 @@ func _rest() -> void:
     _action("준비 완료 · 출발",Rect2(1260,930,480,72),_leave_camp,"next")
     match camp_tab:
         "rest":
+            if journey.party.any(func(p: BattlePokemon): return SpecialEvolution.eligible(p.species_id)):
+                W.button(page,Rect2(550,354,220,44),func():
+                    special_open = true
+                    refresh(),"진화 준비").name = "SpecialEvolution"
             W.label(page,"원정 시간",Rect2(1270,354,150,44),17,W.MUTED)
             for i in 2:
                 var value: String = ["day","night"][i]
@@ -289,7 +297,7 @@ func _bag() -> void:
     var i := 0
     for key: String in journey.items():
         # Materials appear when owned; keep an empty bag compact.
-        if EvolutionItems.ITEMS.has(key) and journey.quantity(key) == 0: continue
+        if (EvolutionItems.ITEMS.has(key) or SpecialEvolution.ITEMS.has(key)) and journey.quantity(key) == 0: continue
         var item: Dictionary = journey.items()[key]
         var button := W.button(body,Rect2((i%3)*400,floori(i/3.0)*210,376,184),_open_item.bind(key))
         button.name = "Bag_"+key
@@ -301,6 +309,7 @@ func _bag() -> void:
         i += 1
     body.custom_minimum_size = Vector2(1176,ceilf(i/3.0)*210-26)
 func _item_description(key: String) -> String:
+    if key == "blue_pokeblock": return "빈티나 아름다움 +60 · 170 이상으로 다음 레벨업 시 진화"
     if EvolutionItems.ITEMS.has(key): return EvolutionItems.description(key)
     if key == "ball": return "야생 전투에서 C로 포획"
     return "기절한 동료 HP 50% 회복" if key == "revive" else "최대 HP의 %s 회복" % PokemonStats.percent(int(journey.items()[key]["heal"]))
@@ -401,6 +410,7 @@ func _item_picker() -> void:
                 var target := EvolutionItems.target(bag_item,p.species_id)
                 preview = "→ %s · 진화하기" % _evolution_catalog.species(target)["name"]
                 W.sprite(button,target,Rect2(572,22,96,96))
+            elif bag_item == "blue_pokeblock": preview = "아름다움 %d → %d / 170" % [SpecialEvolution.beauty(p),mini(255,SpecialEvolution.beauty(p)+60)]
             else:
                 var healing := ceili(p.max_hp*0.5) if bag_item == "revive" else PokemonStats.scale(p,int(journey.items()[bag_item]["heal"]))
                 preview = "HP %d / %d  →  %d / %d" % [p.hp,p.max_hp,mini(p.max_hp,p.hp+healing),p.max_hp]
@@ -414,6 +424,42 @@ func _item_picker() -> void:
                     next_moves.append("Lv.%d · %s" % [entry["level"],TacticalMoves.definition(TacticalMoves.key_for(int(entry["move"])))["name"]])
             button.tooltip_text = "진화 후 레벨업 기술\n"+("새로 배울 기술이 없습니다. 필요한 기술을 먼저 배운 뒤 진화할 수 있습니다." if next_moves.is_empty() else "\n".join(next_moves))
     UiMotion.appear(overlay)
+func _close_special() -> void:
+    special_open = false
+    refresh()
+func _special_picker() -> void:
+    var overlay := W.button(page,Rect2(0,0,1920,1080),_close_special)
+    overlay.name = "SpecialPicker"
+    overlay.z_index = 85
+    for state: String in ["normal","hover","pressed","focus"]: overlay.add_theme_stylebox_override(state,W.box(Color(0.01,0.025,0.04,0.8),Color.TRANSPARENT,0))
+    var body := W.panel(overlay,Rect2(420,150,1080,780),Color("14282f"),W.GOLD)
+    body.mouse_filter = Control.MOUSE_FILTER_STOP
+    W.label(body,"진화 준비",Rect2(32,24,900,52),30,W.GOLD)
+    W.icon_button(body,"close",Rect2(1004,24,48,48),_close_special,"닫기 · Esc")
+    var row := 0
+    for p: BattlePokemon in journey.party:
+        if not SpecialEvolution.eligible(p.species_id): continue
+        var panel := W.panel(body,Rect2(28,100+row*210,1024,194),Color("1c3339"))
+        W.sprite(panel,p.species_id,Rect2(16,22,112,112))
+        W.label(panel,"%s · Lv.%d" % [p.display_name,p.level],Rect2(152,10,830,38),23,W.GOLD)
+        var detail := W.label(panel,SpecialEvolution.summary(p,journey.party.size(),journey.balls,_evolution_catalog),Rect2(152,54,840,86),18,W.MUTED)
+        detail.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+        detail.name = "SpecialSummary_%d" % p.uid
+        if p.species_id == 236:
+            for i in 3:
+                var style: String = ["attack","balanced","defense"][i]
+                var button := W.button(panel,Rect2(152+i*230,146,214,40),_train_evolution.bind(p.uid,style),["공격 훈련","균형 훈련","방어 훈련"][i])
+                button.name = "Train_%d_%s" % [p.uid,style]
+                button.disabled = SpecialEvolution.training(p) == style or p.level >= 100
+                if SpecialEvolution.training(p) == style:
+                    button.add_theme_stylebox_override("disabled",W.box(Color("29443f"),W.GOLD))
+                    button.add_theme_color_override("font_disabled_color",W.GOLD)
+        row += 1
+    UiMotion.appear(overlay)
+func _train_evolution(uid: int, style: String) -> void:
+    var reason := journey.train_evolution(uid,style)
+    if not reason.is_empty(): camp_notice = reason
+    refresh()
 func _close_evolution() -> void:
     evolution_result.clear()
     refresh()
@@ -544,6 +590,7 @@ func _use_item(key: String,index: int) -> void:
     var before := {"from":pokemon.species_id,"before":pokemon.display_name}
     var reason := journey.use_item(key,index)
     camp_notice = reason if not reason.is_empty() else journey.party[index].display_name+"에게 사용했습니다."
+    if reason.is_empty() and key == "blue_pokeblock": camp_notice = "빈티나 아름다움 %d/170" % SpecialEvolution.beauty(pokemon)+(" · 다음 레벨업에 진화합니다." if SpecialEvolution.beauty(pokemon) >= 170 else "")
     if reason.is_empty(): bag_item = ""
     if reason.is_empty() and pokemon.species_id != before["from"]:
         evolution_result = before.merged({"to":pokemon.species_id,"after":pokemon.display_name})
@@ -677,6 +724,10 @@ func _unhandled_key_input(event: InputEvent) -> void:
     if journey.phase == TacticalJourney.BATTLE or not event is InputEventKey or not event.pressed or event.echo: return
     if not evolution_result.is_empty():
         if event.keycode in [KEY_ESCAPE,KEY_ENTER]: _close_evolution()
+        get_viewport().set_input_as_handled()
+        return
+    if special_open:
+        if event.keycode == KEY_ESCAPE: _close_special()
         get_viewport().set_input_as_handled()
         return
     if report_open:

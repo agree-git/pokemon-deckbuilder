@@ -95,6 +95,7 @@ func restart(run_seed: int = 2026, selected_relic: String = "field_kit", selecte
     if full_campaign and _capture_catalog == null: _capture_catalog = VisualCatalog.new()
     for pokemon: BattlePokemon in party:
         TacticalGrowth.initialize(pokemon)
+        SpecialEvolution.assign_personality(pokemon,seed_value)
         if full_campaign: pokemon.types.assign(_capture_catalog.species(pokemon.species_id)["types"])
     deck.assign(TacticalContent.starting_deck(party))
     _next_card_uid = deck.size()+1
@@ -126,7 +127,8 @@ func settle() -> String:
         return notify_changed()
     wins += 1
     growth_reports.clear()
-    for pokemon: BattlePokemon in party:
+    var growing := party.duplicate()
+    for pokemon: BattlePokemon in growing:
         var known := pokemon.learned_skills.duplicate()
         var friendship_before := FriendshipEvolution.value(pokemon)
         FriendshipEvolution.change(pokemon,FriendshipEvolution.VICTORY if pokemon.alive() else FriendshipEvolution.FAINTED)
@@ -136,6 +138,9 @@ func settle() -> String:
             if key not in known: deck.append(_allocate_card(key,pokemon.uid))
         growth_reports.append(report)
         pending_learning.append_array(report["offers"])
+    for i in growing.size():
+        if growth_reports[i]["evolutions"].any(func(e: Dictionary): return e["from"] == 290 and e["to"] == 291):
+            _join_shedinja(growing[i],growth_reports[i])
     var role: String = current()["kind"]
     var wild := is_wild()
     var boss: bool = role in ["gym","elite","champion"]
@@ -151,6 +156,28 @@ func settle() -> String:
     loot.append({"name":current()["name"],"gold":coins,"item":item,"quantity":1})
     _after_learning()
     return notify_changed()
+func _join_shedinja(parent: BattlePokemon, report: Dictionary) -> void:
+    if party.size() >= 3 or balls <= 0:
+        report["companion"] = "껍질몬: 빈자리·몬스터볼 필요"
+        return
+    var catalog := VisualCatalog.new()
+    var definition := TacticalContent.member_definition(292,catalog)
+    definition["types"] = catalog.species(292)["types"]
+    var pokemon := BattlePokemon.new(definition,_next_pokemon_uid)
+    _next_pokemon_uid += 1
+    pokemon.level = parent.level
+    TacticalGrowth.initialize(pokemon)
+    pokemon.experience = parent.experience
+    pokemon.learned_skills.assign(parent.learned_skills)
+    if not parent.alive():
+        pokemon.hp = 0
+        pokemon.knocked_out = true
+    party.append(pokemon)
+    balls -= 1
+    for key: String in TacticalContent.skills_for(pokemon): deck.append(_allocate_card(key,pokemon.uid))
+    report["companion"] = "껍질몬 합류! · 몬스터볼 1개"
+    history.append(report["companion"])
+    _decision(report["companion"])
 func _after_learning() -> void:
     if not pending_learning.is_empty():
         phase = LEARN
@@ -235,6 +262,7 @@ func capture() -> String:
     var caught := BattlePokemon.new(definition,_next_pokemon_uid)
     _next_pokemon_uid += 1
     TacticalGrowth.initialize(caught)
+    SpecialEvolution.assign_personality(caught,seed_value)
     pending_captures.append(caught)
     if target.species_id not in captured_ids: captured_ids.append(target.species_id)
     return notify_changed()
@@ -337,6 +365,17 @@ func set_time(value: String) -> String:
     time_of_day = value
     _decision("원정 시간 · "+("낮" if value == "day" else "밤"))
     return notify_changed()
+func train_evolution(uid: int, style: String) -> String:
+    if phase != REST: return "야영지에서 진화 훈련을 준비하세요."
+    if style not in ["attack","defense","balanced"]: return "공격·균형·방어 훈련을 선택하세요."
+    for pokemon: BattlePokemon in party:
+        if pokemon.uid != uid: continue
+        if pokemon.species_id != 236 or pokemon.level >= 100: return "레벨업할 수 있는 배루키의 훈련입니다."
+        if style == SpecialEvolution.training(pokemon): return "이미 선택한 훈련입니다."
+        pokemon.evolution_training = style
+        _decision("배루키 진화 훈련 · "+str({"attack":"공격","defense":"방어","balanced":"균형"}[style]))
+        return notify_changed()
+    return "파티의 배루키를 선택하세요."
 func buy_reason(key: String) -> String:
     if phase != REST: return "물건은 야영지에서 구매할 수 있습니다."
     if full_campaign and camp().get("kind","") != "merchant": return "이번 야영지에는 상인이 없습니다."
@@ -385,6 +424,12 @@ func item_reason(key: String,index: int) -> String:
     if not items().has(key) or int(inventory.get(key,0)) <= 0: return "보유한 아이템이 없습니다."
     if index < 0 or index >= party.size(): return "사용할 동료를 선택하세요."
     var pokemon := party[index]
+    if key == "blue_pokeblock":
+        if pokemon.species_id != 349: return "빈티나의 아름다움을 높이는 간식입니다."
+        if not pokemon.alive(): return "기절한 동료를 먼저 회복하세요."
+        if pokemon.level >= 100: return "진화하려면 다음 레벨업이 필요합니다."
+        if SpecialEvolution.beauty(pokemon) >= SpecialEvolution.BEAUTY_THRESHOLD: return "아름다움 조건을 만족했습니다. 다음 레벨업을 준비하세요."
+        return ""
     if EvolutionItems.ITEMS.has(key):
         if not pokemon.alive(): return "기절한 동료를 먼저 회복하세요."
         if EvolutionItems.target(key,pokemon.species_id) == 0: return "이 재료로 진화할 수 없는 동료입니다."
@@ -398,6 +443,12 @@ func use_item(key: String,index: int) -> String:
     var reason := item_reason(key,index)
     if not reason.is_empty(): return reason
     var pokemon := party[index]
+    if key == "blue_pokeblock":
+        pokemon.beauty = mini(255,SpecialEvolution.beauty(pokemon)+SpecialEvolution.BEAUTY_GAIN)
+        inventory[key] = int(inventory[key])-1
+        _stat("items_used")
+        _decision("빈티나 아름다움 · %d/170" % pokemon.beauty)
+        return notify_changed()
     if EvolutionItems.ITEMS.has(key):
         var previous := pokemon.display_name
         TacticalGrowth.evolve(pokemon,EvolutionItems.target(key,pokemon.species_id),VisualCatalog.new())
@@ -423,6 +474,7 @@ func items() -> Dictionary:
     var result := TacticalJourneyContent.ITEMS.duplicate(true)
     if full_campaign: result["ball"] = {"name":"몬스터볼","price":35,"stock":4}
     if full_campaign: result.merge(EvolutionItems.ITEMS,true)
+    if full_campaign: result.merge(SpecialEvolution.ITEMS,true)
     return result
 func quantity(key: String) -> int:
     return balls if key == "ball" else int(inventory.get(key,0))
@@ -445,7 +497,8 @@ func _prepare_camp() -> void:
             state["card_offers"] = MerchantContent.generate(seed_value,step,int(current().get("chapter",0)),deck,party,relics)
             if full_campaign:
                 state["evolution_offer"] = EvolutionItems.merchant_offer(seed_value,step,party)
-                state["stock"][state["evolution_offer"]] = 1
+                if party.any(func(p: BattlePokemon): return p.species_id == 349 and p.level < 100 and SpecialEvolution.beauty(p) < SpecialEvolution.BEAUTY_THRESHOLD): state["evolution_offer"] = "blue_pokeblock"
+                state["stock"][state["evolution_offer"]] = items()[state["evolution_offer"]]["stock"]
         camp_states[step] = state
     shop_stock = camp_states[step]["stock"]
 func camp() -> Dictionary:

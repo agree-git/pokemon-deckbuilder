@@ -29,6 +29,7 @@ static func initialize(pokemon: BattlePokemon) -> void:
     PokemonStats.apply(pokemon)
     pokemon.progression_initialized = true
     if pokemon.friendship < 0: pokemon.friendship = FriendshipEvolution.START
+    if pokemon.species_id == 349 and pokemon.beauty < 0: pokemon.beauty = 0
     pokemon.experience = experience_floor(pokemon.level,pokemon.species_id)
     pokemon.learned_skills.clear()
     for entry: Dictionary in species_data(pokemon.species_id)["learnset"]:
@@ -62,6 +63,9 @@ static func award(pokemon: BattlePokemon,base: float,time_of_day := "day") -> Di
         PokemonStats.apply(pokemon)
         _learn_at(pokemon,pokemon.level,report)
         var evolution := FriendshipEvolution.target(pokemon,time_of_day)
+        if SpecialEvolution.target(pokemon) > 0:
+            if pokemon.species_id == 265 and pokemon.evolution_personality < 0: pokemon.evolution_personality = SpecialEvolution.personality(pokemon)
+            evolution = SpecialEvolution.target(pokemon)
         for rule: Dictionary in rules_for(pokemon.species_id):
             if pokemon.level >= int(rule["level"]):
                 evolution = int(rule["to"])

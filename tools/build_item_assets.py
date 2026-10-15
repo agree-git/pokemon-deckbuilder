@@ -9,6 +9,8 @@ ITEMS.update({key: key.replace('_', '-') for key in [
 # The pinned item set predates Linking Cord. Reuse its rope icon without relabeling the source.
 ITEMS['linking_cord'] = 'escape-rope'
 ITEMS['upgrade'] = 'up-grade'
+# A blue shard represents the expedition's simplified blue Pokeblock.
+ITEMS['blue_pokeblock'] = 'blue-shard'
 if __name__ == '__main__':
     try:
         for key, name in ITEMS.items():

@@ -1,6 +1,6 @@
 class_name PokemonStats
 extends RefCounted
-## Gen III species stats, fixed IV31 / EV0 / neutral nature. No random stats.
+## Gen III species stats, IV31 / neutral nature. Camp Tyrogue training uses 32 EV.
 const NAMES := ["hp","attack","defense","special_attack","special_defense","speed"]
 const TITLES := {"hp":"체력","attack":"공격","defense":"방어","special_attack":"특공","special_defense":"특방","speed":"스피드"}
 const STAT_IDS := {2:"attack",3:"defense",4:"special_attack",5:"special_defense",6:"speed"}
@@ -10,11 +10,13 @@ static func data() -> Dictionary:
     if _data.is_empty(): _data = JSON.parse_string(FileAccess.get_file_as_string("res://data/base_stats.json"))
     return _data
 static func base(species: int) -> Dictionary: return data()["species"][str(species)]
-static func value(species: int, level: int, stat: String) -> int:
+static func value(species: int, level: int, stat: String, effort := 0) -> int:
     if stat == "hp" and species == 292: return 1
     level = clampi(level,1,100)
-    var calculated := floori((2*int(base(species)[stat])+31)*clampi(level,1,100)/100.0)
+    var calculated := floori((2*int(base(species)[stat])+31+floori(clampi(effort,0,252)/4.0))*clampi(level,1,100)/100.0)
     return calculated+(level+10 if stat == "hp" else 5)
+static func individual(pokemon: BattlePokemon, stat: String) -> int:
+    return value(pokemon.species_id,pokemon.level,stat,SpecialEvolution.TRAINING_EFFORT if pokemon.evolution_training == stat else 0)
 static func apply(pokemon: BattlePokemon, full := false) -> void:
     var previous := pokemon.max_hp
     var alive := pokemon.alive()
@@ -26,7 +28,7 @@ static func apply(pokemon: BattlePokemon, full := false) -> void:
 static func effective(pokemon: BattlePokemon, stat: String) -> int:
     var stage := clampi(int(pokemon.stat_stages.get(stat,0)),-6,6)
     var ratio := (2.0+stage)/2.0 if stage >= 0 else 2.0/(2.0-stage)
-    var result := floori(value(pokemon.species_id,pokemon.level,stat)*ratio)
+    var result := floori(individual(pokemon,stat)*ratio)
     if stat == "speed" and pokemon.statuses.has("paralysis"): result = floori(result*0.5)
     return maxi(1,result)
 static func scale(pokemon: BattlePokemon, points: int) -> int:

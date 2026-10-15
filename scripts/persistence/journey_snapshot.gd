@@ -20,6 +20,9 @@ static func encode(j: TacticalJourney) -> Dictionary:
     for p: BattlePokemon in j.party+b.party+b.enemies+j.pending_captures:
         pokemon[p.uid] = fields(p,POKEMON_FIELDS)
         if p.friendship >= 0: pokemon[p.uid]["friendship"] = p.friendship
+        if p.beauty >= 0: pokemon[p.uid]["beauty"] = p.beauty
+        if p.evolution_personality >= 0: pokemon[p.uid]["evolution_personality"] = p.evolution_personality
+        if not p.evolution_training.is_empty(): pokemon[p.uid]["evolution_training"] = p.evolution_training
     for c: BattleCardInstance in j.deck+b.hand+b.draw_pile+b.discard+b.exhausted: cards[c.uid] = fields(c,CARD_FIELDS)
     var state := fields(j,RUN_FIELDS)
     if not j.time_of_day.is_empty(): state["time_of_day"] = j.time_of_day
@@ -46,6 +49,9 @@ static func restore(data: Dictionary) -> TacticalJourney:
         var p := BattlePokemon.new({"id":row["species_id"],"name":row["display_name"],"type":row["type"],"types":row["types"],"max_hp":row["max_hp"],"level":row["level"]},uid)
         for key: String in POKEMON_FIELDS: p.set(key,row[key])
         p.friendship = int(row.get("friendship",-1))
+        p.beauty = int(row.get("beauty",-1))
+        p.evolution_personality = int(row.get("evolution_personality",-1))
+        p.evolution_training = row.get("evolution_training","")
         pokemon[uid] = p
     for uid: int in data["cards"]:
         var row: Dictionary = data["cards"][uid]
@@ -135,6 +141,9 @@ static func validate(data: Variant) -> bool:
         if not uid is int or not p is Dictionary or not same_shape(p,fields(BattlePokemon.new(TacticalContent.PARTY[0],1),POKEMON_FIELDS)): return false
         if p["uid"] != uid or uid == 0 or not integer(p["species_id"],1,386) or not integer(p["level"],1,100): return false
         if p.has("friendship") and not integer(p["friendship"],0,255): return false
+        if p.has("beauty") and (not integer(p["beauty"],0,255) or p["species_id"] not in [349,350]): return false
+        if p.has("evolution_personality") and (not integer(p["evolution_personality"],0,4294967295) or p["species_id"] not in [265,266,267,268,269]): return false
+        if p.has("evolution_training") and (not p["evolution_training"] is String or p["evolution_training"] not in ["attack","defense","balanced"] or p["species_id"] not in [236,106,107,237]): return false
         if not integer(p["max_hp"],1,100000) or not integer(p["hp"],0,p["max_hp"]) or not integer(p["block"],0,100000): return false
         if p["species_stats"] and p["max_hp"] != PokemonStats.value(p["species_id"],p["level"],"hp"): return false
         for stat: Variant in p["stat_stages"]:
@@ -205,7 +214,7 @@ static func validate(data: Variant) -> bool:
     for key: String in ["potion","super_potion","revive"]:
         if not integer(r["inventory"].get(key),0,100000): return false
     for key: Variant in r["inventory"]:
-        if key not in ["potion","super_potion","revive"] and not EvolutionItems.ITEMS.has(key): return false
+        if key not in ["potion","super_potion","revive"] and not EvolutionItems.ITEMS.has(key) and not SpecialEvolution.ITEMS.has(key): return false
         if not integer(r["inventory"][key],0,100000): return false
     if r["badge_records"].size() != r["badges"]: return false
     var route := CampaignRoute.new(r["seed_value"])
@@ -217,12 +226,13 @@ static func validate(data: Variant) -> bool:
         for key: String in route.stops[step]["camp"]:
             if camp.get(key) != route.stops[step]["camp"][key]: return false
         if camp.has("evolution_offer"):
-            if camp["kind"] != "merchant" or not camp["evolution_offer"] is String or not EvolutionItems.ITEMS.has(camp["evolution_offer"]): return false
+            if camp["kind"] != "merchant" or not camp["evolution_offer"] is String: return false
+            if not EvolutionItems.ITEMS.has(camp["evolution_offer"]) and not SpecialEvolution.ITEMS.has(camp["evolution_offer"]): return false
             if not camp["stock"].has(camp["evolution_offer"]): return false
         for key: Variant in camp["stock"]:
             if not key is String: return false
             if key not in ["potion","super_potion","revive","ball"] and key != camp.get("evolution_offer",""): return false
-            if not integer(camp["stock"][key],0,1 if EvolutionItems.ITEMS.has(key) else 4): return false
+            if not integer(camp["stock"][key],0,3 if SpecialEvolution.ITEMS.has(key) else (1 if EvolutionItems.ITEMS.has(key) else 4)): return false
         if camp.has("card_offers"):
             if camp["kind"] != "merchant" or not MerchantContent.valid_offers(camp["card_offers"],int(route.stops[step]["chapter"])): return false
         if camp.has("removed") and not camp["removed"] is bool: return false
@@ -233,6 +243,7 @@ static func validate(data: Variant) -> bool:
         if entry.get("item") not in ["","potion","super_potion","revive","ball"] or not integer(entry.get("quantity"),0,10000): return false
     for report: Variant in r["growth_reports"]:
         if not report is Dictionary or not same_shape(report,{"uid":0,"id":1,"name":"","before":5,"after":5,"xp":0.0,"hp":0,"learned":[],"offers":[],"evolutions":[]}): return false
+        if report.has("companion") and not report["companion"] is String: return false
         for name: Variant in report["learned"]:
             if not name is String: return false
         for evolution: Variant in report["evolutions"]:
