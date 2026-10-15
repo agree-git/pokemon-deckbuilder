@@ -25,6 +25,13 @@ func run() -> void:
     await process_frame
     ui.restart()
     await save("tactics_start")
+    ui._open_overlay(ui.menu_panel)
+    await save("tactics_menu")
+    ui._open_overlay(ui.help_panel)
+    await save("tactics_help")
+    ui._show_pile("draw")
+    await save("tactics_deck")
+    ui._close_overlays()
     for guard in 100:
         if ui.battle.phase in [TacticalBattle.WON,TacticalBattle.LOST]: break
         var step := TacticalPolicy.action(ui.battle)

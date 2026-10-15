@@ -33,11 +33,15 @@ func run() -> void:
         root.position = Vector2i(20,20)
         await create_timer(0.2).timeout
         for position_index in 3:
-            for kind: String in ["history","end","switch","skill","card","trait","restart"]:
+            for kind: String in ["history","end","switch","skill","card","trait","restart","help","draw"]:
                 ui.restart("seed_relay")
                 await process_frame
+                if kind in ["trait","restart"]:
+                    await click(ui.menu_button)
                 var button: Button
                 match kind:
+                    "help": button = ui.help_button
+                    "draw": button = ui.draw_button
                     "history": button = ui.history_button
                     "end": button = ui.end_button
                     "switch": button = ui.party_buttons[0]
@@ -52,6 +56,8 @@ func run() -> void:
                 await click(button,local)
                 var valid := false
                 match kind:
+                    "help": valid = ui.help_panel.visible
+                    "draw": valid = ui.pile_panel.visible
                     "history": valid = ui.log_panel.visible
                     "end": valid = ui.battle.turn == 2
                     "switch": valid = ui.battle.active().uid == 4
