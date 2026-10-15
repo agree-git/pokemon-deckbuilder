@@ -10,6 +10,7 @@ const MINT := Color("b5e1c3")
 var battle: TacticalBattle
 var run_mode := false
 var run_title := ""
+var run_biome: Dictionary = {}
 signal run_continue_requested
 signal run_restart_requested(selected_relic: String)
 var result_next: Button
@@ -105,7 +106,7 @@ func _ready() -> void:
     stage.canvas.use_effect_statuses = false
     stage.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     add_child(stage)
-    stage.canvas.background = VisualCatalog.biome_texture(catalog.biomes[3])
+    stage.canvas.background = VisualCatalog.biome_texture(run_biome if not run_biome.is_empty() else catalog.biomes[3])
     stage.canvas.effect.speed = 2.4
     stage.canvas.effect.finished.connect(_finished)
     stage.canvas.effect.impact.connect(_impact)
@@ -144,8 +145,8 @@ func _build() -> void:
     top_bar.offset_bottom = 72
     top_bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
     add_child(top_bar)
-    W.icon(self,"grass",Rect2(42,23,28,28))
-    _label("햇살숲",Rect2(86,16,190,40),23)
+    W.icon(self,run_biome.get("type","grass"),Rect2(42,23,28,28))
+    _label(run_biome.get("name","햇살숲"),Rect2(86,16,190,40),21)
     relic_chip = W.button(self,Rect2(274,16,208,40),func(): _open_overlay(menu_panel))
     W.icon(relic_chip,"seed",Rect2(12,8,24,24)).name = "Icon"
     W.label(relic_chip,"",Rect2(48,0,146,40),17,W.MUTED).name = "Title"
@@ -189,7 +190,9 @@ func _build_combat_hud() -> void:
     # The HP values stay separate from names and status icons.
     _label("",Rect2(380,605,245,28),17,CREAM,HORIZONTAL_ALIGNMENT_RIGHT).name = "AllyHP"
     _label("",Rect2(1302,598,245,28),17,CREAM,HORIZONTAL_ALIGNMENT_RIGHT).name = "EnemyHP"
+    W.icon(self,"grass",Rect2(567,578,20,20)).name = "AllyType2"
     W.icon(self,"grass",Rect2(591,578,24,24)).name = "AllyType"
+    W.icon(self,"grass",Rect2(1489,571,20,20)).name = "EnemyType2"
     W.icon(self,"grass",Rect2(1513,571,24,24)).name = "EnemyType"
     ally_statuses.position = Vector2(335,662)
     ally_statuses.size = Vector2(400,32)
@@ -422,6 +425,7 @@ func _show_bag() -> void:
             button.disabled = not run_journey.item_reason(key,index).is_empty()
             button.tooltip_text = run_journey.item_reason(key,index)
         row += 1
+    W.label(content,"몬스터볼 ×%d · 야생 전투에서 C로 포획" % run_journey.balls,Rect2(36,578,990,36),16,W.MUTED)
     _open_overlay(bag_panel)
 func _bag_item(key: String,index: int) -> void:
     if busy or run_journey == null: return
@@ -474,6 +478,10 @@ func _refresh() -> void:
     enemy_label.text = "%s · Lv.%d" % [foe.display_name,foe.level]
     get_node("AllyHP").text = "%d / %d" % [battle.active().hp,battle.active().max_hp]
     get_node("EnemyHP").text = "%d / %d" % [foe.hp,foe.max_hp]
+    get_node("AllyType2").visible = battle.full_type_chart and battle.active().types.size() > 1
+    if battle.active().types.size() > 1: get_node("AllyType2").texture = W.texture(battle.active().types[1])
+    get_node("EnemyType2").visible = battle.full_type_chart and foe.types.size() > 1
+    if foe.types.size() > 1: get_node("EnemyType2").texture = W.texture(foe.types[1])
     get_node("AllyType").texture = W.texture(battle.active().type)
     get_node("EnemyType").texture = W.texture(foe.type)
     _refresh_statuses(ally_statuses,battle.active())
@@ -552,6 +560,10 @@ func _refresh() -> void:
             skill_values[i].text = "다음 턴에 사용"
         skill_costs[i].text = str(view["cost"])
         skills[i].tooltip_text = "%s · %s\n%s\n%s" % [SKILL_LABELS[i],view["name"],view["description"],reason if not reason.is_empty() else "이 포켓몬으로 턴 1회 사용"]
+        if battle.full_type_chart and view.has("damage"):
+            var affinity := battle.multiplier(view["type"],foe)
+            skills[i].tooltip_text += "\n타입 상성 ×%s" % String.num(affinity,2)
+            if affinity == 0.0: skill_values[i].text = "효과 없음"
         skills[i].disabled = busy or not reason.is_empty()
         W.fade(skills[i])
     _refresh_hand()

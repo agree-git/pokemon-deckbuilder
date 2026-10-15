@@ -77,6 +77,7 @@ static func evolve(pokemon: BattlePokemon,target: int,catalog: VisualCatalog) ->
     pokemon.species_id = target
     pokemon.display_name = species["name"]
     pokemon.type = species["types"][0]
+    pokemon.types.assign(species["types"])
     pokemon.max_hp += EVOLUTION_HP
     if pokemon.alive(): pokemon.hp += EVOLUTION_HP
     pokemon.evolution_power += 1

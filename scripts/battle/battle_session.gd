@@ -12,7 +12,7 @@ var battle: BattleState:
     get:
         return run.battle
 
-func start_journey(starters: Array[int],run_seed: int) -> String:
+func start_journey(starters: Array[int],run_seed: int, full_campaign := true) -> String:
     var catalog := VisualCatalog.new()
     var allowed := profile.unlocked_starters(catalog)
     var seen: Array[int] = []
@@ -20,6 +20,6 @@ func start_journey(starters: Array[int],run_seed: int) -> String:
     for id: int in starters:
         if id not in allowed or id in seen: return "해금된 포켓몬을 중복 없이 선택하세요."
         seen.append(id)
-    journey = TacticalJourney.new(run_seed,"seed_relay",starters)
+    journey = TacticalJourney.new(run_seed,"seed_relay",starters,full_campaign)
     has_journey = true
     return ""

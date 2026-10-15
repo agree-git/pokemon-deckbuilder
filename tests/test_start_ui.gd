@@ -70,6 +70,7 @@ func run() -> void:
         root.size = dimensions
         await process_frame
         var menu := current_scene as MainMenu
+        menu.full_campaign = false
         await click(menu.start_button,Vector2(menu.start_button.size.x/2,3))
         check(menu.mode == "starters" and menu.confirm_button.disabled,"Start opens empty selection at %s" % dimensions)
         for id: int in [4,1,7]: await click(menu.species_buttons[id])
@@ -82,6 +83,7 @@ func run() -> void:
     root.size = Vector2i(1280,720)
     await process_frame
     var menu := current_scene as MainMenu
+    menu.full_campaign = false
     await click(menu.start_button)
     for id: int in [4,1,7]: await click(menu.species_buttons[id])
     await click(menu.confirm_button)
@@ -106,6 +108,7 @@ func run() -> void:
     await click(ui.battle_ui.menu_button)
     await click(ui.battle_ui.home_button)
     menu = current_scene as MainMenu
+    menu.full_campaign = false
     check(menu != null and is_instance_valid(menu.continue_button),"Returning home offers resume")
     var retained: TacticalJourney = session.get("journey")
     var snapshot := retained.battle.snapshot()
@@ -140,6 +143,7 @@ func run() -> void:
     await scene_changed
     await process_frame
     menu = current_scene as MainMenu
+    menu.full_campaign = false
     await click(menu.start_button)
     check(menu.species_buttons.has(43),"Captured starter is selectable next run")
     await click(menu.species_buttons[43])

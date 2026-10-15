@@ -1,5 +1,7 @@
 class_name MainMenu
 extends Control
+## Development probes may retain the short authored route. Normal games use the campaign.
+var full_campaign := true
 const W = preload("res://scripts/ui/combat_widgets.gd")
 var catalog := VisualCatalog.new()
 var session: Node
@@ -69,7 +71,7 @@ func _button(title: String,rect: Rect2,action: Callable,icon: String) -> Button:
 func _title() -> void:
     W.label(page,"POKÉMON EXPEDITION",Rect2(144,165,700,50),21,W.MUTED)
     W.label(page,"포켓몬 원정대",Rect2(138,227,1130,116),82,W.GOLD)
-    W.label(page,"동료를 모으고, 나만의 전술로 배지에 도전하세요.",Rect2(146,365,1030,46),23,W.TEXT)
+    W.label(page,"배지 8개를 모으고, 사천왕과 챔피언에게 도전하세요.",Rect2(146,365,1030,46),23,W.TEXT)
     var y := 505
     var journey: TacticalJourney = session.get("journey")
     if session.get("has_journey") and journey.phase not in [TacticalJourney.CLEARED,TacticalJourney.FAILED]:
@@ -197,7 +199,7 @@ func _sync_selection() -> void:
     for id: int in species_buttons:
         species_buttons[id].add_theme_stylebox_override("normal",W.box(Color("23403d") if id in selection else Color("152b32"),W.GOLD if id in selection else Color("3d555a")))
 func _start() -> void:
-    var error: String = session.start_journey(selection,int(Time.get_unix_time_from_system()) ^ Time.get_ticks_usec())
+    var error: String = session.start_journey(selection,int(Time.get_unix_time_from_system()) ^ Time.get_ticks_usec(),full_campaign)
     if not error.is_empty():
         notice.text = error
         return

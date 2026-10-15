@@ -59,10 +59,14 @@ static func sprite(parent: Node, species: int, rect: Rect2) -> TextureRect:
         atlas.region = source.get_image().get_used_rect()
         _portraits[species] = atlas
     var portrait: AtlasTexture = _portraits[species]
-    var factor := maxf(1,floorf(minf(rect.size.x/portrait.region.size.x,rect.size.y/portrait.region.size.y)))
-    var dimensions := portrait.region.size*factor
+    var fit := minf(rect.size.x/portrait.region.size.x,rect.size.y/portrait.region.size.y)
+    # Large evolved species also need to fit a 48px roster portrait.
+    # Use integer zoom or reciprocal integer reduction, keeping nearest sampling.
+    var factor := floorf(fit) if fit >= 1.0 else 1.0/ceilf(1.0/fit)
+    var dimensions := (portrait.region.size*factor).floor()
     var node := TextureRect.new()
     node.texture = portrait
+    node.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
     node.position = (rect.position+(rect.size-dimensions)/2).round()
     node.size = dimensions
     node.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST

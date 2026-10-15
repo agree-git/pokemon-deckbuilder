@@ -6,6 +6,7 @@ const REPLACE := "replace"
 const WON := "won"
 const LOST := "lost"
 const REFUND_LIMIT := 2
+var full_type_chart := false
 var party: Array[BattlePokemon] = []
 var enemies: Array[BattlePokemon] = []
 var enemy_definitions: Array = []
@@ -120,14 +121,14 @@ func intent() -> Dictionary:
     var result: Dictionary = definitions[int(opening()["intent"]) % definitions.size()].duplicate(true)
     if result["kind"] in ["attack","charge"]:
         if enemy().statuses.has("paralysis") or enemy().statuses.has("confusion"): result["value"] = maxi(0,int(result["value"])-2)
-        result["value"] = maxi(0,int(floor((int(result["value"])+enemy().strength)*BattleContent.multiplier(result.get("type","normal"),active().type))))
+        result["value"] = maxi(0,int(floor((int(result["value"])+enemy().strength)*multiplier(result.get("type","normal"),active()))))
     if enemy().statuses.has("sleep"): result["asleep"] = true
     return result
 func skill_view(key: String) -> Dictionary:
     var view: Dictionary = TacticalMoves.definition(key).duplicate(true)
     if view.has("damage"):
         var base := int(view["damage"])+active().strength+TacticalGrowth.attack_bonus(active())+next_attack_bonus+int(switch_bonus.get(active().uid,0))+(2 if enemy().statuses.has("exposed") else 0)
-        view["preview_damage"] = int(floor(base*BattleContent.multiplier(view["type"],enemy().type))) * (2 if opening()["burst"] else 1)
+        view["preview_damage"] = int(floor(base*multiplier(view["type"],enemy()))) * (2 if opening()["burst"] else 1)
     return view
 func skill_reason(key: String) -> String:
     if phase != PLAYER:
@@ -156,8 +157,8 @@ func use_skill(key: String) -> String:
     if definition.has("damage"):
         if burst:
             state["burst"] = false
-        var multiplier := BattleContent.multiplier(definition["type"],target.type)
-        if multiplier > 1:
+        var affinity := multiplier(definition["type"],target)
+        if affinity > 1:
             _opening("weakness","약점 공격")
         if state["analyzed"]:
             state["analyzed"] = false
@@ -166,7 +167,7 @@ func use_skill(key: String) -> String:
         next_attack_bonus = 0
         switch_bonus.erase(actor.uid)
         _direct = true
-        _damage(target,int(floor(base*multiplier))*(2 if burst else 1))
+        _damage(target,int(floor(base*affinity))*(2 if burst else 1))
         _direct = false
     if target.alive():
         for key_name: String in ["burn","seed","poison","sleep","paralysis","confusion"]:
@@ -481,3 +482,6 @@ func snapshot() -> Dictionary:
         "switched":switched,"refunds":refunds,"bonus":next_attack_bonus,"switch_bonus":switch_bonus.duplicate(),"free":free_card,
         "pending":_pending,"relay":_relay.duplicate(true),"rng":_rng.state,"next_uid":_next_uid,"piles":piles,
         "seed":seed_value,"relic":relic,"events":events.duplicate(true),"history":history.duplicate()}
+
+func multiplier(attack: String, target: BattlePokemon) -> float:
+    return TypeMatchup.multiplier(attack,target.types) if full_type_chart else BattleContent.multiplier(attack,target.type)

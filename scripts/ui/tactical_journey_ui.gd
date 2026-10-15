@@ -41,15 +41,16 @@ func refresh() -> void:
         battle_ui.battle = journey.battle
         battle_ui.run_mode = true
         battle_ui.run_journey = journey
-        battle_ui.run_title = "%d / 5  ·  %s" % [journey.step+1,journey.current()["name"]]
+        battle_ui.run_title = journey.progress_title()
+        battle_ui.run_biome = journey.biome()
         battle_ui.capture_action = _capture
-        battle_ui.capture_status = func(): return {"wild":journey.step == 0,"balls":journey.balls,"reason":journey.capture_reason()}
+        battle_ui.capture_status = func(): return {"wild":journey.is_wild(),"balls":journey.balls,"reason":journey.capture_reason()}
         battle_ui.run_continue_requested.connect(_settle)
         battle_ui.run_restart_requested.connect(_restart)
         page.add_child(battle_ui)
         return
     var background := TextureRect.new()
-    background.texture = VisualCatalog.biome_texture(VisualCatalog.new().biomes[3])
+    background.texture = VisualCatalog.biome_texture(journey.biome())
     background.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
     background.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
     background.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
@@ -61,11 +62,11 @@ func refresh() -> void:
     shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
     page.add_child(shade)
-    W.icon(page,"grass",Rect2(48,24,32,32))
-    W.label(page,"햇살숲 원정",Rect2(96,16,500,48),24)
-    W.label(page,"골드 %d  ·  배지 %d / 1" % [journey.gold,journey.badges],Rect2(1400,16,360,48),17,W.MUTED,HORIZONTAL_ALIGNMENT_RIGHT)
+    W.icon(page,journey.biome()["type"],Rect2(48,24,32,32))
+    W.label(page,journey.biome()["name"],Rect2(96,16,500,48),24)
+    W.label(page,"골드 %d  ·  배지 %d / %d" % [journey.gold,journey.badges,8 if journey.full_campaign else 1],Rect2(1400,16,360,48),17,W.MUTED,HORIZONTAL_ALIGNMENT_RIGHT)
     W.icon_button(page,"home",Rect2(1788,18,64,44),_home,"시작 화면")
-    var titles := {TacticalJourney.LEARN:"새로운 기술",TacticalJourney.REWARD:"전투 보상",TacticalJourney.CAPTURE:"새로운 동료",TacticalJourney.MAP:"다음 장소",TacticalJourney.REST:"잠시 쉬어갑니다",TacticalJourney.CLEARED:"레인보배지 획득!",TacticalJourney.FAILED:"원정 종료"}
+    var titles := {TacticalJourney.LEARN:"새로운 기술",TacticalJourney.REWARD:"전투 보상",TacticalJourney.CAPTURE:"새로운 동료",TacticalJourney.MAP:"다음 장소",TacticalJourney.REST:"잠시 쉬어갑니다",TacticalJourney.CLEARED:"새로운 챔피언 탄생!" if journey.full_campaign else "레인보배지 획득!",TacticalJourney.FAILED:"원정 종료"}
     W.label(page,titles[journey.phase],Rect2(96,122,1728,70),40,W.GOLD)
     _party()
     match journey.phase:
@@ -99,7 +100,7 @@ func _action(title: String, rect: Rect2, callback: Callable, icon := "next") -> 
     actions.append(button)
     return button
 func _rewards() -> void:
-    W.label(page,"트레이너 카드 1장을 덱에 추가합니다.",Rect2(550,225,1200,48),22,W.MUTED)
+    W.label(page,("배지 획득! · %d / 8  ·  " % journey.badges if journey.full_campaign and journey.current()["kind"] == "gym" else "")+"트레이너 카드 1장을 덱에 추가합니다.",Rect2(550,225,1200,48),22,W.MUTED)
     for i in journey.reward_options.size():
         var key := journey.reward_options[i]
         var card := TrainerActionCard.new()
@@ -123,15 +124,28 @@ func _growth_summary() -> void:
         W.label(panel,"+%s XP  ·  최대 HP +%d" % [String.num(report["xp"],1).trim_suffix(".0"),report["hp"]],Rect2(18,58,348,28),16,W.MUTED)
         W.label(panel," · ".join(report["learned"])+" 습득" if not report["learned"].is_empty() else ("자동 진화!" if not report["evolutions"].is_empty() else "다음 레벨을 향해!"),Rect2(18,96,348,28),17,W.TEXT)
 func _map() -> void:
-    W.label(page,"%d / 5  ·  %s" % [journey.step+1,journey.current()["name"]],Rect2(550,225,1200,48),25)
-    for i in TacticalJourneyContent.STOPS.size():
-        var stop: Dictionary = TacticalJourneyContent.STOPS[i]
-        var x := 552+i*244
-        var panel := W.panel(page,Rect2(x,350,218,220),Color("20383e") if i == journey.step else Color("14282f"),W.GOLD if i == journey.step else Color("405960"))
-        W.icon(panel,"check" if i < journey.step else stop["icon"],Rect2(85,34,48,48))
-        W.label(panel,str(i+1),Rect2(0,94,218,30),17,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
-        W.label(panel,stop["name"].replace(" · ","\n"),Rect2(12,130,194,64),18,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
-    _action("%s로 이동" % journey.current()["name"],Rect2(820,700,560,72),_enter)
+    W.label(page,journey.progress_title(),Rect2(550,225,1200,48),24)
+    var stops: Array = journey.route.stops if journey.full_campaign else TacticalJourneyContent.STOPS
+    var visible_steps: Array[int] = []
+    for i in stops.size():
+        if not journey.full_campaign or (stops[i]["chapter"] == journey.current()["chapter"] and (int(stops[i]["chapter"]) < 8 or stops[i]["kind"] != "rest")): visible_steps.append(i)
+    var width := 1190.0/visible_steps.size()
+    for column in visible_steps.size():
+        var i := visible_steps[column]
+        var stop: Dictionary = stops[i]
+        var panel := W.panel(page,Rect2(550+column*width,350,width-12,220),Color("20383e") if i == journey.step else Color("14282f"),W.GOLD if i == journey.step else Color("405960"))
+        W.icon(panel,"check" if i < journey.step else stop["icon"],Rect2((width-60)/2,34,48,48))
+        W.label(panel,str(column+1),Rect2(0,94,width-12,30),17,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+        W.label(panel,stop["name"].replace(" · ","\n"),Rect2(8,130,width-28,72),16,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
+    _action("%s로 이동" % journey.current()["name"],Rect2(820,620,560,72),_enter)
+    if journey.full_campaign:
+        W.label(page,"원정 경로 · 배지 %d / 8" % journey.badges,Rect2(550,748,1190,36),19,W.MUTED)
+        for i in 8:
+            var biome := journey.route.biomes[i]
+            var panel := W.panel(page,Rect2(550+i*150,800,138,106),Color("20383e"),W.GOLD if i < journey.badges else Color("405960"))
+            W.icon(panel,"badge" if i < journey.badges else biome["type"],Rect2(51,12,32,32))
+            W.label(panel,biome["name"],Rect2(4,57,130,40),13,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
+        W.label(page,"배지 8개 → 사천왕 4명 → 챔피언 · "+str(journey.route.champion["name"]),Rect2(550,932,1190,40),20,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
 func _learning() -> void:
     var offer := journey.pending_learning[0]
     var pokemon: BattlePokemon
@@ -173,25 +187,30 @@ func _rest() -> void:
             rest_button.disabled = journey.step in journey.rested_steps
         "shop":
             var i := 0
-            for key: String in TacticalJourneyContent.ITEMS:
-                var item: Dictionary = TacticalJourneyContent.ITEMS[key]
-                var y := 376+i*140
+            for key: String in journey.items():
+                var item: Dictionary = journey.items()[key]
+                var y := 356+i*120
                 W.panel(page,Rect2(550,y,1190,114),Color("172d32"))
-                W.icon(page,"heal",Rect2(574,y+30,48,48))
+                W.icon(page,"ball" if key == "ball" else "heal",Rect2(574,y+30,48,48))
                 W.label(page,"%s · %d 골드" % [item["name"],item["price"]],Rect2(650,y+12,600,40),24,W.TEXT)
-                W.label(page,("기절한 동료의 HP 50% 회복" if key == "revive" else "체력 %d 회복" % item["heal"])+" · 재고 %d / 보유 %d" % [journey.shop_stock.get(key,0),journey.inventory[key]],Rect2(650,y+61,600,34),18,W.MUTED)
+                W.label(page,("야생 전투에서 포획 · C" if key == "ball" else ("기절한 동료의 HP 50% 회복" if key == "revive" else "체력 %d 회복" % item["heal"]))+" · 재고 %d / 보유 %d" % [journey.shop_stock.get(key,0),journey.quantity(key)],Rect2(650,y+61,600,34),18,W.MUTED)
                 var button := W.button(page,Rect2(1440,y+22,270,70),_buy.bind(key),"구매")
+                button.name = "Buy_"+key
                 button.disabled = not journey.buy_reason(key).is_empty()
                 button.tooltip_text = journey.buy_reason(key)
                 actions.append(button)
                 i += 1
         "bag":
             var i := 0
-            for key: String in TacticalJourneyContent.ITEMS:
-                W.label(page,"%s ×%d" % [TacticalJourneyContent.ITEMS[key]["name"],journey.inventory[key]],Rect2(550,390+i*140,320,70),23)
+            for key: String in journey.items():
+                if key == "ball":
+                    W.label(page,"몬스터볼 ×%d · 야생 전투에서 C로 포획" % journey.balls,Rect2(550,818,1190,40),19,W.MUTED)
+                    continue
+                W.label(page,"%s ×%d" % [journey.items()[key]["name"],journey.quantity(key)],Rect2(550,390+i*140,320,70),23)
                 for index in journey.party.size():
                     var pokemon := journey.party[index]
                     var button := W.button(page,Rect2(870+index*290,390+i*140,270,76),_use_item.bind(key,index),pokemon.display_name)
+                    button.name = "Use_%s_%d" % [key,index]
                     button.disabled = not journey.item_reason(key,index).is_empty()
                     button.tooltip_text = journey.item_reason(key,index)
                     actions.append(button)
@@ -200,7 +219,12 @@ func _rest() -> void:
             var text := ""
             for entry: Dictionary in journey.loot:
                 text += "%s\n+%d 골드 · %s ×%d\n\n" % [entry["name"],entry["gold"],TacticalJourneyContent.ITEMS[entry["item"]]["name"],entry["quantity"]]
-            W.label(page,text if not text.is_empty() else "아직 얻은 전리품이 없습니다.",Rect2(600,380,1090,420),24,W.TEXT)
+            var list := RichTextLabel.new()
+            list.position = Vector2(600,370)
+            list.size = Vector2(1090,420)
+            list.text = text if not text.is_empty() else "아직 얻은 전리품이 없습니다."
+            list.add_theme_font_size_override("normal_font_size",22)
+            page.add_child(list)
             W.label(page,"전리품은 전투 종료 시 가방과 골드에 자동 반영됩니다.",Rect2(600,815,1090,40),18,W.MUTED)
     W.label(page,camp_notice,Rect2(550,870,1190,40),20,W.GOLD)
 func _camp_rest() -> void:
@@ -209,7 +233,7 @@ func _camp_rest() -> void:
     refresh()
 func _buy(key: String) -> void:
     var reason := journey.buy(key)
-    camp_notice = reason if not reason.is_empty() else str(TacticalJourneyContent.ITEMS[key]["name"])+" 구매 완료"
+    camp_notice = reason if not reason.is_empty() else str(journey.items()[key]["name"])+" 구매 완료"
     refresh()
 func _use_item(key: String,index: int) -> void:
     var reason := journey.use_item(key,index)
@@ -223,10 +247,12 @@ func _leave_camp() -> void:
 func _result() -> void:
     var cleared := journey.phase == TacticalJourney.CLEARED
     W.icon(page,"badge" if cleared else "injury",Rect2(1056,280,112,112))
-    W.label(page,"민화의 6마리 파티를 이겼습니다." if cleared else "원정대가 모두 쓰러졌습니다.",Rect2(550,430,1190,60),30,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
+    W.label(page,("챔피언 %s 격파 · 명예의 전당에 올랐습니다." % journey.route.champion["name"] if journey.full_campaign else "민화의 6마리 파티를 이겼습니다.") if cleared else "원정대가 모두 쓰러졌습니다.",Rect2(550,430,1190,60),30,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
     W.label(page,"%d승  ·  총 %d턴  ·  배지 %d개" % [journey.wins,journey.total_turns,journey.badges],Rect2(550,510,1190,44),24,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
-    W.label(page,("기본 경험치 +%d · 기절한 동료는 30%%" % TacticalJourneyContent.experience_reward(journey.step) if cleared else journey.current()["name"]),Rect2(550,570,1190,40),20,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+    W.label(page,("기본 경험치 +%d · 기절한 동료는 30%%" % journey.experience_reward() if cleared else journey.current()["name"]),Rect2(550,570,1190,40),20,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
     _growth_summary()
+    if journey.full_campaign:
+        W.label(page,"배지 %d / 8  ·  사천왕 %d / 4" % [journey.badges,journey.elite_wins],Rect2(550,630,1190,42),23,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
     _action("같은 시드로 다시 출발",Rect2(650,710,470,76),_restart.bind(journey.relic),"restart")
     _action("새 시드로 출발",Rect2(1160,710,470,76),_new_seed,"route")
     _action("시작 화면",Rect2(140,800,300,62),_home,"home")

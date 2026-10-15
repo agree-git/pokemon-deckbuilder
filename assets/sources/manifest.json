@@ -3160,5 +3160,9 @@
   "assets/sources/csv/version_groups.csv": {
     "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/version_groups.csv",
     "sha256": "28da8d89d8eb4966941f81a9e62b3990510ed4d76dd774158246551a8e7707a7"
+  },
+  "assets/sources/csv/type_efficacy.csv": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/type_efficacy.csv",
+    "sha256": "cdd7de4066680414d0a2433af805f139f425d6350cbf998ecab559a0fe8ff587"
   }
 }

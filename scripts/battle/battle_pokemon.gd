@@ -6,6 +6,7 @@ var uid: int
 var species_id: int
 var display_name: String
 var type: String
+var types: Array[String] = []
 var max_hp: int
 var hp: int
 var block := 0
@@ -28,6 +29,7 @@ func _init(definition: Dictionary, instance_uid: int) -> void:
     species_id = int(definition["id"])
     display_name = definition["name"]
     type = definition["type"]
+    types.assign(definition.get("types",[type]))
     max_hp = int(definition["max_hp"])
     level = int(definition.get("level",5))
     hp = max_hp
@@ -43,6 +45,6 @@ func experience_text() -> String:
     return String.num(experience,1).trim_suffix(".0")
 
 func snapshot() -> Dictionary:
-    return {"uid": uid, "id": species_id, "hp": hp, "max_hp": max_hp, "block": block,
+    return {"types":types.duplicate(),"uid": uid, "id": species_id, "hp": hp, "max_hp": max_hp, "block": block,
         "experience": experience, "level": level, "evolution_power": evolution_power,
         "skills": learned_skills.duplicate(), "strength": strength, "statuses": statuses.duplicate(true), "knocked_out": knocked_out}
