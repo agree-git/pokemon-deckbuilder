@@ -7,6 +7,18 @@ const PARTY := [
     {"id":7,"uid":7,"name":"꼬부기","type":"water","max_hp":52},
 ]
 const SKILLS := {4:["ember","flame","fire_guard"],1:["vine","seed","growth"],7:["water_gun","shell","tackle"]}
+
+static func skills_for(pokemon: BattlePokemon) -> Array:
+    if SKILLS.has(pokemon.species_id): return SKILLS[pokemon.species_id]
+    if BattleContent.LEARNSETS.has(pokemon.species_id): return BattleContent.LEARNSETS[pokemon.species_id]
+    return {"fire":["ember","flame","fire_guard"],"water":["water_gun","shell","tackle"],"grass":["vine","seed","growth"]}.get(pokemon.type,["tackle","guard","growth"])
+
+static func member_definition(id: int,catalog: VisualCatalog) -> Dictionary:
+    for definition: Dictionary in PARTY:
+        if definition["id"] == id: return definition.duplicate(true)
+    var species := catalog.species(id)
+    return {"id":id,"uid":id,"name":species["name"],"type":species["types"][0],"max_hp":48}
+
 const ENEMIES := [
     {"id":43,"name":"뚜벅쵸","type":"grass","max_hp":40,"intents":[
         {"kind":"charge","value":14,"type":"normal","move_id":33},

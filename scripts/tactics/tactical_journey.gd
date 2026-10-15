@@ -3,6 +3,7 @@ extends RefCounted
 ## Persistent run state; battle RNG and reward RNG are independent.
 const BATTLE := "battle"
 const REWARD := "reward"
+const CAPTURE := "capture"
 const MAP := "map"
 const REST := "rest"
 const CLEARED := "cleared"
@@ -20,10 +21,16 @@ var deck: Array[BattleCardInstance] = []
 var reward_options: Array[String] = []
 var history: Array[String] = []
 var _settled: TacticalBattle
+var starter_ids: Array[int] = []
+var balls := 2
+var pending_captures: Array[BattlePokemon] = []
+var _next_pokemon_uid := 1000
+var _capture_catalog: VisualCatalog
 
-func _init(run_seed: int = 2026, selected_relic: String = "seed_relay") -> void:
-    restart(run_seed,selected_relic)
-func restart(run_seed: int = 2026, selected_relic: String = "seed_relay") -> void:
+func _init(run_seed: int = 2026, selected_relic: String = "seed_relay", selected_starters: Array[int] = []) -> void:
+    restart(run_seed,selected_relic,selected_starters)
+func restart(run_seed: int = 2026, selected_relic: String = "seed_relay", selected_starters: Array[int] = []) -> void:
+    if not selected_starters.is_empty(): starter_ids.assign(selected_starters)
     seed_value = run_seed
     relic = selected_relic if TacticalContent.RELICS.has(selected_relic) else "seed_relay"
     step = 0
@@ -33,9 +40,20 @@ func restart(run_seed: int = 2026, selected_relic: String = "seed_relay") -> voi
     history.clear()
     reward_options.clear()
     _settled = null
+    balls = 2
+    pending_captures.clear()
+    _next_pokemon_uid = 1000
     battle = TacticalBattle.new(seed_value,relic)
     party.assign(battle.party)
     _collect_deck()
+    if not starter_ids.is_empty():
+        party.clear()
+        var catalog := VisualCatalog.new()
+        for id: int in starter_ids:
+            party.append(BattlePokemon.new(TacticalContent.member_definition(id,catalog),id))
+        var opponents := TacticalContent.ENEMIES.duplicate(true)
+        if party.size() == 1: opponents = [opponents[0]]
+        battle.start_with(party,deck,opponents,seed_value,relic,true)
     phase = BATTLE
 func current() -> Dictionary:
     return TacticalJourneyContent.STOPS[step]
@@ -60,6 +78,12 @@ func settle() -> String:
         badges = 1
         phase = CLEARED
         return ""
+    if not pending_captures.is_empty():
+        phase = CAPTURE
+        return ""
+    _prepare_rewards()
+    return ""
+func _prepare_rewards() -> void:
     var candidates: Array[String] = ["analysis","guard","focus","rally","counter"]
     var rng := RandomNumberGenerator.new()
     rng.seed = seed_value+step*104729+81173
@@ -70,6 +94,38 @@ func settle() -> String:
         candidates[j] = swap
     reward_options.assign(candidates.slice(0,3))
     phase = REWARD
+
+func capture_reason() -> String:
+    if phase != BATTLE or step != 0: return "트레이너와 관장의 포켓몬은 포획할 수 없습니다."
+    if _capture_catalog == null: _capture_catalog = VisualCatalog.new()
+    var species := _capture_catalog.species(battle.enemy().species_id)
+    if species.is_empty() or species["is_legendary"] or species["is_mythical"]: return "특별한 포획 조건이 필요한 포켓몬입니다."
+    if balls <= 0: return "몬스터볼이 없습니다."
+    return battle.capture_reason()
+func capture() -> String:
+    var reason := capture_reason()
+    if not reason.is_empty(): return reason
+    var target := battle.enemy()
+    var definition := {"id":target.species_id,"name":target.display_name,"type":target.type,"max_hp":target.max_hp}
+    battle.capture_enemy()
+    balls -= 1
+    var caught := BattlePokemon.new(definition,_next_pokemon_uid)
+    _next_pokemon_uid += 1
+    caught.experience = 1
+    pending_captures.append(caught)
+    return ""
+func resolve_capture(index: int) -> String:
+    if phase != CAPTURE: return "합류할 포켓몬이 없습니다."
+    if index < -1 or index >= (party.size() if party.size() == 3 else 1): return "합류 또는 교체할 멤버를 선택하세요."
+    var caught := pending_captures.pop_front() as BattlePokemon
+    if index >= 0:
+        if party.size() == 3:
+            var leaving := party[index].uid
+            party[index] = caught
+            for i in range(deck.size()-1,-1,-1):
+                if deck[i].injury_owner_uid == leaving: deck.remove_at(i)
+        else: party.append(caught)
+    if pending_captures.is_empty(): _prepare_rewards()
     return ""
 func choose_reward(index: int) -> String:
     if phase != REWARD or index < -1 or index >= reward_options.size(): return "표시된 보상을 선택하세요."
@@ -87,7 +143,7 @@ func enter_next() -> String:
         phase = REST
     else:
         battle = TacticalBattle.new()
-        battle.start_with(party,deck,TacticalJourneyContent.opponents(step),seed_value+step,relic)
+        battle.start_with(party,deck,TacticalJourneyContent.opponents(step),seed_value+step,relic,not starter_ids.is_empty())
         phase = BATTLE
     return ""
 func rest(action: String, member_index: int = 0) -> String:

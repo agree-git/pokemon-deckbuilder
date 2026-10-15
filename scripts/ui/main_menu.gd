@@ -1,0 +1,214 @@
+class_name MainMenu
+extends Control
+const W = preload("res://scripts/ui/combat_widgets.gd")
+var catalog := VisualCatalog.new()
+var session: Node
+var profile: PlayerProfile
+var page := Control.new()
+var mode := "title"
+var selection: Array[int] = []
+var species_buttons: Dictionary = {}
+var start_button: Button
+var continue_button: Button
+var collection_button: Button
+var confirm_button: Button
+var back_button: Button
+var search: LineEdit
+var show_locked: CheckButton
+var grid: GridContainer
+var slots: Panel
+var counter: Label
+var notice: Label
+
+func _ready() -> void:
+    set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+    session = get_node("/root/BattleSession")
+    profile = session.get("profile")
+    var font := FontVariation.new()
+    font.base_font = load("res://assets/fonts/NotoSansKR.ttf")
+    font.variation_opentype = {TextServerManager.get_primary_interface().name_to_tag("wght"):550.0}
+    theme = Theme.new()
+    theme.default_font = font
+    theme.default_font_size = 20
+    theme.set_color("font_color","Label",W.TEXT)
+    theme.set_color("font_color","Button",W.TEXT)
+    theme.set_color("font_disabled_color","Button",W.MUTED)
+    for state: String in ["normal","hover","pressed","focus","disabled"]:
+        theme.set_stylebox(state,"Button",W.box(Color("25434a") if state in ["hover","pressed"] else Color("152b32"),W.GOLD if state == "hover" else Color("3d555a")))
+    page.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+    add_child(page)
+    if session.get("open_starter_selection"):
+        session.set("open_starter_selection",false)
+        mode = "starters"
+    render()
+func render() -> void:
+    W.clear(page)
+    species_buttons.clear()
+    var background := TextureRect.new()
+    background.texture = VisualCatalog.biome_texture(catalog.biomes[3])
+    background.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+    background.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+    background.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+    background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+    background.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    page.add_child(background)
+    var shade := ColorRect.new()
+    shade.color = Color(0.025,0.06,0.075,0.67 if mode == "title" else 0.92)
+    shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+    shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    page.add_child(shade)
+    if mode == "title": _title()
+    else: _collection()
+    page.modulate.a = 0.0
+    UiMotion.begin(page,"page").tween_property(page,"modulate:a",1.0,0.2)
+func _button(title: String,rect: Rect2,action: Callable,icon: String) -> Button:
+    var button := W.button(page,rect,action)
+    W.icon(button,icon,Rect2(24,(rect.size.y-32)/2,32,32))
+    W.label(button,title,Rect2(78,0,rect.size.x-100,rect.size.y),24)
+    return button
+func _title() -> void:
+    W.label(page,"POKÉMON EXPEDITION",Rect2(144,165,700,50),21,W.MUTED)
+    W.label(page,"포켓몬 원정대",Rect2(138,227,1130,116),82,W.GOLD)
+    W.label(page,"동료를 모으고, 나만의 전술로 배지에 도전하세요.",Rect2(146,365,1030,46),23,W.TEXT)
+    var y := 505
+    var journey: TacticalJourney = session.get("journey")
+    if session.get("has_journey") and journey.phase not in [TacticalJourney.CLEARED,TacticalJourney.FAILED]:
+        continue_button = _button("이어하기",Rect2(144,y,470,80),_continue,"next")
+        y += 98
+    start_button = _button("새 원정",Rect2(144,y,470,80),_choose,"route")
+    collection_button = _button("포획 도감",Rect2(144,y+98,470,72),_open_collection,"ball")
+    _button("게임 종료",Rect2(144,y+188,470,64),func(): get_tree().quit(),"close")
+    W.label(page,"포획 %d / 386  ·  스타팅 %d종 해금" % [profile.captured_ids.size(),profile.unlocked_starters(catalog).size()],Rect2(144,940,1000,44),18,W.MUTED)
+    if not profile.last_error.is_empty(): W.label(page,profile.last_error,Rect2(144,989,1200,34),17,W.GOLD)
+    for i in 3:
+        var sprite := W.sprite(page,[1,4,7][i],Rect2(1110+i*205,655+(35 if i == 1 else 0),190,190))
+        var home := sprite.position
+        var floating := sprite.create_tween().set_loops()
+        floating.tween_property(sprite,"position:y",home.y-8,1.3+i*0.15).set_trans(Tween.TRANS_SINE)
+        floating.tween_property(sprite,"position:y",home.y,1.3+i*0.15).set_trans(Tween.TRANS_SINE)
+func _choose() -> void:
+    mode = "starters"
+    selection.clear()
+    render()
+func _open_collection() -> void:
+    mode = "collection"
+    render()
+func _collection() -> void:
+    back_button = _button("돌아가기",Rect2(96,34,250,60),_back,"home")
+    W.label(page,"스타팅 선택" if mode == "starters" else "포획 도감",Rect2(96,104,1400,66),38,W.GOLD)
+    search = LineEdit.new()
+    search.position = Vector2(116,188)
+    search.size = Vector2(660,48)
+    search.placeholder_text = "포켓몬 이름 또는 도감 번호 검색"
+    search.text_changed.connect(func(_value: String): _filter())
+    page.add_child(search)
+    show_locked = CheckButton.new()
+    show_locked.position = Vector2(820,188)
+    show_locked.size = Vector2(306,48)
+    show_locked.text = "미해금 포함"
+    show_locked.toggled.connect(func(_value: bool): _filter())
+    page.add_child(show_locked)
+    W.panel(page,Rect2(96,254,1030,668),Color("10252c"),Color("344b51"))
+    var scroll := ScrollContainer.new()
+    scroll.position = Vector2(116,274)
+    scroll.size = Vector2(990,628)
+    scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+    page.add_child(scroll)
+    grid = GridContainer.new()
+    grid.columns = 3
+    grid.add_theme_constant_override("h_separation",16)
+    grid.add_theme_constant_override("v_separation",16)
+    scroll.add_child(grid)
+    slots = W.panel(page,Rect2(1216,254,608,560),Color("142b32"),Color("405960"))
+    counter = W.label(page,"",Rect2(1216,188,608,48),23,W.TEXT)
+    notice = W.label(page,"",Rect2(1216,835,608,66),17,W.GOLD)
+    if mode == "starters":
+        confirm_button = _button("원정 시작",Rect2(1216,930,608,80),_start,"next")
+    W.label(page,"포획한 진화체는 가장 미진화한 모습으로 스타팅에 추가됩니다.",Rect2(96,970,1070,42),17,W.MUTED)
+    _filter()
+    _sync_selection()
+func _filter() -> void:
+    W.clear(grid)
+    species_buttons.clear()
+    var unlocked := profile.unlocked_starters(catalog)
+    var seen: Array[int] = []
+    var query := search.text.strip_edges().to_lower()
+    for entry: Dictionary in catalog.pokemon:
+        var id := int(entry["id"])
+        if mode == "starters": id = catalog.starter_species_id(id)
+        if id in seen: continue
+        seen.append(id)
+        var allowed := id in (unlocked if mode == "starters" else profile.captured_ids)
+        var species := catalog.species(id)
+        if not allowed and not show_locked.button_pressed: continue
+        if not query.is_empty() and query not in str(species["name"]).to_lower() and query not in "%03d" % id: continue
+        var button := W.button(grid,Rect2(0,0,310,184),_select.bind(id))
+        button.custom_minimum_size = Vector2(310,184)
+        var sprite := W.sprite(button,id,Rect2(18,34,88,104))
+        if not allowed: sprite.modulate = Color(0,0,0,0.55)
+        W.label(button,str(species["name"]) if allowed else "미해금",Rect2(112,35,184,38),22,W.TEXT if allowed else W.MUTED)
+        W.label(button,"#%03d" % id,Rect2(112,76,184,28),15,W.MUTED)
+        var types: Array = species["types"].map(func(key: String): return catalog.type_name(key))
+        W.label(button," / ".join(types),Rect2(112,111,184,28),15,VisualCatalog.type_color(species["types"][0]))
+        button.disabled = not allowed
+        button.tooltip_text = "포획하면 해금됩니다." if not allowed else str(species["name"])
+        species_buttons[id] = button
+    if species_buttons.is_empty():
+        W.label(grid,"아직 포획한 포켓몬이 없습니다." if mode == "collection" and profile.captured_ids.is_empty() else "조건에 맞는 포켓몬이 없습니다.",Rect2(0,0,900,90),23,W.MUTED)
+    if mode == "starters": _sync_selection()
+func _select(id: int) -> void:
+    if mode == "collection":
+        W.clear(slots)
+        var species := catalog.species(id)
+        var basic := catalog.species(catalog.starter_species_id(id))
+        W.sprite(slots,id,Rect2(204,48,200,200))
+        W.label(slots,str(species["name"]),Rect2(28,275,552,60),34,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+        W.label(slots,"스타팅 해금 · "+str(basic["name"]),Rect2(28,356,552,48),23,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
+        return
+    if id in selection: selection.erase(id)
+    elif selection.size() < session.MAX_STARTERS: selection.append(id)
+    else:
+        notice.text = "최대 %d마리까지 편성할 수 있습니다." % session.MAX_STARTERS
+        return
+    notice.text = ""
+    _sync_selection()
+func _sync_selection() -> void:
+    W.clear(slots)
+    if mode == "collection":
+        counter.text = "포획 %d / 386" % profile.captured_ids.size()
+        W.label(slots,"원정에서 포획한 동료들을\n이곳에서 확인할 수 있습니다.",Rect2(32,180,544,120),24,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+        return
+    counter.text = "원정대 · %d / %d" % [selection.size(),session.MAX_STARTERS]
+    W.label(slots,"함께 떠날 포켓몬",Rect2(28,20,552,48),26,W.GOLD)
+    for i in session.MAX_STARTERS:
+        var row := W.button(slots,Rect2(28,96+i*120,552,100),func():
+            if i < selection.size(): _select(selection[i]))
+        if i < selection.size():
+            var id := selection[i]
+            W.sprite(row,id,Rect2(18,14,72,72))
+            W.label(row,str(catalog.species(id)["name"]),Rect2(116,10,380,40),24)
+            W.label(row,"첫 출전" if i == 0 else "대기 · %d번 교체" % (i+1),Rect2(116,53,380,30),16,W.MUTED)
+            W.icon(row,"close",Rect2(508,36,24,24))
+        else:
+            row.disabled = true
+            W.label(row,"빈 자리",Rect2(26,0,500,100),22,W.MUTED)
+    W.label(slots,"첫 번째 포켓몬이 먼저 출전합니다.",Rect2(28,486,552,40),18,W.MUTED)
+    confirm_button.disabled = selection.is_empty()
+    for id: int in species_buttons:
+        species_buttons[id].add_theme_stylebox_override("normal",W.box(Color("23403d") if id in selection else Color("152b32"),W.GOLD if id in selection else Color("3d555a")))
+func _start() -> void:
+    var error: String = session.start_journey(selection,int(Time.get_unix_time_from_system()) ^ Time.get_ticks_usec())
+    if not error.is_empty():
+        notice.text = error
+        return
+    get_tree().change_scene_to_file("res://scenes/tactical_journey.tscn")
+func _continue() -> void:
+    get_tree().change_scene_to_file("res://scenes/tactical_journey.tscn")
+func _back() -> void:
+    mode = "title"
+    render()
+func _unhandled_key_input(event: InputEvent) -> void:
+    if not event is InputEventKey or not event.pressed or event.echo: return
+    if event.keycode == KEY_ESCAPE and mode != "title": _back()
+    elif event.keycode == KEY_F11:
+        DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN else DisplayServer.WINDOW_MODE_FULLSCREEN)
