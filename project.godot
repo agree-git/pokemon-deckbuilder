@@ -1,4 +1,4 @@
-; Godot 4.7.2 — Kanto asset and effect preview, independent of battle rules.
+; Godot 4.7.2 — native 1080p Kanto deck-building expedition.
 config_version=5
 
 [application]
@@ -14,7 +14,10 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/window_width_override=1920
 window/size/window_height_override=1080
+; A maximized native window avoids the editor embedded-game input transform.
+window/size/mode=2
 window/stretch/mode="canvas_items"
+window/stretch/aspect="keep"
 
 [rendering]
 renderer/rendering_method="gl_compatibility"

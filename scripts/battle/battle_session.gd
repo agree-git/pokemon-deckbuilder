@@ -1,3 +1,6 @@
 extends Node
-## Keeps the current battle alive while opening the separate art lab.
-var battle := BattleState.new(2026)
+## Keeps expedition state alive while opening the separate art lab.
+var run := RunState.new(2026)
+var battle: BattleState:
+    get:
+        return run.battle

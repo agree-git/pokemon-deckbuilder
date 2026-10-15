@@ -1,6 +1,10 @@
 # Godot generated cache
 .godot/
 
+# Python tooling cache
+__pycache__/
+*.py[cod]
+
 # Export outputs
 build/
 builds/

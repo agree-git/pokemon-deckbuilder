@@ -101,6 +101,29 @@ func _capture() -> void:
     if not _save(output, "battle_replacement"):
         return
     battle.restart_battle()
+    battle.battle.enemy.hp = 16
+    battle._refresh()
+    await RenderingServer.frame_post_draw
+    if not _save(output, "capture_ready"):
+        return
+    battle.capture_button.pressed.emit()
+    await process_frame
+    await RenderingServer.frame_post_draw
+    if not _save(output, "capture_joined"):
+        return
+    battle._next_button.pressed.emit()
+    await process_frame
+    await RenderingServer.frame_post_draw
+    if not _save(output, "capture_party"):
+        return
+    battle.battle.enemy.hp = 13
+    battle._refresh()
+    battle.capture_button.pressed.emit()
+    await process_frame
+    await RenderingServer.frame_post_draw
+    if not _save(output, "capture_replace"):
+        return
+    battle.restart_battle()
     quit(0)
 
 func _save(output: String, name_text: String) -> bool:

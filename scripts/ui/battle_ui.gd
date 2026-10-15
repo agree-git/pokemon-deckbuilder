@@ -13,6 +13,7 @@ const GOLD := Color("d8bd7e")
 const MINT := Color("b3d3ae")
 
 var catalog := VisualCatalog.new()
+var run: RunState
 var battle: BattleState
 var animating := false
 var stage := PixelStage.new()
@@ -45,10 +46,18 @@ var _history: RichTextLabel
 var _result := Control.new()
 var _result_title: Label
 var _result_detail: Label
+var capture_button: Button
+var _ball_count: Label
+var _battle_number: Label
+var _next_button: Button
+var _capture_choices := HBoxContainer.new()
+var _shown_capture_uid := 0
+var _party_signature := ""
 
 func _ready() -> void:
     set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-    battle = get_node("/root/BattleSession").get("battle") as BattleState
+    run = get_node("/root/BattleSession").get("run") as RunState
+    battle = run.battle
     _theme()
     stage.source_ratio = Vector2(0.245, 0.53)
     stage.target_ratio = Vector2(0.735, 0.47)
@@ -82,6 +91,8 @@ func _theme() -> void:
     theme.set_stylebox("normal", "Button", _style(Color("1f3234"), Color("68776a")))
     theme.set_stylebox("hover", "Button", _style(Color("30494a"), GOLD))
     theme.set_stylebox("pressed", "Button", _style(Color("486259"), GOLD))
+    theme.set_color("font_disabled_color", "Button", Color("82938c"))
+    theme.set_stylebox("disabled", "Button", _style(Color("1c2a2d"), Color("44534e")))
     theme.set_stylebox("focus", "Button", _style(Color(0, 0, 0, 0), GOLD))
 
 func _style(color: Color, border: Color = Color.TRANSPARENT, width: int = 1) -> StyleBoxFlat:
@@ -102,19 +113,11 @@ func _build_top_bar() -> void:
     _label("관동 원정대", Rect2(35, 18, 210, 42), 27, GOLD)
     _party_hp = _label("", Rect2(270, 23, 180, 35), 22, Color("efa493"))
     _label("●  0", Rect2(465, 23, 90, 35), 22, GOLD)
-    _label("포션", Rect2(590, 23, 60, 35), 18, MINT)
-    for i in 3:
-        var slot := Panel.new()
-        slot.position = Vector2(650 + i * 48, 17)
-        slot.size = Vector2(38, 40)
-        slot.add_theme_stylebox_override("panel", _style(Color("182d30"), Color("657c70")))
-        slot.tooltip_text = "빈 포션 슬롯"
-        add_child(slot)
-        _label("◇", Rect2(653 + i * 48, 20, 32, 34), 23, Color("768f83"), HORIZONTAL_ALIGNMENT_CENTER)
+    _ball_count = _label("", Rect2(590, 23, 210, 35), 20, GOLD)
     _label("ACT 1", Rect2(895, 14, 100, 26), 14, MINT, HORIZONTAL_ALIGNMENT_CENTER)
     region_label = _label("햇살숲 정원", Rect2(825, 37, 240, 28), 20, CREAM, HORIZONTAL_ALIGNMENT_CENTER)
-    _label("전투 01", Rect2(1100, 24, 105, 32), 18, MINT)
-    var restart_button := _button("다시 시작 · R", Rect2(1214, 18, 160, 40))
+    _battle_number = _label("전투 01", Rect2(1100, 24, 105, 32), 18, MINT)
+    var restart_button := _button("원정 재시작 · R", Rect2(1214, 18, 160, 40))
     restart_button.pressed.connect(restart_battle)
     var biomes := _button("전투 기록", Rect2(1390, 18, 128, 40))
     biomes.pressed.connect(func(): _biome_popup.visible = not _biome_popup.visible)
@@ -123,7 +126,7 @@ func _build_top_bar() -> void:
     var settings := _button("화면 · F11", Rect2(1700, 18, 165, 40))
     settings.pressed.connect(_toggle_fullscreen)
     _label("관동 교체 전투", Rect2(35, 103, 220, 27), 19, Color("d1debf"))
-    _label("공유 덱 · 파이리 / 이상해씨", Rect2(35, 136, 320, 27), 16, Color("b0c4a9"))
+    _label("공유 덱 · 포획으로 파티 확장", Rect2(35, 136, 320, 27), 16, Color("b0c4a9"))
 
 func _build_combat_hud() -> void:
     var intent := Panel.new()
@@ -145,18 +148,10 @@ func _build_combat_hud() -> void:
     _ally_info = _label("", Rect2(336, 735, 380, 29), 15, MINT)
     _enemy_info = _label("", Rect2(1250, 701, 390, 29), 15, MINT)
     _label("아군 교체", Rect2(230, 741, 145, 28), 15, MINT)
-    for i in battle.party.size():
-        var pokemon: BattlePokemon = battle.party[i]
-        var id := pokemon.uid
-        var button := _button("", Rect2(230, 772 + i * 70, 145, 63))
-        button.icon = load(VisualCatalog.sprite_path(pokemon.species_id))
-        button.icon_alignment = HORIZONTAL_ALIGNMENT_LEFT
-        button.expand_icon = true
-        button.add_theme_constant_override("icon_max_width", 48)
-        button.add_theme_font_size_override("font_size", 14)
-        button.tooltip_text = "아군 교체 · %s" % catalog.species(id)["name"]
-        button.pressed.connect(func(): switch_requested.emit(id))
-        party_buttons.append(button)
+    _build_party_buttons()
+    capture_button = _button("포획 · 에너지 1", Rect2(1660, 727, 204, 66))
+    capture_button.add_theme_font_size_override("font_size", 21)
+    capture_button.pressed.connect(_capture)
     notice = _label("카드를 사용하고 적의 다음 행동에 대비하세요.", Rect2(660, 690, 600, 34), 19, CREAM, HORIZONTAL_ALIGNMENT_CENTER)
     notice.add_theme_color_override("font_shadow_color", Color("12251e"))
     notice.add_theme_constant_override("shadow_offset_x", 2)
@@ -166,6 +161,26 @@ func _build_combat_hud() -> void:
     end_turn.add_theme_stylebox_override("normal", _style(Color("36514a"), GOLD, 2))
     end_turn.pressed.connect(func(): end_turn_requested.emit())
     _turn_label = _label("", Rect2(1660, 890, 204, 28), 17, MINT, HORIZONTAL_ALIGNMENT_CENTER)
+
+func _build_party_buttons() -> void:
+    for old: Button in party_buttons:
+        remove_child(old)
+        old.queue_free()
+    party_buttons.clear()
+    var signature := ""
+    for i in battle.party.size():
+        var pokemon: BattlePokemon = battle.party[i]
+        var id := pokemon.uid
+        signature += str(id) + ":"
+        var button := _button("", Rect2(230, 772 + i * 70, 145, 63))
+        button.icon = load(VisualCatalog.sprite_path(pokemon.species_id))
+        button.icon_alignment = HORIZONTAL_ALIGNMENT_LEFT
+        button.expand_icon = true
+        button.add_theme_constant_override("icon_max_width", 48)
+        button.add_theme_font_size_override("font_size", 14)
+        button.pressed.connect(func(): switch_requested.emit(id))
+        party_buttons.append(button)
+    _party_signature = signature
 
 func _build_hand() -> void:
     for old: BattleCard in cards:
@@ -242,20 +257,28 @@ func _build_result() -> void:
     shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     _result.add_child(shade)
     var panel := Panel.new()
-    panel.position = Vector2(540, 300)
-    panel.size = Vector2(840, 370)
+    panel.position = Vector2(480, 220)
+    panel.size = Vector2(960, 610)
     panel.add_theme_stylebox_override("panel", _style(Color("162c2c"), GOLD, 2))
     _result.add_child(panel)
-    _result_title = _label("", Rect2(590, 340, 740, 70), 45, GOLD, HORIZONTAL_ALIGNMENT_CENTER)
+    _result_title = _label("", Rect2(530, 250, 860, 70), 45, GOLD, HORIZONTAL_ALIGNMENT_CENTER)
     remove_child(_result_title)
     _result.add_child(_result_title)
-    _result_detail = _label("", Rect2(590, 430, 740, 75), 23, CREAM, HORIZONTAL_ALIGNMENT_CENTER)
+    _result_detail = _label("", Rect2(530, 340, 860, 110), 23, CREAM, HORIZONTAL_ALIGNMENT_CENTER)
     remove_child(_result_detail)
     _result.add_child(_result_detail)
-    var again := _button("다시 도전 · R", Rect2(805, 550, 310, 62))
+    var again := _button("다시 도전 · R", Rect2(620, 720, 310, 62))
     remove_child(again)
     _result.add_child(again)
     again.pressed.connect(restart_battle)
+    _next_button = _button("다음 야생 전투  ›", Rect2(990, 720, 310, 62))
+    remove_child(_next_button)
+    _result.add_child(_next_button)
+    _next_button.pressed.connect(_next_battle)
+    _capture_choices.position = Vector2(520, 490)
+    _capture_choices.size = Vector2(880, 170)
+    _capture_choices.add_theme_constant_override("separation", 16)
+    _result.add_child(_capture_choices)
     _result.hide()
 
 func _set_biome(index: int) -> void:
@@ -318,14 +341,22 @@ func _animation_finished(_move: Dictionary) -> void:
 func restart_battle() -> void:
     stage.canvas.clear_effects()
     animating = false
-    battle.restart(battle.seed_value)
+    run.restart(run.seed_value)
+    battle = run.battle
+    _shown_capture_uid = 0
+    _build_party_buttons()
     _biome_popup.hide()
     notice.text = "새 전투 · 카드와 교체로 적의 행동에 대비하세요."
     _refresh()
 
 func _refresh() -> void:
+    var signature := ""
+    for pokemon: BattlePokemon in battle.party:
+        signature += str(pokemon.uid) + ":"
+    if signature != _party_signature:
+        _build_party_buttons()
     var actor := battle.active()
-    if active_id != actor.species_id or stage.canvas.source_sprite.texture == null:
+    if active_id != actor.species_id or target_id != battle.enemy.species_id or stage.canvas.source_sprite.texture == null:
         active_id = actor.species_id
         target_id = battle.enemy.species_id
         stage.canvas.set_species(active_id, target_id, catalog, not animating)
@@ -352,6 +383,8 @@ func _refresh() -> void:
         party_buttons[i].disabled = not reason.is_empty()
         party_buttons[i].tooltip_text = reason if not reason.is_empty() else "%s 출전" % pokemon.display_name
         party_buttons[i].add_theme_stylebox_override("normal", _style(Color("385344") if selected else Color("1e3434"), GOLD if selected else Color("64796b")))
+    _battle_number.text = "전투 %02d" % (run.encounter + 1)
+    _ball_count.text = "몬스터볼  %d" % battle.balls
     _party_hp.text = "♥  %d / %d" % [total, maximum]
     _energy_label.text = str(battle.energy)
     _draw_count.text = str(battle.draw_pile.size())
@@ -366,17 +399,89 @@ func _refresh() -> void:
     stage.canvas.ally_statuses.assign(actor.statuses.keys())
     stage.canvas.enemy_statuses.assign(battle.enemy.statuses.keys())
     _history.text = "전투 기록\n\n" + "\n".join(battle.history)
+    capture_button.disabled = animating or not battle.capture_reason().is_empty()
+    capture_button.tooltip_text = "체력 25% 이하 · 확정 포획 · 기술 보상 없음" if not capture_button.disabled else battle.capture_reason()
     end_turn.disabled = animating or battle.phase != BattleState.PLAYER
-    end_turn.text = "아군 선택" if battle.phase == BattleState.REPLACE else "전투 종료" if battle.phase in [BattleState.WON, BattleState.LOST] else "턴 종료  ›"
+    end_turn.text = "아군 선택" if battle.phase == BattleState.REPLACE else "전투 종료" if battle.phase in [BattleState.WON, BattleState.LOST, BattleState.CAPTURED] else "턴 종료  ›"
     if battle.phase == BattleState.REPLACE:
         notice.text = "기절한 아군을 대신할 포켓몬을 선택하세요."
     stage.canvas.source_sprite.visible = actor.alive()
     stage.canvas.target_sprite.visible = battle.enemy.alive() or animating
-    _result.visible = not animating and battle.phase in [BattleState.WON, BattleState.LOST]
+    _result.visible = not animating and battle.phase in [BattleState.WON, BattleState.LOST, BattleState.CAPTURED]
     if _result.visible:
-        _result_title.text = "전투 승리" if battle.phase == BattleState.WON else "전투 패배"
-        _result_detail.text = "턴 %d · 남은 체력 %d / %d\n다시 도전하면 같은 시드로 덱 순서가 재현됩니다." % [battle.turn, total, maximum]
+        run.settle()
+        _result_title.text = "포획 성공" if battle.phase == BattleState.CAPTURED else "전투 승리" if battle.phase == BattleState.WON else "전투 패배"
+        _result_detail.text = "턴 %d · 남은 체력 %d / %d\n체력과 덱을 유지해 다음 야생 전투로 이동합니다." % [battle.turn, total, maximum]
+        if battle.phase == BattleState.CAPTURED:
+            _result_detail.text = "%s 포획 · 몬스터볼 %d개 남음\n%s" % [battle.enemy.display_name, run.balls, "파티가 가득 찼습니다. 내보낼 포켓몬을 선택하세요." if run.pending_capture != null else run.capture_result]
+        elif battle.phase == BattleState.LOST:
+            _result_detail.text = "모든 아군이 기절했습니다. 원정을 다시 시작하세요."
+        _next_button.visible = battle.phase != BattleState.LOST
+        _next_button.disabled = run.pending_capture != null
+        _update_capture_choices()
+    _capture_choices.visible = run.pending_capture != null
     _build_hand()
+    # GUI hit order uses sibling order, so overlays must follow newly built cards.
+    if _result.visible:
+        _result.move_to_front()
+    elif _biome_popup.visible:
+        _biome_popup.move_to_front()
+
+func _capture() -> void:
+    if animating:
+        return
+    var reason := battle.capture()
+    if not reason.is_empty():
+        notice.text = reason
+        return
+    notice.text = "%s 포획 성공!" % battle.enemy.display_name
+    _refresh()
+
+func _update_capture_choices() -> void:
+    if run.pending_capture == null or _shown_capture_uid == run.pending_capture.uid:
+        return
+    _shown_capture_uid = run.pending_capture.uid
+    for child: Node in _capture_choices.get_children():
+        _capture_choices.remove_child(child)
+        child.queue_free()
+    var choices: Array[BattlePokemon] = run.party.duplicate()
+    choices.append(run.pending_capture)
+    for pokemon: BattlePokemon in choices:
+        var button := Button.new()
+        button.custom_minimum_size = Vector2(208, 160)
+        button.text = "%s\n%s" % [pokemon.display_name, "새 포켓몬 풀어주기" if pokemon == run.pending_capture else "내보내고 교체"]
+        button.icon = load(VisualCatalog.sprite_path(pokemon.species_id))
+        button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+        button.vertical_icon_alignment = VERTICAL_ALIGNMENT_TOP
+        button.add_theme_font_size_override("font_size", 17)
+        if pokemon != run.pending_capture:
+            var owned := 0
+            var injuries := 0
+            for card: BattleCardInstance in run.deck:
+                owned += 1 if card.owner_uid == pokemon.uid else 0
+                injuries += 1 if card.injury_owner_uid == pokemon.uid else 0
+            button.tooltip_text = "전용 카드 %d장과 연결된 부상 %d장을 제거합니다. 공용 카드는 유지됩니다." % [owned, injuries]
+        var uid := pokemon.uid
+        button.pressed.connect(func():
+            var reason := run.resolve_capture(uid)
+            if not reason.is_empty():
+                notice.text = reason
+            _refresh())
+        _capture_choices.add_child(button)
+
+func _next_battle() -> void:
+    var reason := run.next_battle()
+    if not reason.is_empty():
+        notice.text = reason
+        return
+    battle = run.battle
+    stage.canvas.clear_effects()
+    animating = false
+    _shown_capture_uid = 0
+    _build_party_buttons()
+    _set_biome({"grass": 3, "water": 2, "fire": 1}[battle.enemy.type])
+    notice.text = "야생 %s 출현 · 체력 25%% 이하에서 포획할 수 있습니다." % battle.enemy.display_name
+    _refresh()
 
 func _status_text(pokemon: BattlePokemon) -> String:
     var parts := PackedStringArray()

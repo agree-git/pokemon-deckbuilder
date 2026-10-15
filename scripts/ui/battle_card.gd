@@ -61,6 +61,9 @@ func _hover(entered: bool) -> void:
         return
     if _motion:
         _motion.kill()
+    # GUI picking follows sibling order, not z_index. Keep draw and hit order equal.
+    if entered:
+        move_to_front()
     z_index = 30 if entered else 0
     _motion = create_tween().set_parallel(true)
     _motion.tween_property(self, "position", home_position + Vector2(0, -42 if entered else 0), 0.12)
