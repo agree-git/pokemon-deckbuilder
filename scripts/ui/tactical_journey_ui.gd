@@ -75,9 +75,11 @@ func _party() -> void:
     for i in journey.party.size():
         var pokemon := journey.party[i]
         W.sprite(panel,pokemon.species_id,Rect2(20,80+i*82,64,64))
-        W.label(panel,pokemon.display_name,Rect2(102,77+i*82,210,32),20)
-        W.label(panel,"%d / %d HP" % [pokemon.hp,pokemon.max_hp] if pokemon.alive() else "기절",Rect2(102,111+i*82,210,28),17,W.MUTED)
-        W.fill_bar(W.bar(panel,Rect2(102,143+i*82,200,4)),pokemon.hp,pokemon.max_hp)
+        W.label(panel,"%s · Lv.%d" % [pokemon.display_name,pokemon.level],Rect2(102,77+i*82,218,32),18)
+        W.label(panel,("%d / %d HP" % [pokemon.hp,pokemon.max_hp] if pokemon.alive() else "기절")+" · "+TacticalGrowth.progress_text(pokemon),Rect2(102,111+i*82,218,28),12,W.MUTED)
+        W.fill_bar(W.bar(panel,Rect2(102,141+i*82,200,4)),pokemon.hp,pokemon.max_hp)
+        var experience := W.bar(panel,Rect2(102,148+i*82,200,3),W.GOLD)
+        experience.get_child(0).size.x = 200*TacticalGrowth.progress(pokemon)
     deck_button = W.button(panel,Rect2(20,348,300,52),func():
         deck_open = true
         refresh(),"원정 덱 · %d장" % journey.deck.size())
@@ -100,6 +102,15 @@ func _rewards() -> void:
         card.deal(i*0.06)
         actions.append(card)
     _action("보상 넘기기",Rect2(870,720,420,64),_reward.bind(-1),"next")
+    _growth_summary()
+func _growth_summary() -> void:
+    for i in journey.growth_reports.size():
+        var report := journey.growth_reports[i]
+        var panel := W.panel(page,Rect2(550+i*404,832,382,140),Color("172d32"),Color("475b50"))
+        W.icon(panel,"boost",Rect2(18,18,24,24))
+        W.label(panel,"%s · Lv.%d → %d" % [report["name"],report["before"],report["after"]],Rect2(54,10,312,40),19,W.GOLD)
+        W.label(panel,"+%s XP  ·  최대 HP +%d" % [String.num(report["xp"],1).trim_suffix(".0"),report["hp"]],Rect2(18,58,348,28),16,W.MUTED)
+        W.label(panel,"R · "+report["learned"]+" 습득!" if not str(report["learned"]).is_empty() else "다음 레벨을 향해!",Rect2(18,96,348,28),17,W.TEXT)
 func _map() -> void:
     W.label(page,"%d / 5  ·  %s" % [journey.step+1,journey.current()["name"]],Rect2(550,225,1200,48),25)
     for i in TacticalJourneyContent.STOPS.size():
@@ -110,20 +121,44 @@ func _map() -> void:
         W.label(panel,str(i+1),Rect2(0,94,218,30),17,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
         W.label(panel,stop["name"].replace(" · ","\n"),Rect2(12,130,194,64),18,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
     _action("%s로 이동" % journey.current()["name"],Rect2(820,700,560,72),_enter)
+    if not journey.last_evolution.is_empty():
+        var evolved := journey.last_evolution
+        W.sprite(page,evolved["from"],Rect2(680,828,96,112))
+        W.icon(page,"next",Rect2(808,864,32,32))
+        var sprite := W.sprite(page,evolved["to"],Rect2(872,812,128,144))
+        UiMotion.appear(sprite)
+        W.label(page,evolved["name"]+" → "+evolved["evolved_name"]+" 진화!",Rect2(1040,832,700,48),27,W.GOLD)
+        W.label(page,"최대 HP +12 · 공격 +1 · 레벨과 기술 유지",Rect2(1040,893,700,36),19,W.TEXT)
 func _rest() -> void:
-    W.label(page,"회복과 훈련 중 한 번만 선택하세요.",Rect2(550,225,1200,48),22,W.MUTED)
+    W.label(page,"회복 · 훈련 · 진화 중 한 번만 선택하세요.",Rect2(550,225,1200,48),22,W.MUTED)
     _action("전원 체력 50% 회복 · 부활 · 부상 제거",Rect2(550,320,1190,90),_rest_action.bind("heal",0),"heal")
     W.label(page,"훈련: 선택한 포켓몬의 최대 체력과 현재 체력 +8",Rect2(550,459,1190,44),20,W.MUTED)
     for i in journey.party.size():
         var pokemon := journey.party[i]
         var button := _action(pokemon.display_name+" 훈련",Rect2(550+i*404,540,382,80),_rest_action.bind("train",i),"boost")
         button.disabled = not pokemon.alive()
+    W.label(page,"진화: 최대 HP +12 · 공격 +1 · 기술 유지",Rect2(550,690,1190,44),20,W.GOLD)
+    var catalog := VisualCatalog.new()
+    for i in journey.party.size():
+        var pokemon := journey.party[i]
+        var rules := TacticalGrowth.rules_for(pokemon.species_id)
+        if rules.is_empty():
+            var has_evolution := catalog.pokemon.any(func(species: Dictionary): return int(species.get("evolves_from",0)) == pokemon.species_id)
+            var unavailable := _action(pokemon.display_name+(" · 특수 진화" if has_evolution else " · 진화 완료"),Rect2(550+i*404,766,382,80),func(): pass,"boost")
+            unavailable.disabled = true
+            unavailable.tooltip_text = "특수한 조건이 필요한 진화는 아직 사용할 수 없습니다." if has_evolution else "현재 진화의 마지막 모습입니다."
+            continue
+        var target := int(rules[0]["to"])
+        var reason := TacticalGrowth.evolution_reason(pokemon,target)
+        var evolve_button := _action(pokemon.display_name+" → "+str(catalog.species(target)["name"]),Rect2(550+i*404,766,382,80),_evolve.bind(i,target),"boost")
+        evolve_button.disabled = not reason.is_empty()
+        evolve_button.tooltip_text = "Lv.%d · %s" % [int(rules[0]["level"]),reason if not reason.is_empty() else "야영지 행동을 사용해 진화합니다."]
 func _result() -> void:
     var cleared := journey.phase == TacticalJourney.CLEARED
     W.icon(page,"badge" if cleared else "injury",Rect2(1056,280,112,112))
     W.label(page,"민화의 6마리 파티를 이겼습니다." if cleared else "원정대가 모두 쓰러졌습니다.",Rect2(550,430,1190,60),30,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
     W.label(page,"%d승  ·  총 %d턴  ·  배지 %d개" % [journey.wins,journey.total_turns,journey.badges],Rect2(550,510,1190,44),24,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
-    W.label(page,"햇살숲 짧은 원정 완주" if cleared else journey.current()["name"],Rect2(550,570,1190,40),20,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+    W.label(page,("기본 경험치 +%d · 기절한 동료는 30%%" % TacticalJourneyContent.experience_reward(journey.step) if cleared else journey.current()["name"]),Rect2(550,570,1190,40),20,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
     _action("같은 시드로 다시 출발",Rect2(650,710,470,76),_restart.bind(journey.relic),"restart")
     _action("새 시드로 출발",Rect2(1160,710,470,76),_new_seed,"route")
     _action("시작 화면",Rect2(900,820,470,62),_home,"home")
@@ -180,6 +215,8 @@ func _enter() -> void:
     if journey.enter_next().is_empty(): refresh()
 func _rest_action(action: String,index: int) -> void:
     if journey.rest(action,index).is_empty(): refresh()
+func _evolve(index: int,target: int) -> void:
+    if journey.evolve(index,target).is_empty(): refresh()
 func _restart(relic: String) -> void:
     deck_open = false
     journey.restart(journey.seed_value,relic)

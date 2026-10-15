@@ -3,6 +3,7 @@ var failures := 0
 var checks := 0
 var clicks := 0
 var native := false
+var choose_evolution := false
 var ui: TacticalJourneyUI
 var captured: Dictionary = {}
 func _initialize() -> void:
@@ -18,6 +19,10 @@ func settle() -> void:
     UiMotion.finish_tree(ui)
 func click(control: Control) -> void:
     settle()
+    if control is TrainerActionCard and is_instance_valid(ui.battle_ui):
+        ui.battle_ui.hand_scroll.ensure_control_visible(control)
+        await process_frame
+        settle()
     if native:
         var local: Vector2 = control.visible_point() if control is TrainerActionCard else control.size/2
         var at := Vector2(root.position)+root.get_final_transform()*(control.get_global_transform_with_canvas()*local)
@@ -84,12 +89,24 @@ func run() -> void:
             else:
                 await click(TacticalUIPlayer.button(ui.battle_ui,JourneyPolicy.action(battle)))
         else:
+            if choose_evolution and ui.journey.phase == TacticalJourney.REST and ui.journey.step == 3:
+                await verify_page()
+                await capture("evolution_choice")
+                var pokemon := ui.journey.party[0]
+                var uid := pokemon.uid
+                check(pokemon.level == 16 and pokemon.learned_skills.size() == 4 and not ui.actions[4].disabled,"Second camp offers first evolution and learned fourth move")
+                await click(ui.actions[4])
+                check(pokemon.species_id == 5 and pokemon.uid == uid and ui.journey.phase == TacticalJourney.MAP,"Pointer evolves correct member and consumes camp")
+                await capture("evolution")
+                continue
             if not pages_checked.has(ui.journey.phase):
                 await verify_page()
                 await capture(ui.journey.phase)
                 pages_checked[ui.journey.phase] = true
             await click(ui.actions[0])
     check(ui.journey.phase == TacticalJourney.CLEARED and ui.journey.badges == 1 and ui.journey.wins == 3,"Complete journey wins gym badge through pointer actions only")
+    if choose_evolution:
+        check(ui.journey.party[0].species_id == 5 and ui.journey.party[0].level >= 16,"Evolved member and level persist through gym victory")
     await capture("result")
     var retained := ui.journey
     ui.free()

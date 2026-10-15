@@ -20,13 +20,13 @@ func run() -> void:
     finish_battle(j)
     j.party[2].hp = 0 # Isolate settlement's KO reward without changing the policy run.
     check(j.settle().is_empty() and j.phase == TacticalJourney.REWARD,"Victory opens trainer rewards")
-    check(j.party[0].experience == 1 and is_equal_approx(j.party[2].experience,0.3),"Tactical journey grants KO members 30 percent XP")
+    check(j.party[0].experience == 150 and j.party[2].experience == 45,"Tactical journey grants KO members 30 percent XP")
     var choices := j.reward_options.duplicate()
     var experience := j.party[0].experience
     var turns := j.total_turns
     j.settle()
     check(j.wins == 1 and j.total_turns == turns and j.reward_options == choices and j.party[0].experience == experience,"Settlement is idempotent")
-    check(is_equal_approx(j.party[2].experience,0.3),"Repeated settlement cannot duplicate fractional XP")
+    check(j.party[2].experience == 45,"Repeated settlement cannot duplicate XP")
     var partial := BattlePokemon.new(TacticalContent.PARTY[0],999)
     partial.hp = 0
     for i in 10: partial.gain_experience()
@@ -47,7 +47,8 @@ func run() -> void:
     var injury := BattleCardInstance.new(1000,"injury",0)
     injury.injury_owner_uid = j.party[0].uid
     j.deck.append(injury)
-    check(j.rest("heal").is_empty() and j.party[0].hp == 23 and not j.deck.has(injury),"Healing revives with rounded half HP and removes injuries")
+    var healed_hp := ceili(j.party[0].max_hp*0.5)
+    check(j.rest("heal").is_empty() and j.party[0].hp == healed_hp and not j.deck.has(injury),"Healing revives with rounded half HP and removes injuries")
     check(not j.rest("train",0).is_empty(),"Rest cannot be repeated")
     var health: Array = j.party.map(func(p: BattlePokemon): return p.hp)
     var ids: Array = j.deck.map(func(c: BattleCardInstance): return c.uid)

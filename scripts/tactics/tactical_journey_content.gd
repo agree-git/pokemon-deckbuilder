@@ -24,6 +24,8 @@ static func opponents(step: int) -> Array:
     for definition: Dictionary in GYM_PARTY:
         result.append(enemy(definition["id"],definition["name"],definition["max_hp"],12 if definition["id"] != 71 else 16))
     return result
+static func experience_reward(step: int) -> int:
+    return 150 if step == 0 else (350 if step == 2 else 450)
 static func enemy(id: int, title: String, hp: int, power: int) -> Dictionary:
     return {"id":id,"name":title,"type":"grass","max_hp":hp,"intents":[
         {"kind":"charge","value":power,"type":"grass","move_id":22},

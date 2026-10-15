@@ -26,6 +26,8 @@ var balls := 2
 var pending_captures: Array[BattlePokemon] = []
 var _next_pokemon_uid := 1000
 var _capture_catalog: VisualCatalog
+var growth_reports: Array[Dictionary] = []
+var last_evolution: Dictionary = {}
 
 func _init(run_seed: int = 2026, selected_relic: String = "seed_relay", selected_starters: Array[int] = []) -> void:
     restart(run_seed,selected_relic,selected_starters)
@@ -39,6 +41,8 @@ func restart(run_seed: int = 2026, selected_relic: String = "seed_relay", select
     badges = 0
     history.clear()
     reward_options.clear()
+    growth_reports.clear()
+    last_evolution.clear()
     _settled = null
     balls = 2
     pending_captures.clear()
@@ -54,6 +58,7 @@ func restart(run_seed: int = 2026, selected_relic: String = "seed_relay", select
         var opponents := TacticalContent.ENEMIES.duplicate(true)
         if party.size() == 1: opponents = [opponents[0]]
         battle.start_with(party,deck,opponents,seed_value,relic,true)
+    for pokemon: BattlePokemon in party: TacticalGrowth.initialize(pokemon)
     phase = BATTLE
 func current() -> Dictionary:
     return TacticalJourneyContent.STOPS[step]
@@ -72,8 +77,9 @@ func settle() -> String:
         phase = FAILED
         return ""
     wins += 1
+    growth_reports.clear()
     for pokemon: BattlePokemon in party:
-        pokemon.gain_experience()
+        growth_reports.append(TacticalGrowth.award(pokemon,TacticalJourneyContent.experience_reward(step)))
     if current()["kind"] == "gym":
         badges = 1
         phase = CLEARED
@@ -111,7 +117,7 @@ func capture() -> String:
     balls -= 1
     var caught := BattlePokemon.new(definition,_next_pokemon_uid)
     _next_pokemon_uid += 1
-    caught.experience = 1
+    TacticalGrowth.initialize(caught)
     pending_captures.append(caught)
     return ""
 func resolve_capture(index: int) -> String:
@@ -139,6 +145,7 @@ func choose_reward(index: int) -> String:
     return ""
 func enter_next() -> String:
     if phase != MAP: return "지도에서 다음 장소로 이동하세요."
+    last_evolution.clear()
     if current()["kind"] == "rest":
         phase = REST
     else:
@@ -165,6 +172,23 @@ func rest(action: String, member_index: int = 0) -> String:
         pokemon.strength = 0
         pokemon.statuses.clear()
     history.append(current()["name"]+" · "+("회복" if action == "heal" else party[member_index].display_name+" 훈련"))
+    step += 1
+    phase = MAP
+    return ""
+func evolve(member_index: int,target: int) -> String:
+    if phase != REST: return "진화는 야영지에서 선택하세요."
+    if member_index < 0 or member_index >= party.size(): return "진화할 포켓몬을 선택하세요."
+    var pokemon := party[member_index]
+    var previous_id := pokemon.species_id
+    var previous_name := pokemon.display_name
+    var reason := TacticalGrowth.evolve(pokemon,target,VisualCatalog.new())
+    if not reason.is_empty(): return reason
+    last_evolution = {"from":previous_id,"to":target,"name":previous_name,"evolved_name":pokemon.display_name}
+    history.append(previous_name+" → "+pokemon.display_name+" 진화!")
+    for member: BattlePokemon in party:
+        member.block = 0
+        member.strength = 0
+        member.statuses.clear()
     step += 1
     phase = MAP
     return ""

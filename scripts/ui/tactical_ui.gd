@@ -439,7 +439,7 @@ func _refresh() -> void:
         slot.add_theme_stylebox_override("normal",W.box(Color("20353a") if i == battle.enemy_index else Color("152930"),GOLD if i == battle.enemy_index else Color("30474d")))
     W.fill_bar(ally_bar,battle.active().hp,battle.active().max_hp)
     W.fill_bar(enemy_bar,foe.hp,foe.max_hp)
-    ally_label.text = battle.active().display_name
+    ally_label.text = "%s · Lv.%d" % [battle.active().display_name,battle.active().level]
     enemy_label.text = foe.display_name
     get_node("AllyHP").text = "%d / %d" % [battle.active().hp,battle.active().max_hp]
     get_node("EnemyHP").text = "%d / %d" % [foe.hp,foe.max_hp]
@@ -479,11 +479,11 @@ func _refresh() -> void:
     for i in party_buttons.size():
         var pokemon := battle.party[i]
         var button := party_buttons[i]
-        party_names[i].text = pokemon.display_name
+        party_names[i].text = "%s · %d" % [pokemon.display_name,pokemon.level]
         party_values[i].text = "기절" if not pokemon.alive() else "%d / %d" % [pokemon.hp,pokemon.max_hp]
         W.fill_bar(party_bars[i],pokemon.hp,pokemon.max_hp)
         button.disabled = busy or not battle.switch_reason(pokemon.uid).is_empty()
-        button.tooltip_text = "%d · %s · %s\n%s" % [i+1,pokemon.display_name,catalog.type_name(pokemon.type),"출전 중" if pokemon == battle.active() else (battle.switch_reason(pokemon.uid) if not battle.switch_reason(pokemon.uid).is_empty() else switch_label.text)]
+        button.tooltip_text = "%d · %s · Lv.%d · %s\n%s · 성장 공격 +%d\n%s" % [i+1,pokemon.display_name,pokemon.level,catalog.type_name(pokemon.type),TacticalGrowth.progress_text(pokemon),TacticalGrowth.attack_bonus(pokemon),"출전 중" if pokemon == battle.active() else (battle.switch_reason(pokemon.uid) if not battle.switch_reason(pokemon.uid).is_empty() else switch_label.text)]
         var border := MINT if pokemon == battle.active() else Color("3d555a")
         button.add_theme_stylebox_override("disabled",W.box(Color("203a3d") if pokemon == battle.active() else Color("17262e"),border))
         button.get_child(0).modulate.a = 0.25 if not pokemon.alive() else 1.0
@@ -505,7 +505,7 @@ func _refresh() -> void:
             skill_values[i].add_theme_color_override("font_color",W.MUTED)
             skill_icons[i].texture = W.texture("normal")
             skill_costs[i].text = "—"
-            skills[i].tooltip_text = SKILL_LABELS[i]+" · 아직 배우지 않은 기술 슬롯입니다."
+            skills[i].tooltip_text = SKILL_LABELS[i]+" · 원정에서 Lv.10이 되면 네 번째 기술을 배웁니다."
             skills[i].disabled = true
             W.fade(skills[i])
             continue

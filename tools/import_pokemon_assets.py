@@ -145,18 +145,32 @@ def main():
                       "stat_changes": changes, "ailment_chance": number(detail, "ailment_chance"),
                       "vfx": presentation(move, detail, changes)})
     assert len(pokemon) == SPECIES_LIMIT and len(moves) == 165
+    # Only unconditional level evolutions are playable for now. Keep all
+    # conditional rows in the pinned CSV, rather than treating stones/friendship
+    # or gender/stat/location requirements as plain level evolutions.
+    parents = {p["id"]: p["evolves_from"] for p in pokemon}
+    evolutions = []
+    for row in table("pokemon_evolution"):
+        target = int(row["evolved_species_id"])
+        if target not in parents or not parents[target]:
+            continue
+        ordinary = all(value in ("", "0") if key in ("needs_overworld_rain", "turn_upside_down", "needs_multiplayer", "near_special_rock") else value == ""
+                       for key, value in row.items()
+                       if key not in ("id", "evolved_species_id", "evolution_trigger_id", "minimum_level", "version_group_id", "is_default"))
+        if row["is_default"] == "1" and row["evolution_trigger_id"] == "1" and row["minimum_level"] and ordinary:
+            rule = {"from": parents[target], "to": target, "level": int(row["minimum_level"])}
+            if rule not in evolutions:
+                evolutions.append(rule)
+    assert {"from": 1, "to": 2, "level": 16} in evolutions
+    (ROOT / "data/evolutions.json").write_text(json.dumps(sorted(evolutions, key=lambda e: (e["from"], e["to"])), indent=2) + "\n", encoding="utf-8")
     jobs = [(f"{RAW}/PokeAPI/sprites/{SPRITES_REV}/sprites/pokemon/{'' if side == 'front' else 'back/'}{sid}.png",
              f"assets/pokemon/{side}/{sid:03}.png") for sid in range(1, SPECIES_LIMIT + 1) for side in ("front", "back")]
     jobs += [(f"{RAW}/PokeAPI/sprites/{SPRITES_REV}/LICENCE.txt", "assets/sources/POKEAPI_SPRITES_LICENSE.txt"),
              (f"{RAW}/PokeAPI/pokeapi/{DATA_REV}/LICENSE.md", "assets/sources/POKEAPI_DATA_LICENSE.txt"),
              (f"{RAW}/google/fonts/{FONTS_REV}/ofl/notosanskr/NotoSansKR%5Bwght%5D.ttf", "assets/fonts/NotoSansKR.ttf"),
              (f"{RAW}/google/fonts/{FONTS_REV}/ofl/notosanskr/OFL.txt", "assets/fonts/OFL.txt")]
-    try:
-        with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
-            list(pool.map(lambda job: fetch(*job), jobs))
-    finally:
-        # Keep completed, verified downloads resumable if another request fails.
-        MANIFEST.write_text(json.dumps(dict(sorted(records.items())), indent=2) + "\n", encoding="utf-8")
+    with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
+        list(pool.map(lambda job: fetch(*job), jobs))
     out = ROOT / "data/catalog.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps({"regions": ["kanto", "johto", "hoenn"], "max_generation": 3,
@@ -166,4 +180,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    finally:
+        # Preserve verified source downloads even when validation fails early.
+        MANIFEST.write_text(json.dumps(dict(sorted(records.items())), indent=2) + "\n", encoding="utf-8")

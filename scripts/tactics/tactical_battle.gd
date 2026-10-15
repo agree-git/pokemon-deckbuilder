@@ -124,7 +124,7 @@ func intent() -> Dictionary:
 func skill_view(key: String) -> Dictionary:
     var view: Dictionary = BattleContent.CARDS[key].duplicate(true)
     if view.has("damage"):
-        var base := int(view["damage"])+active().strength+next_attack_bonus+int(switch_bonus.get(active().uid,0))
+        var base := int(view["damage"])+active().strength+TacticalGrowth.attack_bonus(active())+next_attack_bonus+int(switch_bonus.get(active().uid,0))
         view["preview_damage"] = int(floor(base*BattleContent.multiplier(view["type"],enemy().type))) * (2 if opening()["burst"] else 1)
     return view
 func skill_reason(key: String) -> String:
@@ -160,7 +160,7 @@ func use_skill(key: String) -> String:
         if state["analyzed"]:
             state["analyzed"] = false
             _opening("analysis","분석한 빈틈")
-        var base := int(definition["damage"])+actor.strength+next_attack_bonus+int(switch_bonus.get(actor.uid,0))
+        var base := int(definition["damage"])+actor.strength+TacticalGrowth.attack_bonus(actor)+next_attack_bonus+int(switch_bonus.get(actor.uid,0))
         next_attack_bonus = 0
         switch_bonus.erase(actor.uid)
         _direct = true
