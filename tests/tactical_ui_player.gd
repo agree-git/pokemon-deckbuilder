@@ -9,7 +9,7 @@ static func button(ui: TacticalUI,step: Array) -> Button:
                 if ui.battle.party[i].uid == step[1]: return ui.party_buttons[i]
     return ui.end_button
 static func click(tree: SceneTree,control: Control,local := Vector2(-1,-1)) -> void:
-    if local.x < 0: local = control.size/2
+    if local.x < 0: local = control.visible_point() if control is TrainerActionCard else control.size/2
     var at := tree.root.get_final_transform()*(control.get_global_transform_with_canvas()*local)
     var motion := InputEventMouseMotion.new()
     motion.position = at
@@ -22,3 +22,8 @@ static func click(tree: SceneTree,control: Control,local := Vector2(-1,-1)) -> v
         tree.root.push_input(event)
 static func finish(ui: TacticalUI) -> void:
     if ui.busy: ui.stage.canvas.effect._process(MoveEffect.DURATION)
+
+static func settle(ui: Variant) -> void:
+    if not is_instance_valid(ui): return
+    UiMotion.finish_tree(ui)
+    UiMotion.finish_tree(ui)

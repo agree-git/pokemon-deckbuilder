@@ -76,6 +76,7 @@ static func button(parent: Node, rect: Rect2, action: Callable, title := "") -> 
     node.focus_mode = Control.FOCUS_NONE
     node.pressed.connect(action)
     parent.add_child(node)
+    UiMotion.bind_button(node)
     return node
 static func icon_button(parent: Node, key: String, rect: Rect2, action: Callable, tip: String) -> Button:
     var node := button(parent,rect,action)
@@ -97,7 +98,7 @@ static func bar(parent: Node, rect: Rect2, color := Color("91c8a4")) -> ColorRec
     parent.add_child(track)
     return track
 static func fill_bar(track: ColorRect, value: int, maximum: int) -> void:
-    track.get_child(0).size.x = track.size.x*clampf(float(value)/maxi(1,maximum),0,1)
+    UiMotion.value(track.get_child(0),"size:x",track.size.x*clampf(float(value)/maxi(1,maximum),0,1))
 static func badge(parent: Node, value: String, rect: Rect2, color := GOLD) -> Label:
     panel(parent,rect,Color("314448"),Color("6b7158"),int(rect.size.y/2))
     return label(parent,value,rect,19,color,HORIZONTAL_ALIGNMENT_CENTER)

@@ -4,10 +4,11 @@ var captured: Dictionary = {}
 var ui: TacticalUI
 func _initialize() -> void:
     call_deferred("run")
-func save(name_text: String) -> void:
+func save(name_text: String,settled := true) -> void:
     if captured.has(name_text): return
     captured[name_text] = true
     await process_frame
+    if settled: TacticalUIPlayer.settle(ui)
     await RenderingServer.frame_post_draw
     var picture := root.get_texture().get_image()
     if picture.get_size() != Vector2i(1920,1080) or picture.save_png(output.path_join(name_text+".png")) != OK:
@@ -25,6 +26,21 @@ func run() -> void:
     await process_frame
     ui.restart()
     await save("tactics_start")
+    var trainer: TrainerActionCard
+    for card: BattleCardInstance in ui.battle.hand:
+        if card.key == "analysis": trainer = ui.trainer_buttons[card.uid]
+    var motion := InputEventMouseMotion.new()
+    motion.position = root.get_final_transform()*(trainer.get_global_transform_with_canvas()*trainer.visible_point())
+    root.push_input(motion)
+    await create_timer(0.18).timeout
+    await save("tactics_card_hover",false)
+    ui._card(trainer.uid)
+    await create_timer(0.09).timeout
+    await save("tactics_card_play",false)
+    await create_timer(0.7).timeout
+    ui.restart()
+    await process_frame
+    TacticalUIPlayer.settle(ui)
     ui._open_overlay(ui.menu_panel)
     await save("tactics_menu")
     ui._open_overlay(ui.help_panel)
