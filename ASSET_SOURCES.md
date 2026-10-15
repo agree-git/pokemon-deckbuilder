@@ -50,5 +50,5 @@
 
 - `assets/items/{potion,super_potion,revive,ball}.png`는 같은 PokéAPI/sprites 고정 커밋의 `sprites/items/{potion,super-potion,revive,poke-ball}.png`에서 가져온 30×30 PNG 네 장이다. 상처약·좋은상처약·기력의조각·몬스터볼을 야영지 가방·대상 선택·상점과 포켓볼 교체 연출에 사용한다.
 - 진화 재료 PNG 13장을 같은 고정 커밋에서 추가했다. 돌 6종, 왕의징표석·금속코트·용의비늘·업그레이드·심해의이빨·심해의비늘은 해당 원본 아이템 그림이다. 원본 파일 `up-grade.png`는 로컬 `upgrade.png`로 저장한다. 고정 커밋에 연결의끈 그림이 없어 `escape-rope.png`를 로컬 `linking_cord.png`로 재사용했다. 모든 원본 URL·SHA-256은 manifest에 명시한다. 총 17장이다.
-- 돌·통신 진화 33개 기본형 경로는 고정 `pokemon_evolution.csv`와 종별 진화 전 ID로 검증하며, 싱글플레이 통신 대체 방식과 상점 가격은 이 게임의 규칙이다. [진화 재료](docs/evolution-items.md)를 참고한다.
+- 돌·통신 진화 33개 기본형 경로는 고정 `pokemon_evolution.csv`와 종별 진화 전 ID로 검증하며, 싱글플레이 통신 대체 방식과 상점 가격은 이 게임의 규칙이다. 친밀도·시간대 진화 9경로도 같은 CSV와 대조하며 기준 220은 3세대 규칙, 초기값과 원정 행동별 획득량은 게임용 조정값이다. [진화 재료](docs/evolution-items.md)를 참고한다.
 - 원작 이미지 권리는 위 포켓몬 스프라이트와 동일하다. `python3 tools/build_item_assets.py`로 재생성하며 원본 크기·URL·SHA-256을 검사·기록한다. 실행 중 네트워크는 사용하지 않는다.

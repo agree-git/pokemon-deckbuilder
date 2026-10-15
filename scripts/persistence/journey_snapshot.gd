@@ -17,9 +17,12 @@ static func encode(j: TacticalJourney) -> Dictionary:
     var pokemon := {}
     var cards := {}
     var b := j.battle
-    for p: BattlePokemon in j.party+b.party+b.enemies+j.pending_captures: pokemon[p.uid] = fields(p,POKEMON_FIELDS)
+    for p: BattlePokemon in j.party+b.party+b.enemies+j.pending_captures:
+        pokemon[p.uid] = fields(p,POKEMON_FIELDS)
+        if p.friendship >= 0: pokemon[p.uid]["friendship"] = p.friendship
     for c: BattleCardInstance in j.deck+b.hand+b.draw_pile+b.discard+b.exhausted: cards[c.uid] = fields(c,CARD_FIELDS)
     var state := fields(j,RUN_FIELDS)
+    if not j.time_of_day.is_empty(): state["time_of_day"] = j.time_of_day
     state["party"] = ids(j.party)
     state["deck"] = ids(j.deck)
     state["pending_captures"] = ids(j.pending_captures)
@@ -42,6 +45,7 @@ static func restore(data: Dictionary) -> TacticalJourney:
         var row: Dictionary = data["pokemon"][uid]
         var p := BattlePokemon.new({"id":row["species_id"],"name":row["display_name"],"type":row["type"],"types":row["types"],"max_hp":row["max_hp"],"level":row["level"]},uid)
         for key: String in POKEMON_FIELDS: p.set(key,row[key])
+        p.friendship = int(row.get("friendship",-1))
         pokemon[uid] = p
     for uid: int in data["cards"]:
         var row: Dictionary = data["cards"][uid]
@@ -49,6 +53,7 @@ static func restore(data: Dictionary) -> TacticalJourney:
         for key: String in CARD_FIELDS: c.set(key,row[key])
         cards[uid] = c
     for key: String in RUN_FIELDS: j.set(key,state[key])
+    j.time_of_day = state.get("time_of_day","")
     j.statistics = state.get("statistics",{}).duplicate(true)
     j.party.assign(state["party"].map(func(uid: int): return pokemon[uid]))
     j.deck.assign(state["deck"].map(func(uid: int): return cards[uid]))
@@ -96,6 +101,7 @@ static func validate(data: Variant) -> bool:
     if ps.size() < 2 or ps.size() > 16 or cs.size() < 1 or cs.size() > 512: return false
     if not same_shape(r,fields(TacticalJourney.new(),RUN_FIELDS)) or not r.get("settled") is bool: return false
     if not same_shape(b,fields(TacticalBattle.new(),BATTLE_FIELDS)) or not b.get("rng") is int: return false
+    if r.has("time_of_day") and (not r["time_of_day"] is String or r["time_of_day"] not in ["day","night"]): return false
     if r.has("statistics") and not RunStatistics.valid_run(r["statistics"]): return false
     if b.has("statistics") and not RunStatistics.valid_battle(b["statistics"]): return false
     if not r["full_campaign"] or r["run_id"].length() != 32 or not r["run_id"].is_valid_hex_number(): return false
@@ -128,6 +134,7 @@ static func validate(data: Variant) -> bool:
         var p: Variant = ps[uid]
         if not uid is int or not p is Dictionary or not same_shape(p,fields(BattlePokemon.new(TacticalContent.PARTY[0],1),POKEMON_FIELDS)): return false
         if p["uid"] != uid or uid == 0 or not integer(p["species_id"],1,386) or not integer(p["level"],1,100): return false
+        if p.has("friendship") and not integer(p["friendship"],0,255): return false
         if not integer(p["max_hp"],1,100000) or not integer(p["hp"],0,p["max_hp"]) or not integer(p["block"],0,100000): return false
         if p["species_stats"] and p["max_hp"] != PokemonStats.value(p["species_id"],p["level"],"hp"): return false
         for stat: Variant in p["stat_stages"]:

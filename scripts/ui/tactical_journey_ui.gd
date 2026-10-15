@@ -111,9 +111,12 @@ func _party() -> void:
         var title := W.label(panel,"%s · Lv.%d" % [pokemon.display_name,pokemon.level],Rect2(102,77+i*82,218,32),18)
         title.mouse_filter = Control.MOUSE_FILTER_PASS
         title.tooltip_text = PokemonStats.summary(pokemon)
+        title.tooltip_text += "\n"+TacticalGrowth.progress_text(pokemon)+"\n"+FriendshipEvolution.summary(pokemon,journey.current_time(),_evolution_catalog)
         for key: String in EvolutionItems.options(pokemon.species_id):
             title.tooltip_text += "\n%s → %s · 야영지 가방" % [EvolutionItems.ITEMS[key]["name"],_evolution_catalog.species(EvolutionItems.target(key,pokemon.species_id))["name"]]
-        W.label(panel,("%d / %d HP" % [pokemon.hp,pokemon.max_hp] if pokemon.alive() else "기절")+" · "+TacticalGrowth.progress_text(pokemon),Rect2(102,111+i*82,218,28),12,W.MUTED)
+        var growth := "친밀 %d/220" % FriendshipEvolution.value(pokemon) if FriendshipEvolution.eligible(pokemon.species_id) else TacticalGrowth.progress_text(pokemon)
+        var detail := W.label(panel,("%d / %d HP" % [pokemon.hp,pokemon.max_hp] if pokemon.alive() else "기절")+" · "+growth,Rect2(102,111+i*82,218,28),12,W.MUTED)
+        detail.name = "Growth_%d" % pokemon.uid
         W.fill_bar(W.bar(panel,Rect2(102,141+i*82,200,4)),pokemon.hp,pokemon.max_hp)
         var experience := W.bar(panel,Rect2(102,148+i*82,200,3),W.GOLD)
         experience.get_child(0).size.x = 200*TacticalGrowth.progress(pokemon)
@@ -249,8 +252,18 @@ func _rest() -> void:
     _action("준비 완료 · 출발",Rect2(1260,930,480,72),_leave_camp,"next")
     match camp_tab:
         "rest":
+            W.label(page,"원정 시간",Rect2(1270,354,150,44),17,W.MUTED)
+            for i in 2:
+                var value: String = ["day","night"][i]
+                var time_button := W.button(page,Rect2(1440+i*150,354,136,44),_set_time.bind(value),"낮" if value == "day" else "밤")
+                time_button.name = "Time_"+value
+                time_button.disabled = journey.current_time() == value
+                if time_button.disabled:
+                    time_button.add_theme_stylebox_override("disabled",W.box(Color("29443f"),W.GOLD))
+                    time_button.add_theme_color_override("font_disabled_color",W.GOLD)
+                time_button.tooltip_text = "이브이의 다음 레벨업 진화에 적용 · 낮: 에브이 / 밤: 블래키\n휴식·강화 행동이나 친밀도를 소비하지 않습니다."
             W.icon(page,"heal",Rect2(1065,390,96,96))
-            W.label(page,"전원 체력 50% 회복 · 기절 회복 · 부상 제거",Rect2(550,530,1190,60),25,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
+            W.label(page,"전원 체력 50% 회복 · 기절 회복 · 부상 제거 · 친밀도 +5",Rect2(550,530,1190,60),25,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
             W.label(page,"휴식과 카드 강화 중 하나를 선택하세요.
 가방·장비·만남은 별도로 이용할 수 있습니다.",Rect2(550,610,1190,90),20,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
             rest_button = W.button(page,Rect2(650,742,500,78),_camp_rest,"휴식 완료" if journey.step in journey.rested_steps else "휴식하기")
@@ -511,6 +524,10 @@ func _camp_choice(choice: int) -> void:
 func _camp_rest() -> void:
     var reason := journey.rest()
     camp_notice = reason if not reason.is_empty() else "동료들이 기운을 회복했습니다."
+    refresh()
+func _set_time(value: String) -> void:
+    var reason := journey.set_time(value)
+    camp_notice = reason if not reason.is_empty() else ("낮" if value == "day" else "밤")+"에 다음 전투를 시작합니다."
     refresh()
 func _buy(key: String) -> void:
     var reason := journey.buy(key)

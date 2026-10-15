@@ -28,6 +28,7 @@ static func initialize(pokemon: BattlePokemon) -> void:
     if pokemon.progression_initialized: return
     PokemonStats.apply(pokemon)
     pokemon.progression_initialized = true
+    if pokemon.friendship < 0: pokemon.friendship = FriendshipEvolution.START
     pokemon.experience = experience_floor(pokemon.level,pokemon.species_id)
     pokemon.learned_skills.clear()
     for entry: Dictionary in species_data(pokemon.species_id)["learnset"]:
@@ -44,11 +45,12 @@ static func _learn_at(pokemon: BattlePokemon,level: int,report: Dictionary) -> v
             report["learned"].append(TacticalMoves.definition(key)["name"])
         else:
             report["offers"].append({"uid":pokemon.uid,"key":key,"level":level,"species":pokemon.species_id})
-static func award(pokemon: BattlePokemon,base: float) -> Dictionary:
+static func award(pokemon: BattlePokemon,base: float,time_of_day := "day") -> Dictionary:
     initialize(pokemon)
     var before := pokemon.level
     var previous_max_hp := pokemon.max_hp
     var experience := pokemon.experience
+    var friendship_before := FriendshipEvolution.value(pokemon)
     pokemon.gain_experience(base)
     var target := maxi(before,level_for(pokemon.experience,pokemon.species_id))
     var report := {"uid":pokemon.uid,"id":pokemon.species_id,"name":pokemon.display_name,"before":before,"after":target,
@@ -56,17 +58,23 @@ static func award(pokemon: BattlePokemon,base: float) -> Dictionary:
     var catalog: VisualCatalog = null
     while pokemon.level < target:
         pokemon.level += 1
+        if pokemon.alive(): FriendshipEvolution.change(pokemon,FriendshipEvolution.LEVEL)
         PokemonStats.apply(pokemon)
         _learn_at(pokemon,pokemon.level,report)
+        var evolution := FriendshipEvolution.target(pokemon,time_of_day)
         for rule: Dictionary in rules_for(pokemon.species_id):
             if pokemon.level >= int(rule["level"]):
-                if catalog == null: catalog = VisualCatalog.new()
-                var previous := pokemon.species_id
-                evolve(pokemon,int(rule["to"]),catalog)
-                report["evolutions"].append({"from":previous,"to":pokemon.species_id,"name":pokemon.display_name,"level":pokemon.level})
-                _learn_at(pokemon,pokemon.level,report)
+                evolution = int(rule["to"])
                 break
+        if evolution > 0:
+            if catalog == null: catalog = VisualCatalog.new()
+            var previous := pokemon.species_id
+            evolve(pokemon,evolution,catalog)
+            report["evolutions"].append({"from":previous,"to":pokemon.species_id,"name":pokemon.display_name,"level":pokemon.level})
+            _learn_at(pokemon,pokemon.level,report)
     report["hp"] = pokemon.max_hp-previous_max_hp
+    report["friendship_before"] = friendship_before
+    report["friendship_after"] = FriendshipEvolution.value(pokemon)
     return report
 static func rules_for(species_id: int) -> Array:
     if _rules.is_empty(): _rules = JSON.parse_string(FileAccess.get_file_as_string("res://data/evolutions.json"))

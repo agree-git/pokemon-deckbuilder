@@ -47,6 +47,7 @@ var loot: Array[Dictionary] = []
 var rested_steps: Array[int] = []
 var shop_stock: Dictionary = {}
 var camp_states: Dictionary = {}
+var time_of_day := ""
 
 func _init(run_seed: int = 2026, selected_relic: String = "field_kit", selected_starters: Array[int] = [], campaign := false) -> void:
     full_campaign = campaign
@@ -77,6 +78,7 @@ func restart(run_seed: int = 2026, selected_relic: String = "field_kit", selecte
     rested_steps.clear()
     shop_stock = {}
     camp_states.clear()
+    time_of_day = "day"
     _settled = null
     balls = 2
     pending_captures.clear()
@@ -126,7 +128,10 @@ func settle() -> String:
     growth_reports.clear()
     for pokemon: BattlePokemon in party:
         var known := pokemon.learned_skills.duplicate()
-        var report := TacticalGrowth.award(pokemon,experience_reward(pokemon.species_id))
+        var friendship_before := FriendshipEvolution.value(pokemon)
+        FriendshipEvolution.change(pokemon,FriendshipEvolution.VICTORY if pokemon.alive() else FriendshipEvolution.FAINTED)
+        var report := TacticalGrowth.award(pokemon,experience_reward(pokemon.species_id),current_time())
+        report["friendship_before"] = friendship_before
         for key: String in pokemon.learned_skills:
             if key not in known: deck.append(_allocate_card(key,pokemon.uid))
         growth_reports.append(report)
@@ -305,6 +310,7 @@ func rest(action: String = "heal", card_uid: int = 0) -> String:
     _stat("rests")
     for pokemon: BattlePokemon in party:
         var hp_before := pokemon.hp
+        FriendshipEvolution.change(pokemon,FriendshipEvolution.REST)
         pokemon.hp = mini(pokemon.max_hp,pokemon.hp+ceili(pokemon.max_hp*0.5))
         _stat("camp_healing",pokemon.hp-hp_before)
         pokemon.knocked_out = false
@@ -321,6 +327,15 @@ func leave_camp() -> String:
     if phase != REST: return "현재 야영지에 있지 않습니다."
     step += 1
     phase = MAP
+    return notify_changed()
+func current_time() -> String:
+    return time_of_day if not time_of_day.is_empty() else "day"
+func set_time(value: String) -> String:
+    if phase != REST: return "야영지에서 원정 시간대를 준비하세요."
+    if value not in ["day","night"]: return "낮 또는 밤을 선택하세요."
+    if value == current_time(): return "이미 선택한 시간대입니다."
+    time_of_day = value
+    _decision("원정 시간 · "+("낮" if value == "day" else "밤"))
     return notify_changed()
 func buy_reason(key: String) -> String:
     if phase != REST: return "물건은 야영지에서 구매할 수 있습니다."
