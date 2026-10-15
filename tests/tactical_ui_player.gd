@@ -2,7 +2,7 @@ class_name TacticalUIPlayer
 extends RefCounted
 static func button(ui: TacticalUI,step: Array) -> Button:
     match step[0]:
-        "skill": return ui.skills[TacticalContent.SKILLS[ui.battle.active().species_id].find(step[1])]
+        "skill": return ui.skills[TacticalContent.skills_for(ui.battle.active()).find(step[1])]
         "card": return ui.trainer_buttons[step[1]]
         "switch":
             for i in ui.battle.party.size():

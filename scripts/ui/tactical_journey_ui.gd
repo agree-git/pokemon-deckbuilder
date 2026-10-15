@@ -34,6 +34,8 @@ func refresh() -> void:
         battle_ui.battle = journey.battle
         battle_ui.run_mode = true
         battle_ui.run_title = "%d / 5  ·  %s" % [journey.step+1,journey.current()["name"]]
+        battle_ui.capture_action = _capture
+        battle_ui.capture_status = func(): return {"wild":journey.step == 0,"balls":journey.balls,"reason":journey.capture_reason()}
         battle_ui.run_continue_requested.connect(_settle)
         battle_ui.run_restart_requested.connect(_restart)
         page.add_child(battle_ui)
@@ -54,16 +56,17 @@ func refresh() -> void:
     W.icon(page,"grass",Rect2(48,24,32,32))
     W.label(page,"햇살숲 원정",Rect2(96,16,500,48),24)
     W.label(page,"배지 %d / 1  ·  시드 %d" % [journey.badges,journey.seed_value],Rect2(1400,16,360,48),17,W.MUTED,HORIZONTAL_ALIGNMENT_RIGHT)
-    W.icon_button(page,"lab",Rect2(1788,18,64,44),_lab,"아트 랩 · F2")
-    var titles := {TacticalJourney.REWARD:"전투 보상",TacticalJourney.MAP:"다음 장소",TacticalJourney.REST:"잠시 쉬어갑니다",TacticalJourney.CLEARED:"레인보배지 획득!",TacticalJourney.FAILED:"원정 종료"}
+    W.icon_button(page,"home",Rect2(1788,18,64,44),_home,"시작 화면")
+    var titles := {TacticalJourney.REWARD:"전투 보상",TacticalJourney.CAPTURE:"새로운 동료",TacticalJourney.MAP:"다음 장소",TacticalJourney.REST:"잠시 쉬어갑니다",TacticalJourney.CLEARED:"레인보배지 획득!",TacticalJourney.FAILED:"원정 종료"}
     W.label(page,titles[journey.phase],Rect2(96,122,1728,70),40,W.GOLD)
     _party()
     match journey.phase:
         TacticalJourney.REWARD: _rewards()
         TacticalJourney.MAP: _map()
         TacticalJourney.REST: _rest()
+        TacticalJourney.CAPTURE: _capture_choice()
         _: _result()
-    W.label(page,"F2 아트 랩     F3 기존 원정     F4 전술 시험     F11 전체 화면",Rect2(96,1014,1728,34),15,W.MUTED)
+    W.label(page,"ESC 시작 화면     F11 전체 화면",Rect2(96,1014,1728,34),15,W.MUTED)
     if deck_open: _deck()
     UiMotion.appear(page)
 func _party() -> void:
@@ -123,6 +126,32 @@ func _result() -> void:
     W.label(page,"햇살숲 짧은 원정 완주" if cleared else journey.current()["name"],Rect2(550,570,1190,40),20,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
     _action("같은 시드로 다시 출발",Rect2(650,710,470,76),_restart.bind(journey.relic),"restart")
     _action("새 시드로 출발",Rect2(1160,710,470,76),_new_seed,"route")
+    _action("시작 화면",Rect2(900,820,470,62),_home,"home")
+func _capture_choice() -> void:
+    var caught := journey.pending_captures[0]
+    W.sprite(page,caught.species_id,Rect2(1000,280,180,180))
+    W.label(page,caught.display_name+" 포획 성공!",Rect2(550,465,1190,60),30,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+    var catalog := VisualCatalog.new()
+    var basic := catalog.species(catalog.starter_species_id(caught.species_id))
+    W.label(page,"스타팅 해금 · "+str(basic["name"]),Rect2(550,535,1190,40),21,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
+    if journey.party.size() < 3:
+        _action("원정대에 합류",Rect2(820,630,560,76),_resolve_capture.bind(0),"ball")
+    else:
+        for i in journey.party.size():
+            _action(journey.party[i].display_name+"와 교체",Rect2(550+i*404,630,382,76),_resolve_capture.bind(i),"switch")
+    _action("풀어주기",Rect2(900,740,470,62),_resolve_capture.bind(-1),"next")
+func _resolve_capture(index: int) -> void:
+    if journey.resolve_capture(index).is_empty(): refresh()
+func _capture() -> Dictionary:
+    var id := journey.battle.enemy().species_id
+    var title := journey.battle.enemy().display_name
+    var reason := journey.capture()
+    var message := title+" 포획 성공!"
+    if reason.is_empty():
+        var profile: PlayerProfile = get_node("/root/BattleSession").get("profile")
+        var save_error := profile.record_capture(id,VisualCatalog.new())
+        if not save_error.is_empty(): message += "\n"+save_error
+    return {"reason":reason,"notice":message}
 func _deck() -> void:
     var overlay := W.button(page,Rect2(0,0,1920,1080),_close_deck)
     for state: String in ["normal","hover","pressed","focus"]:
@@ -161,14 +190,14 @@ func _new_seed() -> void:
 func _lab() -> void:
     get_node("/root/BattleSession").set("return_scene","res://scenes/tactical_journey.tscn")
     get_tree().change_scene_to_file("res://scenes/art_lab.tscn")
+func _home() -> void:
+    get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 func _unhandled_key_input(event: InputEvent) -> void:
     if journey.phase == TacticalJourney.BATTLE or not event is InputEventKey or not event.pressed or event.echo: return
     if deck_open:
         if event.keycode == KEY_ESCAPE: _close_deck()
         return
     match event.keycode:
-        KEY_F2: _lab()
-        KEY_F3: get_tree().change_scene_to_file("res://scenes/battle_preview.tscn")
-        KEY_F4: get_tree().change_scene_to_file("res://scenes/tactical_battle.tscn")
+        KEY_ESCAPE: _home()
         KEY_F11:
             DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN else DisplayServer.WINDOW_MODE_FULLSCREEN)

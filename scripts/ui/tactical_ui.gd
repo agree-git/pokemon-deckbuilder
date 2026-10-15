@@ -13,6 +13,10 @@ var run_title := ""
 signal run_continue_requested
 signal run_restart_requested(selected_relic: String)
 var result_next: Button
+var capture_action: Callable
+var capture_status: Callable
+var capture_button: Button
+var home_button: Button
 var catalog := VisualCatalog.new()
 var stage := PixelStage.new()
 var busy := false
@@ -271,6 +275,10 @@ func _build_actions() -> void:
     discard_button = _pile_button("discard",Rect2(184,936,204,62),"버린 더미",func(): _show_pile("discard"))
     discard_count = discard_button.get_node("Count")
     end_button = W.button(self,Rect2(1640,900,232,76),_end)
+    if run_mode:
+        capture_button = W.button(self,Rect2(1640,790,232,78),_capture)
+        W.icon(capture_button,"ball",Rect2(18,23,32,32))
+        W.label(capture_button,"",Rect2(60,0,154,78),21).name = "Title"
     end_button.add_theme_stylebox_override("normal",W.box(Color("a7915d"),Color("e6c97f")))
     end_button.add_theme_stylebox_override("hover",W.box(Color("c2a86a"),GOLD))
     W.label(end_button,"턴 종료",Rect2(12,0,173,76),23,Color("10232b"),HORIZONTAL_ALIGNMENT_CENTER).name = "Title"
@@ -318,11 +326,14 @@ func _build_menu() -> Control:
         index += 1
     _label("특성 변경 시 "+("원정" if run_mode else "전투")+"을 처음부터 시작합니다.",Rect2(32,356,558,28),15,W.MUTED,HORIZONTAL_ALIGNMENT_LEFT,body)
     restart_button = _menu_action(body,"restart","다시 시작","",420,restart)
-    old_button = _menu_action(body,"route","기존 원정","F3",492,_old_run)
-    lab_button = _menu_action(body,"lab","아트 랩","F2",564,_open_lab)
+    if run_mode:
+        home_button = _menu_action(body,"home","시작 화면","",492,_home)
+    else:
+        old_button = _menu_action(body,"route","기존 원정","F3",492,_old_run)
+        lab_button = _menu_action(body,"lab","아트 랩","F2",564,_open_lab)
     _menu_action(body,"normal","화면 전환","F11",636,_fullscreen)
     _menu_action(body,"exhaust","소진된 카드","",708,func(): _show_pile("exhausted"))
-    _menu_action(body,"route","전술 시험" if run_mode else "전술 원정","F4",780,_toggle_journey)
+    if not run_mode: _menu_action(body,"route","전술 원정","F4",780,_toggle_journey)
     _label("1 / 2 / 3  교체     Q / W / E / R  기술",Rect2(32,848,558,32),16,W.MUTED,HORIZONTAL_ALIGNMENT_LEFT,body)
     return overlay
 
@@ -369,7 +380,7 @@ func _build_result() -> void:
     result.get_child(0).disabled = true
     var body: Panel = result.get_node("Body")
     result_title = W.label(body,"",Rect2(36,50,688,80),46,GOLD,HORIZONTAL_ALIGNMENT_CENTER)
-    for i in 3: W.sprite(body,battle.party[i].species_id,Rect2(202+i*104,165,96,96))
+    for i in battle.party.size(): W.sprite(body,battle.party[i].species_id,Rect2(380-battle.party.size()*52+i*104,165,96,96))
     result_detail = W.label(body,"",Rect2(36,290,688,50),20,CREAM,HORIZONTAL_ALIGNMENT_CENTER)
     result_restart = W.button(body,Rect2(200,395,360,68),restart,"원정 다시 하기" if run_mode else "다시 하기")
     result_next = W.button(body,Rect2(200,483,360,56),func():
@@ -423,7 +434,7 @@ func _refresh() -> void:
         slot.get_node("Active").visible = i == battle.enemy_index and p.alive()
         enemy_names[i].text = p.display_name
         enemy_names[i].modulate.a = 1.0 if p.alive() else 0.4
-        enemy_values[i].text = "%d / %d" % [p.hp,p.max_hp] if p.alive() else "기절"
+        enemy_values[i].text = "%d / %d" % [p.hp,p.max_hp] if p.alive() else ("포획" if battle.enemy_states[i].get("captured",false) else "기절")
         W.fill_bar(enemy_bars[i],p.hp,p.max_hp)
         slot.add_theme_stylebox_override("normal",W.box(Color("20353a") if i == battle.enemy_index else Color("152930"),GOLD if i == battle.enemy_index else Color("30474d")))
     W.fill_bar(ally_bar,battle.active().hp,battle.active().max_hp)
@@ -487,7 +498,7 @@ func _refresh() -> void:
         _shown_enemy = foe.uid
     var support := {"seed":"씨앗 3회 · 회당 2 흡수","growth":"공격력 +2","fire_guard":"보호막 +8","shell":"보호막 +8"}
     for i in skills.size():
-        var learned: Array = TacticalContent.SKILLS[battle.active().species_id]
+        var learned: Array = TacticalContent.skills_for(battle.active())
         if i >= learned.size():
             skill_names[i].text = "미습득"
             skill_values[i].text = "빈 기술 슬롯"
@@ -502,7 +513,7 @@ func _refresh() -> void:
         var view := battle.skill_view(key)
         var reason := battle.skill_reason(key)
         skill_names[i].text = view["name"]
-        skill_values[i].text = "피해 %d%s" % [view["preview_damage"]," · 화상" if view.has("burn") else ""] if view.has("preview_damage") else support[key]
+        skill_values[i].text = "피해 %d%s" % [view["preview_damage"]," · 화상" if view.has("burn") else ""] if view.has("preview_damage") else support.get(key,view["description"].replace("\n"," "))
         skill_values[i].add_theme_color_override("font_color",GOLD if state["burst"] and view.has("damage") else W.MUTED)
         skill_icons[i].texture = W.texture("shield" if view.has("block") else ("seed" if key == "seed" else ("boost" if key == "growth" else view["type"])))
         if battle.used_skills.has("%d:%s" % [battle.active().uid,key]):
@@ -519,6 +530,12 @@ func _refresh() -> void:
     relic_chip.tooltip_text = TacticalContent.RELICS[battle.relic]["description"]+"\n클릭하여 특성 변경"
     for key: String in relic_buttons: relic_buttons[key].get_node("Selected").visible = key == battle.relic
     log_text.text = "\n".join(battle.history)
+    if run_mode and capture_status.is_valid():
+        var capture_state: Dictionary = capture_status.call()
+        capture_button.visible = capture_state["wild"]
+        capture_button.disabled = busy or not str(capture_state["reason"]).is_empty()
+        capture_button.get_node("Title").text = "포획 · %d" % capture_state["balls"]
+        capture_button.tooltip_text = "C · 몬스터볼 1개와 에너지 1\n"+(str(capture_state["reason"]) if not str(capture_state["reason"]).is_empty() else "체력 25% 이하 · 포획 시 스타팅 해금")
     var show_result := not busy and battle.phase in [TacticalBattle.WON,TacticalBattle.LOST]
     if show_result:
         _close_overlays(true)
@@ -526,7 +543,8 @@ func _refresh() -> void:
             result.move_to_front()
             UiMotion.open(result)
         result_title.text = "승리!" if battle.phase == TacticalBattle.WON else "파티가 쓰러졌습니다"
-        result_detail.text = "%d턴  ·  %d마리 격파  ·  브레이크 %d회" % [battle.turn,battle.enemies.filter(func(p: BattlePokemon): return not p.alive()).size(),battle.enemy_states.filter(func(s: Dictionary): return s["broken"]).size()]
+        var captures := battle.enemy_states.filter(func(s: Dictionary): return s.get("captured",false)).size()
+        result_detail.text = "%d턴  ·  격파 %d  ·  포획 %d  ·  브레이크 %d회" % [battle.turn,battle.enemies.filter(func(p: BattlePokemon): return not p.alive()).size()-captures,captures,battle.enemy_states.filter(func(s: Dictionary): return s["broken"]).size()]
     else:
         UiMotion.close(result,true)
 
@@ -598,7 +616,7 @@ func _fly_card(card: TrainerActionCard,used := true,delay := 0.0) -> void:
     tween.chain().tween_callback(copy.queue_free)
 
 func _skill_slot(index: int) -> void:
-    var learned: Array = TacticalContent.SKILLS[battle.active().species_id]
+    var learned: Array = TacticalContent.skills_for(battle.active())
     if index >= 0 and index < learned.size(): _skill(learned[index])
 
 func _skill(key: String) -> void:
@@ -624,6 +642,12 @@ func _end() -> void:
             _fly_card(card,false,index*0.02)
             index += 1
     _present(battle.end_turn())
+func _capture() -> void:
+    if busy or not capture_action.is_valid(): return
+    _visual_enemy = battle.enemy()
+    var response: Dictionary = capture_action.call()
+    _present(response["reason"])
+    if str(response["reason"]).is_empty(): _notify(response["notice"])
 func _present(reason: String) -> void:
     if not reason.is_empty():
         _notify(reason)
@@ -712,6 +736,8 @@ func restart(selected_relic: String = "") -> void:
     _refresh()
 func _old_run() -> void:
     get_tree().change_scene_to_file("res://scenes/battle_preview.tscn")
+func _home() -> void:
+    get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 func _open_lab() -> void:
     get_node("/root/BattleSession").set("return_scene","res://scenes/tactical_journey.tscn" if run_mode else "res://scenes/tactical_battle.tscn")
     get_tree().change_scene_to_file("res://scenes/art_lab.tscn")
@@ -728,6 +754,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
         get_viewport().set_input_as_handled()
         return
     if _overlay_open(): return
+    if run_mode and event.keycode in [KEY_F2,KEY_F3,KEY_F4]: return
     if result.visible:
         match event.keycode:
             KEY_F3: _old_run()
@@ -738,7 +765,11 @@ func _unhandled_key_input(event: InputEvent) -> void:
         _skill_slot(SKILL_KEYS.find(event.keycode))
         return
     match event.keycode:
-        KEY_1,KEY_2,KEY_3: _switch(battle.party[event.keycode-KEY_1].uid)
+        KEY_1,KEY_2,KEY_3:
+            var index: int = event.keycode-KEY_1
+            if index < battle.party.size(): _switch(battle.party[index].uid)
+        KEY_C:
+            if run_mode: _capture()
         KEY_ENTER: _end()
         KEY_F1: _open_overlay(help_panel)
         KEY_F2: _open_lab()

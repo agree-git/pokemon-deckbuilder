@@ -76,7 +76,11 @@ func restart(battle_seed: int = 2026, selected_relic: String = "seed_relay", opp
         draw_pile.append(_new_card(key))
     _shuffle(draw_pile)
     _draw(5)
-    # Keep the tutorial's opening analysis available without fixing all five cards.
+    _ensure_opening_analysis()
+    _record("turn","턴 1 · 에너지 3")
+
+func _ensure_opening_analysis() -> void:
+    # Keep opening analysis available without fixing all five cards.
     if not hand.any(func(card: BattleCardInstance): return card.key == "analysis"):
         for card: BattleCardInstance in draw_pile:
             if card.key == "analysis":
@@ -84,12 +88,11 @@ func restart(battle_seed: int = 2026, selected_relic: String = "seed_relay", opp
                 draw_pile.push_front(hand.pop_back())
                 hand.append(card)
                 break
-    _record("turn","턴 1 · 에너지 3")
 
-func start_with(members: Array[BattlePokemon], cards: Array[BattleCardInstance], opponents: Array, battle_seed: int, selected_relic: String) -> void:
+func start_with(members: Array[BattlePokemon], cards: Array[BattleCardInstance], opponents: Array, battle_seed: int, selected_relic: String, lead_first := false) -> void:
     restart(battle_seed,selected_relic,opponents)
     party.assign(members)
-    active_index = 1 if party[1].alive() else 0
+    active_index = 0 if lead_first else mini(1,party.size()-1)
     for i in party.size():
         var pokemon := party[i]
         pokemon.block = 0
@@ -104,6 +107,7 @@ func start_with(members: Array[BattlePokemon], cards: Array[BattleCardInstance],
     _rng.seed = battle_seed
     _shuffle(draw_pile)
     _draw(5)
+    _ensure_opening_analysis()
 
 func active() -> BattlePokemon:
     return party[active_index]
@@ -126,7 +130,7 @@ func skill_view(key: String) -> Dictionary:
 func skill_reason(key: String) -> String:
     if phase != PLAYER:
         return "살아 있는 아군을 선택하세요." if phase == REPLACE else "전투가 끝났습니다."
-    if key not in TacticalContent.SKILLS[active().species_id]:
+    if key not in TacticalContent.skills_for(active()):
         return "현재 포켓몬이 사용할 수 없는 기술입니다."
     if used_skills.has("%d:%s" % [active().uid,key]):
         return "이 기술은 이번 턴에 사용했습니다."
@@ -184,6 +188,26 @@ func card_view(card: BattleCardInstance) -> Dictionary:
     view["key"] = card.key
     view["cost"] = 0 if free_card and card.key != "injury" and int(view["cost"]) > 0 else view["cost"]
     return view
+
+func capture_reason() -> String:
+    if phase != PLAYER: return "지금은 포획할 수 없습니다."
+    if energy < 1: return "포획에는 에너지 1이 필요합니다."
+    if enemy().hp * 4 > enemy().max_hp: return "체력을 25% 이하로 낮추세요."
+    return ""
+func capture_enemy() -> String:
+    var reason := capture_reason()
+    if not reason.is_empty(): return reason
+    events.clear()
+    energy -= 1
+    var target := enemy()
+    target.hp = 0
+    target.knocked_out = true
+    target.statuses.clear()
+    opening()["captured"] = true
+    _relay.clear()
+    _record("capture",target.display_name+" 포획 성공!",{"species_id":target.species_id})
+    _outcome()
+    return ""
 func card_reason(uid: int) -> String:
     if phase != PLAYER:
         return "현재 카드를 사용할 수 없습니다."
@@ -387,7 +411,7 @@ func _outcome() -> bool:
         else:
             phase = WON
             _clear_statuses()
-            _record("outcome","적 파티 전원 격파 · 전투 승리")
+            _record("outcome","야생 조우 종료 · 전투 승리" if enemy_states.any(func(state: Dictionary): return state.get("captured",false)) else "적 파티 전원 격파 · 전투 승리")
             return true
     return false
 func _clear_statuses() -> void:
