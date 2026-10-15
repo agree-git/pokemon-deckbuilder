@@ -17,6 +17,8 @@ var camp_tab := "rest"
 var camp_tabs: Dictionary = {}
 var camp_notice := ""
 var bag_item := ""
+var evolution_result: Dictionary = {}
+var _evolution_catalog := VisualCatalog.new()
 var rest_button: Button
 var learn_buttons: Array[Button] = []
 var travelling := false
@@ -98,6 +100,7 @@ func refresh() -> void:
     if gear_open_for != 0: _gear_picker()
     if not bag_item.is_empty(): _item_picker()
     if report_open: _report()
+    if not evolution_result.is_empty(): _evolution_reveal()
     UiMotion.appear(page)
 func _party() -> void:
     var panel := W.panel(page,Rect2(96,280,340,420),Color("14282f"),Color("405960"))
@@ -108,6 +111,8 @@ func _party() -> void:
         var title := W.label(panel,"%s · Lv.%d" % [pokemon.display_name,pokemon.level],Rect2(102,77+i*82,218,32),18)
         title.mouse_filter = Control.MOUSE_FILTER_PASS
         title.tooltip_text = PokemonStats.summary(pokemon)
+        for key: String in EvolutionItems.options(pokemon.species_id):
+            title.tooltip_text += "\n%s → %s · 야영지 가방" % [EvolutionItems.ITEMS[key]["name"],_evolution_catalog.species(EvolutionItems.target(key,pokemon.species_id))["name"]]
         W.label(panel,("%d / %d HP" % [pokemon.hp,pokemon.max_hp] if pokemon.alive() else "기절")+" · "+TacticalGrowth.progress_text(pokemon),Rect2(102,111+i*82,218,28),12,W.MUTED)
         W.fill_bar(W.bar(panel,Rect2(102,141+i*82,200,4)),pokemon.hp,pokemon.max_hp)
         var experience := W.bar(panel,Rect2(102,148+i*82,200,3),W.GOLD)
@@ -257,19 +262,35 @@ func _rest() -> void:
         "encounter": _encounter()
         "shop": _shop()
         "gear": _gear()
-        "bag":
-            var i := 0
-            for key: String in journey.items():
-                var item: Dictionary = journey.items()[key]
-                var button := W.button(page,Rect2(550+(i%3)*400,382+floori(i/3.0)*210,376,184),_open_item.bind(key))
-                button.name = "Bag_"+key
-                _item_sprite(button,key,Rect2(143,24,90,90))
-                W.label(button,item["name"],Rect2(20,126,336,40),23,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
-                W.label(button,"×%d" % journey.quantity(key),Rect2(280,10,76,32),18,W.GOLD,HORIZONTAL_ALIGNMENT_RIGHT)
-                button.disabled = journey.quantity(key) == 0 or key == "ball"
-                button.tooltip_text = "야생 전투에서 C로 포획" if key == "ball" else ("기절한 동료 HP 50% 회복" if key == "revive" else "최대 HP의 %s 회복" % PokemonStats.percent(int(item["heal"])))
-                i += 1
+        "bag": _bag()
     W.label(page,camp_notice,Rect2(550,870,1190,40),20,W.GOLD)
+func _bag() -> void:
+    var scroll := ScrollContainer.new()
+    scroll.name = "BagScroll"
+    scroll.position = Vector2(550,382)
+    scroll.size = Vector2(1200,440)
+    scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+    page.add_child(scroll)
+    var body := Control.new()
+    scroll.add_child(body)
+    var i := 0
+    for key: String in journey.items():
+        # Materials appear when owned; keep an empty bag compact.
+        if EvolutionItems.ITEMS.has(key) and journey.quantity(key) == 0: continue
+        var item: Dictionary = journey.items()[key]
+        var button := W.button(body,Rect2((i%3)*400,floori(i/3.0)*210,376,184),_open_item.bind(key))
+        button.name = "Bag_"+key
+        _item_sprite(button,key,Rect2(143,24,90,90))
+        W.label(button,item["name"],Rect2(20,126,336,40),23,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
+        W.label(button,"×%d" % journey.quantity(key),Rect2(280,10,76,32),18,W.GOLD,HORIZONTAL_ALIGNMENT_RIGHT)
+        button.disabled = journey.quantity(key) == 0 or key == "ball"
+        button.tooltip_text = _item_description(key)
+        i += 1
+    body.custom_minimum_size = Vector2(1176,ceilf(i/3.0)*210-26)
+func _item_description(key: String) -> String:
+    if EvolutionItems.ITEMS.has(key): return EvolutionItems.description(key)
+    if key == "ball": return "야생 전투에서 C로 포획"
+    return "기절한 동료 HP 50% 회복" if key == "revive" else "최대 HP의 %s 회복" % PokemonStats.percent(int(journey.items()[key]["heal"]))
 func _shop() -> void:
     W.label(page,"카드",Rect2(550,345,650,38),23,W.GOLD)
     W.label(page,"보급품",Rect2(1250,345,490,38),23,W.GOLD)
@@ -300,7 +321,7 @@ func _shop() -> void:
         actions.append(button)
     var row := 0
     for key: String in journey.items():
-        if journey.full_campaign and key not in journey.camp().get("offers",[]): continue
+        if journey.full_campaign and key not in journey.shop_items(): continue
         var item: Dictionary = journey.items()[key]
         var y := 390+row*(122 if journey.full_campaign else 104)
         var panel := W.panel(page,Rect2(1250,y,490,114 if journey.full_campaign else 100),Color("172d32"))
@@ -312,7 +333,7 @@ func _shop() -> void:
         button.disabled = not journey.buy_reason(key).is_empty()
         button.tooltip_text = journey.buy_reason(key)
         panel.mouse_filter = Control.MOUSE_FILTER_PASS
-        panel.tooltip_text = "야생 전투에서 포획 · C" if key == "ball" else ("기절한 동료의 HP 50% 회복" if key == "revive" else "최대 HP의 %s 회복" % PokemonStats.percent(int(item["heal"])))
+        panel.tooltip_text = _item_description(key)
         actions.append(button)
         row += 1
     var remove := W.button(page,Rect2(550,812,650,54),_select_deck_action.bind("remove"),"카드 제거 완료" if journey.camp().get("removed",false) else "카드 제거 · %d 골드" % journey.removal_price())
@@ -349,6 +370,8 @@ func _item_picker() -> void:
     body.mouse_filter = Control.MOUSE_FILTER_STOP
     _item_sprite(body,bag_item,Rect2(30,28,60,60))
     W.label(body,journey.items()[bag_item]["name"]+" · 사용할 동료",Rect2(112,24,550,64),26,W.GOLD)
+    if EvolutionItems.ITEMS.has(bag_item):
+        W.label(body,"현재 기술은 유지 · 이후에는 진화형의 레벨업 기술을 배웁니다.",Rect2(32,88,716,28),16,W.MUTED)
     W.icon_button(body,"close",Rect2(700,28,48,48),_close_item,"닫기 · Esc").name = "Close"
     for i in journey.party.size():
         var p := journey.party[i]
@@ -359,10 +382,45 @@ func _item_picker() -> void:
         if button.disabled: button.self_modulate = Color(0.58,0.65,0.65)
         W.sprite(button,p.species_id,Rect2(18,18,104,104))
         W.label(button,"%s · Lv.%d" % [p.display_name,p.level],Rect2(152,18,520,38),24)
-        var healing := ceili(p.max_hp*0.5) if bag_item == "revive" else PokemonStats.scale(p,int(journey.items()[bag_item]["heal"]))
-        W.label(button,"HP %d / %d  →  %d / %d" % [p.hp,p.max_hp,mini(p.max_hp,p.hp+healing),p.max_hp] if reason.is_empty() else reason,Rect2(152,64,520,35),19,W.MUTED)
+        var preview := reason
+        if reason.is_empty():
+            if EvolutionItems.ITEMS.has(bag_item):
+                var target := EvolutionItems.target(bag_item,p.species_id)
+                preview = "→ %s · 진화하기" % _evolution_catalog.species(target)["name"]
+                W.sprite(button,target,Rect2(572,22,96,96))
+            else:
+                var healing := ceili(p.max_hp*0.5) if bag_item == "revive" else PokemonStats.scale(p,int(journey.items()[bag_item]["heal"]))
+                preview = "HP %d / %d  →  %d / %d" % [p.hp,p.max_hp,mini(p.max_hp,p.hp+healing),p.max_hp]
+        W.label(button,preview,Rect2(152,64,416 if EvolutionItems.ITEMS.has(bag_item) else 520,35),19,W.MUTED)
         W.fill_bar(W.bar(button,Rect2(152,117,510,7)),p.hp,p.max_hp)
         button.tooltip_text = reason
+        if reason.is_empty() and EvolutionItems.ITEMS.has(bag_item):
+            var next_moves: Array[String] = []
+            for entry: Dictionary in TacticalGrowth.species_data(EvolutionItems.target(bag_item,p.species_id))["learnset"]:
+                if int(entry["level"]) > p.level:
+                    next_moves.append("Lv.%d · %s" % [entry["level"],TacticalMoves.definition(TacticalMoves.key_for(int(entry["move"])))["name"]])
+            button.tooltip_text = "진화 후 레벨업 기술\n"+("새로 배울 기술이 없습니다. 필요한 기술을 먼저 배운 뒤 진화할 수 있습니다." if next_moves.is_empty() else "\n".join(next_moves))
+    UiMotion.appear(overlay)
+func _close_evolution() -> void:
+    evolution_result.clear()
+    refresh()
+func _evolution_reveal() -> void:
+    var overlay := W.button(page,Rect2(0,0,1920,1080),_close_evolution)
+    overlay.name = "EvolutionReveal"
+    overlay.z_index = 90
+    for state: String in ["normal","hover","pressed","focus"]: overlay.add_theme_stylebox_override(state,W.box(Color(0.01,0.025,0.04,0.85),Color.TRANSPARENT,0))
+    var body := W.panel(overlay,Rect2(510,215,900,650),Color("14282f"),W.GOLD)
+    body.mouse_filter = Control.MOUSE_FILTER_STOP
+    W.label(body,"축하합니다!",Rect2(40,35,820,60),34,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+    W.sprite(body,int(evolution_result["from"]),Rect2(95,160,240,240))
+    W.label(body,"→",Rect2(370,225,100,70),48,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+    var evolved := W.sprite(body,int(evolution_result["to"]),Rect2(515,125,300,300))
+    evolved.pivot_offset = evolved.size/2
+    evolved.scale = Vector2.ONE*0.35
+    var tween := UiMotion.begin(evolved,"evolve",true)
+    tween.tween_property(evolved,"scale",Vector2.ONE,0.65).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+    W.label(body,"%s → %s" % [evolution_result["before"],evolution_result["after"]],Rect2(40,440,820,60),28,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
+    W.button(body,Rect2(290,540,320,64),_close_evolution,"계속").name = "CloseEvolution"
     UiMotion.appear(overlay)
 func _gear() -> void:
     W.label(page,"지닌 물건 · 동료당 하나, 야영지에서 자유롭게 교환",Rect2(550,354,1190,36),21,W.GOLD)
@@ -465,9 +523,13 @@ func _buy_card(index: int) -> void:
     camp_notice = reason if not reason.is_empty() else card_name+" · 원정 덱에 추가했습니다."
     refresh()
 func _use_item(key: String,index: int) -> void:
+    var pokemon := journey.party[index]
+    var before := {"from":pokemon.species_id,"before":pokemon.display_name}
     var reason := journey.use_item(key,index)
     camp_notice = reason if not reason.is_empty() else journey.party[index].display_name+"에게 사용했습니다."
     if reason.is_empty(): bag_item = ""
+    if reason.is_empty() and pokemon.species_id != before["from"]:
+        evolution_result = before.merged({"to":pokemon.species_id,"after":pokemon.display_name})
     refresh()
 func _leave_camp() -> void:
     if journey.leave_camp().is_empty():
@@ -596,6 +658,10 @@ func _home() -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
     if travelling: return
     if journey.phase == TacticalJourney.BATTLE or not event is InputEventKey or not event.pressed or event.echo: return
+    if not evolution_result.is_empty():
+        if event.keycode in [KEY_ESCAPE,KEY_ENTER]: _close_evolution()
+        get_viewport().set_input_as_handled()
+        return
     if report_open:
         if event.keycode == KEY_ESCAPE:
             report_open = false

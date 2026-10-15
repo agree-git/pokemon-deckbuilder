@@ -197,6 +197,9 @@ static func validate(data: Variant) -> bool:
             if not uid is int or uid not in b["party"] or not integer(mapping[uid],0,100000): return false
     for key: String in ["potion","super_potion","revive"]:
         if not integer(r["inventory"].get(key),0,100000): return false
+    for key: Variant in r["inventory"]:
+        if key not in ["potion","super_potion","revive"] and not EvolutionItems.ITEMS.has(key): return false
+        if not integer(r["inventory"][key],0,100000): return false
     if r["badge_records"].size() != r["badges"]: return false
     var route := CampaignRoute.new(r["seed_value"])
     if not data.get("route") is String or data["route"] != route.signature: return false
@@ -206,8 +209,13 @@ static func validate(data: Variant) -> bool:
         if not camp.get("resolved") is bool or not camp.get("outcome") is String or not camp.get("stock") is Dictionary: return false
         for key: String in route.stops[step]["camp"]:
             if camp.get(key) != route.stops[step]["camp"][key]: return false
+        if camp.has("evolution_offer"):
+            if camp["kind"] != "merchant" or not camp["evolution_offer"] is String or not EvolutionItems.ITEMS.has(camp["evolution_offer"]): return false
+            if not camp["stock"].has(camp["evolution_offer"]): return false
         for key: Variant in camp["stock"]:
-            if key not in ["potion","super_potion","revive","ball"] or not integer(camp["stock"][key],0,4): return false
+            if not key is String: return false
+            if key not in ["potion","super_potion","revive","ball"] and key != camp.get("evolution_offer",""): return false
+            if not integer(camp["stock"][key],0,1 if EvolutionItems.ITEMS.has(key) else 4): return false
         if camp.has("card_offers"):
             if camp["kind"] != "merchant" or not MerchantContent.valid_offers(camp["card_offers"],int(route.stops[step]["chapter"])): return false
         if camp.has("removed") and not camp["removed"] is bool: return false

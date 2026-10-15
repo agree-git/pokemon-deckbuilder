@@ -337,7 +337,7 @@ func buy(key: String) -> String:
     _stat("supplies_bought")
     shop_stock[key] = int(shop_stock[key])-1
     if key == "ball": balls += 1
-    else: inventory[key] = int(inventory[key])+1
+    else: inventory[key] = int(inventory.get(key,0))+1
     return notify_changed()
 func shop_cards() -> Array:
     return camp().get("card_offers",[])
@@ -370,6 +370,10 @@ func item_reason(key: String,index: int) -> String:
     if not items().has(key) or int(inventory.get(key,0)) <= 0: return "보유한 아이템이 없습니다."
     if index < 0 or index >= party.size(): return "사용할 동료를 선택하세요."
     var pokemon := party[index]
+    if EvolutionItems.ITEMS.has(key):
+        if not pokemon.alive(): return "기절한 동료를 먼저 회복하세요."
+        if EvolutionItems.target(key,pokemon.species_id) == 0: return "이 재료로 진화할 수 없는 동료입니다."
+        return ""
     if key == "revive":
         if pokemon.alive(): return "기절한 동료에게 사용하세요."
     elif not pokemon.alive(): return "기절한 동료는 기력의조각으로 회복하세요."
@@ -379,6 +383,15 @@ func use_item(key: String,index: int) -> String:
     var reason := item_reason(key,index)
     if not reason.is_empty(): return reason
     var pokemon := party[index]
+    if EvolutionItems.ITEMS.has(key):
+        var previous := pokemon.display_name
+        TacticalGrowth.evolve(pokemon,EvolutionItems.target(key,pokemon.species_id),VisualCatalog.new())
+        inventory[key] = int(inventory[key])-1
+        _stat("items_used")
+        var choice := "%s → %s · %s" % [previous,pokemon.display_name,items()[key]["name"]]
+        history.append(choice)
+        _decision("진화 · "+choice)
+        return notify_changed()
     var hp_before := pokemon.hp
     if key == "revive":
         pokemon.hp = ceili(pokemon.max_hp*0.5)
@@ -394,6 +407,7 @@ func is_wild() -> bool:
 func items() -> Dictionary:
     var result := TacticalJourneyContent.ITEMS.duplicate(true)
     if full_campaign: result["ball"] = {"name":"몬스터볼","price":35,"stock":4}
+    if full_campaign: result.merge(EvolutionItems.ITEMS,true)
     return result
 func quantity(key: String) -> int:
     return balls if key == "ball" else int(inventory.get(key,0))
@@ -414,10 +428,17 @@ func _prepare_camp() -> void:
         if state["kind"] == "merchant":
             for key: String in state["offers"]: state["stock"][key] = items()[key]["stock"]
             state["card_offers"] = MerchantContent.generate(seed_value,step,int(current().get("chapter",0)),deck,party,relics)
+            if full_campaign:
+                state["evolution_offer"] = EvolutionItems.merchant_offer(seed_value,step,party)
+                state["stock"][state["evolution_offer"]] = 1
         camp_states[step] = state
     shop_stock = camp_states[step]["stock"]
 func camp() -> Dictionary:
     return camp_states.get(step,{})
+func shop_items() -> Array:
+    var offers: Array = camp().get("offers",[]).duplicate()
+    if camp().has("evolution_offer"): offers.append(camp()["evolution_offer"])
+    return offers
 func camp_choice_reason(choice: int) -> String:
     if phase != REST or not full_campaign: return "야영지의 만남을 확인하세요."
     var state := camp()
