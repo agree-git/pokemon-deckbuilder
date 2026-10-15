@@ -26,6 +26,7 @@ static func encode(j: TacticalJourney) -> Dictionary:
     for c: BattleCardInstance in j.deck+b.hand+b.draw_pile+b.discard+b.exhausted: cards[c.uid] = fields(c,CARD_FIELDS)
     var state := fields(j,RUN_FIELDS)
     if not j.time_of_day.is_empty(): state["time_of_day"] = j.time_of_day
+    if not j.rare_hunt.is_empty(): state["rare_hunt"] = j.rare_hunt.duplicate(true)
     state["party"] = ids(j.party)
     state["deck"] = ids(j.deck)
     state["pending_captures"] = ids(j.pending_captures)
@@ -60,6 +61,7 @@ static func restore(data: Dictionary) -> TacticalJourney:
         cards[uid] = c
     for key: String in RUN_FIELDS: j.set(key,state[key])
     j.time_of_day = state.get("time_of_day","")
+    j.rare_hunt = state.get("rare_hunt",{}).duplicate(true)
     j.statistics = state.get("statistics",{}).duplicate(true)
     j.party.assign(state["party"].map(func(uid: int): return pokemon[uid]))
     j.deck.assign(state["deck"].map(func(uid: int): return cards[uid]))
@@ -219,6 +221,13 @@ static func validate(data: Variant) -> bool:
     if r["badge_records"].size() != r["badges"]: return false
     var route := CampaignRoute.new(r["seed_value"])
     if not data.get("route") is String or data["route"] != route.signature: return false
+    if r.has("rare_hunt"):
+        if not RareEncounter.valid(r["rare_hunt"],r,route): return false
+        var hunt: Dictionary = r["rare_hunt"]
+        if hunt["battle_step"] == r["step"] and r["phase"] != TacticalJourney.MAP:
+            if b["enemies"].size() != 1 or ps[b["enemies"][0]]["species_id"] != hunt["target"]: return false
+            if ps[b["enemies"][0]]["level"] != RareEncounter.node(route.stops[r["step"]],int(hunt["target"]))["level"]: return false
+            if hunt["captured"] != bool(b["enemy_states"][0].get("captured",false)): return false
     for step: Variant in r["camp_states"]:
         var camp: Variant = r["camp_states"][step]
         if not integer(step,0,136) or route.stops[step]["kind"] != "rest" or not camp is Dictionary: return false

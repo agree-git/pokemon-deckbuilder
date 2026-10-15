@@ -48,6 +48,7 @@ var rested_steps: Array[int] = []
 var shop_stock: Dictionary = {}
 var camp_states: Dictionary = {}
 var time_of_day := ""
+var rare_hunt: Dictionary = {}
 
 func _init(run_seed: int = 2026, selected_relic: String = "field_kit", selected_starters: Array[int] = [], campaign := false) -> void:
     full_campaign = campaign
@@ -79,6 +80,7 @@ func restart(run_seed: int = 2026, selected_relic: String = "field_kit", selecte
     shop_stock = {}
     camp_states.clear()
     time_of_day = "day"
+    rare_hunt.clear()
     _settled = null
     balls = 2
     pending_captures.clear()
@@ -107,7 +109,13 @@ func restart(run_seed: int = 2026, selected_relic: String = "field_kit", selecte
     bind_battle()
     changed.emit()
 func current() -> Dictionary:
+    if full_campaign and rare_hunt.get("battle_step",-1) == step:
+        return RareEncounter.node(route.stops[step],int(rare_hunt["target"]))
     return route.stops[step] if full_campaign else TacticalJourneyContent.STOPS[step]
+func opponents_at(index: int) -> Array:
+    if full_campaign and rare_hunt.get("battle_step",-1) == index:
+        return RareEncounter.opponents(route.stops[index],int(rare_hunt["target"]))
+    return route.opponents(index) if full_campaign else TacticalJourneyContent.opponents(index)
 func _collect_deck() -> void:
     deck.clear()
     for pile: Array in [battle.hand,battle.draw_pile,battle.discard,battle.exhausted]: deck.append_array(pile)
@@ -249,7 +257,13 @@ func capture_reason() -> String:
     if phase != BATTLE or not is_wild(): return "트레이너와 관장의 포켓몬은 포획할 수 없습니다."
     if _capture_catalog == null: _capture_catalog = VisualCatalog.new()
     var species := _capture_catalog.species(battle.enemy().species_id)
-    if species.is_empty() or species["is_legendary"] or species["is_mythical"]: return "특별한 포획 조건이 필요한 포켓몬입니다."
+    if species.is_empty(): return "포획할 수 없는 포켓몬입니다."
+    if species["is_legendary"] or species["is_mythical"]:
+        if not current().get("rare",false) or int(rare_hunt.get("target",0)) != battle.enemy().species_id or rare_hunt.get("captured",false): return "특별한 포획 조건이 필요한 포켓몬입니다."
+        var rule := RareEncounter.rule(battle.enemy().species_id)
+        if balls < rule["balls"]: return "희귀 포획에는 몬스터볼 %d개가 필요합니다." % rule["balls"]
+        if battle.energy < rule["energy"]: return "희귀 포획에는 에너지 %d이 필요합니다." % rule["energy"]
+        if battle.enemy().hp*100 > battle.enemy().max_hp*rule["hp_percent"]: return "체력을 %d%% 이하로 낮추세요. 쓰러뜨리면 기회가 끝납니다." % rule["hp_percent"]
     if balls <= 0: return "몬스터볼이 없습니다."
     return battle.capture_reason()
 func capture() -> String:
@@ -257,8 +271,11 @@ func capture() -> String:
     if not reason.is_empty(): return reason
     var target := battle.enemy()
     var definition := {"id":target.species_id,"name":target.display_name,"type":target.type,"types":target.types.duplicate(),"max_hp":target.max_hp,"level":target.level}
-    battle.capture_enemy()
-    balls -= 1
+    var rare: bool = current().get("rare",false)
+    var rule := RareEncounter.rule(target.species_id)
+    battle.capture_enemy(int(rule["energy"]) if rare else 1)
+    balls -= int(rule["balls"]) if rare else 1
+    if rare: rare_hunt["captured"] = true
     var caught := BattlePokemon.new(definition,_next_pokemon_uid)
     _next_pokemon_uid += 1
     TacticalGrowth.initialize(caught)
@@ -315,7 +332,7 @@ func enter_next() -> String:
         _prepare_camp()
     else:
         battle = TacticalBattle.new()
-        battle.start_with(party,deck,route.opponents(step) if full_campaign else TacticalJourneyContent.opponents(step),seed_value+step,relic,true,relics)
+        battle.start_with(party,deck,opponents_at(step),seed_value+step,relic,true,relics)
         battle.full_type_chart = full_campaign
         phase = BATTLE
         bind_battle()
@@ -323,7 +340,7 @@ func enter_next() -> String:
 func rest(action: String = "heal", card_uid: int = 0) -> String:
     if phase != REST: return "야영지에서 휴식할 수 있습니다."
     if action not in ["heal","upgrade"]: return "휴식 또는 카드 강화를 선택하세요."
-    if step in rested_steps: return "이번 야영지의 휴식·강화 행동을 이미 사용했습니다."
+    if step in rested_steps: return "이번 야영지의 휴식·강화·조사 행동을 이미 사용했습니다."
     if action == "upgrade":
         for card: BattleCardInstance in deck:
             if card.uid == card_uid and TacticalContent.can_upgrade(card):
@@ -358,6 +375,46 @@ func leave_camp() -> String:
     return notify_changed()
 func current_time() -> String:
     return time_of_day if not time_of_day.is_empty() else "day"
+func rare_info() -> Dictionary:
+    return rare_hunt.duplicate(true) if not rare_hunt.is_empty() else RareEncounter.initial(seed_value)
+func investigate_reason() -> String:
+    if phase != REST or not full_campaign: return "정식 원정의 야영지에서 조사하세요."
+    if rare_hunt.get("battle_step",-1) >= 0: return "이번 원정의 희귀 조우 도전을 이미 사용했습니다."
+    if step in rested_steps: return "이번 야영지의 휴식·강화·조사 행동을 이미 사용했습니다."
+    var info := rare_info()
+    if info["clues"].size() >= RareEncounter.requirement(info["target"]): return "단서를 모두 모았습니다. 배지와 다음 야생 전투를 확인하세요."
+    return ""
+func investigate() -> String:
+    var reason := investigate_reason()
+    if not reason.is_empty(): return reason
+    if rare_hunt.is_empty(): rare_hunt = RareEncounter.initial(seed_value)
+    rare_hunt["clues"].append(step)
+    rested_steps.append(step)
+    var choice := "희귀 조우 · 단서 조사 %d / %d" % [rare_hunt["clues"].size(),RareEncounter.requirement(rare_hunt["target"])]
+    history.append(choice)
+    _decision(choice)
+    return notify_changed()
+func rare_challenge_reason() -> String:
+    if phase != REST or not full_campaign: return "정식 원정의 야영지에서 도전하세요."
+    var info := rare_info()
+    if info["battle_step"] >= 0: return "원정당 한 번만 도전할 수 있습니다."
+    var required := RareEncounter.requirement(info["target"])
+    if info["clues"].size() < required: return "단서를 %d개 모으세요." % required
+    if badges < required: return "배지 %d개가 필요합니다." % required
+    if step+1 >= route.stops.size() or route.stops[step+1]["kind"] != "wild": return "다음 장소가 야생 전투인 야영지에서 도전하세요."
+    var cost: int = RareEncounter.rule(info["target"])["balls"]
+    if balls < cost: return "포획용 몬스터볼 %d개를 먼저 준비하세요." % cost
+    return ""
+func challenge_rare() -> String:
+    var reason := rare_challenge_reason()
+    if not reason.is_empty(): return reason
+    rare_hunt["battle_step"] = step+1
+    var choice := "희귀 조우 · "+str(VisualCatalog.new().species(rare_hunt["target"])["name"])+" 도전 예약"
+    history.append(choice)
+    _decision(choice)
+    return notify_changed()
+func capture_help() -> String:
+    return RareEncounter.capture_help(int(rare_hunt["target"])) if current().get("rare",false) else "몬스터볼 1개 · 에너지 1 · HP 25% 이하\n포획 시 스타팅 영구 해금"
 func set_time(value: String) -> String:
     if phase != REST: return "야영지에서 원정 시간대를 준비하세요."
     if value not in ["day","night"]: return "낮 또는 밤을 선택하세요."

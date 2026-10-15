@@ -19,6 +19,7 @@ var camp_notice := ""
 var bag_item := ""
 var evolution_result: Dictionary = {}
 var special_open := false
+var rare_open := false
 var _evolution_catalog := VisualCatalog.new()
 var rest_button: Button
 var learn_buttons: Array[Button] = []
@@ -64,7 +65,7 @@ func refresh() -> void:
         battle_ui.run_title = journey.progress_title()
         battle_ui.run_biome = journey.biome()
         battle_ui.capture_action = _capture
-        battle_ui.capture_status = func(): return {"wild":journey.is_wild(),"balls":journey.balls,"reason":journey.capture_reason()}
+        battle_ui.capture_status = func(): return {"wild":journey.is_wild(),"balls":journey.balls,"reason":journey.capture_reason(),"help":journey.capture_help(),"cost":RareEncounter.rule(journey.battle.enemy().species_id)["balls"] if journey.current().get("rare",false) else 1}
         battle_ui.run_continue_requested.connect(_settle)
         battle_ui.run_restart_requested.connect(_restart)
         page.add_child(battle_ui)
@@ -102,6 +103,7 @@ func refresh() -> void:
     if not bag_item.is_empty(): _item_picker()
     if report_open: _report()
     if special_open: _special_picker()
+    if rare_open: _rare_picker()
     if not evolution_result.is_empty(): _evolution_reveal()
     UiMotion.appear(page)
 func _party() -> void:
@@ -192,6 +194,8 @@ func _map() -> void:
     for column in visible_steps.size():
         var i := visible_steps[column]
         var stop: Dictionary = stops[i]
+        if journey.full_campaign and journey.rare_hunt.get("battle_step",-1) == i:
+            stop = RareEncounter.node(stop,int(journey.rare_hunt["target"]))
         var highlighted: bool = i == journey.step or (journey.current()["kind"] == "rest" and i == journey.step-1)
         var height := 148.0 if journey.full_campaign else 220.0
         var panel := W.panel(page,Rect2(550+(column%columns)*width,310+floori(column/float(columns))*164,width-12,height),Color("20383e") if highlighted else Color("14282f"),W.GOLD if highlighted else Color("405960"))
@@ -204,7 +208,7 @@ func _map() -> void:
             W.icon(panel,"badge" if final_battle else "heal",Rect2(width-42,height-28,16,16))
             panel.mouse_filter = Control.MOUSE_FILTER_PASS
             panel.tooltip_text = ("승리하면 챔피언 등극" if final_battle else "전투 후 야영지")+" · 적 Lv.%d" % stop["level"]
-            var opponents: Array = journey.route.opponents(i)
+            var opponents: Array = journey.opponents_at(i)
             if not opponents.is_empty() and opponents[0].has("boss"): panel.tooltip_text += "\n고유 전술 · "+BossTactics.heading(opponents[0])
             for opponent: Dictionary in opponents:
                 panel.tooltip_text += "\n%s · %s · %s" % [opponent["name"],EnemyTactics.role_title(opponent),EnemyTactics.pattern_text(opponent)]
@@ -256,6 +260,11 @@ func _rest() -> void:
     _action("준비 완료 · 출발",Rect2(1260,930,480,72),_leave_camp,"next")
     match camp_tab:
         "rest":
+            if journey.full_campaign:
+                var hunt := journey.rare_info()
+                W.button(page,Rect2(800,354,292,44),func():
+                    rare_open = true
+                    refresh(),"희귀 조우 · %d/%d" % [hunt["clues"].size(),RareEncounter.requirement(hunt["target"])]).name = "RareEncounter"
             if journey.party.any(func(p: BattlePokemon): return SpecialEvolution.eligible(p.species_id)):
                 W.button(page,Rect2(550,354,220,44),func():
                     special_open = true
@@ -270,11 +279,11 @@ func _rest() -> void:
                     time_button.add_theme_stylebox_override("disabled",W.box(Color("29443f"),W.GOLD))
                     time_button.add_theme_color_override("font_disabled_color",W.GOLD)
                 time_button.tooltip_text = "이브이의 다음 레벨업 진화에 적용 · 낮: 에브이 / 밤: 블래키\n휴식·강화 행동이나 친밀도를 소비하지 않습니다."
-            W.icon(page,"heal",Rect2(1065,390,96,96))
+            W.icon(page,"heal",Rect2(1065,420,96,96))
             W.label(page,"전원 체력 50% 회복 · 기절 회복 · 부상 제거 · 친밀도 +5",Rect2(550,530,1190,60),25,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
-            W.label(page,"휴식과 카드 강화 중 하나를 선택하세요.
+            W.label(page,"휴식·카드 강화·희귀 조우 단서 조사 중 하나를 선택하세요.
 가방·장비·만남은 별도로 이용할 수 있습니다.",Rect2(550,610,1190,90),20,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
-            rest_button = W.button(page,Rect2(650,742,500,78),_camp_rest,"휴식 완료" if journey.step in journey.rested_steps else "휴식하기")
+            rest_button = W.button(page,Rect2(650,742,500,78),_camp_rest,"야영 행동 사용 완료" if journey.step in journey.rested_steps else "휴식하기")
             rest_button.disabled = journey.step in journey.rested_steps
             var upgrade := W.button(page,Rect2(1190,742,500,78),_select_deck_action.bind("upgrade"),"카드 강화 선택")
             upgrade.name = "Upgrade"
@@ -426,6 +435,47 @@ func _item_picker() -> void:
     UiMotion.appear(overlay)
 func _close_special() -> void:
     special_open = false
+    refresh()
+func _close_rare() -> void:
+    rare_open = false
+    refresh()
+func _rare_picker() -> void:
+    var overlay := W.button(page,Rect2(0,0,1920,1080),_close_rare)
+    overlay.name = "RarePicker"
+    overlay.z_index = 86
+    for state: String in ["normal","hover","pressed","focus"]: overlay.add_theme_stylebox_override(state,W.box(Color(0.01,0.025,0.04,0.8),Color.TRANSPARENT,0))
+    var body := W.panel(overlay,Rect2(420,150,1080,780),Color("14282f"),W.GOLD)
+    body.mouse_filter = Control.MOUSE_FILTER_STOP
+    W.label(body,"희귀 조우",Rect2(32,24,900,52),30,W.GOLD)
+    W.icon_button(body,"close",Rect2(1004,24,48,48),_close_rare,"닫기 · Esc")
+    var hunt := journey.rare_info()
+    var id: int = hunt["target"]
+    var required := RareEncounter.requirement(id)
+    W.sprite(body,id,Rect2(64,112,192,192))
+    var rule := RareEncounter.rule(id)
+    W.label(body,str(_evolution_catalog.species(id)["name"])+" · "+str(rule["name"]),Rect2(310,114,690,50),30,W.TEXT).name = "RareTarget"
+    var status := "단서 %d / %d   ·   배지 %d / %d" % [hunt["clues"].size(),required,journey.badges,required]
+    if hunt["battle_step"] >= 0:
+        status = "포획 성공 · 스타팅 영구 해금" if hunt["captured"] else ("다음 야생 전투에 도전 예약됨" if journey.step < hunt["battle_step"] else "이번 원정의 도전 종료")
+    W.label(body,status,Rect2(310,186,720,90),23,W.GOLD).name = "RareProgress"
+    var description := "① 야영지 조사 1회 = 단서 1개 · 해당 야영지의 휴식·강화 대신 사용\n② 단서와 배지를 모아 다음 야생 전투를 희귀 조우로 변경 · 원정당 1회\n③ 기존 야생보다 %d레벨 높은 상대 · HP %d%% 이하에서 확정 포획\n몬스터볼 %d개 + 에너지 %d 필요 · 쓰러뜨리면 포획 기회 종료\n포획 후 풀어주거나 원정에 실패해도 다음 스타팅으로 선택 가능" % [rule["level_bonus"],rule["hp_percent"],rule["balls"],rule["energy"]]
+    W.label(body,description,Rect2(32,334,1016,184),20,W.MUTED).name = "RareConditions"
+    var investigate_reason := journey.investigate_reason()
+    var investigate := W.button(body,Rect2(32,550,490,76),_rare_action.bind(false),"단서 조사 · 휴식 행동 사용")
+    investigate.name = "InvestigateRare"
+    investigate.disabled = not investigate_reason.is_empty()
+    investigate.tooltip_text = investigate_reason
+    W.label(body,investigate_reason,Rect2(32,644,490,90),18,W.MUTED).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+    var challenge_reason := journey.rare_challenge_reason()
+    var challenge := W.button(body,Rect2(550,550,490,76),_rare_action.bind(true),"다음 야생 전투에서 도전")
+    challenge.name = "ChallengeRare"
+    challenge.disabled = not challenge_reason.is_empty()
+    challenge.tooltip_text = challenge_reason
+    W.label(body,challenge_reason,Rect2(550,644,490,90),18,W.MUTED).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+    UiMotion.appear(overlay)
+func _rare_action(challenge: bool) -> void:
+    var reason := journey.challenge_rare() if challenge else journey.investigate()
+    camp_notice = reason if not reason.is_empty() else ("다음 야생 전투에 희귀 조우를 예약했습니다." if challenge else "단서를 조사했습니다. 이번 야영지의 휴식·강화 행동을 사용했습니다.")
     refresh()
 func _special_picker() -> void:
     var overlay := W.button(page,Rect2(0,0,1920,1080),_close_special)
@@ -728,6 +778,10 @@ func _unhandled_key_input(event: InputEvent) -> void:
         return
     if special_open:
         if event.keycode == KEY_ESCAPE: _close_special()
+        get_viewport().set_input_as_handled()
+        return
+    if rare_open:
+        if event.keycode == KEY_ESCAPE: _close_rare()
         get_viewport().set_input_as_handled()
         return
     if report_open:

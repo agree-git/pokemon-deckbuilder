@@ -574,7 +574,8 @@ func _refresh() -> void:
         capture_button.visible = capture_state["wild"]
         capture_button.disabled = busy or not str(capture_state["reason"]).is_empty()
         capture_button.get_node("Title").text = "포획 · %d" % capture_state["balls"]
-        capture_button.tooltip_text = "C · 몬스터볼 1개와 에너지 1\n"+(str(capture_state["reason"]) if not str(capture_state["reason"]).is_empty() else "체력 25% 이하 · 포획 시 스타팅 해금")
+        if int(capture_state.get("cost",1)) > 1: capture_button.get_node("Title").text += "/%d" % capture_state["cost"]
+        capture_button.tooltip_text = "C · "+str(capture_state.get("help","몬스터볼 1개 · 에너지 1 · HP 25% 이하"))+"\n"+str(capture_state["reason"])
     var show_result := not busy and battle.phase in [TacticalBattle.WON,TacticalBattle.LOST]
     if show_result:
         _close_overlays(true)

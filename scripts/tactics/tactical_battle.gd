@@ -362,12 +362,13 @@ func capture_reason() -> String:
     if energy < 1: return "포획에는 에너지 1이 필요합니다."
     if enemy().hp*4 > enemy().max_hp: return "체력을 25% 이하로 낮추세요."
     return ""
-func capture_enemy() -> String:
+func capture_enemy(energy_cost: int = 1) -> String:
     var reason := capture_reason()
     if not reason.is_empty(): return reason
+    if energy_cost not in [1,2,3] or energy < energy_cost: return "포획 에너지가 부족합니다."
     events.clear()
-    energy -= 1
-    _stat("energy_spent")
+    energy -= energy_cost
+    _stat("energy_spent",energy_cost)
     _stat("captures")
     var target := enemy()
     target.hp = 0
