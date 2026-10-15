@@ -19,6 +19,9 @@ const LEARNSETS := {
     4: ["ember", "flame", "fire_guard"],
     7: ["water_gun", "shell", "tackle"],
     43: ["absorb", "seed", "growth"],
+    2: ["razor_leaf", "seed", "growth"],
+    5: ["fire_spin", "flame", "fire_guard"],
+    8: ["bubble_beam", "shell", "water_gun"],
 }
 const INTENTS := [
     {"kind": "attack", "value": 8, "type": "normal", "move_id": 33},
@@ -50,6 +53,9 @@ const CARDS := {
     "absorb": {"name": "흡수", "cost": 1, "type": "grass", "kind": "공격", "move_id": 71, "damage": 6, "heal": 2, "description": "6 피해를 주고\n자신의 체력을 2 회복."},
     "water_gun": {"name": "물대포", "cost": 1, "type": "water", "kind": "공격", "move_id": 55, "damage": 8, "description": "8 피해를 줍니다."},
     "shell": {"name": "껍질에숨기", "cost": 1, "type": "water", "kind": "스킬", "move_id": 110, "block": 8, "description": "사용 포켓몬이\n보호막 8을 얻습니다."},
+    "razor_leaf": {"name": "잎날가르기", "cost": 1, "type": "grass", "kind": "공격", "move_id": 75, "damage": 12, "description": "12 피해를 줍니다."},
+    "fire_spin": {"name": "회오리불꽃", "cost": 1, "type": "fire", "kind": "공격", "move_id": 83, "damage": 8, "burn": 3, "description": "8 피해 · 화상 3회\n행동 종료 시 2 피해."},
+    "bubble_beam": {"name": "거품광선", "cost": 1, "type": "water", "kind": "공격", "move_id": 61, "damage": 12, "description": "12 피해를 줍니다."},
     "injury": {"name": "부상", "cost": 1, "type": "normal", "kind": "상태", "move_id": 150, "description": "효과가 없습니다.\n기절 시 덱에 추가."},
 }
 
@@ -60,3 +66,27 @@ static func multiplier(attack_type: String, defense_type: String) -> float:
     if attack_type != "normal" and (attack_type == defense_type or strong.get(defense_type, "") == attack_type):
         return 0.75
     return 1.0
+
+const UPGRADES := {
+    "tackle": {"damage": 9, "description": "9 피해를 줍니다."},
+    "guard": {"block": 8, "description": "출전 포켓몬이\n보호막 8을 얻습니다."},
+    "focus": {"draw": 3, "description": "카드를 3장 뽑습니다."},
+    "ember": {"damage": 7, "description": "7 피해 · 화상 3회\n행동 종료 시 2 피해."},
+    "flame": {"damage": 17, "description": "17 피해를 줍니다."},
+    "fire_guard": {"block": 12, "description": "사용 포켓몬이\n보호막 12를 얻습니다."},
+    "vine": {"damage": 12, "description": "12 피해를 줍니다."},
+    "seed": {"cost": 0}, "growth": {"strength": 3, "description": "사용 포켓몬의 공격력이\n이번 전투 동안 3 증가."},
+    "absorb": {"damage": 9, "heal": 3, "description": "9 피해를 주고\n자신의 체력을 3 회복."},
+    "water_gun": {"damage": 12, "description": "12 피해를 줍니다."},
+    "shell": {"block": 12, "description": "사용 포켓몬이\n보호막 12를 얻습니다."},
+    "razor_leaf": {"damage": 16, "description": "16 피해를 줍니다."},
+    "fire_spin": {"damage": 12, "description": "12 피해 · 화상 3회\n행동 종료 시 2 피해."},
+    "bubble_beam": {"damage": 16, "description": "16 피해를 줍니다."},
+}
+
+static func card_definition(card: BattleCardInstance) -> Dictionary:
+    var definition: Dictionary = CARDS[card.key].duplicate(true)
+    if card.upgraded and UPGRADES.has(card.key):
+        definition.merge(UPGRADES[card.key], true)
+        definition["name"] += " +"
+    return definition

@@ -12,6 +12,7 @@ var block := 0
 var strength := 0
 var statuses: Dictionary = {}
 var knocked_out := false
+var experience := 0
 
 func _init(definition: Dictionary, instance_uid: int) -> void:
     uid = instance_uid
@@ -26,4 +27,4 @@ func alive() -> bool:
 
 func snapshot() -> Dictionary:
     return {"uid": uid, "id": species_id, "hp": hp, "max_hp": max_hp, "block": block,
-        "strength": strength, "statuses": statuses.duplicate(true), "knocked_out": knocked_out}
+        "experience": experience, "strength": strength, "statuses": statuses.duplicate(true), "knocked_out": knocked_out}

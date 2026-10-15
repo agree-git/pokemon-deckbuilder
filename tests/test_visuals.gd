@@ -127,8 +127,8 @@ func _run() -> void:
     check(lab.stage.canvas.status.is_empty() and not effect.playing, "Reset must remove effect and persistent status")
     lab.queue_free()
     await process_frame
-    var session_battle: BattleState = root.get_node("BattleSession").get("battle")
-    session_battle.restart(2026)
+    var session_run: RunState = root.get_node("BattleSession").get("run")
+    session_run.restart(2026)
     var battle: BattleUI = load("res://scenes/battle_preview.tscn").instantiate()
     root.add_child(battle)
     await process_frame

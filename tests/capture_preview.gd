@@ -123,6 +123,8 @@ func _capture() -> void:
         return
     battle._next_button.pressed.emit()
     await process_frame
+    battle.expedition.action_buttons[0].pressed.emit()
+    await process_frame
     await RenderingServer.frame_post_draw
     if not _save(output, "capture_party"):
         return

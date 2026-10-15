@@ -4,6 +4,7 @@
 Activate Godot 4.7.2 and DISPLAY first. No signal emission or synthetic Godot
 input is used: XTest injects mouse movement and button events at screen pixels.
 """
+import argparse
 import ctypes
 import os
 from pathlib import Path
@@ -12,6 +13,9 @@ import sys
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--probe", choices=["native_pointer_probe", "native_expedition_probe"], default="native_pointer_probe")
+    args = parser.parse_args()
     x11 = ctypes.CDLL("libX11.so.6")
     xtest = ctypes.CDLL("libXtst.so.6")
     x11.XOpenDisplay.argtypes = [ctypes.c_char_p]
@@ -26,11 +30,12 @@ def main():
         sys.exit("An X11 display is required")
     command = ["godot", "--path", str(Path(__file__).resolve().parents[1]),
                "--rendering-method", "gl_compatibility", "--audio-driver", "Dummy",
-               "--script", "res://tests/native_pointer_probe.gd"]
+               "--script", f"res://tests/{args.probe}.gd"]
     process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
     try:
         for line in process.stdout:
-            print(line, end="", flush=True)
+            if not line.startswith("OS_CLICK "):
+                print(line, end="", flush=True)
             if line.startswith("OS_FOCUS "):
                 x11.XSetInputFocus(display, int(line.split()[1]), 2, 0)
                 x11.XFlush(display)

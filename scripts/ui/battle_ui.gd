@@ -56,6 +56,8 @@ var _reward_cards := Control.new()
 var _reward_skip: Button
 var _reward_signature := ""
 var _party_signature := ""
+var expedition := ExpeditionOverlay.new()
+var _progress: Label
 
 func _ready() -> void:
     set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -75,7 +77,12 @@ func _ready() -> void:
     _build_piles_and_energy()
     _build_biome_menu()
     _build_result()
-    _set_biome(3)
+    expedition.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+    expedition.z_index = 200
+    add_child(expedition)
+    expedition.changed.connect(_sync_run)
+    expedition.restart_requested.connect(_restart_expedition)
+    _set_biome(int(run.current_node["biome"]))
     card_requested.connect(_play_card)
     switch_requested.connect(set_active)
     end_turn_requested.connect(_end_turn)
@@ -115,13 +122,14 @@ func _build_shade() -> void:
 func _build_top_bar() -> void:
     _label("관동 원정대", Rect2(35, 18, 210, 42), 27, GOLD)
     _party_hp = _label("", Rect2(270, 23, 180, 35), 22, Color("efa493"))
-    _label("●  0", Rect2(465, 23, 90, 35), 22, GOLD)
+    _progress = _label("", Rect2(465, 23, 110, 35), 20, GOLD)
     _ball_count = _label("", Rect2(590, 23, 210, 35), 20, GOLD)
     _label("ACT 1", Rect2(895, 14, 100, 26), 14, MINT, HORIZONTAL_ALIGNMENT_CENTER)
     region_label = _label("햇살숲 정원", Rect2(825, 37, 240, 28), 20, CREAM, HORIZONTAL_ALIGNMENT_CENTER)
     _battle_number = _label("전투 01", Rect2(1100, 24, 105, 32), 18, MINT)
     var restart_button := _button("원정 재시작 · R", Rect2(1214, 18, 160, 40))
     restart_button.pressed.connect(restart_battle)
+    restart_button.tooltip_text = "R: 같은 시드로 원정 재시작 · Shift+R: 새 시드"
     var biomes := _button("전투 기록", Rect2(1390, 18, 128, 40))
     biomes.pressed.connect(func(): _biome_popup.visible = not _biome_popup.visible)
     var lab := _button("아트 랩 · F2", Rect2(1534, 18, 150, 40))
@@ -129,7 +137,7 @@ func _build_top_bar() -> void:
     var settings := _button("화면 · F11", Rect2(1700, 18, 165, 40))
     settings.pressed.connect(_toggle_fullscreen)
     _label("관동 교체 전투", Rect2(35, 103, 220, 27), 19, Color("d1debf"))
-    _label("공유 덱 · 포획으로 파티 확장", Rect2(35, 136, 320, 27), 16, Color("b0c4a9"))
+    _label("9개 장소 · 목표: 숲의 수호자 격파", Rect2(35, 136, 320, 27), 16, Color("b0c4a9"))
 
 func _build_combat_hud() -> void:
     var intent := Panel.new()
@@ -213,10 +221,10 @@ func _build_piles_and_energy() -> void:
     var box := _style(Color("263e3b"), GOLD, 3)
     box.set_corner_radius_all(73)
     orb.add_theme_stylebox_override("panel", box)
-    orb.tooltip_text = "파티 공유 에너지 · 턴 시작 시 3 회복"
+    orb.tooltip_text = "파티 공유 에너지 · 기본 3 · 어니부기 특성: 첫 턴 +1"
     add_child(orb)
     _energy_label = _label("", Rect2(76, 832, 122, 86), 65, Color("f2e2a8"), HORIZONTAL_ALIGNMENT_CENTER)
-    _label("에너지 / 3", Rect2(73, 915, 128, 29), 17, CREAM, HORIZONTAL_ALIGNMENT_CENTER)
+    _label("공유 에너지", Rect2(73, 915, 128, 29), 17, CREAM, HORIZONTAL_ALIGNMENT_CENTER)
     _draw_count = _pile(Rect2(74, 983, 116, 67), "뽑을 더미", "")
     _discard_count = _pile(Rect2(1734, 983, 116, 67), "버린 더미", "")
     _hand_count = _label("", Rect2(839, 1050, 242, 27), 16, MINT, HORIZONTAL_ALIGNMENT_CENTER)
@@ -270,11 +278,11 @@ func _build_result() -> void:
     _result_detail = _label("", Rect2(530, 340, 860, 110), 23, CREAM, HORIZONTAL_ALIGNMENT_CENTER)
     remove_child(_result_detail)
     _result.add_child(_result_detail)
-    var again := _button("다시 도전 · R", Rect2(620, 720, 310, 62))
+    var again := _button("원정 재시작 · R", Rect2(620, 720, 310, 62))
     remove_child(again)
     _result.add_child(again)
     again.pressed.connect(restart_battle)
-    _next_button = _button("다음 야생 전투  ›", Rect2(990, 720, 310, 62))
+    _next_button = _button("원정 지도로  ›", Rect2(990, 720, 310, 62))
     remove_child(_next_button)
     _result.add_child(_next_button)
     _next_button.pressed.connect(_next_battle)
@@ -300,7 +308,7 @@ func _set_biome(index: int) -> void:
     region_label.text = biome["name"]
 
 func set_active(id: int) -> void:
-    if animating:
+    if animating or run.phase != RunState.BATTLE:
         return
     var reason := battle.switch_to(id)
     if not reason.is_empty():
@@ -311,7 +319,7 @@ func set_active(id: int) -> void:
     _refresh()
 
 func _play_card(definition: Dictionary) -> void:
-    if animating:
+    if animating or run.phase != RunState.BATTLE:
         return
     var reason := battle.play_card(int(definition["uid"]))
     if not reason.is_empty():
@@ -326,7 +334,7 @@ func _play_card(definition: Dictionary) -> void:
     _refresh()
 
 func _end_turn() -> void:
-    if animating:
+    if animating or run.phase != RunState.BATTLE:
         return
     var reason := battle.end_turn()
     if not reason.is_empty():
@@ -359,10 +367,13 @@ func restart_battle() -> void:
     _reward_signature = ""
     _build_party_buttons()
     _biome_popup.hide()
-    notice.text = "새 전투 · 카드와 교체로 적의 행동에 대비하세요."
+    _set_biome(int(run.current_node["biome"]))
+    notice.text = "햇살숲 원정 출발 · 수호자를 쓰러뜨리고 9개 장소를 완주하세요."
     _refresh()
 
 func _refresh() -> void:
+    if run.battle != battle:
+        battle = run.battle
     var signature := ""
     for pokemon: BattlePokemon in battle.party:
         signature += str(pokemon.uid) + ":"
@@ -396,6 +407,7 @@ func _refresh() -> void:
         party_buttons[i].disabled = not reason.is_empty()
         party_buttons[i].tooltip_text = reason if not reason.is_empty() else "%s 출전" % pokemon.display_name
         party_buttons[i].add_theme_stylebox_override("normal", _style(Color("385344") if selected else Color("1e3434"), GOLD if selected else Color("64796b")))
+    _progress.text = "%d / 9" % (run.step + 1)
     _battle_number.text = "전투 %02d" % (run.encounter + 1)
     _ball_count.text = "몬스터볼  %d" % battle.balls
     _party_hp.text = "♥  %d / %d" % [total, maximum]
@@ -407,7 +419,8 @@ func _refresh() -> void:
     var next := battle.intent()
     _intent_value.text = "%s %d" % [{"attack": "공격", "block": "방어", "boost": "강화"}[next["kind"]], int(next["value"])]
     _intent_icon.text = {"attack": "⚔", "block": "◇", "boost": "↑"}[next["kind"]]
-    _ally_info.text = _status_text(actor)
+    var xp_text := "XP %d / 4" % actor.experience if ExpeditionContent.EVOLUTIONS.has(actor.species_id) else "XP %d" % actor.experience
+    _ally_info.text = _status_text(actor) + "  · " + xp_text
     _enemy_info.text = _status_text(battle.enemy)
     stage.canvas.ally_statuses.assign(actor.statuses.keys())
     stage.canvas.enemy_statuses.assign(battle.enemy.statuses.keys())
@@ -420,7 +433,7 @@ func _refresh() -> void:
         notice.text = "기절한 아군을 대신할 포켓몬을 선택하세요."
     stage.canvas.source_sprite.visible = actor.alive()
     stage.canvas.target_sprite.visible = battle.enemy.alive() or animating
-    _result.visible = not animating and battle.phase in [BattleState.WON, BattleState.LOST, BattleState.CAPTURED]
+    _result.visible = run.phase in [RunState.BATTLE,RunState.FAILED] and not animating and battle.phase in [BattleState.WON, BattleState.LOST, BattleState.CAPTURED]
     if _result.visible:
         run.settle()
         _result_title.text = "포획 성공" if battle.phase == BattleState.CAPTURED else "전투 승리" if battle.phase == BattleState.WON else "전투 패배"
@@ -445,6 +458,9 @@ func _refresh() -> void:
         _result.move_to_front()
     elif _biome_popup.visible:
         _biome_popup.move_to_front()
+    expedition.show_run(run)
+    if expedition.visible:
+        expedition.move_to_front()
 
 func _update_reward_cards() -> void:
     var signature := "%d:%d:%s" % [run.seed_value, run.encounter, run.reward_options]
@@ -471,7 +487,7 @@ func _choose_reward(index: int) -> void:
     _refresh()
 
 func _capture() -> void:
-    if animating:
+    if animating or run.phase != RunState.BATTLE:
         return
     var reason := battle.capture()
     if not reason.is_empty():
@@ -517,15 +533,26 @@ func _next_battle() -> void:
     if not reason.is_empty():
         notice.text = reason
         return
+    _sync_run()
+
+func _sync_run() -> void:
     battle = run.battle
     stage.canvas.clear_effects()
     animating = false
     _shown_capture_uid = 0
     _reward_signature = ""
     _build_party_buttons()
-    _set_biome({"grass": 3, "water": 2, "fire": 1}[battle.enemy.type])
-    notice.text = "야생 %s 출현 · 체력 25%% 이하에서 포획할 수 있습니다." % battle.enemy.display_name
+    _set_biome(int(run.current_node["biome"]))
+    notice.text = "%s · %s" % [run.current_node["name"],ExpeditionContent.kind_name(run.current_node["kind"])]
     _refresh()
+
+func _restart_expedition(new_seed: bool) -> void:
+    if new_seed:
+        var rng := RandomNumberGenerator.new()
+        rng.randomize()
+        var next_seed := rng.randi_range(1,999999)
+        run.seed_value = next_seed if next_seed != run.seed_value else (next_seed + 1) % 1000000
+    restart_battle()
 
 func _status_text(pokemon: BattlePokemon) -> String:
     var parts := PackedStringArray()
@@ -547,7 +574,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
             KEY_F2:
                 get_tree().change_scene_to_file("res://scenes/art_lab.tscn")
             KEY_R:
-                restart_battle()
+                _restart_expedition(event.shift_pressed)
             KEY_ENTER:
                 if not end_turn.disabled:
                     end_turn_requested.emit()

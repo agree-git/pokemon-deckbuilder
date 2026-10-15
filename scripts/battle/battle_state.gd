@@ -11,6 +11,7 @@ const CAPTURED := "captured"
 
 var balls := 2
 var wild := true
+var enemy_intents: Array = BattleContent.INTENTS.duplicate(true)
 var caught: BattlePokemon
 
 var party: Array[BattlePokemon] = []
@@ -39,6 +40,7 @@ func _init(battle_seed: int = 2026) -> void:
 func restart(battle_seed: int) -> void:
     balls = 2
     wild = true
+    enemy_intents = BattleContent.INTENTS.duplicate(true)
     caught = null
     seed_value = battle_seed
     _rng.seed = battle_seed
@@ -73,6 +75,7 @@ func start_with(allies: Array[BattlePokemon], deck: Array[BattleCardInstance], o
     party.assign(allies)
     enemy = BattlePokemon.new(opponent, -1)
     wild = bool(opponent.get("wild", true))
+    enemy_intents = opponent.get("intents", BattleContent.INTENTS).duplicate(true)
     balls = remaining_balls
     hand.clear()
     draw_pile.clear()
@@ -83,11 +86,15 @@ func start_with(allies: Array[BattlePokemon], deck: Array[BattleCardInstance], o
     _next_card_uid = 1
     for i in party.size():
         var pokemon := party[i]
-        pokemon.block = 0
-        pokemon.strength = 0
+        pokemon.block = 4 if pokemon.species_id == 2 and pokemon.alive() else 0
+        pokemon.strength = 1 if pokemon.species_id == 5 and pokemon.alive() else 0
         pokemon.statuses.clear()
         if not party[active_index].alive() and pokemon.alive():
             active_index = i
+    for pokemon: BattlePokemon in party:
+        if pokemon.species_id == 8 and pokemon.alive():
+            energy = 4
+            break
     for card: BattleCardInstance in deck:
         _next_card_uid = maxi(_next_card_uid, card.uid + 1)
         if card.owner_uid != 0 and not _ally(card.owner_uid).alive():
@@ -96,7 +103,7 @@ func start_with(allies: Array[BattlePokemon], deck: Array[BattleCardInstance], o
             draw_pile.append(card)
     _shuffle(draw_pile)
     _draw(5)
-    _record("turn", "턴 1 · 에너지 3", {"turn": 1})
+    _record("turn", "턴 1 · 에너지 %d" % energy, {"turn": 1})
     _check_outcome()
 
 func capture_reason() -> String:
@@ -133,13 +140,13 @@ func active() -> BattlePokemon:
     return party[active_index]
 
 func intent() -> Dictionary:
-    var next: Dictionary = BattleContent.INTENTS[_intent_index % BattleContent.INTENTS.size()].duplicate()
+    var next: Dictionary = enemy_intents[_intent_index % enemy_intents.size()].duplicate()
     if next["kind"] == "attack":
-        next["value"] = int(next["value"]) + enemy.strength
+        next["value"] = int(floor((int(next["value"]) + enemy.strength) * BattleContent.multiplier(next.get("type","normal"),active().type)))
     return next
 
 func card_view(card: BattleCardInstance) -> Dictionary:
-    var view: Dictionary = BattleContent.CARDS[card.key].duplicate(true)
+    var view: Dictionary = BattleContent.card_definition(card)
     view["uid"] = card.uid
     view["key"] = card.key
     view["owner"] = card.owner_uid
@@ -157,7 +164,7 @@ func card_reason(uid: int) -> String:
         return "손패에 없는 카드입니다."
     if card.owner_uid != 0 and card.owner_uid != active().uid:
         return "%s로 교체해야 합니다." % _ally(card.owner_uid).display_name
-    if energy < int(BattleContent.CARDS[card.key]["cost"]):
+    if energy < int(BattleContent.card_definition(card)["cost"]):
         return "에너지가 부족합니다."
     return ""
 
@@ -167,7 +174,7 @@ func play_card(uid: int) -> String:
         return reason
     events.clear()
     var card := _find_hand(uid)
-    var definition: Dictionary = BattleContent.CARDS[card.key]
+    var definition: Dictionary = BattleContent.card_definition(card)
     var actor := active()
     energy -= int(definition["cost"])
     hand.erase(card) # Resolving card is not eligible for its own draw/reshuffle.
@@ -386,7 +393,7 @@ func _record(kind: String, text: String, data: Dictionary = {}) -> void:
 
 func snapshot() -> Dictionary:
     var result := {"phase": phase, "turn": turn, "energy": energy, "active": active_index, "switched": switched,
-        "balls": balls, "wild": wild, "caught": caught.snapshot() if caught != null else {},
+        "balls": balls, "wild": wild, "enemy_intents": enemy_intents.duplicate(true), "caught": caught.snapshot() if caught != null else {},
         "intent": _intent_index, "pending": _pending, "rng": _rng.state, "next_uid": _next_card_uid,
         "enemy": enemy.snapshot(), "party": [], "injuries": injuries.duplicate(), "piles": [], "history": history.duplicate(), "events": events.duplicate(true)}
     for pokemon: BattlePokemon in party:
@@ -394,6 +401,6 @@ func snapshot() -> Dictionary:
     for pile: Array in [hand, draw_pile, discard, removed]:
         var ids: Array = []
         for card: BattleCardInstance in pile:
-            ids.append([card.uid, card.key, card.owner_uid, card.injury_owner_uid])
+            ids.append([card.uid, card.key, card.owner_uid, card.injury_owner_uid, card.upgraded])
         result["piles"].append(ids)
     return result

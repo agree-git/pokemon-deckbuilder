@@ -1,5 +1,6 @@
 extends SceneTree
 ## Rule tests and real window-coordinate clicks for victory card rewards.
+const RouteSupport = preload("res://tests/route_test_support.gd")
 var checks := 0
 var failures := 0
 func _initialize() -> void:
@@ -44,7 +45,7 @@ func run() -> void:
         var before := snapshot(expedition)
         expedition.settle()
         check(snapshot(expedition) == before, "Repeated settlement never rerolls")
-        check(not expedition.next_battle().is_empty() and snapshot(expedition) == before, "Pending reward blocks continuation without state changes")
+        check(not RouteSupport.next_encounter(expedition).is_empty() and snapshot(expedition) == before, "Pending reward blocks continuation without state changes")
         for invalid in [-2,3,999]:
             check(not expedition.choose_reward(invalid).is_empty() and snapshot(expedition) == before, "Invalid selection is atomic")
         var view := expedition.reward_view(0)
@@ -56,7 +57,7 @@ func run() -> void:
         check(expedition.deck.size() == 15 and card.key == selected["key"] and card.owner_uid == selected["owner"], "Exactly one selected owned card enters the run deck")
         before = snapshot(expedition)
         check(not expedition.choose_reward(0).is_empty() and snapshot(expedition) == before, "Repeated claim cannot duplicate cards")
-        check(expedition.next_battle().is_empty(), "Resolved reward allows continuation")
+        check(RouteSupport.next_encounter(expedition).is_empty(), "Resolved reward allows continuation")
         check(card in expedition.battle.hand + expedition.battle.draw_pile, "Reward reaches the next battle's draw pool")
         var ids: Dictionary = {}
         for item: BattleCardInstance in expedition.battle.hand + expedition.battle.draw_pile:
@@ -64,7 +65,7 @@ func run() -> void:
         check(ids.size() == 15 and not expedition.reward_pending and expedition.reward_options.is_empty(), "Card IDs are unique and previous rewards clear")
         var deck_before := same.deck.duplicate()
         check(same.choose_reward(-1).is_empty() and same.deck == deck_before, "Skipping keeps the deck unchanged")
-        check(same.next_battle().is_empty(), "Skipping permits continuation")
+        check(RouteSupport.next_encounter(same).is_empty(), "Skipping permits continuation")
     check(seen.size() > 1, "Different seeds vary the offers")
     var expedition := RunState.new()
     expedition.battle.party[0].hp = 0
@@ -76,7 +77,7 @@ func run() -> void:
     expedition.battle.capture()
     expedition.settle()
     check(not expedition.reward_pending and expedition.reward_options.is_empty(), "Capture never grants victory rewards")
-    expedition.next_battle()
+    RouteSupport.next_encounter(expedition)
     # Keep only the newly captured instance alive; uid differs from species number.
     expedition.party[0].hp = 0
     expedition.party[1].hp = 0
@@ -86,7 +87,9 @@ func run() -> void:
         check(expedition.reward_options[i]["owner"] == captured.uid and expedition.reward_view(i)["art_id"] == 43, "Captured instance owns its rewards and uses the correct sprite")
     check(expedition.choose_reward(0).is_empty(), "Captured Pokemon can learn a reward")
     var learned := expedition.deck.back() as BattleCardInstance
-    expedition.next_battle()
+    RouteSupport.next_encounter(expedition)
+    expedition.battle.wild = true # Fixture: a wild encounter for release cleanup.
+    expedition.battle.enemy = BattlePokemon.new(BattleContent.ENEMY,-1)
     expedition.battle.balls = 1 # Fixture: one more ball to exercise full-party release.
     expedition.battle.enemy.hp = expedition.battle.enemy.max_hp / 4
     expedition.battle.capture()
@@ -144,6 +147,9 @@ func run() -> void:
     await process_frame
     check(not ui._reward_cards.visible and ui._result_detail.text == session_run.reward_result, "Claimed reward remains resolved after reentry")
     click(ui._next_button)
+    await process_frame
+    check(ui.expedition.visible and session_run.phase == RunState.MAP, "Result continues to route map")
+    click(ui.expedition.action_buttons[0])
     await process_frame
     check(ui.battle == session_run.battle and selected_card in ui.battle.hand + ui.battle.draw_pile, "Pointer continuation uses the updated deck")
     win(session_run)
