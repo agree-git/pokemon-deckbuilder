@@ -168,7 +168,7 @@ static func validate(data: Variant) -> bool:
             if not integer(intent.get("value"),0,100000) or not integer(intent.get("move_id"),1,354): return false
             if intent["kind"] in ["attack","charge"] and intent.get("type") not in VisualCatalog.TYPE_COLORS: return false
     for key: Variant in b["powers"]:
-        if key not in ["relay","ace","supply"] or not integer(b["powers"][key],1,512): return false
+        if key not in ["relay","ace","supply","attrition"] or not integer(b["powers"][key],1,512): return false
     for key: Variant in b["turn_flags"]:
         if not key is String or not b["turn_flags"][key] is bool: return false
     for uid: Variant in b["turn_actors"]:

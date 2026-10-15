@@ -63,12 +63,18 @@ func update_card(view: Dictionary,reason: String,locked: bool) -> void:
     if view.get("retained",false): caption += " · 보존"
     category_label.text = caption
     var description: String = view["description"]
-    if view.has("preview_damage"):
+    if view.has("preview_damage") and not view.has("shield_attack"):
         var original := "위력 %d · %s" % [view["move_power"],"물리" if view.get("damage_class","") == "physical" else "특수"] if view.has("move_power") else "피해 %d" % int(view["damage"])
         description = description.replace(original,"피해 %d" % int(view["preview_damage"]))
     if view.has("preview_heal"): description = description.replace("회복 %d" % int(view["heal"]),"회복 %d" % int(view["preview_heal"]))
     if view.has("preview_block"): description = description.replace("보호막 %d" % int(view["block"]),"보호막 %d" % int(view["preview_block"]))
     var summaries := {"relay_plan":"기술로 교대 시\n최대 HP의 6.3% 보호막","ace_plan":"출전 유지 시 다음 턴\n위력 보정 +20%","tool_plan":"도구 사용 시\n최대 HP의 10.4% 보호막","status_cash":"화상·독·씨앗 소비\n횟수마다 상대 HP의 8.3%"}
+    if key in ["relay_cover","ace_order"]:
+        var base := "보호막 %s" % str(view.get("preview_block",view.get("block",0))) if key == "relay_cover" else "다음 공격 +%s" % str(view.get("preview_bonus",view.get("bonus",0)))
+        if not view.has("condition_active"): base = "보호막 · HP의 %s" % PokemonStats.percent(int(view["block"])) if key == "relay_cover" else "다음 공격 · HP의 %s" % PokemonStats.percent(int(view["bonus"]))
+        summaries[key] = base+"\n"+("기술 교대 후" if key == "relay_cover" else "출전 멤버 기술 2회 후")+" %d장" % view["conditional_draw"]+(" ✓" if view.get("condition_active",false) else "")
+    if key == "shield_strike": summaries[key] = "보호막 모두 소비\n"+("피해 %d · 상성 무시" % view["preview_damage"] if view.has("preview_damage") else "같은 수치 피해 · 상성 무시")
+    if key == "status_plan": summaries[key] = "화상·독·씨앗 매회 피해\n+ 상대 최대 HP의 2.1%"
     if key == "analysis": summaries[key] = "적 위력 -%d%%\n%d장 뽑기 · 소진" % [int(view.get("weaken",1))*10,int(view.get("draw",1))]
     effect_label.text = summaries.get(key,description)
     tooltip_text = ("위력 %d · %s\n" % [view["move_power"],"물리" if view.get("damage_class","") == "physical" else "특수"] if view.has("move_power") else "")+str(view["name"])+"\n"+caption+"\n"+description+("\n자동 교대 후 사용 · 추가 교대 비용 없음" if view.get("switches",false) else "")+("\n"+reason if not reason.is_empty() else "")

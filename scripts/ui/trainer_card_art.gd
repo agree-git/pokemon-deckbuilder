@@ -3,7 +3,7 @@ extends Control
 ## Original pixel vignettes, drawn on an 84x48 grid at exactly 2x.
 @export var card_key := "analysis"
 const COLORS := {"analysis":Color("aebedd"),"guard":Color("8ec9dc"),"focus":Color("a2cdb7"),"rally":Color("e7c47c"),"counter":Color("df9e87"),"injury":Color("b9a0af")}
-const ICONS := {"analysis":"analysis","guard":"shield","focus":"draw","rally":"boost","counter":"counter","injury":"injury","redraw":"discard","hold":"draw","retrieve":"discard","relay_plan":"switch","ace_plan":"boost","tool_plan":"draw","status_cash":"fire","potion_card":"heal","boost_card":"boost","smoke_card":"counter","ether_card":"energy","antidote_card":"heal"}
+const ICONS := {"analysis":"analysis","guard":"shield","focus":"draw","rally":"boost","counter":"counter","injury":"injury","redraw":"discard","hold":"draw","retrieve":"discard","relay_plan":"switch","ace_plan":"boost","tool_plan":"draw","status_cash":"fire","potion_card":"heal","boost_card":"boost","smoke_card":"counter","ether_card":"energy","antidote_card":"heal","relay_cover":"switch","ace_order":"boost","status_plan":"poison","shield_strike":"attack","toxic_flask":"poison","shield_cell":"shield"}
 func _ready() -> void:
     mouse_filter = Control.MOUSE_FILTER_IGNORE
     texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST

@@ -13,7 +13,7 @@
 
 ## 현재 상태
 
-현재는 시작부터 엔딩까지 플레이 가능한 초기 알파다. [전체 진행 현황과 다음 작업](docs/progress.md), [적 전술과 대응](docs/enemy-tactics.md)을 참고한다.
+현재는 시작부터 엔딩까지 플레이 가능한 초기 알파다. [카드·유물 조합](docs/build-synergies.md)으로 기술 교대·에이스·소모전·보호막 전환을 연결하며 공용 카드 23종·파티 유물 10종·지닌 물건 6종을 사용한다. [전체 진행 현황과 다음 작업](docs/progress.md), [적 전술과 대응](docs/enemy-tactics.md)을 참고한다.
 
 기본 실행은 **시작 화면 → 스타팅 최대 3마리 선택 → 원정**이다. 처음에는 이상해씨·파이리·꼬부기를 선택할 수 있고, 포획하면 해당 계열의 가장 미진화한 종을 영구 스타팅으로 해금한다. 선택 순서대로 파티를 구성하며 첫 번째 멤버가 먼저 출전한다. 기술·도구·트레이너 공유 덱과 자동 교대·유물로 **서로 다른 무작위 바이옴 8곳의 배지 8개, 무작위 사천왕 4명, 챔피언 1명**을 이기면 챔피언이 된다. 각 지역은 야생 5회·일반 트레이너 1회·엘리트 트레이너 1회·관장 1회이며, 전투 사이마다 야영지를 거친다. 전체 137개 장소·69전투다. [시작과 포획 도감](docs/start-flow.md), [정식 원정 경로](docs/full-campaign.md)를 참고한다.
 
@@ -78,6 +78,8 @@ godot --headless --path . --script res://tests/test_growth_ui.gd
 godot --headless --path . --script res://tests/test_start_flow.gd
 godot --headless --path . --script res://tests/test_start_ui.gd
 godot --headless --path . --script res://tests/test_presentation.gd
+godot --headless --path . --script res://tests/test_build_synergies.gd
+godot --headless --path . --script res://tests/test_build_synergies_ui.gd
 godot --headless --path . --script res://tests/test_enemy_tactics.gd
 godot --headless --path . --script res://tests/test_enemy_tactics_ui.gd
 godot --headless --path . --script res://tests/test_pokemon_stats.gd
@@ -102,7 +104,7 @@ godot --path .
 
 `test_start_flow.gd`는 최대 3마리 편성, 포획·합류, 미진화 해금, 도감 저장·백업 복구를 검사한다. `test_start_ui.gd`와 `python3 tools/test_native_pointer.py --probe native_start_probe`는 시작·선택·포획·도감·이어하기·관장 완주·새 스타팅 사용을 실제 입력 경로로 검사한다.
 
-`test_journey.gd`는 30개 시드·시작 유물 7종의 짧은 원정와 체력·덱 유지, 스테이지 성장·자동 진화·정산 중복 방지를 검사한다. `test_journey_ui.gd`는 보상·지도·휴식·6마리 관장전·배지·재도전을 포인터로 연결하고 세 창 크기의 덱 모달 차단을 검사한다. `python3 tools/test_native_pointer.py --probe native_journey_probe`는 실제 OS 마우스로 새 원정 한 판을 완주하며 1920×1080 화면을 캡처한다.
+`test_journey.gd`는 30개 시드·시작 유물 전체의 짧은 원정와 체력·덱 유지, 스테이지 성장·자동 진화·정산 중복 방지를 검사한다. `test_journey_ui.gd`는 보상·지도·휴식·6마리 관장전·배지·재도전을 포인터로 연결하고 세 창 크기의 덱 모달 차단을 검사한다. `python3 tools/test_native_pointer.py --probe native_journey_probe`는 실제 OS 마우스로 새 원정 한 판을 완주하며 1920×1080 화면을 캡처한다.
 
 `test_deck_combat.gd`는 자동 교대·소유권·자원·소진·보존·유물·지속 작전·지닌 물건과 386종 초기 덱을 검사한다. `test_deck_run.gd`는 혼합 보상·장비·강화·제거·저장과 실제 69전투 진행을 연결한다. `test_deck_ui.gd`와 `python3 tools/test_native_pointer.py --probe native_deck_probe`는 세 창 비율의 카드 위·중앙·아래 클릭, 모달 차단, 보상·이동·강화·장비 화면을 검사한다. 기존 전술 검사 진입점도 새 검사로 연결한다.
 
@@ -122,7 +124,7 @@ godot --path .
 
 `test_campaign.gd`는 100개 시드 경로와 30개 시드의 실제 보상·장비 선택과 승리/전멸 결과, 고정 시드 3개의 69전투 완주, 챔피언 직전 Lv.100, 리그 진입 제한과 중복 정산을 검사한다. `test_camps.gd`는 386종의 경험치 예산·기절 30%와 야영지 이벤트의 중복 지급 방지·상인 재고를 검사한다. `test_camp_ui.gd`와 `python3 tools/test_native_pointer.py --probe native_camp_probe`는 이동 연출·입력 차단과 모든 야영지 만남을 검사한다. `test_campaign_ui.gd`와 `python3 tools/test_native_pointer.py --probe native_campaign_probe`는 마우스·1/2/3·Q/W/E/R·Enter로 전체 원정과 엔딩을 검사한다. 기존 시작·포획 UI 검사는 개발용 짧은 경로로 보존한다.
 
-종별 경험치 곡선·스테이지 배율·자동 진화·원작 레벨별 기술 교체와 야영지 상점·가방·장비를 연결했다. 원정 자동 저장과 종료 후 이어하기·백업 복구를 구현했다. 통합 카드 덱·유물 7종·지닌 물건 6종·혼합 보상·강화·제거를 연결했다. 3세대 종족값·물리/특수 피해·자속·턴 시작 스피드 에너지까지 연결했다. 네 가지 적 역할과 행동 예고를 연결했다. 다음은 빌드별 조합·보상·상점의 확장과 인물별 고유 전술이다. 현재 자동 검사는 기본 스타팅 세 마리로 수행하며 모든 파티 조합의 난이도를 보장하지 않는다.
+종별 경험치 곡선·스테이지 배율·자동 진화·원작 레벨별 기술 교체와 야영지 상점·가방·장비를 연결했다. 원정 자동 저장과 종료 후 이어하기·백업 복구를 구현했다. 통합 카드 덱·공용 카드 23종·유물 10종·지닌 물건 6종·혼합 보상·강화·제거를 연결했다. 3세대 종족값·물리/특수 피해·자속·턴 시작 스피드 에너지까지 연결했다. 네 가지 적 역할과 행동 예고를 연결했다. 다음은 빌드별 조합·보상·상점의 확장과 인물별 고유 전술이다. 현재 자동 검사는 기본 스타팅 세 마리로 수행하며 모든 파티 조합의 난이도를 보장하지 않는다.
 
 ## 데이터와 구조
 

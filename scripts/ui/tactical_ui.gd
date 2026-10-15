@@ -559,7 +559,7 @@ func _refresh() -> void:
     relic_chip.get_node("Title").text = "파티 유물 · %d" % battle.relics.size()
     var descriptions: Array[String] = []
     for key: String in battle.relics: descriptions.append(str(TacticalContent.RELICS[key]["name"])+" · "+str(TacticalContent.RELICS[key]["description"]))
-    for key: String in battle.powers: descriptions.append("지속 작전 · %s ×%d" % [{"relay":"릴레이","ace":"에이스","supply":"보급"}[key],battle.powers[key]])
+    for key: String in battle.powers: descriptions.append("지속 작전 · %s ×%d" % [{"relay":"릴레이","ace":"에이스","supply":"보급","attrition":"소모전"}[key],battle.powers[key]])
     relic_chip.tooltip_text = "\n".join(descriptions)
     log_text.text = "\n".join(battle.history)
     if run_mode and capture_status.is_valid():
@@ -587,7 +587,7 @@ func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
         if pokemon.stat_stages[stat] != 0: items.append(["boost","%+d" % pokemon.stat_stages[stat],"%s %+d단계 · 교대 시 해제" % [PokemonStats.TITLES[stat],pokemon.stat_stages[stat]]])
     for key: String in pokemon.statuses:
         var turns: int = pokemon.statuses[key]["turns"]
-        var titles := {"burn":"화상 · %d 피해 / 물리 위력 절반" % PokemonStats.scale(pokemon,2),"seed":"씨뿌리기 · %d 흡수" % PokemonStats.scale(pokemon,2),"poison":"독 · %d 피해" % PokemonStats.scale(pokemon,2),"sleep":"수면 · 행동 취소","paralysis":"마비 · 스피드 절반","confusion":"혼란 · %d 피해" % PokemonStats.scale(pokemon,2),"exposed":"방어 약화 · 공격자 체력에 비례한 추가 피해"}
+        var titles := {"burn":"화상 · %d 피해 / 물리 위력 절반" % battle.status_damage(pokemon,"burn"),"seed":"씨뿌리기 · %d 흡수" % battle.status_damage(pokemon,"seed"),"poison":"독 · %d 피해" % battle.status_damage(pokemon,"poison"),"sleep":"수면 · 행동 취소","paralysis":"마비 · 스피드 절반","confusion":"혼란 · %d 피해" % PokemonStats.scale(pokemon,2),"exposed":"방어 약화 · 공격자 체력에 비례한 추가 피해"}
         items.append(["fire" if key == "burn" else ("seed" if key == "seed" else "counter"),str(turns),str(titles.get(key,key))+" · %d회 남음" % turns])
     if pokemon.uid == battle.active().uid and battle.next_attack_bonus > 0:
         items.append(["boost","+%d" % battle.next_attack_bonus,"강화 지시 · 다음 공격 추가 피해 +%d (자속·상성 적용 전)" % PokemonStats.scale(pokemon,battle.next_attack_bonus)])
@@ -766,7 +766,7 @@ func _play_event(event: Dictionary) -> void:
         # The frame shows zero HP before the combatant disappears.
         var target := int(event.get("target",0))
         if target == _view_active().uid or target == _view_enemy().uid: motion.faint(target > 0)
-    elif kind in ["relic","power","cancel","turn","capture","status","stat"]: _announce(event["text"])
+    elif kind in ["relic","power","cancel","turn","capture","status","stat","shield_spent"]: _announce(event["text"])
 func _float_value(text: String,on_ally: bool,color: Color) -> void:
     var at := stage.canvas.source_anchor if on_ally else stage.canvas.target_anchor
     var number := _label(text,Rect2(at.x-170,at.y-120,340,90),42,color,HORIZONTAL_ALIGNMENT_CENTER,damage_layer)

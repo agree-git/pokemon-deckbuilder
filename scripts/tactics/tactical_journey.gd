@@ -172,7 +172,9 @@ func _prepare_rewards() -> void:
     var rng := RandomNumberGenerator.new()
     rng.seed = seed_value ^ (step*104729+81173)
     var commons: Array = TacticalContent.CARDS.keys().filter(func(key: String): return key != "injury")
-    var first: String = commons[rng.randi_range(0,commons.size()-1)]
+    var related := TacticalContent.synergy_cards(deck,relics)
+    var candidates: Array = related if not related.is_empty() and rng.randf() < 0.5 else commons
+    var first: String = candidates[rng.randi_range(0,candidates.size()-1)]
     reward_options.assign([{"kind":"card","key":first,"owner_uid":0,"upgraded":false}])
     var pokemon := party[rng.randi_range(0,party.size()-1)]
     var learned: Array = TacticalContent.skills_for(pokemon)
