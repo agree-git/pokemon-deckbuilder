@@ -1,6 +1,7 @@
 class_name CampaignRoute
 extends RefCounted
 ## Route RNG is independent from battle draws and card rewards.
+var signature := ""
 var stops: Array[Dictionary] = []
 var biomes: Array[Dictionary] = []
 var elite: Array[Dictionary] = []
@@ -53,6 +54,7 @@ func _init(run_seed: int) -> void:
         _append("사천왕 %d · %s" % [i+1,trainer["name"]],"elite",8,biome,trainer["party"],trainer,i)
         _append("리그 야영지","rest",8,biome,[],{},i+1)
     _append("챔피언 · "+str(champion["name"]),"champion",8,_biome(champion["type"]),champion["party"],champion,4)
+    signature = var_to_bytes(stops).hex_encode().sha256_text()
 func _shuffle(values: Array) -> void:
     for i in range(values.size()-1,0,-1):
         var j := _rng.randi_range(0,i)

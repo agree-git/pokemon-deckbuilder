@@ -26,6 +26,7 @@ func run() -> void:
     var loaded := PlayerProfile.new(path)
     check(loaded.captured_ids == expected and loaded.unlocked_starters(catalog) == [1,4,7,133,172,371,386],"Reload preserves captures and resolves basic starters")
     var session := root.get_node("BattleSession")
+    session.set("save_store",JourneySave.new("user://tests/start_flow_%d/journey.json" % Time.get_ticks_usec()))
     var original: PlayerProfile = session.get("profile")
     session.set("profile",profile)
     var previous: TacticalJourney = session.get("journey")

@@ -14,7 +14,7 @@ import sys
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--probe", choices=["native_pointer_probe", "native_expedition_probe", "native_tactical_probe", "native_journey_probe", "native_start_probe", "native_tooltip_probe", "native_growth_probe", "native_campaign_probe", "native_camp_probe"], default="native_pointer_probe")
+    parser.add_argument("--probe", choices=["native_pointer_probe", "native_expedition_probe", "native_tactical_probe", "native_journey_probe", "native_start_probe", "native_tooltip_probe", "native_growth_probe", "native_campaign_probe", "native_camp_probe", "native_save_probe"], default="native_pointer_probe")
     args = parser.parse_args()
     x11 = ctypes.CDLL("libX11.so.6")
     xtest = ctypes.CDLL("libXtst.so.6")

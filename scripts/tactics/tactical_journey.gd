@@ -1,5 +1,6 @@
 class_name TacticalJourney
 extends RefCounted
+signal changed
 ## Persistent run state; battle RNG and reward RNG are independent.
 const BATTLE := "battle"
 const REWARD := "reward"
@@ -9,6 +10,9 @@ const MAP := "map"
 const REST := "rest"
 const CLEARED := "cleared"
 const FAILED := "failed"
+var run_id := ""
+var captured_ids: Array[int] = []
+var _observed_battle: TacticalBattle
 var phase := BATTLE
 var seed_value := 2026
 var relic := "seed_relay"
@@ -45,6 +49,7 @@ func _init(run_seed: int = 2026, selected_relic: String = "seed_relay", selected
     restart(run_seed,selected_relic,selected_starters)
 func restart(run_seed: int = 2026, selected_relic: String = "seed_relay", selected_starters: Array[int] = []) -> void:
     if not selected_starters.is_empty(): starter_ids.assign(selected_starters)
+    run_id = Crypto.new().generate_random_bytes(16).hex_encode()
     seed_value = run_seed
     relic = selected_relic if TacticalContent.RELICS.has(selected_relic) else "seed_relay"
     step = 0
@@ -67,6 +72,7 @@ func restart(run_seed: int = 2026, selected_relic: String = "seed_relay", select
     _settled = null
     balls = 2
     pending_captures.clear()
+    captured_ids.clear()
     _next_pokemon_uid = 1000
     battle = TacticalBattle.new(seed_value,relic)
     party.assign(battle.party)
@@ -85,6 +91,8 @@ func restart(run_seed: int = 2026, selected_relic: String = "seed_relay", select
     battle.start_with(party,deck,opponents,seed_value,relic,not starter_ids.is_empty())
     battle.full_type_chart = full_campaign
     phase = BATTLE
+    bind_battle()
+    changed.emit()
 func current() -> Dictionary:
     return route.stops[step] if full_campaign else TacticalJourneyContent.STOPS[step]
 func _collect_deck() -> void:
@@ -100,7 +108,7 @@ func settle() -> String:
     history.append(current()["name"])
     if battle.phase == TacticalBattle.LOST:
         phase = FAILED
-        return ""
+        return notify_changed()
     wins += 1
     growth_reports.clear()
     for pokemon: BattlePokemon in party:
@@ -120,7 +128,7 @@ func settle() -> String:
     inventory[item] = int(inventory[item])+1
     loot.append({"name":current()["name"],"gold":coins,"item":item,"quantity":1})
     _after_learning()
-    return ""
+    return notify_changed()
 func _after_learning() -> void:
     if not pending_learning.is_empty():
         phase = LEARN
@@ -144,7 +152,7 @@ func resolve_learning(slot: int) -> String:
         pokemon.learned_skills[slot] = offer["key"]
     pending_learning.pop_front()
     _after_learning()
-    return ""
+    return notify_changed()
 func _prepare_rewards() -> void:
     var candidates: Array[String] = ["analysis","guard","focus","rally","counter"]
     var rng := RandomNumberGenerator.new()
@@ -175,7 +183,8 @@ func capture() -> String:
     _next_pokemon_uid += 1
     TacticalGrowth.initialize(caught)
     pending_captures.append(caught)
-    return ""
+    if target.species_id not in captured_ids: captured_ids.append(target.species_id)
+    return notify_changed()
 func resolve_capture(index: int) -> String:
     if phase != CAPTURE: return "합류할 포켓몬이 없습니다."
     if index < -1 or index >= (party.size() if party.size() == 3 else 1): return "합류 또는 교체할 멤버를 선택하세요."
@@ -188,7 +197,7 @@ func resolve_capture(index: int) -> String:
                 if deck[i].injury_owner_uid == leaving: deck.remove_at(i)
         else: party.append(caught)
     if pending_captures.is_empty(): _prepare_rewards()
-    return ""
+    return notify_changed()
 func choose_reward(index: int) -> String:
     if phase != REWARD or index < -1 or index >= reward_options.size(): return "표시된 보상을 선택하세요."
     if index >= 0:
@@ -198,7 +207,7 @@ func choose_reward(index: int) -> String:
     reward_options.clear()
     step += 1
     phase = MAP
-    return ""
+    return notify_changed()
 func enter_next() -> String:
     if phase != MAP: return "지도에서 다음 장소로 이동하세요."
     if full_campaign and current()["kind"] in ["elite","champion"]:
@@ -211,7 +220,8 @@ func enter_next() -> String:
         battle.start_with(party,deck,route.opponents(step) if full_campaign else TacticalJourneyContent.opponents(step),seed_value+step,relic,not starter_ids.is_empty())
         battle.full_type_chart = full_campaign
         phase = BATTLE
-    return ""
+        bind_battle()
+    return notify_changed()
 func rest(action: String = "heal", _member_index: int = 0) -> String:
     if phase != REST: return "야영지에서 휴식할 수 있습니다."
     if action != "heal": return "야영지에서 휴식·구매·가방·전리품을 이용하세요."
@@ -226,12 +236,12 @@ func rest(action: String = "heal", _member_index: int = 0) -> String:
         if deck[i].key == "injury": deck.remove_at(i)
     rested_steps.append(step)
     history.append(current()["name"]+" · 휴식")
-    return ""
+    return notify_changed()
 func leave_camp() -> String:
     if phase != REST: return "현재 야영지에 있지 않습니다."
     step += 1
     phase = MAP
-    return ""
+    return notify_changed()
 func buy_reason(key: String) -> String:
     if phase != REST: return "물건은 야영지에서 구매할 수 있습니다."
     if full_campaign and camp().get("kind","") != "merchant": return "이번 야영지에는 상인이 없습니다."
@@ -246,7 +256,7 @@ func buy(key: String) -> String:
     shop_stock[key] = int(shop_stock[key])-1
     if key == "ball": balls += 1
     else: inventory[key] = int(inventory[key])+1
-    return ""
+    return notify_changed()
 func item_reason(key: String,index: int) -> String:
     if key == "ball": return "야생 전투에서 C 또는 포획 버튼을 사용하세요."
     if phase != REST and not (phase == BATTLE and battle.phase == TacticalBattle.PLAYER): return "지금은 아이템을 사용할 수 없습니다."
@@ -272,7 +282,7 @@ func use_item(key: String,index: int) -> String:
         battle.events.clear()
         battle.energy -= 1
         battle._record("item",pokemon.display_name+" · "+str(items()[key]["name"]))
-    return ""
+    return notify_changed()
 
 func is_wild() -> bool:
     return current()["kind"] == "wild" if full_campaign else step == 0
@@ -343,9 +353,19 @@ func resolve_camp(choice: int) -> String:
     state["resolved"] = true
     state["outcome"] = outcome
     history.append(str(state["title"])+" · "+outcome)
-    return ""
+    return notify_changed()
 func _camp_loot(title: String, coins: int, item: String, count: int) -> void:
     gold += coins
     if item == "ball": balls += count
     elif not item.is_empty(): inventory[item] = int(inventory.get(item,0))+count
     loot.append({"name":title,"gold":coins,"item":item,"quantity":count})
+
+func bind_battle() -> void:
+    if _observed_battle != null and _observed_battle.changed.is_connected(_on_battle_changed): _observed_battle.changed.disconnect(_on_battle_changed)
+    _observed_battle = battle
+    battle.changed.connect(_on_battle_changed)
+func _on_battle_changed() -> void:
+    changed.emit()
+func notify_changed() -> String:
+    changed.emit()
+    return ""

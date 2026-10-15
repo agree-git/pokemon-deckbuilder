@@ -51,7 +51,7 @@
 
 ## 실행과 검증
 
-Godot 4.7.2로 `project.godot`을 열고 F5로 시작 화면을 실행한다. `새 원정`에서 스타팅을 1~3마리 선택하고 `원정 시작`을 누른다. **1/2/3** 교체, **Q/W/E/R** 기술 슬롯, **Enter** 턴 종료, **C** 포획이다. Lv.5까지의 원작 기술로 시작한다. 기술은 네 개까지이며 새 기술 습득 시 교체하거나 배우지 않을 수 있다. 야영지에서는 준비를 마친 뒤 출발 버튼을 누른다. 장소 사이에 짧은 이동 애니메이션이 재생되며 이동 중에는 입력을 차단한다. 전투 메뉴의 가방으로 회복 아이템을 사용할 수 있다. 메뉴에서 원정 재시작·시작 화면 복귀를 선택한다. 같은 실행 중에는 시작 화면의 `이어하기`로 돌아갈 수 있다. **포획 도감은 디스크에 저장하지만 원정 중간 저장은 아직 없다.** 기본 실행은 별도 최대화 게임 창이며 1920×1080 기준 UI와 16:9 비율을 유지한다. 실행 중 네트워크와 API 키는 필요 없다.
+Godot 4.7.2로 `project.godot`을 열고 F5로 시작 화면을 실행한다. `새 원정`에서 스타팅을 1~3마리 선택하고 `원정 시작`을 누른다. **1/2/3** 교체, **Q/W/E/R** 기술 슬롯, **Enter** 턴 종료, **C** 포획이다. Lv.5까지의 원작 기술로 시작한다. 기술은 네 개까지이며 새 기술 습득 시 교체하거나 배우지 않을 수 있다. 야영지에서는 준비를 마친 뒤 출발 버튼을 누른다. 장소 사이에 짧은 이동 애니메이션이 재생되며 이동 중에는 입력을 차단한다. 전투 메뉴의 가방으로 회복 아이템을 사용할 수 있다. 메뉴에서 원정 재시작·시작 화면 복귀를 선택한다. 행동 후 자동 저장하며 게임을 종료하고 다시 실행해도 시작 화면의 `이어하기`로 돌아갈 수 있다. 손패·에너지·난수·기술 선택·야영지 재고까지 복원한다. 상단 저장 버튼에서 상태 확인과 재시도를 할 수 있다. [저장과 복구](docs/persistence.md)를 참고한다. 기본 실행은 별도 최대화 게임 창이며 1920×1080 기준 UI와 16:9 비율을 유지한다. 실행 중 네트워크와 API 키는 필요 없다.
 
 ```bash
 # 이 클라우드 환경에서는 기본 Godot 4.6.3 대신 지정 엔진을 활성화한다.
@@ -59,6 +59,9 @@ source /workspace/.cloud-setup/pokemon-deckbuilder/env.sh
 cd /workspace/pokemon-deckbuilder
 godot --version
 godot --headless --path . --editor --import
+godot --headless --path . --script res://tests/test_journey_save.gd
+godot --headless --path . --script res://tests/test_save_files.gd
+python3 tools/test_save_process.py
 godot --headless --path . --script res://tests/test_camps.gd
 godot --headless --path . --script res://tests/test_camp_ui.gd
 godot --headless --path . --script res://tests/test_campaign.gd
@@ -95,6 +98,8 @@ godot --path .
 
 `test_tooltips.gd`는 버튼 아래에 툴팁 창과 일반 Node가 있어도 활성·비활성 표시를 갱신하는지 검사한다. `python3 tools/test_native_pointer.py --probe native_tooltip_probe`는 실제 OS 포인터로 기술 툴팁을 띄운 상태의 갱신과 행동을 검사한다.
 
+`test_journey_save.gd`와 `test_save_files.gd`는 상태·난수·강제 교체·중복 보상과 손상 복구를 검사한다. `python3 tools/test_save_process.py --native`는 별도 Godot 프로세스 다섯 개에서 실제 OS 포인터로 전투·야영지 이어하기와 백업 복구를 확인한다.
+
 현재 검증은 Linux의 Godot 4.7.2 헤드리스와 실제 Compatibility 렌더러에서 수행했다. Windows 실행과 내보내기는 아직 검증하지 않았다.
 
 원본 스프라이트·데이터·폰트를 다시 내려받으려면 `python3 tools/import_pokemon_assets.py`, 출현표·관장 편성과 해당 문서 재생성은 `python3 tools/build_biomes.py`, 성장 곡선·레벨별 기술표는 `python3 tools/build_progression.py`, 현대 타입 상성은 `python3 tools/build_type_chart.py`를 실행한다. Python 3 표준 라이브러리만 사용하고 고정 업스트림 커밋·파일별 SHA-256을 검증한다. 기존 `import_kanto_assets.py` 명령도 같은 386종 임포터로 연결한다. 출처·라이선스는 [ASSET_SOURCES.md](ASSET_SOURCES.md)에 기록했다.
@@ -105,7 +110,7 @@ godot --path .
 
 `test_campaign.gd`는 100개 시드 경로와 30개 시드의 69전투 완주, 챔피언 직전 Lv.100, 리그 진입 제한과 중복 정산을 검사한다. `test_camps.gd`는 386종의 경험치 예산·기절 30%와 야영지 이벤트의 중복 지급 방지·상인 재고를 검사한다. `test_camp_ui.gd`와 `python3 tools/test_native_pointer.py --probe native_camp_probe`는 이동 연출·입력 차단과 모든 야영지 만남을 검사한다. `test_campaign_ui.gd`와 `python3 tools/test_native_pointer.py --probe native_campaign_probe`는 마우스·1/2/3·Q/W/E/R·Enter로 전체 원정과 엔딩을 검사한다. 기존 시작·포획 UI 검사는 개발용 짧은 경로로 보존한다.
 
-종별 경험치 곡선·스테이지 배율·자동 진화·원작 레벨별 기술 교체와 야영지 상점·가방·전리품을 연결했다. 다음은 **원정 중간 저장**, 특수 진화·희귀 포획 이벤트·분기와 인물별 전술 확장이다. 현재 자동 검사는 기본 스타팅 세 마리로 수행하며 모든 파티 조합의 난이도를 보장하지 않는다.
+종별 경험치 곡선·스테이지 배율·자동 진화·원작 레벨별 기술 교체와 야영지 상점·가방·전리품을 연결했다. 원정 자동 저장과 종료 후 이어하기·백업 복구를 구현했다. 다음은 특수 진화·희귀 포획 이벤트·분기와 인물별 전술 확장이다. 현재 자동 검사는 기본 스타팅 세 마리로 수행하며 모든 파티 조합의 난이도를 보장하지 않는다.
 
 ## 데이터와 구조
 

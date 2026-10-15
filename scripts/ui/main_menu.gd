@@ -76,12 +76,15 @@ func _title() -> void:
     var journey: TacticalJourney = session.get("journey")
     if session.get("has_journey") and journey.phase not in [TacticalJourney.CLEARED,TacticalJourney.FAILED]:
         continue_button = _button("이어하기",Rect2(144,y,470,80),_continue,"next")
+        W.label(page,journey.progress_title()+" · 배지 %d / 8" % journey.badges,Rect2(650,y,1120,80),19,W.MUTED)
         y += 98
     start_button = _button("새 원정",Rect2(144,y,470,80),_choose,"route")
     collection_button = _button("포획 도감",Rect2(144,y+98,470,72),_open_collection,"ball")
     _button("게임 종료",Rect2(144,y+188,470,64),func(): get_tree().quit(),"close")
     W.label(page,"포획 %d / 386  ·  스타팅 %d종 해금" % [profile.captured_ids.size(),profile.unlocked_starters(catalog).size()],Rect2(144,940,1000,44),18,W.MUTED)
-    if not profile.last_error.is_empty(): W.label(page,profile.last_error,Rect2(144,989,1200,34),17,W.GOLD)
+    var message := str(session.get("save_notice"))
+    if not profile.last_error.is_empty(): message += (" · " if not message.is_empty() else "")+profile.last_error
+    if not message.is_empty(): W.label(page,message,Rect2(144,989,1550,34),16,W.GOLD)
     for i in 3:
         var sprite := W.sprite(page,[1,4,7][i],Rect2(1110+i*205,655+(35 if i == 1 else 0),190,190))
         var home := sprite.position
@@ -123,7 +126,7 @@ func _collection() -> void:
     scroll.add_child(grid)
     slots = W.panel(page,Rect2(1216,254,608,560),Color("142b32"),Color("405960"))
     counter = W.label(page,"",Rect2(1216,188,608,48),23,W.TEXT)
-    notice = W.label(page,"",Rect2(1216,835,608,66),17,W.GOLD)
+    notice = W.label(page,"새 원정을 시작하면 진행 중인 원정을 덮어씁니다." if mode == "starters" and session.get("has_journey") else "",Rect2(1216,835,608,66),17,W.GOLD)
     if mode == "starters":
         confirm_button = _button("원정 시작",Rect2(1216,930,608,80),_start,"next")
     W.label(page,"포획한 진화체는 가장 미진화한 모습으로 스타팅에 추가됩니다.",Rect2(96,970,1070,42),17,W.MUTED)

@@ -53,6 +53,7 @@ func run() -> void:
     root.size = Vector2i(1280,720)
     root.position = Vector2i(20,20)
     var session := root.get_node("BattleSession")
+    session.set("save_store",JourneySave.new("user://tests/campaign_ui_%d/journey.json" % Time.get_ticks_usec()))
     var starters: Array[int] = [1,4,7]
     check(session.start_journey(starters,2026).is_empty(),"Normal new game starts full campaign")
     ui = load("res://scenes/tactical_journey.tscn").instantiate()

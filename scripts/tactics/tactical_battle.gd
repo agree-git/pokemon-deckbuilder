@@ -1,5 +1,6 @@
 class_name TacticalBattle
 extends RefCounted
+signal changed
 ## Fixed skills + shared trainer deck. All state changes are independent of UI/VFX.
 const PLAYER := "player"
 const REPLACE := "replace"
@@ -189,7 +190,7 @@ func use_skill(key: String) -> String:
     if definition.has("strength"):
         actor.strength += int(definition["strength"])
     _outcome()
-    return ""
+    return notify_changed()
 
 func card_view(card: BattleCardInstance) -> Dictionary:
     var view: Dictionary = TacticalContent.CARDS[card.key].duplicate(true)
@@ -252,7 +253,7 @@ func play_card(uid: int) -> String:
         exhausted.append(card)
     else:
         discard.append(card)
-    return ""
+    return notify_changed()
 
 func _opening(source: String, caption: String) -> void:
     var state := opening()
@@ -309,7 +310,7 @@ func switch_to(uid: int) -> String:
             _enemy_action()
         else:
             _start_player()
-    return ""
+    return notify_changed()
 func end_turn() -> String:
     if phase != PLAYER:
         return "현재 턴을 종료할 수 없습니다."
@@ -320,13 +321,13 @@ func end_turn() -> String:
     for pokemon: BattlePokemon in party:
         _tick(pokemon)
         if _outcome():
-            return ""
+            return notify_changed()
     if not active().alive():
         phase = REPLACE
         _pending = "enemy"
     else:
         _enemy_action()
-    return ""
+    return notify_changed()
 func _enemy_action() -> void:
     _pending = ""
     enemy().block = 0
@@ -485,3 +486,7 @@ func snapshot() -> Dictionary:
 
 func multiplier(attack: String, target: BattlePokemon) -> float:
     return TypeMatchup.multiplier(attack,target.types) if full_type_chart else BattleContent.multiplier(attack,target.type)
+
+func notify_changed() -> String:
+    changed.emit()
+    return ""

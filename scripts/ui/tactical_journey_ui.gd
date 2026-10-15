@@ -1,6 +1,8 @@
 class_name TacticalJourneyUI
 extends Control
 const W = preload("res://scripts/ui/combat_widgets.gd")
+var save_button: Button
+var _save_session: Node
 var journey: TacticalJourney
 var battle_ui: TacticalUI
 var page := Control.new()
@@ -32,6 +34,13 @@ func _ready() -> void:
         theme.set_stylebox(state,"Button",W.box(Color("20383e") if state in ["hover","pressed"] else Color("14282f"),W.GOLD if state in ["hover","focus"] else Color("405960")))
     page.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     add_child(page)
+    _save_session = get_node("/root/BattleSession")
+    if _save_session.tracks(journey):
+        save_button = W.button(self,Rect2(1120,18,240,38),_retry_save)
+        save_button.z_index = 60
+        save_button.add_theme_font_size_override("font_size",14)
+        _save_session.save_status_changed.connect(_save_status)
+        _save_status()
     refresh()
 func refresh() -> void:
     W.clear(page)
@@ -389,3 +398,15 @@ func _unhandled_key_input(event: InputEvent) -> void:
         KEY_ESCAPE: _home()
         KEY_F11:
             DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN else DisplayServer.WINDOW_MODE_FULLSCREEN)
+
+func _save_status() -> void:
+    if not is_instance_valid(save_button): return
+    var notice := str(_save_session.get("save_notice"))
+    save_button.text = "자동 저장됨" if notice.is_empty() else "저장 안내 · 다시 저장"
+    save_button.tooltip_text = "행동 후 자동 저장합니다. 게임을 종료해도 이어할 수 있습니다.
+클릭하여 다시 저장" if notice.is_empty() else notice+"
+클릭하여 다시 저장"
+    save_button.add_theme_color_override("font_color",W.MUTED if notice.is_empty() else W.GOLD)
+func _retry_save() -> void:
+    if travelling: return
+    _save_session.checkpoint()
