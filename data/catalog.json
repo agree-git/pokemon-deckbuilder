@@ -1,0 +1,4442 @@
+{
+  "region": "kanto",
+  "pokemon": [
+    {
+      "id": 1,
+      "key": "bulbasaur",
+      "name": "이상해씨",
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/001.png",
+      "back": "res://assets/pokemon/back/001.png"
+    },
+    {
+      "id": 2,
+      "key": "ivysaur",
+      "name": "이상해풀",
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/002.png",
+      "back": "res://assets/pokemon/back/002.png"
+    },
+    {
+      "id": 3,
+      "key": "venusaur",
+      "name": "이상해꽃",
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/003.png",
+      "back": "res://assets/pokemon/back/003.png"
+    },
+    {
+      "id": 4,
+      "key": "charmander",
+      "name": "파이리",
+      "types": [
+        "fire"
+      ],
+      "front": "res://assets/pokemon/front/004.png",
+      "back": "res://assets/pokemon/back/004.png"
+    },
+    {
+      "id": 5,
+      "key": "charmeleon",
+      "name": "리자드",
+      "types": [
+        "fire"
+      ],
+      "front": "res://assets/pokemon/front/005.png",
+      "back": "res://assets/pokemon/back/005.png"
+    },
+    {
+      "id": 6,
+      "key": "charizard",
+      "name": "리자몽",
+      "types": [
+        "fire",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/006.png",
+      "back": "res://assets/pokemon/back/006.png"
+    },
+    {
+      "id": 7,
+      "key": "squirtle",
+      "name": "꼬부기",
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/007.png",
+      "back": "res://assets/pokemon/back/007.png"
+    },
+    {
+      "id": 8,
+      "key": "wartortle",
+      "name": "어니부기",
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/008.png",
+      "back": "res://assets/pokemon/back/008.png"
+    },
+    {
+      "id": 9,
+      "key": "blastoise",
+      "name": "거북왕",
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/009.png",
+      "back": "res://assets/pokemon/back/009.png"
+    },
+    {
+      "id": 10,
+      "key": "caterpie",
+      "name": "캐터피",
+      "types": [
+        "bug"
+      ],
+      "front": "res://assets/pokemon/front/010.png",
+      "back": "res://assets/pokemon/back/010.png"
+    },
+    {
+      "id": 11,
+      "key": "metapod",
+      "name": "단데기",
+      "types": [
+        "bug"
+      ],
+      "front": "res://assets/pokemon/front/011.png",
+      "back": "res://assets/pokemon/back/011.png"
+    },
+    {
+      "id": 12,
+      "key": "butterfree",
+      "name": "버터플",
+      "types": [
+        "bug",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/012.png",
+      "back": "res://assets/pokemon/back/012.png"
+    },
+    {
+      "id": 13,
+      "key": "weedle",
+      "name": "뿔충이",
+      "types": [
+        "bug",
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/013.png",
+      "back": "res://assets/pokemon/back/013.png"
+    },
+    {
+      "id": 14,
+      "key": "kakuna",
+      "name": "딱충이",
+      "types": [
+        "bug",
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/014.png",
+      "back": "res://assets/pokemon/back/014.png"
+    },
+    {
+      "id": 15,
+      "key": "beedrill",
+      "name": "독침붕",
+      "types": [
+        "bug",
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/015.png",
+      "back": "res://assets/pokemon/back/015.png"
+    },
+    {
+      "id": 16,
+      "key": "pidgey",
+      "name": "구구",
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/016.png",
+      "back": "res://assets/pokemon/back/016.png"
+    },
+    {
+      "id": 17,
+      "key": "pidgeotto",
+      "name": "피죤",
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/017.png",
+      "back": "res://assets/pokemon/back/017.png"
+    },
+    {
+      "id": 18,
+      "key": "pidgeot",
+      "name": "피죤투",
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/018.png",
+      "back": "res://assets/pokemon/back/018.png"
+    },
+    {
+      "id": 19,
+      "key": "rattata",
+      "name": "꼬렛",
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/019.png",
+      "back": "res://assets/pokemon/back/019.png"
+    },
+    {
+      "id": 20,
+      "key": "raticate",
+      "name": "레트라",
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/020.png",
+      "back": "res://assets/pokemon/back/020.png"
+    },
+    {
+      "id": 21,
+      "key": "spearow",
+      "name": "깨비참",
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/021.png",
+      "back": "res://assets/pokemon/back/021.png"
+    },
+    {
+      "id": 22,
+      "key": "fearow",
+      "name": "깨비드릴조",
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/022.png",
+      "back": "res://assets/pokemon/back/022.png"
+    },
+    {
+      "id": 23,
+      "key": "ekans",
+      "name": "아보",
+      "types": [
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/023.png",
+      "back": "res://assets/pokemon/back/023.png"
+    },
+    {
+      "id": 24,
+      "key": "arbok",
+      "name": "아보크",
+      "types": [
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/024.png",
+      "back": "res://assets/pokemon/back/024.png"
+    },
+    {
+      "id": 25,
+      "key": "pikachu",
+      "name": "피카츄",
+      "types": [
+        "electric"
+      ],
+      "front": "res://assets/pokemon/front/025.png",
+      "back": "res://assets/pokemon/back/025.png"
+    },
+    {
+      "id": 26,
+      "key": "raichu",
+      "name": "라이츄",
+      "types": [
+        "electric"
+      ],
+      "front": "res://assets/pokemon/front/026.png",
+      "back": "res://assets/pokemon/back/026.png"
+    },
+    {
+      "id": 27,
+      "key": "sandshrew",
+      "name": "모래두지",
+      "types": [
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/027.png",
+      "back": "res://assets/pokemon/back/027.png"
+    },
+    {
+      "id": 28,
+      "key": "sandslash",
+      "name": "고지",
+      "types": [
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/028.png",
+      "back": "res://assets/pokemon/back/028.png"
+    },
+    {
+      "id": 29,
+      "key": "nidoran-f",
+      "name": "니드런♀",
+      "types": [
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/029.png",
+      "back": "res://assets/pokemon/back/029.png"
+    },
+    {
+      "id": 30,
+      "key": "nidorina",
+      "name": "니드리나",
+      "types": [
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/030.png",
+      "back": "res://assets/pokemon/back/030.png"
+    },
+    {
+      "id": 31,
+      "key": "nidoqueen",
+      "name": "니드퀸",
+      "types": [
+        "poison",
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/031.png",
+      "back": "res://assets/pokemon/back/031.png"
+    },
+    {
+      "id": 32,
+      "key": "nidoran-m",
+      "name": "니드런♂",
+      "types": [
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/032.png",
+      "back": "res://assets/pokemon/back/032.png"
+    },
+    {
+      "id": 33,
+      "key": "nidorino",
+      "name": "니드리노",
+      "types": [
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/033.png",
+      "back": "res://assets/pokemon/back/033.png"
+    },
+    {
+      "id": 34,
+      "key": "nidoking",
+      "name": "니드킹",
+      "types": [
+        "poison",
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/034.png",
+      "back": "res://assets/pokemon/back/034.png"
+    },
+    {
+      "id": 35,
+      "key": "clefairy",
+      "name": "삐삐",
+      "types": [
+        "fairy"
+      ],
+      "front": "res://assets/pokemon/front/035.png",
+      "back": "res://assets/pokemon/back/035.png"
+    },
+    {
+      "id": 36,
+      "key": "clefable",
+      "name": "픽시",
+      "types": [
+        "fairy"
+      ],
+      "front": "res://assets/pokemon/front/036.png",
+      "back": "res://assets/pokemon/back/036.png"
+    },
+    {
+      "id": 37,
+      "key": "vulpix",
+      "name": "식스테일",
+      "types": [
+        "fire"
+      ],
+      "front": "res://assets/pokemon/front/037.png",
+      "back": "res://assets/pokemon/back/037.png"
+    },
+    {
+      "id": 38,
+      "key": "ninetales",
+      "name": "나인테일",
+      "types": [
+        "fire"
+      ],
+      "front": "res://assets/pokemon/front/038.png",
+      "back": "res://assets/pokemon/back/038.png"
+    },
+    {
+      "id": 39,
+      "key": "jigglypuff",
+      "name": "푸린",
+      "types": [
+        "normal",
+        "fairy"
+      ],
+      "front": "res://assets/pokemon/front/039.png",
+      "back": "res://assets/pokemon/back/039.png"
+    },
+    {
+      "id": 40,
+      "key": "wigglytuff",
+      "name": "푸크린",
+      "types": [
+        "normal",
+        "fairy"
+      ],
+      "front": "res://assets/pokemon/front/040.png",
+      "back": "res://assets/pokemon/back/040.png"
+    },
+    {
+      "id": 41,
+      "key": "zubat",
+      "name": "주뱃",
+      "types": [
+        "poison",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/041.png",
+      "back": "res://assets/pokemon/back/041.png"
+    },
+    {
+      "id": 42,
+      "key": "golbat",
+      "name": "골뱃",
+      "types": [
+        "poison",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/042.png",
+      "back": "res://assets/pokemon/back/042.png"
+    },
+    {
+      "id": 43,
+      "key": "oddish",
+      "name": "뚜벅쵸",
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/043.png",
+      "back": "res://assets/pokemon/back/043.png"
+    },
+    {
+      "id": 44,
+      "key": "gloom",
+      "name": "냄새꼬",
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/044.png",
+      "back": "res://assets/pokemon/back/044.png"
+    },
+    {
+      "id": 45,
+      "key": "vileplume",
+      "name": "라플레시아",
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/045.png",
+      "back": "res://assets/pokemon/back/045.png"
+    },
+    {
+      "id": 46,
+      "key": "paras",
+      "name": "파라스",
+      "types": [
+        "bug",
+        "grass"
+      ],
+      "front": "res://assets/pokemon/front/046.png",
+      "back": "res://assets/pokemon/back/046.png"
+    },
+    {
+      "id": 47,
+      "key": "parasect",
+      "name": "파라섹트",
+      "types": [
+        "bug",
+        "grass"
+      ],
+      "front": "res://assets/pokemon/front/047.png",
+      "back": "res://assets/pokemon/back/047.png"
+    },
+    {
+      "id": 48,
+      "key": "venonat",
+      "name": "콘팡",
+      "types": [
+        "bug",
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/048.png",
+      "back": "res://assets/pokemon/back/048.png"
+    },
+    {
+      "id": 49,
+      "key": "venomoth",
+      "name": "도나리",
+      "types": [
+        "bug",
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/049.png",
+      "back": "res://assets/pokemon/back/049.png"
+    },
+    {
+      "id": 50,
+      "key": "diglett",
+      "name": "디그다",
+      "types": [
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/050.png",
+      "back": "res://assets/pokemon/back/050.png"
+    },
+    {
+      "id": 51,
+      "key": "dugtrio",
+      "name": "닥트리오",
+      "types": [
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/051.png",
+      "back": "res://assets/pokemon/back/051.png"
+    },
+    {
+      "id": 52,
+      "key": "meowth",
+      "name": "나옹",
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/052.png",
+      "back": "res://assets/pokemon/back/052.png"
+    },
+    {
+      "id": 53,
+      "key": "persian",
+      "name": "페르시온",
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/053.png",
+      "back": "res://assets/pokemon/back/053.png"
+    },
+    {
+      "id": 54,
+      "key": "psyduck",
+      "name": "고라파덕",
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/054.png",
+      "back": "res://assets/pokemon/back/054.png"
+    },
+    {
+      "id": 55,
+      "key": "golduck",
+      "name": "골덕",
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/055.png",
+      "back": "res://assets/pokemon/back/055.png"
+    },
+    {
+      "id": 56,
+      "key": "mankey",
+      "name": "망키",
+      "types": [
+        "fighting"
+      ],
+      "front": "res://assets/pokemon/front/056.png",
+      "back": "res://assets/pokemon/back/056.png"
+    },
+    {
+      "id": 57,
+      "key": "primeape",
+      "name": "성원숭",
+      "types": [
+        "fighting"
+      ],
+      "front": "res://assets/pokemon/front/057.png",
+      "back": "res://assets/pokemon/back/057.png"
+    },
+    {
+      "id": 58,
+      "key": "growlithe",
+      "name": "가디",
+      "types": [
+        "fire"
+      ],
+      "front": "res://assets/pokemon/front/058.png",
+      "back": "res://assets/pokemon/back/058.png"
+    },
+    {
+      "id": 59,
+      "key": "arcanine",
+      "name": "윈디",
+      "types": [
+        "fire"
+      ],
+      "front": "res://assets/pokemon/front/059.png",
+      "back": "res://assets/pokemon/back/059.png"
+    },
+    {
+      "id": 60,
+      "key": "poliwag",
+      "name": "발챙이",
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/060.png",
+      "back": "res://assets/pokemon/back/060.png"
+    },
+    {
+      "id": 61,
+      "key": "poliwhirl",
+      "name": "슈륙챙이",
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/061.png",
+      "back": "res://assets/pokemon/back/061.png"
+    },
+    {
+      "id": 62,
+      "key": "poliwrath",
+      "name": "강챙이",
+      "types": [
+        "water",
+        "fighting"
+      ],
+      "front": "res://assets/pokemon/front/062.png",
+      "back": "res://assets/pokemon/back/062.png"
+    },
+    {
+      "id": 63,
+      "key": "abra",
+      "name": "캐이시",
+      "types": [
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/063.png",
+      "back": "res://assets/pokemon/back/063.png"
+    },
+    {
+      "id": 64,
+      "key": "kadabra",
+      "name": "윤겔라",
+      "types": [
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/064.png",
+      "back": "res://assets/pokemon/back/064.png"
+    },
+    {
+      "id": 65,
+      "key": "alakazam",
+      "name": "후딘",
+      "types": [
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/065.png",
+      "back": "res://assets/pokemon/back/065.png"
+    },
+    {
+      "id": 66,
+      "key": "machop",
+      "name": "알통몬",
+      "types": [
+        "fighting"
+      ],
+      "front": "res://assets/pokemon/front/066.png",
+      "back": "res://assets/pokemon/back/066.png"
+    },
+    {
+      "id": 67,
+      "key": "machoke",
+      "name": "근육몬",
+      "types": [
+        "fighting"
+      ],
+      "front": "res://assets/pokemon/front/067.png",
+      "back": "res://assets/pokemon/back/067.png"
+    },
+    {
+      "id": 68,
+      "key": "machamp",
+      "name": "괴력몬",
+      "types": [
+        "fighting"
+      ],
+      "front": "res://assets/pokemon/front/068.png",
+      "back": "res://assets/pokemon/back/068.png"
+    },
+    {
+      "id": 69,
+      "key": "bellsprout",
+      "name": "모다피",
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/069.png",
+      "back": "res://assets/pokemon/back/069.png"
+    },
+    {
+      "id": 70,
+      "key": "weepinbell",
+      "name": "우츠동",
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/070.png",
+      "back": "res://assets/pokemon/back/070.png"
+    },
+    {
+      "id": 71,
+      "key": "victreebel",
+      "name": "우츠보트",
+      "types": [
+        "grass",
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/071.png",
+      "back": "res://assets/pokemon/back/071.png"
+    },
+    {
+      "id": 72,
+      "key": "tentacool",
+      "name": "왕눈해",
+      "types": [
+        "water",
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/072.png",
+      "back": "res://assets/pokemon/back/072.png"
+    },
+    {
+      "id": 73,
+      "key": "tentacruel",
+      "name": "독파리",
+      "types": [
+        "water",
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/073.png",
+      "back": "res://assets/pokemon/back/073.png"
+    },
+    {
+      "id": 74,
+      "key": "geodude",
+      "name": "꼬마돌",
+      "types": [
+        "rock",
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/074.png",
+      "back": "res://assets/pokemon/back/074.png"
+    },
+    {
+      "id": 75,
+      "key": "graveler",
+      "name": "데구리",
+      "types": [
+        "rock",
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/075.png",
+      "back": "res://assets/pokemon/back/075.png"
+    },
+    {
+      "id": 76,
+      "key": "golem",
+      "name": "딱구리",
+      "types": [
+        "rock",
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/076.png",
+      "back": "res://assets/pokemon/back/076.png"
+    },
+    {
+      "id": 77,
+      "key": "ponyta",
+      "name": "포니타",
+      "types": [
+        "fire"
+      ],
+      "front": "res://assets/pokemon/front/077.png",
+      "back": "res://assets/pokemon/back/077.png"
+    },
+    {
+      "id": 78,
+      "key": "rapidash",
+      "name": "날쌩마",
+      "types": [
+        "fire"
+      ],
+      "front": "res://assets/pokemon/front/078.png",
+      "back": "res://assets/pokemon/back/078.png"
+    },
+    {
+      "id": 79,
+      "key": "slowpoke",
+      "name": "야돈",
+      "types": [
+        "water",
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/079.png",
+      "back": "res://assets/pokemon/back/079.png"
+    },
+    {
+      "id": 80,
+      "key": "slowbro",
+      "name": "야도란",
+      "types": [
+        "water",
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/080.png",
+      "back": "res://assets/pokemon/back/080.png"
+    },
+    {
+      "id": 81,
+      "key": "magnemite",
+      "name": "코일",
+      "types": [
+        "electric",
+        "steel"
+      ],
+      "front": "res://assets/pokemon/front/081.png",
+      "back": "res://assets/pokemon/back/081.png"
+    },
+    {
+      "id": 82,
+      "key": "magneton",
+      "name": "레어코일",
+      "types": [
+        "electric",
+        "steel"
+      ],
+      "front": "res://assets/pokemon/front/082.png",
+      "back": "res://assets/pokemon/back/082.png"
+    },
+    {
+      "id": 83,
+      "key": "farfetchd",
+      "name": "파오리",
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/083.png",
+      "back": "res://assets/pokemon/back/083.png"
+    },
+    {
+      "id": 84,
+      "key": "doduo",
+      "name": "두두",
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/084.png",
+      "back": "res://assets/pokemon/back/084.png"
+    },
+    {
+      "id": 85,
+      "key": "dodrio",
+      "name": "두트리오",
+      "types": [
+        "normal",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/085.png",
+      "back": "res://assets/pokemon/back/085.png"
+    },
+    {
+      "id": 86,
+      "key": "seel",
+      "name": "쥬쥬",
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/086.png",
+      "back": "res://assets/pokemon/back/086.png"
+    },
+    {
+      "id": 87,
+      "key": "dewgong",
+      "name": "쥬레곤",
+      "types": [
+        "water",
+        "ice"
+      ],
+      "front": "res://assets/pokemon/front/087.png",
+      "back": "res://assets/pokemon/back/087.png"
+    },
+    {
+      "id": 88,
+      "key": "grimer",
+      "name": "질퍽이",
+      "types": [
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/088.png",
+      "back": "res://assets/pokemon/back/088.png"
+    },
+    {
+      "id": 89,
+      "key": "muk",
+      "name": "질뻐기",
+      "types": [
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/089.png",
+      "back": "res://assets/pokemon/back/089.png"
+    },
+    {
+      "id": 90,
+      "key": "shellder",
+      "name": "셀러",
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/090.png",
+      "back": "res://assets/pokemon/back/090.png"
+    },
+    {
+      "id": 91,
+      "key": "cloyster",
+      "name": "파르셀",
+      "types": [
+        "water",
+        "ice"
+      ],
+      "front": "res://assets/pokemon/front/091.png",
+      "back": "res://assets/pokemon/back/091.png"
+    },
+    {
+      "id": 92,
+      "key": "gastly",
+      "name": "고오스",
+      "types": [
+        "ghost",
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/092.png",
+      "back": "res://assets/pokemon/back/092.png"
+    },
+    {
+      "id": 93,
+      "key": "haunter",
+      "name": "고우스트",
+      "types": [
+        "ghost",
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/093.png",
+      "back": "res://assets/pokemon/back/093.png"
+    },
+    {
+      "id": 94,
+      "key": "gengar",
+      "name": "팬텀",
+      "types": [
+        "ghost",
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/094.png",
+      "back": "res://assets/pokemon/back/094.png"
+    },
+    {
+      "id": 95,
+      "key": "onix",
+      "name": "롱스톤",
+      "types": [
+        "rock",
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/095.png",
+      "back": "res://assets/pokemon/back/095.png"
+    },
+    {
+      "id": 96,
+      "key": "drowzee",
+      "name": "슬리프",
+      "types": [
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/096.png",
+      "back": "res://assets/pokemon/back/096.png"
+    },
+    {
+      "id": 97,
+      "key": "hypno",
+      "name": "슬리퍼",
+      "types": [
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/097.png",
+      "back": "res://assets/pokemon/back/097.png"
+    },
+    {
+      "id": 98,
+      "key": "krabby",
+      "name": "크랩",
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/098.png",
+      "back": "res://assets/pokemon/back/098.png"
+    },
+    {
+      "id": 99,
+      "key": "kingler",
+      "name": "킹크랩",
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/099.png",
+      "back": "res://assets/pokemon/back/099.png"
+    },
+    {
+      "id": 100,
+      "key": "voltorb",
+      "name": "찌리리공",
+      "types": [
+        "electric"
+      ],
+      "front": "res://assets/pokemon/front/100.png",
+      "back": "res://assets/pokemon/back/100.png"
+    },
+    {
+      "id": 101,
+      "key": "electrode",
+      "name": "붐볼",
+      "types": [
+        "electric"
+      ],
+      "front": "res://assets/pokemon/front/101.png",
+      "back": "res://assets/pokemon/back/101.png"
+    },
+    {
+      "id": 102,
+      "key": "exeggcute",
+      "name": "아라리",
+      "types": [
+        "grass",
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/102.png",
+      "back": "res://assets/pokemon/back/102.png"
+    },
+    {
+      "id": 103,
+      "key": "exeggutor",
+      "name": "나시",
+      "types": [
+        "grass",
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/103.png",
+      "back": "res://assets/pokemon/back/103.png"
+    },
+    {
+      "id": 104,
+      "key": "cubone",
+      "name": "탕구리",
+      "types": [
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/104.png",
+      "back": "res://assets/pokemon/back/104.png"
+    },
+    {
+      "id": 105,
+      "key": "marowak",
+      "name": "텅구리",
+      "types": [
+        "ground"
+      ],
+      "front": "res://assets/pokemon/front/105.png",
+      "back": "res://assets/pokemon/back/105.png"
+    },
+    {
+      "id": 106,
+      "key": "hitmonlee",
+      "name": "시라소몬",
+      "types": [
+        "fighting"
+      ],
+      "front": "res://assets/pokemon/front/106.png",
+      "back": "res://assets/pokemon/back/106.png"
+    },
+    {
+      "id": 107,
+      "key": "hitmonchan",
+      "name": "홍수몬",
+      "types": [
+        "fighting"
+      ],
+      "front": "res://assets/pokemon/front/107.png",
+      "back": "res://assets/pokemon/back/107.png"
+    },
+    {
+      "id": 108,
+      "key": "lickitung",
+      "name": "내루미",
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/108.png",
+      "back": "res://assets/pokemon/back/108.png"
+    },
+    {
+      "id": 109,
+      "key": "koffing",
+      "name": "또가스",
+      "types": [
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/109.png",
+      "back": "res://assets/pokemon/back/109.png"
+    },
+    {
+      "id": 110,
+      "key": "weezing",
+      "name": "또도가스",
+      "types": [
+        "poison"
+      ],
+      "front": "res://assets/pokemon/front/110.png",
+      "back": "res://assets/pokemon/back/110.png"
+    },
+    {
+      "id": 111,
+      "key": "rhyhorn",
+      "name": "뿔카노",
+      "types": [
+        "ground",
+        "rock"
+      ],
+      "front": "res://assets/pokemon/front/111.png",
+      "back": "res://assets/pokemon/back/111.png"
+    },
+    {
+      "id": 112,
+      "key": "rhydon",
+      "name": "코뿌리",
+      "types": [
+        "ground",
+        "rock"
+      ],
+      "front": "res://assets/pokemon/front/112.png",
+      "back": "res://assets/pokemon/back/112.png"
+    },
+    {
+      "id": 113,
+      "key": "chansey",
+      "name": "럭키",
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/113.png",
+      "back": "res://assets/pokemon/back/113.png"
+    },
+    {
+      "id": 114,
+      "key": "tangela",
+      "name": "덩쿠리",
+      "types": [
+        "grass"
+      ],
+      "front": "res://assets/pokemon/front/114.png",
+      "back": "res://assets/pokemon/back/114.png"
+    },
+    {
+      "id": 115,
+      "key": "kangaskhan",
+      "name": "캥카",
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/115.png",
+      "back": "res://assets/pokemon/back/115.png"
+    },
+    {
+      "id": 116,
+      "key": "horsea",
+      "name": "쏘드라",
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/116.png",
+      "back": "res://assets/pokemon/back/116.png"
+    },
+    {
+      "id": 117,
+      "key": "seadra",
+      "name": "시드라",
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/117.png",
+      "back": "res://assets/pokemon/back/117.png"
+    },
+    {
+      "id": 118,
+      "key": "goldeen",
+      "name": "콘치",
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/118.png",
+      "back": "res://assets/pokemon/back/118.png"
+    },
+    {
+      "id": 119,
+      "key": "seaking",
+      "name": "왕콘치",
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/119.png",
+      "back": "res://assets/pokemon/back/119.png"
+    },
+    {
+      "id": 120,
+      "key": "staryu",
+      "name": "별가사리",
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/120.png",
+      "back": "res://assets/pokemon/back/120.png"
+    },
+    {
+      "id": 121,
+      "key": "starmie",
+      "name": "아쿠스타",
+      "types": [
+        "water",
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/121.png",
+      "back": "res://assets/pokemon/back/121.png"
+    },
+    {
+      "id": 122,
+      "key": "mr-mime",
+      "name": "마임맨",
+      "types": [
+        "psychic",
+        "fairy"
+      ],
+      "front": "res://assets/pokemon/front/122.png",
+      "back": "res://assets/pokemon/back/122.png"
+    },
+    {
+      "id": 123,
+      "key": "scyther",
+      "name": "스라크",
+      "types": [
+        "bug",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/123.png",
+      "back": "res://assets/pokemon/back/123.png"
+    },
+    {
+      "id": 124,
+      "key": "jynx",
+      "name": "루주라",
+      "types": [
+        "ice",
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/124.png",
+      "back": "res://assets/pokemon/back/124.png"
+    },
+    {
+      "id": 125,
+      "key": "electabuzz",
+      "name": "에레브",
+      "types": [
+        "electric"
+      ],
+      "front": "res://assets/pokemon/front/125.png",
+      "back": "res://assets/pokemon/back/125.png"
+    },
+    {
+      "id": 126,
+      "key": "magmar",
+      "name": "마그마",
+      "types": [
+        "fire"
+      ],
+      "front": "res://assets/pokemon/front/126.png",
+      "back": "res://assets/pokemon/back/126.png"
+    },
+    {
+      "id": 127,
+      "key": "pinsir",
+      "name": "쁘사이저",
+      "types": [
+        "bug"
+      ],
+      "front": "res://assets/pokemon/front/127.png",
+      "back": "res://assets/pokemon/back/127.png"
+    },
+    {
+      "id": 128,
+      "key": "tauros",
+      "name": "켄타로스",
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/128.png",
+      "back": "res://assets/pokemon/back/128.png"
+    },
+    {
+      "id": 129,
+      "key": "magikarp",
+      "name": "잉어킹",
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/129.png",
+      "back": "res://assets/pokemon/back/129.png"
+    },
+    {
+      "id": 130,
+      "key": "gyarados",
+      "name": "갸라도스",
+      "types": [
+        "water",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/130.png",
+      "back": "res://assets/pokemon/back/130.png"
+    },
+    {
+      "id": 131,
+      "key": "lapras",
+      "name": "라프라스",
+      "types": [
+        "water",
+        "ice"
+      ],
+      "front": "res://assets/pokemon/front/131.png",
+      "back": "res://assets/pokemon/back/131.png"
+    },
+    {
+      "id": 132,
+      "key": "ditto",
+      "name": "메타몽",
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/132.png",
+      "back": "res://assets/pokemon/back/132.png"
+    },
+    {
+      "id": 133,
+      "key": "eevee",
+      "name": "이브이",
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/133.png",
+      "back": "res://assets/pokemon/back/133.png"
+    },
+    {
+      "id": 134,
+      "key": "vaporeon",
+      "name": "샤미드",
+      "types": [
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/134.png",
+      "back": "res://assets/pokemon/back/134.png"
+    },
+    {
+      "id": 135,
+      "key": "jolteon",
+      "name": "쥬피썬더",
+      "types": [
+        "electric"
+      ],
+      "front": "res://assets/pokemon/front/135.png",
+      "back": "res://assets/pokemon/back/135.png"
+    },
+    {
+      "id": 136,
+      "key": "flareon",
+      "name": "부스터",
+      "types": [
+        "fire"
+      ],
+      "front": "res://assets/pokemon/front/136.png",
+      "back": "res://assets/pokemon/back/136.png"
+    },
+    {
+      "id": 137,
+      "key": "porygon",
+      "name": "폴리곤",
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/137.png",
+      "back": "res://assets/pokemon/back/137.png"
+    },
+    {
+      "id": 138,
+      "key": "omanyte",
+      "name": "암나이트",
+      "types": [
+        "rock",
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/138.png",
+      "back": "res://assets/pokemon/back/138.png"
+    },
+    {
+      "id": 139,
+      "key": "omastar",
+      "name": "암스타",
+      "types": [
+        "rock",
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/139.png",
+      "back": "res://assets/pokemon/back/139.png"
+    },
+    {
+      "id": 140,
+      "key": "kabuto",
+      "name": "투구",
+      "types": [
+        "rock",
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/140.png",
+      "back": "res://assets/pokemon/back/140.png"
+    },
+    {
+      "id": 141,
+      "key": "kabutops",
+      "name": "투구푸스",
+      "types": [
+        "rock",
+        "water"
+      ],
+      "front": "res://assets/pokemon/front/141.png",
+      "back": "res://assets/pokemon/back/141.png"
+    },
+    {
+      "id": 142,
+      "key": "aerodactyl",
+      "name": "프테라",
+      "types": [
+        "rock",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/142.png",
+      "back": "res://assets/pokemon/back/142.png"
+    },
+    {
+      "id": 143,
+      "key": "snorlax",
+      "name": "잠만보",
+      "types": [
+        "normal"
+      ],
+      "front": "res://assets/pokemon/front/143.png",
+      "back": "res://assets/pokemon/back/143.png"
+    },
+    {
+      "id": 144,
+      "key": "articuno",
+      "name": "프리져",
+      "types": [
+        "ice",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/144.png",
+      "back": "res://assets/pokemon/back/144.png"
+    },
+    {
+      "id": 145,
+      "key": "zapdos",
+      "name": "썬더",
+      "types": [
+        "electric",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/145.png",
+      "back": "res://assets/pokemon/back/145.png"
+    },
+    {
+      "id": 146,
+      "key": "moltres",
+      "name": "파이어",
+      "types": [
+        "fire",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/146.png",
+      "back": "res://assets/pokemon/back/146.png"
+    },
+    {
+      "id": 147,
+      "key": "dratini",
+      "name": "미뇽",
+      "types": [
+        "dragon"
+      ],
+      "front": "res://assets/pokemon/front/147.png",
+      "back": "res://assets/pokemon/back/147.png"
+    },
+    {
+      "id": 148,
+      "key": "dragonair",
+      "name": "신뇽",
+      "types": [
+        "dragon"
+      ],
+      "front": "res://assets/pokemon/front/148.png",
+      "back": "res://assets/pokemon/back/148.png"
+    },
+    {
+      "id": 149,
+      "key": "dragonite",
+      "name": "망나뇽",
+      "types": [
+        "dragon",
+        "flying"
+      ],
+      "front": "res://assets/pokemon/front/149.png",
+      "back": "res://assets/pokemon/back/149.png"
+    },
+    {
+      "id": 150,
+      "key": "mewtwo",
+      "name": "뮤츠",
+      "types": [
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/150.png",
+      "back": "res://assets/pokemon/back/150.png"
+    },
+    {
+      "id": 151,
+      "key": "mew",
+      "name": "뮤",
+      "types": [
+        "psychic"
+      ],
+      "front": "res://assets/pokemon/front/151.png",
+      "back": "res://assets/pokemon/back/151.png"
+    }
+  ],
+  "types": [
+    {
+      "key": "normal",
+      "name": "노말"
+    },
+    {
+      "key": "fighting",
+      "name": "격투"
+    },
+    {
+      "key": "flying",
+      "name": "비행"
+    },
+    {
+      "key": "poison",
+      "name": "독"
+    },
+    {
+      "key": "ground",
+      "name": "땅"
+    },
+    {
+      "key": "rock",
+      "name": "바위"
+    },
+    {
+      "key": "bug",
+      "name": "벌레"
+    },
+    {
+      "key": "ghost",
+      "name": "고스트"
+    },
+    {
+      "key": "steel",
+      "name": "강철"
+    },
+    {
+      "key": "fire",
+      "name": "불꽃"
+    },
+    {
+      "key": "water",
+      "name": "물"
+    },
+    {
+      "key": "grass",
+      "name": "풀"
+    },
+    {
+      "key": "electric",
+      "name": "전기"
+    },
+    {
+      "key": "psychic",
+      "name": "에스퍼"
+    },
+    {
+      "key": "ice",
+      "name": "얼음"
+    },
+    {
+      "key": "dragon",
+      "name": "드래곤"
+    },
+    {
+      "key": "dark",
+      "name": "악"
+    },
+    {
+      "key": "fairy",
+      "name": "페어리"
+    }
+  ],
+  "moves": [
+    {
+      "id": 1,
+      "key": "pound",
+      "name": "막치기",
+      "type": "normal",
+      "category": "physical",
+      "power": 40,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 2,
+      "key": "karate-chop",
+      "name": "태권당수",
+      "type": "fighting",
+      "category": "physical",
+      "power": 50,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "slash",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 3,
+      "key": "double-slap",
+      "name": "연속뺨치기",
+      "type": "normal",
+      "category": "physical",
+      "power": 15,
+      "accuracy": 85,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 4,
+      "key": "comet-punch",
+      "name": "연속펀치",
+      "type": "normal",
+      "category": "physical",
+      "power": 18,
+      "accuracy": 85,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 5,
+      "key": "mega-punch",
+      "name": "메가톤펀치",
+      "type": "normal",
+      "category": "physical",
+      "power": 80,
+      "accuracy": 85,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 6,
+      "key": "pay-day",
+      "name": "고양이돈받기",
+      "type": "normal",
+      "category": "physical",
+      "power": 40,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 7,
+      "key": "fire-punch",
+      "name": "불꽃펀치",
+      "type": "fire",
+      "category": "physical",
+      "power": 75,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 10,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": "burn"
+      }
+    },
+    {
+      "id": 8,
+      "key": "ice-punch",
+      "name": "냉동펀치",
+      "type": "ice",
+      "category": "physical",
+      "power": 75,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 10,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": "freeze"
+      }
+    },
+    {
+      "id": 9,
+      "key": "thunder-punch",
+      "name": "번개펀치",
+      "type": "electric",
+      "category": "physical",
+      "power": 75,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 10,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": "paralysis"
+      }
+    },
+    {
+      "id": 10,
+      "key": "scratch",
+      "name": "할퀴기",
+      "type": "normal",
+      "category": "physical",
+      "power": 40,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "slash",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 11,
+      "key": "vice-grip",
+      "name": "찝기",
+      "type": "normal",
+      "category": "physical",
+      "power": 55,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 12,
+      "key": "guillotine",
+      "name": "가위자르기",
+      "type": "normal",
+      "category": "physical",
+      "power": 0,
+      "accuracy": 30,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 13,
+      "key": "razor-wind",
+      "name": "칼바람",
+      "type": "normal",
+      "category": "special",
+      "power": 80,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 14,
+      "key": "swords-dance",
+      "name": "칼춤",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [
+        {
+          "stat_id": 2,
+          "change": 2
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "stat_up",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 15,
+      "key": "cut",
+      "name": "풀베기",
+      "type": "normal",
+      "category": "physical",
+      "power": 50,
+      "accuracy": 95,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "slash",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 16,
+      "key": "gust",
+      "name": "바람일으키기",
+      "type": "flying",
+      "category": "special",
+      "power": 40,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 17,
+      "key": "wing-attack",
+      "name": "날개치기",
+      "type": "flying",
+      "category": "physical",
+      "power": 60,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 18,
+      "key": "whirlwind",
+      "name": "날려버리기",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "evade",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 19,
+      "key": "fly",
+      "name": "공중날기",
+      "type": "flying",
+      "category": "physical",
+      "power": 90,
+      "accuracy": 95,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "charge",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 20,
+      "key": "bind",
+      "name": "조이기",
+      "type": "normal",
+      "category": "physical",
+      "power": 15,
+      "accuracy": 85,
+      "stat_changes": [],
+      "ailment_chance": 100,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": "bind"
+      }
+    },
+    {
+      "id": 21,
+      "key": "slam",
+      "name": "힘껏치기",
+      "type": "normal",
+      "category": "physical",
+      "power": 80,
+      "accuracy": 75,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 22,
+      "key": "vine-whip",
+      "name": "덩굴채찍",
+      "type": "grass",
+      "category": "physical",
+      "power": 45,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 23,
+      "key": "stomp",
+      "name": "짓밟기",
+      "type": "normal",
+      "category": "physical",
+      "power": 65,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 24,
+      "key": "double-kick",
+      "name": "두번차기",
+      "type": "fighting",
+      "category": "physical",
+      "power": 30,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 25,
+      "key": "mega-kick",
+      "name": "메가톤킥",
+      "type": "normal",
+      "category": "physical",
+      "power": 120,
+      "accuracy": 75,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 26,
+      "key": "jump-kick",
+      "name": "점프킥",
+      "type": "fighting",
+      "category": "physical",
+      "power": 100,
+      "accuracy": 95,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 27,
+      "key": "rolling-kick",
+      "name": "돌려차기",
+      "type": "fighting",
+      "category": "physical",
+      "power": 60,
+      "accuracy": 85,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 28,
+      "key": "sand-attack",
+      "name": "모래뿌리기",
+      "type": "ground",
+      "category": "status",
+      "power": 0,
+      "accuracy": 100,
+      "stat_changes": [
+        {
+          "stat_id": 7,
+          "change": -1
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "stat_down",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 29,
+      "key": "headbutt",
+      "name": "박치기",
+      "type": "normal",
+      "category": "physical",
+      "power": 70,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 30,
+      "key": "horn-attack",
+      "name": "뿔찌르기",
+      "type": "normal",
+      "category": "physical",
+      "power": 65,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 31,
+      "key": "fury-attack",
+      "name": "마구찌르기",
+      "type": "normal",
+      "category": "physical",
+      "power": 15,
+      "accuracy": 85,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 32,
+      "key": "horn-drill",
+      "name": "뿔드릴",
+      "type": "normal",
+      "category": "physical",
+      "power": 0,
+      "accuracy": 30,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 33,
+      "key": "tackle",
+      "name": "몸통박치기",
+      "type": "normal",
+      "category": "physical",
+      "power": 40,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 34,
+      "key": "body-slam",
+      "name": "누르기",
+      "type": "normal",
+      "category": "physical",
+      "power": 85,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 30,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": "paralysis"
+      }
+    },
+    {
+      "id": 35,
+      "key": "wrap",
+      "name": "김밥말이",
+      "type": "normal",
+      "category": "physical",
+      "power": 15,
+      "accuracy": 90,
+      "stat_changes": [],
+      "ailment_chance": 100,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": "bind"
+      }
+    },
+    {
+      "id": 36,
+      "key": "take-down",
+      "name": "돌진",
+      "type": "normal",
+      "category": "physical",
+      "power": 90,
+      "accuracy": 85,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 37,
+      "key": "thrash",
+      "name": "난동부리기",
+      "type": "normal",
+      "category": "physical",
+      "power": 120,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 38,
+      "key": "double-edge",
+      "name": "이판사판태클",
+      "type": "normal",
+      "category": "physical",
+      "power": 120,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 39,
+      "key": "tail-whip",
+      "name": "꼬리흔들기",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 100,
+      "stat_changes": [
+        {
+          "stat_id": 3,
+          "change": -1
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "stat_down",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 40,
+      "key": "poison-sting",
+      "name": "독침",
+      "type": "poison",
+      "category": "physical",
+      "power": 15,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 30,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": "poison"
+      }
+    },
+    {
+      "id": 41,
+      "key": "twineedle",
+      "name": "더블니들",
+      "type": "bug",
+      "category": "physical",
+      "power": 25,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 20,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": "poison"
+      }
+    },
+    {
+      "id": 42,
+      "key": "pin-missile",
+      "name": "바늘미사일",
+      "type": "bug",
+      "category": "physical",
+      "power": 25,
+      "accuracy": 95,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 43,
+      "key": "leer",
+      "name": "째려보기",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 100,
+      "stat_changes": [
+        {
+          "stat_id": 3,
+          "change": -1
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "stat_down",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 44,
+      "key": "bite",
+      "name": "물기",
+      "type": "dark",
+      "category": "physical",
+      "power": 60,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 45,
+      "key": "growl",
+      "name": "울음소리",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 100,
+      "stat_changes": [
+        {
+          "stat_id": 2,
+          "change": -1
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "stat_down",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 46,
+      "key": "roar",
+      "name": "울부짖기",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "evade",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 47,
+      "key": "sing",
+      "name": "노래하기",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 55,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "sleep",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 48,
+      "key": "supersonic",
+      "name": "초음파",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 55,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "confusion",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 49,
+      "key": "sonic-boom",
+      "name": "소닉붐",
+      "type": "normal",
+      "category": "special",
+      "power": 0,
+      "accuracy": 90,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 50,
+      "key": "disable",
+      "name": "사슬묶기",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "seal",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 51,
+      "key": "acid",
+      "name": "용해액",
+      "type": "poison",
+      "category": "special",
+      "power": 40,
+      "accuracy": 100,
+      "stat_changes": [
+        {
+          "stat_id": 5,
+          "change": -1
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 52,
+      "key": "ember",
+      "name": "불꽃세례",
+      "type": "fire",
+      "category": "special",
+      "power": 40,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 10,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "burn"
+      }
+    },
+    {
+      "id": 53,
+      "key": "flamethrower",
+      "name": "화염방사",
+      "type": "fire",
+      "category": "special",
+      "power": 90,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 10,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "burn"
+      }
+    },
+    {
+      "id": 54,
+      "key": "mist",
+      "name": "흰안개",
+      "type": "ice",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "mist",
+        "target": "field",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 55,
+      "key": "water-gun",
+      "name": "물대포",
+      "type": "water",
+      "category": "special",
+      "power": 40,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 56,
+      "key": "hydro-pump",
+      "name": "하이드로펌프",
+      "type": "water",
+      "category": "special",
+      "power": 110,
+      "accuracy": 80,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 57,
+      "key": "surf",
+      "name": "파도타기",
+      "type": "water",
+      "category": "special",
+      "power": 90,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 58,
+      "key": "ice-beam",
+      "name": "냉동빔",
+      "type": "ice",
+      "category": "special",
+      "power": 90,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 10,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "freeze"
+      }
+    },
+    {
+      "id": 59,
+      "key": "blizzard",
+      "name": "눈보라",
+      "type": "ice",
+      "category": "special",
+      "power": 110,
+      "accuracy": 70,
+      "stat_changes": [],
+      "ailment_chance": 10,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "freeze"
+      }
+    },
+    {
+      "id": 60,
+      "key": "psybeam",
+      "name": "환상빔",
+      "type": "psychic",
+      "category": "special",
+      "power": 65,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 10,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "confusion"
+      }
+    },
+    {
+      "id": 61,
+      "key": "bubble-beam",
+      "name": "거품광선",
+      "type": "water",
+      "category": "special",
+      "power": 65,
+      "accuracy": 100,
+      "stat_changes": [
+        {
+          "stat_id": 6,
+          "change": -1
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 62,
+      "key": "aurora-beam",
+      "name": "오로라빔",
+      "type": "ice",
+      "category": "special",
+      "power": 65,
+      "accuracy": 100,
+      "stat_changes": [
+        {
+          "stat_id": 2,
+          "change": -1
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 63,
+      "key": "hyper-beam",
+      "name": "파괴광선",
+      "type": "normal",
+      "category": "special",
+      "power": 150,
+      "accuracy": 90,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 64,
+      "key": "peck",
+      "name": "쪼기",
+      "type": "flying",
+      "category": "physical",
+      "power": 35,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 65,
+      "key": "drill-peck",
+      "name": "회전부리",
+      "type": "flying",
+      "category": "physical",
+      "power": 80,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 66,
+      "key": "submission",
+      "name": "지옥의바퀴",
+      "type": "fighting",
+      "category": "physical",
+      "power": 80,
+      "accuracy": 80,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 67,
+      "key": "low-kick",
+      "name": "안다리걸기",
+      "type": "fighting",
+      "category": "physical",
+      "power": 0,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 68,
+      "key": "counter",
+      "name": "카운터",
+      "type": "fighting",
+      "category": "physical",
+      "power": 0,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 69,
+      "key": "seismic-toss",
+      "name": "지구던지기",
+      "type": "fighting",
+      "category": "physical",
+      "power": 0,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 70,
+      "key": "strength",
+      "name": "괴력",
+      "type": "normal",
+      "category": "physical",
+      "power": 80,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 71,
+      "key": "absorb",
+      "name": "흡수",
+      "type": "grass",
+      "category": "special",
+      "power": 20,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "drain",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 72,
+      "key": "mega-drain",
+      "name": "메가드레인",
+      "type": "grass",
+      "category": "special",
+      "power": 40,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "drain",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 73,
+      "key": "leech-seed",
+      "name": "씨뿌리기",
+      "type": "grass",
+      "category": "status",
+      "power": 0,
+      "accuracy": 90,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "seed",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 74,
+      "key": "growth",
+      "name": "성장",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [
+        {
+          "stat_id": 2,
+          "change": 1
+        },
+        {
+          "stat_id": 4,
+          "change": 1
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "stat_up",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 75,
+      "key": "razor-leaf",
+      "name": "잎날가르기",
+      "type": "grass",
+      "category": "physical",
+      "power": 55,
+      "accuracy": 95,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 76,
+      "key": "solar-beam",
+      "name": "솔라빔",
+      "type": "grass",
+      "category": "special",
+      "power": 120,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "charge",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 77,
+      "key": "poison-powder",
+      "name": "독가루",
+      "type": "poison",
+      "category": "status",
+      "power": 0,
+      "accuracy": 75,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "poison",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 78,
+      "key": "stun-spore",
+      "name": "저리가루",
+      "type": "grass",
+      "category": "status",
+      "power": 0,
+      "accuracy": 75,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "paralysis",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 79,
+      "key": "sleep-powder",
+      "name": "수면가루",
+      "type": "grass",
+      "category": "status",
+      "power": 0,
+      "accuracy": 75,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "sleep",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 80,
+      "key": "petal-dance",
+      "name": "꽃잎댄스",
+      "type": "grass",
+      "category": "special",
+      "power": 120,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 81,
+      "key": "string-shot",
+      "name": "실뿜기",
+      "type": "bug",
+      "category": "status",
+      "power": 0,
+      "accuracy": 95,
+      "stat_changes": [
+        {
+          "stat_id": 6,
+          "change": -2
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "stat_down",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 82,
+      "key": "dragon-rage",
+      "name": "용의분노",
+      "type": "dragon",
+      "category": "special",
+      "power": 0,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 83,
+      "key": "fire-spin",
+      "name": "회오리불꽃",
+      "type": "fire",
+      "category": "special",
+      "power": 35,
+      "accuracy": 85,
+      "stat_changes": [],
+      "ailment_chance": 100,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "bind"
+      }
+    },
+    {
+      "id": 84,
+      "key": "thunder-shock",
+      "name": "전기쇼크",
+      "type": "electric",
+      "category": "special",
+      "power": 40,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 10,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "paralysis"
+      }
+    },
+    {
+      "id": 85,
+      "key": "thunderbolt",
+      "name": "10만볼트",
+      "type": "electric",
+      "category": "special",
+      "power": 90,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 10,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "paralysis"
+      }
+    },
+    {
+      "id": 86,
+      "key": "thunder-wave",
+      "name": "전기자석파",
+      "type": "electric",
+      "category": "status",
+      "power": 0,
+      "accuracy": 90,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "paralysis",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 87,
+      "key": "thunder",
+      "name": "번개",
+      "type": "electric",
+      "category": "special",
+      "power": 110,
+      "accuracy": 70,
+      "stat_changes": [],
+      "ailment_chance": 30,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "paralysis"
+      }
+    },
+    {
+      "id": 88,
+      "key": "rock-throw",
+      "name": "돌떨구기",
+      "type": "rock",
+      "category": "physical",
+      "power": 50,
+      "accuracy": 90,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 89,
+      "key": "earthquake",
+      "name": "지진",
+      "type": "ground",
+      "category": "physical",
+      "power": 100,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 90,
+      "key": "fissure",
+      "name": "땅가르기",
+      "type": "ground",
+      "category": "physical",
+      "power": 0,
+      "accuracy": 30,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 91,
+      "key": "dig",
+      "name": "구멍파기",
+      "type": "ground",
+      "category": "physical",
+      "power": 80,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "charge",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 92,
+      "key": "toxic",
+      "name": "맹독",
+      "type": "poison",
+      "category": "status",
+      "power": 0,
+      "accuracy": 90,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "poison",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 93,
+      "key": "confusion",
+      "name": "염동력",
+      "type": "psychic",
+      "category": "special",
+      "power": 50,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 10,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "confusion"
+      }
+    },
+    {
+      "id": 94,
+      "key": "psychic",
+      "name": "사이코키네시스",
+      "type": "psychic",
+      "category": "special",
+      "power": 90,
+      "accuracy": 100,
+      "stat_changes": [
+        {
+          "stat_id": 5,
+          "change": -1
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 95,
+      "key": "hypnosis",
+      "name": "최면술",
+      "type": "psychic",
+      "category": "status",
+      "power": 0,
+      "accuracy": 60,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "sleep",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 96,
+      "key": "meditate",
+      "name": "요가포즈",
+      "type": "psychic",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [
+        {
+          "stat_id": 2,
+          "change": 1
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "stat_up",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 97,
+      "key": "agility",
+      "name": "고속이동",
+      "type": "psychic",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [
+        {
+          "stat_id": 6,
+          "change": 2
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "stat_up",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 98,
+      "key": "quick-attack",
+      "name": "전광석화",
+      "type": "normal",
+      "category": "physical",
+      "power": 40,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 99,
+      "key": "rage",
+      "name": "분노",
+      "type": "normal",
+      "category": "physical",
+      "power": 20,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 100,
+      "key": "teleport",
+      "name": "순간이동",
+      "type": "psychic",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "evade",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 101,
+      "key": "night-shade",
+      "name": "나이트헤드",
+      "type": "ghost",
+      "category": "special",
+      "power": 0,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 102,
+      "key": "mimic",
+      "name": "흉내내기",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "transform",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 103,
+      "key": "screech",
+      "name": "싫은소리",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 85,
+      "stat_changes": [
+        {
+          "stat_id": 3,
+          "change": -2
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "stat_down",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 104,
+      "key": "double-team",
+      "name": "그림자분신",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [
+        {
+          "stat_id": 8,
+          "change": 1
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "stat_up",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 105,
+      "key": "recover",
+      "name": "HP회복",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "heal",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 106,
+      "key": "harden",
+      "name": "단단해지기",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [
+        {
+          "stat_id": 3,
+          "change": 1
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "stat_up",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 107,
+      "key": "minimize",
+      "name": "작아지기",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [
+        {
+          "stat_id": 8,
+          "change": 2
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "stat_up",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 108,
+      "key": "smokescreen",
+      "name": "연막",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 100,
+      "stat_changes": [
+        {
+          "stat_id": 7,
+          "change": -1
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "stat_down",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 109,
+      "key": "confuse-ray",
+      "name": "이상한빛",
+      "type": "ghost",
+      "category": "status",
+      "power": 0,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "confusion",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 110,
+      "key": "withdraw",
+      "name": "껍질에숨기",
+      "type": "water",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [
+        {
+          "stat_id": 3,
+          "change": 1
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "shield",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 111,
+      "key": "defense-curl",
+      "name": "웅크리기",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [
+        {
+          "stat_id": 3,
+          "change": 1
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "shield",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 112,
+      "key": "barrier",
+      "name": "배리어",
+      "type": "psychic",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [
+        {
+          "stat_id": 3,
+          "change": 2
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "shield",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 113,
+      "key": "light-screen",
+      "name": "빛의장막",
+      "type": "psychic",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "shield",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 114,
+      "key": "haze",
+      "name": "흑안개",
+      "type": "ice",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "mist",
+        "target": "field",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 115,
+      "key": "reflect",
+      "name": "리플렉터",
+      "type": "psychic",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "shield",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 116,
+      "key": "focus-energy",
+      "name": "기충전",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "stat_up",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 117,
+      "key": "bide",
+      "name": "참기",
+      "type": "normal",
+      "category": "physical",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 118,
+      "key": "metronome",
+      "name": "손가락흔들기",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "transform",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 119,
+      "key": "mirror-move",
+      "name": "따라하기",
+      "type": "flying",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "transform",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 120,
+      "key": "self-destruct",
+      "name": "자폭",
+      "type": "normal",
+      "category": "physical",
+      "power": 200,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "explosion",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 121,
+      "key": "egg-bomb",
+      "name": "알폭탄",
+      "type": "normal",
+      "category": "physical",
+      "power": 100,
+      "accuracy": 75,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 122,
+      "key": "lick",
+      "name": "핥기",
+      "type": "ghost",
+      "category": "physical",
+      "power": 30,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 30,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": "paralysis"
+      }
+    },
+    {
+      "id": 123,
+      "key": "smog",
+      "name": "스모그",
+      "type": "poison",
+      "category": "special",
+      "power": 30,
+      "accuracy": 70,
+      "stat_changes": [],
+      "ailment_chance": 40,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "poison"
+      }
+    },
+    {
+      "id": 124,
+      "key": "sludge",
+      "name": "오물공격",
+      "type": "poison",
+      "category": "special",
+      "power": 65,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 30,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "poison"
+      }
+    },
+    {
+      "id": 125,
+      "key": "bone-club",
+      "name": "뼈다귀치기",
+      "type": "ground",
+      "category": "physical",
+      "power": 65,
+      "accuracy": 85,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 126,
+      "key": "fire-blast",
+      "name": "불대문자",
+      "type": "fire",
+      "category": "special",
+      "power": 110,
+      "accuracy": 85,
+      "stat_changes": [],
+      "ailment_chance": 10,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "burn"
+      }
+    },
+    {
+      "id": 127,
+      "key": "waterfall",
+      "name": "폭포오르기",
+      "type": "water",
+      "category": "physical",
+      "power": 80,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 128,
+      "key": "clamp",
+      "name": "껍질끼우기",
+      "type": "water",
+      "category": "physical",
+      "power": 35,
+      "accuracy": 85,
+      "stat_changes": [],
+      "ailment_chance": 100,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": "bind"
+      }
+    },
+    {
+      "id": 129,
+      "key": "swift",
+      "name": "스피드스타",
+      "type": "normal",
+      "category": "special",
+      "power": 60,
+      "accuracy": 0,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 130,
+      "key": "skull-bash",
+      "name": "로켓박치기",
+      "type": "normal",
+      "category": "physical",
+      "power": 130,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 100,
+      "vfx": {
+        "primary": "charge",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 131,
+      "key": "spike-cannon",
+      "name": "가시대포",
+      "type": "normal",
+      "category": "physical",
+      "power": 20,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 132,
+      "key": "constrict",
+      "name": "휘감기",
+      "type": "normal",
+      "category": "physical",
+      "power": 10,
+      "accuracy": 100,
+      "stat_changes": [
+        {
+          "stat_id": 6,
+          "change": -1
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 133,
+      "key": "amnesia",
+      "name": "망각술",
+      "type": "psychic",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [
+        {
+          "stat_id": 5,
+          "change": 2
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "stat_up",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 134,
+      "key": "kinesis",
+      "name": "숟가락휘기",
+      "type": "psychic",
+      "category": "status",
+      "power": 0,
+      "accuracy": 80,
+      "stat_changes": [
+        {
+          "stat_id": 7,
+          "change": -1
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "stat_down",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 135,
+      "key": "soft-boiled",
+      "name": "알낳기",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "heal",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 136,
+      "key": "high-jump-kick",
+      "name": "무릎차기",
+      "type": "fighting",
+      "category": "physical",
+      "power": 130,
+      "accuracy": 90,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 137,
+      "key": "glare",
+      "name": "뱀눈초리",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "paralysis",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 138,
+      "key": "dream-eater",
+      "name": "꿈먹기",
+      "type": "psychic",
+      "category": "special",
+      "power": 100,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "drain",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 139,
+      "key": "poison-gas",
+      "name": "독가스",
+      "type": "poison",
+      "category": "status",
+      "power": 0,
+      "accuracy": 90,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "poison",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 140,
+      "key": "barrage",
+      "name": "구슬던지기",
+      "type": "normal",
+      "category": "physical",
+      "power": 15,
+      "accuracy": 85,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 141,
+      "key": "leech-life",
+      "name": "흡혈",
+      "type": "bug",
+      "category": "physical",
+      "power": 80,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "drain",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 142,
+      "key": "lovely-kiss",
+      "name": "악마의키스",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 75,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "sleep",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 143,
+      "key": "sky-attack",
+      "name": "불새",
+      "type": "flying",
+      "category": "physical",
+      "power": 140,
+      "accuracy": 90,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "charge",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 144,
+      "key": "transform",
+      "name": "변신",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "transform",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 145,
+      "key": "bubble",
+      "name": "거품",
+      "type": "water",
+      "category": "special",
+      "power": 40,
+      "accuracy": 100,
+      "stat_changes": [
+        {
+          "stat_id": 6,
+          "change": -1
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 146,
+      "key": "dizzy-punch",
+      "name": "잼잼펀치",
+      "type": "normal",
+      "category": "physical",
+      "power": 70,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 20,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": "confusion"
+      }
+    },
+    {
+      "id": 147,
+      "key": "spore",
+      "name": "버섯포자",
+      "type": "grass",
+      "category": "status",
+      "power": 0,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "sleep",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 148,
+      "key": "flash",
+      "name": "플래시",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 100,
+      "stat_changes": [
+        {
+          "stat_id": 7,
+          "change": -1
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "stat_down",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 149,
+      "key": "psywave",
+      "name": "사이코웨이브",
+      "type": "psychic",
+      "category": "special",
+      "power": 0,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 150,
+      "key": "splash",
+      "name": "튀어오르기",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "splash",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 151,
+      "key": "acid-armor",
+      "name": "녹기",
+      "type": "poison",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [
+        {
+          "stat_id": 3,
+          "change": 2
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "shield",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 152,
+      "key": "crabhammer",
+      "name": "집게해머",
+      "type": "water",
+      "category": "physical",
+      "power": 100,
+      "accuracy": 90,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 153,
+      "key": "explosion",
+      "name": "대폭발",
+      "type": "normal",
+      "category": "physical",
+      "power": 250,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "explosion",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 154,
+      "key": "fury-swipes",
+      "name": "마구할퀴기",
+      "type": "normal",
+      "category": "physical",
+      "power": 18,
+      "accuracy": 80,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "slash",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 155,
+      "key": "bonemerang",
+      "name": "뼈다귀부메랑",
+      "type": "ground",
+      "category": "physical",
+      "power": 50,
+      "accuracy": 90,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 156,
+      "key": "rest",
+      "name": "잠자기",
+      "type": "psychic",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "heal",
+        "target": "self",
+        "secondary": "sleep"
+      }
+    },
+    {
+      "id": 157,
+      "key": "rock-slide",
+      "name": "스톤샤워",
+      "type": "rock",
+      "category": "physical",
+      "power": 75,
+      "accuracy": 90,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 158,
+      "key": "hyper-fang",
+      "name": "필살앞니",
+      "type": "normal",
+      "category": "physical",
+      "power": 80,
+      "accuracy": 90,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 159,
+      "key": "sharpen",
+      "name": "각지기",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [
+        {
+          "stat_id": 2,
+          "change": 1
+        }
+      ],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "stat_up",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 160,
+      "key": "conversion",
+      "name": "텍스처",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "transform",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 161,
+      "key": "tri-attack",
+      "name": "트라이어택",
+      "type": "normal",
+      "category": "special",
+      "power": 80,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 20,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 162,
+      "key": "super-fang",
+      "name": "분노의앞니",
+      "type": "normal",
+      "category": "physical",
+      "power": 0,
+      "accuracy": 90,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 163,
+      "key": "slash",
+      "name": "베어가르기",
+      "type": "normal",
+      "category": "physical",
+      "power": 70,
+      "accuracy": 100,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "slash",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 164,
+      "key": "substitute",
+      "name": "대타출동",
+      "type": "normal",
+      "category": "status",
+      "power": 0,
+      "accuracy": 0,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "shield",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    {
+      "id": 165,
+      "key": "struggle",
+      "name": "발버둥",
+      "type": "normal",
+      "category": "physical",
+      "power": 50,
+      "accuracy": 0,
+      "stat_changes": [],
+      "ailment_chance": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    }
+  ]
+}

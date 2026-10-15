@@ -1,0 +1,1293 @@
+[
+  {
+    "id": "normal",
+    "type": "normal",
+    "name": "바람결 초원",
+    "description": "구름이 흐르는 완만한 풀밭과 흙길.",
+    "background": "res://assets/biomes/atlas_1.png",
+    "cell": 3,
+    "encounter_mode": "type",
+    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounters": [
+      {
+        "pokemon_id": 19,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 16,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 21,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 52,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 39,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 20,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 22,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 53,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 108,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 128,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 113,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 132,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 133,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 143,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 115,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 137,
+        "tier": "rare",
+        "weight": 1
+      }
+    ],
+    "landmarks": []
+  },
+  {
+    "id": "fire",
+    "type": "fire",
+    "name": "잿불 칼데라",
+    "description": "식어 가는 현무암 사이로 용암이 흐르는 분화구.",
+    "background": "res://assets/biomes/atlas_1.png",
+    "cell": 0,
+    "encounter_mode": "type",
+    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounters": [
+      {
+        "pokemon_id": 4,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 37,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 58,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 77,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 5,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 126,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 6,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 38,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 59,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 78,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 136,
+        "tier": "rare",
+        "weight": 1
+      }
+    ],
+    "landmarks": [
+      {
+        "pokemon_id": 146,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      }
+    ]
+  },
+  {
+    "id": "water",
+    "type": "water",
+    "name": "해오름 물가",
+    "description": "해안 절벽과 얕은 여울이 만나는 청록빛 바다.",
+    "background": "res://assets/biomes/atlas_1.png",
+    "cell": 1,
+    "encounter_mode": "type",
+    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounters": [
+      {
+        "pokemon_id": 7,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 54,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 60,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 72,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 79,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 90,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 98,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 116,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 118,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 120,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 129,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 8,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 55,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 61,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 73,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 80,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 99,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 117,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 119,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 121,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 9,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 62,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 87,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 91,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 130,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 131,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 134,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 138,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 139,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 140,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 141,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 86,
+        "tier": "common",
+        "weight": 8
+      }
+    ],
+    "landmarks": []
+  },
+  {
+    "id": "grass",
+    "type": "grass",
+    "name": "햇살숲 정원",
+    "description": "오래된 나무와 양치식물 사이로 빛이 드는 숲.",
+    "background": "res://assets/biomes/atlas_1.png",
+    "cell": 2,
+    "encounter_mode": "type",
+    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounters": [
+      {
+        "pokemon_id": 1,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 43,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 46,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 69,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 102,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 114,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 2,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 44,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 47,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 70,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 3,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 45,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 71,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 103,
+        "tier": "rare",
+        "weight": 1
+      }
+    ],
+    "landmarks": []
+  },
+  {
+    "id": "electric",
+    "type": "electric",
+    "name": "번개 수정 고원",
+    "description": "뇌운 아래 전기를 머금은 수정이 빛나는 고원.",
+    "background": "res://assets/biomes/atlas_1.png",
+    "cell": 4,
+    "encounter_mode": "type",
+    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounters": [
+      {
+        "pokemon_id": 25,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 81,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 100,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 26,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 82,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 101,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 125,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 135,
+        "tier": "rare",
+        "weight": 1
+      }
+    ],
+    "landmarks": [
+      {
+        "pokemon_id": 145,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      }
+    ]
+  },
+  {
+    "id": "ice",
+    "type": "ice",
+    "name": "서리빛 빙하",
+    "description": "푸른 얼음 동굴 너머로 설산이 펼쳐지는 곳.",
+    "background": "res://assets/biomes/atlas_1.png",
+    "cell": 5,
+    "encounter_mode": "type",
+    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounters": [
+      {
+        "pokemon_id": 87,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 91,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 124,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 131,
+        "tier": "rare",
+        "weight": 1
+      }
+    ],
+    "landmarks": [
+      {
+        "pokemon_id": 144,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      }
+    ]
+  },
+  {
+    "id": "fighting",
+    "type": "fighting",
+    "name": "수련 협곡",
+    "description": "붉은 사암 기둥과 오래된 수련길이 남은 협곡.",
+    "background": "res://assets/biomes/atlas_2.png",
+    "cell": 0,
+    "encounter_mode": "type",
+    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounters": [
+      {
+        "pokemon_id": 56,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 66,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 57,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 67,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 62,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 68,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 106,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 107,
+        "tier": "rare",
+        "weight": 1
+      }
+    ],
+    "landmarks": []
+  },
+  {
+    "id": "poison",
+    "type": "poison",
+    "name": "독안개 늪",
+    "description": "보라 버섯과 뒤틀린 나무 사이로 독안개가 피는 습지.",
+    "background": "res://assets/biomes/atlas_2.png",
+    "cell": 1,
+    "encounter_mode": "type",
+    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounters": [
+      {
+        "pokemon_id": 23,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 29,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 32,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 41,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 43,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 48,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 72,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 88,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 109,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 24,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 30,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 33,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 42,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 44,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 49,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 73,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 89,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 110,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 3,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 31,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 34,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 45,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 71,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 94,
+        "tier": "rare",
+        "weight": 1
+      }
+    ],
+    "landmarks": []
+  },
+  {
+    "id": "ground",
+    "type": "ground",
+    "name": "모래바람 사막",
+    "description": "붉은 메사와 거대한 모래언덕이 이어지는 사막.",
+    "background": "res://assets/biomes/atlas_2.png",
+    "cell": 2,
+    "encounter_mode": "type",
+    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounters": [
+      {
+        "pokemon_id": 27,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 50,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 74,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 104,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 111,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 28,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 51,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 75,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 95,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 105,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 31,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 34,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 76,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 112,
+        "tier": "rare",
+        "weight": 1
+      }
+    ],
+    "landmarks": []
+  },
+  {
+    "id": "flying",
+    "type": "flying",
+    "name": "구름마루 절벽",
+    "description": "구름바다 위로 날카로운 봉우리들이 솟은 절벽.",
+    "background": "res://assets/biomes/atlas_2.png",
+    "cell": 3,
+    "encounter_mode": "type",
+    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounters": [
+      {
+        "pokemon_id": 16,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 21,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 41,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 83,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 84,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 17,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 22,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 42,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 85,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 6,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 12,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 18,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 123,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 130,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 142,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 149,
+        "tier": "rare",
+        "weight": 1
+      }
+    ],
+    "landmarks": [
+      {
+        "pokemon_id": 144,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      },
+      {
+        "pokemon_id": 145,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      },
+      {
+        "pokemon_id": 146,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      }
+    ]
+  },
+  {
+    "id": "psychic",
+    "type": "psychic",
+    "name": "별무리 유적",
+    "description": "뜬 수정과 오로라가 낡은 원형 유적을 감싸는 곳.",
+    "background": "res://assets/biomes/atlas_2.png",
+    "cell": 4,
+    "encounter_mode": "type",
+    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounters": [
+      {
+        "pokemon_id": 63,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 79,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 96,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 102,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 64,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 80,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 97,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 122,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 124,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 65,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 103,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 121,
+        "tier": "rare",
+        "weight": 1
+      }
+    ],
+    "landmarks": [
+      {
+        "pokemon_id": 150,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      },
+      {
+        "pokemon_id": 151,
+        "note": "별도 이벤트 후보 · 일반 출현 제외"
+      }
+    ]
+  },
+  {
+    "id": "bug",
+    "type": "bug",
+    "name": "이슬잎 수풀",
+    "description": "커다란 잎과 벌집, 호박빛 수액이 가득한 숲속.",
+    "background": "res://assets/biomes/atlas_2.png",
+    "cell": 5,
+    "encounter_mode": "type",
+    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounters": [
+      {
+        "pokemon_id": 10,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 13,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 46,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 48,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 11,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 14,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 47,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 49,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 12,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 15,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 123,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 127,
+        "tier": "rare",
+        "weight": 1
+      }
+    ],
+    "landmarks": []
+  },
+  {
+    "id": "rock",
+    "type": "rock",
+    "name": "화석바위 산지",
+    "description": "풍화된 암벽과 화석이 드러난 회색 산길.",
+    "background": "res://assets/biomes/atlas_3.png",
+    "cell": 0,
+    "encounter_mode": "type",
+    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounters": [
+      {
+        "pokemon_id": 74,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 95,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 111,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 75,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 138,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 140,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 76,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 112,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 139,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 141,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 142,
+        "tier": "rare",
+        "weight": 1
+      }
+    ],
+    "landmarks": []
+  },
+  {
+    "id": "ghost",
+    "type": "ghost",
+    "name": "달그림 묘원",
+    "description": "푸른 도깨비불과 옅은 안개가 머무는 돌뜰.",
+    "background": "res://assets/biomes/atlas_3.png",
+    "cell": 1,
+    "encounter_mode": "type",
+    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounters": [
+      {
+        "pokemon_id": 92,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 93,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 94,
+        "tier": "rare",
+        "weight": 1
+      }
+    ],
+    "landmarks": []
+  },
+  {
+    "id": "dragon",
+    "type": "dragon",
+    "name": "용마루 성역",
+    "description": "용을 닮은 거석과 황금 하늘이 만나는 높은 성역.",
+    "background": "res://assets/biomes/atlas_3.png",
+    "cell": 2,
+    "encounter_mode": "type",
+    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounters": [
+      {
+        "pokemon_id": 147,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 148,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 149,
+        "tier": "rare",
+        "weight": 1
+      }
+    ],
+    "landmarks": []
+  },
+  {
+    "id": "dark",
+    "type": "dark",
+    "name": "그믐밤 숲",
+    "description": "달빛이 닿지 않는 숲. 관동 야행성 포켓몬이 모인다.",
+    "background": "res://assets/biomes/atlas_3.png",
+    "cell": 3,
+    "encounter_mode": "nocturnal_theme",
+    "encounter_note": "관동 원종에는 악타입이 없습니다. 아래 목록은 야행성 서식 테마이며 타입을 바꾸지 않습니다.",
+    "encounters": [
+      {
+        "pokemon_id": 19,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 41,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 52,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 20,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 42,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 53,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 92,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 93,
+        "tier": "rare",
+        "weight": 1
+      },
+      {
+        "pokemon_id": 94,
+        "tier": "rare",
+        "weight": 1
+      }
+    ],
+    "landmarks": []
+  },
+  {
+    "id": "steel",
+    "type": "steel",
+    "name": "녹슨 발전소",
+    "description": "구리 배관과 강철 기둥에 오래된 불빛이 남은 발전소.",
+    "background": "res://assets/biomes/atlas_3.png",
+    "cell": 4,
+    "encounter_mode": "type",
+    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounters": [
+      {
+        "pokemon_id": 81,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 82,
+        "tier": "rare",
+        "weight": 1
+      }
+    ],
+    "landmarks": []
+  },
+  {
+    "id": "fairy",
+    "type": "fairy",
+    "name": "별꽃 요정숲",
+    "description": "분홍 꽃과 은빛 개울, 반딧불이 빛나는 숲.",
+    "background": "res://assets/biomes/atlas_3.png",
+    "cell": 5,
+    "encounter_mode": "type",
+    "encounter_note": "현대 타입 기준 관동 원종만 출현합니다. 지역폼·메가진화는 제외합니다.",
+    "encounters": [
+      {
+        "pokemon_id": 35,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 39,
+        "tier": "common",
+        "weight": 8
+      },
+      {
+        "pokemon_id": 40,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 122,
+        "tier": "uncommon",
+        "weight": 3
+      },
+      {
+        "pokemon_id": 36,
+        "tier": "rare",
+        "weight": 1
+      }
+    ],
+    "landmarks": []
+  }
+]

@@ -1,0 +1,36 @@
+# 에셋 출처와 재사용
+
+## 관동 포켓몬 스프라이트
+
+- 출처: [PokéAPI/sprites](https://github.com/PokeAPI/sprites), 커밋 `0dc105d5b12416932f29b594078282ab4be045f5`.
+- 경로: `sprites/pokemon/{1..151}.png`, `sprites/pokemon/back/{1..151}.png`. 96×96 투명 PNG, 원본 픽셀을 변형하지 않고 포함한다.
+- 로컬 경로: `assets/pokemon/front/001.png` ~ `151.png`, `assets/pokemon/back/001.png` ~ `151.png`.
+- [업스트림 라이선스](assets/sources/POKEAPI_SPRITES_LICENSE.txt)는 **이미지 저작권이 The Pokémon Company에 있음**을 명시한다. 저장소의 CC0 표기는 원작 포켓몬 이미지의 권리를 이전하지 않는다. 출처를 유지하고 외부 배포 시 권리 범위를 별도로 확인한다.
+
+## 이름·타입·기술 데이터
+
+- 출처: [PokéAPI/pokeapi](https://github.com/PokeAPI/pokeapi), 커밋 `81d20919845b6a445969b9265aab5cec6b04cece`, `data/v2/csv`.
+- 원본 CSV와 [라이선스](assets/sources/POKEAPI_DATA_LICENSE.txt)를 `assets/sources/`에 보관했다.
+- `data/catalog.json`은 관동 원종 151종과 1세대 기술 165종만 추린 로컬 카탈로그다. 타입은 현대 분류다.
+- 기술의 VFX 프로필은 이 프로젝트가 작성한 표현용 매핑이다. 상태 확률·피해량·사용 가능 기술을 구현한 데이터가 아니다. 프리뷰에서는 어떤 포켓몬으로도 연출을 확인할 수 있다.
+- 바이옴의 출현 등급과 가중치 8:3:1은 종별 상대 가중치 초안이다. 등급 전체의 출현 확률이나 실제 원작 서식 분포를 뜻하지 않는다. 전설·환상 포켓몬은 일반 가중치 풀에서 제외했다.
+
+## 배경과 기술 이펙트
+
+- 배경: 2026-10-15에 `image_gen`으로 생성한 2열×3행 도트 배경 아틀라스 3장. 18개 타입마다 별도 영역을 사용한다. 원작 게임 배경을 내려받은 에셋이 아니다.
+- 생성 방향: 16비트 RPG 픽셀 아트, 동일한 전투 시점, 전경에 포켓몬이 설 공간, 글자·캐릭터·UI·구분선 제외. 원본 생성 파일은 `/workspace/generated_images`에 보존하고 프로젝트에는 복사본을 포함한다.
+- `assets/biomes/atlas_1.png`: 불꽃 / 물 / 풀 / 노말 / 전기 / 얼음 순서.
+- `assets/biomes/atlas_2.png`: 격투 / 독 / 땅 / 비행 / 에스퍼 / 벌레 순서.
+- `assets/biomes/atlas_3.png`: 바위 / 고스트 / 드래곤 / 악 / 강철 / 페어리 순서.
+- 모두 왼쪽 위부터 행 우선 순서다. `data/biomes.json`의 `background`, `cell`로 연결한다. `VisualCatalog.biome_texture()`가 `AtlasTexture`를 반환한다.
+- 기술 연출은 외부 애니메이션을 복제하지 않고 `scripts/vfx/move_effect.gd`에 도형으로 작성했다. 이펙트 데이터, 씬 표현과 향후 전투 규칙을 분리했다.
+- 그래픽 에셋은 도트 스타일로 사용하되 화면과 UI는 **1920×1080**에서 그린다. 전체 화면을 축소하는 SubViewport는 사용하지 않는다. 스프라이트의 최근접 필터·정수 배율을 유지하고 도형의 안티앨리어싱과 텍스처 흐림은 끈다.
+
+## 한국어 폰트
+
+- [Google Fonts / Noto Sans KR](https://github.com/google/fonts/tree/main/ofl/notosanskr), 커밋 `e9678a5385322c63730122ba464765baad83cfd8`.
+- `assets/fonts/NotoSansKR.ttf`와 [SIL Open Font License](assets/fonts/OFL.txt)를 포함한다.
+
+## 재현
+
+`python3 tools/import_kanto_assets.py`로 고정 커밋에서 원본을 가져온다. 모든 다운로드는 HTTPS 검증을 유지하며, 파일별 URL과 SHA-256은 `assets/sources/manifest.json`에 기록한다. 동일한 파일은 재사용한다. 배경은 생성 에셋이므로 네트워크 임포터가 덮어쓰지 않는다.

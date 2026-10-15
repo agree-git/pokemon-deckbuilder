@@ -1,0 +1,23 @@
+{
+  "atlas_1.png": {
+    "sha256": "7bbcc9ddf68deb49cd0cb3a0929eb0d2bf48fd266793e401bd676100d912eb2a",
+    "grid_columns": 2,
+    "grid_rows": 3,
+    "source": "image_gen",
+    "style": "pixel art"
+  },
+  "atlas_2.png": {
+    "sha256": "f40b5885fca401f7084bee76bddfa2e8db1dfb082e9f984bd54d9beae1977341",
+    "grid_columns": 2,
+    "grid_rows": 3,
+    "source": "image_gen",
+    "style": "pixel art"
+  },
+  "atlas_3.png": {
+    "sha256": "0b8669c668728cfec935b070b8ebbd24f2a54b6a4489992f5390192e38dfbf2c",
+    "grid_columns": 2,
+    "grid_rows": 3,
+    "source": "image_gen",
+    "style": "pixel art"
+  }
+}
