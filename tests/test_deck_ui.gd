@@ -99,6 +99,20 @@ func run() -> void:
     await picture("unified-battle")
     if native:
         root.size = Vector2i(1280,720)
+        root.position = Vector2i.ZERO
+        await process_frame
+    var before_pile := j.battle.snapshot()
+    await click(ui.battle_ui.draw_button)
+    var pile_cards := ui.battle_ui.pile_panel.find_children("PileCard_*","Button",true,false)
+    check(pile_cards.size() == j.battle.draw_pile.size() and pile_cards.all(func(card: Button): return card is TrainerActionCard),"Draw pile shows every actual card face")
+    await picture("draw-pile-cards")
+    await click(ui.battle_ui.pile_panel.get_node("Body/Close"))
+    check(j.battle.snapshot() == before_pile,"Card browsing preserves piles, resources and hidden order")
+    await click(ui.battle_ui.discard_button)
+    check(ui.battle_ui.pile_panel.find_children("PileCard_*","Button",true,false).is_empty(),"Empty discard pile is safely browsable")
+    await click(ui.battle_ui.pile_panel.get_node("Body/Close"))
+    if native:
+        root.size = Vector2i(1280,720)
         await process_frame
     var first := j.battle.hand[0]
     await key("q",KEY_Q)

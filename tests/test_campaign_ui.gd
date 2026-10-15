@@ -9,14 +9,17 @@ func click(control: Control) -> void:
         ui.battle_ui.hand_scroll.ensure_control_visible(control)
         await process_frame
         settle()
+        # Newly drawn cards need their container layout before scrolling to them.
+        ui.battle_ui.hand_scroll.ensure_control_visible(control)
+        await process_frame
+    var local: Vector2 = control.visible_point() if control is TrainerActionCard else control.size/2
+    var at := Vector2(root.position)+root.get_final_transform()*(control.get_global_transform_with_canvas()*local)
+    last_pointer = {"name":control.name,"rect":control.get_global_rect(),"local":local,"at":at,"disabled":control.disabled}
     if native:
-        var local: Vector2 = control.visible_point() if control is TrainerActionCard else control.size/2
-        var at := Vector2(root.position)+root.get_final_transform()*(control.get_global_transform_with_canvas()*local)
-        last_pointer = {"name":control.name,"rect":control.get_global_rect(),"local":local,"at":at,"disabled":control.disabled}
         print("OS_CLICK ",roundi(at.x)," ",roundi(at.y))
         await create_timer(0.12).timeout
     else:
-        TacticalUIPlayer.click(self,control)
+        TacticalUIPlayer.click(self,control,local)
     clicks += 1
     await process_frame
     settle()
@@ -131,8 +134,8 @@ func run() -> void:
                 await capture("campaign_shop")
                 await click(ui.camp_tabs["bag"])
                 await capture("campaign_bag")
-                await click(ui.camp_tabs["loot"])
-                await capture("campaign_loot")
+                await click(ui.camp_tabs["gear"])
+                await capture("campaign_equipment")
                 camp_services_checked = true
             if j.camp()["kind"] in ["event","discovery"] and not j.camp()["resolved"]:
                 await click(ui.camp_tabs["encounter"])
@@ -147,6 +150,7 @@ func run() -> void:
                         await click(ui.page.find_child("Buy_"+item,true,false))
                     if j.item_reason(item,i).is_empty():
                         await click(ui.camp_tabs["bag"])
+                        await click(ui.page.find_child("Bag_"+item,true,false))
                         await click(ui.page.find_child("Use_%s_%d" % [item,i],true,false))
             await click(ui.actions[0])
     check(ui.journey.phase == TacticalJourney.CLEARED and ui.journey.badges == 8 and ui.journey.elite_wins == 4 and ui.journey.wins == 69,"Finish 69 encounters and become champion through input")

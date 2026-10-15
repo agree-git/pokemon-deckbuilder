@@ -26,7 +26,7 @@ records = previous.copy()
 SPECIES_LIMIT = 386
 
 
-def fetch(url: str, relative: str) -> bytes:
+def fetch(url: str, relative: str, png_size=(96, 96)) -> bytes:
     path = ROOT / relative
     old = previous.get(relative, {})
     if path.exists():
@@ -46,8 +46,8 @@ def fetch(url: str, relative: str) -> bytes:
                 raise
             time.sleep(attempt + 1)
     if relative.endswith(".png"):
-        if payload[:8] != b"\x89PNG\r\n\x1a\n" or struct.unpack(">II", payload[16:24]) != (96, 96):
-            raise ValueError(f"Expected 96x96 PNG: {url}")
+        if payload[:8] != b"\x89PNG\r\n\x1a\n" or struct.unpack(">II", payload[16:24]) != png_size:
+            raise ValueError(f"Expected {png_size} PNG: {url}")
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_bytes(payload)
     records[relative] = {"url": url, "sha256": hashlib.sha256(payload).hexdigest()}

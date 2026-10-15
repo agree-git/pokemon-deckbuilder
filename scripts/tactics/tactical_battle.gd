@@ -202,14 +202,22 @@ func play_card(uid: int) -> String:
             _record("relic","상태 관측경 · 에너지 +1")
         if view.has("weaken"): target.strength = maxi(-6,target.strength-int(view["weaken"]))
         if view.has("expose"): target.statuses["exposed"] = {"turns":3,"source_uid":actor.uid}
+        if view.has("weaken") or view.has("expose") or ["burn","seed","poison","sleep","paralysis","confusion"].any(func(status: String): return view.has(status)):
+            _record("status",target.display_name+" 상태 변화",{"target":target.uid})
     if view.has("stat_changes"):
         var recipient := actor if view.get("stat_target","enemy") == "self" else target
         if recipient.alive():
             for stat: String in view["stat_changes"]:
                 recipient.stat_stages[stat] = clampi(int(recipient.stat_stages.get(stat,0))+int(view["stat_changes"][stat]),-6,6)
+            _record("stat",recipient.display_name+" 능력 변화",{"target":recipient.uid})
     if view.has("heal"):
-        actor.hp = mini(actor.max_hp,actor.hp+int(view["preview_heal"]))
-    if view.has("block"): actor.block += PokemonStats.scale(actor,int(view["block"]))+defense_bonus(actor)
+        var recovered := mini(actor.max_hp-actor.hp,int(view["preview_heal"]))
+        actor.hp += recovered
+        _record("heal",actor.display_name+" 회복",{"target":actor.uid,"amount":recovered})
+    if view.has("block"):
+        var protection := PokemonStats.scale(actor,int(view["block"]))+defense_bonus(actor)
+        actor.block += protection
+        _record("shield",actor.display_name+" 보호막",{"target":actor.uid,"amount":protection})
     if view.has("strength"): actor.strength += int(view["strength"])
     if view.has("bonus"): next_attack_bonus += int(view["bonus"])
     if view.has("temporary_strength"):
@@ -253,7 +261,9 @@ func play_card(uid: int) -> String:
             _draw(2)
             _record("relic","릴레이 수첩 · 카드 2장")
     if view["category"] == "tool":
-        actor.block += PokemonStats.scale(actor,5*int(powers.get("supply",0)))
+        var supplied := PokemonStats.scale(actor,5*int(powers.get("supply",0)))
+        actor.block += supplied
+        if supplied > 0: _record("shield","보급 작전",{"target":actor.uid,"amount":supplied})
         if has_relic("tool_belt") and not turn_flags.has("tool_belt"):
             turn_flags["tool_belt"] = true
             _draw(1)
@@ -327,7 +337,9 @@ func end_turn() -> String:
     phase = "enemy"
     for pokemon: BattlePokemon in party:
         if pokemon.alive() and pokemon.held_item == "seed_charm" and ["burn","seed","poison"].any(func(key: String): return enemy().statuses.has(key)):
-            pokemon.hp = mini(pokemon.max_hp,pokemon.hp+PokemonStats.scale(pokemon,2))
+            var recovered := mini(pokemon.max_hp-pokemon.hp,PokemonStats.scale(pokemon,2))
+            pokemon.hp += recovered
+            if recovered > 0: _record("heal","생명의 부적",{"target":pokemon.uid,"amount":recovered})
         _tick(pokemon)
         if _outcome(): return notify_changed()
     if not active().alive():
@@ -343,10 +355,12 @@ func _enemy_action() -> void:
     if enemy().statuses.has("sleep"):
         _record("cancel",enemy().display_name+"은 잠들어 행동할 수 없습니다.")
     else:
-        _record("enemy_action",enemy().display_name+" · "+str(action["kind"]),action)
+        _record("enemy_action",enemy().display_name+" · "+{"attack":"공격","charge":"강공격","block":"방어","boost":"강화"}[action["kind"]],action.merged({"action":action["kind"]}))
         match action["kind"]:
             "attack","charge": _damage(active(),int(action["value"]))
-            "block": enemy().block = int(action["value"])
+            "block":
+                enemy().block = int(action["value"])
+                _record("shield",enemy().display_name+" 보호막",{"target":enemy().uid,"amount":int(action["value"])})
             "boost": enemy().strength += int(action["value"])
     state["intent"] = int(state["intent"])+1
     if _outcome(): return
@@ -391,7 +405,7 @@ func _damage(target: BattlePokemon, amount: int, piercing := false) -> void:
     target.block -= blocked
     var lost := mini(target.hp,maxi(0,amount-blocked))
     target.hp -= lost
-    _record("damage","%s · 피해 %d" % [target.display_name,lost],{"target":target.uid,"amount":lost})
+    _record("damage","%s · 피해 %d" % [target.display_name,lost],{"target":target.uid,"amount":lost,"blocked":blocked})
     if target.alive() or target.knocked_out: return
     target.knocked_out = true
     if target.uid < 0:
@@ -409,7 +423,7 @@ func _damage(target: BattlePokemon, amount: int, piercing := false) -> void:
                     exhausted.append(card)
     target.statuses.clear()
     target.stat_stages.clear()
-    _record("knockout",target.display_name+" 기절")
+    _record("knockout",target.display_name+" 기절",{"target":target.uid})
 func _outcome() -> bool:
     if phase in [WON,LOST]: return true
     if not party.any(func(pokemon: BattlePokemon): return pokemon.alive()):
@@ -468,6 +482,7 @@ func _record(kind: String, caption: String, data: Dictionary = {}) -> void:
     var event := data.duplicate(true)
     event["kind"] = kind
     event["text"] = caption
+    event["frame"] = BattleFrame.capture(self)
     events.append(event)
     history.append(caption)
     if history.size() > 160: history.pop_front()

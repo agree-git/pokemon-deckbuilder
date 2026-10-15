@@ -80,8 +80,8 @@ func run() -> void:
                 await click(ui.camp_tabs["bag"])
                 await click(ui.camp_tabs["encounter"])
                 check(ui.journey.camp()["resolved"] and ui.encounter_buttons.is_empty(),"Tab changes cannot reroll event")
-        await click(ui.camp_tabs["loot"])
-        await capture("camp_loot")
+        await click(ui.camp_tabs["gear"])
+        await capture("camp_equipment")
         await click(ui.actions[0])
         check(ui.journey.phase == TacticalJourney.MAP and ui.journey.step == i+1,"Departure advances exactly one stop")
         if kinds.size() == 6: break

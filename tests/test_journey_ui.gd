@@ -122,9 +122,9 @@ func run() -> void:
                     await click(ui.camp_tabs["bag"])
                     check(ui.camp_tab == "bag","Bag remains available after resting and buying")
                     await capture("bag")
-                    await click(ui.camp_tabs["loot"])
-                    check(not ui.journey.loot.is_empty() and ui.camp_tab == "loot","Loot is inspectable without leaving camp")
-                    await capture("loot")
+                    await click(ui.camp_tabs["gear"])
+                    check(not ui.camp_tabs.has("loot") and ui.camp_tab == "gear","Equipment remains accessible and the redundant loot tab is removed")
+                    await capture("equipment")
                     camp_checked = true
                 elif ui.journey.step not in ui.journey.rested_steps:
                     await click(ui.rest_button)

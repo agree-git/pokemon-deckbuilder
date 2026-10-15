@@ -88,7 +88,14 @@ var draw_count: Label
 var discard_count: Label
 var switch_label: Label
 var _notice_tween: Tween
-var _visual_enemy: BattlePokemon
+var motion := CombatMotion.new()
+var _visual_frame: Dictionary = {}
+var _visual_members: Dictionary = {}
+var _sequence: Tween
+var _action_before: Dictionary = {}
+var shield_badges: Array[Control] = []
+var shield_values: Array[Label] = []
+var playback_kinds: Array[String] = []
 var _banner_tween: Tween
 var _shake: Tween
 var _damage_events: Array[Dictionary] = []
@@ -106,8 +113,8 @@ func _ready() -> void:
     add_child(stage)
     stage.canvas.background = VisualCatalog.biome_texture(run_biome if not run_biome.is_empty() else catalog.biomes[3])
     stage.canvas.effect.speed = 2.4
-    stage.canvas.effect.finished.connect(_finished)
-    stage.canvas.effect.impact.connect(_impact)
+    motion.canvas = stage.canvas
+    stage.canvas.add_child(motion)
     _build()
     if run_mode:
         W.panel(self,Rect2(640,88,640,38),Color(0.035,0.075,0.095,0.9),Color.TRANSPARENT,19)
@@ -158,7 +165,7 @@ func _build() -> void:
     menu_panel = _build_menu()
     help_panel = _build_help()
     _build_log()
-    pile_panel = _modal("카드 더미",Rect2(590,180,740,710))
+    pile_panel = _modal("카드 더미",Rect2(260,90,1400,900))
     _build_result()
     card_effects.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     card_effects.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -192,11 +199,18 @@ func _build_combat_hud() -> void:
     W.icon(self,"grass",Rect2(591,578,24,24)).name = "AllyType"
     W.icon(self,"grass",Rect2(1489,571,20,20)).name = "EnemyType2"
     W.icon(self,"grass",Rect2(1513,571,24,24)).name = "EnemyType"
-    ally_statuses.position = Vector2(335,662)
+    for at: Vector2 in [Vector2(335,658),Vector2(1257,651)]:
+        var badge := W.panel(self,Rect2(at,Vector2(290,42)),Color("193d58"),Color("7ac8f0"),7)
+        W.icon(badge,"shield",Rect2(12,7,28,28))
+        shield_values.append(W.label(badge,"",Rect2(52,0,222,42),22,Color("c5eeff")))
+        badge.mouse_filter = Control.MOUSE_FILTER_PASS
+        badge.tooltip_text = "보호막이 먼저 피해를 흡수합니다. 다음 턴 시작 시 사라집니다."
+        shield_badges.append(badge)
+    ally_statuses.position = Vector2(335,706)
     ally_statuses.size = Vector2(400,32)
     ally_statuses.mouse_filter = Control.MOUSE_FILTER_IGNORE
     add_child(ally_statuses)
-    enemy_statuses.position = Vector2(1580,604)
+    enemy_statuses.position = Vector2(1257,699)
     enemy_statuses.size = Vector2(400,32)
     enemy_statuses.mouse_filter = Control.MOUSE_FILTER_IGNORE
     add_child(enemy_statuses)
@@ -372,7 +386,7 @@ func _build_result() -> void:
         else: _old_run(),"계속 진행" if run_mode else "짧은 원정으로")
 
 func _open_overlay(overlay: Control) -> void:
-    if result.visible: return
+    if result.visible or busy: return
     _close_overlays(true)
     overlay.move_to_front()
     UiMotion.open(overlay)
@@ -410,64 +424,78 @@ func _bag_item(key: String,index: int) -> void:
     _present(reason)
     _show_bag()
 func _show_pile(key: String) -> void:
-    var titles := {"draw":"뽑을 더미","discard":"버린 더미","exhausted":"소진된 카드"}
-    var pile: Array = {"draw":battle.draw_pile,"discard":battle.discard,"exhausted":battle.exhausted}[key]
+    if busy: return
+    var titles := {"draw":"남은 카드","discard":"버린 카드","exhausted":"소진된 카드"}
+    var pile: Array = {"draw":battle.draw_pile,"discard":battle.discard,"exhausted":battle.exhausted}[key].duplicate()
     var body: Panel = pile_panel.get_node("Body")
     if body.has_node("Cards"): body.get_node("Cards").free()
-    var text := RichTextLabel.new()
-    text.name = "Cards"
-    text.position = Vector2(32,100)
-    text.size = Vector2(676,566)
-    text.add_theme_font_size_override("normal_font_size",19)
-    text.text = titles[key]+" · %d장\n\n" % pile.size()
-    if pile.is_empty(): text.text += "카드가 없습니다."
-    # Inspection groups equal cards and does not reveal the hidden draw order.
-    var counts: Dictionary = {}
-    var views: Dictionary = {}
-    for card: BattleCardInstance in pile:
-        var view := battle.card_view(card)
-        var group := "%s:%d:%s" % [card.key,card.owner_uid,card.upgraded]
-        counts[group] = int(counts.get(group,0))+1
-        views[group] = view
-    for group: String in counts:
-        var view: Dictionary = views[group]
-        text.text += "%s%s ×%d\n%s\n\n" % [view["name"]," · "+str(view.get("owner_name","")) if view.get("owner_uid",0) != 0 else "",counts[group],view["description"]]
-    body.add_child(text)
+    var content := Control.new()
+    content.name = "Cards"
+    body.add_child(content)
+    W.label(content,"%s · %d장" % [titles[key],pile.size()],Rect2(32,80,1280,34),20,GOLD)
+    if pile.is_empty(): W.label(content,"카드가 없습니다.",Rect2(32,280,1336,100),26,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+    var scroll := ScrollContainer.new()
+    scroll.position = Vector2(30,120)
+    scroll.size = Vector2(1340,738)
+    scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+    content.add_child(scroll)
+    var grid := GridContainer.new()
+    grid.columns = 6
+    grid.add_theme_constant_override("h_separation",16)
+    grid.add_theme_constant_override("v_separation",8)
+    scroll.add_child(grid)
+    # Sort a copy; browsing never exposes or changes the hidden draw order.
+    pile.sort_custom(func(a: BattleCardInstance,b: BattleCardInstance): return ("%s:%04d:%s" % [a.key,a.owner_uid,a.upgraded]) < ("%s:%04d:%s" % [b.key,b.owner_uid,b.upgraded]))
+    for instance: BattleCardInstance in pile:
+        var view := TacticalContent.definition(instance)
+        var owner := battle.member(instance.owner_uid)
+        view["owner_name"] = owner.display_name if owner != null else ""
+        view["species_id"] = owner.species_id if owner != null else 0
+        var card := TrainerActionCard.new()
+        card.name = "PileCard_%d" % instance.uid
+        card.uid = instance.uid
+        card.key = instance.key
+        card.definition = view
+        grid.add_child(card)
+        card.update_card(view,"",false)
+        card.disabled = true
+        card.mouse_default_cursor_shape = Control.CURSOR_ARROW
     _open_overlay(pile_panel)
 
 func _refresh() -> void:
-    var foe := _visual_enemy if busy and _visual_enemy != null else battle.enemy()
-    stage.canvas.set_species(battle.active().species_id,foe.species_id,catalog,false)
-    stage.canvas.ally_statuses.assign(battle.active().statuses.keys())
+    var foe := _view_enemy()
+    var ally := _view_active()
+    stage.canvas.set_species(ally.species_id,foe.species_id,catalog,false)
+    stage.canvas.ally_statuses.assign(ally.statuses.keys())
     stage.canvas.enemy_statuses.assign(foe.statuses.keys())
-    UiMotion.text(status_label,"턴 %d" % battle.turn)
-    queue_label.text = "%d / %d" % [battle.enemy_index+1,battle.enemies.size()]
+    UiMotion.text(status_label,"턴 %d" % int(_visual_frame.get("turn",battle.turn)))
+    queue_label.text = "%d / %d" % [int(_visual_frame.get("enemy_index",battle.enemy_index))+1,battle.enemies.size()]
     for i in enemy_slots.size():
-        var p := battle.enemies[i]
+        var p := _view_member(battle.enemies[i])
         var slot := enemy_slots[i]
         slot.tooltip_text = "%s · Lv.%d · HP %d / %d%s\n%s" % [p.display_name,p.level,p.hp,p.max_hp," · 기절" if not p.alive() else "",PokemonStats.summary(p)]
         slot.get_child(0).modulate.a = 0.25 if not p.alive() else 1.0
-        slot.get_node("Active").visible = i == battle.enemy_index and p.alive()
+        slot.get_node("Active").visible = i == int(_visual_frame.get("enemy_index",battle.enemy_index)) and p.alive()
         enemy_names[i].text = p.display_name
         enemy_names[i].modulate.a = 1.0 if p.alive() else 0.4
         enemy_values[i].text = "%d / %d" % [p.hp,p.max_hp] if p.alive() else ("포획" if battle.enemy_states[i].get("captured",false) else "기절")
         W.fill_bar(enemy_bars[i],p.hp,p.max_hp)
-        slot.add_theme_stylebox_override("normal",W.box(Color("20353a") if i == battle.enemy_index else Color("152930"),GOLD if i == battle.enemy_index else Color("30474d")))
-    W.fill_bar(ally_bar,battle.active().hp,battle.active().max_hp)
+        slot.add_theme_stylebox_override("normal",W.box(Color("20353a") if i == int(_visual_frame.get("enemy_index",battle.enemy_index)) else Color("152930"),GOLD if i == int(_visual_frame.get("enemy_index",battle.enemy_index)) else Color("30474d")))
+    W.fill_bar(ally_bar,ally.hp,ally.max_hp)
     W.fill_bar(enemy_bar,foe.hp,foe.max_hp)
-    ally_label.text = "%s · Lv.%d" % [battle.active().display_name,battle.active().level]
+    ally_label.text = "%s · Lv.%d" % [ally.display_name,ally.level]
     enemy_label.text = "%s · Lv.%d" % [foe.display_name,foe.level]
-    get_node("AllyHP").text = "%d / %d" % [battle.active().hp,battle.active().max_hp]
+    get_node("AllyHP").text = "%d / %d" % [ally.hp,ally.max_hp]
     get_node("EnemyHP").text = "%d / %d" % [foe.hp,foe.max_hp]
-    get_node("AllyType2").visible = battle.full_type_chart and battle.active().types.size() > 1
-    if battle.active().types.size() > 1: get_node("AllyType2").texture = W.texture(battle.active().types[1])
+    get_node("AllyType2").visible = battle.full_type_chart and ally.types.size() > 1
+    if ally.types.size() > 1: get_node("AllyType2").texture = W.texture(ally.types[1])
     get_node("EnemyType2").visible = battle.full_type_chart and foe.types.size() > 1
     if foe.types.size() > 1: get_node("EnemyType2").texture = W.texture(foe.types[1])
-    get_node("AllyType").texture = W.texture(battle.active().type)
+    get_node("AllyType").texture = W.texture(ally.type)
     get_node("EnemyType").texture = W.texture(foe.type)
-    _refresh_statuses(ally_statuses,battle.active())
+    _refresh_statuses(ally_statuses,ally)
     _refresh_statuses(enemy_statuses,foe)
-    var action := battle.intent()
+    var action: Dictionary = _visual_frame.get("intent",battle.intent())
     var names := {"charge":"강공격","attack":"공격","block":"방어","boost":"강화"}
     var intent_icon := {"charge":"attack","attack":"attack","block":"shield","boost":"boost"}
     var cancelled: bool = action.get("asleep",false)
@@ -479,40 +507,47 @@ func _refresh() -> void:
     get_node("Intent/Title").text = "행동 취소" if cancelled else names[action["kind"]]
     intent_label.text = "—" if cancelled else str(action["value"])
     get_node("Intent").tooltip_text = "수면으로 다음 행동을 취소합니다." if cancelled else "다음 적 행동: %s %d\n상성과 적 강화가 적용된 수치입니다." % [names[action["kind"]],action["value"]]
-    UiMotion.text(energy_label,str(battle.energy))
-    speed_label.text = "스피드 +1" if battle.turn_energy_bonus == 1 else "기본 에너지 3"
-    get_node("Energy").tooltip_text = "에너지 %d · 이번 턴 지급 %d\n턴 시작 스피드: 아군 %d / 상대 %d\n더 빠르면 +1, 동률은 기본 3. 교대 시 재지급하지 않습니다." % [battle.energy,3+battle.turn_energy_bonus,battle.turn_speed_actor,battle.turn_speed_enemy]
+    UiMotion.text(energy_label,str(int(_visual_frame.get("energy",battle.energy))))
+    var speed_bonus := int(_visual_frame.get("turn_energy_bonus",battle.turn_energy_bonus))
+    speed_label.text = "스피드 +1" if speed_bonus == 1 else "기본 에너지 3"
+    get_node("Energy").tooltip_text = "에너지 %d · 이번 턴 지급 %d\n턴 시작 스피드: 아군 %d / 상대 %d\n더 빠르면 +1, 동률은 기본 3. 교대 시 재지급하지 않습니다." % [int(_visual_frame.get("energy",battle.energy)),3+speed_bonus,int(_visual_frame.get("turn_speed_actor",battle.turn_speed_actor)),int(_visual_frame.get("turn_speed_enemy",battle.turn_speed_enemy))]
     ally_label.mouse_filter = Control.MOUSE_FILTER_PASS
     enemy_label.mouse_filter = Control.MOUSE_FILTER_PASS
-    ally_label.tooltip_text = PokemonStats.summary(battle.active())
+    ally_label.tooltip_text = PokemonStats.summary(ally)
     enemy_label.tooltip_text = PokemonStats.summary(foe)
-    UiMotion.text(draw_count,str(battle.draw_pile.size()))
-    UiMotion.text(discard_count,str(battle.discard.size()))
+    UiMotion.text(draw_count,str(_visual_frame.get("draw",battle.draw_pile.size())))
+    UiMotion.text(discard_count,str(_visual_frame.get("discard",battle.discard.size())))
     end_button.disabled = busy or battle.phase != TacticalBattle.PLAYER
     end_button.get_node("Title").text = "교체 선택" if battle.phase == TacticalBattle.REPLACE else "턴 종료"
     end_button.get_node("Title").add_theme_color_override("font_color",W.MUTED if end_button.disabled else Color("10232b"))
     end_button.get_child(1).modulate.a = 0.35 if end_button.disabled else 1.0
     switch_label.text = "교대 선택" if battle.phase == TacticalBattle.REPLACE else "직접 교대 1"
     for i in party_buttons.size():
-        var pokemon := battle.party[i]
+        var pokemon := _view_member(battle.party[i])
         var button := party_buttons[i]
         party_names[i].text = "%s · %d" % [pokemon.display_name,pokemon.level]
         party_values[i].text = "기절" if not pokemon.alive() else "%d / %d" % [pokemon.hp,pokemon.max_hp]
         W.fill_bar(party_bars[i],pokemon.hp,pokemon.max_hp)
         button.disabled = busy or not battle.switch_reason(pokemon.uid).is_empty()
-        button.tooltip_text = "%d · %s · Lv.%d · %s\n%s XP\n%s\n%s" % [i+1,pokemon.display_name,pokemon.level,catalog.type_name(pokemon.type),TacticalGrowth.progress_text(pokemon),PokemonStats.summary(pokemon),"출전 중" if pokemon == battle.active() else (battle.switch_reason(pokemon.uid) if not battle.switch_reason(pokemon.uid).is_empty() else switch_label.text)]
+        button.tooltip_text = "%d · %s · Lv.%d · %s\n%s XP\n%s\n%s" % [i+1,pokemon.display_name,pokemon.level,catalog.type_name(pokemon.type),TacticalGrowth.progress_text(pokemon),PokemonStats.summary(pokemon),"출전 중" if pokemon.uid == ally.uid else (battle.switch_reason(pokemon.uid) if not battle.switch_reason(pokemon.uid).is_empty() else switch_label.text)]
         if not pokemon.held_item.is_empty(): button.tooltip_text += "\n"+str(TacticalContent.HELD_ITEMS[pokemon.held_item]["name"])+" · "+str(TacticalContent.HELD_ITEMS[pokemon.held_item]["description"])
-        var border := MINT if pokemon == battle.active() else Color("3d555a")
-        button.add_theme_stylebox_override("disabled",W.box(Color("203a3d") if pokemon == battle.active() else Color("17262e"),border))
+        var border := MINT if pokemon.uid == ally.uid else Color("3d555a")
+        button.add_theme_stylebox_override("disabled",W.box(Color("203a3d") if pokemon.uid == ally.uid else Color("17262e"),border))
         button.get_child(0).modulate.a = 0.25 if not pokemon.alive() else 1.0
-    if _shown_active != battle.active().uid:
+    if not busy and _shown_active != ally.uid:
         UiMotion.appear(stage.canvas.source_sprite)
         UiMotion.appear(party_buttons[battle.active_index].get_child(0))
-        _shown_active = battle.active().uid
-    if _shown_enemy != foe.uid:
+        _shown_active = ally.uid
+    if not busy and _shown_enemy != foe.uid:
         UiMotion.appear(stage.canvas.target_sprite)
         _shown_enemy = foe.uid
-    _refresh_hand()
+    for i in 2:
+        var pokemon := ally if i == 0 else foe
+        shield_badges[i].visible = pokemon.block > 0
+        UiMotion.text(shield_values[i],"보호막 %d" % pokemon.block)
+    if not busy: _refresh_hand()
+    else:
+        for card: TrainerActionCard in trainer_buttons.values(): card.disabled = true
     relic_chip.get_node("Icon").texture = W.texture("badge")
     relic_chip.get_node("Title").text = "파티 유물 · %d" % battle.relics.size()
     var descriptions: Array[String] = []
@@ -534,13 +569,12 @@ func _refresh() -> void:
             UiMotion.open(result)
         result_title.text = "승리!" if battle.phase == TacticalBattle.WON else "파티가 쓰러졌습니다"
         var captures := battle.enemy_states.filter(func(s: Dictionary): return s.get("captured",false)).size()
-        result_detail.text = "%d턴  ·  격파 %d  ·  포획 %d" % [battle.turn,battle.enemies.filter(func(p: BattlePokemon): return not p.alive()).size()-captures,captures]
+        result_detail.text = "%d턴  ·  격파 %d  ·  포획 %d" % [int(_visual_frame.get("turn",battle.turn)),battle.enemies.filter(func(p: BattlePokemon): return not p.alive()).size()-captures,captures]
     else:
         UiMotion.close(result,true)
 
 func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
     var items: Array = []
-    if pokemon.block > 0: items.append(["shield",str(pokemon.block),"보호막 %d · 다음 턴 시작 시 해제" % pokemon.block])
     if pokemon.strength != 0: items.append(["boost",str(pokemon.strength),"위력 보정 %+d%% · 이번 전투 동안 유지" % (pokemon.strength*10)])
     for stat: String in pokemon.stat_stages:
         if pokemon.stat_stages[stat] != 0: items.append(["boost","%+d" % pokemon.stat_stages[stat],"%s %+d단계 · 교대 시 해제" % [PokemonStats.TITLES[stat],pokemon.stat_stages[stat]]])
@@ -548,9 +582,9 @@ func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
         var turns: int = pokemon.statuses[key]["turns"]
         var titles := {"burn":"화상 · %d 피해 / 물리 위력 절반" % PokemonStats.scale(pokemon,2),"seed":"씨뿌리기 · %d 흡수" % PokemonStats.scale(pokemon,2),"poison":"독 · %d 피해" % PokemonStats.scale(pokemon,2),"sleep":"수면 · 행동 취소","paralysis":"마비 · 스피드 절반","confusion":"혼란 · %d 피해" % PokemonStats.scale(pokemon,2),"exposed":"방어 약화 · 공격자 체력에 비례한 추가 피해"}
         items.append(["fire" if key == "burn" else ("seed" if key == "seed" else "counter"),str(turns),str(titles.get(key,key))+" · %d회 남음" % turns])
-    if pokemon == battle.active() and battle.next_attack_bonus > 0:
+    if pokemon.uid == battle.active().uid and battle.next_attack_bonus > 0:
         items.append(["boost","+%d" % battle.next_attack_bonus,"강화 지시 · 다음 공격 추가 피해 +%d (자속·상성 적용 전)" % PokemonStats.scale(pokemon,battle.next_attack_bonus)])
-    if pokemon == battle.active() and battle.switch_bonus.has(pokemon.uid):
+    if pokemon.uid == battle.active().uid and battle.switch_bonus.has(pokemon.uid):
         items.append(["switch","+3","교체 연계 · 다음 공격 추가 피해 +%d (자속·상성 적용 전)" % PokemonStats.scale(pokemon,3)])
 
     var signature := str([pokemon.uid,items])
@@ -558,7 +592,7 @@ func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
     row.set_meta("status_signature",signature)
     W.clear(row)
     for i in items.size():
-        var chip := W.button(row,Rect2(i*68,0,62,30),func(): pass)
+        var chip := W.button(row,Rect2((i%4)*68,floori(i/4.0)*34,62,30),func(): pass)
         W.icon(chip,items[i][0],Rect2(7,5,20,20))
         W.label(chip,items[i][1],Rect2(30,0,28,30),14,CREAM,HORIZONTAL_ALIGNMENT_CENTER)
         chip.tooltip_text = items[i][2]
@@ -590,12 +624,14 @@ func _refresh_hand() -> void:
             new_button.call_deferred("deal",dealt*0.035)
             dealt += 1
         var button: TrainerActionCard = trainer_buttons[card.uid]
+        button.self_modulate.a = 1
         button.update_card(battle.card_view(card),battle.card_reason(card.uid),busy)
     if dealt > 0: UiMotion.pulse(draw_button.get_child(0))
 
 func _fly_card(card: TrainerActionCard,used := true,delay := 0.0) -> void:
     var copy := card.copy_face(card_effects)
     copy.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    card.self_modulate.a = 0
     var exhausted: bool = used and (card.definition.get("exhaust",false) or card.definition.has("power"))
     var middle := Vector2(885,500)
     var destination := middle+Vector2(0,-72) if exhausted else discard_button.get_global_rect().get_center()
@@ -614,92 +650,145 @@ func _skill_slot(index: int) -> void:
 
 func _skill(key: String) -> void:
     if busy: return
-    _visual_enemy = battle.enemy()
+    _action_before = BattleFrame.capture(battle)
     _present(battle.use_skill(key))
 func _card(uid: int) -> void:
     if busy: return
-    _visual_enemy = battle.enemy()
+    _action_before = BattleFrame.capture(battle)
     var reason := battle.play_card(uid)
     if reason.is_empty() and trainer_buttons.has(uid): _fly_card(trainer_buttons[uid])
     _present(reason)
 func _switch(uid: int) -> void:
     if busy: return
-    _visual_enemy = battle.enemy()
+    _action_before = BattleFrame.capture(battle)
     _present(battle.switch_to(uid))
 func _end() -> void:
     if busy: return
-    _visual_enemy = battle.enemy()
+    _action_before = BattleFrame.capture(battle)
     if battle.phase == TacticalBattle.PLAYER:
         var index := 0
         for card: TrainerActionCard in trainer_buttons.values():
+            if card.uid in battle.retained: continue
             _fly_card(card,false,index*0.02)
             index += 1
     _present(battle.end_turn())
 func _capture() -> void:
     if busy or not capture_action.is_valid(): return
-    _visual_enemy = battle.enemy()
+    _action_before = BattleFrame.capture(battle)
     var response: Dictionary = capture_action.call()
     _present(response["reason"])
     if str(response["reason"]).is_empty(): _notify(response["notice"])
+func _view_member(p: BattlePokemon) -> BattlePokemon:
+    return _visual_members.get(p.uid,p)
+func _view_active() -> BattlePokemon:
+    return _view_member(battle.party[int(_visual_frame.get("active_index",battle.active_index))])
+func _view_enemy() -> BattlePokemon:
+    return _view_member(battle.enemies[int(_visual_frame.get("enemy_index",battle.enemy_index))])
+func _apply_frame(frame: Dictionary) -> void:
+    _visual_frame = frame.duplicate(true)
+    _visual_members.clear()
+    for row: Dictionary in frame.get("party",[])+frame.get("enemies",[]): _visual_members[int(row["uid"])] = BattleFrame.restore(row)
+    _refresh()
 func _present(reason: String) -> void:
     if not reason.is_empty():
         _notify(reason)
         return
-    var move_id := 0
-    var from_enemy := false
-    _damage_events.assign(battle.events.filter(func(event: Dictionary): return event["kind"] == "damage" and event["amount"] > 0))
-    for event: Dictionary in battle.events:
-        if event["kind"] in ["skill","card","enemy_action"] and event.has("move_id"):
-            move_id = event["move_id"]
-            from_enemy = event["kind"] == "enemy_action"
+    busy = true
+    playback_kinds.clear()
+    _close_overlays(true)
+    _apply_frame(_action_before)
     notice.text = ""
-    if battle.events.any(func(event: Dictionary): return event["kind"] in ["relic","power","cancel"]):
-        var highlights := battle.events.filter(func(event: Dictionary): return event["kind"] in ["relic","power","cancel"])
-        banner.text = highlights.back()["text"]
-        banner.modulate.a = 1.0
-        UiMotion.pulse(banner)
-        if _banner_tween: _banner_tween.kill()
-        _banner_tween = create_tween()
-        _banner_tween.tween_interval(1.2)
-        _banner_tween.tween_property(banner,"modulate:a",0.0,0.35)
-    busy = move_id > 0
-    _refresh()
-    if busy:
-        stage.canvas.effect_from_enemy = from_enemy
-        var start := stage.canvas.target_anchor if from_enemy else stage.canvas.source_anchor
-        var finish := stage.canvas.source_anchor if from_enemy else stage.canvas.target_anchor
-        stage.canvas.effect.play(catalog.move_by_id(move_id) if not catalog.move_by_id(move_id).is_empty() else TacticalMoves.visual(move_id),start,finish)
-    else:
-        _visual_enemy = null
-        _show_damage()
-func _impact(_move: Dictionary) -> void:
-    _show_damage()
-    if _shake: _shake.kill()
-    _shake = create_tween()
-    for delta: Vector2 in [Vector2(7,0),Vector2(-5,2),Vector2(3,-2),Vector2.ZERO]:
-        _shake.tween_property(stage.canvas,"position",delta,0.035)
-func _show_damage() -> void:
-    for i in _damage_events.size():
-        var event: Dictionary = _damage_events[i]
-        var at := stage.canvas.source_anchor if int(event["target"]) > 0 else stage.canvas.target_anchor
-        var big: bool = int(event["amount"]) >= 24
-        var number := _label("−%d" % event["amount"],Rect2(at.x-100+i*35,at.y-100,200,90),64 if big else 44,GOLD if big else Color("fff3d4"),HORIZONTAL_ALIGNMENT_CENTER,damage_layer)
-        number.add_theme_constant_override("outline_size",8)
-        number.add_theme_color_override("font_outline_color",Color("152627"))
-        var tween := number.create_tween().set_parallel(true)
-        tween.tween_property(number,"position:y",number.position.y-70,0.7).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-        tween.tween_property(number,"modulate:a",0.0,0.45).set_delay(0.25)
-        tween.chain().tween_callback(number.queue_free)
-    _damage_events.clear()
-func _finished(_move: Dictionary = {}) -> void:
+    var frames: Array = battle.events.duplicate(true)
+    _sequence = UiMotion.begin(self,"battle_sequence")
+    for event: Dictionary in frames:
+        var kind: String = event["kind"]
+        if kind in ["switch","enemy_switch"]:
+            var on_ally := kind == "switch"
+            _sequence.tween_callback(func():
+                playback_kinds.append(kind)
+                motion.recall(on_ally)
+                _announce(event["text"]))
+            _sequence.tween_interval(0.25)
+            _sequence.tween_callback(func():
+                _apply_frame(event.get("frame",{}))
+                motion.release(on_ally))
+            _sequence.tween_interval(0.42)
+        else:
+            _sequence.tween_callback(_play_event.bind(event))
+            var duration := 0.40 if kind in ["skill","card","enemy_action"] else (0.28 if kind in ["damage","shield","heal","knockout","turn"] else 0.22)
+            _sequence.tween_interval(duration)
+    _sequence.tween_callback(_finished)
+func _announce(text: String) -> void:
+    banner.text = text
+    banner.modulate.a = 1.0
+    UiMotion.pulse(banner)
+func _play_event(event: Dictionary) -> void:
+    var kind: String = event["kind"]
+    playback_kinds.append(kind)
+    _apply_frame(event.get("frame",{}))
+    if kind in ["skill","card","enemy_action"]:
+        _announce(event["text"])
+        var from_enemy := kind == "enemy_action"
+        var id := int(event.get("move_id",0))
+        var definition := catalog.move_by_id(id) if not catalog.move_by_id(id).is_empty() else TacticalMoves.visual(id)
+        if not definition.is_empty():
+            stage.canvas.effect_from_enemy = from_enemy
+            var start := stage.canvas.target_anchor if from_enemy else stage.canvas.source_anchor
+            var finish := stage.canvas.source_anchor if from_enemy else stage.canvas.target_anchor
+            stage.canvas.effect.play(definition,start,finish)
+            var is_attack: bool = TacticalMoves.definition(TacticalMoves.key_for(id)).has("damage")
+            if from_enemy: is_attack = event.get("action","") in ["attack","charge"]
+            if is_attack: motion.attack(from_enemy,str(definition.get("category")) in ["2","physical"])
+    elif kind in ["damage","shield","heal"]:
+        var on_ally := int(event["target"]) > 0
+        var amount := int(event["amount"])
+        if int(event["target"]) not in [_view_active().uid,_view_enemy().uid]:
+            for i in battle.party.size():
+                if battle.party[i].uid == int(event["target"]): UiMotion.pulse(party_buttons[i])
+            return
+        if kind == "damage":
+            var blocked := int(event.get("blocked",0))
+            if amount > 0 or blocked > 0:
+                motion.hit(on_ally,amount == 0)
+                _float_value("−%d" % amount if amount > 0 else "방어 %d" % blocked,on_ally,Color("fff3d4") if amount > 0 else Color("9edfff"))
+        elif amount > 0:
+            _float_value(("보호막 +%d" if kind == "shield" else "회복 +%d") % amount,on_ally,Color("9edfff") if kind == "shield" else MINT)
+            if kind == "shield": UiMotion.pulse(shield_badges[0 if on_ally else 1])
+    elif kind == "knockout":
+        _announce(event["text"])
+        # The frame shows zero HP before the combatant disappears.
+        var target := int(event.get("target",0))
+        if target == _view_active().uid or target == _view_enemy().uid: motion.faint(target > 0)
+    elif kind in ["relic","power","cancel","turn","capture","status","stat"]: _announce(event["text"])
+func _float_value(text: String,on_ally: bool,color: Color) -> void:
+    var at := stage.canvas.source_anchor if on_ally else stage.canvas.target_anchor
+    var number := _label(text,Rect2(at.x-170,at.y-120,340,90),42,color,HORIZONTAL_ALIGNMENT_CENTER,damage_layer)
+    number.add_theme_constant_override("outline_size",8)
+    number.add_theme_color_override("font_outline_color",Color("152627"))
+    var tween := UiMotion.begin(number,"float",true)
+    tween.tween_property(number,"position:y",number.position.y-64,0.70).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+    tween.tween_property(number,"modulate:a",0.0,0.35).set_delay(0.35)
+    tween.chain().tween_callback(number.queue_free)
+func _finished() -> void:
+    stage.canvas.effect.stop()
     busy = false
-    _visual_enemy = null
+    _visual_frame.clear()
+    _visual_members.clear()
+    banner.modulate.a = 0
     _refresh()
+func finish_presentation() -> void:
+    # Deterministically finish the same playback tween in integration probes.
+    if _sequence != null and _sequence.is_valid(): _sequence.custom_step(60.0)
+    UiMotion.finish_tree(motion)
+    UiMotion.finish_tree(stage.canvas)
+    stage.canvas.effect.stop()
 func restart(selected_relic: String = "") -> void:
     if run_mode:
         run_restart_requested.emit(battle.relic if selected_relic.is_empty() else selected_relic)
         return
+    if _sequence != null and _sequence.is_valid(): _sequence.kill()
     stage.canvas.clear_effects()
+    motion.reset()
     if _shake: _shake.kill()
     if _banner_tween: _banner_tween.kill()
     stage.canvas.position = Vector2.ZERO
@@ -709,7 +798,8 @@ func restart(selected_relic: String = "") -> void:
     for number: Node in damage_layer.get_children():
         number.queue_free()
     busy = false
-    _visual_enemy = null
+    _visual_frame.clear()
+    _visual_members.clear()
     _close_overlays(true)
     W.clear(card_effects)
     W.clear(hand_row)

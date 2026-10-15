@@ -8,6 +8,8 @@ var session: Node
 var profile: PlayerProfile
 var page := Control.new()
 var mode := "title"
+var starting := false
+var departure: JourneyTravel
 var selection: Array[int] = []
 var species_buttons: Dictionary = {}
 var start_button: Button
@@ -202,17 +204,25 @@ func _sync_selection() -> void:
     for id: int in species_buttons:
         species_buttons[id].add_theme_stylebox_override("normal",W.box(Color("23403d") if id in selection else Color("152b32"),W.GOLD if id in selection else Color("3d555a")))
 func _start() -> void:
+    if starting: return
     var error: String = session.start_journey(selection,int(Time.get_unix_time_from_system()) ^ Time.get_ticks_usec(),full_campaign)
     if not error.is_empty():
         notice.text = error
         return
-    get_tree().change_scene_to_file("res://scenes/tactical_journey.tscn")
+    starting = true
+    confirm_button.disabled = true
+    departure = JourneyTravel.new()
+    add_child(departure)
+    departure.arrived.connect(func(): get_tree().change_scene_to_file("res://scenes/tactical_journey.tscn"))
+    var j: TacticalJourney = session.get("journey")
+    departure.start(j.current()["name"],j.biome(),j.party,"원정 출발 · 동료들과 길을 나서는 중")
 func _continue() -> void:
     get_tree().change_scene_to_file("res://scenes/tactical_journey.tscn")
 func _back() -> void:
     mode = "title"
     render()
 func _unhandled_key_input(event: InputEvent) -> void:
+    if starting: return
     if not event is InputEventKey or not event.pressed or event.echo: return
     if event.keycode == KEY_ESCAPE and mode != "title": _back()
     elif event.keycode == KEY_F11:

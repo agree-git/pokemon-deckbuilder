@@ -7,6 +7,22 @@
     "url": "https://raw.githubusercontent.com/google/fonts/e9678a5385322c63730122ba464765baad83cfd8/ofl/notosanskr/OFL.txt",
     "sha256": "1c05c68c34f9708415aada51f17e1b0092d2cea709bf4a94cd38114f9e73d7d9"
   },
+  "assets/items/ball.png": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/0dc105d5b12416932f29b594078282ab4be045f5/sprites/items/poke-ball.png",
+    "sha256": "a4c7b9e8ff5727d10e6f679bcf16a963a95b2a36480d3bd9156d9808bdf54dff"
+  },
+  "assets/items/potion.png": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/0dc105d5b12416932f29b594078282ab4be045f5/sprites/items/potion.png",
+    "sha256": "db5a0fa2343c5761599d9efd4514a30125164ced094b55f760a763ed0c9c64d5"
+  },
+  "assets/items/revive.png": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/0dc105d5b12416932f29b594078282ab4be045f5/sprites/items/revive.png",
+    "sha256": "8ed02f56fcd0a8d2525811fbc33d82aebbe7af902ec6752b4857de821505a224"
+  },
+  "assets/items/super_potion.png": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/0dc105d5b12416932f29b594078282ab4be045f5/sprites/items/super-potion.png",
+    "sha256": "81280672b68b5f8c0e4bf7b7d39567ce170d840296f7812935f740203da66fd5"
+  },
   "assets/pokemon/back/001.png": {
     "url": "https://raw.githubusercontent.com/PokeAPI/sprites/0dc105d5b12416932f29b594078282ab4be045f5/sprites/pokemon/back/1.png",
     "sha256": "d7070e94a8857a86072d87137f985555dd810cf415f87493aa71f7006e19e345"

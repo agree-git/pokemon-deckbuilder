@@ -15,6 +15,7 @@ var deck_close: Button
 var camp_tab := "rest"
 var camp_tabs: Dictionary = {}
 var camp_notice := ""
+var bag_item := ""
 var rest_button: Button
 var learn_buttons: Array[Button] = []
 var travelling := false
@@ -94,6 +95,7 @@ func refresh() -> void:
     W.label(page,"ESC 시작 화면     F11 전체 화면",Rect2(96,1014,1728,34),15,W.MUTED)
     if deck_open: _deck()
     if gear_open_for != 0: _gear_picker()
+    if not bag_item.is_empty(): _item_picker()
     UiMotion.appear(page)
 func _party() -> void:
     var panel := W.panel(page,Rect2(96,280,340,420),Color("14282f"),Color("405960"))
@@ -211,12 +213,12 @@ func _rest() -> void:
     var encounter := journey.camp()
     W.label(page,encounter.get("description","필요한 만큼 준비한 뒤 출발하세요."),Rect2(550,204,1190,40),20,W.MUTED)
     var encounter_tab := "shop" if encounter.get("kind","") == "merchant" else "encounter"
-    var keys := ["rest",encounter_tab,"bag","gear","loot"]
-    var labels := ["휴식·강화",encounter.get("title","아이템 구매"),"가방","장비·유물","전리품"]
+    var keys := ["rest",encounter_tab,"bag","gear"]
+    var labels := ["휴식·강화",encounter.get("title","아이템 구매"),"가방","장비·유물"]
     if camp_tab not in keys: camp_tab = "rest"
     for i in keys.size():
         var key: String = keys[i]
-        var button := W.button(page,Rect2(550+i*242,266,224,64),_camp_tab.bind(key),labels[i])
+        var button := W.button(page,Rect2(550+i*300,266,284,64),_camp_tab.bind(key),labels[i])
         if key == camp_tab: button.add_theme_stylebox_override("normal",W.box(Color("29443f"),W.GOLD))
         camp_tabs[key] = button
     _action("준비 완료 · 출발",Rect2(1260,930,480,72),_leave_camp,"next")
@@ -240,7 +242,7 @@ func _rest() -> void:
                 var item: Dictionary = journey.items()[key]
                 var y := 356+i*120
                 W.panel(page,Rect2(550,y,1190,114),Color("172d32"))
-                W.icon(page,"ball" if key == "ball" else "heal",Rect2(574,y+30,48,48))
+                _item_sprite(page,key,Rect2(574,y+28,60,60))
                 W.label(page,"%s · %d 골드" % [item["name"],item["price"]],Rect2(650,y+12,600,40),24,W.TEXT)
                 W.label(page,("야생 전투에서 포획 · C" if key == "ball" else ("기절한 동료의 HP 50% 회복" if key == "revive" else "최대 HP의 %s 회복" % PokemonStats.percent(int(journey.items()[key]["heal"]))))+" · 재고 %d / 보유 %d" % [journey.shop_stock.get(key,0),journey.quantity(key)],Rect2(650,y+61,600,34),18,W.MUTED)
                 var button := W.button(page,Rect2(1440,y+22,270,70),_buy.bind(key),"구매")
@@ -257,33 +259,59 @@ func _rest() -> void:
         "bag":
             var i := 0
             for key: String in journey.items():
-                if key == "ball":
-                    W.label(page,"몬스터볼 ×%d · 야생 전투에서 C로 포획" % journey.balls,Rect2(550,818,1190,40),19,W.MUTED)
-                    continue
-                W.label(page,"%s ×%d" % [journey.items()[key]["name"],journey.quantity(key)],Rect2(550,390+i*140,320,70),23)
-                for index in journey.party.size():
-                    var pokemon := journey.party[index]
-                    var button := W.button(page,Rect2(870+index*290,390+i*140,270,76),_use_item.bind(key,index),pokemon.display_name)
-                    button.name = "Use_%s_%d" % [key,index]
-                    button.disabled = not journey.item_reason(key,index).is_empty()
-                    button.tooltip_text = journey.item_reason(key,index)
-                    if button.tooltip_text.is_empty(): button.tooltip_text = "HP %d 회복" % (ceili(pokemon.max_hp*0.5) if key == "revive" else PokemonStats.scale(pokemon,int(journey.items()[key]["heal"])))
-                    actions.append(button)
+                var item: Dictionary = journey.items()[key]
+                var button := W.button(page,Rect2(550+(i%3)*400,382+floori(i/3.0)*210,376,184),_open_item.bind(key))
+                button.name = "Bag_"+key
+                _item_sprite(button,key,Rect2(143,24,90,90))
+                W.label(button,item["name"],Rect2(20,126,336,40),23,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
+                W.label(button,"×%d" % journey.quantity(key),Rect2(280,10,76,32),18,W.GOLD,HORIZONTAL_ALIGNMENT_RIGHT)
+                button.disabled = journey.quantity(key) == 0 or key == "ball"
+                button.tooltip_text = "야생 전투에서 C로 포획" if key == "ball" else ("기절한 동료 HP 50% 회복" if key == "revive" else "최대 HP의 %s 회복" % PokemonStats.percent(int(item["heal"])))
                 i += 1
-        "loot":
-            var text := ""
-            for entry: Dictionary in journey.loot:
-                var reward := "+%d 골드" % entry["gold"]
-                if not str(entry["item"]).is_empty(): reward += " · %s ×%d" % [journey.items()[entry["item"]]["name"],entry["quantity"]]
-                text += "%s\n%s\n\n" % [entry["name"],reward]
-            var list := RichTextLabel.new()
-            list.position = Vector2(600,370)
-            list.size = Vector2(1090,420)
-            list.text = text if not text.is_empty() else "아직 얻은 전리품이 없습니다."
-            list.add_theme_font_size_override("normal_font_size",22)
-            page.add_child(list)
-            W.label(page,"전리품은 전투 종료 시 가방과 골드에 자동 반영됩니다.",Rect2(600,815,1090,40),18,W.MUTED)
     W.label(page,camp_notice,Rect2(550,870,1190,40),20,W.GOLD)
+func _item_sprite(parent: Node, key: String, rect: Rect2) -> TextureRect:
+    var texture := TextureRect.new()
+    texture.texture = load("res://assets/items/%s.png" % key)
+    texture.position = rect.position
+    texture.size = rect.size
+    texture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+    texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+    texture.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+    texture.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    parent.add_child(texture)
+    return texture
+func _open_item(key: String) -> void:
+    if journey.phase != TacticalJourney.REST or journey.quantity(key) == 0 or key == "ball": return
+    bag_item = key
+    refresh()
+func _close_item() -> void:
+    bag_item = ""
+    refresh()
+func _item_picker() -> void:
+    var overlay := W.button(page,Rect2(0,0,1920,1080),_close_item)
+    overlay.name = "ItemPicker"
+    overlay.z_index = 85
+    for state: String in ["normal","hover","pressed","focus"]: overlay.add_theme_stylebox_override(state,W.box(Color(0.01,0.025,0.04,0.78),Color.TRANSPARENT,0))
+    var body := W.panel(overlay,Rect2(570,190,780,700),Color("14282f"),W.GOLD)
+    body.name = "Body"
+    body.mouse_filter = Control.MOUSE_FILTER_STOP
+    _item_sprite(body,bag_item,Rect2(30,28,60,60))
+    W.label(body,journey.items()[bag_item]["name"]+" · 사용할 동료",Rect2(112,24,550,64),26,W.GOLD)
+    W.icon_button(body,"close",Rect2(700,28,48,48),_close_item,"닫기 · Esc").name = "Close"
+    for i in journey.party.size():
+        var p := journey.party[i]
+        var reason := journey.item_reason(bag_item,i)
+        var button := W.button(body,Rect2(32,126+i*168,716,146),_use_item.bind(bag_item,i))
+        button.name = "Use_%s_%d" % [bag_item,i]
+        button.disabled = not reason.is_empty()
+        if button.disabled: button.self_modulate = Color(0.58,0.65,0.65)
+        W.sprite(button,p.species_id,Rect2(18,18,104,104))
+        W.label(button,"%s · Lv.%d" % [p.display_name,p.level],Rect2(152,18,520,38),24)
+        var healing := ceili(p.max_hp*0.5) if bag_item == "revive" else PokemonStats.scale(p,int(journey.items()[bag_item]["heal"]))
+        W.label(button,"HP %d / %d  →  %d / %d" % [p.hp,p.max_hp,mini(p.max_hp,p.hp+healing),p.max_hp] if reason.is_empty() else reason,Rect2(152,64,520,35),19,W.MUTED)
+        W.fill_bar(W.bar(button,Rect2(152,117,510,7)),p.hp,p.max_hp)
+        button.tooltip_text = reason
+    UiMotion.appear(overlay)
 func _gear() -> void:
     W.label(page,"지닌 물건 · 동료당 하나, 야영지에서 자유롭게 교환",Rect2(550,354,1190,36),21,W.GOLD)
     for i in journey.party.size():
@@ -381,6 +409,7 @@ func _buy(key: String) -> void:
 func _use_item(key: String,index: int) -> void:
     var reason := journey.use_item(key,index)
     camp_notice = reason if not reason.is_empty() else journey.party[index].display_name+"에게 사용했습니다."
+    if reason.is_empty(): bag_item = ""
     refresh()
 func _leave_camp() -> void:
     if journey.leave_camp().is_empty():
@@ -509,6 +538,10 @@ func _unhandled_key_input(event: InputEvent) -> void:
     if journey.phase == TacticalJourney.BATTLE or not event is InputEventKey or not event.pressed or event.echo: return
     if gear_open_for != 0:
         if event.keycode == KEY_ESCAPE: _close_gear()
+        return
+    if not bag_item.is_empty():
+        if event.keycode == KEY_ESCAPE: _close_item()
+        get_viewport().set_input_as_handled()
         return
     if deck_open:
         if event.keycode == KEY_ESCAPE: _close_deck()

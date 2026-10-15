@@ -21,7 +21,7 @@ static func click(tree: SceneTree,control: Control,local := Vector2(-1,-1)) -> v
         event.pressed = down
         tree.root.push_input(event)
 static func finish(ui: TacticalUI) -> void:
-    if ui.busy: ui.stage.canvas.effect._process(MoveEffect.DURATION)
+    if ui.busy: ui.finish_presentation()
 
 static func settle(ui: Variant) -> void:
     if not is_instance_valid(ui): return

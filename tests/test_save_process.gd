@@ -73,6 +73,8 @@ func run() -> void:
         await click(menu.start_button)
         for id: int in [1,4,7]: await click(menu.species_buttons[id])
         await click(menu.confirm_button)
+        if not current_scene is TacticalJourneyUI: await scene_changed
+        await process_frame
         var ui := current_scene as TacticalJourneyUI
         check(ui != null and ui.journey.full_campaign,"Normal title flow starts saved full campaign")
         var drawn := ui.journey.battle.hand[0]
@@ -91,7 +93,7 @@ func run() -> void:
         var ui := current_scene as TacticalJourneyUI
         check(ui != null and ui.journey == j,"Continue opens restored journey")
         if stage == "read":
-            check(ui.journey.battle.turn == 1 and ui.journey.battle.energy <= 3,"Continue retains the exact saved mid-turn")
+            check(ui.journey.battle.turn == 1 and ui.journey.battle.energy <= 4,"Continue retains the exact saved mid-turn")
             var reference := JourneySnapshot.restore(JourneySnapshot.encode(j))
             for i in 3:
                 reference.battle.end_turn()

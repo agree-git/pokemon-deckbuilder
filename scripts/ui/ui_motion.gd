@@ -59,6 +59,7 @@ static func close(overlay: Control,immediate := false) -> void:
     tween.tween_property(overlay,"modulate:a",0.0,0.12)
     tween.tween_callback(overlay.hide)
 static func finish_tree(node: Node) -> void:
+    if not is_instance_valid(node): return
     # Also used by integration tests to complete real tweens without wall-clock sleeps.
     var tracks: Dictionary = node.get_meta(META,{})
     for tween: Tween in tracks.values():

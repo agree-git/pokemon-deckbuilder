@@ -10,6 +10,10 @@ var source_anchor := SOURCE
 var target_anchor := TARGET
 var show_nameplates := true
 var sprite_zoom := 3.0
+var source_motion := Vector2.ZERO
+var target_motion := Vector2.ZERO
+var source_factor := 1.0
+var target_factor := 1.0
 var source_sprite := Sprite2D.new()
 var target_sprite := Sprite2D.new()
 var effect := MoveEffect.new()
@@ -38,8 +42,10 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
     clock += delta
-    source_sprite.position = (source_anchor + Vector2(0, roundf(sin(clock * 2.4) * 3))).round()
-    target_sprite.position = (target_anchor + Vector2(0, roundf(sin(clock * 2.1 + 1) * 3))).round()
+    source_sprite.position = (source_anchor + source_motion + Vector2(0, roundf(sin(clock * 2.4) * 3))).round()
+    target_sprite.position = (target_anchor + target_motion + Vector2(0, roundf(sin(clock * 2.1 + 1) * 3))).round()
+    source_sprite.scale = Vector2.ONE*sprite_zoom*source_factor
+    target_sprite.scale = Vector2.ONE*sprite_zoom*target_factor
     queue_redraw()
 
 func set_species(source_id: int, target_id: int, catalog: VisualCatalog, clear: bool = true) -> void:

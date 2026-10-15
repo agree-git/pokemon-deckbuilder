@@ -45,3 +45,8 @@
 ## 재현
 
 `python3 tools/import_pokemon_assets.py`로 고정 커밋에서 원본을 가져오고 `python3 tools/build_biomes.py`로 출현·관장 데이터와 목록 문서를 재생성한다. 이전 `import_kanto_assets.py`는 호환용 진입점으로 유지한다. 모든 다운로드는 HTTPS 검증을 유지하며, 파일별 URL과 SHA-256은 `assets/sources/manifest.json`에 기록한다. 동일한 파일은 재사용하며 실패한 다운로드가 있어도 완료된 파일을 재사용할 수 있다. 배경은 생성 에셋이므로 네트워크 임포터가 덮어쓰지 않는다.
+
+## 가방 아이템
+
+- `assets/items/{potion,super_potion,revive,ball}.png`는 같은 PokéAPI/sprites 고정 커밋의 `sprites/items/{potion,super-potion,revive,poke-ball}.png`에서 가져온 30×30 PNG 네 장이다. 상처약·좋은상처약·기력의조각·몬스터볼을 야영지 가방·대상 선택·상점과 포켓볼 교체 연출에 사용한다.
+- 원작 이미지 권리는 위 포켓몬 스프라이트와 동일하다. `python3 tools/build_item_assets.py`로 재생성하며 원본 크기·URL·SHA-256을 검사·기록한다. 실행 중 네트워크는 사용하지 않는다.

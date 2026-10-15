@@ -87,6 +87,8 @@ func run() -> void:
     await click(menu.start_button)
     for id: int in [4,1,7]: await click(menu.species_buttons[id])
     await click(menu.confirm_button)
+    if not current_scene is TacticalJourneyUI: await scene_changed
+    await process_frame
     check(current_scene is TacticalJourneyUI,"Confirm enters real expedition")
     var ui := current_scene as TacticalJourneyUI
     check(ui.journey.starter_ids == [4,1,7] and ui.journey.battle.active().species_id == 4,"Chosen party reaches battle with correct lead")
@@ -154,6 +156,8 @@ func run() -> void:
     await click(menu.species_buttons[43])
     await save("unlocked_starter")
     await click(menu.confirm_button)
+    if not current_scene is TacticalJourneyUI: await scene_changed
+    await process_frame
     ui = current_scene as TacticalJourneyUI
     check(ui.journey.party.size() == 1 and ui.journey.party[0].species_id == 43,"Unlocked starter can begin solo run")
     var owned := -1

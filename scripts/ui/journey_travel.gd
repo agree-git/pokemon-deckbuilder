@@ -7,7 +7,7 @@ const DURATION := 0.85
 var progress := 0.0
 var walkers: Array[Control] = []
 var completed := false
-func start(destination: String, biome: Dictionary, party: Array[BattlePokemon]) -> void:
+func start(destination: String, biome: Dictionary, party: Array[BattlePokemon], heading := "다음 장소로 이동 중") -> void:
     set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     mouse_filter = Control.MOUSE_FILTER_STOP
     z_index = 100
@@ -24,7 +24,7 @@ func start(destination: String, biome: Dictionary, party: Array[BattlePokemon]) 
     shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
     add_child(shade)
-    W.label(self,"다음 장소로 이동 중",Rect2(380,255,1160,60),25,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+    W.label(self,heading,Rect2(380,255,1160,60),25,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
     W.label(self,destination,Rect2(280,330,1360,74),38,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
     W.panel(self,Rect2(0,700,1920,10),Color("6d7251"))
     for i in party.size():
