@@ -192,8 +192,10 @@ func _map() -> void:
             W.icon(panel,"badge" if final_battle else "heal",Rect2(width-42,height-28,16,16))
             panel.mouse_filter = Control.MOUSE_FILTER_PASS
             panel.tooltip_text = ("승리하면 챔피언 등극" if final_battle else "전투 후 야영지")+" · 적 Lv.%d" % stop["level"]
-            for opponent: Dictionary in journey.route.opponents(i):
-                panel.tooltip_text += "\n%s · %s · %s" % [opponent["name"],EnemyTactics.title(opponent["tactic"]),EnemyTactics.pattern_text(opponent)]
+            var opponents: Array = journey.route.opponents(i)
+            if not opponents.is_empty() and opponents[0].has("boss"): panel.tooltip_text += "\n고유 전술 · "+BossTactics.heading(opponents[0])
+            for opponent: Dictionary in opponents:
+                panel.tooltip_text += "\n%s · %s · %s" % [opponent["name"],EnemyTactics.role_title(opponent),EnemyTactics.pattern_text(opponent)]
     W.label(page,"장소에 마우스를 올리면 상대 전술을 확인할 수 있습니다.",Rect2(550,274,1190,28),14,W.MUTED)
     _action("%s로 이동" % journey.current()["name"],Rect2(820,670,560,64),_enter)
     if journey.full_campaign:

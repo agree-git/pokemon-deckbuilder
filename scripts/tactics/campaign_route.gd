@@ -91,6 +91,9 @@ func opponents(step: int) -> Array:
         var hp := PokemonStats.value(id,level,"hp")
         var definition := {"id":id,"name":species["name"],"type":species["types"][0],"types":species["types"],"max_hp":hp,"level":level}
         definition.merge(EnemyTactics.build(id,level,species["types"],node["kind"],i,node["party"].size()))
+        if node["kind"] in ["gym","elite","champion"]:
+            var trainer_id: String = node["trainer"]["leader_id"] if node["kind"] == "gym" else node["trainer"]["id"]
+            definition.merge(BossTactics.build(str(node["kind"])+":"+trainer_id,i,id,level,species["types"]),true)
         result.append(definition)
     return result
 func experience_reward(step: int,species_id := 1) -> float:

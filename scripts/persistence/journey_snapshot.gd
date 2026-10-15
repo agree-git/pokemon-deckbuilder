@@ -169,10 +169,16 @@ static func validate(data: Variant) -> bool:
     for definition: Variant in b["enemy_definitions"]:
         if not definition is Dictionary or not definition.get("intents") is Array or definition["intents"].is_empty(): return false
         if definition.has("tactic") and (not definition["tactic"] is String or not EnemyTactics.PROFILES.has(definition["tactic"])): return false
+        if (definition.has("boss") or definition.has("boss_style")) and not BossTactics.valid(definition): return false
         for intent: Variant in definition["intents"]:
-            if not intent is Dictionary or intent.get("kind") not in ["attack","charge","block","boost"]: return false
+            if not intent is Dictionary or not intent.get("kind") is String or intent["kind"] not in ["attack","charge","block","boost","barrage","fortify","recover","status"]: return false
+            if intent["kind"] in ["barrage","fortify","recover","status"] and not definition.has("boss"): return false
             if not integer(intent.get("value"),0,100000) or not integer(intent.get("move_id"),1,354): return false
-            if intent["kind"] in ["attack","charge"] and intent.get("type") not in VisualCatalog.TYPE_COLORS: return false
+            if intent["kind"] in ["attack","charge","barrage"] and intent.get("type") not in VisualCatalog.TYPE_COLORS: return false
+            if intent["kind"] == "barrage" and (not intent.get("hits") is int or intent["hits"] != 2 or not TacticalMoves.definition(TacticalMoves.key_for(intent["move_id"])).has("damage")): return false
+            if intent["kind"] == "fortify" and intent.get("stat") not in ["defense","special_defense"]: return false
+            if intent["kind"] == "status" and (intent.get("status") not in ["burn","poison","seed"] or not integer(intent["value"],1,3)): return false
+            if intent["kind"] in ["fortify","recover"] and not integer(intent["value"],0,16): return false
     for key: Variant in b["powers"]:
         if key not in ["relay","ace","supply","attrition"] or not integer(b["powers"][key],1,512): return false
     for key: Variant in b["turn_flags"]:

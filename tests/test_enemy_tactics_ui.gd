@@ -111,7 +111,8 @@ func run() -> void:
     await process_frame
     UiMotion.finish_tree(map)
     var gym: Control = map.page.get_node("Encounter_14")
-    check(gym.mouse_filter == Control.MOUSE_FILTER_PASS and gym.tooltip_text.contains("수비형") and gym.tooltip_text.contains("강화형"),"Map exposes next gym's full party roles through a hoverable panel")
+    var opponents := j.route.opponents(14)
+    check(gym.mouse_filter == Control.MOUSE_FILTER_PASS and gym.tooltip_text.contains(BossTactics.heading(opponents[0])) and gym.tooltip_text.contains(EnemyTactics.pattern_text(opponents[5])),"Map exposes the next gym's named plan and full party sequence")
     await picture("next-gym-tactics")
     map.free()
     print("ENEMY_TACTICS_UI native=",native,": ",checks," checks, ",failures," failures; ",clicks," pointer actions")

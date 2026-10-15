@@ -16,10 +16,10 @@ static func action(b: TacticalBattle) -> Array:
         var cost := maxi(1,int(view["cost"]))
         var value := 0.0
         var damage := int(view.get("preview_damage",0))
-        var incoming := int(b.intent().get("value",0)) if b.intent()["kind"] in ["attack","charge"] else 0
+        var incoming := int(b.intent().get("value",0)) if b.intent()["kind"] in ["attack","charge","barrage"] else 0
         if actor != b.active():
             var action := b.intent_for(actor)
-            incoming = int(action["value"]) if action["kind"] in ["attack","charge"] else 0
+            incoming = int(action["value"]) if action["kind"] in ["attack","charge","barrage"] else 0
         if view.has("damage"):
             value += mini(damage,b.enemy().hp+b.enemy().block)*1.3
             if damage >= b.enemy().hp+b.enemy().block: value += 40
@@ -59,7 +59,7 @@ static func action(b: TacticalBattle) -> Array:
     if uid != 0: return ["card",uid]
     # End with a safe defender when the drawn hand cannot finish the enemy.
     var current := b.intent()
-    if current["kind"] in ["attack","charge"] and not current.get("asleep",false):
+    if current["kind"] in ["attack","charge","barrage"] and not current.get("asleep",false):
         var risk := maxf(0,int(current["value"])-b.active().block)/maxf(1,b.active().hp)
         var defender := 0
         for candidate: BattlePokemon in b.party:

@@ -124,12 +124,20 @@ func intent_for(defender: BattlePokemon) -> Dictionary:
     var definitions: Array = enemy_definitions[enemy_index]["intents"]
     var result: Dictionary = definitions[int(opening()["intent"]) % definitions.size()].duplicate(true)
     result["tactic"] = str(enemy_definitions[enemy_index].get("tactic",""))
-    if result["kind"] in ["attack","charge"]:
+    result["boss_style"] = str(enemy_definitions[enemy_index].get("boss_style",""))
+    if result["kind"] in ["attack","charge","barrage"]:
         var move := TacticalMoves.definition(TacticalMoves.key_for(int(result["move_id"]))).duplicate(true)
         move["type"] = result.get("type",move.get("type","normal"))
         result["damage_class"] = move.get("damage_class","physical")
-        result["value"] = PokemonStats.damage(enemy(),defender,move,1.0 if int(result["move_id"]) == 165 else multiplier(move["type"],defender),0,1.2 if result["kind"] == "charge" else 1.0)
-    elif result["kind"] == "block": result["value"] = PokemonStats.scale(enemy(),int(result["value"]))
+        var pressure := 0.55 if result["kind"] == "barrage" else (1.2 if result["kind"] == "charge" else 1.0)
+        result["value"] = PokemonStats.damage(enemy(),defender,move,1.0 if int(result["move_id"]) == 165 else multiplier(move["type"],defender),0,pressure)
+        if result["kind"] == "barrage":
+            result["per_hit"] = result["value"]
+            result["value"] = int(result["per_hit"])*int(result["hits"])
+    elif result["kind"] in ["block","fortify"]:
+        result["value"] = PokemonStats.scale(enemy(),int(result["value"]))
+        if result["kind"] == "fortify": result["stat_delta"] = mini(1,6-int(enemy().stat_stages.get(result["stat"],0)))
+    elif result["kind"] == "recover": result["value"] = mini(enemy().max_hp-enemy().hp,PokemonStats.scale(enemy(),int(result["value"])))
     if enemy().statuses.has("sleep"): result["asleep"] = true
     return result
 func card_view(card: BattleCardInstance) -> Dictionary:
@@ -401,13 +409,29 @@ func _enemy_action() -> void:
     if enemy().statuses.has("sleep"):
         _record("cancel",enemy().display_name+"은 잠들어 행동할 수 없습니다.")
     else:
-        _record("enemy_action",enemy().display_name+" · "+(str(TacticalMoves.visual(int(action["move_id"]))["name"]) if action["kind"] in ["attack","charge"] else ("방어" if action["kind"] == "block" else "위력 강화")),action.merged({"action":action["kind"]}))
+        var titles := {"block":"방어","boost":"위력 강화","fortify":"방벽","recover":"회복","status":"상태 지시"}
+        var title: String = str(TacticalMoves.visual(int(action["move_id"]))["name"]) if action["kind"] in ["attack","charge","barrage"] else titles[action["kind"]]
+        _record("enemy_action",enemy().display_name+" · "+title,action.merged({"action":action["kind"]}))
         match action["kind"]:
-            "attack","charge": _damage(active(),int(action["value"]))
-            "block":
+            "attack","charge","barrage":
+                for hit in (int(action["hits"]) if action["kind"] == "barrage" else 1):
+                    if not active().alive(): break
+                    if hit > 0: _record("enemy_hit",enemy().display_name+" · 연속 공격",action.merged({"action":"barrage"}))
+                    _damage(active(),int(action["per_hit"] if action["kind"] == "barrage" else action["value"]))
+            "block","fortify":
+                if action["kind"] == "fortify":
+                    var stat: String = action["stat"]
+                    enemy().stat_stages[stat] = int(enemy().stat_stages.get(stat,0))+int(action["stat_delta"])
+                    _record("stat",enemy().display_name+" · "+str(PokemonStats.TITLES[stat])+" 강화",{"target":enemy().uid})
                 enemy().block = int(action["value"])
                 _record("shield",enemy().display_name+" 보호막",{"target":enemy().uid,"amount":int(action["value"])})
             "boost": enemy().strength += int(action["value"])
+            "recover":
+                enemy().hp += int(action["value"])
+                _record("heal",enemy().display_name+" 회복",{"target":enemy().uid,"amount":int(action["value"])})
+            "status":
+                active().statuses[action["status"]] = {"turns":int(action["value"]),"source_uid":enemy().uid}
+                _record("status",active().display_name+" · "+str({"burn":"화상","poison":"독","seed":"씨뿌리기"}[action["status"]]),{"target":active().uid})
     state["intent"] = int(state["intent"])+1
     if _outcome(): return
     _tick(enemy())
@@ -445,10 +469,13 @@ func _tick(pokemon: BattlePokemon) -> void:
         _damage(pokemon,status_damage(pokemon,key),true)
         if key == "seed":
             var owner := member(int(status["source_uid"]))
+            if owner == null:
+                for foe: BattlePokemon in enemies:
+                    if foe.uid == int(status["source_uid"]): owner = foe
             if owner != null and owner.alive():
                 var recovered := mini(owner.max_hp-owner.hp,health_before-pokemon.hp)
                 owner.hp += recovered
-                _stat("healing",recovered)
+                if recovered > 0: _record("heal","씨앗 흡수 · "+owner.display_name,{"target":owner.uid,"amount":recovered})
     for key: String in ["sleep","paralysis","exposed"]:
         if pokemon.statuses.has(key):
             pokemon.statuses[key]["turns"] = int(pokemon.statuses[key]["turns"])-1

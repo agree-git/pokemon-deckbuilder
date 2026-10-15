@@ -62,17 +62,28 @@ static func build(species: int, level: int, types: Array, kind: String, slot: in
     return {"tactic":tactic,"intents":pattern}
 static func title(key: String) -> String:
     return str(PROFILES.get(key,{"name":"기본형"})["name"])
+static func role_title(definition: Dictionary) -> String:
+    return BossTactics.title(definition["boss_style"]) if not str(definition.get("boss_style","")).is_empty() else title(definition.get("tactic",""))
 static func pattern_text(definition: Dictionary) -> String:
     var actions: Array[String] = []
     for action: Dictionary in definition["intents"]:
-        actions.append({"attack":"공격","charge":"강공격","block":"방어","boost":"강화"}[action["kind"]])
+        actions.append({"attack":"공격","charge":"강공격","block":"방어","boost":"강화","barrage":"연타","fortify":"방벽","recover":"회복","status":"상태 부여"}[action["kind"]])
     return " → ".join(actions)
 static func description(definition: Dictionary) -> String:
+    if definition.has("boss"):
+        var style: Dictionary = BossTactics.STYLES[definition["boss_style"]]
+        return "%s\n%s · %s\n순서: %s" % [BossTactics.heading(definition),style["name"],style["description"],pattern_text(definition)]
     var key: String = definition.get("tactic","")
     var profile: Dictionary = PROFILES.get(key,{"name":"기본형","description":"예고된 순서대로 행동합니다."})
     return "%s · %s\n순서: %s" % [profile["name"],profile["description"],pattern_text(definition)]
 static func intent_text(action: Dictionary) -> String:
     if action.get("asleep",false): return "수면으로 다음 행동을 취소합니다."
+    if action["kind"] == "status": return "%s %d회 · 현재 출전 동료에게 부여 · 대기 중에도 지속" % [{"burn":"화상","poison":"독","seed":"씨뿌리기"}[action["status"]],action["value"]]
+    if action["kind"] == "fortify": return "%s +%d단계 · 보호막 %d · 단계는 해당 적에게만 유지" % [PokemonStats.TITLES[action["stat"]],action["stat_delta"],action["value"]]
+    if action["kind"] == "recover": return "HP %d 회복 · 현재 잃은 HP까지만 회복" % action["value"]
+    if action["kind"] == "barrage":
+        var move := TacticalMoves.definition(TacticalMoves.key_for(int(action["move_id"])))
+        return "%s · %s · %d × %d회 = 총 피해 %d · 출전 동료가 기절하면 남은 타격 중단" % [move["name"],"특수" if action.get("damage_class") == "special" else "물리",action["per_hit"],action["hits"],action["value"]]
     if action["kind"] == "boost": return "위력 보정 +%d%% · 이번 전투 동안 유지" % (int(action["value"])*10)
     if action["kind"] == "block": return "보호막 %d 획득 · 다음 적 행동 직전 해제" % int(action["value"])
     var move := TacticalMoves.definition(TacticalMoves.key_for(int(action["move_id"])))

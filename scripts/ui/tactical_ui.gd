@@ -499,8 +499,8 @@ func _refresh() -> void:
     _refresh_statuses(ally_statuses,ally)
     _refresh_statuses(enemy_statuses,foe)
     var action: Dictionary = _visual_frame.get("intent",battle.intent())
-    var names := {"charge":"강공격","attack":"공격","block":"방어","boost":"강화"}
-    var intent_icon := {"charge":"attack","attack":"attack","block":"shield","boost":"boost"}
+    var names := {"charge":"강공격","attack":"공격","block":"방어","boost":"강화","barrage":"연타","fortify":"방벽","recover":"회복","status":"상태 지시"}
+    var intent_icon := {"charge":"attack","attack":"attack","block":"shield","boost":"boost","barrage":"attack","fortify":"shield","recover":"heal","status":"counter"}
     var cancelled: bool = action.get("asleep",false)
     var intent_signature := str([battle.enemy().uid,action,cancelled])
     if _shown_intent != intent_signature:
@@ -509,10 +509,17 @@ func _refresh() -> void:
     get_node("Intent/Icon").texture = W.texture("counter" if cancelled else intent_icon[action["kind"]])
     get_node("Intent/Title").text = "행동 취소" if cancelled else names[action["kind"]]
     intent_label.text = "—" if cancelled else ("+%d%%" % (int(action["value"])*10) if action["kind"] == "boost" else str(action["value"]))
-    intent_label.add_theme_font_size_override("font_size",22 if action["kind"] == "boost" else 29)
-    get_node("Intent/Tactic").text = EnemyTactics.title(action.get("tactic",""))
+    if not cancelled:
+        if action["kind"] == "barrage": intent_label.text = "%d×%d" % [action["per_hit"],action["hits"]]
+        elif action["kind"] == "recover": intent_label.text = "+%d" % action["value"]
+        elif action["kind"] == "status":
+            intent_label.text = "%d회" % action["value"]
+            get_node("Intent/Title").text = {"burn":"화상","poison":"독","seed":"씨앗"}[action["status"]]
+            get_node("Intent/Icon").texture = W.texture({"burn":"fire","poison":"poison","seed":"seed"}[action["status"]])
+    intent_label.add_theme_font_size_override("font_size",22 if action["kind"] in ["boost","barrage","status"] else 29)
+    get_node("Intent/Tactic").text = EnemyTactics.role_title(action)
     get_node("Intent").tooltip_text = EnemyTactics.intent_text(action)+"\n"+EnemyTactics.description(battle.enemy_definitions[int(_visual_frame.get("enemy_index",battle.enemy_index))])
-    if action["kind"] in ["attack","charge"] and not cancelled:
+    if action["kind"] in ["attack","charge","barrage"] and not cancelled:
         get_node("Intent").tooltip_text += "\n현재 보호막으로 %d 흡수 · 남은 피해 %d" % [mini(ally.block,int(action["value"])),maxi(0,int(action["value"])-ally.block)]
     UiMotion.text(energy_label,str(int(_visual_frame.get("energy",battle.energy))))
     var speed_bonus := int(_visual_frame.get("turn_energy_bonus",battle.turn_energy_bonus))
@@ -722,7 +729,7 @@ func _present(reason: String) -> void:
             _sequence.tween_interval(0.42)
         else:
             _sequence.tween_callback(_play_event.bind(event))
-            var duration := 0.40 if kind in ["skill","card","enemy_action"] else (0.28 if kind in ["damage","shield","heal","knockout","turn"] else 0.22)
+            var duration := 0.40 if kind in ["skill","card","enemy_action","enemy_hit"] else (0.28 if kind in ["damage","shield","heal","knockout","turn"] else 0.22)
             _sequence.tween_interval(duration)
     _sequence.tween_callback(_finished)
 func _announce(text: String) -> void:
@@ -733,9 +740,9 @@ func _play_event(event: Dictionary) -> void:
     var kind: String = event["kind"]
     playback_kinds.append(kind)
     _apply_frame(event.get("frame",{}))
-    if kind in ["skill","card","enemy_action"]:
+    if kind in ["skill","card","enemy_action","enemy_hit"]:
         _announce(event["text"])
-        var from_enemy := kind == "enemy_action"
+        var from_enemy := kind in ["enemy_action","enemy_hit"]
         var id := int(event.get("move_id",0))
         var definition := catalog.move_by_id(id) if not catalog.move_by_id(id).is_empty() else TacticalMoves.visual(id)
         if not definition.is_empty():
@@ -744,7 +751,7 @@ func _play_event(event: Dictionary) -> void:
             var finish := stage.canvas.source_anchor if from_enemy else stage.canvas.target_anchor
             stage.canvas.effect.play(definition,start,finish)
             var is_attack: bool = TacticalMoves.definition(TacticalMoves.key_for(id)).has("damage")
-            if from_enemy: is_attack = event.get("action","") in ["attack","charge"]
+            if from_enemy: is_attack = event.get("action","") in ["attack","charge","barrage"]
             if is_attack: motion.attack(from_enemy,str(definition.get("category")) in ["2","physical"])
     elif kind in ["damage","shield","heal"]:
         var on_ally := int(event["target"]) > 0
