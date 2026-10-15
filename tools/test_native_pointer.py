@@ -14,7 +14,7 @@ import sys
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--probe", choices=["native_pointer_probe", "native_expedition_probe", "native_tactical_probe", "native_journey_probe", "native_start_probe"], default="native_pointer_probe")
+    parser.add_argument("--probe", choices=["native_pointer_probe", "native_expedition_probe", "native_tactical_probe", "native_journey_probe", "native_start_probe", "native_tooltip_probe"], default="native_pointer_probe")
     args = parser.parse_args()
     x11 = ctypes.CDLL("libX11.so.6")
     xtest = ctypes.CDLL("libXtst.so.6")
@@ -39,7 +39,7 @@ def main():
     process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
     try:
         for line in process.stdout:
-            if not line.startswith(("OS_CLICK ", "OS_KEY ")):
+            if not line.startswith(("OS_CLICK ", "OS_MOVE ", "OS_KEY ")):
                 print(line, end="", flush=True)
             if line.startswith("OS_FOCUS "):
                 x11.XSetInputFocus(display, int(line.split()[1]), 2, 0)
@@ -52,11 +52,12 @@ def main():
                 xtest.XTestFakeKeyEvent(display, code, 1, 20)
                 xtest.XTestFakeKeyEvent(display, code, 0, 20)
                 x11.XFlush(display)
-            if line.startswith("OS_CLICK "):
+            if line.startswith(("OS_CLICK ", "OS_MOVE ")):
                 _, pos_x, pos_y = line.split()
                 xtest.XTestFakeMotionEvent(display, -1, int(pos_x), int(pos_y), 0)
-                xtest.XTestFakeButtonEvent(display, 1, 1, 20)
-                xtest.XTestFakeButtonEvent(display, 1, 0, 20)
+                if line.startswith("OS_CLICK "):
+                    xtest.XTestFakeButtonEvent(display, 1, 1, 20)
+                    xtest.XTestFakeButtonEvent(display, 1, 0, 20)
                 x11.XFlush(display)
         return process.wait(timeout=20)
     finally:

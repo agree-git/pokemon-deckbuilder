@@ -84,6 +84,6 @@ static func biome_texture(biome: Dictionary) -> AtlasTexture:
     atlas.atlas = load(biome["background"])
     var cell := Vector2(atlas.atlas.get_width() / 2.0, atlas.atlas.get_height() / 3.0)
     var index: int = int(biome["cell"])
-    atlas.region = Rect2(Vector2(index % 2, index / 2) * cell, cell)
+    atlas.region = Rect2(Vector2(index % 2, floori(index / 2.0)) * cell, cell)
     atlas.filter_clip = true
     return atlas

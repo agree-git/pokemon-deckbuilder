@@ -107,5 +107,7 @@ static func clear(node: Node) -> void:
         node.remove_child(child)
         child.queue_free()
 static func fade(button_node: Button) -> void:
-    for child: CanvasItem in button_node.get_children():
-        child.modulate.a = 0.43 if button_node.disabled else 1.0
+    # Godot adds a PopupPanel child while the built-in tooltip is visible.
+    for child: Node in button_node.get_children():
+        if child is CanvasItem:
+            child.modulate.a = 0.43 if button_node.disabled else 1.0

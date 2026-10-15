@@ -587,13 +587,13 @@ func _refresh_hand() -> void:
     var dealt := 0
     for card: BattleCardInstance in battle.hand:
         if not trainer_buttons.has(card.uid):
-            var button := TrainerActionCard.new()
-            button.uid = card.uid
-            button.key = card.key
-            button.pressed.connect(_card.bind(card.uid))
-            hand_row.add_child(button)
-            trainer_buttons[card.uid] = button
-            button.call_deferred("deal",dealt*0.035)
+            var new_button := TrainerActionCard.new()
+            new_button.uid = card.uid
+            new_button.key = card.key
+            new_button.pressed.connect(_card.bind(card.uid))
+            hand_row.add_child(new_button)
+            trainer_buttons[card.uid] = new_button
+            new_button.call_deferred("deal",dealt*0.035)
             dealt += 1
         var button: TrainerActionCard = trainer_buttons[card.uid]
         button.update_card(battle.card_view(card),battle.card_reason(card.uid),busy)
@@ -610,7 +610,7 @@ func _fly_card(card: TrainerActionCard,used := true,delay := 0.0) -> void:
         tween.tween_property(copy,"position",middle,0.17).set_delay(delay).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
         tween.tween_property(copy,"scale",Vector2.ONE*0.78,0.17).set_delay(delay)
         tween.chain().tween_interval(0.07)
-    tween.chain().tween_property(copy,"position",destination,0.24).set_delay(0 if used else delay).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+    tween.chain().tween_property(copy,"position",destination,0.24).set_delay(0.0 if used else delay).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
     tween.parallel().tween_property(copy,"scale",Vector2.ONE*0.12,0.24)
     tween.parallel().tween_property(copy,"modulate:a",0.0,0.24)
     tween.chain().tween_callback(copy.queue_free)

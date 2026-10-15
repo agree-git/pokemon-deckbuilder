@@ -23,10 +23,10 @@ static func pulse(node: Control) -> void:
     node.pivot_offset = node.size/2
     node.scale = Vector2.ONE*1.10
     begin(node,"pulse").tween_property(node,"scale",Vector2.ONE,0.22).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-static func text(label: Label,value: String) -> void:
-    if label.text == value: return
+static func text(label: Label,content: String) -> void:
+    if label.text == content: return
     var had_value := not label.text.is_empty()
-    label.text = value
+    label.text = content
     if had_value: pulse(label)
 static func value(node: Node,property: NodePath,target: float,duration := 0.24) -> void:
     var key := "value_"+str(property).replace(":","_")

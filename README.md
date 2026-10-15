@@ -63,6 +63,7 @@ godot --headless --path . --script res://tests/test_start_flow.gd
 godot --headless --path . --script res://tests/test_start_ui.gd
 godot --headless --path . --script res://tests/test_tactics.gd
 godot --headless --path . --script res://tests/test_tactical_ui.gd
+godot --headless --path . --script res://tests/test_tooltips.gd
 godot --headless --path . --script res://tests/test_journey.gd
 godot --headless --path . --script res://tests/test_journey_ui.gd
 godot --headless --path . --script res://tests/test_battle.gd
@@ -85,6 +86,8 @@ godot --path .
 `test_tactics.gd`는 고정 기술·트레이너 덱·브레이크·공통 환급 상한·적 연속 교체·상태 전이와 30개 시드·세 특성의 90회 완결 전투를 검사한다. `test_tactical_ui.gd`는 4개 창 크기의 입력 영역과 승리·패배·재시작, 카드 호버·사용 중 입력, 체력바 보간, 메뉴 닫기/재열기, 연출 중 재시작과 10장 손패 스크롤을 검사한다. `python3 tools/test_native_pointer.py --probe native_tactical_probe`는 Linux X11에서 실제 OS 마우스 입력 124회와 키 입력 12회로 새 전투·카드 더미·단축키를 확인한다.
 
 `test_battle.gd`는 카드 보존, 잘못된 행동의 무변경, 에너지·교체 비용, 드로우·재섞기, 상성·보호막·상태, 기절·승패·재시작과 30개 시드의 완결 전투를 검사한다. `test_visuals.gd`는 가져온 에셋과 실제 UI 조작을 통한 승리·패배·강제 교체·재시작·화면 재진입을 검사한다. `test_pointer.gd`는 버튼 신호를 직접 호출하지 않고 창 좌표의 마우스 이벤트를 보내 4개 창 크기에서 버튼의 위·중앙·아래, 호버 카드의 겹침, 결과창의 클릭 영역을 검사한다. `test_capture.gd`는 포획 조건·자원·중복 방지·합류·교체·부상 제거·다음 전투와 실제 입력 경로를 검사한다. `test_rewards.gd`는 시드 재현, 배울 수 있는 후보·소유권, 선택·넘기기·중복 방지, 다음 전투와 방출 연동, 화면 재진입과 창 크기별 실제 입력 경로를 검사한다. `test_expedition.gd`는 회복·부활·강화·진화·특성·경험치·경로 제한과 54개의 전체 원정을 검사하고 실제 포인터 이벤트로 한 판을 완주한다. Linux X11에서는 `LIBGL_ALWAYS_SOFTWARE=1 python3 tools/test_native_pointer.py`로 OS 포인터를 움직여 3개 창 크기에서 추가 검증할 수 있다. `--probe native_expedition_probe`를 붙이면 OS 마우스 입력만으로 원정 한 판 전체를 검사한다. 그래픽 렌더러로 검사할 때는 `--headless`를 빼면 된다.
+
+`test_tooltips.gd`는 버튼 아래에 툴팁 창과 일반 Node가 있어도 활성·비활성 표시를 갱신하는지 검사한다. `python3 tools/test_native_pointer.py --probe native_tooltip_probe`는 실제 OS 포인터로 기술 툴팁을 띄운 상태의 갱신과 행동을 검사한다.
 
 현재 검증은 Linux의 Godot 4.7.2 헤드리스와 실제 Compatibility 렌더러에서 수행했다. Windows 실행과 내보내기는 아직 검증하지 않았다.
 
