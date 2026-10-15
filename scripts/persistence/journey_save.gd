@@ -4,8 +4,8 @@ extends RefCounted
 const VERSION := 1
 const SAVE_PATH := "user://journey.json"
 const MAX_FILE_BYTES := 4*1024*1024
-const RULESET := "campaign-69-unified-deck-v2"
-const CONTENT := ["res://data/catalog.json","res://data/biomes.json","res://data/gyms.json","res://data/league.json","res://data/progression.json","res://data/evolutions.json","res://data/type_chart.json"]
+const RULESET := "campaign-69-species-stats-speed-v3"
+const CONTENT := ["res://data/base_stats.json","res://data/catalog.json","res://data/biomes.json","res://data/gyms.json","res://data/league.json","res://data/progression.json","res://data/evolutions.json","res://data/type_chart.json"]
 static var _fingerprint := ""
 var path: String
 var last_error := ""

@@ -42,9 +42,7 @@ static func opponents(step: int) -> Array:
     var level := enemy_level(step)
     for definition: Dictionary in result:
         definition["level"] = level
-        definition["max_hp"] = int(definition["max_hp"])+level-6
-        for intent: Dictionary in definition["intents"]:
-            if intent["kind"] in ["attack","charge"]: intent["value"] = int(intent["value"])+floori((level-6)/5.0)
+        definition["max_hp"] = PokemonStats.value(int(definition["id"]),level,"hp")
     return result
 static func enemy(id: int, title: String, hp: int, power: int) -> Dictionary:
     return {"id":id,"name":title,"type":"grass","max_hp":hp,"intents":[

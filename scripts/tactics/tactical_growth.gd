@@ -3,7 +3,6 @@ extends RefCounted
 ## Original species growth curves and level-up learnsets; run-only state.
 const START_LEVEL := 5
 const MAX_LEVEL := 100
-const EVOLUTION_HP := 12
 static var _rules: Array = []
 static var _data: Dictionary = {}
 static func data() -> Dictionary:
@@ -25,10 +24,9 @@ static func progress_text(pokemon: BattlePokemon) -> String:
     if pokemon.level >= MAX_LEVEL: return "MAX"
     var floor_xp := experience_floor(pokemon.level,pokemon.species_id)
     return "%s / %d XP" % [String.num(pokemon.experience-floor_xp,1).trim_suffix(".0"),experience_floor(pokemon.level+1,pokemon.species_id)-floor_xp]
-static func attack_bonus(pokemon: BattlePokemon) -> int:
-    return maxi(0,floori((pokemon.level-START_LEVEL)/5.0))+pokemon.evolution_power
 static func initialize(pokemon: BattlePokemon) -> void:
     if pokemon.progression_initialized: return
+    PokemonStats.apply(pokemon)
     pokemon.progression_initialized = true
     pokemon.experience = experience_floor(pokemon.level,pokemon.species_id)
     pokemon.learned_skills.clear()
@@ -49,6 +47,7 @@ static func _learn_at(pokemon: BattlePokemon,level: int,report: Dictionary) -> v
 static func award(pokemon: BattlePokemon,base: float) -> Dictionary:
     initialize(pokemon)
     var before := pokemon.level
+    var previous_max_hp := pokemon.max_hp
     var experience := pokemon.experience
     pokemon.gain_experience(base)
     var target := maxi(before,level_for(pokemon.experience,pokemon.species_id))
@@ -57,8 +56,7 @@ static func award(pokemon: BattlePokemon,base: float) -> Dictionary:
     var catalog: VisualCatalog = null
     while pokemon.level < target:
         pokemon.level += 1
-        pokemon.max_hp += 1
-        if pokemon.alive(): pokemon.hp += 1
+        PokemonStats.apply(pokemon)
         _learn_at(pokemon,pokemon.level,report)
         for rule: Dictionary in rules_for(pokemon.species_id):
             if pokemon.level >= int(rule["level"]):
@@ -68,6 +66,7 @@ static func award(pokemon: BattlePokemon,base: float) -> Dictionary:
                 report["evolutions"].append({"from":previous,"to":pokemon.species_id,"name":pokemon.display_name,"level":pokemon.level})
                 _learn_at(pokemon,pokemon.level,report)
                 break
+    report["hp"] = pokemon.max_hp-previous_max_hp
     return report
 static func rules_for(species_id: int) -> Array:
     if _rules.is_empty(): _rules = JSON.parse_string(FileAccess.get_file_as_string("res://data/evolutions.json"))
@@ -78,6 +77,4 @@ static func evolve(pokemon: BattlePokemon,target: int,catalog: VisualCatalog) ->
     pokemon.display_name = species["name"]
     pokemon.type = species["types"][0]
     pokemon.types.assign(species["types"])
-    pokemon.max_hp += EVOLUTION_HP
-    if pokemon.alive(): pokemon.hp += EVOLUTION_HP
-    pokemon.evolution_power += 1
+    PokemonStats.apply(pokemon)

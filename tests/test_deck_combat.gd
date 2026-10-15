@@ -15,6 +15,9 @@ func fixture(specs: Array, relics: Array[String] = []) -> TacticalBattle:
     var enemy := {"id":43,"name":"뚜벅쵸","type":"grass","max_hp":200,"intents":[{"kind":"attack","value":8,"type":"normal","move_id":33}]}
     var b := TacticalBattle.new()
     b.start_with(members,cards,[enemy],71,"field_kit",true,relics)
+    b.energy = 3 # Fixed budget isolates shared-deck rules; speed grants have dedicated tests.
+    b.enemy().max_hp = 200
+    b.enemy().hp = 200
     b.hand.assign(cards)
     b.draw_pile.clear()
     return b
@@ -38,10 +41,12 @@ func run() -> void:
     b.play_card(by_key(b,"guard"))
     var protected := b.active().block
     b.play_card(by_key(b,"water_gun"))
-    check(b.member(4).block == protected and b.member(7).block == 5,"Protection stays on its owner through auto-switch")
+    check(b.member(4).block == protected and b.member(7).block == PokemonStats.scale(b.member(7),5),"Protection stays on its owner through auto-switch")
     var hp := b.member(7).hp
+    var incoming := int(b.intent()["value"])
+    var blocked := b.member(7).block
     b.end_turn()
-    check(b.member(7).hp == hp-3 and b.member(4).hp == 45,"Last active member receives the telegraphed attack")
+    check(b.member(7).hp == hp-maxi(0,incoming-blocked) and b.member(4).hp == b.member(4).max_hp,"Last active member receives the telegraphed attack")
     check(b.member(4).block == 0 and b.member(7).block == 0,"Old protection expires at next player turn")
     b = fixture([["flame",4],["guard",0]])
     var expensive := b.hand[0].uid
@@ -54,9 +59,9 @@ func run() -> void:
     b = fixture([["focus",0],["ember",4],["hold",0],["flame",4],["potion_card",0],["water_gun",7]])
     b.hand.resize(5)
     b.draw_pile.assign([BattleCardInstance.new(6,"water_gun",7)])
-    b.member(4).hp = 20
+    b.member(4).hp = 2
     b.play_card(by_key(b,"potion_card"))
-    check(b.member(4).hp == 36 and b.exhausted.size() == 1,"Healing tool heals once and exhausts")
+    check(b.member(4).hp == mini(b.member(4).max_hp,2+PokemonStats.scale(b.member(4),16)) and b.exhausted.size() == 1,"Healing tool heals once and exhausts")
     b.play_card(by_key(b,"hold"))
     var retained := b.retained.duplicate()
     check(retained.size() == 1 and b._hand(retained[0]).key == "flame","Retain selects highest-cost remaining card")
@@ -68,7 +73,7 @@ func run() -> void:
     b.play_card(by_key(b,"relay_plan"))
     check(b.powers.get("relay",0) == 1 and b.exhausted[0].key == "relay_plan","Persistent plan installs and leaves draw cycle")
     b.play_card(by_key(b,"water_gun"))
-    check(b.member(7).block == 8 and not b.switch_bonus.has(7),"Relay power grants protection and baton is consumed by the attack")
+    check(b.member(7).block == PokemonStats.scale(b.member(7),5)+PokemonStats.scale(b.member(7),3) and not b.switch_bonus.has(7),"Relay power grants protection and baton is consumed by the attack")
     var strength := b.member(7).strength
     b.play_card(by_key(b,"boost_card"))
     check(b.member(7).strength == strength+4 and b.turn_flags.has("tool_belt"),"Tool boost and party relic both trigger")
@@ -87,7 +92,7 @@ func run() -> void:
     check(b.energy == 2,"Status relic triggers once per turn, across party members")
     hp = b.enemy().hp
     b.play_card(by_key(b,"status_cash"))
-    check(b.enemy().hp == hp-24 and b.enemy().statuses.is_empty(),"Status cash-out trades remaining ticks for damage without break")
+    check(b.enemy().hp == hp-PokemonStats.scale(b.enemy(),24) and b.enemy().statuses.is_empty(),"Status cash-out trades remaining ticks for damage without break")
     b = fixture([["ember",4],["water_gun",7],["vine",1]], ["relay_draw"])
     b.draw_pile.append(BattleCardInstance.new(10,"guard",0))
     b.draw_pile.append(BattleCardInstance.new(11,"counter",0))
@@ -105,7 +110,7 @@ func run() -> void:
     b = fixture([["water_gun",7],["guard",0]])
     b.hand[0].upgraded = true
     view = b.card_view(b.hand[0])
-    check(int(view["damage"]) == int(TacticalMoves.definition("water_gun")["damage"])+4 and view["name"].ends_with(" +"),"Upgrade changes real card effects and display")
+    check(int(view["move_power"]) == int(TacticalMoves.definition("water_gun")["move_power"])+15 and view["name"].ends_with(" +"),"Upgrade changes real card effects and display")
     b = fixture([["hold",0],["flame",4],["water_gun",7],["redraw",0],["guard",0]])
     b.hand[0].upgraded = true
     b.play_card(by_key(b,"hold"))

@@ -15,7 +15,18 @@ var statuses: Dictionary = {}
 var knocked_out := false
 var held_item := ""
 var level := 5
-var evolution_power := 0
+var species_stats := false
+var stat_stages: Dictionary = {}
+var attack: int:
+    get: return PokemonStats.value(species_id,level,"attack")
+var defense: int:
+    get: return PokemonStats.value(species_id,level,"defense")
+var special_attack: int:
+    get: return PokemonStats.value(species_id,level,"special_attack")
+var special_defense: int:
+    get: return PokemonStats.value(species_id,level,"special_defense")
+var speed: int:
+    get: return PokemonStats.value(species_id,level,"speed")
 var learned_skills: Array[String] = []
 var progression_initialized := false
 var _experience_tenths := 0
@@ -47,5 +58,5 @@ func experience_text() -> String:
 
 func snapshot() -> Dictionary:
     return {"held_item":held_item,"types":types.duplicate(),"uid": uid, "id": species_id, "hp": hp, "max_hp": max_hp, "block": block,
-        "experience": experience, "level": level, "evolution_power": evolution_power,
+        "experience": experience, "level": level, "stats": [attack,defense,special_attack,special_defense,speed], "stat_stages":stat_stages.duplicate(),
         "skills": learned_skills.duplicate(), "strength": strength, "statuses": statuses.duplicate(true), "knocked_out": knocked_out}

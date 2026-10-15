@@ -292,6 +292,7 @@ func rest(action: String = "heal", card_uid: int = 0) -> String:
         pokemon.block = 0
         pokemon.strength = 0
         pokemon.statuses.clear()
+        pokemon.stat_stages.clear()
     for i in range(deck.size()-1,-1,-1):
         if deck[i].key == "injury": deck.remove_at(i)
     rested_steps.append(step)
@@ -335,7 +336,7 @@ func use_item(key: String,index: int) -> String:
     if key == "revive":
         pokemon.hp = ceili(pokemon.max_hp*0.5)
         pokemon.knocked_out = false
-    else: pokemon.hp = mini(pokemon.max_hp,pokemon.hp+int(items()[key]["heal"]))
+    else: pokemon.hp = mini(pokemon.max_hp,pokemon.hp+PokemonStats.scale(pokemon,int(items()[key]["heal"])))
     inventory[key] = int(inventory[key])-1
     return notify_changed()
 

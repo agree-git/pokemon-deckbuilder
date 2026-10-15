@@ -84,17 +84,11 @@ func _append(title: String, kind: String, chapter: int, biome: Dictionary, ids: 
 func opponents(step: int) -> Array:
     var node := stops[step]
     var result: Array = []
-    var boss: bool = node["kind"] in ["gym","elite","champion"]
-    var veteran: bool = node["kind"] == "veteran"
     for i in node["party"].size():
         var id := int(node["party"][i])
         var species := _catalog.species(id)
         var level := int(node["level"])
-        var hp: int = (32+i*4 if boss else 30+i*6)+floori((level-6)*0.65)
-        var power: int = (10+floori(i/2.0) if boss else 6+i)+floori((level-6)/8.0)
-        if veteran:
-            hp += 8
-            power += 2
+        var hp := PokemonStats.value(id,level,"hp")
         var attack := "normal"
         var move := 33
         for learned: Dictionary in TacticalGrowth.species_data(id)["learnset"]:
@@ -103,9 +97,9 @@ func opponents(step: int) -> Array:
                 attack = definition["type"]
                 move = int(learned["move"])
         result.append({"id":id,"name":species["name"],"type":species["types"][0],"types":species["types"],"max_hp":hp,"level":level,"intents":[
-            {"kind":"charge","value":power,"type":attack,"move_id":move},
-            {"kind":"block","value":6+floori(level/10.0),"move_id":115},
-            {"kind":"attack","value":maxi(1,power-2),"type":attack,"move_id":move}]})
+            {"kind":"charge","value":40,"type":attack,"move_id":move},
+            {"kind":"block","value":6,"move_id":115},
+            {"kind":"attack","value":40,"type":attack,"move_id":move}]})
     return result
 func experience_reward(step: int,species_id := 1) -> float:
     return 0.0 if stops[step]["kind"] == "rest" else CampaignBalance.experience_reward(int(stops[step]["battle_index"]),species_id)

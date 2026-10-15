@@ -2,8 +2,8 @@ class_name JourneySnapshot
 extends RefCounted
 ## A plain Variant graph. UID references preserve shared Pokemon/card instances.
 const RUN_FIELDS := ["phase","seed_value","relic","step","wins","total_turns","badges","full_campaign","badge_records","elite_wins","reward_options","history","starter_ids","balls","_next_pokemon_uid","growth_reports","pending_learning","gold","inventory","loot","rested_steps","camp_states","run_id","captured_ids","relics","held_inventory","_next_card_uid"]
-const BATTLE_FIELDS := ["full_type_chart","enemy_definitions","enemy_states","active_index","enemy_index","phase","energy","turn","events","history","seed_value","relic","relics","powers","turn_flags","turn_actors","retained","next_attack_bonus","switch_bonus","temporary_strength","_turn_changed","_ace_uid","_next_uid","_pending","_relay"]
-const POKEMON_FIELDS := ["uid","species_id","display_name","type","types","max_hp","hp","block","strength","statuses","knocked_out","level","evolution_power","learned_skills","progression_initialized","_experience_tenths","held_item"]
+const BATTLE_FIELDS := ["full_type_chart","enemy_definitions","enemy_states","active_index","enemy_index","phase","energy","turn_energy_bonus","turn_speed_actor","turn_speed_enemy","turn_speed_owner_uid","turn_speed_target_uid","turn","events","history","seed_value","relic","relics","powers","turn_flags","turn_actors","retained","next_attack_bonus","switch_bonus","temporary_strength","_turn_changed","_ace_uid","_next_uid","_pending","_relay"]
+const POKEMON_FIELDS := ["uid","species_id","display_name","type","types","max_hp","hp","block","strength","statuses","knocked_out","level","species_stats","stat_stages","learned_skills","progression_initialized","_experience_tenths","held_item"]
 const CARD_FIELDS := ["uid","key","owner_uid","injury_owner_uid","upgraded"]
 static func fields(object: Object, names: Array) -> Dictionary:
     var result := {}
@@ -123,6 +123,9 @@ static func validate(data: Variant) -> bool:
         if not uid is int or not p is Dictionary or not same_shape(p,fields(BattlePokemon.new(TacticalContent.PARTY[0],1),POKEMON_FIELDS)): return false
         if p["uid"] != uid or uid == 0 or not integer(p["species_id"],1,386) or not integer(p["level"],1,100): return false
         if not integer(p["max_hp"],1,100000) or not integer(p["hp"],0,p["max_hp"]) or not integer(p["block"],0,100000): return false
+        if p["species_stats"] and p["max_hp"] != PokemonStats.value(p["species_id"],p["level"],"hp"): return false
+        for stat: Variant in p["stat_stages"]:
+            if stat not in PokemonStats.NAMES or stat == "hp" or not integer(p["stat_stages"][stat],-6,6): return false
         if not integer(p["_experience_tenths"],0,1000000000) or p["learned_skills"].size() > 4 or p["types"] != catalog.species(p["species_id"])["types"]: return false
         if p["type"] != p["types"][0] or p["display_name"] != catalog.species(p["species_id"])["name"]: return false
         if not p["held_item"].is_empty() and not TacticalContent.HELD_ITEMS.has(p["held_item"]): return false
@@ -151,6 +154,9 @@ static func validate(data: Variant) -> bool:
     if not integer(b["active_index"],0,b["party"].size()-1) or not integer(b["enemy_index"],0,b["enemies"].size()-1): return false
     if b["phase"] not in [TacticalBattle.PLAYER,TacticalBattle.REPLACE,TacticalBattle.WON,TacticalBattle.LOST]: return false
     if not integer(b["energy"],0,10000) or not integer(b["turn"],1,1000000): return false
+    if not integer(b["turn_energy_bonus"],0,1) or not integer(b["turn_speed_actor"],1,100000) or not integer(b["turn_speed_enemy"],1,100000): return false
+    if b["turn_speed_owner_uid"] not in b["party"] or b["turn_speed_target_uid"] not in b["enemies"]: return false
+    if b["turn_energy_bonus"] != (1 if b["turn_speed_actor"] > b["turn_speed_enemy"] else 0): return false
     if b["enemy_states"].size() != b["enemies"].size() or b["enemy_definitions"].size() != b["enemies"].size(): return false
     if b["_pending"] not in ["","player","enemy"]: return false
     if b["phase"] == TacticalBattle.REPLACE and b["_pending"].is_empty(): return false

@@ -101,7 +101,9 @@ func _party() -> void:
     for i in journey.party.size():
         var pokemon := journey.party[i]
         W.sprite(panel,pokemon.species_id,Rect2(20,80+i*82,64,64))
-        W.label(panel,"%s · Lv.%d" % [pokemon.display_name,pokemon.level],Rect2(102,77+i*82,218,32),18)
+        var title := W.label(panel,"%s · Lv.%d" % [pokemon.display_name,pokemon.level],Rect2(102,77+i*82,218,32),18)
+        title.mouse_filter = Control.MOUSE_FILTER_PASS
+        title.tooltip_text = PokemonStats.summary(pokemon)
         W.label(panel,("%d / %d HP" % [pokemon.hp,pokemon.max_hp] if pokemon.alive() else "기절")+" · "+TacticalGrowth.progress_text(pokemon),Rect2(102,111+i*82,218,28),12,W.MUTED)
         W.fill_bar(W.bar(panel,Rect2(102,141+i*82,200,4)),pokemon.hp,pokemon.max_hp)
         var experience := W.bar(panel,Rect2(102,148+i*82,200,3),W.GOLD)
@@ -240,7 +242,7 @@ func _rest() -> void:
                 W.panel(page,Rect2(550,y,1190,114),Color("172d32"))
                 W.icon(page,"ball" if key == "ball" else "heal",Rect2(574,y+30,48,48))
                 W.label(page,"%s · %d 골드" % [item["name"],item["price"]],Rect2(650,y+12,600,40),24,W.TEXT)
-                W.label(page,("야생 전투에서 포획 · C" if key == "ball" else ("기절한 동료의 HP 50% 회복" if key == "revive" else "체력 %d 회복" % item["heal"]))+" · 재고 %d / 보유 %d" % [journey.shop_stock.get(key,0),journey.quantity(key)],Rect2(650,y+61,600,34),18,W.MUTED)
+                W.label(page,("야생 전투에서 포획 · C" if key == "ball" else ("기절한 동료의 HP 50% 회복" if key == "revive" else "최대 HP의 %s 회복" % PokemonStats.percent(int(journey.items()[key]["heal"]))))+" · 재고 %d / 보유 %d" % [journey.shop_stock.get(key,0),journey.quantity(key)],Rect2(650,y+61,600,34),18,W.MUTED)
                 var button := W.button(page,Rect2(1440,y+22,270,70),_buy.bind(key),"구매")
                 button.name = "Buy_"+key
                 button.disabled = not journey.buy_reason(key).is_empty()
@@ -265,6 +267,7 @@ func _rest() -> void:
                     button.name = "Use_%s_%d" % [key,index]
                     button.disabled = not journey.item_reason(key,index).is_empty()
                     button.tooltip_text = journey.item_reason(key,index)
+                    if button.tooltip_text.is_empty(): button.tooltip_text = "HP %d 회복" % (ceili(pokemon.max_hp*0.5) if key == "revive" else PokemonStats.scale(pokemon,int(journey.items()[key]["heal"])))
                     actions.append(button)
                 i += 1
         "loot":

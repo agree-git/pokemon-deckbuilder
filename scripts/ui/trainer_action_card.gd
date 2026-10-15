@@ -63,11 +63,15 @@ func update_card(view: Dictionary,reason: String,locked: bool) -> void:
     if view.get("retained",false): caption += " · 보존"
     category_label.text = caption
     var description: String = view["description"]
-    if view.has("preview_damage"): description = description.replace("피해 %d" % int(view["damage"]),"피해 %d" % int(view["preview_damage"]))
+    if view.has("preview_damage"):
+        var original := "위력 %d · %s" % [view["move_power"],"물리" if view.get("damage_class","") == "physical" else "특수"] if view.has("move_power") else "피해 %d" % int(view["damage"])
+        description = description.replace(original,"피해 %d" % int(view["preview_damage"]))
+    if view.has("preview_heal"): description = description.replace("회복 %d" % int(view["heal"]),"회복 %d" % int(view["preview_heal"]))
     if view.has("preview_block"): description = description.replace("보호막 %d" % int(view["block"]),"보호막 %d" % int(view["preview_block"]))
-    var summaries := {"relay_plan":"기술로 교대 시\n보호막 +3","ace_plan":"출전 유지 시 다음 턴\n공격 +2","tool_plan":"도구 사용 시\n보호막 +5","status_cash":"화상·독·씨앗 소비\n남은 횟수 ×4 피해"}
+    var summaries := {"relay_plan":"기술로 교대 시\n최대 HP의 6.3% 보호막","ace_plan":"출전 유지 시 다음 턴\n위력 보정 +20%","tool_plan":"도구 사용 시\n최대 HP의 10.4% 보호막","status_cash":"화상·독·씨앗 소비\n횟수마다 상대 HP의 8.3%"}
+    if key == "analysis": summaries[key] = "적 위력 -%d%%\n%d장 뽑기 · 소진" % [int(view.get("weaken",1))*10,int(view.get("draw",1))]
     effect_label.text = summaries.get(key,description)
-    tooltip_text = str(view["name"])+"\n"+caption+"\n"+description+("\n자동 교대 후 사용 · 추가 교대 비용 없음" if view.get("switches",false) else "")+("\n"+reason if not reason.is_empty() else "")
+    tooltip_text = ("위력 %d · %s\n" % [view["move_power"],"물리" if view.get("damage_class","") == "physical" else "특수"] if view.has("move_power") else "")+str(view["name"])+"\n"+caption+"\n"+description+("\n자동 교대 후 사용 · 추가 교대 비용 없음" if view.get("switches",false) else "")+("\n"+reason if not reason.is_empty() else "")
     _available = not locked and reason.is_empty()
     disabled = not _available
     face.modulate = Color.WHITE if _available else Color(0.65,0.71,0.72)

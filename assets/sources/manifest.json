@@ -3145,9 +3145,21 @@
     "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/pokemon_species_names.csv",
     "sha256": "820cde17074cdb1c2b0595c997fb8f998e773bd5da3bb525dec85703c86c5fd9"
   },
+  "assets/sources/csv/pokemon_stats.csv": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/pokemon_stats.csv",
+    "sha256": "fa2c44263a3706468682fefc3e0b3c4f5487fe9febed7d4ebcd6939c34b16aa8"
+  },
+  "assets/sources/csv/pokemon_stats_past.csv": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/pokemon_stats_past.csv",
+    "sha256": "0a074d9581369c1df13d8d4f4015fd7215b896c5dfb58107f3b529f7156950d2"
+  },
   "assets/sources/csv/pokemon_types.csv": {
     "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/pokemon_types.csv",
     "sha256": "f1fc4bfd657a034ea3bf6972423b10276424aa068577b304a78a08996425ba05"
+  },
+  "assets/sources/csv/type_efficacy.csv": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/type_efficacy.csv",
+    "sha256": "cdd7de4066680414d0a2433af805f139f425d6350cbf998ecab559a0fe8ff587"
   },
   "assets/sources/csv/type_names.csv": {
     "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/type_names.csv",
@@ -3160,9 +3172,5 @@
   "assets/sources/csv/version_groups.csv": {
     "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/version_groups.csv",
     "sha256": "28da8d89d8eb4966941f81a9e62b3990510ed4d76dd774158246551a8e7707a7"
-  },
-  "assets/sources/csv/type_efficacy.csv": {
-    "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/type_efficacy.csv",
-    "sha256": "cdd7de4066680414d0a2433af805f139f425d6350cbf998ecab559a0fe8ff587"
   }
 }

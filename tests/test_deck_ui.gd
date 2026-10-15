@@ -93,6 +93,8 @@ func run() -> void:
     ui.refresh()
     await process_frame
     settle()
+    check(ui.battle_ui.speed_label.text == ("스피드 +1" if j.battle.turn_energy_bonus == 1 else "기본 에너지 3"),"Visible energy caption reflects the captured turn-start speed bonus")
+    check(ui.battle_ui.ally_label.tooltip_text == PokemonStats.summary(j.battle.active()),"Combatant tooltip shows all six original stats")
     check(ui.battle_ui.skills.is_empty() and not ui.battle_ui.has_node("Break"),"Unified hand replaces fixed skills and break HUD")
     await picture("unified-battle")
     if native:

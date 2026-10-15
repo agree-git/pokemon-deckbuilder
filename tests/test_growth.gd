@@ -38,11 +38,11 @@ func run() -> void:
     var p := BattlePokemon.new(TacticalContent.PARTY[0],987)
     TacticalGrowth.initialize(p)
     check(p.level == 5 and p.learned_skills == ["move_10","move_45"] and p.experience == 135,"Charmander starts with original Lv.5 moves and species XP baseline")
-    p.hp = 20
+    p.hp = p.max_hp-7
     TacticalGrowth.award(p,TacticalGrowth.experience_floor(6,4)-p.experience)
     check(p.level == 6 and "move_52" not in p.learned_skills,"No early Ember or universal Lv.10 grant")
     TacticalGrowth.award(p,TacticalGrowth.experience_floor(7,4)-p.experience)
-    check(p.level == 7 and "move_52" in p.learned_skills and p.hp == 22,"Original level seven learns Ember without full-healing")
+    check(p.level == 7 and "move_52" in p.learned_skills and p.max_hp-p.hp == 7,"Original level seven learns Ember without full-healing")
     var report := TacticalGrowth.award(p,TacticalGrowth.experience_floor(16,4)-p.experience)
     check(p.level == 16 and p.species_id == 5 and p.uid == 987 and report["evolutions"].size() == 1,"Reached level automatically evolves Charmander while retaining identity")
     check(p.learned_skills == ["move_10","move_45","move_52","move_108"],"Evolution keeps known moves and original level thirteen Smokescreen")

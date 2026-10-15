@@ -22,12 +22,26 @@ static func score(move: Dictionary) -> float:
     if move.has("strength"): return 8
     if move.has("block"): return 5
     return 0
+static func reward(j: TacticalJourney) -> int:
+    # Build a real run: prefer party relics, then useful equipment and a small
+    # number of support cards. Skipping all 69 rewards is not the normal loop.
+    for i in j.reward_options.size():
+        if j.reward_options[i]["kind"] == "relic": return i
+    for i in j.reward_options.size():
+        var option: Dictionary = j.reward_options[i]
+        if option["kind"] == "held" and j.party.any(func(p: BattlePokemon): return p.held_item.is_empty()): return i
+    for i in j.reward_options.size():
+        var option: Dictionary = j.reward_options[i]
+        if option["kind"] == "card" and option["owner_uid"] == 0 and option["key"] in ["potion_card","counter","boost_card"] and j.deck.size() < 24: return i
+    return -1
 static func action(j: TacticalJourney) -> Array:
     return TacticalPolicy.action(j.battle)
 static func apply(j: TacticalJourney, action_value: Array) -> String:
     return j.use_item(action_value[1],action_value[2]) if action_value[0] == "item" else TacticalPolicy.apply(j.battle,action_value)
 static func camp(j: TacticalJourney) -> void:
     j.rest()
+    for p: BattlePokemon in j.party:
+        if p.held_item.is_empty() and not j.held_inventory.is_empty(): j.equip_held(j.held_inventory[0],p.uid)
     for i in j.party.size():
         for key: String in ["revive","super_potion","potion"]:
             if j.quantity(key) == 0 and j.party[i].hp < j.party[i].max_hp/2.0 and j.buy_reason(key).is_empty(): j.buy(key)

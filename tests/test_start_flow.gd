@@ -45,8 +45,9 @@ func run() -> void:
     j = TacticalJourney.new(42,"seed_relay",[4])
     var before := j.battle.snapshot()
     check(not j.capture().is_empty() and j.battle.snapshot() == before and j.balls == 2,"Capture above threshold is atomic")
-    j.battle.enemy().hp = 10
-    check(j.capture().is_empty() and j.balls == 1 and j.battle.energy == 2 and j.battle.phase == TacticalBattle.WON,"Legal capture costs a ball/energy and resolves wild encounter")
+    j.battle.enemy().hp = maxi(1,floori(j.battle.enemy().max_hp*0.25))
+    var energy := j.battle.energy
+    check(j.capture().is_empty() and j.balls == 1 and j.battle.energy == energy-1 and j.battle.phase == TacticalBattle.WON,"Legal capture costs a ball/energy and resolves wild encounter")
     check(j.battle.opening().get("captured",false) and not j.battle.events.any(func(event: Dictionary): return event["kind"] == "refund"),"Capture does not grant knockout chain refunds")
     j.settle()
     check(j.phase == TacticalJourney.CAPTURE and j.pending_captures.size() == 1,"Captured member waits for explicit join decision")
@@ -66,7 +67,7 @@ func run() -> void:
     legendary.battle.enemy().hp = 1
     check(not legendary.capture().is_empty() and legendary.balls == 2,"Legendary/mythical capture cannot use ordinary wild conditions")
     j = TacticalJourney.new(42,"seed_relay",[1,4,7])
-    j.battle.enemy().hp = 10
+    j.battle.enemy().hp = maxi(1,floori(j.battle.enemy().max_hp*0.25))
     j.capture()
     for pokemon: BattlePokemon in j.party: j.battle._damage(pokemon,999,true)
     j.battle._outcome()

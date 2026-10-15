@@ -41,6 +41,7 @@ var lab_button: Button
 var history_button: Button
 var ally_bar: ColorRect
 var enemy_bar: ColorRect
+var speed_label: Label
 var energy_label: Label
 var status_label: Label
 var ally_label: Label
@@ -242,6 +243,7 @@ func _build_actions() -> void:
     W.panel(self,Rect2(48,878,112,112),Color("2d3d3c"),Color("aa975f"),56)
     W.icon(self,"energy",Rect2(88,889,32,32))
     energy_label = _label("",Rect2(49,924,110,53),38,GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+    speed_label = _label("",Rect2(28,996,152,30),16,MINT,HORIZONTAL_ALIGNMENT_CENTER)
     var energy_tip := W.button(self,Rect2(48,878,112,112),func(): pass)
     energy_tip.flat = true
     energy_tip.name = "Energy"
@@ -330,7 +332,7 @@ func _build_help() -> Control:
     var overlay := _modal("전투 도움말",Rect2(420,175,1080,720))
     var body: Panel = overlay.get_node("Body")
     var steps := [
-        ["draw","하나의 공유 덱","기술 · 도구 · 트레이너 카드를 뽑습니다.\n턴마다 에너지 3 · 카드 5장\n남은 카드는 턴 종료 시 버립니다."],
+        ["draw","하나의 공유 덱","기술 · 도구 · 트레이너 카드를 뽑습니다.\n턴마다 기본 에너지 3 · 카드 5장\n턴 시작 시 더 빠르면 에너지 +1."],
         ["switch","기술 사용 → 자동 교대","다른 동료의 기술을 쓰면 즉시 교대.\n자동 교대에는 추가 비용이 없습니다.\n마지막 출전 동료가 공격을 받습니다."],
         ["boost","카드와 유물의 조합","지속 카드는 사용한 전투 동안 유지.\n유물은 파티 전체에 적용됩니다.\n소진 카드는 다음 전투에 돌아옵니다."],
     ]
@@ -443,7 +445,7 @@ func _refresh() -> void:
     for i in enemy_slots.size():
         var p := battle.enemies[i]
         var slot := enemy_slots[i]
-        slot.tooltip_text = "%s · HP %d / %d%s" % [p.display_name,p.hp,p.max_hp," · 기절" if not p.alive() else ""]
+        slot.tooltip_text = "%s · Lv.%d · HP %d / %d%s\n%s" % [p.display_name,p.level,p.hp,p.max_hp," · 기절" if not p.alive() else "",PokemonStats.summary(p)]
         slot.get_child(0).modulate.a = 0.25 if not p.alive() else 1.0
         slot.get_node("Active").visible = i == battle.enemy_index and p.alive()
         enemy_names[i].text = p.display_name
@@ -478,7 +480,12 @@ func _refresh() -> void:
     intent_label.text = "—" if cancelled else str(action["value"])
     get_node("Intent").tooltip_text = "수면으로 다음 행동을 취소합니다." if cancelled else "다음 적 행동: %s %d\n상성과 적 강화가 적용된 수치입니다." % [names[action["kind"]],action["value"]]
     UiMotion.text(energy_label,str(battle.energy))
-    get_node("Energy").tooltip_text = "에너지 %d · 턴 시작 시 3\n기술·도구·트레이너 카드가 공유합니다. 기술 자동 교대는 무료입니다." % battle.energy
+    speed_label.text = "스피드 +1" if battle.turn_energy_bonus == 1 else "기본 에너지 3"
+    get_node("Energy").tooltip_text = "에너지 %d · 이번 턴 지급 %d\n턴 시작 스피드: 아군 %d / 상대 %d\n더 빠르면 +1, 동률은 기본 3. 교대 시 재지급하지 않습니다." % [battle.energy,3+battle.turn_energy_bonus,battle.turn_speed_actor,battle.turn_speed_enemy]
+    ally_label.mouse_filter = Control.MOUSE_FILTER_PASS
+    enemy_label.mouse_filter = Control.MOUSE_FILTER_PASS
+    ally_label.tooltip_text = PokemonStats.summary(battle.active())
+    enemy_label.tooltip_text = PokemonStats.summary(foe)
     UiMotion.text(draw_count,str(battle.draw_pile.size()))
     UiMotion.text(discard_count,str(battle.discard.size()))
     end_button.disabled = busy or battle.phase != TacticalBattle.PLAYER
@@ -493,7 +500,7 @@ func _refresh() -> void:
         party_values[i].text = "기절" if not pokemon.alive() else "%d / %d" % [pokemon.hp,pokemon.max_hp]
         W.fill_bar(party_bars[i],pokemon.hp,pokemon.max_hp)
         button.disabled = busy or not battle.switch_reason(pokemon.uid).is_empty()
-        button.tooltip_text = "%d · %s · Lv.%d · %s\n%s · 성장 공격 +%d\n%s" % [i+1,pokemon.display_name,pokemon.level,catalog.type_name(pokemon.type),TacticalGrowth.progress_text(pokemon),TacticalGrowth.attack_bonus(pokemon),"출전 중" if pokemon == battle.active() else (battle.switch_reason(pokemon.uid) if not battle.switch_reason(pokemon.uid).is_empty() else switch_label.text)]
+        button.tooltip_text = "%d · %s · Lv.%d · %s\n%s XP\n%s\n%s" % [i+1,pokemon.display_name,pokemon.level,catalog.type_name(pokemon.type),TacticalGrowth.progress_text(pokemon),PokemonStats.summary(pokemon),"출전 중" if pokemon == battle.active() else (battle.switch_reason(pokemon.uid) if not battle.switch_reason(pokemon.uid).is_empty() else switch_label.text)]
         if not pokemon.held_item.is_empty(): button.tooltip_text += "\n"+str(TacticalContent.HELD_ITEMS[pokemon.held_item]["name"])+" · "+str(TacticalContent.HELD_ITEMS[pokemon.held_item]["description"])
         var border := MINT if pokemon == battle.active() else Color("3d555a")
         button.add_theme_stylebox_override("disabled",W.box(Color("203a3d") if pokemon == battle.active() else Color("17262e"),border))
@@ -534,15 +541,17 @@ func _refresh() -> void:
 func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
     var items: Array = []
     if pokemon.block > 0: items.append(["shield",str(pokemon.block),"보호막 %d · 다음 턴 시작 시 해제" % pokemon.block])
-    if pokemon.strength != 0: items.append(["boost",str(pokemon.strength),"공격력 %+d · 이번 전투 동안 유지" % pokemon.strength])
+    if pokemon.strength != 0: items.append(["boost",str(pokemon.strength),"위력 보정 %+d%% · 이번 전투 동안 유지" % (pokemon.strength*10)])
+    for stat: String in pokemon.stat_stages:
+        if pokemon.stat_stages[stat] != 0: items.append(["boost","%+d" % pokemon.stat_stages[stat],"%s %+d단계 · 교대 시 해제" % [PokemonStats.TITLES[stat],pokemon.stat_stages[stat]]])
     for key: String in pokemon.statuses:
         var turns: int = pokemon.statuses[key]["turns"]
-        var titles := {"burn":"화상 · 2 피해","seed":"씨뿌리기 · 2 흡수","poison":"독 · 2 피해","sleep":"수면 · 행동 취소","paralysis":"마비 · 공격 -2","confusion":"혼란 · 공격 -2 / 2 피해","exposed":"방어 약화 · 받는 피해 +2"}
+        var titles := {"burn":"화상 · %d 피해 / 물리 위력 절반" % PokemonStats.scale(pokemon,2),"seed":"씨뿌리기 · %d 흡수" % PokemonStats.scale(pokemon,2),"poison":"독 · %d 피해" % PokemonStats.scale(pokemon,2),"sleep":"수면 · 행동 취소","paralysis":"마비 · 스피드 절반","confusion":"혼란 · %d 피해" % PokemonStats.scale(pokemon,2),"exposed":"방어 약화 · 공격자 체력에 비례한 추가 피해"}
         items.append(["fire" if key == "burn" else ("seed" if key == "seed" else "counter"),str(turns),str(titles.get(key,key))+" · %d회 남음" % turns])
     if pokemon == battle.active() and battle.next_attack_bonus > 0:
-        items.append(["boost","+%d" % battle.next_attack_bonus,"강화 지시 · 다음 공격 기본 피해 +%d" % battle.next_attack_bonus])
+        items.append(["boost","+%d" % battle.next_attack_bonus,"강화 지시 · 다음 공격 추가 피해 +%d (자속·상성 적용 전)" % PokemonStats.scale(pokemon,battle.next_attack_bonus)])
     if pokemon == battle.active() and battle.switch_bonus.has(pokemon.uid):
-        items.append(["switch","+3","교체 연계 · 다음 공격 기본 피해 +3"])
+        items.append(["switch","+3","교체 연계 · 다음 공격 추가 피해 +%d (자속·상성 적용 전)" % PokemonStats.scale(pokemon,3)])
 
     var signature := str([pokemon.uid,items])
     if row.get_meta("status_signature","") == signature: return

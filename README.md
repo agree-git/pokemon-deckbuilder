@@ -26,6 +26,8 @@
 - 1세대 기술 165종을 재사용 가능한 공격·방어·회복·상태 연출에 연결했다. 원작의 개별 기술 애니메이션을 복제한 것은 아니며, 실제 피해·명중·상태 확률을 적용하지 않는 연출 프리뷰다.
 - 화면·UI 기준은 **1920×1080**이며, 전체 화면을 저해상도로 렌더링하지 않는다. 도트 스타일은 그래픽에만 적용한다. 포켓몬 스프라이트는 최근접 필터와 정수 배율로 표시하고, 글자·카드·HUD는 화면 해상도에서 그린다.
 
+- 3세대 종족값·레벨로 여섯 능력치를 계산하고 물리/특수·자속·복합타입 상성을 적용한다. 턴 시작 출전 아군이 더 빠르면 에너지 4, 아니면 3이다. [능력치와 스피드 에너지](docs/pokemon-stats.md)를 참고한다. 규칙 변경 전 원정 저장은 새 원정으로 시작하며 포획 도감은 유지한다.
+
 ## 전투 화면
 
 - 에너지는 하단 왼쪽 끝, 바로 오른쪽에는 `남은 카드`·`버린 카드` 수를 위아래로 표시한다. 더미 확인과 카드 이동 연출도 이 위치를 따른다.
@@ -59,7 +61,7 @@ Godot 4.7.2로 `project.godot`을 열고 F5로 시작 화면을 실행한다. `�
 source /workspace/.cloud-setup/pokemon-deckbuilder/env.sh
 cd /workspace/pokemon-deckbuilder
 godot --version
-godot --headless --path . --editor --import
+godot --headless --path . --editor --import --quit
 godot --headless --path . --script res://tests/test_journey_save.gd
 godot --headless --path . --script res://tests/test_save_files.gd
 python3 tools/test_save_process.py
@@ -71,6 +73,7 @@ godot --headless --path . --script res://tests/test_growth.gd
 godot --headless --path . --script res://tests/test_growth_ui.gd
 godot --headless --path . --script res://tests/test_start_flow.gd
 godot --headless --path . --script res://tests/test_start_ui.gd
+godot --headless --path . --script res://tests/test_pokemon_stats.gd
 godot --headless --path . --script res://tests/test_deck_combat.gd
 godot --headless --path . --script res://tests/test_deck_run.gd
 godot --headless --path . --script res://tests/test_deck_ui.gd
@@ -104,15 +107,15 @@ godot --path .
 
 현재 검증은 Linux의 Godot 4.7.2 헤드리스와 실제 Compatibility 렌더러에서 수행했다. Windows 실행과 내보내기는 아직 검증하지 않았다.
 
-원본 스프라이트·데이터·폰트를 다시 내려받으려면 `python3 tools/import_pokemon_assets.py`, 출현표·관장 편성과 해당 문서 재생성은 `python3 tools/build_biomes.py`, 성장 곡선·레벨별 기술표는 `python3 tools/build_progression.py`, 현대 타입 상성은 `python3 tools/build_type_chart.py`를 실행한다. Python 3 표준 라이브러리만 사용하고 고정 업스트림 커밋·파일별 SHA-256을 검증한다. 기존 `import_kanto_assets.py` 명령도 같은 386종 임포터로 연결한다. 출처·라이선스는 [ASSET_SOURCES.md](ASSET_SOURCES.md)에 기록했다.
+원본 스프라이트·데이터·폰트를 다시 내려받으려면 `python3 tools/import_pokemon_assets.py`, 출현표·관장 편성과 해당 문서 재생성은 `python3 tools/build_biomes.py`, 성장 곡선·레벨별 기술표는 `python3 tools/build_progression.py`, 현대 타입 상성은 `python3 tools/build_type_chart.py`, 3세대 종족값은 `python3 tools/build_stats.py`를 실행한다. Python 3 표준 라이브러리만 사용하고 고정 업스트림 커밋·파일별 SHA-256을 검증한다. 기존 `import_kanto_assets.py` 명령도 같은 386종 임포터로 연결한다. 출처·라이선스는 [ASSET_SOURCES.md](ASSET_SOURCES.md)에 기록했다.
 
 ## 정식 원정과 이후 구현
 
 정식 진행은 **무작위 바이옴 8곳 → 각 타입 관장 6마리 → 배지 8개 → 전 지방 무작위 사천왕 4명 → 무작위 챔피언 → 챔피언 등극**이다. [경로·대진·난이도·현재 제한](docs/full-campaign.md)을 참고한다. 현대 18개 타입의 약점·저항·무효와 복합타입을 적용한다. 경로·대진은 시드로 재현한다.
 
-`test_campaign.gd`는 100개 시드 경로와 30개 시드의 69전투 완주, 챔피언 직전 Lv.100, 리그 진입 제한과 중복 정산을 검사한다. `test_camps.gd`는 386종의 경험치 예산·기절 30%와 야영지 이벤트의 중복 지급 방지·상인 재고를 검사한다. `test_camp_ui.gd`와 `python3 tools/test_native_pointer.py --probe native_camp_probe`는 이동 연출·입력 차단과 모든 야영지 만남을 검사한다. `test_campaign_ui.gd`와 `python3 tools/test_native_pointer.py --probe native_campaign_probe`는 마우스·1/2/3·Q/W/E/R·Enter로 전체 원정과 엔딩을 검사한다. 기존 시작·포획 UI 검사는 개발용 짧은 경로로 보존한다.
+`test_campaign.gd`는 100개 시드 경로와 30개 시드의 실제 보상·장비 선택과 승리/전멸 결과, 고정 시드 3개의 69전투 완주, 챔피언 직전 Lv.100, 리그 진입 제한과 중복 정산을 검사한다. `test_camps.gd`는 386종의 경험치 예산·기절 30%와 야영지 이벤트의 중복 지급 방지·상인 재고를 검사한다. `test_camp_ui.gd`와 `python3 tools/test_native_pointer.py --probe native_camp_probe`는 이동 연출·입력 차단과 모든 야영지 만남을 검사한다. `test_campaign_ui.gd`와 `python3 tools/test_native_pointer.py --probe native_campaign_probe`는 마우스·1/2/3·Q/W/E/R·Enter로 전체 원정과 엔딩을 검사한다. 기존 시작·포획 UI 검사는 개발용 짧은 경로로 보존한다.
 
-종별 경험치 곡선·스테이지 배율·자동 진화·원작 레벨별 기술 교체와 야영지 상점·가방·전리품을 연결했다. 원정 자동 저장과 종료 후 이어하기·백업 복구를 구현했다. 통합 카드 덱·유물 7종·지닌 물건 6종·혼합 보상·강화·제거를 연결했다. 다음은 조합별 밸런스와 적 전술, 스피드 등 능력치 설계다. 현재 자동 검사는 기본 스타팅 세 마리로 수행하며 모든 파티 조합의 난이도를 보장하지 않는다.
+종별 경험치 곡선·스테이지 배율·자동 진화·원작 레벨별 기술 교체와 야영지 상점·가방·전리품을 연결했다. 원정 자동 저장과 종료 후 이어하기·백업 복구를 구현했다. 통합 카드 덱·유물 7종·지닌 물건 6종·혼합 보상·강화·제거를 연결했다. 3세대 종족값·물리/특수 피해·자속·턴 시작 스피드 에너지까지 연결했다. 다음은 조합별 밸런스와 적 전술 확장이다. 현재 자동 검사는 기본 스타팅 세 마리로 수행하며 모든 파티 조합의 난이도를 보장하지 않는다.
 
 ## 데이터와 구조
 
