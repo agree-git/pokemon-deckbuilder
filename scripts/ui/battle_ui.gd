@@ -133,9 +133,10 @@ func _build_top_bar() -> void:
     var biomes := _button("전투 기록", Rect2(1390, 18, 128, 40))
     biomes.pressed.connect(func(): _biome_popup.visible = not _biome_popup.visible)
     var lab := _button("아트 랩 · F2", Rect2(1534, 18, 150, 40))
-    lab.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/art_lab.tscn"))
+    lab.pressed.connect(_open_lab)
     var settings := _button("화면 · F11", Rect2(1700, 18, 165, 40))
     settings.pressed.connect(_toggle_fullscreen)
+    _button("전술 시험 · F3", Rect2(35, 175, 260, 42)).pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/tactical_battle.tscn"))
     _label("관동 교체 전투", Rect2(35, 103, 220, 27), 19, Color("d1debf"))
     _label("9개 장소 · 목표: 숲의 수호자 격파", Rect2(35, 136, 320, 27), 16, Color("b0c4a9"))
 
@@ -568,11 +569,17 @@ func _toggle_fullscreen() -> void:
     var fullscreen := DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
     DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED if fullscreen else DisplayServer.WINDOW_MODE_FULLSCREEN)
 
+func _open_lab() -> void:
+    get_node("/root/BattleSession").set("return_scene", "res://scenes/battle_preview.tscn")
+    get_tree().change_scene_to_file("res://scenes/art_lab.tscn")
+
 func _unhandled_key_input(event: InputEvent) -> void:
     if event is InputEventKey and event.pressed and not event.echo:
         match event.keycode:
             KEY_F2:
-                get_tree().change_scene_to_file("res://scenes/art_lab.tscn")
+                _open_lab()
+            KEY_F3:
+                get_tree().change_scene_to_file("res://scenes/tactical_battle.tscn")
             KEY_R:
                 _restart_expedition(event.shift_pressed)
             KEY_ENTER:

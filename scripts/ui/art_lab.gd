@@ -257,7 +257,7 @@ func _build_inspector(body: HBoxContainer) -> void:
     column.add_child(_label("1세대 기술 165종 · 연출 샘플\n1920 × 1080 / 도트 에셋", 11, MUTED))
     var battle_link := Button.new()
     battle_link.text = "전투 UI로 돌아가기 · F2"
-    battle_link.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/battle_preview.tscn"))
+    battle_link.pressed.connect(func(): get_tree().change_scene_to_file(get_node("/root/BattleSession").get("return_scene")))
     column.add_child(battle_link)
 
 func select_biome(index: int) -> void:
@@ -390,7 +390,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
             return
         match event.keycode:
             KEY_F2:
-                get_tree().change_scene_to_file("res://scenes/battle_preview.tscn")
+                get_tree().change_scene_to_file(get_node("/root/BattleSession").get("return_scene"))
             KEY_SPACE:
                 play_selected()
                 get_viewport().set_input_as_handled()
