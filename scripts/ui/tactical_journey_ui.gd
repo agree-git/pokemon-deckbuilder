@@ -170,13 +170,18 @@ func _map() -> void:
         var highlighted: bool = i == journey.step or (journey.current()["kind"] == "rest" and i == journey.step-1)
         var height := 148.0 if journey.full_campaign else 220.0
         var panel := W.panel(page,Rect2(550+(column%columns)*width,310+floori(column/float(columns))*164,width-12,height),Color("20383e") if highlighted else Color("14282f"),W.GOLD if highlighted else Color("405960"))
+        panel.name = "Encounter_%d" % i
         W.icon(panel,"check" if i < journey.step else ("attack" if stop["kind"] in ["trainer","veteran"] else stop["icon"]),Rect2(18,20,34,34))
         W.label(panel,str(column+1),Rect2(width-64,20,38,30),17,W.MUTED,HORIZONTAL_ALIGNMENT_RIGHT)
         W.label(panel,stop["name"].replace(" · ","\n"),Rect2(18,62,width-48,60),17,W.TEXT)
         if journey.full_campaign:
             var final_battle: bool = stop["kind"] == "champion"
             W.icon(panel,"badge" if final_battle else "heal",Rect2(width-42,height-28,16,16))
+            panel.mouse_filter = Control.MOUSE_FILTER_PASS
             panel.tooltip_text = ("승리하면 챔피언 등극" if final_battle else "전투 후 야영지")+" · 적 Lv.%d" % stop["level"]
+            for opponent: Dictionary in journey.route.opponents(i):
+                panel.tooltip_text += "\n%s · %s · %s" % [opponent["name"],EnemyTactics.title(opponent["tactic"]),EnemyTactics.pattern_text(opponent)]
+    W.label(page,"장소에 마우스를 올리면 상대 전술을 확인할 수 있습니다.",Rect2(550,274,1190,28),14,W.MUTED)
     _action("%s로 이동" % journey.current()["name"],Rect2(820,670,560,64),_enter)
     if journey.full_campaign:
         W.label(page,"원정 경로 · 배지 %d / 8" % journey.badges,Rect2(550,748,1190,36),19,W.MUTED)

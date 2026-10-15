@@ -119,11 +119,12 @@ func intent() -> Dictionary:
 func intent_for(defender: BattlePokemon) -> Dictionary:
     var definitions: Array = enemy_definitions[enemy_index]["intents"]
     var result: Dictionary = definitions[int(opening()["intent"]) % definitions.size()].duplicate(true)
+    result["tactic"] = str(enemy_definitions[enemy_index].get("tactic",""))
     if result["kind"] in ["attack","charge"]:
         var move := TacticalMoves.definition(TacticalMoves.key_for(int(result["move_id"]))).duplicate(true)
         move["type"] = result.get("type",move.get("type","normal"))
         result["damage_class"] = move.get("damage_class","physical")
-        result["value"] = PokemonStats.damage(enemy(),defender,move,multiplier(move["type"],defender),0,1.2 if result["kind"] == "charge" else 1.0)
+        result["value"] = PokemonStats.damage(enemy(),defender,move,1.0 if int(result["move_id"]) == 165 else multiplier(move["type"],defender),0,1.2 if result["kind"] == "charge" else 1.0)
     elif result["kind"] == "block": result["value"] = PokemonStats.scale(enemy(),int(result["value"]))
     if enemy().statuses.has("sleep"): result["asleep"] = true
     return result
@@ -355,7 +356,7 @@ func _enemy_action() -> void:
     if enemy().statuses.has("sleep"):
         _record("cancel",enemy().display_name+"은 잠들어 행동할 수 없습니다.")
     else:
-        _record("enemy_action",enemy().display_name+" · "+{"attack":"공격","charge":"강공격","block":"방어","boost":"강화"}[action["kind"]],action.merged({"action":action["kind"]}))
+        _record("enemy_action",enemy().display_name+" · "+(str(TacticalMoves.visual(int(action["move_id"]))["name"]) if action["kind"] in ["attack","charge"] else ("방어" if action["kind"] == "block" else "위력 강화")),action.merged({"action":action["kind"]}))
         match action["kind"]:
             "attack","charge": _damage(active(),int(action["value"]))
             "block":

@@ -162,6 +162,7 @@ static func validate(data: Variant) -> bool:
     if b["phase"] == TacticalBattle.REPLACE and b["_pending"].is_empty(): return false
     for definition: Variant in b["enemy_definitions"]:
         if not definition is Dictionary or not definition.get("intents") is Array or definition["intents"].is_empty(): return false
+        if definition.has("tactic") and (not definition["tactic"] is String or not EnemyTactics.PROFILES.has(definition["tactic"])): return false
         for intent: Variant in definition["intents"]:
             if not intent is Dictionary or intent.get("kind") not in ["attack","charge","block","boost"]: return false
             if not integer(intent.get("value"),0,100000) or not integer(intent.get("move_id"),1,354): return false

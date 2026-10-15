@@ -89,17 +89,9 @@ func opponents(step: int) -> Array:
         var species := _catalog.species(id)
         var level := int(node["level"])
         var hp := PokemonStats.value(id,level,"hp")
-        var attack := "normal"
-        var move := 33
-        for learned: Dictionary in TacticalGrowth.species_data(id)["learnset"]:
-            var definition := TacticalMoves.definition(TacticalMoves.key_for(int(learned["move"])))
-            if int(learned["level"]) <= level and definition.has("damage") and definition["type"] in species["types"]:
-                attack = definition["type"]
-                move = int(learned["move"])
-        result.append({"id":id,"name":species["name"],"type":species["types"][0],"types":species["types"],"max_hp":hp,"level":level,"intents":[
-            {"kind":"charge","value":40,"type":attack,"move_id":move},
-            {"kind":"block","value":6,"move_id":115},
-            {"kind":"attack","value":40,"type":attack,"move_id":move}]})
+        var definition := {"id":id,"name":species["name"],"type":species["types"][0],"types":species["types"],"max_hp":hp,"level":level}
+        definition.merge(EnemyTactics.build(id,level,species["types"],node["kind"],i,node["party"].size()))
+        result.append(definition)
     return result
 func experience_reward(step: int,species_id := 1) -> float:
     return 0.0 if stops[step]["kind"] == "rest" else CampaignBalance.experience_reward(int(stops[step]["battle_index"]),species_id)

@@ -204,7 +204,7 @@ func _build_combat_hud() -> void:
         W.icon(badge,"shield",Rect2(12,7,28,28))
         shield_values.append(W.label(badge,"",Rect2(52,0,222,42),22,Color("c5eeff")))
         badge.mouse_filter = Control.MOUSE_FILTER_PASS
-        badge.tooltip_text = "보호막이 먼저 피해를 흡수합니다. 다음 턴 시작 시 사라집니다."
+        badge.tooltip_text = "보호막이 먼저 피해를 흡수합니다. "+("다음 플레이어 턴 시작 시 사라집니다." if shield_badges.is_empty() else "다음 적 행동 직전에 사라집니다.")
         shield_badges.append(badge)
     ally_statuses.position = Vector2(335,706)
     ally_statuses.size = Vector2(400,32)
@@ -220,6 +220,9 @@ func _build_combat_hud() -> void:
     W.icon(intent_box,"attack",Rect2(16,15,32,32)).name = "Icon"
     intent_label = W.label(intent_box,"",Rect2(54,7,60,48),29,Color("f1b69b"),HORIZONTAL_ALIGNMENT_CENTER)
     W.label(intent_box,"",Rect2(0,53,128,27),14,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER).name = "Title"
+    var tactic_title := W.label(intent_box,"",Rect2(0,-32,128,28),14,GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+    tactic_title.name = "Tactic"
+    tactic_title.add_theme_stylebox_override("normal",W.box(Color(0.035,0.075,0.095,0.96),Color("405960"),7))
 
 func _roster_row(panel: Panel,index: int,pokemon: BattlePokemon,action: Callable) -> Button:
     var row := W.button(panel,Rect2(12,44+index*66,216,58),action)
@@ -473,7 +476,7 @@ func _refresh() -> void:
     for i in enemy_slots.size():
         var p := _view_member(battle.enemies[i])
         var slot := enemy_slots[i]
-        slot.tooltip_text = "%s · Lv.%d · HP %d / %d%s\n%s" % [p.display_name,p.level,p.hp,p.max_hp," · 기절" if not p.alive() else "",PokemonStats.summary(p)]
+        slot.tooltip_text = "%s · Lv.%d · HP %d / %d%s\n%s\n%s" % [p.display_name,p.level,p.hp,p.max_hp," · 기절" if not p.alive() else "",PokemonStats.summary(p),EnemyTactics.description(battle.enemy_definitions[i])]
         slot.get_child(0).modulate.a = 0.25 if not p.alive() else 1.0
         slot.get_node("Active").visible = i == int(_visual_frame.get("enemy_index",battle.enemy_index)) and p.alive()
         enemy_names[i].text = p.display_name
@@ -505,8 +508,12 @@ func _refresh() -> void:
         _shown_intent = intent_signature
     get_node("Intent/Icon").texture = W.texture("counter" if cancelled else intent_icon[action["kind"]])
     get_node("Intent/Title").text = "행동 취소" if cancelled else names[action["kind"]]
-    intent_label.text = "—" if cancelled else str(action["value"])
-    get_node("Intent").tooltip_text = "수면으로 다음 행동을 취소합니다." if cancelled else "다음 적 행동: %s %d\n상성과 적 강화가 적용된 수치입니다." % [names[action["kind"]],action["value"]]
+    intent_label.text = "—" if cancelled else ("+%d%%" % (int(action["value"])*10) if action["kind"] == "boost" else str(action["value"]))
+    intent_label.add_theme_font_size_override("font_size",22 if action["kind"] == "boost" else 29)
+    get_node("Intent/Tactic").text = EnemyTactics.title(action.get("tactic",""))
+    get_node("Intent").tooltip_text = EnemyTactics.intent_text(action)+"\n"+EnemyTactics.description(battle.enemy_definitions[int(_visual_frame.get("enemy_index",battle.enemy_index))])
+    if action["kind"] in ["attack","charge"] and not cancelled:
+        get_node("Intent").tooltip_text += "\n현재 보호막으로 %d 흡수 · 남은 피해 %d" % [mini(ally.block,int(action["value"])),maxi(0,int(action["value"])-ally.block)]
     UiMotion.text(energy_label,str(int(_visual_frame.get("energy",battle.energy))))
     var speed_bonus := int(_visual_frame.get("turn_energy_bonus",battle.turn_energy_bonus))
     speed_label.text = "스피드 +1" if speed_bonus == 1 else "기본 에너지 3"
