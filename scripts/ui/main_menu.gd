@@ -23,6 +23,8 @@ var grid: GridContainer
 var slots: Panel
 var counter: Label
 var notice: Label
+var loadout_button: Button
+var loadout_panel: StarterLoadoutPanel
 
 func _ready() -> void:
     set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -199,10 +201,21 @@ func _sync_selection() -> void:
         else:
             row.disabled = true
             W.label(row,"빈 자리",Rect2(26,0,500,100),22,W.MUTED)
-    W.label(slots,"첫 번째 포켓몬이 먼저 출전합니다.",Rect2(28,486,552,40),18,W.MUTED)
+    loadout_button = W.button(slots,Rect2(28,486,552,48),_show_loadout,"출발 덱·Lv.5 능력치 확인")
+    loadout_button.name = "PreviewLoadout"
+    loadout_button.disabled = selection.is_empty()
     confirm_button.disabled = selection.is_empty()
     for id: int in species_buttons:
         species_buttons[id].add_theme_stylebox_override("normal",W.box(Color("23403d") if id in selection else Color("152b32"),W.GOLD if id in selection else Color("3d555a")))
+func _show_loadout() -> void:
+    if selection.is_empty() or is_instance_valid(loadout_panel): return
+    var focused := get_viewport().gui_get_focus_owner()
+    if focused != null: focused.release_focus()
+    loadout_panel = StarterLoadoutPanel.new()
+    loadout_panel.name = "StarterLoadout"
+    loadout_panel.loadout = StarterLoadout.new(selection,catalog)
+    loadout_panel.closed.connect(func(): loadout_panel = null)
+    page.add_child(loadout_panel)
 func _start() -> void:
     if starting: return
     var error: String = session.start_journey(selection,int(Time.get_unix_time_from_system()) ^ Time.get_ticks_usec(),full_campaign)
@@ -224,6 +237,10 @@ func _back() -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
     if starting: return
     if not event is InputEventKey or not event.pressed or event.echo: return
+    if is_instance_valid(loadout_panel):
+        if event.keycode == KEY_ESCAPE: loadout_panel.close()
+        get_viewport().set_input_as_handled()
+        return
     if event.keycode == KEY_ESCAPE and mode != "title": _back()
     elif event.keycode == KEY_F11:
         DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN else DisplayServer.WINDOW_MODE_FULLSCREEN)
