@@ -13,6 +13,9 @@ var camp_tabs: Dictionary = {}
 var camp_notice := ""
 var rest_button: Button
 var learn_buttons: Array[Button] = []
+var travelling := false
+var travel: JourneyTravel
+var encounter_buttons: Array[Button] = []
 
 func _ready() -> void:
     set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -36,6 +39,7 @@ func refresh() -> void:
     actions.clear()
     learn_buttons.clear()
     camp_tabs.clear()
+    encounter_buttons.clear()
     if journey.phase == TacticalJourney.BATTLE:
         battle_ui = load("res://scenes/tactical_battle.tscn").instantiate()
         battle_ui.battle = journey.battle
@@ -129,15 +133,24 @@ func _map() -> void:
     var visible_steps: Array[int] = []
     for i in stops.size():
         if not journey.full_campaign or (stops[i]["chapter"] == journey.current()["chapter"] and (int(stops[i]["chapter"]) < 8 or stops[i]["kind"] != "rest")): visible_steps.append(i)
-    var width := 1190.0/visible_steps.size()
+    if journey.full_campaign:
+        visible_steps = visible_steps.filter(func(i: int): return stops[i]["kind"] != "rest")
+    var columns := 4 if journey.full_campaign else visible_steps.size()
+    var width := 1190.0/columns
     for column in visible_steps.size():
         var i := visible_steps[column]
         var stop: Dictionary = stops[i]
-        var panel := W.panel(page,Rect2(550+column*width,350,width-12,220),Color("20383e") if i == journey.step else Color("14282f"),W.GOLD if i == journey.step else Color("405960"))
-        W.icon(panel,"check" if i < journey.step else stop["icon"],Rect2((width-60)/2,34,48,48))
-        W.label(panel,str(column+1),Rect2(0,94,width-12,30),17,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
-        W.label(panel,stop["name"].replace(" · ","\n"),Rect2(8,130,width-28,72),16,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
-    _action("%s로 이동" % journey.current()["name"],Rect2(820,620,560,72),_enter)
+        var highlighted: bool = i == journey.step or (journey.current()["kind"] == "rest" and i == journey.step-1)
+        var height := 148.0 if journey.full_campaign else 220.0
+        var panel := W.panel(page,Rect2(550+(column%columns)*width,310+floori(column/float(columns))*164,width-12,height),Color("20383e") if highlighted else Color("14282f"),W.GOLD if highlighted else Color("405960"))
+        W.icon(panel,"check" if i < journey.step else ("attack" if stop["kind"] in ["trainer","veteran"] else stop["icon"]),Rect2(18,20,34,34))
+        W.label(panel,str(column+1),Rect2(width-64,20,38,30),17,W.MUTED,HORIZONTAL_ALIGNMENT_RIGHT)
+        W.label(panel,stop["name"].replace(" · ","\n"),Rect2(18,62,width-48,60),17,W.TEXT)
+        if journey.full_campaign:
+            var final_battle: bool = stop["kind"] == "champion"
+            W.icon(panel,"badge" if final_battle else "heal",Rect2(width-42,height-28,16,16))
+            panel.tooltip_text = ("승리하면 챔피언 등극" if final_battle else "전투 후 야영지")+" · 적 Lv.%d" % stop["level"]
+    _action("%s로 이동" % journey.current()["name"],Rect2(820,670,560,64),_enter)
     if journey.full_campaign:
         W.label(page,"원정 경로 · 배지 %d / 8" % journey.badges,Rect2(550,748,1190,36),19,W.MUTED)
         for i in 8:
@@ -170,10 +183,15 @@ func _camp_tab(tab: String) -> void:
     camp_notice = ""
     refresh()
 func _rest() -> void:
-    W.label(page,"필요한 만큼 준비한 뒤 출발하세요.",Rect2(550,204,1190,40),22,W.MUTED)
+    var encounter := journey.camp()
+    W.label(page,encounter.get("description","필요한 만큼 준비한 뒤 출발하세요."),Rect2(550,204,1190,40),20,W.MUTED)
+    var encounter_tab := "shop" if encounter.get("kind","") == "merchant" else "encounter"
+    var keys := ["rest",encounter_tab,"bag","loot"]
+    var labels := ["휴식",encounter.get("title","아이템 구매"),"가방","전리품"]
+    if camp_tab not in keys: camp_tab = "rest"
     for i in 4:
-        var key: String = ["rest","shop","bag","loot"][i]
-        var button := W.button(page,Rect2(550+i*303,266,282,64),_camp_tab.bind(key),["휴식","아이템 구매","가방","전리품"][i])
+        var key: String = keys[i]
+        var button := W.button(page,Rect2(550+i*303,266,282,64),_camp_tab.bind(key),labels[i])
         if key == camp_tab: button.add_theme_stylebox_override("normal",W.box(Color("29443f"),W.GOLD))
         camp_tabs[key] = button
     _action("준비 완료 · 출발",Rect2(1260,930,480,72),_leave_camp,"next")
@@ -182,12 +200,14 @@ func _rest() -> void:
             W.icon(page,"heal",Rect2(1065,390,96,96))
             W.label(page,"전원 체력 50% 회복 · 기절 회복 · 부상 제거",Rect2(550,530,1190,60),25,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
             W.label(page,"이번 야영지에서 한 번 휴식할 수 있습니다.
-휴식 후에도 구매·아이템 사용·전리품 확인을 계속할 수 있습니다.",Rect2(550,610,1190,90),20,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+휴식 후에도 이번 만남·아이템 사용·전리품 확인을 계속할 수 있습니다.",Rect2(550,610,1190,90),20,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
             rest_button = W.button(page,Rect2(870,742,560,78),_camp_rest,"휴식 완료" if journey.step in journey.rested_steps else "휴식하기")
             rest_button.disabled = journey.step in journey.rested_steps
+        "encounter": _encounter()
         "shop":
             var i := 0
             for key: String in journey.items():
+                if journey.full_campaign and key not in encounter.get("offers",[]): continue
                 var item: Dictionary = journey.items()[key]
                 var y := 356+i*120
                 W.panel(page,Rect2(550,y,1190,114),Color("172d32"))
@@ -218,7 +238,9 @@ func _rest() -> void:
         "loot":
             var text := ""
             for entry: Dictionary in journey.loot:
-                text += "%s\n+%d 골드 · %s ×%d\n\n" % [entry["name"],entry["gold"],TacticalJourneyContent.ITEMS[entry["item"]]["name"],entry["quantity"]]
+                var reward := "+%d 골드" % entry["gold"]
+                if not str(entry["item"]).is_empty(): reward += " · %s ×%d" % [journey.items()[entry["item"]]["name"],entry["quantity"]]
+                text += "%s\n%s\n\n" % [entry["name"],reward]
             var list := RichTextLabel.new()
             list.position = Vector2(600,370)
             list.size = Vector2(1090,420)
@@ -227,6 +249,32 @@ func _rest() -> void:
             page.add_child(list)
             W.label(page,"전리품은 전투 종료 시 가방과 골드에 자동 반영됩니다.",Rect2(600,815,1090,40),18,W.MUTED)
     W.label(page,camp_notice,Rect2(550,870,1190,40),20,W.GOLD)
+func _encounter() -> void:
+    var encounter := journey.camp()
+    W.icon(page,encounter["icon"],Rect2(1060,366,80,80))
+    W.label(page,encounter["title"],Rect2(550,474,1190,54),30,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+    if encounter.get("resolved",false):
+        W.label(page,encounter["outcome"],Rect2(550,580,1190,70),24,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
+        return
+    var options: Array = encounter.get("choices",[]).duplicate()
+    if encounter["kind"] == "discovery": options = ["%s ×%d 줍기" % [journey.items()[encounter["item"]]["name"],encounter["quantity"]]]
+    for i in options.size():
+        var button := W.button(page,Rect2(650+i*550,588,520,76),_camp_choice.bind(i),options[i])
+        button.name = "CampChoice_%d" % i
+        button.disabled = not journey.camp_choice_reason(i).is_empty()
+        button.tooltip_text = journey.camp_choice_reason(i)
+        encounter_buttons.append(button)
+        actions.append(button)
+    if not options.is_empty():
+        var skip := W.button(page,Rect2(870,722,560,64),_camp_choice.bind(-1),"지나치기")
+        skip.name = "CampChoice_skip"
+        encounter_buttons.append(skip)
+        actions.append(skip)
+func _camp_choice(choice: int) -> void:
+    if travelling: return
+    var reason := journey.resolve_camp(choice)
+    camp_notice = reason if not reason.is_empty() else journey.camp()["outcome"]
+    refresh()
 func _camp_rest() -> void:
     var reason := journey.rest()
     camp_notice = reason if not reason.is_empty() else "동료들이 기운을 회복했습니다."
@@ -306,7 +354,19 @@ func _settle() -> void:
 func _reward(index: int) -> void:
     if journey.choose_reward(index).is_empty(): refresh()
 func _enter() -> void:
-    if journey.enter_next().is_empty(): refresh()
+    if travelling or deck_open: return
+    if not journey.enter_next().is_empty(): return
+    if not journey.full_campaign:
+        refresh()
+        return
+    travelling = true
+    travel = JourneyTravel.new()
+    add_child(travel)
+    travel.arrived.connect(func():
+        travelling = false
+        travel = null
+        refresh())
+    travel.start(journey.current()["name"],journey.biome(),journey.party)
 func _restart(relic: String) -> void:
     deck_open = false
     journey.restart(journey.seed_value,relic)
@@ -320,6 +380,7 @@ func _lab() -> void:
 func _home() -> void:
     get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 func _unhandled_key_input(event: InputEvent) -> void:
+    if travelling: return
     if journey.phase == TacticalJourney.BATTLE or not event is InputEventKey or not event.pressed or event.echo: return
     if deck_open:
         if event.keycode == KEY_ESCAPE: _close_deck()

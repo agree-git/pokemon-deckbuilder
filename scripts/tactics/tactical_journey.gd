@@ -38,6 +38,7 @@ var inventory: Dictionary = {"potion":1,"super_potion":0,"revive":0}
 var loot: Array[Dictionary] = []
 var rested_steps: Array[int] = []
 var shop_stock: Dictionary = {}
+var camp_states: Dictionary = {}
 
 func _init(run_seed: int = 2026, selected_relic: String = "seed_relay", selected_starters: Array[int] = [], campaign := false) -> void:
     full_campaign = campaign
@@ -61,7 +62,8 @@ func restart(run_seed: int = 2026, selected_relic: String = "seed_relay", select
     inventory = {"potion":1,"super_potion":0,"revive":0}
     loot.clear()
     rested_steps.clear()
-    shop_stock.clear()
+    shop_stock = {}
+    camp_states.clear()
     _settled = null
     balls = 2
     pending_captures.clear()
@@ -102,13 +104,13 @@ func settle() -> String:
     wins += 1
     growth_reports.clear()
     for pokemon: BattlePokemon in party:
-        var report := TacticalGrowth.award(pokemon,experience_reward())
+        var report := TacticalGrowth.award(pokemon,experience_reward(pokemon.species_id))
         growth_reports.append(report)
         pending_learning.append_array(report["offers"])
     var role: String = current()["kind"]
     var wild := is_wild()
     var boss: bool = role in ["gym","elite","champion"]
-    var coins := 180 if boss else (40 if wild else 80)
+    var coins := 180 if boss else (120 if role == "veteran" else (40 if wild else 80))
     var item := "revive" if boss else ("potion" if wild else "super_potion")
     if full_campaign and role == "gym":
         badge_records.append({"type":current()["biome"]["type"],"biome":current()["biome"]["id"],"leader_id":current()["trainer"]["leader_id"],"leader":current()["trainer"]["leader"],"step":step})
@@ -203,8 +205,7 @@ func enter_next() -> String:
         if badges != 8 or elite_wins != int(current()["league_index"]): return "배지 8개와 앞선 리그 경기를 완료하세요."
     if current()["kind"] == "rest":
         phase = REST
-        shop_stock.clear()
-        for key: String in items(): shop_stock[key] = items()[key]["stock"]
+        _prepare_camp()
     else:
         battle = TacticalBattle.new()
         battle.start_with(party,deck,route.opponents(step) if full_campaign else TacticalJourneyContent.opponents(step),seed_value+step,relic,not starter_ids.is_empty())
@@ -233,6 +234,7 @@ func leave_camp() -> String:
     return ""
 func buy_reason(key: String) -> String:
     if phase != REST: return "물건은 야영지에서 구매할 수 있습니다."
+    if full_campaign and camp().get("kind","") != "merchant": return "이번 야영지에는 상인이 없습니다."
     if not items().has(key): return "판매하지 않는 아이템입니다."
     if int(shop_stock.get(key,0)) <= 0: return "이번 야영지의 재고가 없습니다."
     if gold < int(items()[key]["price"]): return "골드가 부족합니다."
@@ -280,10 +282,70 @@ func items() -> Dictionary:
     return result
 func quantity(key: String) -> int:
     return balls if key == "ball" else int(inventory.get(key,0))
-func experience_reward() -> float:
-    return route.experience_reward(step) if full_campaign else TacticalJourneyContent.experience_reward(step)
+func experience_reward(species_id := 1) -> float:
+    return route.experience_reward(step,species_id) if full_campaign else TacticalJourneyContent.experience_reward(step)
 func biome() -> Dictionary:
     return current()["biome"] if full_campaign else VisualCatalog.new().biomes[3]
 func progress_title() -> String:
     if not full_campaign: return "%d / 5  ·  %s" % [step+1,current()["name"]]
     return ("바이옴 %d / 8" % (int(current()["chapter"])+1) if int(current()["chapter"]) < 8 else "포켓몬 리그 · %d / 4승" % elite_wins)+"  ·  "+str(current()["name"])
+
+func _prepare_camp() -> void:
+    if not camp_states.has(step):
+        var state: Dictionary = current()["camp"].duplicate(true) if full_campaign else {"kind":"merchant","offers":items().keys()}
+        state["resolved"] = false
+        state["outcome"] = ""
+        state["stock"] = {}
+        if state["kind"] == "merchant":
+            for key: String in state["offers"]: state["stock"][key] = items()[key]["stock"]
+        camp_states[step] = state
+    shop_stock = camp_states[step]["stock"]
+func camp() -> Dictionary:
+    return camp_states.get(step,{})
+func camp_choice_reason(choice: int) -> String:
+    if phase != REST or not full_campaign: return "야영지의 만남을 확인하세요."
+    var state := camp()
+    if state.is_empty() or state.get("resolved",false): return "이미 이번 만남을 마쳤습니다."
+    if choice == -1: return ""
+    if state["kind"] not in ["event","discovery"]: return "선택할 특별한 만남이 없습니다."
+    if choice < 0 or choice >= (2 if state["kind"] == "event" else 1): return "표시된 선택지를 고르세요."
+    if state.get("id","") == "lesson" and gold < 50: return "수업에는 50골드가 필요합니다."
+    return ""
+func resolve_camp(choice: int) -> String:
+    var reason := camp_choice_reason(choice)
+    if not reason.is_empty(): return reason
+    var state := camp()
+    var outcome := "만남을 지나쳤습니다."
+    if choice >= 0:
+        if state["kind"] == "discovery":
+            var key: String = state["item"]
+            _camp_loot(state["title"],0,key,int(state["quantity"]))
+            outcome = "%s ×%d 획득" % [items()[key]["name"],state["quantity"]]
+        elif state["id"] == "spring":
+            if choice == 0:
+                for pokemon: BattlePokemon in party:
+                    pokemon.hp = mini(pokemon.max_hp,pokemon.hp+ceili(pokemon.max_hp*0.25))
+                    pokemon.knocked_out = not pokemon.alive()
+                outcome = "치유의 샘 · 전원 HP 25% 회복"
+            else:
+                _camp_loot(state["title"],0,"super_potion",1)
+                outcome = "좋은상처약 1개를 담았습니다."
+        elif state["id"] == "lesson":
+            gold -= 50
+            var key := "analysis" if choice == 0 else "counter"
+            var uid := 1
+            for card: BattleCardInstance in deck: uid = maxi(uid,card.uid+1)
+            deck.append(BattleCardInstance.new(uid,key,0))
+            outcome = TacticalContent.CARDS[key]["name"]+" 카드를 덱에 추가했습니다."
+        elif state["id"] == "satchel":
+            _camp_loot(state["title"],60 if choice == 1 else 0,"ball" if choice == 0 else "",2 if choice == 0 else 0)
+            outcome = "몬스터볼 2개 획득" if choice == 0 else "부품을 팔아 60골드를 얻었습니다."
+    state["resolved"] = true
+    state["outcome"] = outcome
+    history.append(str(state["title"])+" · "+outcome)
+    return ""
+func _camp_loot(title: String, coins: int, item: String, count: int) -> void:
+    gold += coins
+    if item == "ball": balls += count
+    elif not item.is_empty(): inventory[item] = int(inventory.get(item,0))+count
+    loot.append({"name":title,"gold":coins,"item":item,"quantity":count})

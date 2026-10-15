@@ -1,6 +1,7 @@
 extends "res://tests/test_journey_ui.gd"
 ## Entire full campaign through UI input, using a deterministic public-action policy.
 var keys := 0
+var last_pointer: Dictionary = {}
 var camp_services_checked := false
 func click(control: Control) -> void:
     settle()
@@ -11,6 +12,7 @@ func click(control: Control) -> void:
     if native:
         var local: Vector2 = control.visible_point() if control is TrainerActionCard else control.size/2
         var at := Vector2(root.position)+root.get_final_transform()*(control.get_global_transform_with_canvas()*local)
+        last_pointer = {"name":control.name,"rect":control.get_global_rect(),"local":local,"at":at,"disabled":control.disabled}
         print("OS_CLICK ",roundi(at.x)," ",roundi(at.y))
         await create_timer(0.12).timeout
     else:
@@ -62,12 +64,14 @@ func run() -> void:
         await create_timer(0.2).timeout
     check(ui.journey.full_campaign and ui.journey.battle.full_type_chart,"Normal gameplay uses full campaign and full type chart")
     var viewed: Dictionary = {}
-    for guard in 2400:
+    for guard in 8000:
         var j := ui.journey
         if j.phase in [TacticalJourney.CLEARED,TacticalJourney.FAILED]: break
         if guard % 100 == 0: print("CAMPAIGN_UI progress: input=",guard," step=",j.step," badges=",j.badges," elite=",j.elite_wins)
         if j.phase == TacticalJourney.BATTLE:
             var b := j.battle
+            if j.current()["kind"] == "champion":
+                check(j.party.all(func(p: BattlePokemon): return p.level == 100) and b.enemies.all(func(p: BattlePokemon): return p.level == 100),"Both parties reach champion battle at Lv.100")
             var kind: String = j.current()["kind"]
             if not viewed.has(kind):
                 await capture("campaign_"+kind)
@@ -81,9 +85,20 @@ func run() -> void:
                 await click(ui.battle_ui.result_next)
             else:
                 var before := b.snapshot()
-                await battle_action(CampaignPolicy.action(j))
+                var action_value := CampaignPolicy.action(j)
+                await battle_action(action_value)
+                # XTest events arrive asynchronously; wait for acknowledgement by
+                # the model, without clicking again or changing game state.
+                var deadline := Time.get_ticks_msec()+1000
+                while native and b.snapshot() == before and Time.get_ticks_msec() < deadline:
+                    await process_frame
+                    settle()
                 check(b.snapshot() != before,"UI action changes combat state")
                 if b.snapshot() == before:
+                    print("INPUT_FAILURE step=",j.step," action=",action_value," turn=",b.turn," busy=",ui.battle_ui.busy," pointer=",last_pointer," hover=",root.gui_get_hovered_control()," hand=",b.hand.map(func(c: BattleCardInstance): return [c.uid,c.key]))
+                    if DisplayServer.get_name() != "headless":
+                        await RenderingServer.frame_post_draw
+                        root.get_texture().get_image().save_png("/workspace/.cloud-setup/pokemon-deckbuilder/previews/camp_input_failure.png")
                     quit(1)
                     return
         elif j.phase == TacticalJourney.LEARN:
@@ -100,9 +115,10 @@ func run() -> void:
                 await capture("campaign_league_map")
                 viewed["league_map"] = true
             await click(ui.actions[0])
+            check(not ui.travelling,"Movement completes before next page accepts actions")
         elif j.phase == TacticalJourney.REST:
             if j.step not in j.rested_steps: await click(ui.rest_button)
-            if not camp_services_checked:
+            if not camp_services_checked and j.camp()["kind"] == "merchant":
                 await click(ui.camp_tabs["shop"])
                 var coins := j.gold
                 var balls_before := j.balls
@@ -114,6 +130,11 @@ func run() -> void:
                 await click(ui.camp_tabs["loot"])
                 await capture("campaign_loot")
                 camp_services_checked = true
+            if j.camp()["kind"] in ["event","discovery"] and not j.camp()["resolved"]:
+                await click(ui.camp_tabs["encounter"])
+                await capture("camp_"+str(j.camp().get("id",j.camp()["kind"])))
+                var choice := 1 if j.camp().get("id","") == "spring" else 0
+                if j.camp_choice_reason(choice).is_empty(): await click(ui.encounter_buttons[choice])
             # Same optional healing decisions as model policy, via bag controls.
             for i in j.party.size():
                 for item: String in ["revive","super_potion","potion"]:
@@ -124,7 +145,7 @@ func run() -> void:
                         await click(ui.camp_tabs["bag"])
                         await click(ui.page.find_child("Use_%s_%d" % [item,i],true,false))
             await click(ui.actions[0])
-    check(ui.journey.phase == TacticalJourney.CLEARED and ui.journey.badges == 8 and ui.journey.elite_wins == 4 and ui.journey.wins == 29,"Finish 29 encounters and become champion through input")
+    check(ui.journey.phase == TacticalJourney.CLEARED and ui.journey.badges == 8 and ui.journey.elite_wins == 4 and ui.journey.wins == 69,"Finish 69 encounters and become champion through input")
     check(camp_services_checked and viewed.has("champion"),"Camp and league pages exercised")
     await capture("campaign_ending")
     await verify_page()

@@ -22,7 +22,7 @@ func run() -> void:
     for seed_value in 100:
         var a := CampaignRoute.new(seed_value)
         check(a.stops == CampaignRoute.new(seed_value).stops,"Seed reproduces entire route")
-        check(a.stops.size() == 57 and a.biomes.size() == 8 and a.elite.size() == 4,"Eight regions and complete league")
+        check(a.stops.size() == 137 and a.biomes.size() == 8 and a.elite.size() == 4,"Eight regions and complete league")
         var types: Array[String] = []
         var people: Array[String] = [a.champion["id"]]
         for biome: Dictionary in a.biomes:
@@ -34,7 +34,24 @@ func run() -> void:
             people.append(trainer["id"])
         var wilds := 0
         var gyms := 0
-        for node: Dictionary in a.stops:
+        var normal_trainers := 0
+        var veterans := 0
+        var camps := 0
+        var previous_level := 0
+        for i in a.stops.size():
+            var node := a.stops[i]
+            if node["kind"] == "rest":
+                camps += 1
+                check(i%2 == 1,"Camp separates every encounter")
+            else:
+                check(i%2 == 0 and node["level"] >= previous_level,"Enemy levels advance monotonically")
+                previous_level = int(node["level"])
+                var opponents := a.opponents(i) if seed_value == 0 else []
+                if node["kind"] == "champion": check(int(node["level"]) == 100 and (seed_value != 0 or opponents.all(func(p: Dictionary): return p["level"] == 100)),"Every champion member is Lv.100")
+            if node["kind"] == "trainer": normal_trainers += 1
+            if node["kind"] == "veteran":
+                veterans += 1
+                check(node["party"].size() == 3,"Elite trainer has three Pokemon")
             if node["kind"] == "gym":
                 gyms += 1
                 check(node["party"].size() == 6,"Six opponents per gym")
@@ -42,23 +59,24 @@ func run() -> void:
                 wilds += 1
                 var species := catalog.species(int(node["party"][0]))
                 check(node["biome"]["type"] in species["types"] and not species["is_legendary"] and not species["is_mythical"],"Wild belongs to biome and is not legendary")
-        check(wilds == 8 and gyms == 8,"Eight captures and badges")
+        check(normal_trainers == 8 and veterans == 8 and camps == 68,"Eight normal and elite trainers, 68 camps")
+        check(wilds == 40 and gyms == 8,"Forty wild encounters and eight badges")
     check(TypeMatchup.multiplier("electric",["water","flying"]) == 4.0,"Dual weakness")
     check(TypeMatchup.multiplier("normal",["ghost"]) == 0.0,"Normal immunity")
     check(TypeMatchup.multiplier("fire",["water","dragon"]) == 0.25,"Dual resistance")
     check(TypeMatchup.multiplier("dragon",["fairy"]) == 0.0,"Modern Fairy immunity")
     var gate := TacticalJourney.new(2026,"seed_relay",[1,4,7],true)
     gate.phase = TacticalJourney.MAP
-    gate.step = 48
+    gate.step = 128
     var prior := gate.battle.snapshot()
     check(not gate.enter_next().is_empty() and gate.battle.snapshot() == prior,"League rejects insufficient badges atomically")
     gate.badges = 8
-    gate.step = 56
+    gate.step = 136
     check(not gate.enter_next().is_empty(),"Champion rejects missing Elite wins")
     # A later region is capturable too; preserve its level, dual type and learnset.
     var capture_run := TacticalJourney.new(2026,"seed_relay",[1,4,7],true)
     capture_run.phase = TacticalJourney.MAP
-    capture_run.step = 6
+    capture_run.step = 16
     capture_run.enter_next()
     var target := capture_run.battle.enemy()
     target.hp = maxi(1,floori(target.max_hp*0.25))
@@ -68,7 +86,7 @@ func run() -> void:
     check(capture_run.capture().is_empty() and capture_run.balls == before_balls-1,"Capture is available beyond the first biome")
     check(capture_run.pending_captures[0].level == target_level and capture_run.pending_captures[0].types == target_types and not capture_run.pending_captures[0].learned_skills.is_empty(),"Later captures keep level, dual typing and canonical moves")
     capture_run.phase = TacticalJourney.MAP
-    capture_run.step = 7
+    capture_run.step = capture_run.route.stops.find(capture_run.route.stops.filter(func(node: Dictionary): return node["kind"] == "rest" and node["camp"]["kind"] == "merchant")[0])
     capture_run.enter_next()
     var money := capture_run.gold
     before_balls = capture_run.balls
@@ -116,7 +134,9 @@ func run() -> void:
                     else: reason = CampaignPolicy.apply(j,CampaignPolicy.action(j))
                 TacticalJourney.LEARN: reason = j.resolve_learning(CampaignPolicy.learn(j))
                 TacticalJourney.REWARD: reason = j.choose_reward(-1)
-                TacticalJourney.MAP: reason = j.enter_next()
+                TacticalJourney.MAP:
+                    if j.current()["kind"] == "champion": check(j.party.all(func(p: BattlePokemon): return p.level == 100),"Smooth play reaches Lv.100 before champion")
+                    reason = j.enter_next()
                 TacticalJourney.REST:
                     CampaignPolicy.camp(j)
                     reason = j.leave_camp()
@@ -124,7 +144,7 @@ func run() -> void:
                 check(false,"Legal campaign action: "+reason)
                 break
         print("CAMPAIGN seed=",seed_value," phase=",j.phase," step=",j.step," wins=",j.wins," levels=",j.party.map(func(p: BattlePokemon): return p.level)," actions=",guard)
-        check(j.phase == TacticalJourney.CLEARED and j.badges == 8 and j.elite_wins == 4 and j.wins == 29,"Full playable campaign: %d" % seed_value)
+        check(j.phase == TacticalJourney.CLEARED and j.badges == 8 and j.elite_wins == 4 and j.wins == 69,"Full playable campaign: %d" % seed_value)
         if j.phase == TacticalJourney.CLEARED: completed += 1
         var stops := j.route.stops.duplicate(true)
         j.restart(seed_value)
