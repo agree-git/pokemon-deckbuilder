@@ -73,8 +73,7 @@ func settle() -> void:
         phase = FAILED
     else:
         for pokemon: BattlePokemon in party:
-            if pokemon.alive():
-                pokemon.experience += 1
+            pokemon.gain_experience()
         wins += 1 if battle.phase == BattleState.WON else 0
     if battle.phase == BattleState.WON:
         if current_node["kind"] == "boss":
@@ -222,7 +221,7 @@ func evolve_reason(uid: int) -> String:
     if not ExpeditionContent.EVOLUTIONS.has(pokemon.species_id):
         return "이번 원정에서 가능한 진화가 없습니다."
     if pokemon.experience < 4:
-        return "경험치 4가 필요합니다. (현재 %d)" % pokemon.experience
+        return "경험치 4가 필요합니다. (현재 %s)" % pokemon.experience_text()
     return ""
 
 func rest(action: String, uid: int = 0) -> String:

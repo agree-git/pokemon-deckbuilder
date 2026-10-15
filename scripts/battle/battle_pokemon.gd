@@ -12,7 +12,12 @@ var block := 0
 var strength := 0
 var statuses: Dictionary = {}
 var knocked_out := false
-var experience := 0
+var _experience_tenths := 0
+var experience: float:
+    get:
+        return _experience_tenths / 10.0
+    set(value):
+        _experience_tenths = maxi(0,roundi(value * 10.0))
 
 func _init(definition: Dictionary, instance_uid: int) -> void:
     uid = instance_uid
@@ -24,6 +29,13 @@ func _init(definition: Dictionary, instance_uid: int) -> void:
 
 func alive() -> bool:
     return hp > 0
+
+func gain_experience(base: int = 1) -> void:
+    # Fixed tenths preserve 30% awards across repeated KOs without truncation.
+    _experience_tenths += maxi(0,base) * (10 if alive() else 3)
+
+func experience_text() -> String:
+    return String.num(experience,1).trim_suffix(".0")
 
 func snapshot() -> Dictionary:
     return {"uid": uid, "id": species_id, "hp": hp, "max_hp": max_hp, "block": block,

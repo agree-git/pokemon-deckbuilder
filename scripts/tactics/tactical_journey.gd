@@ -55,7 +55,7 @@ func settle() -> String:
         return ""
     wins += 1
     for pokemon: BattlePokemon in party:
-        if pokemon.alive(): pokemon.experience += 1
+        pokemon.gain_experience()
     if current()["kind"] == "gym":
         badges = 1
         phase = CLEARED

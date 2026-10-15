@@ -146,6 +146,11 @@ func _capture() -> void:
     if not _save(output, "capture_replace"):
         return
     battle.restart_battle()
+    battle.battle.active().experience = 0.3
+    battle._refresh()
+    await RenderingServer.frame_post_draw
+    if not _save(output, "fractional_xp"):
+        return
     quit(0)
 
 func _save(output: String, name_text: String) -> bool:

@@ -18,12 +18,26 @@ func run() -> void:
     var before := j.battle.snapshot()
     check(not j.enter_next().is_empty() and not j.rest("heal").is_empty() and not j.choose_reward(0).is_empty() and j.battle.snapshot() == before,"Unfinished battles reject travel, rest and rewards")
     finish_battle(j)
+    j.party[2].hp = 0 # Isolate settlement's KO reward without changing the policy run.
     check(j.settle().is_empty() and j.phase == TacticalJourney.REWARD,"Victory opens trainer rewards")
+    check(j.party[0].experience == 1 and is_equal_approx(j.party[2].experience,0.3),"Tactical journey grants KO members 30 percent XP")
     var choices := j.reward_options.duplicate()
     var experience := j.party[0].experience
     var turns := j.total_turns
     j.settle()
     check(j.wins == 1 and j.total_turns == turns and j.reward_options == choices and j.party[0].experience == experience,"Settlement is idempotent")
+    check(is_equal_approx(j.party[2].experience,0.3),"Repeated settlement cannot duplicate fractional XP")
+    var partial := BattlePokemon.new(TacticalContent.PARTY[0],999)
+    partial.hp = 0
+    for i in 10: partial.gain_experience()
+    check(partial.experience == 3.0 and partial.experience_text() == "3","Ten KO awards accumulate exactly without rounding loss")
+    partial.hp = 1
+    partial.gain_experience(2)
+    check(partial.experience == 5.0,"Revived member receives full experience on later rewards")
+    partial.experience = 3.9
+    partial.hp = 0
+    partial.gain_experience()
+    check(is_equal_approx(partial.experience,4.2) and partial.experience_text() == "4.2","Fractional experience is retained and formatted")
     var size := j.deck.size()
     check(not j.choose_reward(3).is_empty() and j.phase == TacticalJourney.REWARD and j.deck.size() == size,"Invalid reward rejects atomically")
     check(j.choose_reward(0).is_empty() and j.deck.size() == size+1,"Selected trainer card joins persistent deck")

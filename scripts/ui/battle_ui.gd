@@ -420,7 +420,7 @@ func _refresh() -> void:
     var next := battle.intent()
     _intent_value.text = "%s %d" % [{"attack": "공격", "block": "방어", "boost": "강화"}[next["kind"]], int(next["value"])]
     _intent_icon.text = {"attack": "⚔", "block": "◇", "boost": "↑"}[next["kind"]]
-    var xp_text := "XP %d / 4" % actor.experience if ExpeditionContent.EVOLUTIONS.has(actor.species_id) else "XP %d" % actor.experience
+    var xp_text := "XP %s / 4" % actor.experience_text() if ExpeditionContent.EVOLUTIONS.has(actor.species_id) else "XP %s" % actor.experience_text()
     _ally_info.text = _status_text(actor) + "  · " + xp_text
     _enemy_info.text = _status_text(battle.enemy)
     stage.canvas.ally_statuses.assign(actor.statuses.keys())

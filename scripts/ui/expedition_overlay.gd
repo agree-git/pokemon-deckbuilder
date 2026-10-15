@@ -102,7 +102,7 @@ func _build_rest() -> void:
         var pokemon := run.party[i]
         var reason := run.evolve_reason(pokemon.uid)
         var evolution: Dictionary = ExpeditionContent.EVOLUTIONS.get(pokemon.species_id,{})
-        var text := "%s → %s\nXP %d / 4" % [pokemon.display_name,evolution.get("name","진화 완료 / 대상 아님"),pokemon.experience]
+        var text := "%s → %s\nXP %s / 4" % [pokemon.display_name,evolution.get("name","진화 완료 / 대상 아님"),pokemon.experience_text()]
         var button := _button(text,Rect2(580,420+i*90,570,78))
         button.add_theme_font_size_override("font_size",20)
         button.disabled = not reason.is_empty()
@@ -168,7 +168,7 @@ func _build_party() -> void:
         sprite.size = Vector2(96,96)
         sprite.mouse_filter = Control.MOUSE_FILTER_IGNORE
         add_child(sprite)
-        _label("%s  ·  HP %d / %d\n경험치 %d  ·  %s" % [pokemon.display_name,pokemon.hp,pokemon.max_hp,pokemon.experience,"기절" if not pokemon.alive() else "전투 가능"],Rect2(box.position+Vector2(125,25),Vector2(420,100)),23,CREAM)
+        _label("%s  ·  HP %d / %d\n경험치 %s  ·  %s" % [pokemon.display_name,pokemon.hp,pokemon.max_hp,pokemon.experience_text(),"기절" if not pokemon.alive() else "전투 가능"],Rect2(box.position+Vector2(125,25),Vector2(420,100)),23,CREAM)
     _label("R 같은 시드  ·  Shift+R 새 시드  ·  F2 아트 랩  ·  F11 전체화면  ·  진행은 앱을 닫으면 초기화됩니다.",Rect2(80,1030,1740,35),17,MINT)
 
 func _build_deck() -> void:

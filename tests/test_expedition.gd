@@ -37,14 +37,23 @@ func run_tests() -> void:
     check(not run.rest("heal").is_empty() and fingerprint(run) == before,"Cannot heal outside camp")
     run.battle.party[1].hp = 0
     win(run)
-    check(run.party[0].experience == 1 and run.party[1].experience == 0,"Only survivors gain XP")
+    check(run.party[0].experience == 1 and is_equal_approx(run.party[1].experience,0.3),"Survivors gain full XP, KO members gain 30 percent")
     run.settle()
-    check(run.party[0].experience == 1,"Settlement grants XP only once")
+    check(run.party[0].experience == 1 and is_equal_approx(run.party[1].experience,0.3),"Settlement grants full and partial XP only once")
     run.restart()
     run.battle.enemy.hp = 16
+    run.party[1].hp = 0
     run.battle.capture()
     run.settle()
-    check(run.party[0].experience == 1 and run.party[2].experience == 1,"Capture grants XP to survivors and the joining Pokemon")
+    check(run.party[0].experience == 1 and is_equal_approx(run.party[1].experience,0.3) and run.party[2].experience == 1,"Capture grants full XP to survivors/new Pokemon and 30 percent to KO members")
+    var threshold := RunState.new()
+    threshold.phase = RunState.REST
+    threshold.party[0].experience = 3.9
+    check("3.9" in threshold.evolve_reason(threshold.party[0].uid),"Fractional experience below four cannot evolve and displays exact XP")
+    threshold.party[0].hp = 0
+    threshold.party[0].gain_experience()
+    threshold.party[0].hp = 1
+    check(threshold.evolve_reason(threshold.party[0].uid).is_empty(),"KO experience can cross evolution threshold without being discarded")
     run.restart()
     reach_rest(run)
     check(run.phase == RunState.REST and run.step == 2,"First camp follows two battles")

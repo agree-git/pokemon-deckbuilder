@@ -49,6 +49,19 @@ func _init() -> void:
 func species(id: int) -> Dictionary:
     return _pokemon_by_id.get(id, {})
 
+func starter_species_id(captured_id: int) -> int:
+    # Resolve the earliest ancestor inside the supported generation 1–3 scope.
+    var current := species(captured_id)
+    var visited: Dictionary = {}
+    while not current.is_empty():
+        var id := int(current["id"])
+        if visited.has(id): return 0
+        visited[id] = true
+        var parent := species(int(current.get("evolves_from",0)))
+        if parent.is_empty(): return id
+        current = parent
+    return 0
+
 func move_by_id(id: int) -> Dictionary:
     return _moves_by_id.get(id, {})
 

@@ -38,6 +38,11 @@ func _run() -> void:
                 var image := texture.get_image()
                 check(image.detect_alpha() != Image.ALPHA_NONE, "Sprite must retain transparency: %d" % id)
     check(generations == {1:151,2:100,3:135} and special_count == 21,"Complete generation coverage and special-species flags")
+    for pair: Array in [[6,4],[373,371],[134,133],[197,133],[26,172],[237,236],[315,315],[143,143],[386,386],[999,0]]:
+        check(catalog.starter_species_id(pair[0]) == pair[1],"Capture maps to unevolved starter inside generation scope: %s" % str(pair))
+    for entry: Dictionary in catalog.pokemon:
+        var basic := catalog.species(catalog.starter_species_id(int(entry["id"])))
+        check(not basic.is_empty() and catalog.species(int(basic["evolves_from"])).is_empty(),"All 386 captures resolve to supported basic species")
     var encountered: Dictionary = {}
     var cells: Dictionary = {}
     for biome: Dictionary in catalog.biomes:
