@@ -145,6 +145,11 @@ func run() -> void:
                 break
         print("DECK_RUN seed=",run_seed," phase=",j.phase," wins=",j.wins," relics=",j.relics.size()," deck=",j.deck.size()," purchases=",purchases," actions=",guard)
         check(purchases == 3,"Complete campaign purchases three finite shop cards through public actions")
+        check(j.statistics["battles"].size() == 69 and RunStatistics.valid_run(j.statistics),"All encounters produce consistent, unique statistics across reloads")
+        check(j.gold == 100+int(j.statistics["counts"]["gold_earned"])-RunStatistics.spent(j.statistics),"Recorded income and all spending reconcile to the final wallet")
+        var measured_cards := 0
+        for amount: int in j.statistics["cards"].values(): measured_cards += amount
+        check(measured_cards == j.statistics["combat"]["cards_played"] and j.statistics["relics"].get("field_kit") == 69,"Per-card uses and party-wide relic triggers sum correctly")
         check(j.phase == TacticalJourney.CLEARED and j.wins == 69 and j.badges == 8 and j.elite_wins == 4,"69-battle run completes with mixed rewards, equipment and saved state")
     print("DECK_RUN: ",checks," checks, ",failures," failures")
     quit(0 if failures == 0 else 1)

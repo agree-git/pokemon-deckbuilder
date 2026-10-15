@@ -28,6 +28,7 @@ var discard: Array[BattleCardInstance] = []
 var exhausted: Array[BattleCardInstance] = []
 var events: Array[Dictionary] = []
 var history: Array[String] = []
+var statistics: Dictionary = {}
 var seed_value := 2026
 var relic := "field_kit"
 var relics: Array[String] = []
@@ -54,6 +55,7 @@ func restart(battle_seed: int = 2026, selected_relic: String = "field_kit", oppo
     var cards := TacticalContent.starting_deck(members)
     start_with(members,cards,opponents,battle_seed,selected_relic,true)
 func start_with(members: Array[BattlePokemon], cards: Array[BattleCardInstance], opponents: Array, battle_seed: int, selected_relic: String, _lead_first := true, acquired: Array[String] = []) -> void:
+    statistics = RunStatistics.battle()
     seed_value = battle_seed
     relic = selected_relic if TacticalContent.RELICS.has(selected_relic) else "field_kit"
     relics.assign(acquired)
@@ -76,6 +78,7 @@ func start_with(members: Array[BattlePokemon], cards: Array[BattleCardInstance],
         pokemon.statuses.clear()
         pokemon.knocked_out = not pokemon.alive()
         if not party[active_index].alive() and pokemon.alive(): active_index = i
+    if has_relic("field_kit"): _relic_stat("field_kit")
     enemy_index = 0
     phase = PLAYER
     _grant_turn_energy()
@@ -108,6 +111,7 @@ func enemy() -> BattlePokemon: return enemies[enemy_index]
 func opening() -> Dictionary: return enemy_states[enemy_index]
 func has_relic(key: String) -> bool: return key in relics
 func _grant_turn_energy() -> void:
+    _stat("turns_started")
     turn_speed_actor = PokemonStats.effective(active(),"speed")
     turn_speed_enemy = PokemonStats.effective(enemy(),"speed")
     turn_speed_owner_uid = active().uid
@@ -187,6 +191,10 @@ func play_card(uid: int) -> String:
     hand.erase(card)
     retained.erase(card.uid)
     energy -= int(view["cost"])
+    _stat("energy_spent",int(view["cost"]))
+    _stat("cards_played")
+    _stat({"technique":"techniques","trainer":"trainers","tool":"tools","status":"status_cards"}[view["category"]])
+    RunStatistics.increment(statistics["cards"],card.key)
     if card.owner_uid != 0 and card.owner_uid != active().uid: _change_active(card.owner_uid,true)
     var actor := active()
     var target := enemy()
@@ -210,11 +218,11 @@ func play_card(uid: int) -> String:
                 target.statuses[status] = {"turns":int(view[status])+(1 if extend and status in ["burn","poison","seed"] else 0),"source_uid":actor.uid}
         if extend:
             turn_flags["status_flask"] = true
-            _record("relic","잔류 시약 · 지속 횟수 +1")
+            _record("relic","잔류 시약 · 지속 횟수 +1",{"relic_key":"status_flask"})
         if fresh and has_relic("status_lens") and not turn_flags.has("status_lens"):
             turn_flags["status_lens"] = true
             energy += 1
-            _record("relic","상태 관측경 · 에너지 +1")
+            _record("relic","상태 관측경 · 에너지 +1",{"relic_key":"status_lens"})
         if view.has("weaken"): target.strength = maxi(-6,target.strength-int(view["weaken"]))
         if view.has("expose"): target.statuses["exposed"] = {"turns":3,"source_uid":actor.uid}
         if view.has("weaken") or view.has("expose") or ["burn","seed","poison","sleep","paralysis","confusion"].any(func(status: String): return view.has(status)):
@@ -277,13 +285,13 @@ func play_card(uid: int) -> String:
             if has_relic("ace_emblem") and not turn_flags.has("ace_emblem"):
                 turn_flags["ace_emblem"] = true
                 _draw(1)
-                _record("relic","집중 문장 · 카드 1장")
+                _record("relic","집중 문장 · 카드 1장",{"relic_key":"ace_emblem"})
         turn_flags[first_technique] = true
         if actor.uid not in turn_actors: turn_actors.append(actor.uid)
         if turn_actors.size() >= 3 and has_relic("relay_draw") and not turn_flags.has("relay_draw"):
             turn_flags["relay_draw"] = true
             _draw(2)
-            _record("relic","릴레이 수첩 · 카드 2장")
+            _record("relic","릴레이 수첩 · 카드 2장",{"relic_key":"relay_draw"})
     if view["category"] == "tool":
         var supplied := PokemonStats.scale(actor,5*int(powers.get("supply",0)))
         actor.block += supplied
@@ -291,7 +299,7 @@ func play_card(uid: int) -> String:
         if has_relic("tool_belt") and not turn_flags.has("tool_belt"):
             turn_flags["tool_belt"] = true
             _draw(1)
-            _record("relic","보급 벨트 · 카드 1장")
+            _record("relic","보급 벨트 · 카드 1장",{"relic_key":"tool_belt"})
     if view.get("exhaust",false) or view.has("power"): exhausted.append(card)
     else: discard.append(card)
     _outcome()
@@ -308,7 +316,10 @@ func _change_active(uid: int, technique := false) -> void:
     if technique:
         turn_flags["technique_switch"] = true
         active().block += PokemonStats.scale(active(),3*int(powers.get("relay",0)))
-        if has_relic("switch_power"): switch_bonus[uid] = 3
+        _stat("auto_switches")
+        if has_relic("switch_power"):
+            switch_bonus[uid] = 3
+            _relic_stat("switch_power")
     var ribbon := "ribbon_%d" % uid
     if active().held_item == "relay_ribbon" and not turn_flags.has(ribbon):
         turn_flags[ribbon] = true
@@ -317,7 +328,7 @@ func _change_active(uid: int, technique := false) -> void:
     if technique and has_relic("relay_cell") and not turn_flags.has("relay_cell"):
         turn_flags["relay_cell"] = true
         energy += 1
-        _record("relic","릴레이 발전기 · 에너지 +1")
+        _record("relic","릴레이 발전기 · 에너지 +1",{"relic_key":"relay_cell"})
 func switch_reason(uid: int) -> String:
     if phase not in [PLAYER,REPLACE]: return "전투가 끝났습니다."
     var pokemon := member(uid)
@@ -329,7 +340,10 @@ func switch_to(uid: int) -> String:
     if not reason.is_empty(): return reason
     events.clear()
     var forced := phase == REPLACE
-    if not forced: energy -= 1
+    if not forced:
+        energy -= 1
+        _stat("energy_spent")
+    _stat("forced_switches" if forced else "manual_switches")
     _change_active(uid)
     if forced:
         if _pending == "enemy": _enemy_action()
@@ -345,6 +359,8 @@ func capture_enemy() -> String:
     if not reason.is_empty(): return reason
     events.clear()
     energy -= 1
+    _stat("energy_spent")
+    _stat("captures")
     var target := enemy()
     target.hp = 0
     target.knocked_out = true
@@ -357,6 +373,7 @@ func capture_enemy() -> String:
 func end_turn() -> String:
     if phase != PLAYER: return "현재 턴을 종료할 수 없습니다."
     events.clear()
+    _stat("unused_energy",energy)
     _ace_uid = active().uid if not _turn_changed else 0
     for card: BattleCardInstance in hand.duplicate():
         if card.uid not in retained:
@@ -410,6 +427,7 @@ func _start_player() -> void:
     _turn_changed = false
     for pokemon: BattlePokemon in party: pokemon.block = 0
     if _ace_uid == active().uid:
+        if has_relic("ace_focus"): _relic_stat("ace_focus")
         active().strength += 2*int(powers.get("ace",0))+(1 if has_relic("ace_focus") else 0)+(1 if active().held_item == "ace_band" else 0)
     _ace_uid = 0
     _draw(5)
@@ -427,7 +445,10 @@ func _tick(pokemon: BattlePokemon) -> void:
         _damage(pokemon,status_damage(pokemon,key),true)
         if key == "seed":
             var owner := member(int(status["source_uid"]))
-            if owner != null and owner.alive(): owner.hp = mini(owner.max_hp,owner.hp+health_before-pokemon.hp)
+            if owner != null and owner.alive():
+                var recovered := mini(owner.max_hp-owner.hp,health_before-pokemon.hp)
+                owner.hp += recovered
+                _stat("healing",recovered)
     for key: String in ["sleep","paralysis","exposed"]:
         if pokemon.statuses.has(key):
             pokemon.statuses[key]["turns"] = int(pokemon.statuses[key]["turns"])-1
@@ -437,12 +458,15 @@ func _damage(target: BattlePokemon, amount: int, piercing := false) -> void:
     target.block -= blocked
     var lost := mini(target.hp,maxi(0,amount-blocked))
     target.hp -= lost
+    _stat("damage_taken" if target.uid > 0 else "damage_dealt",lost)
+    if target.uid > 0: _stat("shield_absorbed",blocked)
     _record("damage","%s · 피해 %d" % [target.display_name,lost],{"target":target.uid,"amount":lost,"blocked":blocked})
     if target.alive() or target.knocked_out: return
     target.knocked_out = true
     if target.uid < 0:
         if has_relic("seed_relay") and target.statuses.has("seed"): _relay = target.statuses["seed"].duplicate(true)
     else:
+        _stat("knockouts")
         var injury := BattleCardInstance.new(_next_uid,"injury",0)
         _next_uid += 1
         injury.injury_owner_uid = target.uid
@@ -469,7 +493,7 @@ func _outcome() -> bool:
             if not _relay.is_empty():
                 enemy().statuses["seed"] = _relay.duplicate(true)
                 _relay.clear()
-                _record("relic","씨앗이 "+enemy().display_name+"에게 전이되었습니다.")
+                _record("relic","씨앗이 "+enemy().display_name+"에게 전이되었습니다.",{"relic_key":"seed_relay"})
             _record("enemy_switch",enemy().display_name+" 출전 · 턴과 남은 자원 유지")
         else:
             phase = WON
@@ -494,6 +518,7 @@ func _draw(count: int) -> void:
     for i in count:
         if hand.size() >= 10: break
         if draw_pile.is_empty():
+            if not discard.is_empty(): _stat("reshuffles")
             draw_pile.append_array(discard)
             discard.clear()
             _shuffle(draw_pile)
@@ -504,13 +529,22 @@ func _draw(count: int) -> void:
             exhausted.append(card)
             continue
         hand.append(card)
+        _stat("drawn")
 func _shuffle(cards: Array[BattleCardInstance]) -> void:
     for i in range(cards.size()-1,0,-1):
         var j := _rng.randi_range(0,i)
         var card := cards[i]
         cards[i] = cards[j]
         cards[j] = card
+func _stat(key: String, amount := 1) -> void:
+    if statistics.is_empty(): statistics = RunStatistics.battle(true)
+    RunStatistics.increment(statistics["counts"],key,amount)
+func _relic_stat(key: String) -> void:
+    if statistics.is_empty(): statistics = RunStatistics.battle(true)
+    RunStatistics.increment(statistics["relics"],key)
 func _record(kind: String, caption: String, data: Dictionary = {}) -> void:
+    if kind == "relic" and data.has("relic_key"): _relic_stat(data["relic_key"])
+    if kind == "heal" and int(data.get("target",0)) > 0: _stat("healing",int(data["amount"]))
     var event := data.duplicate(true)
     event["kind"] = kind
     event["text"] = caption
@@ -519,7 +553,7 @@ func _record(kind: String, caption: String, data: Dictionary = {}) -> void:
     history.append(caption)
     if history.size() > 160: history.pop_front()
 func snapshot() -> Dictionary:
-    return JourneySnapshot.fields(self,JourneySnapshot.BATTLE_FIELDS).merged({"rng":_rng.state,"party":party.map(func(p: BattlePokemon): return p.snapshot()),"enemies":enemies.map(func(p: BattlePokemon): return p.snapshot()),"piles":[hand,draw_pile,discard,exhausted].map(func(pile: Array): return pile.map(func(card: BattleCardInstance): return [card.uid,card.key,card.owner_uid,card.upgraded]))})
+    return JourneySnapshot.fields(self,JourneySnapshot.BATTLE_FIELDS).merged({"statistics":statistics.duplicate(true),"rng":_rng.state,"party":party.map(func(p: BattlePokemon): return p.snapshot()),"enemies":enemies.map(func(p: BattlePokemon): return p.snapshot()),"piles":[hand,draw_pile,discard,exhausted].map(func(pile: Array): return pile.map(func(card: BattleCardInstance): return [card.uid,card.key,card.owner_uid,card.upgraded]))})
 func multiplier(attack: String, target: BattlePokemon) -> float:
     return TypeMatchup.multiplier(attack,target.types) if full_type_chart else BattleContent.multiplier(attack,target.type)
 func notify_changed() -> String:

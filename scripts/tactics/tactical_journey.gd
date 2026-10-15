@@ -32,6 +32,7 @@ var relics: Array[String] = []
 var held_inventory: Array[String] = []
 var _next_card_uid := 1
 var history: Array[String] = []
+var statistics: Dictionary = {}
 var _settled: TacticalBattle
 var starter_ids: Array[int] = []
 var balls := 2
@@ -70,6 +71,7 @@ func restart(run_seed: int = 2026, selected_relic: String = "field_kit", selecte
     growth_reports.clear()
     pending_learning.clear()
     gold = 100
+    statistics = RunStatistics.expedition()
     inventory = {"potion":1,"super_potion":0,"revive":0}
     loot.clear()
     rested_steps.clear()
@@ -112,6 +114,8 @@ func settle() -> String:
     if _settled == battle: return ""
     if phase != BATTLE or battle.phase not in [TacticalBattle.WON,TacticalBattle.LOST]: return "아직 전투 중입니다."
     _settled = battle
+    _ensure_statistics()
+    RunStatistics.settle(statistics,battle,step,current())
     _collect_deck()
     total_turns += battle.turn
     history.append(current()["name"])
@@ -137,6 +141,7 @@ func settle() -> String:
         badges = badge_records.size()
     if full_campaign and role == "elite": elite_wins += 1
     gold += coins
+    _stat("gold_earned",coins)
     inventory[item] = int(inventory[item])+1
     loot.append({"name":current()["name"],"gold":coins,"item":item,"quantity":1})
     _after_learning()
@@ -257,7 +262,13 @@ func choose_reward(index: int) -> String:
             "relic":
                 if option["key"] not in relics: relics.append(option["key"])
             "held": held_inventory.append(option["key"])
-        history.append("전투 보상 · "+str(reward_view(option)["name"]))
+        _stat("reward_"+str(option["kind"]))
+        var choice := "전투 보상 · "+str(reward_view(option)["name"])
+        history.append(choice)
+        _decision(choice)
+    else:
+        _stat("reward_skip")
+        _decision("보상 넘기기")
     reward_options.clear()
     step += 1
     phase = MAP
@@ -285,11 +296,17 @@ func rest(action: String = "heal", card_uid: int = 0) -> String:
             if card.uid == card_uid and TacticalContent.can_upgrade(card):
                 card.upgraded = true
                 rested_steps.append(step)
-                history.append("카드 강화 · "+str(TacticalContent.definition(card)["name"]))
+                var choice := "카드 강화 · "+str(TacticalContent.definition(card)["name"])
+                history.append(choice)
+                _stat("cards_upgraded")
+                _decision(choice)
                 return notify_changed()
         return "아직 강화하지 않은 카드를 선택하세요."
+    _stat("rests")
     for pokemon: BattlePokemon in party:
+        var hp_before := pokemon.hp
         pokemon.hp = mini(pokemon.max_hp,pokemon.hp+ceili(pokemon.max_hp*0.5))
+        _stat("camp_healing",pokemon.hp-hp_before)
         pokemon.knocked_out = false
         pokemon.block = 0
         pokemon.strength = 0
@@ -316,6 +333,8 @@ func buy(key: String) -> String:
     var reason := buy_reason(key)
     if not reason.is_empty(): return reason
     gold -= int(items()[key]["price"])
+    _stat("gold_supplies",int(items()[key]["price"]))
+    _stat("supplies_bought")
     shop_stock[key] = int(shop_stock[key])-1
     if key == "ball": balls += 1
     else: inventory[key] = int(inventory[key])+1
@@ -337,9 +356,13 @@ func buy_shop_card(index: int) -> String:
     var offer: Dictionary = shop_cards()[index]
     var card := _allocate_card(offer["key"],int(offer["owner_uid"]))
     gold -= int(offer["price"])
+    _stat("gold_cards",int(offer["price"]))
+    _stat("cards_bought")
     deck.append(card)
     offer["sold"] = true
-    history.append("상인 카드 구매 · %s · %d 골드" % [TacticalContent.definition(card)["name"],offer["price"]])
+    var choice := "상인 카드 구매 · %s · %d 골드" % [TacticalContent.definition(card)["name"],offer["price"]]
+    history.append(choice)
+    _decision(choice)
     return notify_changed()
 func item_reason(key: String,index: int) -> String:
     if key == "ball": return "야생 전투에서 C 또는 포획 버튼을 사용하세요."
@@ -356,11 +379,14 @@ func use_item(key: String,index: int) -> String:
     var reason := item_reason(key,index)
     if not reason.is_empty(): return reason
     var pokemon := party[index]
+    var hp_before := pokemon.hp
     if key == "revive":
         pokemon.hp = ceili(pokemon.max_hp*0.5)
         pokemon.knocked_out = false
     else: pokemon.hp = mini(pokemon.max_hp,pokemon.hp+PokemonStats.scale(pokemon,int(items()[key]["heal"])))
     inventory[key] = int(inventory[key])-1
+    _stat("items_used")
+    _stat("camp_healing",pokemon.hp-hp_before)
     return notify_changed()
 
 func is_wild() -> bool:
@@ -414,7 +440,9 @@ func resolve_camp(choice: int) -> String:
         elif state["id"] == "spring":
             if choice == 0:
                 for pokemon: BattlePokemon in party:
+                    var hp_before := pokemon.hp
                     pokemon.hp = mini(pokemon.max_hp,pokemon.hp+ceili(pokemon.max_hp*0.25))
+                    _stat("camp_healing",pokemon.hp-hp_before)
                     pokemon.knocked_out = not pokemon.alive()
                 outcome = "치유의 샘 · 전원 HP 25% 회복"
             else:
@@ -422,9 +450,11 @@ func resolve_camp(choice: int) -> String:
                 outcome = "좋은상처약 1개를 담았습니다."
         elif state["id"] == "lesson":
             gold -= 50
+            _stat("gold_events",50)
             var key := "analysis" if choice == 0 else "counter"
             deck.append(_allocate_card(key))
             outcome = TacticalContent.CARDS[key]["name"]+" 카드를 덱에 추가했습니다."
+            _decision("전술 수업 · "+str(TacticalContent.CARDS[key]["name"])+" · 50 골드")
         elif state["id"] == "satchel":
             _camp_loot(state["title"],60 if choice == 1 else 0,"ball" if choice == 0 else "",2 if choice == 0 else 0)
             outcome = "몬스터볼 2개 획득" if choice == 0 else "부품을 팔아 60골드를 얻었습니다."
@@ -434,6 +464,7 @@ func resolve_camp(choice: int) -> String:
     return notify_changed()
 func _camp_loot(title: String, coins: int, item: String, count: int) -> void:
     gold += coins
+    _stat("gold_earned",coins)
     if item == "ball": balls += count
     elif not item.is_empty(): inventory[item] = int(inventory.get(item,0))+count
     loot.append({"name":title,"gold":coins,"item":item,"quantity":count})
@@ -460,10 +491,15 @@ func removal_price() -> int:
 func remove_card(uid: int) -> String:
     var reason := remove_card_reason(uid)
     if not reason.is_empty(): return reason
-    gold -= removal_price()
+    var price := removal_price()
+    gold -= price
+    _stat("gold_removal",price)
+    _stat("cards_removed")
     for card: BattleCardInstance in deck:
         if card.uid == uid:
-            history.append("카드 제거 · "+str(TacticalContent.definition(card)["name"]))
+            var choice := "카드 제거 · %s · %d 골드" % [TacticalContent.definition(card)["name"],price]
+            history.append(choice)
+            _decision(choice)
             deck.erase(card)
             break
     camp()["removed"] = true
@@ -490,3 +526,12 @@ func _on_battle_changed() -> void:
 func notify_changed() -> String:
     changed.emit()
     return ""
+
+func _ensure_statistics() -> void:
+    if statistics.is_empty(): statistics = RunStatistics.expedition(true)
+func _stat(key: String, amount := 1) -> void:
+    _ensure_statistics()
+    RunStatistics.increment(statistics["counts"],key,amount)
+func _decision(text: String) -> void:
+    _ensure_statistics()
+    RunStatistics.decision(statistics,step,text)

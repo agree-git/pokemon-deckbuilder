@@ -13,7 +13,7 @@
 
 ## 현재 상태
 
-현재는 시작부터 엔딩까지 플레이 가능한 초기 알파다. [야영지 상인](docs/merchant.md)에서 조합 카드·파티 기술 사본을 구매하고 보급품·카드 제거에 골드를 나눠 쓴다. [카드·유물 조합](docs/build-synergies.md)으로 기술 교대·에이스·소모전·보호막 전환을 연결하며 공용 카드 23종·파티 유물 10종·지닌 물건 6종을 사용한다. [전체 진행 현황과 다음 작업](docs/progress.md), [적 전술과 대응](docs/enemy-tactics.md)을 참고한다.
+현재는 시작부터 엔딩까지 플레이 가능한 초기 알파다. [원정 기록](docs/run-records.md)에서 전투별 피해·카드 사용·유물 발동·골드 지출과 덱 선택을 확인할 수 있다. [야영지 상인](docs/merchant.md)에서 조합 카드·파티 기술 사본을 구매하고 보급품·카드 제거에 골드를 나눠 쓴다. [카드·유물 조합](docs/build-synergies.md)으로 기술 교대·에이스·소모전·보호막 전환을 연결하며 공용 카드 23종·파티 유물 10종·지닌 물건 6종을 사용한다. [전체 진행 현황과 다음 작업](docs/progress.md), [적 전술과 대응](docs/enemy-tactics.md)을 참고한다.
 
 기본 실행은 **시작 화면 → 스타팅 최대 3마리 선택 → 원정**이다. 처음에는 이상해씨·파이리·꼬부기를 선택할 수 있고, 포획하면 해당 계열의 가장 미진화한 종을 영구 스타팅으로 해금한다. 선택 순서대로 파티를 구성하며 첫 번째 멤버가 먼저 출전한다. 기술·도구·트레이너 공유 덱과 자동 교대·유물로 **서로 다른 무작위 바이옴 8곳의 배지 8개, 무작위 사천왕 4명, 챔피언 1명**을 이기면 챔피언이 된다. 각 지역은 야생 5회·일반 트레이너 1회·엘리트 트레이너 1회·관장 1회이며, 전투 사이마다 야영지를 거친다. 전체 137개 장소·69전투다. [시작과 포획 도감](docs/start-flow.md), [정식 원정 경로](docs/full-campaign.md)를 참고한다.
 
@@ -78,6 +78,8 @@ godot --headless --path . --script res://tests/test_growth_ui.gd
 godot --headless --path . --script res://tests/test_start_flow.gd
 godot --headless --path . --script res://tests/test_start_ui.gd
 godot --headless --path . --script res://tests/test_presentation.gd
+godot --headless --path . --script res://tests/test_run_statistics.gd
+godot --headless --path . --script res://tests/test_run_report_ui.gd
 godot --headless --path . --script res://tests/test_merchant_cards.gd
 godot --headless --path . --script res://tests/test_merchant_ui.gd
 godot --headless --path . --script res://tests/test_build_synergies.gd

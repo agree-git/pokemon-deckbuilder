@@ -8,6 +8,7 @@ var battle_ui: TacticalUI
 var page := Control.new()
 var actions: Array[Button] = []
 var deck_open := false
+var report_open := false
 var deck_action := ""
 var gear_open_for := 0
 var deck_button: Button
@@ -96,6 +97,7 @@ func refresh() -> void:
     if deck_open: _deck()
     if gear_open_for != 0: _gear_picker()
     if not bag_item.is_empty(): _item_picker()
+    if report_open: _report()
     UiMotion.appear(page)
 func _party() -> void:
     var panel := W.panel(page,Rect2(96,280,340,420),Color("14282f"),Color("405960"))
@@ -113,6 +115,17 @@ func _party() -> void:
     deck_button = W.button(panel,Rect2(20,348,300,52),func():
         deck_open = true
         refresh(),"원정 덱 · %d장" % journey.deck.size())
+    W.button(page,Rect2(96,718,340,54),func():
+        report_open = true
+        refresh(),"원정 기록").name = "OpenReport"
+func _report() -> void:
+    var report := RunReport.new()
+    report.name = "RunReport"
+    report.journey = journey
+    report.closed.connect(func():
+        report_open = false
+        refresh())
+    page.add_child(report)
 func _action(title: String, rect: Rect2, callback: Callable, icon := "next") -> Button:
     var button := W.button(page,rect,callback)
     W.icon(button,icon,Rect2(20,(rect.size.y-28)/2,28,28))
@@ -464,7 +477,8 @@ func _result() -> void:
     W.icon(page,"badge" if cleared else "injury",Rect2(1056,280,112,112))
     W.label(page,("챔피언 %s 격파 · 명예의 전당에 올랐습니다." % journey.route.champion["name"] if journey.full_campaign else "민화의 6마리 파티를 이겼습니다.") if cleared else "원정대가 모두 쓰러졌습니다.",Rect2(550,430,1190,60),30,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
     W.label(page,"%d승  ·  총 %d턴  ·  배지 %d개" % [journey.wins,journey.total_turns,journey.badges],Rect2(550,510,1190,44),24,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
-    W.label(page,("기본 경험치 +%d · 기절한 동료는 30%%" % journey.experience_reward() if cleared else journey.current()["name"]),Rect2(550,570,1190,40),20,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+    var totals: Dictionary = journey.statistics.get("combat",{})
+    W.label(page,"사용 카드 %d · 받은 피해 %d · 상세 내용은 원정 기록에서 확인" % [totals.get("cards_played",0),totals.get("damage_taken",0)],Rect2(550,570,1190,40),20,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
     _growth_summary()
     if journey.full_campaign:
         W.label(page,"배지 %d / 8  ·  사천왕 %d / 4" % [journey.badges,journey.elite_wins],Rect2(550,630,1190,42),23,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
@@ -551,7 +565,7 @@ func _settle() -> void:
 func _reward(index: int) -> void:
     if journey.choose_reward(index).is_empty(): refresh()
 func _enter() -> void:
-    if travelling or deck_open: return
+    if travelling or deck_open or report_open: return
     if not journey.enter_next().is_empty(): return
     if not journey.full_campaign:
         refresh()
@@ -566,6 +580,7 @@ func _enter() -> void:
     travel.start(journey.current()["name"],journey.biome(),journey.party)
 func _restart(relic: String) -> void:
     deck_open = false
+    report_open = false
     journey.restart(journey.seed_value,relic)
     refresh()
 func _new_seed() -> void:
@@ -579,6 +594,12 @@ func _home() -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
     if travelling: return
     if journey.phase == TacticalJourney.BATTLE or not event is InputEventKey or not event.pressed or event.echo: return
+    if report_open:
+        if event.keycode == KEY_ESCAPE:
+            report_open = false
+            refresh()
+        get_viewport().set_input_as_handled()
+        return
     if gear_open_for != 0:
         if event.keycode == KEY_ESCAPE: _close_gear()
         return

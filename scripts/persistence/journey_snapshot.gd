@@ -24,11 +24,13 @@ static func encode(j: TacticalJourney) -> Dictionary:
     state["deck"] = ids(j.deck)
     state["pending_captures"] = ids(j.pending_captures)
     state["settled"] = j._settled == b
+    if not j.statistics.is_empty(): state["statistics"] = j.statistics.duplicate(true)
     var combat := fields(b,BATTLE_FIELDS)
     combat["party"] = ids(b.party)
     combat["enemies"] = ids(b.enemies)
     combat["piles"] = [ids(b.hand),ids(b.draw_pile),ids(b.discard),ids(b.exhausted)]
     combat["rng"] = b._rng.state
+    if not b.statistics.is_empty(): combat["statistics"] = b.statistics.duplicate(true)
     return {"run":state,"battle":combat,"pokemon":pokemon,"cards":cards,"route":j.route.signature if j.full_campaign else ""}
 static func restore(data: Dictionary) -> TacticalJourney:
     # Call only after validate(). Constructors provide defaults, never saved Objects.
@@ -47,12 +49,14 @@ static func restore(data: Dictionary) -> TacticalJourney:
         for key: String in CARD_FIELDS: c.set(key,row[key])
         cards[uid] = c
     for key: String in RUN_FIELDS: j.set(key,state[key])
+    j.statistics = state.get("statistics",{}).duplicate(true)
     j.party.assign(state["party"].map(func(uid: int): return pokemon[uid]))
     j.deck.assign(state["deck"].map(func(uid: int): return cards[uid]))
     j.pending_captures.assign(state["pending_captures"].map(func(uid: int): return pokemon[uid]))
     var b := TacticalBattle.new()
     var combat: Dictionary = data["battle"]
     for key: String in BATTLE_FIELDS: b.set(key,combat[key])
+    b.statistics = combat.get("statistics",{}).duplicate(true)
     b.party.assign(combat["party"].map(func(uid: int): return pokemon[uid]))
     b.enemies.assign(combat["enemies"].map(func(uid: int): return pokemon[uid]))
     var piles: Array = [b.hand,b.draw_pile,b.discard,b.exhausted]
@@ -92,6 +96,8 @@ static func validate(data: Variant) -> bool:
     if ps.size() < 2 or ps.size() > 16 or cs.size() < 1 or cs.size() > 512: return false
     if not same_shape(r,fields(TacticalJourney.new(),RUN_FIELDS)) or not r.get("settled") is bool: return false
     if not same_shape(b,fields(TacticalBattle.new(),BATTLE_FIELDS)) or not b.get("rng") is int: return false
+    if r.has("statistics") and not RunStatistics.valid_run(r["statistics"]): return false
+    if b.has("statistics") and not RunStatistics.valid_battle(b["statistics"]): return false
     if not r["full_campaign"] or r["run_id"].length() != 32 or not r["run_id"].is_valid_hex_number(): return false
     if not TacticalContent.RELICS.has(r["relic"]) or b["relic"] != r["relic"] or not b["full_type_chart"]: return false
     for row: Dictionary in [r,b]:
