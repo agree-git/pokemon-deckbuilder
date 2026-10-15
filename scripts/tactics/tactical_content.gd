@@ -9,7 +9,7 @@ const PARTY := [
 const SKILLS := {4:["ember","flame","fire_guard"],1:["vine","seed","growth"],7:["water_gun","shell","tackle"]}
 
 static func skills_for(pokemon: BattlePokemon) -> Array:
-    if not pokemon.learned_skills.is_empty(): return pokemon.learned_skills
+    if pokemon.progression_initialized or not pokemon.learned_skills.is_empty(): return pokemon.learned_skills
     if SKILLS.has(pokemon.species_id): return SKILLS[pokemon.species_id]
     if BattleContent.LEARNSETS.has(pokemon.species_id): return BattleContent.LEARNSETS[pokemon.species_id]
     return {"fire":["ember","flame","fire_guard"],"water":["water_gun","shell","tackle"],"grass":["vine","seed","growth"]}.get(pokemon.type,["tackle","guard","growth"])

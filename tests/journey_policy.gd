@@ -15,11 +15,6 @@ static func action(b: TacticalBattle) -> Array:
         if b.member(preferred).alive(): return ["switch",preferred]
         for p: BattlePokemon in b.party:
             if b.switch_reason(p.uid).is_empty(): return ["switch",p.uid]
-    if b.turn == 1 and "seed" in TacticalContent.skills_for(b.active()):
-        if b.skill_reason("seed").is_empty(): return ["skill","seed"]
-        for card: BattleCardInstance in b.hand:
-            if card.key == "analysis" and not b.opening()["analyzed"] and b.card_reason(card.uid).is_empty(): return ["card",card.uid]
-        return ["end"]
     if b.active().uid != preferred and b.switch_reason(preferred).is_empty(): return ["switch",preferred]
     for card: BattleCardInstance in b.hand:
         if card.key == "focus" and b.hand.size() < 9: return ["card",card.uid]
@@ -27,13 +22,21 @@ static func action(b: TacticalBattle) -> Array:
         if card.key == "counter" and b.intent()["kind"] == "charge" and not b.opening()["broken"] and "counter" not in b.opening()["sources"]: return ["card",card.uid]
         if card.key == "analysis" and b.energy >= 2 and not b.opening()["broken"] and not b.opening()["analyzed"] and "analysis" not in b.opening()["sources"]: return ["card",card.uid]
     var learned := TacticalContent.skills_for(b.active())
-    if "growth" in learned and b.skill_reason("growth").is_empty(): return ["skill","growth"]
-    var ordered: Array = learned.filter(func(key: String): return BattleContent.CARDS[key].has("damage") or key == "seed")
+    for key: String in learned:
+        if not b.skill_reason(key).is_empty(): continue
+        var view := TacticalMoves.definition(key)
+        if view.has("seed") and not b.enemy().statuses.has("seed"): return ["skill",key]
+        if view.has("weaken") and b.enemy().strength > -2 and b.energy >= 2: return ["skill",key]
+        if view.has("expose") and not b.enemy().statuses.has("exposed") and b.energy >= 2: return ["skill",key]
+        if view.has("sleep") and not b.enemy().statuses.has("sleep") and b.intent()["kind"] == "charge": return ["skill",key]
+        if view.has("strength") and b.active().strength < 2 and b.energy >= 2: return ["skill",key]
+    var ordered: Array = learned.filter(func(key: String): return TacticalMoves.definition(key).has("damage"))
+    ordered.sort_custom(func(a: String,c: String): return float(b.skill_view(a)["preview_damage"])/TacticalMoves.definition(a)["cost"] > float(b.skill_view(c)["preview_damage"])/TacticalMoves.definition(c)["cost"])
     for key: String in ordered:
-        if key == "seed" and b.enemy().statuses.has("seed"): continue
         if b.skill_reason(key).is_empty(): return ["skill",key]
     for card: BattleCardInstance in b.hand:
         if card.key in ["guard","counter"] and b.active().block < int(b.intent().get("value",0)) and b.card_reason(card.uid).is_empty(): return ["card",card.uid]
-    for key: String in ["fire_guard","shell"]:
-        if b.skill_reason(key).is_empty(): return ["skill",key]
+    for key: String in learned:
+        var view := TacticalMoves.definition(key)
+        if view.has("block") and b.active().block < int(b.intent().get("value",0)) and b.skill_reason(key).is_empty(): return ["skill",key]
     return ["end"]

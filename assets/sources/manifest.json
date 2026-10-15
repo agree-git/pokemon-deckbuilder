@@ -3103,6 +3103,10 @@
     "url": "https://raw.githubusercontent.com/PokeAPI/sprites/0dc105d5b12416932f29b594078282ab4be045f5/LICENCE.txt",
     "sha256": "552687c669af07559413189ef237b023bd1e37de65639aaacfe299c6c685a70b"
   },
+  "assets/sources/csv/experience.csv": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/experience.csv",
+    "sha256": "246d5d215bb90ee47206b57bfb9d9f639f73080ee8e99147382814e44e4f417b"
+  },
   "assets/sources/csv/move_meta.csv": {
     "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/move_meta.csv",
     "sha256": "93b92d5bddf4fc1536ca0a647c20453bf92e6389010f33ca6fc4c5e9c54363be"
@@ -3119,9 +3123,19 @@
     "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/moves.csv",
     "sha256": "8aafd37bf78f19471495c05b201545180f50f0a08a2a2a844d69f9837dd39ac9"
   },
+  "assets/sources/csv/pokemon.csv": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/pokemon.csv",
+    "sha256": "16c81c33188b0eac403aa2f759fcbe9e42c611f722d263f5b5a6a5bff9f8ce6b"
+  },
   "assets/sources/csv/pokemon_evolution.csv": {
     "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/pokemon_evolution.csv",
     "sha256": "e78be51c8805551fffccd5551a556e752e4a76ff1b52482b53b409dd3882e1dd"
+  },
+  "assets/sources/csv/pokemon_moves_emerald.csv": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/pokemon_moves.csv",
+    "sha256": "714e1449ac91e082696e72adf87a28b0ac1b96dc0acd663c723c2fe83e58088f",
+    "source_sha256": "22a807cef26891eeac0d0c900bd363e66baf421f7ee795bc7bc3e718f23b939e",
+    "selection": "Emerald 1..385; Deoxys Ruby-Sapphire base form; level-up"
   },
   "assets/sources/csv/pokemon_species.csv": {
     "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/pokemon_species.csv",
@@ -3142,5 +3156,9 @@
   "assets/sources/csv/types.csv": {
     "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/types.csv",
     "sha256": "37f039c8d722f47d51ba1c5c5ecf9b7007235b1a9a1af2827645c777b70307c8"
+  },
+  "assets/sources/csv/version_groups.csv": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv/version_groups.csv",
+    "sha256": "28da8d89d8eb4966941f81a9e62b3990510ed4d76dd774158246551a8e7707a7"
   }
 }

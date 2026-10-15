@@ -89,12 +89,16 @@ func run() -> void:
     var ui := current_scene as TacticalJourneyUI
     check(ui.journey.starter_ids == [4,1,7] and ui.journey.battle.active().species_id == 4,"Chosen party reaches battle with correct lead")
     check(ui.battle_ui.old_button == null and ui.battle_ui.lab_button == null,"Normal battle menu has no old modes or art lab")
-    # Bring Oddish to capture range using legal attacks only.
-    await click(ui.battle_ui.skills[0])
-    await click(ui.battle_ui.skills[1])
-    await click(ui.battle_ui.end_button)
-    await click(ui.battle_ui.skills[0])
+    # Bring Oddish into capture range with the starter's real level-five attack.
+    for guard in 100:
+        if ui.journey.battle.capture_reason().is_empty(): break
+        if ui.journey.battle.enemy().strength > -6 and ui.journey.battle.skill_reason("move_45").is_empty(): await click(ui.battle_ui.skills[1])
+        elif ui.journey.battle.skill_reason("move_10").is_empty(): await click(ui.battle_ui.skills[0])
+        else: await click(ui.battle_ui.end_button)
     check(not ui.battle_ui.capture_button.disabled,"Low HP activates capture button")
+    if ui.battle_ui.capture_button.disabled:
+        quit(1)
+        return
     await save("capture_ready")
     await click(ui.battle_ui.capture_button)
     var profile: PlayerProfile = session.get("profile")
@@ -118,6 +122,11 @@ func run() -> void:
             TacticalJourney.BATTLE:
                 if ui.journey.battle.phase in [TacticalBattle.WON,TacticalBattle.LOST]: await click(ui.battle_ui.result_next)
                 else: await click(TacticalUIPlayer.button(ui.battle_ui,JourneyPolicy.action(ui.journey.battle)))
+            TacticalJourney.LEARN:
+                await click(ui.actions.back()) # Keep original moves for this capture regression.
+            TacticalJourney.REST:
+                if ui.journey.step not in ui.journey.rested_steps: await click(ui.rest_button)
+                else: await click(ui.actions[0])
             TacticalJourney.CAPTURE:
                 await save("join")
                 await click(ui.actions[1]) # Replace Bulbasaur with captured Oddish.
@@ -139,7 +148,7 @@ func run() -> void:
     ui = current_scene as TacticalJourneyUI
     check(ui.journey.party.size() == 1 and ui.journey.party[0].species_id == 43,"Unlocked starter can begin solo run")
     await click(ui.battle_ui.skills[0])
-    check(ui.journey.battle.used_skills.has("43:absorb"),"Newly unlocked starter's skills are functional")
+    check(ui.journey.battle.used_skills.has("43:move_71"),"Newly unlocked starter's skills are functional")
     session.set("profile",saved_profile)
     for suffix: String in ["",".bak",".tmp"]:
         var file_path := ProjectSettings.globalize_path(path+suffix)

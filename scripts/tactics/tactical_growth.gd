@@ -1,68 +1,82 @@
 class_name TacticalGrowth
 extends RefCounted
-## Run-only progression; capture collection never stores levels or evolved forms.
+## Original species growth curves and level-up learnsets; run-only state.
 const START_LEVEL := 5
 const MAX_LEVEL := 100
 const EVOLUTION_HP := 12
 static var _rules: Array = []
-
-static func experience_floor(level: int) -> int:
-    var steps := clampi(level,START_LEVEL,MAX_LEVEL)-START_LEVEL
-    return 2*steps*(steps+9)
-static func level_for(experience: float) -> int:
-    var level := START_LEVEL
-    while level < MAX_LEVEL and experience >= experience_floor(level+1): level += 1
+static var _data: Dictionary = {}
+static func data() -> Dictionary:
+    if _data.is_empty(): _data = JSON.parse_string(FileAccess.get_file_as_string("res://data/progression.json"))
+    return _data
+static func species_data(id: int) -> Dictionary:
+    return data()["species"][str(id)]
+static func experience_floor(level: int,species_id: int = 1) -> int:
+    return int(data()["curves"][str(int(species_data(species_id)["growth_rate"]))][clampi(level,1,MAX_LEVEL)])
+static func level_for(experience: float,species_id: int = 1) -> int:
+    var level := 1
+    while level < MAX_LEVEL and experience >= experience_floor(level+1,species_id): level += 1
     return level
 static func progress(pokemon: BattlePokemon) -> float:
     if pokemon.level >= MAX_LEVEL: return 1.0
-    var floor_xp := experience_floor(pokemon.level)
-    return clampf((pokemon.experience-floor_xp)/(experience_floor(pokemon.level+1)-floor_xp),0,1)
+    var floor_xp := experience_floor(pokemon.level,pokemon.species_id)
+    return clampf((pokemon.experience-floor_xp)/(experience_floor(pokemon.level+1,pokemon.species_id)-floor_xp),0,1)
 static func progress_text(pokemon: BattlePokemon) -> String:
     if pokemon.level >= MAX_LEVEL: return "MAX"
-    var current := pokemon.experience-experience_floor(pokemon.level)
-    return "%s / %d XP" % [String.num(current,1).trim_suffix(".0"),experience_floor(pokemon.level+1)-experience_floor(pokemon.level)]
+    var floor_xp := experience_floor(pokemon.level,pokemon.species_id)
+    return "%s / %d XP" % [String.num(pokemon.experience-floor_xp,1).trim_suffix(".0"),experience_floor(pokemon.level+1,pokemon.species_id)-floor_xp]
 static func attack_bonus(pokemon: BattlePokemon) -> int:
     return maxi(0,floori((pokemon.level-START_LEVEL)/5.0))+pokemon.evolution_power
 static func initialize(pokemon: BattlePokemon) -> void:
-    if pokemon.learned_skills.is_empty(): pokemon.learned_skills.assign(TacticalContent.skills_for(pokemon))
-static func award(pokemon: BattlePokemon,base: int) -> Dictionary:
+    if pokemon.progression_initialized: return
+    pokemon.progression_initialized = true
+    pokemon.experience = experience_floor(pokemon.level,pokemon.species_id)
+    pokemon.learned_skills.clear()
+    for entry: Dictionary in species_data(pokemon.species_id)["learnset"]:
+        var key := TacticalMoves.key_for(int(entry["move"]))
+        if int(entry["level"]) <= pokemon.level and key not in pokemon.learned_skills:
+            pokemon.learned_skills.append(key)
+            if pokemon.learned_skills.size() > 4: pokemon.learned_skills.pop_front()
+static func _learn_at(pokemon: BattlePokemon,level: int,report: Dictionary) -> void:
+    for entry: Dictionary in species_data(pokemon.species_id)["learnset"]:
+        var key := TacticalMoves.key_for(int(entry["move"]))
+        if int(entry["level"]) != level or key in pokemon.learned_skills or report["offers"].any(func(offer: Dictionary): return offer["key"] == key): continue
+        if pokemon.learned_skills.size() < 4:
+            pokemon.learned_skills.append(key)
+            report["learned"].append(TacticalMoves.definition(key)["name"])
+        else:
+            report["offers"].append({"uid":pokemon.uid,"key":key,"level":level,"species":pokemon.species_id})
+static func award(pokemon: BattlePokemon,base: float) -> Dictionary:
     initialize(pokemon)
     var before := pokemon.level
     var experience := pokemon.experience
     pokemon.gain_experience(base)
-    pokemon.level = maxi(before,level_for(pokemon.experience))
-    var increase := pokemon.level-before
-    pokemon.max_hp += increase
-    if pokemon.alive(): pokemon.hp += increase
-    var learned := ""
-    if pokemon.level >= 10 and pokemon.learned_skills.size() < 4:
-        var extra: String = {"fire":"fire_spin","water":"bubble_beam","grass":"razor_leaf"}.get(pokemon.type,"fire_guard")
-        for key: String in [extra,"tackle","guard","growth"]:
-            if key not in pokemon.learned_skills:
-                pokemon.learned_skills.append(key)
-                learned = str(BattleContent.CARDS[key]["name"])
+    var target := maxi(before,level_for(pokemon.experience,pokemon.species_id))
+    var report := {"uid":pokemon.uid,"id":pokemon.species_id,"name":pokemon.display_name,"before":before,"after":target,
+        "xp":pokemon.experience-experience,"hp":target-before,"learned":[],"offers":[],"evolutions":[]}
+    var catalog: VisualCatalog = null
+    while pokemon.level < target:
+        pokemon.level += 1
+        pokemon.max_hp += 1
+        if pokemon.alive(): pokemon.hp += 1
+        _learn_at(pokemon,pokemon.level,report)
+        for rule: Dictionary in rules_for(pokemon.species_id):
+            if pokemon.level >= int(rule["level"]):
+                if catalog == null: catalog = VisualCatalog.new()
+                var previous := pokemon.species_id
+                evolve(pokemon,int(rule["to"]),catalog)
+                report["evolutions"].append({"from":previous,"to":pokemon.species_id,"name":pokemon.display_name,"level":pokemon.level})
+                _learn_at(pokemon,pokemon.level,report)
                 break
-    return {"uid":pokemon.uid,"id":pokemon.species_id,"name":pokemon.display_name,
-        "before":before,"after":pokemon.level,"xp":pokemon.experience-experience,"hp":increase,"learned":learned}
+    return report
 static func rules_for(species_id: int) -> Array:
     if _rules.is_empty(): _rules = JSON.parse_string(FileAccess.get_file_as_string("res://data/evolutions.json"))
     return _rules.filter(func(rule: Dictionary): return int(rule["from"]) == species_id)
-static func evolution_reason(pokemon: BattlePokemon,target: int) -> String:
-    if not pokemon.alive(): return "기절한 포켓몬은 먼저 회복하세요."
-    for rule: Dictionary in rules_for(pokemon.species_id):
-        if int(rule["to"]) == target:
-            return "Lv.%d부터 진화할 수 있습니다." % int(rule["level"]) if pokemon.level < int(rule["level"]) else ""
-    return "현재 지원하는 레벨 진화가 아닙니다."
-static func evolve(pokemon: BattlePokemon,target: int,catalog: VisualCatalog) -> String:
-    var reason := evolution_reason(pokemon,target)
-    if not reason.is_empty(): return reason
+static func evolve(pokemon: BattlePokemon,target: int,catalog: VisualCatalog) -> void:
     var species := catalog.species(target)
-    if species.is_empty(): return "진화할 포켓몬 정보가 없습니다."
-    initialize(pokemon)
     pokemon.species_id = target
     pokemon.display_name = species["name"]
     pokemon.type = species["types"][0]
     pokemon.max_hp += EVOLUTION_HP
-    pokemon.hp += EVOLUTION_HP
+    if pokemon.alive(): pokemon.hp += EVOLUTION_HP
     pokemon.evolution_power += 1
-    return ""

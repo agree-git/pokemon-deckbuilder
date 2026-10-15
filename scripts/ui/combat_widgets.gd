@@ -7,6 +7,7 @@ const GOLD := Color("edcb80")
 static var _icons: Dictionary = {}
 static var _portraits: Dictionary = {}
 static func texture(key: String) -> Texture2D:
+    if not ResourceLoader.exists("res://assets/ui/icons/%s.svg" % key): key = "normal"
     if not _icons.has(key):
         _icons[key] = load("res://assets/ui/icons/%s.svg" % key)
     return _icons[key]

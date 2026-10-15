@@ -119,12 +119,14 @@ func intent() -> Dictionary:
     var definitions: Array = enemy_definitions[enemy_index]["intents"]
     var result: Dictionary = definitions[int(opening()["intent"]) % definitions.size()].duplicate(true)
     if result["kind"] in ["attack","charge"]:
-        result["value"] = int(floor((int(result["value"])+enemy().strength)*BattleContent.multiplier(result.get("type","normal"),active().type)))
+        if enemy().statuses.has("paralysis") or enemy().statuses.has("confusion"): result["value"] = maxi(0,int(result["value"])-2)
+        result["value"] = maxi(0,int(floor((int(result["value"])+enemy().strength)*BattleContent.multiplier(result.get("type","normal"),active().type))))
+    if enemy().statuses.has("sleep"): result["asleep"] = true
     return result
 func skill_view(key: String) -> Dictionary:
-    var view: Dictionary = BattleContent.CARDS[key].duplicate(true)
+    var view: Dictionary = TacticalMoves.definition(key).duplicate(true)
     if view.has("damage"):
-        var base := int(view["damage"])+active().strength+TacticalGrowth.attack_bonus(active())+next_attack_bonus+int(switch_bonus.get(active().uid,0))
+        var base := int(view["damage"])+active().strength+TacticalGrowth.attack_bonus(active())+next_attack_bonus+int(switch_bonus.get(active().uid,0))+(2 if enemy().statuses.has("exposed") else 0)
         view["preview_damage"] = int(floor(base*BattleContent.multiplier(view["type"],enemy().type))) * (2 if opening()["burst"] else 1)
     return view
 func skill_reason(key: String) -> String:
@@ -134,7 +136,7 @@ func skill_reason(key: String) -> String:
         return "현재 포켓몬이 사용할 수 없는 기술입니다."
     if used_skills.has("%d:%s" % [active().uid,key]):
         return "이 기술은 이번 턴에 사용했습니다."
-    if energy < int(BattleContent.CARDS[key]["cost"]):
+    if energy < int(TacticalMoves.definition(key)["cost"]):
         return "에너지가 부족합니다."
     return ""
 
@@ -143,7 +145,7 @@ func use_skill(key: String) -> String:
     if not reason.is_empty():
         return reason
     events.clear()
-    var definition: Dictionary = BattleContent.CARDS[key]
+    var definition: Dictionary = TacticalMoves.definition(key)
     var actor := active()
     var target := enemy()
     var state := opening()
@@ -160,19 +162,25 @@ func use_skill(key: String) -> String:
         if state["analyzed"]:
             state["analyzed"] = false
             _opening("analysis","분석한 빈틈")
-        var base := int(definition["damage"])+actor.strength+TacticalGrowth.attack_bonus(actor)+next_attack_bonus+int(switch_bonus.get(actor.uid,0))
+        var base := int(definition["damage"])+actor.strength+TacticalGrowth.attack_bonus(actor)+next_attack_bonus+int(switch_bonus.get(actor.uid,0))+(2 if target.statuses.has("exposed") else 0)
         next_attack_bonus = 0
         switch_bonus.erase(actor.uid)
         _direct = true
         _damage(target,int(floor(base*multiplier))*(2 if burst else 1))
         _direct = false
     if target.alive():
-        for key_name: String in ["burn","seed"]:
+        for key_name: String in ["burn","seed","poison","sleep","paralysis","confusion"]:
             if definition.has(key_name):
                 var fresh := not target.statuses.has(key_name)
                 target.statuses[key_name] = {"turns":int(definition[key_name]),"source_uid":actor.uid}
                 if fresh:
                     _opening("status","상태 활용")
+    if target.alive() and definition.has("weaken"):
+        target.strength = maxi(-6,target.strength-int(definition["weaken"]))
+        _opening("status","능력 약화")
+    if target.alive() and definition.has("expose"):
+        target.statuses["exposed"] = {"turns":3,"source_uid":actor.uid}
+        _opening("status","방어 약화")
     if definition.has("heal"):
         actor.hp = mini(actor.max_hp,actor.hp+int(definition["heal"]))
     if definition.has("block"):
@@ -323,7 +331,9 @@ func _enemy_action() -> void:
     enemy().block = 0
     var state := opening()
     var action := intent()
-    if state["cancel"]:
+    if enemy().statuses.has("sleep"):
+        _record("cancel",enemy().display_name+"은 잠들어 행동할 수 없습니다.")
+    elif state["cancel"]:
         state["cancel"] = false
         _record("cancel",enemy().display_name+"의 행동이 브레이크로 취소되었습니다.")
     else:
@@ -357,7 +367,7 @@ func _start_player() -> void:
     _draw(5)
     _record("turn","턴 %d · 에너지 3" % turn)
 func _tick(pokemon: BattlePokemon) -> void:
-    for key: String in ["burn","seed"]:
+    for key: String in ["burn","seed","poison","confusion"]:
         if not pokemon.alive() or not pokemon.statuses.has(key):
             continue
         var status: Dictionary = pokemon.statuses[key]
@@ -370,6 +380,10 @@ func _tick(pokemon: BattlePokemon) -> void:
             var owner := member(int(status["source_uid"]))
             if owner != null and owner.alive():
                 owner.hp = mini(owner.max_hp,owner.hp+2)
+    for key: String in ["sleep","paralysis","exposed"]:
+        if pokemon.statuses.has(key):
+            pokemon.statuses[key]["turns"] = int(pokemon.statuses[key]["turns"])-1
+            if int(pokemon.statuses[key]["turns"]) <= 0: pokemon.statuses.erase(key)
 func _damage(target: BattlePokemon, amount: int, piercing: bool = false) -> void:
     var blocked := 0 if piercing else mini(target.block,amount)
     target.block -= blocked

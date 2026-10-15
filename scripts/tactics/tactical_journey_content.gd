@@ -16,7 +16,7 @@ const GYM_PARTY := [
     {"id":45,"name":"라플레시아","type":"grass","max_hp":46},
     {"id":71,"name":"우츠보트","type":"grass","max_hp":54},
 ]
-static func opponents(step: int) -> Array:
+static func _base_opponents(step: int) -> Array:
     if step == 0: return TacticalContent.ENEMIES.duplicate(true)
     if step == 2:
         return [enemy(187,"통통코",44,10),enemy(285,"버섯꼬",54,12)]
@@ -24,8 +24,28 @@ static func opponents(step: int) -> Array:
     for definition: Dictionary in GYM_PARTY:
         result.append(enemy(definition["id"],definition["name"],definition["max_hp"],12 if definition["id"] != 71 else 16))
     return result
-static func experience_reward(step: int) -> int:
-    return 150 if step == 0 else (350 if step == 2 else 450)
+const BASE_EXPERIENCE := 400
+const ITEMS := {
+    "potion":{"name":"상처약","price":30,"heal":20,"stock":3},
+    "super_potion":{"name":"좋은상처약","price":70,"heal":50,"stock":2},
+    "revive":{"name":"기력의조각","price":100,"revive":true,"stock":1},
+}
+static func experience_multiplier(step: int) -> float:
+    return 1.0+floori(step/2.0)*0.75
+static func experience_reward(step: int) -> float:
+    var encounter := 1.0 if step == 0 else (1.25 if step == 2 else 1.5)
+    return BASE_EXPERIENCE*experience_multiplier(step)*encounter
+static func enemy_level(step: int) -> int:
+    return 6+floori(step/2.0)*4
+static func opponents(step: int) -> Array:
+    var result := _base_opponents(step)
+    var level := enemy_level(step)
+    for definition: Dictionary in result:
+        definition["level"] = level
+        definition["max_hp"] = int(definition["max_hp"])+level-6
+        for intent: Dictionary in definition["intents"]:
+            if intent["kind"] in ["attack","charge"]: intent["value"] = int(intent["value"])+floori((level-6)/5.0)
+    return result
 static func enemy(id: int, title: String, hp: int, power: int) -> Dictionary:
     return {"id":id,"name":title,"type":"grass","max_hp":hp,"intents":[
         {"kind":"charge","value":power,"type":"grass","move_id":22},

@@ -4,6 +4,7 @@ extends RefCounted
 const BATTLE := "battle"
 const REWARD := "reward"
 const CAPTURE := "capture"
+const LEARN := "learn"
 const MAP := "map"
 const REST := "rest"
 const CLEARED := "cleared"
@@ -27,7 +28,12 @@ var pending_captures: Array[BattlePokemon] = []
 var _next_pokemon_uid := 1000
 var _capture_catalog: VisualCatalog
 var growth_reports: Array[Dictionary] = []
-var last_evolution: Dictionary = {}
+var pending_learning: Array[Dictionary] = []
+var gold := 100
+var inventory: Dictionary = {"potion":1,"super_potion":0,"revive":0}
+var loot: Array[Dictionary] = []
+var rested_steps: Array[int] = []
+var shop_stock: Dictionary = {}
 
 func _init(run_seed: int = 2026, selected_relic: String = "seed_relay", selected_starters: Array[int] = []) -> void:
     restart(run_seed,selected_relic,selected_starters)
@@ -42,7 +48,12 @@ func restart(run_seed: int = 2026, selected_relic: String = "seed_relay", select
     history.clear()
     reward_options.clear()
     growth_reports.clear()
-    last_evolution.clear()
+    pending_learning.clear()
+    gold = 100
+    inventory = {"potion":1,"super_potion":0,"revive":0}
+    loot.clear()
+    rested_steps.clear()
+    shop_stock.clear()
     _settled = null
     balls = 2
     pending_captures.clear()
@@ -55,10 +66,10 @@ func restart(run_seed: int = 2026, selected_relic: String = "seed_relay", select
         var catalog := VisualCatalog.new()
         for id: int in starter_ids:
             party.append(BattlePokemon.new(TacticalContent.member_definition(id,catalog),id))
-        var opponents := TacticalContent.ENEMIES.duplicate(true)
-        if party.size() == 1: opponents = [opponents[0]]
-        battle.start_with(party,deck,opponents,seed_value,relic,true)
     for pokemon: BattlePokemon in party: TacticalGrowth.initialize(pokemon)
+    var opponents := TacticalJourneyContent.opponents(0)
+    if party.size() == 1: opponents = [opponents[0]]
+    battle.start_with(party,deck,opponents,seed_value,relic,not starter_ids.is_empty())
     phase = BATTLE
 func current() -> Dictionary:
     return TacticalJourneyContent.STOPS[step]
@@ -79,15 +90,39 @@ func settle() -> String:
     wins += 1
     growth_reports.clear()
     for pokemon: BattlePokemon in party:
-        growth_reports.append(TacticalGrowth.award(pokemon,TacticalJourneyContent.experience_reward(step)))
+        var report := TacticalGrowth.award(pokemon,TacticalJourneyContent.experience_reward(step))
+        growth_reports.append(report)
+        pending_learning.append_array(report["offers"])
+    var coins := 40 if step == 0 else (80 if step == 2 else 180)
+    var item := "potion" if step == 0 else ("super_potion" if step == 2 else "revive")
+    gold += coins
+    inventory[item] = int(inventory[item])+1
+    loot.append({"name":current()["name"],"gold":coins,"item":item,"quantity":1})
+    _after_learning()
+    return ""
+func _after_learning() -> void:
+    if not pending_learning.is_empty():
+        phase = LEARN
+        return
     if current()["kind"] == "gym":
         badges = 1
         phase = CLEARED
-        return ""
+        return
     if not pending_captures.is_empty():
         phase = CAPTURE
-        return ""
+        return
     _prepare_rewards()
+func resolve_learning(slot: int) -> String:
+    if phase != LEARN or pending_learning.is_empty(): return "배울 기술이 없습니다."
+    var offer := pending_learning[0]
+    var pokemon: BattlePokemon
+    for member: BattlePokemon in party:
+        if member.uid == int(offer["uid"]): pokemon = member
+    if pokemon == null or slot < -1 or slot >= pokemon.learned_skills.size(): return "교체할 기술 또는 배우지 않기를 선택하세요."
+    if slot >= 0:
+        pokemon.learned_skills[slot] = offer["key"]
+    pending_learning.pop_front()
+    _after_learning()
     return ""
 func _prepare_rewards() -> void:
     var candidates: Array[String] = ["analysis","guard","focus","rally","counter"]
@@ -112,7 +147,7 @@ func capture() -> String:
     var reason := capture_reason()
     if not reason.is_empty(): return reason
     var target := battle.enemy()
-    var definition := {"id":target.species_id,"name":target.display_name,"type":target.type,"max_hp":target.max_hp}
+    var definition := {"id":target.species_id,"name":target.display_name,"type":target.type,"max_hp":target.max_hp,"level":target.level}
     battle.capture_enemy()
     balls -= 1
     var caught := BattlePokemon.new(definition,_next_pokemon_uid)
@@ -145,50 +180,70 @@ func choose_reward(index: int) -> String:
     return ""
 func enter_next() -> String:
     if phase != MAP: return "지도에서 다음 장소로 이동하세요."
-    last_evolution.clear()
     if current()["kind"] == "rest":
         phase = REST
+        shop_stock.clear()
+        for key: String in TacticalJourneyContent.ITEMS: shop_stock[key] = TacticalJourneyContent.ITEMS[key]["stock"]
     else:
         battle = TacticalBattle.new()
         battle.start_with(party,deck,TacticalJourneyContent.opponents(step),seed_value+step,relic,not starter_ids.is_empty())
         phase = BATTLE
     return ""
-func rest(action: String, member_index: int = 0) -> String:
-    if phase != REST: return "휴식 장소마다 한 번만 행동할 수 있습니다."
-    match action:
-        "heal":
-            for pokemon: BattlePokemon in party:
-                pokemon.hp = mini(pokemon.max_hp,pokemon.hp+int(ceil(pokemon.max_hp*0.5)))
-                pokemon.knocked_out = false
-            for i in range(deck.size()-1,-1,-1):
-                if deck[i].key == "injury": deck.remove_at(i)
-        "train":
-            if member_index < 0 or member_index >= party.size() or not party[member_index].alive(): return "살아 있는 포켓몬을 선택하세요."
-            party[member_index].max_hp += 8
-            party[member_index].hp += 8
-        _: return "회복 또는 훈련을 선택하세요."
+func rest(action: String = "heal", _member_index: int = 0) -> String:
+    if phase != REST: return "야영지에서 휴식할 수 있습니다."
+    if action != "heal": return "야영지에서 휴식·구매·가방·전리품을 이용하세요."
+    if step in rested_steps: return "이번 야영지에서는 이미 휴식했습니다."
     for pokemon: BattlePokemon in party:
+        pokemon.hp = mini(pokemon.max_hp,pokemon.hp+ceili(pokemon.max_hp*0.5))
+        pokemon.knocked_out = false
         pokemon.block = 0
         pokemon.strength = 0
         pokemon.statuses.clear()
-    history.append(current()["name"]+" · "+("회복" if action == "heal" else party[member_index].display_name+" 훈련"))
+    for i in range(deck.size()-1,-1,-1):
+        if deck[i].key == "injury": deck.remove_at(i)
+    rested_steps.append(step)
+    history.append(current()["name"]+" · 휴식")
+    return ""
+func leave_camp() -> String:
+    if phase != REST: return "현재 야영지에 있지 않습니다."
     step += 1
     phase = MAP
     return ""
-func evolve(member_index: int,target: int) -> String:
-    if phase != REST: return "진화는 야영지에서 선택하세요."
-    if member_index < 0 or member_index >= party.size(): return "진화할 포켓몬을 선택하세요."
-    var pokemon := party[member_index]
-    var previous_id := pokemon.species_id
-    var previous_name := pokemon.display_name
-    var reason := TacticalGrowth.evolve(pokemon,target,VisualCatalog.new())
+func buy_reason(key: String) -> String:
+    if phase != REST: return "물건은 야영지에서 구매할 수 있습니다."
+    if not TacticalJourneyContent.ITEMS.has(key): return "판매하지 않는 아이템입니다."
+    if int(shop_stock.get(key,0)) <= 0: return "이번 야영지의 재고가 없습니다."
+    if gold < int(TacticalJourneyContent.ITEMS[key]["price"]): return "골드가 부족합니다."
+    return ""
+func buy(key: String) -> String:
+    var reason := buy_reason(key)
     if not reason.is_empty(): return reason
-    last_evolution = {"from":previous_id,"to":target,"name":previous_name,"evolved_name":pokemon.display_name}
-    history.append(previous_name+" → "+pokemon.display_name+" 진화!")
-    for member: BattlePokemon in party:
-        member.block = 0
-        member.strength = 0
-        member.statuses.clear()
-    step += 1
-    phase = MAP
+    gold -= int(TacticalJourneyContent.ITEMS[key]["price"])
+    shop_stock[key] = int(shop_stock[key])-1
+    inventory[key] = int(inventory[key])+1
+    return ""
+func item_reason(key: String,index: int) -> String:
+    if phase != REST and not (phase == BATTLE and battle.phase == TacticalBattle.PLAYER): return "지금은 아이템을 사용할 수 없습니다."
+    if not TacticalJourneyContent.ITEMS.has(key) or int(inventory.get(key,0)) <= 0: return "보유한 아이템이 없습니다."
+    if index < 0 or index >= party.size(): return "사용할 동료를 선택하세요."
+    if phase == BATTLE and battle.energy < 1: return "전투 중 아이템 사용에는 에너지 1이 필요합니다."
+    var pokemon := party[index]
+    if key == "revive":
+        if pokemon.alive(): return "기절한 동료에게 사용하세요."
+    elif not pokemon.alive(): return "기절한 동료는 기력의조각으로 회복하세요."
+    elif pokemon.hp >= pokemon.max_hp: return "체력이 가득 찼습니다."
+    return ""
+func use_item(key: String,index: int) -> String:
+    var reason := item_reason(key,index)
+    if not reason.is_empty(): return reason
+    var pokemon := party[index]
+    if key == "revive":
+        pokemon.hp = ceili(pokemon.max_hp*0.5)
+        pokemon.knocked_out = false
+    else: pokemon.hp = mini(pokemon.max_hp,pokemon.hp+int(TacticalJourneyContent.ITEMS[key]["heal"]))
+    inventory[key] = int(inventory[key])-1
+    if phase == BATTLE:
+        battle.events.clear()
+        battle.energy -= 1
+        battle._record("item",pokemon.display_name+" · "+str(TacticalJourneyContent.ITEMS[key]["name"]))
     return ""

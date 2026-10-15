@@ -3,7 +3,10 @@ var failures := 0
 var checks := 0
 var clicks := 0
 var native := false
-var choose_evolution := false
+var verify_camp := false
+var bag_checked := false
+var camp_checked := false
+var learning_checked := false
 var ui: TacticalJourneyUI
 var captured: Dictionary = {}
 func _initialize() -> void:
@@ -60,8 +63,8 @@ func verify_page() -> void:
         await click(ui.deck_button)
         check(ui.deck_open,"Deck opens at %s" % dimensions)
         await click(ui.actions[0])
-        check(ui.deck_open and ui.journey.phase == phase,"Deck modal blocks underlying progression")
-        await click(ui.deck_close)
+        check(ui.journey.phase == phase,"Deck modal blocks underlying progression even when outside click dismisses it")
+        if ui.deck_open: await click(ui.deck_close)
         check(not ui.deck_open and ui.journey.phase == phase,"Deck closes without changing progress")
     root.size = Vector2i(1280,720)
     await process_frame
@@ -87,26 +90,59 @@ func run() -> void:
                 check(ui.battle_ui.result.visible,"Every encounter opens result via rendered battle UI")
                 await click(ui.battle_ui.result_next)
             else:
+                if verify_camp and not bag_checked and battle.phase == TacticalBattle.PLAYER and battle.energy >= 1 and ui.journey.inventory["potion"] > 0:
+                    for index in battle.party.size():
+                        var pokemon := battle.party[index]
+                        if pokemon.alive() and pokemon.hp < pokemon.max_hp:
+                            var hp := pokemon.hp
+                            var energy := battle.energy
+                            await click(ui.battle_ui.menu_button)
+                            await click(ui.battle_ui.bag_button)
+                            await click(ui.battle_ui.bag_panel.get_node("Body/Items/Use_potion_%d" % index))
+                            check(pokemon.hp > hp and battle.energy == energy-1,"Battle bag heals through real button and consumes one energy")
+                            await click(ui.battle_ui.bag_panel.get_node("Body/Close"))
+                            bag_checked = true
+                            break
                 await click(TacticalUIPlayer.button(ui.battle_ui,JourneyPolicy.action(battle)))
         else:
-            if choose_evolution and ui.journey.phase == TacticalJourney.REST and ui.journey.step == 3:
-                await verify_page()
-                await capture("evolution_choice")
-                var pokemon := ui.journey.party[0]
-                var uid := pokemon.uid
-                check(pokemon.level == 16 and pokemon.learned_skills.size() == 4 and not ui.actions[4].disabled,"Second camp offers first evolution and learned fourth move")
-                await click(ui.actions[4])
-                check(pokemon.species_id == 5 and pokemon.uid == uid and ui.journey.phase == TacticalJourney.MAP,"Pointer evolves correct member and consumes camp")
-                await capture("evolution")
-                continue
             if not pages_checked.has(ui.journey.phase):
                 await verify_page()
                 await capture(ui.journey.phase)
                 pages_checked[ui.journey.phase] = true
-            await click(ui.actions[0])
+            if ui.journey.phase == TacticalJourney.REST:
+                if verify_camp and not camp_checked:
+                    await click(ui.rest_button)
+                    check(ui.journey.phase == TacticalJourney.REST and ui.journey.step in ui.journey.rested_steps,"Rest keeps camp open for other services")
+                    await click(ui.camp_tabs["shop"])
+                    var coins := ui.journey.gold
+                    var count := int(ui.journey.inventory["potion"])
+                    await click(ui.actions[1])
+                    check(ui.journey.gold == coins-30 and ui.journey.inventory["potion"] == count+1,"Shop purchase uses gold and enters bag")
+                    await capture("shop")
+                    await click(ui.camp_tabs["bag"])
+                    check(ui.camp_tab == "bag","Bag remains available after resting and buying")
+                    await capture("bag")
+                    await click(ui.camp_tabs["loot"])
+                    check(not ui.journey.loot.is_empty() and ui.camp_tab == "loot","Loot is inspectable without leaving camp")
+                    await capture("loot")
+                    camp_checked = true
+                elif ui.journey.step not in ui.journey.rested_steps:
+                    await click(ui.rest_button)
+                await click(ui.actions[0])
+            elif ui.journey.phase == TacticalJourney.LEARN:
+                if verify_camp and not learning_checked:
+                    var offer := ui.journey.pending_learning[0]
+                    var member: BattlePokemon
+                    for pokemon: BattlePokemon in ui.journey.party:
+                        if pokemon.uid == int(offer["uid"]): member = pokemon
+                    await click(ui.learn_buttons[0])
+                    check(member.learned_skills[0] == offer["key"] and member.learned_skills.size() == 4,"Learn screen replaces selected move and keeps four slots")
+                    learning_checked = true
+                else: await click(ui.actions.back())
+            else: await click(ui.actions[0])
     check(ui.journey.phase == TacticalJourney.CLEARED and ui.journey.badges == 1 and ui.journey.wins == 3,"Complete journey wins gym badge through pointer actions only")
-    if choose_evolution:
-        check(ui.journey.party[0].species_id == 5 and ui.journey.party[0].level >= 16,"Evolved member and level persist through gym victory")
+    if verify_camp:
+        check(ui.journey.party[0].species_id == 5 and ui.journey.party[0].level >= 16,"Experience automatically evolves the member at the original level without camp actions")
     await capture("result")
     var retained := ui.journey
     ui.free()
@@ -130,13 +166,6 @@ func run() -> void:
         var old_seed := ui.journey.seed_value
         await click(ui.actions[1])
         check(ui.journey.phase == TacticalJourney.BATTLE and ui.journey.seed_value != old_seed,"New-seed button begins clean expedition")
-        # Training fixture verifies the second rest action, not the healing path.
-        ui.journey.phase = TacticalJourney.REST
-        ui.journey.step = 1
-        ui.refresh()
-        var hp := ui.journey.party[0].max_hp
-        await click(ui.actions[1])
-        check(ui.journey.phase == TacticalJourney.MAP and ui.journey.party[0].max_hp == hp+8,"Training selection grows correct party member via pointer")
     ui.free()
     print("JOURNEY_UI: ",checks," checks, ",failures," failures; ",clicks," pointer actions; OS input ",native)
     quit(0 if failures == 0 else 1)

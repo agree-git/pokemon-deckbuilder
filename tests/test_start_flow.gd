@@ -54,11 +54,12 @@ func run() -> void:
     j.choose_reward(-1)
     j.enter_next()
     j.rest("heal")
+    j.leave_camp()
     j.enter_next()
     before = j.battle.snapshot()
     check(not j.capture().is_empty() and j.battle.snapshot() == before and j.balls == 1,"Trainer Pokemon cannot be captured")
     check(j.battle.party.size() == 2 and j.battle.party[1].uid == 1000,"Joined member persists into next battle")
-    check(j.battle.switch_to(1000).is_empty() and j.battle.use_skill("absorb").is_empty(),"Captured member can switch in and act")
+    check(j.battle.switch_to(1000).is_empty() and j.battle.use_skill("move_71").is_empty(),"Captured member can switch in and act")
     var legendary := TacticalJourney.new(42,"seed_relay",[4])
     legendary.battle.enemies[0].species_id = 151
     legendary.battle.enemy().hp = 1

@@ -15,6 +15,7 @@ var knocked_out := false
 var level := 5
 var evolution_power := 0
 var learned_skills: Array[String] = []
+var progression_initialized := false
 var _experience_tenths := 0
 var experience: float:
     get:
@@ -28,14 +29,15 @@ func _init(definition: Dictionary, instance_uid: int) -> void:
     display_name = definition["name"]
     type = definition["type"]
     max_hp = int(definition["max_hp"])
+    level = int(definition.get("level",5))
     hp = max_hp
 
 func alive() -> bool:
     return hp > 0
 
-func gain_experience(base: int = 1) -> void:
+func gain_experience(base: float = 1.0) -> void:
     # Fixed tenths preserve 30% awards across repeated KOs without truncation.
-    _experience_tenths += maxi(0,base) * (10 if alive() else 3)
+    _experience_tenths += roundi(maxf(0,base) * (10 if alive() else 3))
 
 func experience_text() -> String:
     return String.num(experience,1).trim_suffix(".0")

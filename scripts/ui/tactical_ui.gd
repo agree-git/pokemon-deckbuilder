@@ -17,6 +17,9 @@ var capture_action: Callable
 var capture_status: Callable
 var capture_button: Button
 var home_button: Button
+var run_journey: TacticalJourney
+var bag_panel: Control
+var bag_button: Button
 var catalog := VisualCatalog.new()
 var stage := PixelStage.new()
 var busy := false
@@ -328,6 +331,7 @@ func _build_menu() -> Control:
     restart_button = _menu_action(body,"restart","다시 시작","",420,restart)
     if run_mode:
         home_button = _menu_action(body,"home","시작 화면","",492,_home)
+        bag_button = _menu_action(body,"heal","가방","",564,_show_bag)
     else:
         old_button = _menu_action(body,"route","기존 원정","F3",492,_old_run)
         lab_button = _menu_action(body,"lab","아트 랩","F2",564,_open_lab)
@@ -360,7 +364,7 @@ func _build_help() -> Control:
     W.panel(body,Rect2(36,420,1008,164),Color("203940"),Color.TRANSPARENT)
     W.icon(body,"switch",Rect2(60,446,32,32))
     W.label(body,"첫 교체 무료 · 추가 교체는 에너지 1",Rect2(112,437,860,44),21)
-    W.label(body,"1턴: 씨뿌리기 + 분석 → 턴 종료\n2턴: 파이리 교체 → 불꽃세례 → 화염방사",Rect2(60,495,940,70),18,W.MUTED)
+    W.label(body,"초반: 울음소리·꼬리흔들기 + 분석으로 빈틈 만들기\n기술 습득 후: 약점·상태·교체로 이어 공격하기" if run_mode else "1턴: 씨뿌리기 + 분석 → 턴 종료\n2턴: 파이리 교체 → 불꽃세례 → 화염방사",Rect2(60,495,940,70),18,W.MUTED)
     W.label(body,"교체 1 / 2 / 3     기술 Q / W / E / R     턴 종료 Enter",Rect2(36,609,1008,32),18,MINT)
     W.label(body,"아이콘과 카드에 마우스를 올리면 자세한 효과를 확인할 수 있습니다.",Rect2(36,654,1008,32),17,W.MUTED)
     return overlay
@@ -393,10 +397,37 @@ func _open_overlay(overlay: Control) -> void:
     overlay.move_to_front()
     UiMotion.open(overlay)
 func _close_overlays(immediate := false) -> void:
-    for overlay: Control in [menu_panel,help_panel,log_panel,pile_panel]:
+    for overlay: Control in [menu_panel,help_panel,log_panel,pile_panel,bag_panel]:
         if overlay != null: UiMotion.close(overlay,immediate)
 func _overlay_open() -> bool:
-    return menu_panel.visible or help_panel.visible or log_panel.visible or pile_panel.visible
+    return menu_panel.visible or help_panel.visible or log_panel.visible or pile_panel.visible or (bag_panel != null and bag_panel.visible)
+func _show_bag() -> void:
+    if busy or run_journey == null: return
+    if bag_panel == null: bag_panel = _modal("가방 · 전투 중 사용은 에너지 1",Rect2(410,200,1100,650))
+    var body: Panel = bag_panel.get_node("Body")
+    if body.has_node("Items"):
+        var previous := body.get_node("Items")
+        body.remove_child(previous)
+        previous.queue_free()
+    var content := Control.new()
+    content.name = "Items"
+    body.add_child(content)
+    var row := 0
+    for key: String in TacticalJourneyContent.ITEMS:
+        W.label(content,"%s ×%d" % [TacticalJourneyContent.ITEMS[key]["name"],run_journey.inventory[key]],Rect2(36,142+row*145,304,60),21)
+        for index in run_journey.party.size():
+            var target := run_journey.party[index]
+            var button := W.button(content,Rect2(350+index*240,142+row*145,222,76),_bag_item.bind(key,index),target.display_name)
+            button.name = "Use_%s_%d" % [key,index]
+            button.disabled = not run_journey.item_reason(key,index).is_empty()
+            button.tooltip_text = run_journey.item_reason(key,index)
+        row += 1
+    _open_overlay(bag_panel)
+func _bag_item(key: String,index: int) -> void:
+    if busy or run_journey == null: return
+    var reason := run_journey.use_item(key,index)
+    _present(reason)
+    _show_bag()
 func _show_pile(key: String) -> void:
     var titles := {"draw":"뽑을 더미","discard":"버린 더미","exhausted":"소진된 카드"}
     var pile: Array = {"draw":battle.draw_pile,"discard":battle.discard,"exhausted":battle.exhausted}[key]
@@ -440,7 +471,7 @@ func _refresh() -> void:
     W.fill_bar(ally_bar,battle.active().hp,battle.active().max_hp)
     W.fill_bar(enemy_bar,foe.hp,foe.max_hp)
     ally_label.text = "%s · Lv.%d" % [battle.active().display_name,battle.active().level]
-    enemy_label.text = foe.display_name
+    enemy_label.text = "%s · Lv.%d" % [foe.display_name,foe.level]
     get_node("AllyHP").text = "%d / %d" % [battle.active().hp,battle.active().max_hp]
     get_node("EnemyHP").text = "%d / %d" % [foe.hp,foe.max_hp]
     get_node("AllyType").texture = W.texture(battle.active().type)
@@ -450,7 +481,7 @@ func _refresh() -> void:
     var action := battle.intent()
     var names := {"charge":"강공격","attack":"공격","block":"방어","boost":"강화"}
     var intent_icon := {"charge":"attack","attack":"attack","block":"shield","boost":"boost"}
-    var cancelled: bool = battle.opening()["cancel"]
+    var cancelled: bool = battle.opening()["cancel"] or action.get("asleep",false)
     var intent_signature := str([battle.enemy().uid,action,cancelled])
     if _shown_intent != intent_signature:
         UiMotion.pulse(get_node("Intent/Icon"))
@@ -458,7 +489,7 @@ func _refresh() -> void:
     get_node("Intent/Icon").texture = W.texture("break" if cancelled else intent_icon[action["kind"]])
     get_node("Intent/Title").text = "행동 취소" if cancelled else names[action["kind"]]
     intent_label.text = "—" if cancelled else str(action["value"])
-    get_node("Intent").tooltip_text = "브레이크로 다음 행동을 취소합니다." if cancelled else "다음 적 행동: %s %d\n상성과 적 강화가 적용된 수치입니다." % [names[action["kind"]],action["value"]]
+    get_node("Intent").tooltip_text = ("수면으로 다음 행동을 취소합니다." if action.get("asleep",false) else "브레이크로 다음 행동을 취소합니다.") if cancelled else "다음 적 행동: %s %d\n상성과 적 강화가 적용된 수치입니다." % [names[action["kind"]],action["value"]]
     var state := battle.opening()
     for i in break_pips.size():
         if i >= _shown_points and i < state["points"]: UiMotion.pulse(break_pips[i])
@@ -505,7 +536,7 @@ func _refresh() -> void:
             skill_values[i].add_theme_color_override("font_color",W.MUTED)
             skill_icons[i].texture = W.texture("normal")
             skill_costs[i].text = "—"
-            skills[i].tooltip_text = SKILL_LABELS[i]+" · 원정에서 Lv.10이 되면 네 번째 기술을 배웁니다."
+            skills[i].tooltip_text = SKILL_LABELS[i]+" · 다음 레벨의 기술을 배울 수 있는 빈 슬롯입니다."
             skills[i].disabled = true
             W.fade(skills[i])
             continue
@@ -551,10 +582,11 @@ func _refresh() -> void:
 func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
     var items: Array = []
     if pokemon.block > 0: items.append(["shield",str(pokemon.block),"보호막 %d · 다음 턴 시작 시 해제" % pokemon.block])
-    if pokemon.strength > 0: items.append(["boost",str(pokemon.strength),"공격력 +%d · 이번 전투 동안 유지" % pokemon.strength])
+    if pokemon.strength != 0: items.append(["boost",str(pokemon.strength),"공격력 %+d · 이번 전투 동안 유지" % pokemon.strength])
     for key: String in pokemon.statuses:
         var turns: int = pokemon.statuses[key]["turns"]
-        items.append(["fire" if key == "burn" else "seed",str(turns),("화상" if key == "burn" else "씨뿌리기")+" · %d회 남음\n행동 종료 시 2 피해%s" % [turns," · 사용자 2 회복" if key == "seed" else ""]])
+        var titles := {"burn":"화상 · 2 피해","seed":"씨뿌리기 · 2 흡수","poison":"독 · 2 피해","sleep":"수면 · 행동 취소","paralysis":"마비 · 공격 -2","confusion":"혼란 · 공격 -2 / 2 피해","exposed":"방어 약화 · 받는 피해 +2"}
+        items.append(["fire" if key == "burn" else ("seed" if key == "seed" else "counter"),str(turns),str(titles.get(key,key))+" · %d회 남음" % turns])
     if pokemon == battle.active() and battle.next_attack_bonus > 0:
         items.append(["boost","+%d" % battle.next_attack_bonus,"강화 지시 · 다음 공격 기본 피해 +%d" % battle.next_attack_bonus])
     if pokemon == battle.active() and battle.switch_bonus.has(pokemon.uid):
@@ -680,7 +712,7 @@ func _present(reason: String) -> void:
         stage.canvas.effect_from_enemy = from_enemy
         var start := stage.canvas.target_anchor if from_enemy else stage.canvas.source_anchor
         var finish := stage.canvas.source_anchor if from_enemy else stage.canvas.target_anchor
-        stage.canvas.effect.play(catalog.move_by_id(move_id),start,finish)
+        stage.canvas.effect.play(catalog.move_by_id(move_id) if not catalog.move_by_id(move_id).is_empty() else TacticalMoves.visual(move_id),start,finish)
     else:
         _visual_enemy = null
         _show_damage()
