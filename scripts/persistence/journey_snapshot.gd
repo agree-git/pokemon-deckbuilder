@@ -22,7 +22,7 @@ static func encode(j: TacticalJourney) -> Dictionary:
         if p.friendship >= 0: pokemon[p.uid]["friendship"] = p.friendship
         if p.beauty >= 0: pokemon[p.uid]["beauty"] = p.beauty
         if p.evolution_personality >= 0: pokemon[p.uid]["evolution_personality"] = p.evolution_personality
-        if not p.evolution_training.is_empty(): pokemon[p.uid]["evolution_training"] = p.evolution_training
+        if p.evolution_choice > 0: pokemon[p.uid]["evolution_choice"] = p.evolution_choice
     for c: BattleCardInstance in j.deck+b.hand+b.draw_pile+b.discard+b.exhausted: cards[c.uid] = fields(c,CARD_FIELDS)
     var state := fields(j,RUN_FIELDS)
     if not j.time_of_day.is_empty(): state["time_of_day"] = j.time_of_day
@@ -38,9 +38,10 @@ static func encode(j: TacticalJourney) -> Dictionary:
     combat["piles"] = [ids(b.hand),ids(b.draw_pile),ids(b.discard),ids(b.exhausted)]
     combat["rng"] = b._rng.state
     if not b.statistics.is_empty(): combat["statistics"] = b.statistics.duplicate(true)
-    return {"run":state,"battle":combat,"pokemon":pokemon,"cards":cards,"route":j.route.signature if j.full_campaign else ""}
+    return {"stat_basis":PokemonStats.BASIS,"run":state,"battle":combat,"pokemon":pokemon,"cards":cards,"route":j.route.signature if j.full_campaign else ""}
 static func restore(data: Dictionary) -> TacticalJourney:
     # Call only after validate(). Constructors provide defaults, never saved Objects.
+    if not data.has("stat_basis"): data = LegacyStatsSnapshot.upgrade(data)
     var state: Dictionary = data["run"]
     var j := TacticalJourney.new(state["seed_value"],state["relic"],[],state["full_campaign"])
     var pokemon := {}
@@ -52,7 +53,7 @@ static func restore(data: Dictionary) -> TacticalJourney:
         p.friendship = int(row.get("friendship",-1))
         p.beauty = int(row.get("beauty",-1))
         p.evolution_personality = int(row.get("evolution_personality",-1))
-        p.evolution_training = row.get("evolution_training","")
+        p.evolution_choice = int(row.get("evolution_choice",0))
         pokemon[uid] = p
     for uid: int in data["cards"]:
         var row: Dictionary = data["cards"][uid]
@@ -100,6 +101,8 @@ static func move(key: Variant) -> bool:
     return key.begins_with("move_") and key.trim_prefix("move_").is_valid_int() and TacticalGrowth.data()["moves"].has(key.trim_prefix("move_"))
 static func validate(data: Variant) -> bool:
     if not data is Dictionary: return false
+    var legacy: bool = not data.has("stat_basis")
+    if not legacy and data["stat_basis"] != PokemonStats.BASIS: return false
     for key: String in ["run","battle","pokemon","cards"]:
         if not data.get(key) is Dictionary: return false
     var r: Dictionary = data["run"]
@@ -145,9 +148,12 @@ static func validate(data: Variant) -> bool:
         if p.has("friendship") and not integer(p["friendship"],0,255): return false
         if p.has("beauty") and (not integer(p["beauty"],0,255) or p["species_id"] not in [349,350]): return false
         if p.has("evolution_personality") and (not integer(p["evolution_personality"],0,4294967295) or p["species_id"] not in [265,266,267,268,269]): return false
-        if p.has("evolution_training") and (not p["evolution_training"] is String or p["evolution_training"] not in ["attack","defense","balanced"] or p["species_id"] not in [236,106,107,237]): return false
+        if p.has("evolution_choice") and (legacy or not p["evolution_choice"] is int or p["evolution_choice"] not in SpecialEvolution.TYROGUE_CHOICES or p["species_id"] not in [236,106,107,237]): return false
+        if p.has("evolution_training") and (not legacy or not p["evolution_training"] is String or p["evolution_training"] not in ["attack","defense","balanced"] or p["species_id"] not in [236,106,107,237]): return false
         if not integer(p["max_hp"],1,100000) or not integer(p["hp"],0,p["max_hp"]) or not integer(p["block"],0,100000): return false
-        if p["species_stats"] and p["max_hp"] != PokemonStats.value(p["species_id"],p["level"],"hp"): return false
+        if p["species_stats"]:
+            var expected_hp := LegacyStatsSnapshot.max_hp(p["species_id"],p["level"]) if legacy else PokemonStats.value(p["species_id"],p["level"],"hp")
+            if p["max_hp"] != expected_hp: return false
         for stat: Variant in p["stat_stages"]:
             if stat not in PokemonStats.NAMES or stat == "hp" or not integer(p["stat_stages"][stat],-6,6): return false
         if not integer(p["_experience_tenths"],0,1000000000) or p["learned_skills"].size() > 4 or p["types"] != catalog.species(p["species_id"])["types"]: return false

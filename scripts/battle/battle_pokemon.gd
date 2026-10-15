@@ -18,9 +18,9 @@ var level := 5
 var species_stats := false
 var stat_stages: Dictionary = {}
 var attack: int:
-    get: return PokemonStats.individual(self,"attack")
+    get: return PokemonStats.value(species_id,level,"attack")
 var defense: int:
-    get: return PokemonStats.individual(self,"defense")
+    get: return PokemonStats.value(species_id,level,"defense")
 var special_attack: int:
     get: return PokemonStats.value(species_id,level,"special_attack")
 var special_defense: int:
@@ -32,7 +32,7 @@ var progression_initialized := false
 var friendship := -1
 var beauty := -1
 var evolution_personality := -1
-var evolution_training := ""
+var evolution_choice := 0
 var _experience_tenths := 0
 var experience: float:
     get:
@@ -67,5 +67,5 @@ func snapshot() -> Dictionary:
     if friendship >= 0: result["friendship"] = friendship
     if beauty >= 0: result["beauty"] = beauty
     if evolution_personality >= 0: result["evolution_personality"] = evolution_personality
-    if not evolution_training.is_empty(): result["evolution_training"] = evolution_training
+    if evolution_choice > 0: result["evolution_choice"] = evolution_choice
     return result

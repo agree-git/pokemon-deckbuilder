@@ -104,10 +104,10 @@ func run() -> void:
             print("OS_FOCUS ",DisplayServer.window_get_native_handle(DisplayServer.WINDOW_HANDLE))
             await create_timer(0.12).timeout
         await click(ui.page.find_child("SpecialEvolution",true,false))
-        var style: String = ["attack","balanced","defense"][i]
-        await click(ui.page.find_child("Train_236_"+style,true,false))
-        check(SpecialEvolution.training(j.party[0]) == style and ui.page.find_child("Train_236_"+style,true,false).disabled,"Three window ratios select and show the prepared stat branch")
-        check(ui.page.find_child("SpecialSummary_236",true,false).text.contains(["시라소몬","카포에라","홍수몬"][i]),"Preview uses actual level-20 attack/defense and names the result")
+        var target: int = [106,237,107][i]
+        await click(ui.page.find_child("Evolution_236_"+str(target),true,false))
+        check(SpecialEvolution.choice(j.party[0]) == target and ui.page.find_child("Evolution_236_"+str(target),true,false).disabled,"Three window ratios select and show the chosen evolution")
+        check(ui.page.find_child("SpecialSummary_236",true,false).text.contains(["시라소몬","카포에라","홍수몬"][i]),"Preview names the chosen level-up evolution")
         check(j.party[1].evolution_personality == personality and j.rested_steps.is_empty(),"Training and previews do not reroll personality or spend rest")
         await key("Escape")
         check(not ui.special_open,"Esc closes preparation without leaving camp")
@@ -135,7 +135,7 @@ func run() -> void:
     check(saved != null and JourneySnapshot.encode(saved) == JourneySnapshot.encode(j),"Training, fixed personality, beauty and sold stock autosave together")
     await win_next(j)
     check(j.party[0].species_id == 107 and j.party[1].species_id == expected and j.party[2].species_id == 350,"A real earned level applies trained, personality and beauty evolutions together")
-    check(j.party[0].evolution_training == "defense" and j.party[1].evolution_personality == personality and j.party[2].beauty == 180,"Evolution retains all conditional preparation")
+    check(j.party[0].evolution_choice == 107 and j.party[1].evolution_personality == personality and j.party[2].beauty == 180,"Evolution retains all conditional preparation")
     await picture("conditional-results")
     var shed := setup([290,4],[19,19])
     await adopt(shed,"shedinja")

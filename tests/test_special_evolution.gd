@@ -52,34 +52,34 @@ func coverage_checks() -> void:
         check(rows.any(func(r: Dictionary): return r["evolved_species_id"] == str(id) and r["version_group_id"] == "5" and r["minimum_level"] == "7" and r["percentage_chance"] == "50"),"Wurmple retains both original personality branches")
     check(rows.any(func(r: Dictionary): return r["evolved_species_id"] == "350" and r["version_group_id"] == "5" and r["minimum_beauty"] == "170"),"Milotic uses original beauty rather than the later trade item")
     check(rows.any(func(r: Dictionary): return r["evolved_species_id"] == "292" and r["evolution_trigger_id"] == "4"),"Shedinja is an additional spawn rather than replacing Ninjask")
-func training_checks() -> void:
-    for spec: Array in [["attack",106],["defense",107],["balanced",237]]:
+func choice_checks() -> void:
+    for target: int in [106,107,237]:
         var j := fixture([236,4])
         var p := j.party[0]
         p.level = 19
         p.experience = TacticalGrowth.experience_floor(19,236)
         PokemonStats.apply(p,true)
-        if spec[0] != "balanced": check(j.train_evolution(p.uid,spec[0]).is_empty(),"Prepare the chosen training style")
+        var stats := PokemonStats.summary(p)
+        if target != 237: check(j.choose_evolution(p.uid,target).is_empty(),"Prepare the chosen evolution")
         var hp := p.hp
         var known := p.learned_skills.duplicate()
-        var effort := 32 if spec[0] == "attack" else 0
-        check(p.attack == PokemonStats.value(236,19,"attack",effort) and PokemonStats.effective(p,"attack") == p.attack,"Training uses the real EV formula in both stats and combat")
+        check(PokemonStats.summary(p) == stats and p.attack == p.defense,"Evolution selection changes no stat or combat value")
         var row := BattleFrame.member(p)
-        check(BattleFrame.restore(row).attack == p.attack and BattleFrame.restore(row).defense == p.defense,"Animation frames retain trained stats")
+        check(SpecialEvolution.choice(BattleFrame.restore(row)) == target,"Presentation frames preserve the explicit choice")
         p.stat_stages["attack"] = 6
         p.stat_stages["defense"] = -6
         var report := advance(p,20)
-        check(p.species_id == spec[1] and p.level == 20 and report["evolutions"].size() == 1,"Permanent stat comparison selects the right form despite temporary stages")
-        check(p.uid == 236 and p.evolution_training == ("" if spec[0] == "balanced" else spec[0]) and known.all(func(k: String): return k in p.learned_skills) and p.hp >= hp,"Evolution retains identity, moves and training")
+        check(p.species_id == target and p.level == 20 and report["evolutions"].size() == 1,"Chosen form evolves on level-up independently of temporary stages")
+        check(p.uid == 236 and SpecialEvolution.choice(p) == target and known.all(func(k: String): return k in p.learned_skills) and p.hp >= hp,"Evolution retains identity, moves and choice")
         var data := JourneySnapshot.encode(j)
-        check(JourneySnapshot.validate(data) and JourneySnapshot.encode(JourneySnapshot.restore(data)) == data,"Every trained branch saves exact stats and EV state")
-        check(not j.train_evolution(p.uid,"attack").is_empty(),"Training cannot be changed after Tyrogue evolves")
+        check(JourneySnapshot.validate(data) and JourneySnapshot.encode(JourneySnapshot.restore(data)) == data,"Every choice saves without stat training")
+        check(not j.choose_evolution(p.uid,106).is_empty(),"Cannot change the choice after evolution")
     var j := fixture([236,4])
     var before := JourneySnapshot.encode(j)
-    check(not j.train_evolution(999,"attack").is_empty() and not j.train_evolution(236,"speed").is_empty() and not j.train_evolution(4,"attack").is_empty() and JourneySnapshot.encode(j) == before,"Invalid training inputs are atomic")
-    j.train_evolution(236,"attack")
-    j.train_evolution(236,"balanced")
-    check(j.party[0].attack == j.party[0].defense and j.gold == 100 and j.rested_steps.is_empty(),"Returning to balanced resets the EV choice without free healing or rest use")
+    check(not j.choose_evolution(999,106).is_empty() and not j.choose_evolution(236,150).is_empty() and not j.choose_evolution(4,106).is_empty() and JourneySnapshot.encode(j) == before,"Invalid evolution choices are atomic")
+    j.choose_evolution(236,106)
+    j.choose_evolution(236,237)
+    check(j.party[0].attack == j.party[0].defense and j.gold == 100 and j.rested_steps.is_empty(),"Changing the evolution grants no stats, healing or camp action")
 func branch_checks() -> void:
     for remainder in 10:
         var p := member(265,6)
@@ -165,24 +165,24 @@ func shedinja_checks() -> void:
         check(j.settle().is_empty() and JourneySnapshot.encode(j) == before,"Repeated settlement cannot create another Shedinja")
 func save_checks() -> void:
     var j := fixture([236,265,349])
-    j.train_evolution(236,"defense")
+    j.choose_evolution(236,107)
     j.inventory["blue_pokeblock"] = 1
     j.use_item("blue_pokeblock",2)
     var data := JourneySnapshot.encode(j)
-    for spec: Array in [[236,"evolution_training","speed"],[265,"evolution_personality",-1],[265,"evolution_personality",4294967296],[349,"beauty",256],[349,"beauty","170"]]:
+    for spec: Array in [[236,"evolution_choice",150],[265,"evolution_personality",-1],[265,"evolution_personality",4294967296],[349,"beauty",256],[349,"beauty","170"]]:
         var broken := data.duplicate(true)
         broken["pokemon"][spec[0]][spec[1]] = spec[2]
         check(not JourneySnapshot.validate(broken),"Malformed saved conditional growth fields are rejected")
     var old := data.duplicate(true)
     for p: Dictionary in old["pokemon"].values():
-        for key: String in ["evolution_personality","evolution_training","beauty"]: p.erase(key)
+        for key: String in ["evolution_personality","evolution_choice","beauty"]: p.erase(key)
     check(JourneySnapshot.validate(old),"Legacy saves require none of the new fields")
     var restored := JourneySnapshot.restore(old)
     for p: BattlePokemon in restored.party: SpecialEvolution.summary(p,3,restored.balls,VisualCatalog.new())
     check(JourneySnapshot.encode(restored) == old,"Legacy default previews do not manufacture saved state")
 func run() -> void:
     coverage_checks()
-    training_checks()
+    choice_checks()
     branch_checks()
     beauty_checks()
     shedinja_checks()

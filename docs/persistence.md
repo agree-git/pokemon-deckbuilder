@@ -32,9 +32,19 @@
 
 `TacticalBattle`과 `TacticalJourney`는 성공한 공개 행동이 끝났을 때 변경 신호를 보내며 `BattleSession`이 이를 저장한다. 포획은 볼 차감·합류 대기·포획 기록까지 완료된 뒤 한 번 알린다. 개발용 짧은 원정은 디스크 저장 대상에서 제외한다.
 
+## 개체값·노력치 제거의 호환 처리
+
+`RULESET` v3와 콘텐츠 지문을 유지하며 스냅숏에 `stat_basis: species-level-v1`을 기록한다. 표식 없는 기존 v3는 먼저 이전 HP 공식으로 검증한 뒤 `LegacyStatsSnapshot`에서 복사 변환한다. 새 저장은 종족값·레벨 공식으로 검증하며 알 수 없는 표식이나 옛 노력치 필드를 거부한다.
+
+아군·적·포획 합류 대기의 최대 HP를 새 공식으로 계산한다. 잃은 HP의 절대량을 유지하고 살아 있으면 최소 1, 기절했으면 0을 유지한다. 가득 찬 HP는 새 최대 HP가 된다. 옛 배루키 훈련은 대응하는 진화 대상 ID로 변환하며 공격·방어 보너스는 남기지 않는다. 모든 종의 공격·방어·특공·특방·스피드는 새 공식으로 조회한다.
+
+이미 지급된 현재 턴 에너지와 그때의 스피드 비교 이력은 유지한다. 다음 턴부터 새 스피드를 비교하며 이어하기로 에너지를 다시 받지 않는다. 옛 수치의 마지막 행동 연출 프레임은 지우되 텍스트 기록은 과거 이력으로 유지한다. 카드 UID·더미 순서·난수·경로·진행·경험치·상점 재고·자원·포획·정산 여부는 보존한다. 다음 자동 저장부터 새 표식을 쓰므로 반복 로드해도 HP가 다시 줄지 않는다.
+
+`test_legacy_stats.gd`는 변경 전 커밋에서 생성한 실제 야영지·교대 후 전투·정산 전 포획 저장 세 개를 정상 로더로 읽는다. 변환 결과와 재저장의 정확성·기절·진화·중복 정산 방지를 확인한다. 그보다 오래된 비호환 ruleset의 처리 정책은 그대로다.
+
 ## 특수 진화 업데이트의 호환 처리
 
-[특수 진화](special-evolution.md)의 `evolution_training`·`evolution_personality`·`beauty`는 선택 필드로 보존한다. 이전 값이 없으면 균형·UID의 고정 분기·아름다움 0으로 읽되 미리보기만으로 필드를 추가하지 않는다. 새 껍질몬의 UID·카드 소유자·남은 볼·정산 상태를 보존해 재실행 시 추가 합류를 반복하지 않는다. 파랑포켓블록 재고는 상인의 기존 선택 필드에서 0~3개로 검증한다.
+[특수 진화](special-evolution.md)의 `evolution_choice`·`evolution_personality`·`beauty`는 선택 필드로 보존한다. 이전 값이 없으면 카포에라·UID의 고정 분기·아름다움 0으로 읽되 미리보기만으로 필드를 추가하지 않는다. 새 껍질몬의 UID·카드 소유자·남은 볼·정산 상태를 보존해 재실행 시 추가 합류를 반복하지 않는다. 파랑포켓블록 재고는 상인의 기존 선택 필드에서 0~3개로 검증한다.
 
 ## 희귀 조우 업데이트의 호환 처리
 
@@ -71,6 +81,7 @@
 ```bash
 godot --headless --path . --script res://tests/test_journey_save.gd
 godot --headless --path . --script res://tests/test_save_files.gd
+godot --headless --path . --script res://tests/test_legacy_stats.gd
 python3 tools/test_save_process.py
 # X11에서 실제 OS 포인터로 종료·재실행·이어하기·복구 확인
 LIBGL_ALWAYS_SOFTWARE=1 python3 tools/test_save_process.py --native

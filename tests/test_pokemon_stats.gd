@@ -31,9 +31,9 @@ func run() -> void:
     check(PokemonStats.data()["species"].size() == 386,"All first three generations have six original base stats")
     check(PokemonStats.base(25)["defense"] == 30 and PokemonStats.base(26)["speed"] == 100,"Historical Gen III base stats precede later buffs")
     var p := pokemon(6)
-    check([p.max_hp,p.attack,p.defense,p.special_attack,p.special_defense,p.speed] == [297,204,192,254,206,236],"Independent Lv.100 Charizard IV31 EV0 neutral reference")
+    check([p.max_hp,p.attack,p.defense,p.special_attack,p.special_defense,p.speed] == [266,173,161,223,175,205],"Independent Lv.100 Charizard species-and-level-only reference")
     p = pokemon(1,5)
-    check([p.max_hp,p.attack,p.defense,p.special_attack,p.special_defense,p.speed] == [21,11,11,13,13,11],"Independent Lv.5 Bulbasaur reference")
+    check([p.max_hp,p.attack,p.defense,p.special_attack,p.special_defense,p.speed] == [19,9,9,11,11,9],"Independent Lv.5 Bulbasaur reference")
     check(pokemon(292,5).max_hp == 1 and pokemon(292).max_hp == 1,"Shedinja always has one HP")
     var physical := {"move_id":33,"move_power":80,"damage_class":"physical","type":"normal"}
     var special := {"move_id":85,"move_power":80,"damage_class":"special","type":"normal"}
@@ -44,9 +44,9 @@ func run() -> void:
     check(PokemonStats.damage(machamp,target,physical,1) > PokemonStats.damage(machamp,target,special,1),"Machamp uses its higher physical attack")
     check(PokemonStats.damage(alakazam,pokemon(91),special,1) > PokemonStats.damage(alakazam,pokemon(91),physical,1),"Cloyster's physical defense resists physical damage")
     var fire := {"move_id":53,"move_power":95,"damage_class":"special","type":"fire"}
-    check(PokemonStats.damage(pokemon(6),pokemon(3),fire,2) == 156,"Independent deterministic damage: Lv100 Flamethrower, STAB and weakness, scale 0.6")
+    check(PokemonStats.damage(pokemon(6),pokemon(3),fire,2) == 158,"Independent deterministic damage: Lv100 Flamethrower, STAB and weakness, scale 0.6")
     check(PokemonStats.damage(pokemon(6),pokemon(3),fire,0) == 0,"Immunity wins over flat bonuses and STAB")
-    check(PokemonStats.damage(pokemon(6),pokemon(3),fire,4) == 313 and PokemonStats.damage(pokemon(6),pokemon(3),fire,0.25) == 19,"Exact double weakness and double resistance before final flooring")
+    check(PokemonStats.damage(pokemon(6),pokemon(3),fire,4) == 316 and PokemonStats.damage(pokemon(6),pokemon(3),fire,0.25) == 19,"Exact double weakness and double resistance before final flooring")
     var burned := pokemon(6)
     var physical_before := PokemonStats.damage(burned,target,physical,1)
     var special_before := PokemonStats.damage(burned,target,special,1)
@@ -151,7 +151,7 @@ func run() -> void:
     b = fixture(6,3,100)
     b.active().hp -= 100
     view = play(b,"potion_card",0)
-    check(view["preview_heal"] == 99 and b.active().hp == b.active().max_hp-1,"Healing tool scales with HP and matches preview")
+    check(view["preview_heal"] == 89 and b.active().hp == b.active().max_hp-11,"Healing tool scales with HP and matches preview")
     view = play(b,"guard",0)
     check(b.active().block == PokemonStats.scale(b.active(),5)+view["preview_block"],"Opening relic and shield card scale independently")
     # A true campaign graph ensures speed grants/stages survive serialization.

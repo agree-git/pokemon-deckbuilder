@@ -497,17 +497,17 @@ func _special_picker() -> void:
         detail.name = "SpecialSummary_%d" % p.uid
         if p.species_id == 236:
             for i in 3:
-                var style: String = ["attack","balanced","defense"][i]
-                var button := W.button(panel,Rect2(152+i*230,146,214,40),_train_evolution.bind(p.uid,style),["공격 훈련","균형 훈련","방어 훈련"][i])
-                button.name = "Train_%d_%s" % [p.uid,style]
-                button.disabled = SpecialEvolution.training(p) == style or p.level >= 100
-                if SpecialEvolution.training(p) == style:
+                var target: int = SpecialEvolution.TYROGUE_CHOICES[i]
+                var button := W.button(panel,Rect2(152+i*230,146,214,40),_choose_evolution.bind(p.uid,target),str(_evolution_catalog.species(target)["name"]))
+                button.name = "Evolution_%d_%d" % [p.uid,target]
+                button.disabled = SpecialEvolution.choice(p) == target or p.level >= 100
+                if SpecialEvolution.choice(p) == target:
                     button.add_theme_stylebox_override("disabled",W.box(Color("29443f"),W.GOLD))
                     button.add_theme_color_override("font_disabled_color",W.GOLD)
         row += 1
     UiMotion.appear(overlay)
-func _train_evolution(uid: int, style: String) -> void:
-    var reason := journey.train_evolution(uid,style)
+func _choose_evolution(uid: int, target: int) -> void:
+    var reason := journey.choose_evolution(uid,target)
     if not reason.is_empty(): camp_notice = reason
     refresh()
 func _close_evolution() -> void:

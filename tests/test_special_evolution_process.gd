@@ -21,7 +21,7 @@ func prepare(shed: bool) -> TacticalJourney:
     j.battle.full_type_chart = true
     if not shed:
         j.gold = 500
-        check(j.train_evolution(236,"defense").is_empty(),"Prepare the real defensive training choice")
+        check(j.choose_evolution(236,107).is_empty(),"Prepare the real Hitmonchan evolution choice")
         for i in 3: check(j.buy("blue_pokeblock").is_empty() and j.use_item("blue_pokeblock",2).is_empty(),"Purchase and feed beauty supplies before exit")
     return j
 func run() -> void:
@@ -55,7 +55,7 @@ func run() -> void:
             if shed:
                 check(j.party.size() == 3 and j.party[0].species_id == 291 and j.party[2].species_id == 292 and j.balls == 1,"Restored Nincada creates exactly one additional member and spends one ball")
             else:
-                check(j.party[0].species_id == 107 and j.party[1].species_id in [266,268] and j.party[2].species_id == 350,"Saved training, personality and beauty select the correct three evolutions")
+                check(j.party[0].species_id == 107 and j.party[1].species_id in [266,268] and j.party[2].species_id == 350,"Saved evolution choice, personality and beauty select the correct three evolutions")
             check(store.save(j).is_empty(),"Persist evolved forms, new ownership and spent resources")
             expected(j,true)
         else:
@@ -63,7 +63,7 @@ func run() -> void:
             check(j.settle().is_empty() and JourneySnapshot.encode(j) == before,"A restarted victory cannot repeat rewards or additional births")
             if shed:
                 check(j.party[2].uid == 1000 and j.party[2].types == ["bug","ghost"] and j.deck.any(func(c: BattleCardInstance): return c.owner_uid == 1000),"The restored child keeps its unique identity, full type and technique cards")
-            else: check(j.party[0].evolution_training == "defense" and j.party[1].evolution_personality >= 0 and j.party[2].beauty == 180,"Preparation survives evolution and another process exit")
+            else: check(j.party[0].evolution_choice == 107 and j.party[1].evolution_personality >= 0 and j.party[2].beauty == 180,"Preparation survives evolution and another process exit")
             j.choose_reward(-1)
             check(j.enter_next().is_empty() and j.phase == TacticalJourney.REST,"Proceed to the next camp normally")
             j.leave_camp()

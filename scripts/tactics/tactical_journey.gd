@@ -422,15 +422,16 @@ func set_time(value: String) -> String:
     time_of_day = value
     _decision("원정 시간 · "+("낮" if value == "day" else "밤"))
     return notify_changed()
-func train_evolution(uid: int, style: String) -> String:
-    if phase != REST: return "야영지에서 진화 훈련을 준비하세요."
-    if style not in ["attack","defense","balanced"]: return "공격·균형·방어 훈련을 선택하세요."
+func choose_evolution(uid: int, target: int) -> String:
+    if phase != REST: return "야영지에서 진화할 모습을 선택하세요."
+    if target not in SpecialEvolution.TYROGUE_CHOICES: return "시라소몬·카포에라·홍수몬 중 하나를 선택하세요."
     for pokemon: BattlePokemon in party:
         if pokemon.uid != uid: continue
-        if pokemon.species_id != 236 or pokemon.level >= 100: return "레벨업할 수 있는 배루키의 훈련입니다."
-        if style == SpecialEvolution.training(pokemon): return "이미 선택한 훈련입니다."
-        pokemon.evolution_training = style
-        _decision("배루키 진화 훈련 · "+str({"attack":"공격","defense":"방어","balanced":"균형"}[style]))
+        if pokemon.species_id != 236 or pokemon.level >= 100: return "레벨업할 수 있는 배루키의 진화 선택입니다."
+        if target == SpecialEvolution.choice(pokemon): return "이미 선택한 모습입니다."
+        pokemon.evolution_choice = target
+        if _capture_catalog == null: _capture_catalog = VisualCatalog.new()
+        _decision("배루키 진화 선택 · "+str(_capture_catalog.species(target)["name"]))
         return notify_changed()
     return "파티의 배루키를 선택하세요."
 func buy_reason(key: String) -> String:

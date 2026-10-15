@@ -4,7 +4,7 @@ extends RefCounted
 const ITEMS := {"blue_pokeblock":{"name":"파랑포켓블록","price":60,"stock":3}}
 const BEAUTY_THRESHOLD := 170
 const BEAUTY_GAIN := 60
-const TRAINING_EFFORT := 32
+const TYROGUE_CHOICES := [106,237,107]
 static func beauty(pokemon: BattlePokemon) -> int:
     return maxi(0,pokemon.beauty)
 static func personality(pokemon: BattlePokemon) -> int:
@@ -14,11 +14,11 @@ static func assign_personality(pokemon: BattlePokemon, run_seed: int) -> void:
     var rng := RandomNumberGenerator.new()
     rng.seed = run_seed ^ (pokemon.uid*104729+49979687)
     pokemon.evolution_personality = rng.randi()
-static func training(pokemon: BattlePokemon) -> String:
-    return pokemon.evolution_training if not pokemon.evolution_training.is_empty() else "balanced"
+static func choice(pokemon: BattlePokemon) -> int:
+    return pokemon.evolution_choice if pokemon.evolution_choice in TYROGUE_CHOICES else 237
 static func target(pokemon: BattlePokemon) -> int:
     if pokemon.species_id == 236 and pokemon.level >= 20:
-        return 106 if pokemon.attack > pokemon.defense else (107 if pokemon.attack < pokemon.defense else 237)
+        return choice(pokemon)
     if pokemon.species_id == 265 and pokemon.level >= 7:
         return 266 if ((personality(pokemon)>>16)%10) < 5 else 268
     if pokemon.species_id == 349 and beauty(pokemon) >= BEAUTY_THRESHOLD: return 350
@@ -30,10 +30,7 @@ static func summary(pokemon: BattlePokemon, party_size: int, balls: int, catalog
     match pokemon.species_id:
         236:
             var level := maxi(20,mini(100,pokemon.level+1))
-            var attack := PokemonStats.value(236,level,"attack",TRAINING_EFFORT if training(pokemon) == "attack" else 0)
-            var defense := PokemonStats.value(236,level,"defense",TRAINING_EFFORT if training(pokemon) == "defense" else 0)
-            var id := 106 if attack > defense else (107 if attack < defense else 237)
-            return "Lv.%d 예상: 공격 %d · 방어 %d → %s\n공격·균형·방어 훈련으로 준비 · 전투 중 임시 강화는 제외" % [level,attack,defense,catalog.species(id)["name"]]
+            return "Lv.%d 이상 레벨업 → %s\n진화할 모습을 선택하세요. 선택은 능력치를 바꾸지 않습니다." % [level,catalog.species(choice(pokemon))["name"]]
         265:
             var id := 266 if ((personality(pokemon)>>16)%10) < 5 else 268
             return "Lv.7 이상 레벨업 → %s\n개체마다 정해진 분기 · 다시 실행해도 바뀌지 않습니다." % catalog.species(id)["name"]
