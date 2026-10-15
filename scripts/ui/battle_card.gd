@@ -7,6 +7,7 @@ var definition: Dictionary = {}
 var home_position := Vector2.ZERO
 var home_rotation := 0.0
 var available := true
+var lift_on_hover := true
 var _motion: Tween
 var _owner_label: Label
 
@@ -59,6 +60,9 @@ func set_available(value: bool, reason: String = "") -> void:
 func _hover(entered: bool) -> void:
     if not available or not is_inside_tree():
         return
+    if not lift_on_hover:
+        queue_redraw()
+        return
     if _motion:
         _motion.kill()
     # GUI picking follows sibling order, not z_index. Keep draw and hit order equal.
@@ -73,7 +77,8 @@ func _draw() -> void:
     var color := VisualCatalog.type_color(definition.get("type", "normal"))
     var frame := PackedVector2Array([Vector2(9, 0), Vector2(193, 0), Vector2(202, 9), Vector2(202, 273), Vector2(193, 282), Vector2(9, 282), Vector2(0, 273), Vector2(0, 9)])
     draw_colored_polygon(frame, Color("1c302c"))
-    draw_polyline(frame + PackedVector2Array([Vector2(9, 0)]), color.darkened(0.1), 3, false)
+    var outline := Color("f2d788") if not lift_on_hover and (is_hovered() or has_focus()) else color.darkened(0.1)
+    draw_polyline(frame + PackedVector2Array([Vector2(9, 0)]), outline, 3, false)
     draw_rect(Rect2(8, 53, 186, 220), Color("e0d6b6"))
     draw_rect(Rect2(12, 61, 178, 106), color.darkened(0.68))
     for i in 9:

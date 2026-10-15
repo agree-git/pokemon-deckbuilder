@@ -13,6 +13,13 @@ const ENCOUNTERS := [
     {"id": 4, "name": "파이리", "type": "fire", "max_hp": 45},
 ]
 const CAPTURE_CARDS := {43: ["absorb", "seed"], 7: ["water_gun", "shell"], 4: ["ember", "fire_guard"]}
+# Authored learnable moves; each reward belongs to a specific party instance.
+const LEARNSETS := {
+    1: ["vine", "seed", "growth"],
+    4: ["ember", "flame", "fire_guard"],
+    7: ["water_gun", "shell", "tackle"],
+    43: ["absorb", "seed", "growth"],
+}
 const INTENTS := [
     {"kind": "attack", "value": 8, "type": "normal", "move_id": 33},
     {"kind": "block", "value": 7, "move_id": 115},

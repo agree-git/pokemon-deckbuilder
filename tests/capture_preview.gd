@@ -91,6 +91,16 @@ func _capture() -> void:
     await RenderingServer.frame_post_draw
     if not _save(output, "battle_victory"):
         return
+    battle._reward_cards.get_child(0).grab_focus()
+    await process_frame
+    await RenderingServer.frame_post_draw
+    if not _save(output, "reward_focus"):
+        return
+    battle._reward_cards.get_child(0).pressed.emit()
+    await process_frame
+    await RenderingServer.frame_post_draw
+    if not _save(output, "reward_claimed"):
+        return
     battle.restart_battle()
     # Explicit fixture for inspecting the real forced-replacement UI branch.
     battle.battle.active().hp = 1

@@ -94,6 +94,7 @@ func run() -> void:
     expedition.battle._check_outcome()
     expedition.settle()
     check(expedition.deck.size() == 15, "KO excludes owned cards only from battle and adds persistent injury")
+    expedition.choose_reward(-1)
     expedition.next_battle()
     check(expedition.battle.active().uid == 1 and expedition.battle.removed.size() == 4, "Next battle selects live ally and excludes KO owner's cards")
     # Actual window-coordinate clicks route capture -> join -> next encounter.

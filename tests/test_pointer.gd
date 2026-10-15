@@ -68,6 +68,7 @@ func run() -> void:
     ui.battle.enemy.hp = 0
     ui.battle._check_outcome()
     ui._refresh()
+    ui._choose_reward(-1)
     for local: Vector2 in [Vector2(155,3), Vector2(155,31), Vector2(155,59)]:
         mouse(root.get_final_transform() * (ui._next_button.get_global_transform_with_canvas() * local))
         await process_frame

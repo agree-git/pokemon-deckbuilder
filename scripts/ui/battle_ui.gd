@@ -52,6 +52,9 @@ var _battle_number: Label
 var _next_button: Button
 var _capture_choices := HBoxContainer.new()
 var _shown_capture_uid := 0
+var _reward_cards := Control.new()
+var _reward_skip: Button
+var _reward_signature := ""
 var _party_signature := ""
 
 func _ready() -> void:
@@ -279,6 +282,15 @@ func _build_result() -> void:
     _capture_choices.size = Vector2(880, 170)
     _capture_choices.add_theme_constant_override("separation", 16)
     _result.add_child(_capture_choices)
+    _reward_cards.position = Vector2(0, 420)
+    _reward_cards.size = Vector2(1920, 282)
+    _reward_cards.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    _result.add_child(_reward_cards)
+    _reward_skip = _button("보상 넘기기", Rect2(990, 720, 310, 62))
+    remove_child(_reward_skip)
+    _result.add_child(_reward_skip)
+    _reward_skip.pressed.connect(_choose_reward.bind(-1))
+    _reward_skip.hide()
     _result.hide()
 
 func _set_biome(index: int) -> void:
@@ -344,6 +356,7 @@ func restart_battle() -> void:
     run.restart(run.seed_value)
     battle = run.battle
     _shown_capture_uid = 0
+    _reward_signature = ""
     _build_party_buttons()
     _biome_popup.hide()
     notice.text = "새 전투 · 카드와 교체로 적의 행동에 대비하세요."
@@ -416,16 +429,46 @@ func _refresh() -> void:
             _result_detail.text = "%s 포획 · 몬스터볼 %d개 남음\n%s" % [battle.enemy.display_name, run.balls, "파티가 가득 찼습니다. 내보낼 포켓몬을 선택하세요." if run.pending_capture != null else run.capture_result]
         elif battle.phase == BattleState.LOST:
             _result_detail.text = "모든 아군이 기절했습니다. 원정을 다시 시작하세요."
-        _next_button.visible = battle.phase != BattleState.LOST
-        _next_button.disabled = run.pending_capture != null
+        _next_button.disabled = run.pending_capture != null or run.reward_pending
+        if battle.phase == BattleState.WON:
+            _result_detail.text = "살아 있는 파티원의 기술 1장을 선택하세요.\n보상을 넘기면 덱을 유지합니다." if run.reward_pending else run.reward_result
+        _next_button.visible = battle.phase != BattleState.LOST and not run.reward_pending
         _update_capture_choices()
     _capture_choices.visible = run.pending_capture != null
+    _reward_cards.visible = _result.visible and run.reward_pending
+    _reward_skip.visible = _reward_cards.visible
+    if _reward_cards.visible:
+        _update_reward_cards()
     _build_hand()
     # GUI hit order uses sibling order, so overlays must follow newly built cards.
     if _result.visible:
         _result.move_to_front()
     elif _biome_popup.visible:
         _biome_popup.move_to_front()
+
+func _update_reward_cards() -> void:
+    var signature := "%d:%d:%s" % [run.seed_value, run.encounter, run.reward_options]
+    if _reward_signature == signature:
+        return
+    _reward_signature = signature
+    for child: Node in _reward_cards.get_children():
+        _reward_cards.remove_child(child)
+        child.queue_free()
+    var count := run.reward_options.size()
+    for i in count:
+        var card := BattleCard.new()
+        card.definition = run.reward_view(i)
+        card.lift_on_hover = false
+        card.position = Vector2(960 - (count * 202 + (count - 1) * 68) / 2.0 + i * 270, 0)
+        _reward_cards.add_child(card)
+        card.pressed.connect(_choose_reward.bind(i))
+
+func _choose_reward(index: int) -> void:
+    var reason := run.choose_reward(index)
+    if not reason.is_empty():
+        notice.text = reason
+        return
+    _refresh()
 
 func _capture() -> void:
     if animating:
@@ -478,6 +521,7 @@ func _next_battle() -> void:
     stage.canvas.clear_effects()
     animating = false
     _shown_capture_uid = 0
+    _reward_signature = ""
     _build_party_buttons()
     _set_biome({"grass": 3, "water": 2, "fire": 1}[battle.enemy.type])
     notice.text = "야생 %s 출현 · 체력 25%% 이하에서 포획할 수 있습니다." % battle.enemy.display_name

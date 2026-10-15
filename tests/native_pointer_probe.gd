@@ -36,6 +36,27 @@ func run() -> void:
                 ui._biome_popup.hide()
                 if ui.animating:
                     ui.stage.canvas.effect._process(MoveEffect.DURATION)
+    root.size = Vector2i(1280,720)
+    await create_timer(0.2).timeout
+    for choice in [0,1,2,-1]:
+        ui.restart_battle()
+        ui.battle.enemy.hp = 0
+        ui.battle._check_outcome()
+        ui._refresh()
+        await process_frame
+        var button: Button = ui._reward_skip if choice == -1 else ui._reward_cards.get_child(choice)
+        var selected: Dictionary = {} if choice == -1 else ui.run.reward_options[choice].duplicate()
+        var at := Vector2(root.position) + root.get_final_transform() * button.get_global_rect().get_center()
+        print("OS_CLICK ", roundi(at.x), " ", roundi(at.y))
+        await create_timer(0.3).timeout
+        var expected := 14 if choice == -1 else 15
+        var valid := ui.run.deck.size() == expected and not ui.run.reward_pending and ui._next_button.visible
+        if choice != -1:
+            valid = valid and ui.run.deck.back().key == selected["key"] and ui.run.deck.back().owner_uid == selected["owner"]
+        if not valid:
+            failures += 1
+            push_error("OS reward choice failed: %d" % choice)
+    ui.restart_battle()
     ui.free()
-    print("NATIVE_POINTER: ", failures, " failures (18 real OS clicks)")
+    print("NATIVE_POINTER: ", failures, " failures (22 real OS clicks)")
     quit(0 if failures == 0 else 1)
