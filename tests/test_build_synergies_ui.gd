@@ -49,7 +49,7 @@ func run() -> void:
     ui = build_ui([["tackle",4],["tackle",4],["ace_order",0],["status_plan",0],["toxic_flask",0]],["ace_emblem","status_flask"])
     await process_frame
     UiMotion.finish_tree(ui)
-    check(ui.trainer_buttons[5].effect_label.text.contains("/ailment_poison.svg[/img]4회"),"Poison card shows the relic-extended duration")
+    check(ui.trainer_buttons[5].effect_label.get_parsed_text().contains("4턴 부여") and ui.trainer_buttons[5].effect_label.text.contains("/ailment_poison.svg"),"Poison card shows the relic-extended duration")
     await click(ui.trainer_buttons[1])
     check(not ui.trainer_buttons[3].effect_label.text.contains("✓"),"One technique leaves ace payoff inactive")
     await click(ui.trainer_buttons[2])

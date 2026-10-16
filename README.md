@@ -12,7 +12,7 @@
 - Codex 작업 기준: [AGENTS.md](AGENTS.md)
 - 새 대화에서 이어갈 때: [현재 작업 인계](HANDOFF.md) → [전체 진행 현황](docs/progress.md)
 
-[아이콘 카드·전투 화면](docs/card-effect-icons.md): 효과를 아이콘과 숫자로, 행동 결과를 HP·보호막·에너지의 증감량으로 확인한다.
+[아이콘 카드·전투 화면](docs/card-effect-icons.md): 효과는 아이콘과 설명을 함께 읽고, 행동 결과는 HP·보호막·에너지의 증감량으로 확인한다.
 
 ## 현재 상태
 

@@ -36,6 +36,8 @@ func run() -> void:
         for button: TrainerActionCard in cards:
             var view := button.definition
             check(button.effect_label.get_content_height() <= button.effect_label.size.y,"No clipped effect rows: "+str(view.get("key"))+" "+str(button.effect_label.get_content_height())+" "+button.effect_label.text)
+            if view.get("category","") != "technique":
+                check(button.effect_label.get_theme_font_size("normal_font_size") >= 14,"Common card explanation stays legible: "+str(view.get("key")))
             check(not button.tooltip_text.is_empty() and button.tooltip_text.contains(view["name"]),"Full textual tooltip survives for "+str(view.get("key")))
             check(button.effect_label.mouse_filter == Control.MOUSE_FILTER_IGNORE,"Icons do not intercept card hover/click")
             for field: String in ["block","heal","bonus"]:
@@ -44,6 +46,26 @@ func run() -> void:
                 if view.has(status): check(button.effect_label.text.contains("/"+str(CardEffectText.STATUS_ICONS[status])+".svg"),"Status retains distinct icon")
             button.free()
         cards.clear()
+    # These are meaning-bearing facts, not just evidence that a texture exists.
+    var poison := CardEffectText.render(TacticalContent.definition(BattleCardInstance.new(1,"toxic_flask",0)))
+    check(poison.contains("상대에게 ") and poison.contains("3턴 부여") and poison.contains("이 전투에서만 제외") and not poison.contains("독"),"Poison explains recipient, duration, application and exhaustion")
+    var attrition := CardEffectText.render(TacticalContent.definition(BattleCardInstance.new(1,"status_plan",0)))
+    check(attrition.contains("적의 ") and attrition.contains("/burn.svg") and attrition.contains("/ailment_poison.svg") and attrition.contains("/seed.svg") and attrition.contains("지속 피해 발생 시") and attrition.contains("2.1%") and attrition.contains("전투 동안 유지"),"Attrition identifies the affected damage, additive target-HP basis and lifetime")
+    var retrieve := CardEffectText.render(TacticalContent.definition(BattleCardInstance.new(1,"retrieve",0)))
+    check(retrieve.contains("버린 더미") and retrieve.contains("가장 최근 기술 카드 1장") and retrieve.contains("손패로 가져오기"),"Retrieve explains the source, selection and destination")
+    var redraw := CardEffectText.render(TacticalContent.definition(BattleCardInstance.new(1,"redraw",0)))
+    check(redraw.contains("남은 손패 모두 버리기") and redraw.contains("버린 수만큼 뽑기"),"Redraw states both actions instead of an unexplained arrow")
+    var cash := CardEffectText.render(TacticalContent.definition(BattleCardInstance.new(1,"status_cash",0)))
+    check(cash.contains("제거") and cash.contains("남은 횟수 1회마다") and cash.contains("적 최대 ") and cash.contains("상성 무시"),"Status cash explains consumption, count, damage basis and affinity exception")
+    var ace := CardEffectText.render(TacticalContent.definition(BattleCardInstance.new(1,"ace_order",0)))
+    check(ace.contains("출전 멤버") and ace.contains("이번 턴") and ace.contains("기술 2회 이상 사용 시"),"Conditional draw keeps its owner, turn and skill-count restriction")
+    var injury := CardEffectText.render(TacticalContent.definition(BattleCardInstance.new(1,"injury",0)))
+    check(injury.contains("기절하면 덱에 추가") and injury.contains("야영지 휴식으로 제거"),"Injury keeps its source and removal rule")
+    var bonus := CardEffectText.render(TacticalContent.definition(BattleCardInstance.new(1,"rally",0)))
+    check(bonus.contains("다음 ") and bonus.contains("추가") and bonus.contains("자신 최대 ") and bonus.contains("/heal.svg") and bonus.contains("교대해도 유지"),"Next-attack bonus is additive damage with its own HP basis, not an unexplained attack percent")
+    for spec: Array in [["guard","보호막"],["potion_card","회복"],["ether_card","에너지"],["toxic_flask","독"],["move_74","공격"]]:
+        var view := TacticalContent.definition(BattleCardInstance.new(1,spec[0],4 if str(spec[0]).begins_with("move_") else 0))
+        check(not CardEffectText.render(view).contains(spec[1]),"Icon and its equivalent name are not duplicated on "+str(spec[0]))
     var unbound := TacticalContent.definition(BattleCardInstance.new(1,"move_52",4))
     check(CardEffectText.render(unbound).contains("위력"),"Unbound move power is never presented as damage")
     var before := b.snapshot()

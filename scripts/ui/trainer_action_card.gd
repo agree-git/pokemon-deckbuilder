@@ -34,22 +34,24 @@ func _ready() -> void:
     face = W.panel(self,Rect2(HOME,FACE_SIZE),Color("172c34"),_accent,11)
     face.pivot_offset = Vector2(FACE_SIZE.x/2,FACE_SIZE.y)
     W.panel(face,Rect2(4,4,178,258),Color.TRANSPARENT,_accent.darkened(0.48),8)
-    W.panel(face,Rect2(9,52,168,100),_accent.darkened(0.72),_accent.darkened(0.25),0)
+    var art_frame := W.panel(face,Rect2(9,52,168,60),_accent.darkened(0.72),_accent.darkened(0.25),0)
+    art_frame.clip_contents = true
     if int(definition.get("species_id",0)) > 0:
-        W.sprite(face,int(definition["species_id"]),Rect2(45,54,96,96))
-        W.icon(face,definition.get("type","normal"),Rect2(140,118,24,24))
+        W.sprite(art_frame,int(definition["species_id"]),Rect2(36,0,96,60))
+        W.icon(art_frame,definition.get("type","normal"),Rect2(138,30,24,24))
     else:
         var art := TrainerCardArt.new()
         art.card_key = key
-        art.position = Vector2(9,54)
+        # Preserve the full central emblem while cropping decorative scenery.
+        art.position = Vector2(0,-8)
         art.size = Vector2(168,96)
-        face.add_child(art)
+        art_frame.add_child(art)
     title_label = W.label(face,"",Rect2(43,8,132,34),17,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
     W.panel(face,Rect2(-2,-2,42,42),Color("2b3e43"),_accent,21)
     cost_label = W.label(face,"",Rect2(-2,-2,42,42),25,Color("f1d58c"),HORIZONTAL_ALIGNMENT_CENTER)
-    category_label = W.label(face,"",Rect2(9,154,168,24),12,_accent,HORIZONTAL_ALIGNMENT_CENTER)
-    W.panel(face,Rect2(9,183,168,62),Color("e6dcc1"),Color("a99b7c"),3)
-    effect_label = CardEffectText.label(face,Rect2(12,184,162,60),14,Color("273936"))
+    category_label = W.label(face,"",Rect2(9,113,168,23),12,_accent,HORIZONTAL_ALIGNMENT_CENTER)
+    W.panel(face,Rect2(9,138,168,110),Color("e6dcc1"),Color("a99b7c"),3)
+    effect_label = CardEffectText.label(face,Rect2(12,139,162,108),14,Color("273936"))
     W.panel(face,Rect2(14,253,158,3),_accent,Color.TRANSPARENT,0)
     mouse_entered.connect(func(): _set_hover(true))
     mouse_exited.connect(func(): _set_hover(false))
@@ -71,8 +73,10 @@ func update_card(view: Dictionary,reason: String,locked: bool) -> void:
         description = description.replace(original,"피해 %d" % int(view["preview_damage"]))
     if view.has("preview_heal"): description = description.replace("회복 %d" % int(view["heal"]),"회복 %d" % int(view["preview_heal"]))
     if view.has("preview_block"): description = description.replace("보호막 %d" % int(view["block"]),"보호막 %d" % int(view["preview_block"]))
+    if view.has("expose"): description = description.replace("방어 약화 %d회" % int(view["expose"]),"방어 약화 3턴")
     CardEffectText.apply(effect_label,view)
     tooltip_text = ("위력 %d · %s\n" % [view["move_power"],"물리" if view.get("damage_class","") == "physical" else "특수"] if view.has("move_power") else "")+str(view["name"])+"\n"+caption+"\n"+description+("\n자동 교대 후 사용 · 추가 교대 비용 없음" if view.get("switches",false) else "")+("\n"+reason if not reason.is_empty() else "")
+    if view.get("exhaust",false): tooltip_text += "\n소진: 사용 후 이번 전투에서 제외됩니다."
     if int(view.get("core_discount",0)) > 0: tooltip_text += "\n고정 조준경 · 턴 시작 출전 멤버의 첫 기술 비용 -1"
     _available = not locked and reason.is_empty()
     _locked = locked

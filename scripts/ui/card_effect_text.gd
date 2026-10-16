@@ -22,66 +22,90 @@ static func amount(view: Dictionary,field: String) -> String:
     return str(view["preview_"+field]) if view.has("preview_"+field) else PokemonStats.percent(int(view[field]))
 static func render(view: Dictionary) -> String:
     var rows: Array[String] = []
-    var tokens: Array[String] = []
     if view.has("shield_attack"):
-        rows.append(icon("shield")+"전부 → "+icon("attack")+str(view.get("preview_damage","같은 수치")))
-        rows.append("모두 소비 · 상성 무시")
+        rows.append("자신 "+icon("shield")+"모두 소비")
+        rows.append("상대에게 "+icon("attack")+str(int(view["preview_damage"])) if view.has("preview_damage") else "같은 수치만큼 "+icon("attack")+"발생")
+        rows.append("상성 무시 · 적 "+icon("shield")+"적용")
     elif view.has("damage"):
-        if view.has("preview_damage"): tokens.append(icon("attack")+str(view["preview_damage"]))
-        elif view.has("move_power"): tokens.append("위력 "+icon("attack" if view.get("damage_class","") == "physical" else "special_attack")+str(view["move_power"]))
-        else: tokens.append(icon("attack")+str(view["damage"]))
+        if view.has("preview_damage"): rows.append("상대에게 "+icon("attack")+str(int(view["preview_damage"])))
+        elif view.has("move_power"): rows.append("위력 "+icon("attack" if view.get("damage_class","") == "physical" else "special_attack")+str(int(view["move_power"])))
+        else: rows.append("상대에게 "+icon("attack")+str(int(view["damage"])))
     for field: String in ["block","heal","bonus"]:
-        if view.has(field): tokens.append(("다음 " if field == "bonus" else "")+icon({"block":"shield","heal":"heal","bonus":"attack"}[field])+"+"+amount(view,field))
+        if not view.has(field): continue
+        if field == "bonus":
+            rows.append("다음 "+icon("attack")+amount(view,field)+" 추가")
+            if not view.has("preview_bonus"): rows.append("자신 최대 "+icon("heal")+"기준")
+            if not view.has("conditional_draw"): rows.append("교대해도 유지")
+        else:
+            var badge: String = {"block":"shield","heal":"heal"}[field]
+            rows.append("자신 "+icon(badge)+"+"+amount(view,field))
+            if not view.has("preview_"+field): rows.append("자신 최대 "+icon("heal")+"기준")
     for field: String in ["strength","weaken","temporary_strength","draw","energy"]:
-        if view.has(field):
-            var badge: String = {"strength":"attack","weaken":"attack","temporary_strength":"attack","draw":"draw","energy":"energy"}[field]
-            var value := int(view[field])*(10 if field in ["strength","weaken","temporary_strength"] else 1)
-            tokens.append(("적 위력 " if field == "weaken" else ("교대 전 " if field == "temporary_strength" else ("위력 " if field == "strength" else "")))+icon(badge)+("−" if field == "weaken" else "+")+str(value)+("%" if field in ["strength","weaken","temporary_strength"] else ""))
+        if not view.has(field): continue
+        var value := int(view[field])*(10 if field in ["strength","weaken","temporary_strength"] else 1)
+        match field:
+            "draw": rows.append(icon("draw")+"%d장 뽑기" % value)
+            "energy": rows.append(icon("energy")+"+%d 획득" % value)
+            "weaken": rows.append("상대 "+icon("attack")+"−%d%%" % value)
+            "strength": rows.append("자신 "+icon("attack")+"+%d%%" % value); rows.append("이번 전투 동안 유지")
+            "temporary_strength": rows.append("자신 "+icon("attack")+"+%d%%" % value); rows.append("교대하면 해제")
     for status: String in STATUS_ICONS:
-        if view.has(status): tokens.append(icon(STATUS_ICONS[status])+"%d회" % int(view.get("preview_"+status,view[status])))
-    if view.has("cleanse"): tokens.append(icon("cleanse")+"해제")
-    # Two effects per line keep numbers legible on the 186px card face.
-    while not tokens.is_empty():
-        var line: String = tokens.pop_front()
-        if not tokens.is_empty(): line += "  "+str(tokens.pop_front())
-        rows.append(line)
+        if view.has(status):
+            var turns := 3 if status == "expose" else int(view.get("preview_"+status,view[status]))
+            rows.append("상대에게 "+icon(STATUS_ICONS[status])+"%d턴 부여" % turns)
+    if view.has("cleanse"): rows.append(icon("cleanse")+"자신의 상태이상 해제")
     if view.has("stat_changes"):
         var changes: Dictionary = view["stat_changes"]
-        var stages: Array[String] = []
-        if changes.size() == 5 and changes.values().all(func(n: int): return n == 1): stages.append(icon("all_stats")+"+1")
+        var recipient := "자신 " if view.get("stat_target","") == "self" else "상대 "
+        if changes.size() == 5 and changes.values().all(func(n: int): return n == 1): rows.append(recipient+icon("all_stats")+"+1단계")
         else:
-            for stat: String in changes: stages.append(icon(STAT_ICONS[stat])+"%+d" % int(changes[stat]))
-        rows.append(("자신 " if view.get("stat_target","") == "self" else "상대 ")+" ".join(stages)+"단계")
+            for stat: String in changes: rows.append(recipient+icon(STAT_ICONS[stat])+"%+d단계" % int(changes[stat]))
     if view.has("conditional_draw"):
-        rows.append(("교대 후 " if view["condition"] == "relay" else "기술 2회 후 ")+icon("draw")+"+%d" % int(view["conditional_draw"])+( " ✓" if view.get("condition_active",false) else ""))
-    if view.has("redraw"): rows.append(icon("discard")+"전부 → "+icon("draw")+"같은 수치"+("+1" if view.get("redraw_bonus",0) > 0 else ""))
-    if view.has("retain"): rows.append("최고 비용 "+icon("draw")+"%d 보존" % int(view.get("retain_count",1)))
-    if view.has("retrieve"): rows.append(icon("discard")+" → "+icon("draw")+"1 기술")
+        # The current actor and turn are part of the condition, not optional flavor.
+        rows.append("이번 턴 기술로 교대 시" if view["condition"] == "relay" else "출전 멤버가 이번 턴")
+        if view["condition"] == "ace": rows.append("기술 2회 이상 사용 시")
+        rows.append(icon("draw")+"%d장 뽑기" % int(view["conditional_draw"])+( " ✓" if view.get("condition_active",false) else ""))
+    if view.has("redraw"):
+        rows.append("남은 손패 모두 버리기")
+        rows.append(icon("draw")+"버린 수만큼 뽑기")
+        if int(view.get("redraw_bonus",0)) > 0: rows.append("카드 %d장 추가로 뽑기" % int(view["redraw_bonus"]))
+    if view.has("retain"):
+        rows.append("비용이 가장 높은 카드")
+        rows.append("%d장을 다음 턴까지 보존" % int(view.get("retain_count",1)))
+    if view.has("retrieve"):
+        rows.append("버린 더미에서")
+        rows.append("가장 최근 기술 카드 1장")
+        rows.append(icon("draw")+"손패로 가져오기")
     if view.has("cash"):
-        rows.append(icon("burn")+icon("ailment_poison")+icon("seed")+" 소비")
-        rows.append("횟수 × 적 "+icon("attack")+"8.3%")
+        rows.append("적 "+icon("burn")+icon("ailment_poison")+icon("seed")+"제거")
+        rows.append("남은 횟수 1회마다")
+        rows.append("적 최대 "+icon("heal")+"의 8.3%만큼")
+        rows.append(icon("attack")+"발생 · 상성 무시")
     if view.has("power"):
         match str(view["power"]):
-            "relay": rows.append("기술 교대 → "+icon("shield")+"6.3%")
-            "ace": rows.append("출전 유지 · 다음 턴"); rows.append(icon("attack")+"+20%")
-            "supply": rows.append(icon("bag")+"사용 → "+icon("shield")+"10.4%")
-            "attrition": rows.append(icon("burn")+icon("ailment_poison")+icon("seed")+" 매회"); rows.append("적 "+icon("attack")+"+2.1%")
-    if rows.is_empty(): rows.append("효과 없음")
-    if view.get("exhaust",false):
-        rows[-1] += "  "+icon("exhaust",16)
-    # Support percentages use max HP; power modifiers and stage changes stay distinct.
+            "relay": rows.append("기술로 교대할 때마다"); rows.append("자신 "+icon("shield")+"+6.3%"); rows.append("자신 최대 "+icon("heal")+"기준")
+            "ace": rows.append("교대 없이 턴 종료 시"); rows.append("다음 턴 "+icon("attack")+"+20%")
+            "supply": rows.append("도구 카드를 쓸 때마다"); rows.append("자신 "+icon("shield")+"+10.4%"); rows.append("자신 최대 "+icon("heal")+"기준")
+            "attrition": rows.append("적의 "+icon("burn")+icon("ailment_poison")+icon("seed")); rows.append("지속 피해 발생 시"); rows.append("적 최대 "+icon("heal")+"의 2.1%만큼"); rows.append(icon("attack")+"추가")
+        if view["power"] == "attrition": rows[-1] += " · 전투 동안 유지"
+        else: rows.append("이번 전투 동안 유지")
+    if view.get("key","") == "injury": rows.append("기절하면 덱에 추가"); rows.append("사용해도 효과 없음"); rows.append("야영지 휴식으로 제거")
+    elif rows.is_empty(): rows.append("효과 없음")
+    if view.get("exhaust",false): rows.append(icon("exhaust",16)+"이 전투에서만 제외")
     return "[center]"+"\n".join(rows)+"[/center]"
+
 static func apply(node: RichTextLabel,view: Dictionary) -> void:
     var content := render(view)
     var rows := content.count("\n")+1
-    node.position.y = 184
-    node.size = Vector2(162,60)
-    for font_size: int in [20,17,14,12]:
-        var side: int = {20:24,17:20,14:18,12:16}[font_size]
+    node.add_theme_constant_override("line_separation",-2 if rows >= 5 else 0)
+    node.position.y = 139
+    node.size = Vector2(162,108)
+    for font_size: int in [18,16,14,13,12]:
+        var side: int = {18:22,16:20,14:18,13:16,12:16}[font_size]
         node.add_theme_font_size_override("normal_font_size",font_size)
         node.text = content.replace("img=18x18","img=%dx%d" % [side,side])
-        if node.get_content_height() <= 60 and node.get_line_count() <= rows: break
-    var offset := maxf(0,floorf((60-node.get_content_height())/2.0))
+        if node.get_content_height() <= 108 and node.get_line_count() <= rows: break
+    var offset := maxf(0,floorf((108-node.get_content_height())/2.0))
     node.position.y += offset
     node.size.y -= offset
 static func legend(parent: Node,rect: Rect2) -> void:
