@@ -9,6 +9,7 @@ var ally := true
 var ball_already_landed := false
 func _process(_delta: float) -> void: queue_redraw()
 func recall(on_ally: bool) -> void:
+    BattleSoundCues.play(self,"recall")
     ally = on_ally
     ball_already_landed = false
     mode = "recall"
@@ -17,6 +18,7 @@ func recall(on_ally: bool) -> void:
     t.tween_property(canvas,"source_factor" if ally else "target_factor",0.02,0.24).set_trans(Tween.TRANS_QUAD)
     t.tween_property(self,"progress",1.0,0.24)
 func release(on_ally: bool,at_target := false) -> void:
+    BattleSoundCues.play(self,"release")
     ally = on_ally
     ball_already_landed = at_target
     mode = "release"

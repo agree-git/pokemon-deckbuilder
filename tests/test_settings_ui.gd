@@ -4,6 +4,7 @@ var checks := 0
 var failures := 0
 var clicks := 0
 var preferences: Node
+var previewed: Array[String] = []
 func _initialize() -> void: call_deferred("run")
 func check(ok: bool, message: String) -> void:
     checks += 1
@@ -46,6 +47,10 @@ func run() -> void:
     preferences.path = "user://settings-ui-test.cfg"
     preferences.set_battle_speed(1.0)
     preferences.set_hit_motion(true)
+    preferences.set_audio_volume("master", 0.75)
+    preferences.set_audio_volume("effects", 0.8)
+    preferences.set_audio_muted(false)
+    root.get_node("GameAudio").cue_played.connect(func(cue: String): previewed.append(cue))
     root.mode = Window.MODE_WINDOWED
     root.size = Vector2i(1920, 1080)
     root.position = Vector2i.ZERO
@@ -68,6 +73,23 @@ func run() -> void:
     check(preferences.battle_speed == 1.5, "Pointer selects intermediate playback speed")
     await click(panel.motion_button)
     check(not preferences.hit_motion and panel.motion_button.text == "꺼짐", "Hit motion toggles with visible state")
+    await click(panel.volume_sliders["master"])
+    await click(panel.volume_sliders["effects"])
+    check(preferences.master_volume == 0.5 and preferences.effects_volume == 0.5 and panel.volume_labels["master"].text == "50%", "Real slider hitboxes update both gains and percentage labels")
+    await key(KEY_LEFT, "Left")
+    check(preferences.effects_volume == 0.49, "Focused volume slider accepts arrow keys inside the modal")
+    await key(KEY_RIGHT, "Right")
+    check(preferences.effects_volume == 0.5, "Arrow adjustment returns precisely without forwarding battle hotkeys")
+    previewed.clear()
+    await click(panel.preview_button)
+    check("shield" in previewed, "Sound preview triggers the real effect service")
+    await click(panel.mute_button)
+    check(preferences.audio_muted and panel.preview_button.disabled and AudioServer.is_bus_mute(AudioServer.get_bus_index("Game")), "Mute immediately silences the bus and disables preview")
+    previewed.clear()
+    await click(panel.preview_button)
+    check(previewed.is_empty(), "Muted preview cannot emit any sound")
+    await click(panel.mute_button)
+    check(not preferences.audio_muted and not panel.preview_button.disabled, "Unmute restores preview without changing gains")
     await picture()
     await click(menu.start_button)
     check(menu.mode == "title" and preferences.panel == panel, "Modal prevents clicks reaching the title underneath")
@@ -85,6 +107,8 @@ func run() -> void:
         if not is_instance_valid(panel): quit(1); return
         await click(panel.speed_buttons[2.0])
         check(preferences.battle_speed == 2.0, "Scaled settings hitboxes align at %s" % dimensions)
+        await click(panel.volume_sliders["effects"])
+        check(preferences.effects_volume == 0.5, "Audio slider hitbox aligns at %s" % dimensions)
         await click(panel.close_button)
         check(not is_instance_valid(preferences.panel), "Close hitbox aligns at %s" % dimensions)
     menu.free()
@@ -144,7 +168,7 @@ func run() -> void:
     var loaded: Node = load("res://scripts/preferences.gd").new()
     loaded.path = preferences.path
     loaded.load_preferences()
-    check(loaded.battle_speed == preferences.battle_speed and loaded.hit_motion == preferences.hit_motion and loaded.display_mode == preferences.display_mode, "Latest UI choices reload from disk")
+    check(loaded.battle_speed == preferences.battle_speed and loaded.hit_motion == preferences.hit_motion and loaded.display_mode == preferences.display_mode and loaded.master_volume == preferences.master_volume and loaded.effects_volume == preferences.effects_volume and loaded.audio_muted == preferences.audio_muted, "Latest UI choices reload from disk")
     loaded.free()
     camp.free()
     print("SETTINGS UI native=", native, ": ", checks, " checks, ", failures, " failures; ", clicks, " clicks")

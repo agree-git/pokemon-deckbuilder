@@ -8,6 +8,7 @@ config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [autoload]
 Preferences="*res://scripts/preferences.gd"
+GameAudio="*res://scripts/audio/game_audio.gd"
 BattleSession="*res://scripts/battle/battle_session.gd"
 
 [display]

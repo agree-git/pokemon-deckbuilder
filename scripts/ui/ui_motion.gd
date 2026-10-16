@@ -24,6 +24,7 @@ static func bind_button(button: Button) -> void:
             begin(button,"hover").tween_property(button,"self_modulate",Color(1.16,1.16,1.12),0.10))
     button.mouse_exited.connect(func(): begin(button,"hover").tween_property(button,"self_modulate",Color.WHITE,0.12))
     button.button_down.connect(func():
+        BattleSoundCues.play(button,"ui_click")
         button.self_modulate = Color(0.82,0.88,0.88)
         begin(button,"hover").tween_property(button,"self_modulate",Color.WHITE,0.15))
 static func pulse(node: Control) -> void:

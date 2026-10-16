@@ -872,6 +872,7 @@ func _announce(text: String) -> void:
     banner.modulate.a = 1.0
     UiMotion.pulse(banner)
 func _play_event(event: Dictionary) -> void:
+    BattleSoundCues.play(self,BattleSoundCues.for_event(event))
     var kind: String = event["kind"]
     playback_kinds.append(kind)
     _apply_frame(event.get("frame",{}))
@@ -921,6 +922,8 @@ func _float_value(text: String,on_ally: bool,color: Color,icon_key := "") -> voi
     tween.tween_property(number,"modulate:a",0.0,0.35).set_delay(0.35)
     tween.chain().tween_callback(number.queue_free)
 func _finished() -> void:
+    if battle.phase == TacticalBattle.WON and "capture" not in playback_kinds: BattleSoundCues.play(self,"victory")
+    elif battle.phase == TacticalBattle.LOST: BattleSoundCues.play(self,"defeat")
     stage.canvas.effect.stop()
     busy = false
     _visual_frame.clear()
