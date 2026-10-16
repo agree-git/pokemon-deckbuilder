@@ -11,6 +11,7 @@ var deck_open := false
 var report_open := false
 var deck_action := ""
 var upgrade_preview_uid := 0
+var removal_preview_uid := 0
 var recruit_index := -1
 var recruit_tab := "added"
 var gear_open_for := 0
@@ -107,6 +108,7 @@ func refresh() -> void:
     W.label(page,"ESC 시작 화면     F11 전체 화면",Rect2(96,1014,1728,34),15,W.MUTED)
     if deck_open: _deck()
     if deck_open and upgrade_preview_uid != 0: _upgrade_preview()
+    if deck_open and removal_preview_uid != 0: _removal_preview()
     if gear_open_for != 0: _gear_picker()
     if not bag_item.is_empty(): _item_picker()
     if report_open: _report()
@@ -664,6 +666,7 @@ func _equip(key: String,uid: int) -> void:
     refresh()
 func _select_deck_action(action: String) -> void:
     upgrade_preview_uid = 0
+    removal_preview_uid = 0
     deck_action = action
     deck_open = true
     refresh()
@@ -838,7 +841,8 @@ func _deck() -> void:
     var scroll := ScrollContainer.new()
     scroll.position = Vector2(32,110)
     scroll.size = Vector2(816,690)
-    if deck_action.is_empty():
+    if deck_action != "upgrade":
+        if deck_action == "remove": W.label(panel,"제거할 카드 선택 · %d 골드 · 묶음에서 1장" % journey.removal_price(),Rect2(32,78,720,30),17,W.MUTED)
         scroll.name = "JourneyDeckCards"
         panel.add_child(scroll)
         var grid := GridContainer.new()
@@ -853,19 +857,22 @@ func _deck() -> void:
             views.append(view)
         for stack: Dictionary in CardStacks.group(views):
             var face := CardStackView.new()
-            face.name = "DeckStack_%d" % stack["view"]["uid"]
+            face.uid = stack["view"]["uid"]
+            face.name = ("Card_%d" if deck_action == "remove" else "DeckStack_%d") % face.uid
             face.key = stack["view"]["key"]
             face.definition = stack["view"]
             face.stack_count = stack["count"]
             grid.add_child(face)
+            if deck_action == "remove":
+                face.allow_selection(journey.remove_card_reason(face.uid))
+                face.pressed.connect(_deck_select.bind(face.uid))
         return
     var rows := VBoxContainer.new()
     rows.custom_minimum_size.x = 790
     rows.add_theme_constant_override("separation",8)
     scroll.add_child(rows)
     panel.add_child(scroll)
-    if not deck_action.is_empty():
-        W.label(panel,"강화할 카드 선택 · 휴식과 공유" if deck_action == "upgrade" else "영구 제거할 카드 선택 · %d 골드" % journey.removal_price(),Rect2(32,78,720,30),17,W.MUTED)
+    W.label(panel,"강화할 카드 선택 · 휴식과 공유",Rect2(32,78,720,30),17,W.MUTED)
     for card: BattleCardInstance in journey.deck:
         var view := TacticalContent.definition(card)
         var owner := ""
@@ -878,14 +885,8 @@ func _deck() -> void:
         button.tooltip_text = view["description"]
         button.name = "Card_%d" % card.uid
         rows.add_child(button)
-        if deck_action == "upgrade":
-            button.disabled = not TacticalContent.can_upgrade(card) or journey.step in journey.rested_steps
-            button.pressed.connect(_deck_select.bind(card.uid))
-        elif deck_action == "remove":
-            button.disabled = not journey.remove_card_reason(card.uid).is_empty()
-            button.tooltip_text = journey.remove_card_reason(card.uid)
-            button.pressed.connect(_deck_select.bind(card.uid))
-        else: button.mouse_default_cursor_shape = Control.CURSOR_ARROW
+        button.disabled = not TacticalContent.can_upgrade(card) or journey.step in journey.rested_steps
+        button.pressed.connect(_deck_select.bind(card.uid))
 func _deck_select(uid: int) -> void:
     if deck_action == "upgrade":
         if not journey.deck.any(func(card: BattleCardInstance): return card.uid == uid and TacticalContent.can_upgrade(card)): return
@@ -893,7 +894,9 @@ func _deck_select(uid: int) -> void:
         upgrade_preview_uid = uid
         refresh()
         return
-    _apply_deck_action(uid)
+    if deck_action == "remove" and journey.remove_card_reason(uid).is_empty():
+        removal_preview_uid = uid
+        refresh()
 func _apply_deck_action(uid: int) -> void:
     var reason := journey.rest("upgrade",uid) if deck_action == "upgrade" else journey.remove_card(uid)
     if reason.is_empty():
@@ -901,8 +904,25 @@ func _apply_deck_action(uid: int) -> void:
         deck_open = false
         deck_action = ""
         upgrade_preview_uid = 0
+        removal_preview_uid = 0
     else: camp_notice = reason
     refresh()
+func _close_removal_preview() -> void:
+    removal_preview_uid = 0
+    refresh()
+func _confirm_removal() -> void:
+    if removal_preview_uid == 0 or deck_action != "remove": return
+    _apply_deck_action(removal_preview_uid)
+func _removal_preview() -> void:
+    if RemovalPreview.describe(journey,removal_preview_uid).is_empty():
+        removal_preview_uid = 0
+        return
+    var preview := RemovalPreviewPanel.new()
+    preview.journey = journey
+    preview.uid = removal_preview_uid
+    preview.closed.connect(_close_removal_preview)
+    preview.accepted.connect(_confirm_removal)
+    page.add_child(preview)
 func _close_upgrade_preview() -> void:
     upgrade_preview_uid = 0
     refresh()
@@ -945,6 +965,7 @@ func _upgrade_preview() -> void:
     UiMotion.appear(overlay)
 func _close_deck() -> void:
     upgrade_preview_uid = 0
+    removal_preview_uid = 0
     deck_action = ""
     deck_open = false
     refresh()
@@ -1024,6 +1045,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
     if deck_open:
         if event.keycode == KEY_ESCAPE:
             if upgrade_preview_uid != 0: _close_upgrade_preview()
+            elif removal_preview_uid != 0: _close_removal_preview()
             else: _close_deck()
         get_viewport().set_input_as_handled()
         return

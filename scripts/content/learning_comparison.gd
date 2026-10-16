@@ -22,12 +22,6 @@ static func describe(j: TacticalJourney, slot: int) -> Dictionary:
         var copy := BattleCardInstance.new(0,incoming,pokemon.uid)
         after.append(copy)
         after_views.append(_view(j,copy))
-    var target := EncounterPreparation.upcoming(j)
-    var coverage: Array[Dictionary] = []
-    for definition: Dictionary in target.get("opponents",[]):
-        var original := EncounterPreparation.analyze(j,definition)
-        var replacement := EncounterPreparation.analyze_cards(j,definition,after)
-        coverage.append({"opponent":definition.duplicate(true),"attack":[original["groups"]["attack"].size(),replacement["groups"]["attack"].size()],"strong":[original["strong"],replacement["strong"]],"conditional":[original["groups"]["conditional"].size(),replacement["groups"]["conditional"].size()]})
-    return {"change":change,"before_cards":before_views,"after_cards":after_views,"deck_after":after,"target":target,"coverage":coverage}
+    return EncounterPreparation.compare(j,after).merged({"change":change,"before_cards":before_views,"after_cards":after_views,"deck_after":after})
 static func _view(j: TacticalJourney, card: BattleCardInstance) -> Dictionary:
     return j.reward_view({"kind":"card","key":card.key,"owner_uid":card.owner_uid,"upgraded":card.upgraded})

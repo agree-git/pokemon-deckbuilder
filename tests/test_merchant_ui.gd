@@ -15,7 +15,7 @@ func settle() -> void:
     UiMotion.finish_tree(ui)
 func click(control: Control,vertical := 0.5) -> void:
     settle()
-    var local := Vector2(control.size.x/2,lerpf(3,control.size.y-3,vertical))
+    var local: Vector2 = control.visible_point(vertical) if control is TrainerActionCard else Vector2(control.size.x/2,lerpf(3,control.size.y-3,vertical))
     var at := root.get_final_transform()*(control.get_global_transform_with_canvas()*local)
     if native:
         at += Vector2(root.position)
@@ -111,6 +111,8 @@ func run() -> void:
     await click(ui.page.find_child("Remove",true,false))
     check(ui.deck_open,"Removal button opens the priced card selector")
     await click(ui.page.find_child("Card_%d" % target,true,false))
+    check(ui.removal_preview_uid == target and j.deck.size() == count and j.gold == gold,"Selecting removal opens a preview before spending gold")
+    await click(ui.page.find_child("RemovalConfirm",true,false))
     check(not ui.deck_open and j.deck.size() == count-1 and j.gold == gold-price,"Removal shares the same limited gold budget")
     check(ui.page.find_child("Remove",true,false).disabled,"Removal remains once per merchant")
     await click(ui.camp_tabs["rest"])

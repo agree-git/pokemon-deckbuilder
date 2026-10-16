@@ -20,6 +20,14 @@ static func describe(j: TacticalJourney) -> Dictionary:
     return {"step":target["step"],"title":target["title"],"enemies":enemies}
 static func analyze(j: TacticalJourney, definition: Dictionary) -> Dictionary:
     return analyze_cards(j,definition,j.deck)
+static func compare(j: TacticalJourney, cards: Array[BattleCardInstance]) -> Dictionary:
+    var target := upcoming(j)
+    var coverage: Array[Dictionary] = []
+    for definition: Dictionary in target.get("opponents",[]):
+        var before := analyze(j,definition)
+        var after := analyze_cards(j,definition,cards)
+        coverage.append({"opponent":definition.duplicate(true),"attack":[before["groups"]["attack"].size(),after["groups"]["attack"].size()],"strong":[before["strong"],after["strong"]],"conditional":[before["groups"]["conditional"].size(),after["groups"]["conditional"].size()]})
+    return {"target":target,"coverage":coverage}
 static func analyze_cards(j: TacticalJourney, definition: Dictionary, cards: Array[BattleCardInstance]) -> Dictionary:
     var target := BattlePokemon.new(definition,-1)
     var groups := {"attack":[],"immune":[],"conditional":[]}

@@ -40,17 +40,7 @@ func refresh() -> void:
     var note := "덱 %d → %d장 · " % [change["before"],change["after"]]+("새 기본 카드 1장 추가" if change["copies"] == 0 else "기존 사본 %d장 교체 · 강화 유지" % change["copies"])
     W.label(panel,note,Rect2(36,540,1208,38),22,W.GOLD).name = "ComparisonDeckSummary"
     W.label(panel,"다음 전투 없음" if comparison["target"].is_empty() else "다음 전투 · "+str(comparison["target"]["title"]),Rect2(36,592,1208,32),20)
-    for i in comparison["coverage"].size():
-        var row: Dictionary = comparison["coverage"][i]
-        var foe: Dictionary = row["opponent"]
-        var cell := W.panel(panel,Rect2(36+i*201,636,188,174),Color("20383e"),Color("405960"))
-        W.sprite(cell,int(foe["id"]),Rect2(70,4,48,48))
-        W.label(cell,foe["name"],Rect2(4,52,180,28),16,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
-        for k in 3:
-            var key: String = ["attack","strong","conditional"][k]
-            var values: Array = row[key]
-            var color := Color("a4d6b1") if values[1] > values[0] else (Color("e8a38d") if values[1] < values[0] else W.MUTED)
-            W.label(cell,"%s %d → %d" % [["공격","약점","지속·조건"][k],values[0],values[1]],Rect2(6,84+k*27,176,26),16,color,HORIZONTAL_ALIGNMENT_CENTER).name = "Comparison_%s_%d" % [key,i]
+    DeckCoverageCards.draw(panel,comparison["coverage"],Vector2(36,636),"Comparison")
     var scope := "현재 파티·살아있는 동료·이번 선택 한 건의 덱 상성 비교입니다. 피해량·승률 예측은 아닙니다."
     if not pokemon.alive(): scope += "\n학습 중인 동료가 기절해 해당 기술은 집계에서 제외합니다. 회복 후 사용할 수 있습니다."
     W.label(panel,scope,Rect2(36,824,1208,48),16,W.MUTED)
