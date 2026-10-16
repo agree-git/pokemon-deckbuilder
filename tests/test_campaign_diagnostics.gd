@@ -11,6 +11,18 @@ func check(ok: bool, message: String) -> void:
 func run() -> void:
     var j := TacticalJourney.new(0,"field_kit",[129,349,298],true)
     var before := JourneySnapshot.encode(j)
+    var route := Diagnostics.route_state(j)
+    check(JourneySnapshot.encode(j) == before,"Route provenance cannot change saves, RNG, party or scheduled encounters")
+    check(route["version"] == 2 and route["signature"] == j.route.signature,"Record actual expanded route version and signature")
+    check(route["bosses"].size() == 13,"Record all eight gyms, four elite and champion, even before reaching them")
+    for boss: Dictionary in route["bosses"]:
+        var stop: Dictionary = j.route.stops[int(boss["step"])]
+        check(boss["party"] == stop["party"] and boss["level"] == stop["level"] and boss["name"] == stop["name"],"Provenance matches the scheduled team and level")
+        check(boss["id"] == str(stop["trainer"].get("leader_id",stop["trainer"].get("id",""))),"Provenance retains the chosen trainer identity")
+    route["bosses"][0]["party"][0] = 386
+    check(JourneySnapshot.encode(j) == before,"Mutable report arrays cannot alias the actual route")
+    var legacy := TacticalJourney.new(0,"field_kit",[1,4,7],true,1)
+    check(Diagnostics.route_state(legacy)["version"] == 1,"Legacy route provenance is recorded as version one")
     var entry := Diagnostics.begin(j)
     check(JourneySnapshot.encode(j) == before,"Beginning diagnostics cannot edit state, card identities, resources or RNG")
     check(entry["fallback_cards"] == 5 and entry["direct_cards"] == 5,"Splash-only starters retain exact Struggle copy counts")

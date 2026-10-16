@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 from statistics import mean
 from campaign_diagnostics_report import format_diagnostics, validate_diagnostics
+from campaign_route_report import format_first_gyms, validate_route
 
 ROOT = Path(__file__).resolve().parents[1]
 PARTIES = {
@@ -29,6 +30,7 @@ def load_reports(paths):
     ordinary = {p['id'] for p in catalog if not p['is_legendary'] and not p['is_mythical']}
     rows = []
     seen = set()
+    routes_by_seed = {}
     for path in paths:
         data = json.loads(path.read_text())
         if data.get('version') not in (1, 2) or not isinstance(data.get('rows'), list) or not data['rows']:
@@ -41,9 +43,14 @@ def load_reports(paths):
             limits = data.get('limits')
             if not isinstance(limits, dict) or any(type(limits.get(key)) is not int or limits[key] <= 0 for key in ('battle_turns', 'actions')):
                 raise ValueError(f'{path}: invalid measurement limits')
+        if 'route_version' in data and (type(data['route_version']) is not int or data['route_version'] not in (1, 2)):
+            raise ValueError(f'{path}: invalid route version')
         if report is None:
             report = {key: data[key] for key in fields}
-        elif any(report.get(key) != data.get(key) for key in fields):
+            if 'route_version' in data:
+                report['route_version'] = data['route_version']
+        elif (any(report.get(key) != data.get(key) for key in fields)
+              or report.get('route_version') != data.get('route_version')):
             raise ValueError(f'{path}: measurements use different engine, rules or policies')
         for row in data['rows']:
             identity = (row['party'], row['style'], row['seed'], row.get('camp_policy', 'rest'), row.get('recruitment', 'off'))
@@ -94,6 +101,11 @@ def load_reports(paths):
                 if type(row[key]) is not int or row[key] < 0:
                     raise ValueError(f'{path}: invalid metric {key} for {identity}')
             validate_diagnostics(row)
+            validate_route(row, data.get('route_version'))
+            if 'route' in row:
+                previous_route = routes_by_seed.setdefault(row['seed'], row['route'])
+                if previous_route != row['route']:
+                    raise ValueError(f'{path}: same seed has different planned routes')
             rows.append(row)
     report['rows'] = rows
     return report
@@ -110,6 +122,9 @@ def format_report(report):
         return CAMPS[camp] + (' / ' + RECRUITMENT[mode] if recruiting else '')
     lines = ['# 스타팅·빌드 원정 측정', '',
              f"엔진: `{report['engine']}` · 규칙: `{report['ruleset']}` · {len(report['rows'])}개 원정.", '']
+    route_version = report.get('route_version')
+    lines += [f'대진 버전: **{route_version}** (예정 보스·편성 기록 포함).' if route_version is not None
+              else '대진 버전: 미기록. 이전 표본을 새 관장 대진의 측정으로 간주하지 않는다.', '']
     lines += [f"코드·데이터 지문: `{report['rules_fingerprint']}`.", '']
     if report.get('rules_revision'):
         lines += [f"전투 규칙 기준 커밋: `{report['rules_revision']}`.", '']
@@ -224,6 +239,7 @@ def format_report(report):
             lines.append(f"| {PARTIES.get(party, party)} | {STYLES.get(style, style)} | {CAMPS[camp]} | {len(matches)} | {clear[0]} | {clear[1]} | {catches} / {joins} / {replaced} |")
         lines += ['', '포획 종·장소 순서·합류/방출·빠진 동료·최종 파티·남은 볼은 원본 JSON에 보관한다. '
                   '실패한 원정의 짧은 턴을 속도 개선으로 계산하지 않는다. 영입이 있어도 생존·드로우·육성 판단이 부족하면 패배할 수 있다.', '']
+    lines += format_first_gyms(report['rows'], PARTIES, RECRUITMENT)
     lines += format_diagnostics(report['rows'], PARTIES, STYLES, CAMPS, RECRUITMENT, names)
     lines += ['## 해석 범위', '',
               f"- 시드 {len({row['seed'] for row in report['rows']})}개의 고정 표본이다. 자동 전투 정책이 특정 기술·상태·교대를 더 선호하며 전략별 최적 플레이를 구현한 것은 아니다.",

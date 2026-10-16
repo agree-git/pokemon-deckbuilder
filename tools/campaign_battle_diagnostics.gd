@@ -6,6 +6,15 @@ static func party_state(members: Array[BattlePokemon]) -> Array[Dictionary]:
         result.append({"uid":p.uid,"species":p.species_id,"level":p.level,"hp":p.hp,"max_hp":p.max_hp,"skills":p.learned_skills.duplicate()})
     return result
 
+static func route_state(j: TacticalJourney) -> Dictionary:
+    var bosses: Array[Dictionary] = []
+    for step in j.route.stops.size():
+        var stop: Dictionary = j.route.stops[step]
+        if stop["kind"] not in ["gym","elite","champion"]: continue
+        var trainer: Dictionary = stop["trainer"]
+        bosses.append({"step":step,"kind":stop["kind"],"id":trainer.get("leader_id",trainer.get("id","")),"name":stop["name"],"region":trainer.get("region",""),"type":stop["biome"]["type"],"party":stop["party"].duplicate(),"level":stop["level"]})
+    return {"version":j.route.generation,"signature":j.route.signature,"bosses":bosses}
+
 static func begin(j: TacticalJourney) -> Dictionary:
     var coverage: Array[Dictionary] = []
     for definition: Dictionary in j.battle.enemy_definitions:

@@ -89,6 +89,7 @@ func measure(case_key: String, style: String, seed_value: int, camp_policy: Stri
     if actions >= 15000: stop = "action_limit"
     var combat: Dictionary = j.statistics["combat"]
     var row := {"party":case_key,"starters":starters,"style":style,"seed":seed_value,"phase":j.phase,"wins":j.wins,"badges":j.badges,"step":j.step,"last_place":j.current()["name"],"last_kind":j.current()["kind"],"last_type":j.biome()["type"],"turns":j.total_turns,"actions":actions,"error":error,"incomplete":stop,"damage_taken":combat["damage_taken"],"knockouts":combat["knockouts"],"auto_switches":combat["auto_switches"],"drawn":combat["drawn"],"gold_spent":RunStatistics.spent(j.statistics),"deck_size":j.deck.size(),"relics":j.relics.duplicate(),"cards":j.statistics["cards"].duplicate(),"levels":j.party.map(func(p: BattlePokemon): return p.level),"statistics_valid":RunStatistics.valid_run(j.statistics)}
+    row["route"] = BattleDiagnostics.route_state(j)
     row["camp_policy"] = camp_policy
     row["economy"] = j.statistics["counts"].duplicate()
     row["final_species"] = j.party.map(func(p: BattlePokemon): return p.species_id)
@@ -178,6 +179,7 @@ func run() -> void:
                         failed = failed or not row["error"].is_empty() or not row["incomplete"].is_empty() or not row["statistics_valid"]
                         rows.append(row)
     var report := {"version":2,"engine":Engine.get_version_info()["string"],"ruleset":JourneySave.RULESET,"stat_basis":PokemonStats.BASIS,"rules_fingerprint":rules_fingerprint(),"policy":"CampaignPolicy + preferred reward/shop theme + rest/develop camps + exclusive core rewards + optional early recruitment v4","scope":"No rare hunts or stat/resource overrides. Early recruitment may catch at most two ordinary wild Pokemon in the first region, spending actual balls/energy and joining or replacing based on current stats and known moves. It abandons each capture attempt after three turns. Off does not capture. Rest preserves the original camp policy. Develop resolves encounters, purchases usable evolution items with a 100-gold reserve, rests below 75% HP or for friendship, otherwise upgrades; it removes low-rated or duplicate non-damaging techniques. Combat and learning policy stay the same. Preferred rewards include one exclusive core relic at a gym.","rows":rows}
+    report["route_version"] = CampaignRoute.VERSION
     report["limits"] = {"battle_turns":int(options["max-turns"]),"actions":15000}
     var target: String = options["output"]
     if DirAccess.make_dir_recursive_absolute(target.get_base_dir()) != OK:

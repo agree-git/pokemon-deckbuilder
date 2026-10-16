@@ -210,6 +210,94 @@ class CampaignReportTests(unittest.TestCase):
                 self.data['rows'] = [row]
                 self.reject(self.data)
 
+    def route(self, version=2):
+        from campaign_route_report import BOSS_STEPS
+        bosses = []
+        for index, step in enumerate(BOSS_STEPS):
+            kind = 'gym' if index < 8 else ('elite' if index < 12 else 'champion')
+            bosses.append(dict(step=step, kind=kind, id=f'person_{index}', name=f'보스 {index}',
+                region='관동', type='grass', party=list(range(1, 6 if kind == 'elite' else 7)),
+                level=100 if kind == 'champion' else min(99, 15+index*7)))
+        return dict(version=version, signature='a'*64, bosses=bosses)
+
+    def test_route_provenance_survives_roundtrip(self):
+        self.data['route_version'] = 2
+        self.data['rows'][0]['route'] = self.route()
+        report = load_reports([self.write(self.data)])
+        self.assertEqual(2, report['route_version'])
+        self.assertIn('대진 버전: **2**', format_report(report))
+        self.assertEqual(report, load_reports([self.write(report, 'roundtrip.json')]))
+
+    def test_unrecorded_route_is_not_silently_assumed_legacy(self):
+        report = load_reports([self.write(self.data)])
+        self.assertNotIn('route_version', report)
+        self.assertIn('대진 버전: 미기록', format_report(report))
+        self.assertEqual(report, load_reports([self.write(report, 'roundtrip.json')]))
+
+    def test_route_versions_and_unrecorded_reports_cannot_mix(self):
+        first = self.write(self.data, 'unrecorded.json')
+        self.data['route_version'] = 2
+        self.data['rows'][0].update(seed=43, route=self.route())
+        second = self.write(self.data, 'recorded.json')
+        with self.assertRaises(ValueError):
+            load_reports([first, second])
+        legacy = copy.deepcopy(self.data)
+        legacy['route_version'] = 1
+        legacy['rows'][0].update(seed=44, route=self.route(1))
+        with self.assertRaises(ValueError):
+            load_reports([second, self.write(legacy, 'legacy.json')])
+
+    def test_route_contract_rejects_missing_or_corrupt_boss_evidence(self):
+        for change in ['missing', 'version', 'signature', 'count', 'step', 'species', 'level', 'id', 'type', 'bool']:
+            with self.subTest(change=change):
+                data = copy.deepcopy(self.data)
+                data['route_version'] = 2
+                route = data['rows'][0]['route'] = self.route()
+                if change == 'missing': del data['rows'][0]['route']
+                elif change == 'version': route['version'] = 1
+                elif change == 'signature': route['signature'] = 'not-a-signature'
+                elif change == 'count': route['bosses'].pop()
+                elif change == 'step': route['bosses'][0]['step'] = 12
+                elif change == 'species': route['bosses'][0]['party'][0] = 387
+                elif change == 'level': route['bosses'][-1]['level'] = 99
+                elif change == 'id': route['bosses'][1]['id'] = route['bosses'][0]['id']
+                elif change == 'type': route['bosses'][0]['type'] = 'unknown'
+                elif change == 'bool': data['route_version'] = True
+                self.reject(data)
+
+    def test_same_seed_must_have_same_route_across_parties(self):
+        self.data['route_version'] = 2
+        row = self.data['rows'][0]
+        row['route'] = self.route()
+        other = copy.deepcopy(row)
+        other.update(party='solo', starters=[1])
+        self.data['rows'].append(other)
+        load_reports([self.write(self.data)])
+        other['route']['signature'] = 'b'*64
+        self.reject(self.data)
+
+    def test_first_gym_table_does_not_call_pre_gym_wipe_a_boss_loss(self):
+        self.data['route_version'] = 2
+        row = self.diagnostics_row()
+        row['route'] = self.route()
+        self.data['rows'] = [row]
+        text = format_report(load_reports([self.write(self.data)]))
+        self.assertIn('## 새 대진의 첫 관장 도달', text)
+        self.assertIn('도달 전 전멸', text)
+        self.assertIn('person_0', text)
+
+    def test_actual_boss_must_match_the_scheduled_roster(self):
+        from campaign_route_report import validate_route
+        row = dict(route=self.route(), battle_diagnostics=[])
+        boss = row['route']['bosses'][0]
+        battle = dict(step=boss['step'], kind=boss['kind'], place=boss['name'],
+            opponents_after=[dict(species=s, level=boss['level']) for s in boss['party']])
+        row['battle_diagnostics'] = [battle]
+        validate_route(row, 2)
+        battle['opponents_after'][0]['species'] = 386
+        with self.assertRaises(ValueError):
+            validate_route(row, 2)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -2,9 +2,15 @@
 
 개체값·노력치를 제거한 현재 능력치로 스타팅·보상 주제·야영지 운영·초반 영입을 비교한다. 최신은 [기술 카드 누락 수정 후 160개](measurements/campaign-learning-deck.md)와 [JSON](measurements/campaign-learning-deck.json)이다. 수정 전 [초반 영입 종료 159개](measurements/campaign-recruitment.md)·[미완료 1개](measurements/campaign-recruitment-incomplete.json), [핵심 유물 120개](measurements/campaign-core-relics.md), 핵심 도입 전 [400개](measurements/campaign-species-level.md)와 이전 공식의 [60개](measurements/campaign-balance.md)는 당시 규칙의 기록으로 유지하며 서로 합치지 않는다.
 
+## 새 대진 기록 형식
+
+새 측정은 보고서의 `route_version`과 각 행의 `route.version/signature/bosses`에 실제 경로를 기록한다. 예정 보스에는 여덟 관장·사천왕 넷·챔피언의 인물 ID/지역/전문 바이옴/레벨/파티가 들어간다. 실제 전투 진단의 보스 편성·레벨·장소와 맞는지 검사하고 같은 시드의 편성/영입 정책이 예정 대진을 바꾸지 않았는지도 확인한다. 첫 관장 도달 표에서 예정 상대와 실제 승리·패배·도달 전 전멸을 나눈다.
+
+옛 자료에 대진 버전이 없으면 ‘미기록’으로 표시하며 임의로 1번/2번으로 추정하지 않는다. 명시 버전이 다른 보고서와 버전 미기록 보고서를 합치지 않는다. 게임 저장 형식이나 대진 생성 규칙을 바꾸는 기능이 아니다.
+
 ## 실행
 
-관장 후보 확장 이후 새 원정은 `route_version: 2`이며 81팀에서 추첨한다. 아래 기존 160/400개 보고서와 40개 진단은 이전 고정 관장 대진의 역사 자료다. 새 후보의 난도를 측정한 결과로 해석하지 않는다. 측정 지문은 확장 후보 JSON과 선정 코드도 포함하므로 새 결과를 이전 표본에 섞지 않는다.
+관장 후보 확장 이후 새 원정은 `route_version: 2`이며 82팀에서 추첨한다. 아래 기존 160/400개 보고서와 40개 진단은 이전 고정 관장 대진의 역사 자료다. 새 후보의 난도를 측정한 결과로 해석하지 않는다. 측정 지문은 확장 후보 JSON과 선정 코드도 포함하므로 새 결과를 이전 표본에 섞지 않는다.
 
 Godot 4.7.2와 Python 표준 라이브러리만 사용한다. 게임용 저장과 분리할 때는 실행 명령의 `XDG_DATA_HOME`, `XDG_CONFIG_HOME`, `XDG_CACHE_HOME`에 측정 전용 임시 디렉터리를 지정한다. 도구는 원정을 세션에 채택하거나 저장하지 않는다.
 
