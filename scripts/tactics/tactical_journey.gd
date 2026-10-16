@@ -273,19 +273,21 @@ func reward_view(option: Dictionary) -> Dictionary:
     view["category"] = option["kind"]
     return view
 
-func capture_reason() -> String:
+func capture_reason(candidate: TacticalBattle = null) -> String:
+    # Preview callers may supply a detached battle; capture() always checks live.
+    var combat := candidate if candidate != null else battle
     if phase != BATTLE or not is_wild(): return "트레이너와 관장의 포켓몬은 포획할 수 없습니다."
     if _capture_catalog == null: _capture_catalog = VisualCatalog.new()
-    var species := _capture_catalog.species(battle.enemy().species_id)
+    var species := _capture_catalog.species(combat.enemy().species_id)
     if species.is_empty(): return "포획할 수 없는 포켓몬입니다."
     if species["is_legendary"] or species["is_mythical"]:
-        if not current().get("rare",false) or int(rare_hunt.get("target",0)) != battle.enemy().species_id or rare_hunt.get("captured",false): return "특별한 포획 조건이 필요한 포켓몬입니다."
-        var rule := RareEncounter.rule(battle.enemy().species_id)
+        if not current().get("rare",false) or int(rare_hunt.get("target",0)) != combat.enemy().species_id or rare_hunt.get("captured",false): return "특별한 포획 조건이 필요한 포켓몬입니다."
+        var rule := RareEncounter.rule(combat.enemy().species_id)
         if balls < rule["balls"]: return "희귀 포획에는 몬스터볼 %d개가 필요합니다." % rule["balls"]
-        if battle.energy < rule["energy"]: return "희귀 포획에는 에너지 %d이 필요합니다." % rule["energy"]
-        if battle.enemy().hp*100 > battle.enemy().max_hp*rule["hp_percent"]: return "체력을 %d%% 이하로 낮추세요. 쓰러뜨리면 기회가 끝납니다." % rule["hp_percent"]
+        if combat.energy < rule["energy"]: return "희귀 포획에는 에너지 %d이 필요합니다." % rule["energy"]
+        if combat.enemy().hp*100 > combat.enemy().max_hp*rule["hp_percent"]: return "체력을 %d%% 이하로 낮추세요. 쓰러뜨리면 기회가 끝납니다." % rule["hp_percent"]
     if balls <= 0: return "몬스터볼이 없습니다."
-    return battle.capture_reason()
+    return combat.capture_reason()
 func capture() -> String:
     var reason := capture_reason()
     if not reason.is_empty(): return reason

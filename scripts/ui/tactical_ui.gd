@@ -103,6 +103,8 @@ var playback_kinds: Array[String] = []
 var _banner_tween: Tween
 var _shake: Tween
 var _damage_events: Array[Dictionary] = []
+var action_preview := BattleActionPreview.new()
+var _preview_uid := 0
 
 func _ready() -> void:
     set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -121,6 +123,8 @@ func _ready() -> void:
     motion.canvas = stage.canvas
     stage.canvas.add_child(motion)
     _build()
+    add_child(action_preview)
+    action_preview.bind_bars(ally_bar,enemy_bar)
     if run_mode:
         W.panel(self,Rect2(640,88,640,38),Color(0.035,0.075,0.095,0.9),Color.TRANSPARENT,19)
         W.label(self,run_title,Rect2(640,88,640,38),17,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
@@ -442,8 +446,8 @@ func _build_help() -> Control:
     W.icon(body,"switch",Rect2(60,446,32,32))
     W.label(body,"기술 카드 자동 교대 무료 · 직접 교대는 에너지 %d" % battle.manual_switch_cost(),Rect2(112,437,860,44),21)
     W.label(body,"공격 순서와 마지막 출전 포켓몬을 함께 생각하세요.\n포켓몬별 보호막과 강화 · 도구 카드 · 유물로 전술을 만드세요.",Rect2(60,495,940,70),19,W.MUTED)
-    W.label(body,"교체 1 / 2 / 3     기술 Q / W / E / R     턴 종료 Enter",Rect2(36,609,1008,32),18,MINT)
-    W.label(body,"아이콘과 카드에 마우스를 올리면 자세한 효과를 확인할 수 있습니다.",Rect2(36,654,1008,32),17,W.MUTED)
+    W.label(body,"교체 1 / 2 / 3     손패 Q / W / E / R     턴 종료 Enter",Rect2(36,609,1008,32),18,MINT)
+    W.label(body,"카드를 가리키면 사용 후 HP·보호막·에너지와 야생 포획 가능 여부를 미리 봅니다.",Rect2(36,654,1008,32),17,W.MUTED)
     return overlay
 
 func _build_log() -> void:
@@ -470,6 +474,7 @@ func _build_result() -> void:
 
 func _open_overlay(overlay: Control) -> void:
     if result.visible or busy: return
+    _clear_action_preview()
     _close_overlays(true)
     overlay.move_to_front()
     UiMotion.open(overlay)
@@ -569,6 +574,7 @@ func _position_combat_hud() -> void:
         item["node"].position = (Vector2(left,foot.y+24)+item["offset"]).round()
 
 func _refresh() -> void:
+    _clear_action_preview()
     var foe := _view_enemy()
     var ally := _view_active()
     stage.canvas.set_species(ally.species_id,foe.species_id,catalog,false)
@@ -741,6 +747,7 @@ func _refresh_hand() -> void:
             new_button.key = card.key
             new_button.definition = battle.card_view(card)
             new_button.pressed.connect(_card.bind(card.uid))
+            new_button.hand_hover_changed.connect(_on_action_hover)
             hand_row.add_child(new_button)
             trainer_buttons[card.uid] = new_button
             new_button.call_deferred("deal",dealt*0.035)
@@ -751,6 +758,22 @@ func _refresh_hand() -> void:
         cards.append(button)
     hand_row.arrange(cards)
     if dealt > 0: UiMotion.pulse(draw_button.get_child(0))
+
+func _clear_action_preview() -> void:
+    _preview_uid = 0
+    action_preview.clear()
+
+func _on_action_hover(card: TrainerActionCard,value: bool) -> void:
+    if not value:
+        if _preview_uid == card.uid: _clear_action_preview()
+        return
+    _clear_action_preview()
+    if busy or _overlay_open() or result.visible or not battle.card_reason(card.uid).is_empty(): return
+    var capture_check := Callable()
+    if run_journey != null and run_journey.is_wild(): capture_check = run_journey.capture_reason
+    var forecast := BattleCardPreview.analyze(battle,card.uid,capture_check)
+    _preview_uid = card.uid
+    action_preview.display(forecast,battle.active().uid)
 
 func _fly_card(card: TrainerActionCard,used := true,delay := 0.0) -> void:
     var copy := card.copy_face(card_effects)
@@ -814,6 +837,7 @@ func _apply_frame(frame: Dictionary) -> void:
     for row: Dictionary in frame.get("party",[])+frame.get("enemies",[]): _visual_members[int(row["uid"])] = BattleFrame.restore(row)
     _refresh()
 func _present(reason: String) -> void:
+    _clear_action_preview()
     if not reason.is_empty():
         _notify(reason)
         return
