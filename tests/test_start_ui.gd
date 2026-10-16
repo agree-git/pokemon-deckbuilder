@@ -139,7 +139,10 @@ func run() -> void:
                 else: await click(ui.actions[0])
             TacticalJourney.CAPTURE:
                 await save("join")
-                await click(ui.actions[1]) # Replace Bulbasaur with captured Oddish.
+                var before := JourneySnapshot.encode(ui.journey)
+                await click(ui.actions[1]) # Preview replacing Bulbasaur with captured Oddish.
+                check(ui.recruit_index == 1 and JourneySnapshot.encode(ui.journey) == before,"Recruitment opens a consequence preview before changing the party")
+                await click(ui.page.find_child("RecruitConfirm",true,false))
                 check(ui.journey.party[1].species_id == 43,"Captured member joins through the replacement screen")
             _:
                 await click(ui.actions[0])

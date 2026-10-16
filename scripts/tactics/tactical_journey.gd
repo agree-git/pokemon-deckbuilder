@@ -299,9 +299,7 @@ func resolve_capture(index: int) -> String:
             for i in range(deck.size()-1,-1,-1):
                 if deck[i].injury_owner_uid == leaving or deck[i].owner_uid == leaving: deck.remove_at(i)
         else: party.append(caught)
-        var skills: Array = TacticalContent.skills_for(caught)
-        for key: String in skills: deck.append(_allocate_card(key,caught.uid))
-        if skills.size() < 2: deck.append(_allocate_card(skills[0],caught.uid))
+        for key: String in RecruitmentPreview.keys_for(caught): deck.append(_allocate_card(key,caught.uid))
     if pending_captures.is_empty(): _prepare_rewards()
     return notify_changed()
 func choose_reward(index: int) -> String:

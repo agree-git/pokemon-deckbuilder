@@ -11,6 +11,8 @@ var deck_open := false
 var report_open := false
 var deck_action := ""
 var upgrade_preview_uid := 0
+var recruit_index := -1
+var recruit_tab := "added"
 var gear_open_for := 0
 var deck_button: Button
 var deck_close: Button
@@ -107,6 +109,7 @@ func refresh() -> void:
     if special_open: _special_picker()
     if rare_open: _rare_picker()
     if not evolution_result.is_empty(): _evolution_reveal()
+    if recruit_index >= 0 and journey.phase == TacticalJourney.CAPTURE: _recruitment_preview()
     UiMotion.appear(page)
 func _party() -> void:
     var panel := W.panel(page,Rect2(96,280,340,420),Color("14282f"),Color("405960"))
@@ -694,13 +697,73 @@ func _capture_choice() -> void:
     var basic := catalog.species(catalog.starter_species_id(caught.species_id))
     W.label(page,"스타팅 해금 · "+str(basic["name"]),Rect2(550,535,1190,40),21,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
     if journey.party.size() < 3:
-        _action("원정대에 합류",Rect2(820,630,560,76),_resolve_capture.bind(0),"ball")
+        _action("합류할 기술 카드 확인",Rect2(820,630,560,76),_preview_recruit.bind(0),"ball").name = "Recruit_0"
     else:
         for i in journey.party.size():
-            _action(journey.party[i].display_name+"와 교체",Rect2(550+i*404,630,382,76),_resolve_capture.bind(i),"switch")
+            _action(journey.party[i].display_name+"와 교체 확인",Rect2(550+i*404,630,382,76),_preview_recruit.bind(i),"switch").name = "Recruit_%d" % i
     _action("풀어주기",Rect2(900,740,470,62),_resolve_capture.bind(-1),"next")
 func _resolve_capture(index: int) -> void:
-    if journey.resolve_capture(index).is_empty(): refresh()
+    if journey.resolve_capture(index).is_empty():
+        recruit_index = -1
+        refresh()
+func _preview_recruit(index: int) -> void:
+    if RecruitmentPreview.describe(journey,index).is_empty(): return
+    recruit_index = index
+    recruit_tab = "added"
+    refresh()
+func _close_recruit() -> void:
+    recruit_index = -1
+    refresh()
+func _recruitment_preview() -> void:
+    var change := RecruitmentPreview.describe(journey,recruit_index)
+    if change.is_empty():
+        recruit_index = -1
+        return
+    var incoming: BattlePokemon = change["incoming"]
+    var outgoing: BattlePokemon = change["outgoing"]
+    var overlay := W.button(page,Rect2(0,0,1920,1080),_close_recruit)
+    overlay.name = "RecruitmentPreview"
+    overlay.z_index = 90
+    for state: String in ["normal","hover","pressed","focus"]: overlay.add_theme_stylebox_override(state,W.box(Color(0.01,0.025,0.04,0.86),Color.TRANSPARENT,0))
+    var panel := W.panel(overlay,Rect2(360,100,1200,880),Color("14282f"),W.GOLD)
+    panel.mouse_filter = Control.MOUSE_FILTER_STOP
+    W.label(panel,"원정대 합류 확인",Rect2(36,22,1000,50),29,W.GOLD)
+    W.icon_button(panel,"close",Rect2(1116,24,48,48),_close_recruit,"목록으로 · Esc")
+    W.sprite(panel,incoming.species_id,Rect2(36,94,100,100))
+    W.label(panel,"%s · Lv.%d · HP %d/%d" % [incoming.display_name,incoming.level,incoming.hp,incoming.max_hp],Rect2(154,100,980,42),25)
+    W.label(panel,"%s와 교체" % outgoing.display_name if outgoing != null else "빈 파티 자리에 합류",Rect2(154,146,980,36),20,W.MUTED)
+    W.label(panel,"덱 %d → %d장 · 추가 %d · 제거 %d" % [change["before"],change["after"],change["added"].size(),change["removed"].size()],Rect2(36,214,1128,40),23,W.GOLD).name = "RecruitDeckSummary"
+    var returned: String = change["returned_item"]
+    W.label(panel,"반환 장비 · "+str(TacticalContent.HELD_ITEMS[returned]["name"]) if not returned.is_empty() else "합류·방출과 관계없이 스타팅 해금은 유지됩니다.",Rect2(36,260,1128,34),17,W.MUTED)
+    for i in 2:
+        var key: String = ["added","removed"][i]
+        var tab := W.button(panel,Rect2(36+i*570,314,552,48),func():
+            recruit_tab = key
+            refresh(),("추가되는 카드" if i == 0 else "빠지는 카드")+" · %d장" % change[key].size())
+        tab.name = "RecruitTab_"+key
+        if recruit_tab == key: tab.add_theme_stylebox_override("normal",W.box(Color("29443f"),W.GOLD))
+    var scroll := ScrollContainer.new()
+    scroll.name = "RecruitCards"
+    scroll.position = Vector2(36,376)
+    scroll.size = Vector2(1128,322)
+    scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+    panel.add_child(scroll)
+    var row := HBoxContainer.new()
+    row.add_theme_constant_override("separation",14)
+    scroll.add_child(row)
+    var views: Array = change[recruit_tab]
+    for i in views.size():
+        var face := TrainerActionCard.new()
+        face.name = "RecruitCard_%d" % i
+        face.key = views[i]["key"]
+        face.definition = views[i]
+        row.add_child(face)
+        face.update_card(views[i],"",false)
+        face.disabled = true
+    if views.is_empty(): W.label(row,"빠지는 카드가 없습니다.",Rect2(0,80,1000,100),24,W.MUTED)
+    W.button(panel,Rect2(90,758,450,72),_close_recruit,"목록으로").name = "RecruitCancel"
+    W.button(panel,Rect2(660,758,450,72),_resolve_capture.bind(recruit_index),"이 편성으로 합류").name = "RecruitConfirm"
+    UiMotion.appear(overlay)
 func _capture() -> Dictionary:
     var id := journey.battle.enemy().species_id
     var title := journey.battle.enemy().display_name
@@ -845,6 +908,10 @@ func _home() -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
     if travelling: return
     if journey.phase == TacticalJourney.BATTLE or not event is InputEventKey or not event.pressed or event.echo: return
+    if recruit_index >= 0:
+        if event.keycode == KEY_ESCAPE: _close_recruit()
+        get_viewport().set_input_as_handled()
+        return
     if not evolution_result.is_empty():
         if event.keycode in [KEY_ESCAPE,KEY_ENTER]: _close_evolution()
         get_viewport().set_input_as_handled()

@@ -1,5 +1,6 @@
 extends SceneTree
 ## Developer measurement only: public rules, fixed policy, no forced drops or stats.
+const RecruitmentPolicy = preload("res://tools/campaign_recruitment_policy.gd")
 const CampPolicy = preload("res://tools/campaign_camp_policy.gd")
 const CASES := {
     "kanto":[1,4,7],"johto":[152,155,158],"hoenn":[252,255,258],
@@ -10,13 +11,13 @@ const CASES := {
 }
 const STYLES := ["baseline","relay","ace","status","shield","supply"]
 const HELD := {"relay":["relay_ribbon"],"ace":["ace_band","power_band"],"status":["seed_charm"],"shield":["guard_charm"],"supply":["healing_bell"]}
-var options := {"seeds":"0,42,2026","parties":",".join(CASES.keys()),"styles":"baseline","camps":"rest","max-turns":"100","output":"/tmp/pokemon-campaign-balance.json"}
+var options := {"seeds":"0,42,2026","parties":",".join(CASES.keys()),"styles":"baseline","camps":"rest","recruitment":"off","max-turns":"100","output":"/tmp/pokemon-campaign-balance.json"}
 func _initialize() -> void: call_deferred("run")
 func rules_fingerprint() -> String:
     var hash := HashingContext.new()
     hash.start(HashingContext.HASH_SHA256)
     hash.update(JourneySave.fingerprint().to_utf8_buffer())
-    var sources: Array[String] = ["res://tests/campaign_policy.gd","res://tests/tactical_policy.gd","res://tools/benchmark_campaign.gd","res://tools/campaign_camp_policy.gd","res://scripts/content/visual_catalog.gd"]
+    var sources: Array[String] = ["res://tests/campaign_policy.gd","res://tests/tactical_policy.gd","res://tools/benchmark_campaign.gd","res://tools/campaign_camp_policy.gd","res://tools/campaign_recruitment_policy.gd","res://scripts/content/recruitment_preview.gd","res://scripts/content/visual_catalog.gd"]
     for directory: String in ["res://scripts/tactics","res://scripts/battle"]:
         for file: String in DirAccess.get_files_at(directory):
             if file.ends_with(".gd"): sources.append(directory+"/"+file)
@@ -49,10 +50,11 @@ func camp(j: TacticalJourney, style: String, camp_policy: String) -> String:
         if affinity(offer,style) and j.gold-int(offer["price"]) >= 100 and j.shop_card_reason(i).is_empty():
             return j.buy_shop_card(i)
     return ""
-func measure(case_key: String, style: String, seed_value: int, camp_policy: String) -> Dictionary:
+func measure(case_key: String, style: String, seed_value: int, camp_policy: String, recruitment_mode: String) -> Dictionary:
     var starters: Array[int] = []
     starters.assign(CASES[case_key])
     var j := TacticalJourney.new(seed_value,"field_kit",starters,true)
+    var recruitment := RecruitmentPolicy.new()
     var actions := 0
     var error := ""
     var stop := ""
@@ -64,7 +66,9 @@ func measure(case_key: String, style: String, seed_value: int, camp_policy: Stri
                     stop = "battle_turn_limit"
                     break
                 if j.battle.phase in [TacticalBattle.WON,TacticalBattle.LOST]: error = j.settle()
+                elif recruitment_mode == "early": error = recruitment.apply(j,recruitment.action(j))
                 else: error = CampaignPolicy.apply(j,CampaignPolicy.action(j))
+            TacticalJourney.CAPTURE: error = recruitment.resolve(j)
             TacticalJourney.LEARN: error = j.resolve_learning(CampaignPolicy.learn(j))
             TacticalJourney.REWARD: error = j.choose_reward(reward(j,style))
             TacticalJourney.MAP: error = j.enter_next()
@@ -80,12 +84,16 @@ func measure(case_key: String, style: String, seed_value: int, camp_policy: Stri
     row["economy"] = j.statistics["counts"].duplicate()
     row["final_species"] = j.party.map(func(p: BattlePokemon): return p.species_id)
     row["core_relic"] = CoreRelics.selected(j.relics)
-    print("BALANCE ",case_key,"/",style,"/",camp_policy," seed=",seed_value," ",j.phase," wins=",j.wins," turns=",j.total_turns)
+    row["recruitment"] = recruitment_mode
+    row["captures"] = recruitment.captures.duplicate(true)
+    row["recruits"] = recruitment.decisions.duplicate(true)
+    row["balls_remaining"] = j.balls
+    print("BALANCE ",case_key,"/",style,"/",camp_policy,"/",recruitment_mode," seed=",seed_value," ",j.phase," wins=",j.wins," turns=",j.total_turns)
     return row
 func run() -> void:
     var args := OS.get_cmdline_user_args()
     if args.size()%2 != 0:
-        printerr("Expected paired --seeds, --parties, --styles, --camps, --max-turns, --output options")
+        printerr("Expected paired --seeds, --parties, --styles, --camps, --recruitment, --max-turns, --output options")
         quit(2)
         return
     for i in range(0,args.size(),2):
@@ -99,11 +107,21 @@ func run() -> void:
     var styles: PackedStringArray = options["styles"].split(",",false)
     var seeds: PackedStringArray = options["seeds"].split(",",false)
     var camps: PackedStringArray = options["camps"].split(",",false)
+    var recruit_modes: PackedStringArray = options["recruitment"].split(",",false)
+    if recruit_modes.is_empty():
+        printerr("Choose a recruitment policy")
+        quit(2)
+        return
+    for mode: String in recruit_modes:
+        if mode not in ["off","early"]:
+            printerr("Unknown recruitment policy: ",mode)
+            quit(2)
+            return
     if not options["max-turns"].is_valid_int() or int(options["max-turns"]) < 1 or int(options["max-turns"]) > 1000:
         printerr("Choose a battle turn limit between 1 and 1000")
         quit(2)
         return
-    if parties.is_empty() or styles.is_empty() or seeds.is_empty() or camps.is_empty() or parties.size()*styles.size()*seeds.size()*camps.size() > 1000:
+    if parties.is_empty() or styles.is_empty() or seeds.is_empty() or camps.is_empty() or parties.size()*styles.size()*seeds.size()*camps.size()*recruit_modes.size() > 1000:
         printerr("Choose 1–1000 measurements")
         quit(2)
         return
@@ -127,7 +145,7 @@ func run() -> void:
             printerr("Unknown camp policy: ",key)
             quit(2)
             return
-    for values: Array in [Array(parties),Array(styles),Array(camps),Array(seeds).map(func(value: String): return int(value))]:
+    for values: Array in [Array(parties),Array(styles),Array(camps),Array(recruit_modes),Array(seeds).map(func(value: String): return int(value))]:
         var seen := {}
         for value: Variant in values:
             if seen.has(value):
@@ -141,10 +159,11 @@ func run() -> void:
         for style: String in styles:
             for seed_value: String in seeds:
                 for camp_policy: String in camps:
-                    var row := measure(party_key,style,int(seed_value),camp_policy)
-                    failed = failed or not row["error"].is_empty() or not row["incomplete"].is_empty() or not row["statistics_valid"]
-                    rows.append(row)
-    var report := {"version":2,"engine":Engine.get_version_info()["string"],"ruleset":JourneySave.RULESET,"stat_basis":PokemonStats.BASIS,"rules_fingerprint":rules_fingerprint(),"policy":"CampaignPolicy + preferred reward/shop theme + rest/develop camps + exclusive core rewards v3","scope":"No capture, rare hunts or stat/resource overrides. Rest preserves the original camp policy. Develop resolves encounters, purchases usable evolution items with a 100-gold reserve, rests below 75% HP or for friendship, otherwise upgrades; it removes low-rated or duplicate non-damaging techniques. Combat and learning policy stay the same. Preferred rewards include one exclusive core relic at a gym.","rows":rows}
+                    for recruitment_mode: String in recruit_modes:
+                        var row := measure(party_key,style,int(seed_value),camp_policy,recruitment_mode)
+                        failed = failed or not row["error"].is_empty() or not row["incomplete"].is_empty() or not row["statistics_valid"]
+                        rows.append(row)
+    var report := {"version":2,"engine":Engine.get_version_info()["string"],"ruleset":JourneySave.RULESET,"stat_basis":PokemonStats.BASIS,"rules_fingerprint":rules_fingerprint(),"policy":"CampaignPolicy + preferred reward/shop theme + rest/develop camps + exclusive core rewards + optional early recruitment v4","scope":"No rare hunts or stat/resource overrides. Early recruitment may catch at most two ordinary wild Pokemon in the first region, spending actual balls/energy and joining or replacing based on current stats and known moves. It abandons each capture attempt after three turns. Off does not capture. Rest preserves the original camp policy. Develop resolves encounters, purchases usable evolution items with a 100-gold reserve, rests below 75% HP or for friendship, otherwise upgrades; it removes low-rated or duplicate non-damaging techniques. Combat and learning policy stay the same. Preferred rewards include one exclusive core relic at a gym.","rows":rows}
     report["limits"] = {"battle_turns":int(options["max-turns"]),"actions":15000}
     var target: String = options["output"]
     if DirAccess.make_dir_recursive_absolute(target.get_base_dir()) != OK:

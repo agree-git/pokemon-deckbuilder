@@ -111,6 +111,58 @@ class CampaignReportTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     load_reports([original, self.write(data, 'other.json')])
 
+    def recruitment_row(self, mode='early'):
+        row = copy.deepcopy(self.data['rows'][0])
+        row.update(recruitment=mode, captures=[], recruits=[], balls_remaining=2)
+        return row
+
+    def test_recruitment_axis_and_trace_are_preserved(self):
+        off = self.recruitment_row('off')
+        early = self.recruitment_row()
+        early.update(captures=[dict(step=2, species=41)],
+                     recruits=[dict(step=2, species=41, joined=True, replaced=4)],
+                     balls_remaining=1)
+        self.data['rows'] = [off, early]
+        report = load_reports([self.write(self.data)])
+        text = format_report(report)
+        self.assertEqual(2, len(report['rows']))
+        self.assertIn('매번 휴식 / 영입 없음 | 42 | 1/1', text)
+        self.assertIn('매번 휴식 / 초반 영입 | 42 | 1/1', text)
+        self.assertIn('| 1 | 1 | 1 | 1 / 1 / 1 |', text)
+        self.assertNotIn('**포획·희귀 조우는 사용하지 않는다.**', text)
+
+    def test_invalid_recruitment_traces_are_rejected(self):
+        good = self.recruitment_row()
+        good.update(captures=[dict(step=2, species=41)],
+                    recruits=[dict(step=2, species=41, joined=True, replaced=4)])
+        for change in [dict(recruitment='forced'), dict(recruitment='off'), dict(balls_remaining=-1),
+                       dict(captures=[dict(step=10, species=41)]),
+                       dict(captures=[dict(step=2, species=150)]), dict(recruits=[]),
+                       dict(recruits=[dict(step=2, species=41, joined=False, replaced=4)]),
+                       dict(recruits=[dict(step=2, species=41, joined=True, replaced=-1)])]:
+            with self.subTest(change=change):
+                self.data['rows'] = [{**good, **change}]
+                self.reject(self.data)
+
+    def test_camp_pairs_cannot_mix_recruitment_modes(self):
+        off = self.recruitment_row('off')
+        early = self.recruitment_row()
+        early.update(camp_policy='develop', turns=1)
+        self.data['rows'] = [off, early]
+        text = format_report(load_reports([self.write(self.data)]))
+        self.assertNotIn('## 같은 시드에서 두 운영 모두 완주한 경우', text)
+        self.assertNotIn('265.0 | 1.0', text)
+
+    def test_recruitment_defeat_is_not_faster_completion(self):
+        off = self.recruitment_row('off')
+        early = self.recruitment_row()
+        early.update(phase='failed', wins=7, turns=20)
+        early['economy'].update(rests=7)
+        self.data['rows'] = [off, early]
+        text = format_report(load_reports([self.write(self.data)]))
+        self.assertIn('| 1 | 1 | 0 | 0 / 0 / 0 |', text)
+        self.assertNotIn('-92.5%', text)
+
     def test_historical_v1_can_be_read_on_its_own(self):
         self.data['version'] = 1
         del self.data['stat_basis']

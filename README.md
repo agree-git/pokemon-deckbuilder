@@ -23,7 +23,7 @@
 - 386종의 앞·뒤 도트 스프라이트 **772장**, 한글 이름·세대·현대 복합타입·진화 전 종·전설/환상 구분을 로컬 카탈로그에 포함한다. 개발용 아트 랩에서 모두 선택할 수 있다.
 - 18개 타입 바이옴의 출현 후보와 **타입별 관장 6마리 파티**를 준비했다. [바이옴 목록](docs/biomes.md), [관장 편성](docs/gyms.md)을 참고한다. 아트 랩 오른쪽의 ‘관장 파티’로 편성을 확인한다.
 - 전설·환상 21종은 일반 출현과 관장 파티에서 제외했다. 포획 도감은 `user://collection.json`에 저장하며 게임을 종료해도 스타팅 해금이 유지된다. 준전설·환상·초전설의 단서 조사와 등급별 희귀 포획을 지원한다. [포획·해금 규칙](docs/capture-unlocks.md)을 참고한다.
-- 각 바이옴의 야생 전투에서는 몬스터볼 1개·에너지 1로 체력 25% 이하의 적을 포획한다. 전투 종료 후 합류·교체·방출을 결정하며, 방출하거나 이후 패배해도 스타팅 해금은 유지한다. 트레이너·관장·리그 포켓몬은 포획하지 못하며 야영지의 떠돌이 상인이나 발견 이벤트에서 몬스터볼을 보충한다.
+- 각 바이옴의 야생 전투에서는 몬스터볼 1개·에너지 1로 체력 25% 이하의 적을 포획한다. 전투 종료 후 [합류 미리보기](docs/recruitment.md)에서 추가/제거 카드와 반환 장비·덱 장수를 확인하고 합류·교체·방출을 결정하며, 방출하거나 이후 패배해도 스타팅 해금은 유지한다. 트레이너·관장·리그 포켓몬은 포획하지 못하며 야영지의 떠돌이 상인이나 발견 이벤트에서 몬스터볼을 보충한다.
 - 승리·포획 정산 시 살아 있는 파티원은 정상 경험치, 기절한 파티원은 **30%**를 얻는다. 원작의 종별 성장 곡선에 스테이지·전투 종류 배율을 적용한 경험치를 누적한다. 조건 레벨에서 자동 진화하고, 에메랄드 레벨별 기술표로 기술을 배우며 네 개가 차면 교체 또는 포기한다. 기절 없이 진행하면 마지막 사천왕전 정산에서 Lv.100에 도달한다. 챔피언은 전원 Lv.100이다. 야영지는 휴식과 무작위 상인·이벤트·아이템 발견, 가방·장비를 이용하는 거점이다. [성장 규칙](docs/growth.md)을 참고한다.
 - 1세대 기술 165종을 재사용 가능한 공격·방어·회복·상태 연출에 연결했다. 원작의 개별 기술 애니메이션을 복제한 것은 아니며, 실제 피해·명중·상태 확률을 적용하지 않는 연출 프리뷰다.
 - 화면·UI 기준은 **1920×1080**이며, 전체 화면을 저해상도로 렌더링하지 않는다. 도트 스타일은 그래픽에만 적용한다. 포켓몬 스프라이트는 최근접 필터와 정수 배율로 표시하고, 글자·카드·HUD는 화면 해상도에서 그린다.
@@ -84,6 +84,9 @@ python3 tools/test_evolution_process.py --friendship
 godot --headless --path . --script res://tests/test_special_evolution.gd
 godot --headless --path . --script res://tests/test_special_evolution_ui.gd
 python3 tools/test_evolution_process.py --special
+godot --headless --path . --script res://tests/test_recruitment.gd
+godot --headless --path . --script res://tests/test_recruitment_ui.gd
+python3 tools/test_recruitment_process.py
 godot --headless --path . --script res://tests/test_start_flow.gd
 godot --headless --path . --script res://tests/test_start_ui.gd
 godot --headless --path . --script res://tests/test_presentation.gd

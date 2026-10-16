@@ -1,0 +1,115 @@
+{
+  "engine": "4.7.2-stable (official)",
+  "limits": {
+    "actions": 15000,
+    "battle_turns": 200
+  },
+  "policy": "CampaignPolicy + preferred reward/shop theme + rest/develop camps + exclusive core rewards + optional early recruitment v4",
+  "rows": [
+    {
+      "actions": 1449,
+      "auto_switches": 333,
+      "badges": 2,
+      "balls_remaining": 3,
+      "camp_policy": "develop",
+      "captures": [
+        {
+          "species": 100,
+          "step": 0
+        }
+      ],
+      "cards": {
+        "analysis": 24,
+        "counter": 62,
+        "focus": 16,
+        "guard": 82,
+        "move_103": 26,
+        "move_165": 3,
+        "move_167": 22,
+        "move_268": 9,
+        "move_270": 18,
+        "move_28": 23,
+        "move_33": 355,
+        "move_39": 3,
+        "move_49": 24,
+        "potion_card": 11,
+        "rally": 77
+      },
+      "core_relic": "ace_core",
+      "damage_taken": 444,
+      "deck_size": 17,
+      "drawn": 1170,
+      "economy": {
+        "camp_healing": 361,
+        "cards_bought": 0,
+        "cards_removed": 5,
+        "cards_upgraded": 6,
+        "gold_cards": 0,
+        "gold_earned": 1340,
+        "gold_events": 50,
+        "gold_removal": 500,
+        "gold_supplies": 180,
+        "items_used": 6,
+        "rests": 10,
+        "reward_card": 2,
+        "reward_held": 3,
+        "reward_relic": 6,
+        "reward_skip": 5,
+        "supplies_bought": 1
+      },
+      "error": "",
+      "final_species": [
+        135,
+        237,
+        100
+      ],
+      "gold_spent": 730,
+      "incomplete": "battle_turn_limit",
+      "knockouts": 2,
+      "last_kind": "wild",
+      "last_place": "야생 조우 1",
+      "last_type": "ghost",
+      "levels": [
+        26,
+        26,
+        25
+      ],
+      "party": "mixed",
+      "phase": "battle",
+      "recruitment": "early",
+      "recruits": [
+        {
+          "joined": true,
+          "replaced": 235,
+          "species": 100,
+          "step": 0
+        }
+      ],
+      "relics": [
+        "field_kit",
+        "relay_cell",
+        "ace_core",
+        "ace_emblem",
+        "status_flask",
+        "ace_focus",
+        "status_lens"
+      ],
+      "seed": 5,
+      "starters": [
+        133,
+        236,
+        235
+      ],
+      "statistics_valid": true,
+      "step": 32,
+      "style": "baseline",
+      "turns": 211,
+      "wins": 16
+    }
+  ],
+  "rules_fingerprint": "cd6ac8deb40ca1c8eb5a923a4a56a9638d1fca0056db016561ff7c3e0beca3c0",
+  "ruleset": "campaign-69-species-stats-speed-v3",
+  "scope": "No rare hunts or stat/resource overrides. Early recruitment may catch at most two ordinary wild Pokemon in the first region, spending actual balls/energy and joining or replacing based on current stats and known moves. It abandons each capture attempt after three turns. Off does not capture. Rest preserves the original camp policy. Develop resolves encounters, purchases usable evolution items with a 100-gold reserve, rests below 75% HP or for friendship, otherwise upgrades; it removes low-rated or duplicate non-damaging techniques. Combat and learning policy stay the same. Preferred rewards include one exclusive core relic at a gym.",
+  "stat_basis": "species-level-v1",
+  "version": 2
+}
