@@ -11,6 +11,9 @@ var battle: TacticalBattle
 var run_mode := false
 var run_title := ""
 var run_biome: Dictionary = {}
+var run_background: Dictionary = {}
+var opponent_trainer: Dictionary = {}
+var trainer_intro: TrainerEntrance
 signal run_continue_requested
 signal run_restart_requested(selected_relic: String)
 var result_next: Button
@@ -58,7 +61,7 @@ var _hand_turn := -1
 var _shown_active := 0
 var _shown_enemy := 0
 var _shown_intent := ""
-var hand_row := HBoxContainer.new()
+var hand_row := BattleHandLayout.new()
 var hand_scroll := ScrollContainer.new()
 var log_panel: Control
 var log_text := RichTextLabel.new()
@@ -104,14 +107,15 @@ func _ready() -> void:
     set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     if battle == null: battle = get_node("/root/BattleSession").get("tactics")
     _theme()
-    stage.source_ratio = Vector2(0.25,0.425)
-    stage.target_ratio = Vector2(0.73,0.42)
+    stage.source_ratio = Vector2(0.25,0.442)
+    stage.target_ratio = Vector2(0.73,0.37)
     stage.canvas.sprite_zoom = 4
+    stage.canvas.frame_for_hand = true
     stage.canvas.show_nameplates = false
     stage.canvas.use_effect_statuses = false
     stage.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     add_child(stage)
-    stage.canvas.background = VisualCatalog.biome_texture(run_biome if not run_biome.is_empty() else catalog.biomes[3])
+    stage.canvas.background = VisualCatalog.biome_texture(run_background if not run_background.is_empty() else (run_biome if not run_biome.is_empty() else catalog.biomes[3]))
     stage.canvas.effect.speed = 2.4
     motion.canvas = stage.canvas
     stage.canvas.add_child(motion)
@@ -120,6 +124,45 @@ func _ready() -> void:
         W.panel(self,Rect2(640,88,640,38),Color(0.035,0.075,0.095,0.9),Color.TRANSPARENT,19)
         W.label(self,run_title,Rect2(640,88,640,38),17,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
     _refresh()
+    if not opponent_trainer.is_empty() and battle.turn == 1 and battle.enemy_index == 0 and battle.phase == TacticalBattle.PLAYER and int(battle.statistics["counts"]["cards_played"]) == 0 and int(battle.statistics["counts"]["manual_switches"]) == 0 and not battle.get_meta("trainer_intro_seen",false):
+        battle.set_meta("trainer_intro_seen",true)
+        _start_trainer_intro()
+
+func _start_trainer_intro() -> void:
+    busy = true
+    _refresh()
+    stage.canvas.target_factor = 0
+    trainer_intro = TrainerEntrance.new()
+    trainer_intro.canvas = stage.canvas
+    trainer_intro.role = opponent_trainer["kind"]
+    trainer_intro.accent = VisualCatalog.type_color(opponent_trainer["type"])
+    stage.canvas.add_child(trainer_intro)
+    _announce(str(opponent_trainer["name"])+"의 도전!")
+    playback_kinds.assign(["trainer_enter"])
+    _sequence = UiMotion.begin(self,"battle_sequence")
+    _sequence.tween_property(trainer_intro,"slide",0.0,0.24).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+    _sequence.tween_interval(0.28)
+    _sequence.tween_callback(func():
+        trainer_intro.pose = "windup"
+        playback_kinds.append("trainer_windup"))
+    _sequence.tween_interval(0.16)
+    _sequence.tween_callback(func():
+        trainer_intro.pose = "throw"
+        trainer_intro.projectile = true
+        playback_kinds.append("trainer_throw"))
+    _sequence.tween_property(trainer_intro,"throw_progress",1.0,0.40)
+    _sequence.tween_callback(func():
+        trainer_intro.projectile = false
+        motion.release(false,true)
+        playback_kinds.append("trainer_release")
+        _announce(battle.enemy().display_name+" 출전!"))
+    _sequence.tween_interval(0.42)
+    _sequence.tween_property(trainer_intro,"modulate:a",0.0,0.20)
+    _sequence.parallel().tween_property(trainer_intro,"slide",80.0,0.20)
+    _sequence.tween_callback(func():
+        trainer_intro.hide()
+        stage.canvas.target_factor = 1
+        _finished())
 
 func _theme() -> void:
     var font := FontVariation.new()
@@ -151,7 +194,15 @@ func _build() -> void:
     top_bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
     add_child(top_bar)
     W.icon(self,run_biome.get("type","grass"),Rect2(42,23,28,28))
-    _label(run_biome.get("name","햇살숲"),Rect2(86,16,190,40),21)
+    var place_name: String = run_biome.get("name","햇살숲")
+    var place_size := 21
+    if run_journey != null and run_journey.current()["kind"] == "elite":
+        place_name = catalog.type_name(run_biome["type"])+" 배틀 룸"
+        place_size = 18
+    elif run_journey != null and run_journey.current()["kind"] == "champion":
+        place_name = str(run_journey.current()["trainer"]["region"])+" 챔피언 룸"
+        place_size = 18
+    _label(place_name,Rect2(86,16,190,40),place_size).name = "StageTitle"
     relic_chip = W.button(self,Rect2(274,16,208,40),func(): _open_overlay(menu_panel))
     W.icon(relic_chip,"seed",Rect2(12,8,24,24)).name = "Icon"
     W.label(relic_chip,"",Rect2(48,0,146,40),17,W.MUTED).name = "Title"
@@ -184,29 +235,29 @@ func _build() -> void:
     add_child(damage_layer)
 
 func _build_combat_hud() -> void:
-    for at: Vector2 in [Vector2(315,565),Vector2(1237,558)]:
+    for at: Vector2 in [Vector2(315,589),Vector2(1237,558)]:
         W.panel(self,Rect2(at,Vector2(330,90)),Color(0.04,0.085,0.10,0.93),Color("3f5653"))
-    ally_label = _label("",Rect2(335,573,210,32),21)
+    ally_label = _label("",Rect2(335,597,210,32),21)
     enemy_label = _label("",Rect2(1257,566,210,32),21)
-    _label("HP",Rect2(335,608,35,24),13,W.MUTED)
+    _label("HP",Rect2(335,632,35,24),13,W.MUTED)
     _label("HP",Rect2(1257,601,35,24),13,W.MUTED)
-    ally_bar = W.bar(self,Rect2(335,638,290,7))
+    ally_bar = W.bar(self,Rect2(335,662,290,7))
     enemy_bar = W.bar(self,Rect2(1257,631,290,7))
     # The HP values stay separate from names and status icons.
-    _label("",Rect2(380,605,245,28),17,CREAM,HORIZONTAL_ALIGNMENT_RIGHT).name = "AllyHP"
+    _label("",Rect2(380,629,245,28),17,CREAM,HORIZONTAL_ALIGNMENT_RIGHT).name = "AllyHP"
     _label("",Rect2(1302,598,245,28),17,CREAM,HORIZONTAL_ALIGNMENT_RIGHT).name = "EnemyHP"
-    W.icon(self,"grass",Rect2(567,578,20,20)).name = "AllyType2"
-    W.icon(self,"grass",Rect2(591,578,24,24)).name = "AllyType"
+    W.icon(self,"grass",Rect2(567,602,20,20)).name = "AllyType2"
+    W.icon(self,"grass",Rect2(591,602,24,24)).name = "AllyType"
     W.icon(self,"grass",Rect2(1489,571,20,20)).name = "EnemyType2"
     W.icon(self,"grass",Rect2(1513,571,24,24)).name = "EnemyType"
-    for at: Vector2 in [Vector2(335,658),Vector2(1257,651)]:
+    for at: Vector2 in [Vector2(335,682),Vector2(1257,651)]:
         var badge := W.panel(self,Rect2(at,Vector2(290,42)),Color("193d58"),Color("7ac8f0"),7)
         W.icon(badge,"shield",Rect2(12,7,28,28))
         shield_values.append(W.label(badge,"",Rect2(52,0,222,42),22,Color("c5eeff")))
         badge.mouse_filter = Control.MOUSE_FILTER_PASS
         badge.tooltip_text = "보호막이 먼저 피해를 흡수합니다. "+("다음 플레이어 턴 시작 시 사라집니다." if shield_badges.is_empty() else "다음 적 행동 직전에 사라집니다.")
         shield_badges.append(badge)
-    ally_statuses.position = Vector2(335,706)
+    ally_statuses.position = Vector2(335,730)
     ally_statuses.size = Vector2(400,32)
     ally_statuses.mouse_filter = Control.MOUSE_FILTER_IGNORE
     add_child(ally_statuses)
@@ -253,7 +304,7 @@ func _build_rosters() -> void:
         enemy_slots.append(row)
 
 func _build_actions() -> void:
-    # Pokemon skills sit beside the actor; only trainer cards occupy the hand table.
+    # One overlapping hand for technique, tool and trainer cards.
     for i in 7:
         _shade(Rect2(0,736+i*8,1920,8),Color(0.025,0.06,0.075,0.12+i*0.12))
     _shade(Rect2(0,792,1920,288),Color(0.025,0.06,0.075,0.98))
@@ -268,12 +319,14 @@ func _build_actions() -> void:
     for state: String in ["normal","hover","pressed","focus"]:
         energy_tip.add_theme_stylebox_override(state,W.box(Color.TRANSPARENT,Color.TRANSPARENT,56))
     _label("에너지",Rect2(48,839,112,30),15,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
-    hand_scroll.position = Vector2(426,746)
-    hand_scroll.size = Vector2(1074,328)
+    hand_scroll.position = Vector2(426,714)
+    hand_scroll.size = Vector2(1172,360)
     hand_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-    hand_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
+    hand_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+    hand_scroll.clip_contents = false
     add_child(hand_scroll)
-    hand_row.add_theme_constant_override("separation",12)
+    hand_row.custom_minimum_size = hand_scroll.size
+    hand_row.mouse_filter = Control.MOUSE_FILTER_IGNORE
     hand_scroll.add_child(hand_row)
     draw_button = _pile_button("draw",Rect2(184,864,204,62),"뽑을 더미",func(): _show_pile("draw"))
     draw_count = draw_button.get_node("Count")
@@ -485,10 +538,25 @@ func _show_pile(key: String) -> void:
         grid.add_child(card)
     _open_overlay(pile_panel)
 
+func _position_intent() -> void:
+    var canvas := stage.canvas
+    var texture := canvas.target_sprite.texture
+    if texture == null: return
+    var bounds := canvas.sprite_bounds(texture)
+    var foot := canvas.foot_anchor(false)
+    var top := foot.y-bounds.size.y*canvas.sprite_zoom
+    var badge := get_node("Intent") as Control
+    if top-104 >= 124:
+        badge.position = Vector2(foot.x-64,minf(269,top-104)).round()
+    else:
+        # Tall sprites (e.g. Charizard) need a side badge, clear of their face.
+        badge.position = Vector2(foot.x-bounds.size.x*canvas.sprite_zoom/2-152,maxf(164,top+28)).round()
+
 func _refresh() -> void:
     var foe := _view_enemy()
     var ally := _view_active()
     stage.canvas.set_species(ally.species_id,foe.species_id,catalog,false)
+    _position_intent()
     stage.canvas.ally_statuses.assign(ally.statuses.keys())
     stage.canvas.enemy_statuses.assign(foe.statuses.keys())
     UiMotion.text(status_label,"턴 %d" % int(_visual_frame.get("turn",battle.turn)))
@@ -647,6 +715,7 @@ func _refresh_hand() -> void:
             old.queue_free()
             trainer_buttons.erase(uid)
     var dealt := 0
+    var cards: Array[TrainerActionCard] = []
     for card: BattleCardInstance in battle.hand:
         if not trainer_buttons.has(card.uid):
             var new_button := TrainerActionCard.new()
@@ -661,6 +730,8 @@ func _refresh_hand() -> void:
         var button: TrainerActionCard = trainer_buttons[card.uid]
         button.self_modulate.a = 1
         button.update_card(battle.card_view(card),battle.card_reason(card.uid),busy)
+        cards.append(button)
+    hand_row.arrange(cards)
     if dealt > 0: UiMotion.pulse(draw_button.get_child(0))
 
 func _fly_card(card: TrainerActionCard,used := true,delay := 0.0) -> void:

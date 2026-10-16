@@ -1,5 +1,6 @@
 class_name TrainerActionCard
 extends Button
+signal hand_hover_changed(card: TrainerActionCard,value: bool)
 ## A stable input envelope with a moving face for all three card categories.
 const W = preload("res://scripts/ui/combat_widgets.gd")
 const FACE_SIZE := Vector2(186,266)
@@ -18,6 +19,9 @@ var _accent := Color("aebedd")
 var _hovered := false
 var _available := true
 var _dealing := false
+var _locked := false
+# The next card owns its exposed strip. Raising a face must not hide that input.
+var hand_exposed_width := -1.0
 func _ready() -> void:
     if definition.is_empty(): definition = TacticalContent.definition(BattleCardInstance.new(uid,key,0))
     custom_minimum_size = SLOT_SIZE
@@ -80,20 +84,30 @@ func update_card(view: Dictionary,reason: String,locked: bool) -> void:
     tooltip_text = ("위력 %d · %s\n" % [view["move_power"],"물리" if view.get("damage_class","") == "physical" else "특수"] if view.has("move_power") else "")+str(view["name"])+"\n"+caption+"\n"+description+("\n자동 교대 후 사용 · 추가 교대 비용 없음" if view.get("switches",false) else "")+("\n"+reason if not reason.is_empty() else "")
     if int(view.get("core_discount",0)) > 0: tooltip_text += "\n고정 조준경 · 턴 시작 출전 멤버의 첫 기술 비용 -1"
     _available = not locked and reason.is_empty()
+    _locked = locked
     disabled = not _available
     face.modulate = Color.WHITE if _available else Color(0.65,0.71,0.72)
-    if not _available: _set_hover(false)
+    if locked: _set_hover(false)
 func _has_point(point: Vector2) -> bool:
-    if not is_instance_valid(face) or face.self_modulate.a < 0.35: return false
-    return Rect2(HOME,FACE_SIZE).has_point(point) or Rect2(Vector2.ZERO,FACE_SIZE).has_point(face.get_transform().affine_inverse()*point)
+    if not is_instance_valid(face) or face.self_modulate.a < 0.35 or self_modulate.a < 0.35: return false
+    var exposed := Vector2(minf(FACE_SIZE.x,hand_exposed_width) if hand_exposed_width >= 0 else FACE_SIZE.x,FACE_SIZE.y)
+    return Rect2(HOME,exposed).has_point(point) or ((_hovered or hand_exposed_width < 0) and Rect2(Vector2.ZERO,FACE_SIZE).has_point(face.get_transform().affine_inverse()*point))
 func visible_point(vertical := 0.5) -> Vector2:
+    if hand_exposed_width >= 0 and not _hovered:
+        return HOME+Vector2(minf(FACE_SIZE.x,hand_exposed_width)/2,lerpf(3,FACE_SIZE.y-3,vertical))
     return face.get_transform()*Vector2(FACE_SIZE.x/2,lerpf(3,FACE_SIZE.y-3,vertical))
-func _set_hover(value: bool) -> void:
-    _hovered = value and _available
+func _set_hover(value: bool,force := false) -> void:
+    var next := value and not _locked
+    if _hovered == next and not _dealing and not force: return
+    _hovered = next
+    z_index = 20 if _hovered else 0
+    hand_hover_changed.emit(self,_hovered)
     if _dealing: return
+    var lift := 34 if hand_exposed_width >= 0 else 24
+    var zoom := 1.10 if hand_exposed_width >= 0 else 1.025
     var tween := UiMotion.begin(self,"face",true)
-    tween.tween_property(face,"position",HOME+Vector2(0,-24 if _hovered else 0),0.14).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-    tween.tween_property(face,"scale",Vector2.ONE*(1.025 if _hovered else 1.0),0.14)
+    tween.tween_property(face,"position",HOME+Vector2(0,-lift if _hovered else 0),0.14).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+    tween.tween_property(face,"scale",Vector2.ONE*(zoom if _hovered else 1.0),0.14)
     face.add_theme_stylebox_override("panel",W.box(Color("243b40") if _hovered else Color("172c34"),Color("f1d58c") if _hovered else _accent,11))
 func deal(delay := 0.0) -> void:
     if not is_inside_tree(): return
@@ -107,7 +121,7 @@ func deal(delay := 0.0) -> void:
     tween.tween_property(face,"self_modulate:a",1.0,0.18).set_delay(delay)
     tween.chain().tween_callback(func():
         _dealing = false
-        _set_hover(_hovered))
+        _set_hover(_hovered,true))
 func copy_face(parent: Node) -> Control:
     var copy := face.duplicate() as Control
     copy.pivot_offset = Vector2.ZERO

@@ -73,6 +73,10 @@ func refresh() -> void:
         battle_ui.run_journey = journey
         battle_ui.run_title = journey.progress_title()
         battle_ui.run_biome = journey.biome()
+        battle_ui.run_background = BattleBackdrops.for_stop(journey.current(),journey.biome())
+        if journey.current()["kind"] in ["trainer","veteran","gym","elite","champion"]:
+            var trainer: Dictionary = journey.current().get("trainer",{})
+            battle_ui.opponent_trainer = {"name":trainer.get("leader",trainer.get("name",journey.current()["name"])),"kind":journey.current()["kind"],"type":journey.biome()["type"]}
         battle_ui.capture_action = _capture
         battle_ui.capture_status = func(): return {"wild":journey.is_wild(),"balls":journey.balls,"reason":journey.capture_reason(),"help":journey.capture_help(),"cost":RareEncounter.rule(journey.battle.enemy().species_id)["balls"] if journey.current().get("rare",false) else 1}
         battle_ui.run_continue_requested.connect(_settle)

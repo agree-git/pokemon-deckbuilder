@@ -6,16 +6,19 @@ var ball: Texture2D = preload("res://assets/items/ball.png")
 var progress := 0.0
 var mode := ""
 var ally := true
+var ball_already_landed := false
 func _process(_delta: float) -> void: queue_redraw()
 func recall(on_ally: bool) -> void:
     ally = on_ally
+    ball_already_landed = false
     mode = "recall"
     progress = 0
     var t := UiMotion.begin(self,"ball",true)
     t.tween_property(canvas,"source_factor" if ally else "target_factor",0.02,0.24).set_trans(Tween.TRANS_QUAD)
     t.tween_property(self,"progress",1.0,0.24)
-func release(on_ally: bool) -> void:
+func release(on_ally: bool,at_target := false) -> void:
     ally = on_ally
+    ball_already_landed = at_target
     mode = "release"
     progress = 0
     canvas.set("source_factor" if ally else "target_factor",0.02)
@@ -45,6 +48,7 @@ func reset() -> void:
         for tween: Tween in tracks.values():
             if tween.is_valid(): tween.kill()
     mode = ""
+    ball_already_landed = false
     canvas.source_factor = 1
     canvas.target_factor = 1
     canvas.source_motion = Vector2.ZERO
@@ -53,12 +57,12 @@ func _draw() -> void:
     if mode.is_empty() or canvas == null: return
     var anchor := canvas.source_anchor if ally else canvas.target_anchor
     var trainer := anchor+Vector2(-270 if ally else 270,110)
-    var point := anchor.lerp(trainer,progress) if mode == "recall" else trainer.lerp(anchor,progress)
-    point.y -= sin(progress*PI)*70
+    var point := anchor if mode == "release" and ball_already_landed else (anchor.lerp(trainer,progress) if mode == "recall" else trainer.lerp(anchor,progress))
+    if not ball_already_landed: point.y -= sin(progress*PI)*70
     if mode == "recall":
         draw_line(point.round(),anchor.round(),Color(0.5,0.9,1,1.0-progress),6,false)
     else:
         for i in 8:
             var spark := anchor+Vector2.from_angle(i*TAU/8)*(18+progress*70)
             draw_rect(Rect2(spark.round(),Vector2(7,7)),Color(0.8,0.95,1,sin(progress*PI)))
-    draw_texture_rect(ball,Rect2(point.round()-Vector2(30,30),Vector2(60,60)),false)
+    draw_texture_rect(ball,Rect2(point.round()-Vector2(30,30),Vector2(60,60)),false,Color(1,1,1,1-progress if ball_already_landed else 1))

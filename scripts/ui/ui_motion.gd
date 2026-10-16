@@ -1,6 +1,6 @@
 class_name UiMotion
 extends RefCounted
-## Interruptible presentation tweens. Interactive button bounds never move.
+## Interruptible presentation tweens shared by the HUD, cards and overlays.
 const META := &"ui_motion"
 static func begin(node: Node,key: String,parallel := false) -> Tween:
     var tracks: Dictionary = node.get_meta(META,{})

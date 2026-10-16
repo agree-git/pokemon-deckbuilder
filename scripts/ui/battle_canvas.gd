@@ -28,6 +28,26 @@ var effect_from_enemy := false
 var use_effect_statuses := true
 var ally_statuses: Array[String] = []
 var enemy_statuses: Array[String] = []
+var frame_for_hand := false
+var _opaque_bounds: Dictionary = {}
+
+func sprite_bounds(texture: Texture2D) -> Rect2i:
+    if texture == null: return Rect2i(0,0,96,96)
+    var key := texture.get_instance_id()
+    if not _opaque_bounds.has(key):
+        var pixels := texture.get_image()
+        _opaque_bounds[key] = pixels.get_used_rect() if pixels != null and not pixels.is_empty() else Rect2i(Vector2i.ZERO,Vector2i(texture.get_size()))
+    return _opaque_bounds[key]
+
+func foot_anchor(on_ally: bool) -> Vector2:
+    return (source_anchor if on_ally else target_anchor)+Vector2(0,88*sprite_zoom/4.0)
+
+func _grounded_position(sprite: Sprite2D,on_ally: bool) -> Vector2:
+    if sprite.texture == null: return source_anchor if on_ally else target_anchor
+    var bounds := sprite_bounds(sprite.texture)
+    var center := sprite.texture.get_size()/2
+    var offset := Vector2(bounds.position.x+bounds.size.x/2.0,bounds.end.y)-center
+    return (foot_anchor(on_ally)-offset*sprite_zoom+(source_motion if on_ally else target_motion)).round()
 
 func _ready() -> void:
     font.base_font = preload("res://assets/fonts/NotoSansKR.ttf")
@@ -42,8 +62,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
     clock += delta
-    source_sprite.position = (source_anchor + source_motion + Vector2(0, roundf(sin(clock * 2.4) * 3))).round()
-    target_sprite.position = (target_anchor + target_motion + Vector2(0, roundf(sin(clock * 2.1 + 1) * 3))).round()
+    source_sprite.position = _grounded_position(source_sprite,true)
+    target_sprite.position = _grounded_position(target_sprite,false)
     source_sprite.scale = Vector2.ONE*sprite_zoom*source_factor
     target_sprite.scale = Vector2.ONE*sprite_zoom*target_factor
     queue_redraw()
@@ -81,16 +101,24 @@ func _on_impact(move: Dictionary) -> void:
 
 func _draw() -> void:
     if background:
-        var cover := maxf(canvas_size.x / background.get_width(), canvas_size.y / background.get_height())
+        # Frame the terrain for the visible battlefield above the hand. Covering
+        # the entire 1080px canvas put the ground behind the lower HUD instead.
+        var cover := canvas_size.x/background.get_width() if frame_for_hand else maxf(canvas_size.x/background.get_width(),canvas_size.y/background.get_height())
         var dimensions := background.get_size() * cover
-        draw_texture_rect(background, Rect2(((canvas_size - dimensions) * 0.5).floor(), dimensions), false)
+        var origin := Vector2(0,foot_anchor(true).y-dimensions.y*0.82).floor() if frame_for_hand else ((canvas_size-dimensions)*0.5).floor()
+        draw_texture_rect(background, Rect2(origin, dimensions), false)
+        var bottom := origin.y+dimensions.y
+        if frame_for_hand and bottom < canvas_size.y:
+            # Fade into the hand table instead of stretching a 2px edge into
+            # long vertical streaks below the original artwork.
+            var floor_color := Color(0.025,0.06,0.075)
+            for y in range(floori(bottom)-48,ceili(bottom),4):
+                draw_rect(Rect2(0,y,canvas_size.x,4),Color(floor_color,clampf((y-(bottom-48))/44.0,0,1)))
+            draw_rect(Rect2(0,bottom,canvas_size.x,canvas_size.y-bottom),floor_color)
     else:
         draw_rect(Rect2(Vector2.ZERO, canvas_size), Color("243d3a"))
-    # Shadows and labels remain understated so both small sprites read clearly.
-    for point: Vector2 in [source_anchor + Vector2(0, 80), target_anchor + Vector2(0, 78)]:
-        draw_set_transform(point, 0, Vector2(1, 0.24))
-        draw_circle(Vector2.ZERO, 78, Color(0.03, 0.07, 0.1, 0.35))
-    draw_set_transform(Vector2.ZERO)
+    _contact_shadow(true)
+    _contact_shadow(false)
     if show_nameplates:
         _nameplate(source_anchor + Vector2(-90, 119), source_name, Color("9ee3bb"))
         _nameplate(target_anchor + Vector2(-90, 112), target_name, Color("ffdba2"))
@@ -100,6 +128,21 @@ func _draw() -> void:
         MoveEffect.draw_status(self, ally_statuses[i], source_anchor + Vector2(i * 24, 0), clock * 2)
     for i in enemy_statuses.size():
         MoveEffect.draw_status(self, enemy_statuses[i], target_anchor + Vector2(i * 24, 0), clock * 2)
+
+func _contact_shadow(on_ally: bool) -> void:
+    var sprite := source_sprite if on_ally else target_sprite
+    var factor := clampf(source_factor if on_ally else target_factor,0,1)
+    if factor < 0.05 or sprite.texture == null: return
+    var bounds := sprite_bounds(sprite.texture)
+    var radius := clampf(bounds.size.x*sprite_zoom*0.42,28,108)*factor
+    var point := foot_anchor(on_ally)+(source_motion if on_ally else target_motion)+Vector2(0,-4)
+    # Stepped ellipse strips retain crisp 4px edges at the native UI resolution.
+    for y in range(-16,17,4):
+        var half := floorf(sqrt(maxf(0,1-pow(y/20.0,2)))*radius/4)*4
+        draw_rect(Rect2((point+Vector2(-half,y)).round(),Vector2(half*2,4)),Color(0.025,0.055,0.07,0.36*factor))
+    for y in range(-8,9,4):
+        var half := floorf(sqrt(maxf(0,1-pow(y/12.0,2)))*radius*0.63/4)*4
+        draw_rect(Rect2((point+Vector2(-half,y)).round(),Vector2(half*2,4)),Color(0.02,0.04,0.045,0.34*factor))
 
 func _nameplate(point: Vector2, text: String, color: Color) -> void:
     draw_rect(Rect2(point + Vector2(-12, -40), Vector2(246, 54)), Color(0.025, 0.06, 0.09, 0.83))

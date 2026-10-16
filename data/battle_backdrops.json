@@ -1,0 +1,148 @@
+{
+  "elite": {
+    "normal": {
+      "background": "res://assets/league/elite_1.png",
+      "cell": 0
+    },
+    "fire": {
+      "background": "res://assets/league/elite_1.png",
+      "cell": 1
+    },
+    "water": {
+      "background": "res://assets/league/elite_1.png",
+      "cell": 2
+    },
+    "electric": {
+      "background": "res://assets/league/elite_1.png",
+      "cell": 3
+    },
+    "grass": {
+      "background": "res://assets/league/elite_1.png",
+      "cell": 4
+    },
+    "ice": {
+      "background": "res://assets/league/elite_1.png",
+      "cell": 5
+    },
+    "fighting": {
+      "background": "res://assets/league/elite_2.png",
+      "cell": 0
+    },
+    "poison": {
+      "background": "res://assets/league/elite_2.png",
+      "cell": 1
+    },
+    "ground": {
+      "background": "res://assets/league/elite_2.png",
+      "cell": 2
+    },
+    "flying": {
+      "background": "res://assets/league/elite_2.png",
+      "cell": 3
+    },
+    "psychic": {
+      "background": "res://assets/league/elite_2.png",
+      "cell": 4
+    },
+    "bug": {
+      "background": "res://assets/league/elite_2.png",
+      "cell": 5
+    },
+    "rock": {
+      "background": "res://assets/league/elite_3.png",
+      "cell": 0
+    },
+    "ghost": {
+      "background": "res://assets/league/elite_3.png",
+      "cell": 1
+    },
+    "dragon": {
+      "background": "res://assets/league/elite_3.png",
+      "cell": 2
+    },
+    "dark": {
+      "background": "res://assets/league/elite_3.png",
+      "cell": 3
+    },
+    "steel": {
+      "background": "res://assets/league/elite_3.png",
+      "cell": 4
+    },
+    "fairy": {
+      "background": "res://assets/league/elite_3.png",
+      "cell": 5
+    }
+  },
+  "champions": {
+    "blue": {
+      "background": "res://assets/league/champion_1.png",
+      "cell": 0,
+      "region": "관동",
+      "name": "그린"
+    },
+    "lance": {
+      "background": "res://assets/league/champion_1.png",
+      "cell": 1,
+      "region": "성도",
+      "name": "목호"
+    },
+    "steven": {
+      "background": "res://assets/league/champion_1.png",
+      "cell": 2,
+      "region": "호연",
+      "name": "성호"
+    },
+    "wallace": {
+      "background": "res://assets/league/champion_1.png",
+      "cell": 3,
+      "region": "호연",
+      "name": "윤진"
+    },
+    "cynthia": {
+      "background": "res://assets/league/champion_1.png",
+      "cell": 4,
+      "region": "신오",
+      "name": "난천"
+    },
+    "alder": {
+      "background": "res://assets/league/champion_1.png",
+      "cell": 5,
+      "region": "하나",
+      "name": "노간주"
+    },
+    "iris": {
+      "background": "res://assets/league/champion_2.png",
+      "cell": 0,
+      "region": "하나",
+      "name": "아이리스"
+    },
+    "diantha": {
+      "background": "res://assets/league/champion_2.png",
+      "cell": 1,
+      "region": "칼로스",
+      "name": "카르네"
+    },
+    "leon": {
+      "background": "res://assets/league/champion_2.png",
+      "cell": 2,
+      "region": "가라르",
+      "name": "단델"
+    },
+    "geeta": {
+      "background": "res://assets/league/champion_2.png",
+      "cell": 3,
+      "region": "팔데아",
+      "name": "테사"
+    },
+    "nemona": {
+      "background": "res://assets/league/champion_2.png",
+      "cell": 4,
+      "region": "팔데아",
+      "name": "네모"
+    }
+  },
+  "fallback_champion": {
+    "background": "res://assets/league/champion_2.png",
+    "cell": 5
+  }
+}
