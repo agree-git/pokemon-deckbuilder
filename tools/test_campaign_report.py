@@ -286,6 +286,10 @@ class CampaignReportTests(unittest.TestCase):
         self.assertIn('도달 전 전멸', text)
         self.assertIn('person_0', text)
 
+    def test_unversioned_null_route_is_not_valid_evidence(self):
+        self.data['rows'][0]['route'] = None
+        self.reject(self.data)
+
     def test_actual_boss_must_match_the_scheduled_roster(self):
         from campaign_route_report import validate_route
         row = dict(route=self.route(), battle_diagnostics=[])

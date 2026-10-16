@@ -17,7 +17,9 @@ func run() -> void:
     check(route["bosses"].size() == 13,"Record all eight gyms, four elite and champion, even before reaching them")
     for boss: Dictionary in route["bosses"]:
         var stop: Dictionary = j.route.stops[int(boss["step"])]
-        check(boss["party"] == stop["party"] and boss["level"] == stop["level"] and boss["name"] == stop["name"],"Provenance matches the scheduled team and level")
+        var actual_team := j.route.opponents(int(boss["step"])).map(func(p: Dictionary): return p["id"])
+        check(boss["party"] == actual_team and boss["level"] == stop["level"] and boss["name"] == stop["name"],"Provenance matches the scheduled team and level")
+        check(boss["party"].all(func(species: Variant): return typeof(species) == TYPE_INT),"Report species IDs serialize as integers rather than JSON-source floats")
         check(boss["id"] == str(stop["trainer"].get("leader_id",stop["trainer"].get("id",""))),"Provenance retains the chosen trainer identity")
     route["bosses"][0]["party"][0] = 386
     check(JourneySnapshot.encode(j) == before,"Mutable report arrays cannot alias the actual route")

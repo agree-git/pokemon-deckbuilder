@@ -9,7 +9,7 @@ BOSS_STEPS = list(range(14, 127, 16)) + [128, 130, 132, 134, 136]
 def validate_route(row, version):
     route = row.get('route')
     if version is None:
-        if route is not None:
+        if 'route' in row:
             raise ValueError('Route evidence needs an explicit report route version')
         return
     if (not isinstance(route, dict) or type(route.get('version')) is not int

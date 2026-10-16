@@ -12,7 +12,7 @@ static func route_state(j: TacticalJourney) -> Dictionary:
         var stop: Dictionary = j.route.stops[step]
         if stop["kind"] not in ["gym","elite","champion"]: continue
         var trainer: Dictionary = stop["trainer"]
-        bosses.append({"step":step,"kind":stop["kind"],"id":trainer.get("leader_id",trainer.get("id","")),"name":stop["name"],"region":trainer.get("region",""),"type":stop["biome"]["type"],"party":stop["party"].duplicate(),"level":stop["level"]})
+        bosses.append({"step":step,"kind":stop["kind"],"id":trainer.get("leader_id",trainer.get("id","")),"name":stop["name"],"region":trainer.get("region",""),"type":stop["biome"]["type"],"party":stop["party"].map(func(species: Variant): return int(species)),"level":stop["level"]})
     return {"version":j.route.generation,"signature":j.route.signature,"bosses":bosses}
 
 static func begin(j: TacticalJourney) -> Dictionary:
