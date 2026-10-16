@@ -14,7 +14,7 @@
 - 사용자와의 설명·진행 보고는 한국어로 간결하게 한다. “계속”, “다음 진행”은 작은 플레이 가능한 개선을 실제로 완료하라는 뜻으로 이어간다.
 - 이 프로젝트는 검증한 변경을 커밋하고 **GitHub `agree-git/pokemon-deckbuilder`의 `main`에 직접 반영**해 왔다. 사용자의 별도 브랜치/PR/배포 지시가 있으면 그 지시를 우선한다. 강제 push나 사용자 변경 초기화는 하지 않는다.
 - push 후 로컬 HEAD와 원격 `refs/heads/main` 일치 여부, 작업 트리 상태를 확인한다. 원격과 갈라졌다면 먼저 차이를 확인하고 다른 작업을 보존한다. 로컬 커밋·push·실제 배포는 구분해서 보고한다.
-- 사용자는 모바일로 검토하므로 요청한 갤러리·ZIP·CSV는 GitHub에도 올리고 HTTPS 링크로 제공한다. 큰 검토 산출물은 `main`과 분리한 검토 브랜치에 보관한다. 수정 후 배경 자료는 [background-review-2026-10-16](https://github.com/agree-git/pokemon-deckbuilder/tree/background-review-2026-10-16)의 README 갤러리·`review/index.html`·ZIP·`review/floor_coordinates.csv`에 게시했다(검토 브랜치 `c82139b`). Pages 설정 API는 이 환경에서 Forbidden이므로 실제 Pages 사이트가 아닌 GitHub Markdown 갤러리다.
+- 사용자는 모바일로 검토하므로 요청한 갤러리·ZIP·CSV는 GitHub에도 올리고 HTTPS 링크로 제공한다. 큰 검토 산출물은 `main`과 분리한 검토 브랜치에 보관한다. 수정 후 배경 자료는 [background-review-2026-10-16](https://github.com/agree-git/pokemon-deckbuilder/tree/background-review-2026-10-16)의 README 갤러리·`review/index.html`·ZIP·`review/floor_coordinates.csv`·적용 JSON에 둔다. 최신 자료는 사용자가 HTML로 수정해 업로드한 좌표다. Pages 설정 API는 이 환경에서 Forbidden이므로 실제 Pages 사이트가 아닌 GitHub Markdown 갤러리다.
 - 전투 규칙·콘텐츠·인스턴스·UI/연출을 분리한다. UI 조회·취소·필터는 원정 상태, 실제 카드 UID, 자원, 저장, 난수를 바꾸면 안 된다.
 - 현재 동작을 확인하고 필요한 범위의 검사를 한다. 자동 전투 완주는 사람의 승률·재미·모든 파티의 균형을 입증하지 않는다.
 
@@ -42,14 +42,23 @@
 - [원정 덱 필터](docs/deck-browser.md): 덱 조회·강화·제거에서 전체/공용/동료별 실제 사본을 카드 그림으로 확인하고, 같은 묶음의 한 장을 선택해 비교·확정한다. 취소하면 필터를 유지한다.
 - [상인 카드 제거 확인](docs/camp-removal-preview.md): 한 장의 제거 후 사본 수·덱 장수·골드·다음 상대 상성을 확인하고 확정한다. 마지막 유효 직접 공격 소실을 안내한다. 확정 시 실제 제거 제한을 재검사한다.
 
-## 가장 최근 완료 — HTML 배경 위치 수정 도구 · 2026-10-16
+## 가장 최근 완료 — 사용자 HTML 좌표 적용 · 2026-10-16
+
+사용자가 HTML 도구에서 수정해 업로드한 `battlefield_layouts.json`을 **바이트 그대로** `data/battlefield_layouts.json`에 적용했다. 48개 중 26개 셀, 아군 25·상대 23 접지점이 달라졌다. 형식/전체 셀/범위/아군 아래·상대 위를 검사했고 지정하지 않은 좌표를 임의로 더 조정하지 않았다. 적용 파일 SHA-256은 `b0f2e796afbb02eb04bef728ae28cfd113b1b8a8d6939911d5d0371ba89724f3`다.
+
+- 소수 297.6/287.2를 Vector2로 먼저 변환해 카메라 내림이 1px 달라지는 문제를 수정했다. `BattlefieldLayout.frame`은 JSON double 값으로 내림한 후 Vector2를 만들며 HTML 미리보기와 같다. 두 회귀 검사를 추가했다. 가이드에도 원본 좌표를 소수 한 자리까지 표시한다.
+- Linux/Godot 4.7.2 import 오류 0개, 접지 6,341개·트레이너 도입 64개·기존 연출 26개(헤드리스 포인터 주입 13회) 통과. 최종 실제 전투 65장·가이드 48장 촬영 실패 0개이며 모음 네 장과 대표 원본/가이드를 시각 검토했다. 사용자 좌표를 담은 HTML도 실제 최종 촬영 메타데이터와 비교해 오프라인 Chromium/모바일 터치 1,046개 검사를 통과했다. 카메라 보정 전 촬영본도 있지만 최신 자료로 사용하지 않는다. Windows 실행/사람 밸런스 검사는 별도다.
+- 최종 산출물은 `/workspace/pokemon-background-user-final-2026-10-16`과 인접 ZIP이다. 촬영 manifest는 적용 JSON 해시를 기록하고 패키징 시 현재 좌표/투영/전체 해시를 검증한다. ZIP/갤러리에 실제 적용 JSON도 복사한다. HTML 수정 도구의 초기값과 미리보기도 사용자 좌표로 갱신한다.
+- 큰 검토 자료는 기존 `background-review-2026-10-16`의 `review/`·`pokemon-background-aligned-final-2026-10-16.zip`과 HTML/도구 ZIP을 갱신한다. 이전 링크와 경로는 유지한다. 사용자 추가 위치 피드백이 있으면 이 좌표를 기준으로 이어가며, 이전 8e5a676 추정 좌표로 되돌리지 않는다. 전투/저장/콘텐츠/PNG는 유지한다.
+
+## 직전 완료 — HTML 배경 위치 수정 도구 · 2026-10-16
 
 사용자가 기존 배경 접지가 **전체적으로 여전히 어긋난다**고 확인했다. 이전 수치 검사 통과를 미술적 접지 정확성으로 해석하지 않는다. 실제 가이드에서 비행 아군의 왼쪽 치우침·풀 상대의 아래쪽 치우침을 확인했다. 조사 중 사용자가 **직접 배경을 보며 이동할 수 있는 HTML 파일**을 요청해 최종 작업을 그 도구 제공으로 전환했다. Godot 수정 씬은 만들지 않았다.
 
 - [HTML 사용법/다운로드](docs/battlefield-editor.md). 생성 소스 `tools/build_battlefield_editor.py` + `tools/battlefield_editor.html`, 브라우저 검사 `tools/test_battlefield_editor.py`. 생성된 독립 HTML은 약 28MB이며 바이옴 18·사천왕 룸 18·챔피언/공용 12의 48개 배경, 386종 앞뒤 772개 원본 PNG를 포함한다. 서버/CDN 없이 마우스/터치·클릭·방향키·숫자 수정, undo/redo, 현재 배경 초기화, JSON 입출력·CSV·1920×1080 PNG 저장을 제공한다.
 - 편집은 배경 전체를 고정해서 보여 준다. 읽기 전용 게임 구도 미리보기는 실제 카메라(아군 Y 약 565)·정수 배율·접지점을 따른다. UI는 간단한 영역 가이드이며 실제 게임 UI 실행은 아니다. 임시 저장 불가 시에도 JSON 입출력은 된다.
 - Linux Chromium에서 **1,046개 검사 통과**: 네트워크 차단 상태의 48개 룸 로딩·원본 780 PNG 바이트 일치·실제 마우스/모바일 터치·배율에 따른 드래그·JSON/CSV/PNG 다운로드·불러오기/잘못된 파일 거부·미리보기 잠금. 선택 참고 자료로 실제 Godot 48개 룸의 화면 접지점/배율도 비교했다. 별도 로컬 HTTP 검사에서 localStorage 저장/새로고침 복원을 확인하고 데스크톱/모바일 화면을 시각 검토했다. 관리 브라우저의 file:// 탐색은 관리자 정책으로 차단되어 오프라인 문서 삽입과 로컬 HTTP로 검증했다. iOS/Safari는 미검증이다. Godot 4.7.2 프로젝트 import 오류 0개다.
-- 큰 HTML/ZIP/미리보기는 기존 `background-review-2026-10-16` 검토 브랜치에 게시한다. 재현 소스/문서는 `main`에 둔다. **기존 게임 좌표 JSON·배경 PNG는 이번에 바꾸지 않았다.** 이전 65장 갤러리/ZIP/CSV도 재촬영하지 않는다. 사용자 수정 JSON을 받으면 `data/battlefield_layouts.json`에 적용하고 Godot 실제 렌더링/검사 후 갤러리·ZIP·CSV를 새로 게시하는 것이 다음 작업이다.
+- 도구 제공 당시에는 게임 좌표/기존 65장 갤러리를 바꾸지 않았다. 이후 사용자 수정 JSON을 받아 위 ‘가장 최근 완료’ 작업에서 적용·재촬영했다. 큰 HTML/ZIP/미리보기는 검토 브랜치, 작은 재현 소스/문서는 `main`에 둔다.
 
 ## 직전 완료 — 전 지방 관장 · 2026-10-16
 

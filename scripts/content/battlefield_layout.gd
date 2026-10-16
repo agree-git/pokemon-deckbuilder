@@ -20,7 +20,11 @@ static func point(profile: Dictionary,on_ally: bool) -> Vector2:
 static func frame(profile: Dictionary,viewport: Vector2,texture_size: Vector2) -> Rect2:
     var zoom := viewport.x/texture_size.x
     # Camera derives from artwork, never from a sprite's changing position/size.
-    var origin := Vector2(0,viewport.y*float(data()["ally_screen_y"])/1080-point(profile,true).y*zoom).floor()
+    # Keep the JSON's double precision until after floor. Casting a fractional
+    # point to Vector2 first can turn 297.6*2.5 into 744.000015 and shift a room
+    # by one pixel compared with the HTML editor and the intended camera rule.
+    var origin_y := floorf(viewport.y*float(data()["ally_screen_y"])/1080-float(profile["ally"][1])*zoom)
+    var origin := Vector2(0,origin_y)
     return Rect2(origin,texture_size*zoom)
 
 static func project(profile: Dictionary,on_ally: bool,viewport: Vector2,texture_size: Vector2) -> Vector2:

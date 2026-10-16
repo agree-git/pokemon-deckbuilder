@@ -18,6 +18,9 @@ GROUPS = {'biomes': '바이옴', 'elite': '사천왕', 'champions': '챔피언',
 
 def verify(folder):
     manifest = json.loads((folder/'manifest.json').read_text())
+    layout_bytes = (ROOT/'data/battlefield_layouts.json').read_bytes()
+    if manifest.get('floor_layout_sha256', hashlib.sha256(layout_bytes).hexdigest()) != hashlib.sha256(layout_bytes).hexdigest():
+        raise ValueError('Capture used a different floor coordinate file')
     rows = manifest['captures']
     league = json.loads((ROOT/'data/league.json').read_text())
     biomes = json.loads((ROOT/'data/biomes.json').read_text())
@@ -74,6 +77,7 @@ def main():
     args = parser.parse_args()
     folder = args.directory.resolve()
     manifest = verify(folder)
+    (folder/'battlefield_layouts.json').write_bytes((ROOT/'data/battlefield_layouts.json').read_bytes())
     rows = manifest['captures']
     counts = Counter(row['category'] for row in rows)
     names = {t['key']: t['name'] for t in json.loads((ROOT/'data/catalog.json').read_text())['types']}
@@ -110,7 +114,7 @@ for(const a of document.querySelectorAll('[data-index]'))a.addEventListener('cli
     guide_toggle = '<label><input type="checkbox" id="guides">접지 좌표 보기</label>' if all(r.get('floor_guide') for r in rows) else ''
     coordinates = ''
     if guide_toggle:
-        coordinates = ' · <a href="floor_coordinates.csv">접지점 좌표 CSV</a>'
+        coordinates = ' · <a href="floor_coordinates.csv">접지점 좌표 CSV</a> · <a href="battlefield_layouts.json" download>적용 좌표 JSON</a>'
         with (folder/'floor_coordinates.csv').open('w', encoding='utf-8-sig', newline='') as output:
             writer = csv.writer(output)
             writer.writerow(['이름','배경','셀','아군 원본 X','아군 원본 Y','상대 원본 X','상대 원본 Y','아군 화면 X','아군 화면 Y','상대 화면 X','상대 화면 Y','바닥 구분'])
@@ -131,7 +135,7 @@ for(const a of document.querySelectorAll('[data-index]'))a.addEventListener('cli
         f'screens/: UI 원본 PNG, sheets/: 모음 PNG, manifest.json: 이름/타입/지방/배경 매핑/원본 해시.\n')
     if guide_toggle:
         with (folder/'README.txt').open('a') as output:
-            output.write('guides/: 캐릭터와 HUD를 숨긴 접지점 검토 화면 48장. 갤러리의 접지 좌표 보기로 전환합니다.\nfloor_coordinates.csv: 배경 48종의 셀 내부 좌표와 1920x1080 투영 좌표. 발판/바닥을 수동 계측한 값이며 자동 인식 결과가 아닙니다.\n')
+            output.write('guides/: 캐릭터와 HUD를 숨긴 접지점 검토 화면 48장. 갤러리의 접지 좌표 보기로 전환합니다.\nfloor_coordinates.csv: 배경 48종의 셀 내부 좌표와 1920x1080 투영 좌표. 발판/바닥을 수동 지정한 값이며 자동 인식 결과가 아닙니다.\nbattlefield_layouts.json: 실제 적용한 전체 좌표 원본.\n')
     archive = folder.with_suffix('.zip')
     with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED, compresslevel=6) as target:
         for path in sorted(folder.rglob('*')):

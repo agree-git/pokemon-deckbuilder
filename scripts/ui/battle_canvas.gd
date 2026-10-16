@@ -205,7 +205,7 @@ func _floor_guides() -> void:
         draw_line(p-Vector2(42,0),p+Vector2(42,0),ink,3)
         draw_line(p-Vector2(0,42),p+Vector2(0,42),ink,3)
         var source := BattlefieldLayout.point(battlefield_layout,ally)
-        var text := "%s cell(%d,%d) screen(%.1f,%.1f)" % ["ALLY" if ally else "ENEMY",source.x,source.y,p.x,p.y]
+        var text := "%s cell(%.1f,%.1f) screen(%.1f,%.1f)" % ["ALLY" if ally else "ENEMY",source.x,source.y,p.x,p.y]
         var at := p+Vector2(-180,70)
         draw_rect(Rect2(at-Vector2(8,27),Vector2(410,38)),Color(0.02,0.04,0.07,0.94))
         draw_string(font,at,text,HORIZONTAL_ALIGNMENT_LEFT,-1,21,ink)

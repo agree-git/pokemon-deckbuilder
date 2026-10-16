@@ -15,6 +15,10 @@ func run() -> void:
         for room: Dictionary in BattleBackdrops.data()[group].values(): descriptors.append(room)
     descriptors.append(BattleBackdrops.data()["fallback_champion"])
     check(descriptors.size() == 48,"Every active and reserve background is covered")
+    var fractional := {"ally":[201.6,297.6],"enemy":[598.6,246.1]}
+    check(BattlefieldLayout.frame(fractional,Vector2(1920,1080),Vector2(768,1024.0/3)).position.y == -179,"297.6 JSON coordinate must not lose a camera pixel through Vector2 precision")
+    fractional["ally"][1] = 287.2
+    check(BattlefieldLayout.frame(fractional,Vector2(1920,1080),Vector2(768,1024.0/3)).position.y == -153,"287.2 JSON coordinate uses the same camera floor as the HTML editor")
     var battle := TacticalBattle.new(2026)
     var before := battle.snapshot()
     var ui := TacticalUI.new()

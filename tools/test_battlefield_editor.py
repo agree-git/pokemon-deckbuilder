@@ -143,7 +143,7 @@ def run(html, chromium, reference=None):
                 geometry = page.evaluate('visibleSprites')
                 for n, side in enumerate(['ally', 'enemy']):
                     actual = geometry[side]
-                    check([actual['foot']['x'], actual['foot']['y']] == row['screen_feet'][side], 'HTML game framing agrees with actual Godot feet')
+                    check(max(abs(a-b) for a,b in zip([actual['foot']['x'], actual['foot']['y']], row['screen_feet'][side])) < .001, 'HTML game framing agrees with actual Godot feet within Vector2 float precision')
                     check(actual['zoom'] == row['sprite_scales'][n], 'HTML integer sprite scale agrees with actual Godot')
         context.close()
         mobile = browser.new_context(viewport={'width': 390, 'height': 844}, is_mobile=True, has_touch=True, offline=True, accept_downloads=True)

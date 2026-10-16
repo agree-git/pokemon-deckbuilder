@@ -181,7 +181,7 @@ func run() -> void:
     for entry: Dictionary in entries(): await capture(entry)
     root.content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
     for group: String in GROUP_NAMES: await sheet(group)
-    var manifest := {"engine":Engine.get_version_info()["string"],"scene_mode":"isolated deterministic review fixtures, not campaign playthroughs","captures":captures,"failures":failures}
+    var manifest := {"engine":Engine.get_version_info()["string"],"scene_mode":"isolated deterministic review fixtures, not campaign playthroughs","floor_layout_sha256":FileAccess.get_sha256("res://data/battlefield_layouts.json"),"captures":captures,"failures":failures}
     var file := FileAccess.open(output.path_join("manifest.json"),FileAccess.WRITE)
     if file == null:
         push_error("Cannot write review manifest")
