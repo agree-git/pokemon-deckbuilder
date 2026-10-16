@@ -1,37 +1,12 @@
-# 배경을 보며 포켓몬 위치 수정하기
+# 사용자 수정 좌표를 반영한 전투 배경 갤러리
 
-**[HTML 파일 다운로드 · 약 28MB](https://github.com/agree-git/pokemon-deckbuilder/raw/refs/heads/background-review-2026-10-16/pokemon-background-editor.html?download=1)** · **[ZIP 다운로드 · 약 21MB](https://github.com/agree-git/pokemon-deckbuilder/raw/refs/heads/background-review-2026-10-16/pokemon-background-editor.zip)**
+HTML에서 직접 수정해 올려주신 JSON을 소수점까지 그대로 적용한 **1920×1080 실제 전투 화면 65장**입니다. 48개 배경 중 26개 셀(내 포켓몬 25·상대 23 접지점)이 바뀌었습니다. 배경 PNG는 그대로입니다.
 
-HTML 하나만 내려받아 브라우저로 열면 됩니다. GitHub 파일 보기 화면에서는 실행되지 않습니다. ZIP에도 같은 HTML이 들어 있습니다. 배경 48종과 386종 앞뒤 스프라이트를 포함해 인터넷 없이 동작합니다.
+**[전체 화면 ZIP 다운로드 · 약 81MB](https://github.com/agree-git/pokemon-deckbuilder/raw/refs/heads/background-review-2026-10-16/pokemon-background-aligned-final-2026-10-16.zip)** · [좌표 CSV 보기](review/floor_coordinates.csv) · [CSV 다운로드](https://github.com/agree-git/pokemon-deckbuilder/raw/refs/heads/background-review-2026-10-16/review/floor_coordinates.csv) · [적용 JSON](review/battlefield_layouts.json)
 
-1. 배경을 선택합니다.
-2. 포켓몬을 드래그하거나, 내 포켓몬/상대를 선택하고 발판 중심을 누릅니다.
-3. ‘게임 구도 미리보기’로 확인합니다.
-4. **‘수정 좌표 JSON 저장’**을 누릅니다. `battlefield_layouts.json`을 보내주시면 게임에 적용하겠습니다.
+바이옴 18·사천왕 후보 31·챔피언 후보 11·예비 룸 5. 같은 타입 룸을 공유하는 사천왕도 모두 촬영했습니다. 모음 이미지를 누르면 확대되고 아래 접힌 목록에서 원본을 볼 수 있습니다. ZIP 안의 `index.html`은 오프라인 검색/확대·접지점 전환을 지원합니다. 고정 파티의 검토용 장면이며 원정 플레이 완료 기록은 아닙니다.
 
-숫자·방향키 미세 조정, 터치, 되돌리기/다시 하기, JSON 불러오기, CSV/PNG 저장도 지원합니다. 직접 적용하려면 게임 종료 후 프로젝트의 `data/battlefield_layouts.json`을 교체하고 다시 실행합니다. [자세한 사용법/재현 소스](https://github.com/agree-git/pokemon-deckbuilder/blob/main/docs/battlefield-editor.md).
-
-[![HTML 위치 수정 도구](editor-preview.png)](editor-preview.png)
-
-[게임 구도 미리보기 예시](editor-game-preview.png). UI는 영역 가이드이며 실제 게임 UI 실행은 아닙니다.
-
-**현재 게임 좌표를 초기값으로 담은 수정 도구입니다. 기존 좌표가 전체적으로 어긋난다는 피드백 이후 제공하며, 아래 예전 갤러리·ZIP·CSV를 새 좌표로 재촬영한 것은 아닙니다.**
-
----
-
-# 이전 전투 배경 갤러리
-
-이전 좌표로 촬영한 **1920×1080 실제 게임 화면 65장**입니다. 바이옴 18·사천왕 후보 31·챔피언 후보 11·예비 5를 포함합니다. 같은 방을 공유하는 사천왕도 모두 촬영했습니다.
-
-아래 모음 이미지를 누르면 확대할 수 있습니다. 분류별 원본은 접힌 목록을 펼쳐 확인하세요.
-
-[전체 ZIP 다운로드 · 약 81MB](https://github.com/agree-git/pokemon-deckbuilder/raw/refs/heads/background-review-2026-10-16/pokemon-background-aligned-final-2026-10-16.zip) · [좌표 CSV 보기](review/floor_coordinates.csv) · [CSV 다운로드](https://github.com/agree-git/pokemon-deckbuilder/raw/refs/heads/background-review-2026-10-16/review/floor_coordinates.csv) · [HTML 갤러리 파일](review/index.html)
-
-ZIP을 풀고 `index.html`을 열면 이름·타입·지방 검색과 일반/접지 좌표 화면 전환을 사용할 수 있습니다. GitHub에서는 이 문서가 모바일용 갤러리입니다.
-
-배경 48종의 바닥을 수동 계측했습니다. 좌표 CSV와 가이드의 수치는 셀 내부 좌표 및 화면 투영 좌표입니다. 고정 파티로 만든 검토용 장면이며 원정 완주 기록이나 사용자 저장이 아닙니다.
-
-구현: [8e5a676](https://github.com/agree-git/pokemon-deckbuilder/commit/8e5a676e0280abb5c8565e38b03a385fa036feb6). 이 자료는 해당 접지 수정 결과이며 이후 콘텐츠 변경 전 촬영본입니다.
+소스: [05bddc6](https://github.com/agree-git/pokemon-deckbuilder/commit/05bddc6). 적용 JSON SHA-256: `b0f2e796afbb02eb04bef728ae28cfd113b1b8a8d6939911d5d0371ba89724f3`. 촬영 manifest·게임 파일·ZIP에 같은 JSON을 넣어 확인했습니다.
 
 ## 바이옴 18곳
 
@@ -417,11 +392,11 @@ ZIP을 풀고 `index.html`을 열면 이름·타입·지방 검색과 일반/접
 
 </details>
 
-## 예비 배경 5개
+## 예비 실내 룸 5개
 
-[![예비 배경 5개 모음](review/sheets/reserve.png)](review/sheets/reserve.png)
+[![예비 실내 룸 5개 모음](review/sheets/reserve.png)](review/sheets/reserve.png)
 
-<details><summary>예비 배경 5개 원본 전체 펼치기</summary>
+<details><summary>예비 실내 룸 5개 원본 전체 펼치기</summary>
 
 ### 예비 노말 룸
 
@@ -454,3 +429,20 @@ ZIP을 풀고 `index.html`을 열면 이름·타입·지방 검색과 일반/접
 [접지 기준점 확인](review/guides/reserve_champion_fallback.png)
 
 </details>
+
+## 직접 위치를 더 수정하기
+
+**[HTML 파일 다운로드 · 약 28MB](https://github.com/agree-git/pokemon-deckbuilder/raw/refs/heads/background-review-2026-10-16/pokemon-background-editor.html?download=1)** · **[HTML ZIP 다운로드 · 약 21MB](https://github.com/agree-git/pokemon-deckbuilder/raw/refs/heads/background-review-2026-10-16/pokemon-background-editor.zip)**
+
+파일 하나만 내려받아 브라우저로 여세요. 배경 48종과 386종 앞뒤 스프라이트를 포함해 인터넷 없이 동작합니다. 초기값도 이번에 올려주신 좌표입니다.
+
+1. 배경을 고릅니다.
+2. 포켓몬을 드래그하거나, 내 포켓몬/상대를 선택하고 발판 중심을 누릅니다.
+3. ‘게임 구도 미리보기’로 확인합니다.
+4. **‘수정 좌표 JSON 저장’**을 누릅니다. 내려받은 파일을 보내주시면 그대로 적용할 수 있습니다.
+
+터치·숫자·방향키·되돌리기/다시 하기·JSON 불러오기·CSV/PNG 저장을 지원합니다. 직접 적용하려면 게임을 종료하고 프로젝트의 `data/battlefield_layouts.json`을 교체한 뒤 다시 실행합니다. [사용법과 재현 소스](https://github.com/agree-git/pokemon-deckbuilder/blob/main/docs/battlefield-editor.md).
+
+[![HTML 위치 수정 도구](editor-preview.png)](editor-preview.png)
+
+[게임 구도 미리보기 예시](editor-game-preview.png). HTML의 UI는 영역 가이드이며 실제 게임 UI를 실행하는 것은 아닙니다.

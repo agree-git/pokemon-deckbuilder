@@ -9,16 +9,16 @@
       "floor_guide": "guides/biomes_normal.png",
       "floor_layout": {
         "ally": [
-          205.0,
-          278.0
+          223.4,
+          287.1
         ],
         "enemy": [
-          600.0,
-          239.0
+          563.5,
+          237.6
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "8b2fc7ce075a68d8a40c3073f5d814ec9fdea5fe219eb2c1855ab19fb3c91e1f",
+      "guide_sha256": "6be7640d1dd9289d5dc2a39f40155156010d7d63391f2a2048ecae6f63111b63",
       "key": "normal",
       "opponents": [
         16
@@ -35,15 +35,15 @@
       ],
       "screen_feet": {
         "ally": [
-          512.5,
-          565.0
+          558.5,
+          564.75
         ],
         "enemy": [
-          1500.0,
-          467.5
+          1408.75,
+          441.0
         ]
       },
-      "sha256": "88130b02d6757cb5b59e397e42259fb849e5f2ee5c5c08e05ba2d18a0f92c735",
+      "sha256": "a2f2a51ae466a473820426bd19f1656543ef630095254e2fe305fe26ed971196",
       "sprite_scales": [
         4.0,
         4.0
@@ -60,16 +60,16 @@
       "floor_guide": "guides/biomes_fire.png",
       "floor_layout": {
         "ally": [
-          220.0,
+          231.2,
           294.0
         ],
         "enemy": [
-          599.0,
-          249.0
+          526.5,
+          248.5
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "f51f2f15e16363bbc2c20840c6f9c430c411e87fb74e41c7eaccb47cf55436e1",
+      "guide_sha256": "d7ee4a383d4f335bdc202ac15c44df4842d6e86c07122e427ec5568f088501af",
       "key": "fire",
       "opponents": [
         4
@@ -86,15 +86,15 @@
       ],
       "screen_feet": {
         "ally": [
-          550.0,
+          578.0,
           565.0
         ],
         "enemy": [
-          1497.5,
-          452.5
+          1316.25,
+          451.25
         ]
       },
-      "sha256": "94f60ab8e4f76d16001402463e5f7a7af859bd71f706f718a4aa3681e251885e",
+      "sha256": "e407f05567067534b85bd7a02cbfc8cea16a782a234f9acf9932ada5603f3fe7",
       "sprite_scales": [
         4.0,
         4.0
@@ -111,16 +111,16 @@
       "floor_guide": "guides/biomes_water.png",
       "floor_layout": {
         "ally": [
-          241.0,
-          297.0
+          230.2,
+          299.8
         ],
         "enemy": [
-          604.0,
-          269.0
+          565.6,
+          262.9
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "f0ea87554556075c522294c2a398701414d5fb777d051dba99c0087c667d80f6",
+      "guide_sha256": "b454423b40d5c3c4330ec916e791ff24f7031dedc5b143b35e12bd3e4c259aa1",
       "key": "water",
       "opponents": [
         7
@@ -137,15 +137,15 @@
       ],
       "screen_feet": {
         "ally": [
-          602.5,
+          575.5,
           564.5
         ],
         "enemy": [
-          1510.0,
-          494.5
+          1414.0,
+          472.25
         ]
       },
-      "sha256": "b41cab7baf31716afc272666607b4707fe12c3515c5999f0e9cd0fdec0fade66",
+      "sha256": "c21beec1607ff68fd89c145a71f5b0835d463daf5671621997ee64a352b4486f",
       "sprite_scales": [
         4.0,
         4.0
@@ -162,16 +162,16 @@
       "floor_guide": "guides/biomes_grass.png",
       "floor_layout": {
         "ally": [
-          177.0,
-          263.0
+          228.4,
+          278.4
         ],
         "enemy": [
-          599.0,
-          238.0
+          535.9,
+          221.2
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "34f37f0f955922430ee69e7255dd932aee83edf3e0e14357b9fa087ae255ca4d",
+      "guide_sha256": "47e29b786badb3dfab81becb56168fab8fbc87a0bc7cd3737f192ab36e14c960",
       "key": "grass",
       "opponents": [
         1
@@ -188,15 +188,15 @@
       ],
       "screen_feet": {
         "ally": [
-          442.5,
-          564.5
+          571.0,
+          565.0
         ],
         "enemy": [
-          1497.5,
-          502.0
+          1339.75,
+          422.0
         ]
       },
-      "sha256": "a25b2fe6cbd84f16a48b34dda79809f27e27ba5a1b83cd0fba4f75ceba249bd9",
+      "sha256": "48e4577e6869d6280375dd1edba516b75ca54d9d3a3bf0acf49a5979a84099e3",
       "sprite_scales": [
         4.0,
         4.0
@@ -213,16 +213,16 @@
       "floor_guide": "guides/biomes_electric.png",
       "floor_layout": {
         "ally": [
-          217.0,
-          277.0
+          230.1,
+          272.8
         ],
         "enemy": [
-          590.0,
-          254.0
+          545.5,
+          227.8
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "cd2c9557cd467c0da82adaa5ea305fbffbbc1382689b7880cb44f283a7d54161",
+      "guide_sha256": "91c4f2a97f8f5ade5d474c553d7dca5f12dccfb53b7b24c6eb5af8a7e87de8ca",
       "key": "electric",
       "opponents": [
         25
@@ -239,15 +239,15 @@
       ],
       "screen_feet": {
         "ally": [
-          542.5,
-          564.5
+          575.25,
+          565.0
         ],
         "enemy": [
-          1475.0,
-          507.0
+          1363.75,
+          452.5
         ]
       },
-      "sha256": "3050d408759c503fe1699131dd1282dce706b17fa7ac06250eae09e6950bc1d2",
+      "sha256": "029081e18048429e4678c5435c60640c8e663e27d14fa87248abe1c1b7fee416",
       "sprite_scales": [
         4.0,
         4.0
@@ -264,16 +264,16 @@
       "floor_guide": "guides/biomes_ice.png",
       "floor_layout": {
         "ally": [
-          214.0,
-          284.0
+          236.5,
+          278.9
         ],
         "enemy": [
-          603.0,
-          259.0
+          553.9,
+          229.5
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "5c709bfa17c1d5fb352c1fcbd28e687f181084db26dcccdf65e6b5d4d5c602cf",
+      "guide_sha256": "912fa748634606e0714d070cfed875f301657e0fdb222ea15e72d4c91d6b0f7d",
       "key": "ice",
       "opponents": [
         87
@@ -290,18 +290,18 @@
       ],
       "screen_feet": {
         "ally": [
-          535.0,
-          565.0
+          591.25,
+          564.25
         ],
         "enemy": [
-          1507.5,
-          502.5
+          1384.75,
+          440.75
         ]
       },
-      "sha256": "a595d2e67e0f30a8dd35692a36f36f96ed3e48c0f5cc6e4e7fe6c4a064b7731a",
+      "sha256": "8788aaa219c1c08313ef511d613258af96bd6e0de79672e59d74d3aff5e1e64c",
       "sprite_scales": [
         4.0,
-        3.0
+        4.0
       ],
       "title": "얼음 · 서리빛 빙하",
       "type": "ice"
@@ -324,7 +324,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "a60c93286ea1ad6ac08de0721677b7a2c2fcb2726604e6d4766600ed508d914a",
+      "guide_sha256": "860e7cd78b1d89a43e0c142fd317f6627102548ff627080d570c1163875a40ad",
       "key": "fighting",
       "opponents": [
         56
@@ -366,16 +366,16 @@
       "floor_guide": "guides/biomes_poison.png",
       "floor_layout": {
         "ally": [
-          195.0,
-          292.0
+          195.9,
+          299.5
         ],
         "enemy": [
-          613.0,
-          271.0
+          607.9,
+          277.1
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "525ca51019776069ede768cfb1affb6e9eca0df7391eb175c436061af0600fa5",
+      "guide_sha256": "53f14bd5a29a1ba52548a46326179a633a4ce825018a26151af0ea8b1dd0eea0",
       "key": "poison",
       "opponents": [
         1
@@ -392,15 +392,15 @@
       ],
       "screen_feet": {
         "ally": [
-          487.5,
-          565.0
+          489.75,
+          564.75
         ],
         "enemy": [
-          1532.5,
-          512.5
+          1519.75,
+          508.75
         ]
       },
-      "sha256": "f89be8ea8044b13289f13b9ad7c37972c904ae3baab0f6e142d5f907cc6c4c88",
+      "sha256": "639b15a987b55eef6f2a5ea5fa9ad4b4007607010bf1ae03c94192bd646134ea",
       "sprite_scales": [
         4.0,
         4.0
@@ -417,8 +417,8 @@
       "floor_guide": "guides/biomes_ground.png",
       "floor_layout": {
         "ally": [
-          179.0,
-          299.0
+          183.2,
+          298.5
         ],
         "enemy": [
           610.0,
@@ -426,7 +426,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "6cb8f72e47d089e85adb33fe95ab7400de4b32673f6ffbee27b13c4556d2fea7",
+      "guide_sha256": "f390b26c89d07f09980cef6a19faa45bf997c31f0720ff3ba98decf2ae7fbd92",
       "key": "ground",
       "opponents": [
         27
@@ -443,15 +443,15 @@
       ],
       "screen_feet": {
         "ally": [
-          447.5,
-          564.5
+          458.0,
+          564.25
         ],
         "enemy": [
           1525.0,
-          494.5
+          495.5
         ]
       },
-      "sha256": "9754e00452c6f6902cebfc9783a948046d71ae4b4164300c25d9bd1a3df2f30a",
+      "sha256": "1799dc8a9864f286931103c1d1161a5b71b16b0f1a4fad424e4a13f098ed3468",
       "sprite_scales": [
         4.0,
         4.0
@@ -468,16 +468,16 @@
       "floor_guide": "guides/biomes_flying.png",
       "floor_layout": {
         "ally": [
-          150.0,
+          193.5,
           299.0
         ],
         "enemy": [
-          603.0,
-          269.0
+          601.6,
+          273.2
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "5af6ec5b2913e4071ad23f934a7bba37995745f620280c9c9cc1dbbba091f340",
+      "guide_sha256": "95208e7354e66d8de4b5f3151d9b5e51ef0a6118d8996368609fe0b5ce0d17c1",
       "key": "flying",
       "opponents": [
         16
@@ -494,15 +494,15 @@
       ],
       "screen_feet": {
         "ally": [
-          375.0,
+          483.75,
           564.5
         ],
         "enemy": [
-          1507.5,
-          489.5
+          1504.0,
+          500.0
         ]
       },
-      "sha256": "1b6f150efeb0013f5106a89f344b7a656901f836c9c6fe79aa26d997a77273f7",
+      "sha256": "b333752d55c659f954a2b6bffd5f3db1f06595284af17aa247ccdebde2a8761a",
       "sprite_scales": [
         4.0,
         4.0
@@ -519,16 +519,16 @@
       "floor_guide": "guides/biomes_psychic.png",
       "floor_layout": {
         "ally": [
-          192.0,
-          288.0
+          176.1,
+          285.7
         ],
         "enemy": [
-          605.0,
-          250.0
+          608.3,
+          250.5
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "c4e095ae0f44ba00fa3ee8080ce2e6780e17bcb0208b6d65c40d89d3a6364586",
+      "guide_sha256": "407ef589c2b0788cc139c4ad0b9e9ebc19a00301a7453a4f99fc851d6f8df4fb",
       "key": "psychic",
       "opponents": [
         63
@@ -545,15 +545,15 @@
       ],
       "screen_feet": {
         "ally": [
-          480.0,
-          565.0
+          440.25,
+          564.25
         ],
         "enemy": [
-          1512.5,
-          470.0
+          1520.75,
+          476.25
         ]
       },
-      "sha256": "245875320950c2454ee9d83c57622ea6f6ff0ff26b6ad393fca9ef6f3eadefb0",
+      "sha256": "3cc8d0ea1dbcd0fa192702b9888fe115a96b43e8eabf58c1f29193c5a663243e",
       "sprite_scales": [
         4.0,
         4.0
@@ -570,16 +570,16 @@
       "floor_guide": "guides/biomes_bug.png",
       "floor_layout": {
         "ally": [
-          174.0,
-          287.0
+          177.3,
+          285.1
         ],
         "enemy": [
-          603.0,
-          256.0
+          605.3,
+          249.5
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "d0affa6a61cff645a381cf5aa114656f90a0d020539acaef4cd8de0dadfe1245",
+      "guide_sha256": "4afc04399d5f1ffea30628cd8ca9d7ed0867d0ee0405b6e89eec52ee9580dd88",
       "key": "bug",
       "opponents": [
         10
@@ -596,15 +596,15 @@
       ],
       "screen_feet": {
         "ally": [
-          435.0,
-          564.5
+          443.25,
+          564.75
         ],
         "enemy": [
-          1507.5,
-          487.0
+          1513.25,
+          475.75
         ]
       },
-      "sha256": "356f4b50d33ce0eda2ada0379259db1511e07b763aca09e2d2452b511d243f88",
+      "sha256": "537a78fbcc1108b08fe0f9c5ff71272f6ec22e87b8bc1d8bff49a4571e0e1dff",
       "sprite_scales": [
         4.0,
         4.0
@@ -621,16 +621,16 @@
       "floor_guide": "guides/biomes_rock.png",
       "floor_layout": {
         "ally": [
-          186.0,
-          294.0
+          181.8,
+          302.0
         ],
         "enemy": [
-          592.0,
-          251.0
+          597.1,
+          249.1
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "57415d5360e8d3cb8b6b44ff0b22cec93cdbef02e9758ea62c0d09f827e5dbaa",
+      "guide_sha256": "c7d84dbc06a51369248d66f381267baf8ff4cf5a9657a04a8fcfc9c0fc6aab5e",
       "key": "rock",
       "opponents": [
         74
@@ -647,15 +647,15 @@
       ],
       "screen_feet": {
         "ally": [
-          465.0,
+          454.5,
           565.0
         ],
         "enemy": [
-          1480.0,
-          457.5
+          1492.75,
+          432.75
         ]
       },
-      "sha256": "880590b6e6d95837aaad16ded3af29d089b7fe588d2e7e08a096618835334494",
+      "sha256": "b918c048ded1653f7e0993b59aca6c64d5c005e001b3a1f48fde15e210be1b7c",
       "sprite_scales": [
         4.0,
         4.0
@@ -672,16 +672,16 @@
       "floor_guide": "guides/biomes_ghost.png",
       "floor_layout": {
         "ally": [
-          175.0,
-          296.0
+          181.5,
+          300.2
         ],
         "enemy": [
-          611.0,
+          583.4,
           252.0
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "b221e7173a84265af1ef473829ff6ac3c4e5af3dbfc087df4ab748e07aeb9411",
+      "guide_sha256": "2eb9992a04c537da0747cb875003276b103493ab93e98fc763ec1abbf6cc8c43",
       "key": "ghost",
       "opponents": [
         92
@@ -698,18 +698,18 @@
       ],
       "screen_feet": {
         "ally": [
-          437.5,
-          565.0
+          453.75,
+          564.5
         ],
         "enemy": [
-          1527.5,
-          455.0
+          1458.5,
+          444.0
         ]
       },
-      "sha256": "dd2211eb78567e2055a855162b0b6dd2bbe5f4dc7d05c57f3436291d34abc62d",
+      "sha256": "490181e06bb27ab5080a8f7dcabf445e2039eb309e572071efc251da53e0026d",
       "sprite_scales": [
         4.0,
-        3.0
+        4.0
       ],
       "title": "고스트 · 달그림 묘원",
       "type": "ghost"
@@ -723,16 +723,16 @@
       "floor_guide": "guides/biomes_dragon.png",
       "floor_layout": {
         "ally": [
-          165.0,
-          305.0
+          170.1,
+          306.9
         ],
         "enemy": [
-          599.0,
-          283.0
+          600.9,
+          263.8
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "2fafc2d92125a0a04cc1bb2252ccd010ee96e2bd0e17ffa3aad655256349ee25",
+      "guide_sha256": "f62009026c2bc729cc8e18853dfe0f74dc79c11f63b72b8e05290408f8303d51",
       "key": "dragon",
       "opponents": [
         147
@@ -749,15 +749,15 @@
       ],
       "screen_feet": {
         "ally": [
-          412.5,
-          564.5
+          425.25,
+          564.25
         ],
         "enemy": [
-          1497.5,
-          509.5
+          1502.25,
+          456.5
         ]
       },
-      "sha256": "8675592f7ee74aa8a5ba5ca88d957f8bdf536541cfb756b46227401f6f76aeab",
+      "sha256": "74a5afcecff7ee4ca842c447be23ef698fcb78a09237537805f5a511e6ee5b30",
       "sprite_scales": [
         4.0,
         4.0
@@ -774,16 +774,16 @@
       "floor_guide": "guides/biomes_dark.png",
       "floor_layout": {
         "ally": [
-          170.0,
-          309.0
+          192.9,
+          306.2
         ],
         "enemy": [
           594.0,
-          271.0
+          264.0
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "0aae93349278fa736ede5a17c77579604b197c371333bd33d30a34b35557c400",
+      "guide_sha256": "9ff97636a832a955d7d41280da93dd175b0e0771e4a10a295c8f57e35b47a5d0",
       "key": "dark",
       "opponents": [
         198
@@ -800,15 +800,15 @@
       ],
       "screen_feet": {
         "ally": [
-          425.0,
+          482.25,
           564.5
         ],
         "enemy": [
           1485.0,
-          469.5
+          459.0
         ]
       },
-      "sha256": "a48aa63ad1861d4446e83b40f6bebcbe392d541475a7909a5f602056c0be18d3",
+      "sha256": "8c6039b0f1e03c526c61f0c9e657b9cc1634a1334ad952777f876b69782d957d",
       "sprite_scales": [
         4.0,
         4.0
@@ -825,16 +825,16 @@
       "floor_guide": "guides/biomes_steel.png",
       "floor_layout": {
         "ally": [
-          159.0,
-          299.0
+          180.0,
+          296.7
         ],
         "enemy": [
-          610.0,
-          240.0
+          605.3,
+          242.8
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "f1a0997825e9d2136a373ff738934937c5a735b208ae77c70ce4b05610cfa026",
+      "guide_sha256": "36daa902dc4f9e8f982036ce2f316260b0c322ab10048c3109185d630d257a65",
       "key": "steel",
       "opponents": [
         81
@@ -851,15 +851,15 @@
       ],
       "screen_feet": {
         "ally": [
-          397.5,
-          564.5
+          450.0,
+          564.75
         ],
         "enemy": [
-          1525.0,
-          417.0
+          1513.25,
+          430.0
         ]
       },
-      "sha256": "e1e6097e7a1a31089ae48df5834b77d23ae5ba2867b4fd4980cfdd55bcadaeb8",
+      "sha256": "4e70b07074576d72a021081b753864f81282f0d3e68b4f9e10d395fedb8fb16b",
       "sprite_scales": [
         4.0,
         4.0
@@ -876,16 +876,16 @@
       "floor_guide": "guides/biomes_fairy.png",
       "floor_layout": {
         "ally": [
-          173.0,
-          299.0
+          201.6,
+          297.6
         ],
         "enemy": [
-          600.0,
-          262.0
+          598.6,
+          246.1
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "4c12e8c53d972f5848460c6fd40731794f73db47c7cb7d9204bde5b0bc9aeb3f",
+      "guide_sha256": "00ea5c4641812fb1ffcb60f7bed4449a58dcd14676189742d884b86f778317d7",
       "key": "fairy",
       "opponents": [
         35
@@ -902,15 +902,15 @@
       ],
       "screen_feet": {
         "ally": [
-          432.5,
-          564.5
+          504.0,
+          565.0
         ],
         "enemy": [
-          1500.0,
-          472.0
+          1496.5,
+          436.25
         ]
       },
-      "sha256": "5e438d050e4b12868ff38b7559b2b777b16119fb583bae30c505965c52c303f1",
+      "sha256": "dab9f0466c61843eebc91fc4770696d978aaa4d68fcb390645fea95ec9b9d6aa",
       "sprite_scales": [
         4.0,
         4.0
@@ -936,7 +936,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "69bf4eaa9b5bc3bc66cbfd3984283229b11290553a26a66aab2677dc7f8204a7",
+      "guide_sha256": "03be531ee5ef43485ac51489defaaa145872bb028f6399a77ad2ba559d5844dc",
       "key": "lorelei",
       "opponents": [
         87,
@@ -991,7 +991,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "f4bc92d7d7db1f3d0f519cbab764863d27c34244c08a6629fd08cc238a9d8c33",
+      "guide_sha256": "a112ee900101f1b4e81895fdd0a44f5566462f9200564a35621e443312071488",
       "key": "bruno",
       "opponents": [
         57,
@@ -1046,7 +1046,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "c10a8ae6c1170ccf39a5fc696b09df610c5c9e22cf9881d47bc561e9bffb8c9b",
+      "guide_sha256": "988bde278de22ea3c786b91427663b813a8acb74735506cb76515e54b6058744",
       "key": "agatha",
       "opponents": [
         93,
@@ -1101,7 +1101,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "994488d132165265231bc757095934609555d0a2e520111660b157a62c30bf98",
+      "guide_sha256": "1e227af631c3b15fc6ca025e1997cf8c0cf7234f721ce2a0b4bf65e9c219f207",
       "key": "lance",
       "opponents": [
         148,
@@ -1156,7 +1156,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "849759620e1c952aea536c03a9e1de6cfcf894c4e5ff47df4c22bb42667b88b1",
+      "guide_sha256": "1b1ca3cad2f40d370a6555ea202813fd2c56397a09bbb106976c441640f274af",
       "key": "will",
       "opponents": [
         97,
@@ -1202,8 +1202,8 @@
       "floor_guide": "guides/elite_koga.png",
       "floor_layout": {
         "ally": [
-          146.0,
-          266.0
+          147.9,
+          266.5
         ],
         "enemy": [
           596.0,
@@ -1211,7 +1211,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "b2445df01cf46ef5946dba2d1557be98db18999e6c32dd31c9d5c3f723c252e2",
+      "guide_sha256": "4a2e219b40adf373e916fd24f62f517ef5290b0e6a58f18653486424ea53b328",
       "key": "koga",
       "opponents": [
         49,
@@ -1232,15 +1232,15 @@
       ],
       "screen_feet": {
         "ally": [
-          365.0,
-          565.0
+          369.75,
+          564.25
         ],
         "enemy": [
           1490.0,
-          445.0
+          443.0
         ]
       },
-      "sha256": "54cac3034e4c28f9b0f32d2e1cb1398b6386c101fe8cb953f2e039fa17f50fe6",
+      "sha256": "6ed438058463f067b771a49dd49958ea2975be4584a8a942387798d5002bcae4",
       "sprite_scales": [
         3.0,
         4.0
@@ -1266,7 +1266,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "303d3d664412cbb07d13d09ba34ed90168a4734a0829b5de80ef6ea3c997f2be",
+      "guide_sha256": "4fafd263f819f1b9f66a179764404120ba501262893d7b8c2773a5b285459686",
       "key": "karen",
       "opponents": [
         197,
@@ -1321,7 +1321,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "303d3d664412cbb07d13d09ba34ed90168a4734a0829b5de80ef6ea3c997f2be",
+      "guide_sha256": "4fafd263f819f1b9f66a179764404120ba501262893d7b8c2773a5b285459686",
       "key": "sidney",
       "opponents": [
         262,
@@ -1376,7 +1376,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "c10a8ae6c1170ccf39a5fc696b09df610c5c9e22cf9881d47bc561e9bffb8c9b",
+      "guide_sha256": "988bde278de22ea3c786b91427663b813a8acb74735506cb76515e54b6058744",
       "key": "phoebe",
       "opponents": [
         94,
@@ -1431,7 +1431,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "69bf4eaa9b5bc3bc66cbfd3984283229b11290553a26a66aab2677dc7f8204a7",
+      "guide_sha256": "03be531ee5ef43485ac51489defaaa145872bb028f6399a77ad2ba559d5844dc",
       "key": "glacia",
       "opponents": [
         87,
@@ -1486,7 +1486,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "994488d132165265231bc757095934609555d0a2e520111660b157a62c30bf98",
+      "guide_sha256": "1e227af631c3b15fc6ca025e1997cf8c0cf7234f721ce2a0b4bf65e9c219f207",
       "key": "drake",
       "opponents": [
         148,
@@ -1532,16 +1532,16 @@
       "floor_guide": "guides/elite_aaron.png",
       "floor_layout": {
         "ally": [
-          140.0,
-          268.0
+          143.7,
+          271.7
         ],
         "enemy": [
-          594.0,
-          214.0
+          602.0,
+          216.3
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "ccb154e8f38692840e4fecd1f7c354d94bc3b77c3ad4fb28a7ef8066597fb426",
+      "guide_sha256": "9d52be1ceed0f6c43e8186920747b95498970cc2d6430f29adaa5b4697436e19",
       "key": "aaron",
       "opponents": [
         123,
@@ -1562,15 +1562,15 @@
       ],
       "screen_feet": {
         "ally": [
-          350.0,
-          565.0
+          359.25,
+          564.25
         ],
         "enemy": [
-          1485.0,
-          430.0
+          1505.0,
+          425.75
         ]
       },
-      "sha256": "43ac13f2e3bf3825fa7745981cb8fdc36eca00a12311aa4b463ed13b1f355f35",
+      "sha256": "6b5e52a42dcfdad6ee2626b7e797ecd1b6527a66f9b218a6ae4c3571f58719de",
       "sprite_scales": [
         3.0,
         4.0
@@ -1596,7 +1596,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "f3e104f928d98f8b5bfc189f5bd07b05fe8b37654f4eae498793ec32602a3702",
+      "guide_sha256": "05b5a0ce01a72548bc88b6589061e626cf2477c4583a5eb240f0e365296b8986",
       "key": "bertha",
       "opponents": [
         28,
@@ -1642,8 +1642,8 @@
       "floor_guide": "guides/elite_flint.png",
       "floor_layout": {
         "ally": [
-          171.0,
-          269.0
+          169.1,
+          274.6
         ],
         "enemy": [
           590.0,
@@ -1651,7 +1651,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "2e44146f890ac818d6d7d6760d42e1b925a0f37b74f6cbee4f59cf3c1f0b779b",
+      "guide_sha256": "d8c45d93f297bde73cc0464df83b1cfcc538ecd6a1202adbbc0a0ff8c24b48f2",
       "key": "flint",
       "opponents": [
         38,
@@ -1672,18 +1672,18 @@
       ],
       "screen_feet": {
         "ally": [
-          427.5,
+          422.75,
           564.5
         ],
         "enemy": [
           1475.0,
-          419.5
+          405.5
         ]
       },
-      "sha256": "efcb0cf6b220f6bc9733f6816f2928f20e89057220c5fe2dccdbed0ac9b74b9d",
+      "sha256": "b3b9fa3ed93034f20703603ee434f279ba8ba915bcbd681163f0fc6bf91096bf",
       "sprite_scales": [
         3.0,
-        4.0
+        3.0
       ],
       "title": "신오 · 대엽 / 불꽃",
       "type": "fire"
@@ -1706,7 +1706,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "849759620e1c952aea536c03a9e1de6cfcf894c4e5ff47df4c22bb42667b88b1",
+      "guide_sha256": "1b1ca3cad2f40d370a6555ea202813fd2c56397a09bbb106976c441640f274af",
       "key": "lucian",
       "opponents": [
         65,
@@ -1761,7 +1761,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "c10a8ae6c1170ccf39a5fc696b09df610c5c9e22cf9881d47bc561e9bffb8c9b",
+      "guide_sha256": "988bde278de22ea3c786b91427663b813a8acb74735506cb76515e54b6058744",
       "key": "shauntal",
       "opponents": [
         94,
@@ -1816,7 +1816,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "303d3d664412cbb07d13d09ba34ed90168a4734a0829b5de80ef6ea3c997f2be",
+      "guide_sha256": "4fafd263f819f1b9f66a179764404120ba501262893d7b8c2773a5b285459686",
       "key": "grimsley",
       "opponents": [
         197,
@@ -1871,7 +1871,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "849759620e1c952aea536c03a9e1de6cfcf894c4e5ff47df4c22bb42667b88b1",
+      "guide_sha256": "1b1ca3cad2f40d370a6555ea202813fd2c56397a09bbb106976c441640f274af",
       "key": "caitlin",
       "opponents": [
         65,
@@ -1926,7 +1926,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "f4bc92d7d7db1f3d0f519cbab764863d27c34244c08a6629fd08cc238a9d8c33",
+      "guide_sha256": "a112ee900101f1b4e81895fdd0a44f5566462f9200564a35621e443312071488",
       "key": "marshal",
       "opponents": [
         57,
@@ -1972,8 +1972,8 @@
       "floor_guide": "guides/elite_flint.png",
       "floor_layout": {
         "ally": [
-          171.0,
-          269.0
+          169.1,
+          274.6
         ],
         "enemy": [
           590.0,
@@ -1981,7 +1981,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "2e44146f890ac818d6d7d6760d42e1b925a0f37b74f6cbee4f59cf3c1f0b779b",
+      "guide_sha256": "d8c45d93f297bde73cc0464df83b1cfcc538ecd6a1202adbbc0a0ff8c24b48f2",
       "key": "malva",
       "opponents": [
         38,
@@ -2002,18 +2002,18 @@
       ],
       "screen_feet": {
         "ally": [
-          427.5,
+          422.75,
           564.5
         ],
         "enemy": [
           1475.0,
-          419.5
+          405.5
         ]
       },
-      "sha256": "55f8e60361b582fce3cca7fd845eab1d3028888d1e78df0bac27f275566d072c",
+      "sha256": "a150cdd24dd667d7220d19e989034dc8bd7b7d4765bee796f13aec79b01c4658",
       "sprite_scales": [
         3.0,
-        4.0
+        3.0
       ],
       "title": "칼로스 · 파키라 / 불꽃",
       "type": "fire"
@@ -2036,7 +2036,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "165027ff7f1b4d6cdd040afb50c8ea5548c6b95603ac1abc74454d74f84008e8",
+      "guide_sha256": "c3e2ccb45b156023ecf5bd637ec8bfa9db5081e717c6f6e3f869b167d592e322",
       "key": "siebold",
       "opponents": [
         121,
@@ -2091,7 +2091,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "db11fc5a9ac5e1abb2ab440107f6e4a3865624f9662fef9ff850818203f2be16",
+      "guide_sha256": "47f9a5126395a0e0fcb4e5175e8c4a42f718165ae314a5a73e4fbe78ac434d63",
       "key": "wikstrom",
       "opponents": [
         82,
@@ -2146,7 +2146,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "994488d132165265231bc757095934609555d0a2e520111660b157a62c30bf98",
+      "guide_sha256": "1e227af631c3b15fc6ca025e1997cf8c0cf7234f721ce2a0b4bf65e9c219f207",
       "key": "drasna",
       "opponents": [
         149,
@@ -2201,7 +2201,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "f4bc92d7d7db1f3d0f519cbab764863d27c34244c08a6629fd08cc238a9d8c33",
+      "guide_sha256": "a112ee900101f1b4e81895fdd0a44f5566462f9200564a35621e443312071488",
       "key": "hala",
       "opponents": [
         57,
@@ -2256,7 +2256,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "a7af2ec197da36996150c3871c49c6fcf6ac06d2810d11a2981d64bf48a39339",
+      "guide_sha256": "de6abc7715e79b19bab40e06b9d50e1afae6e04aff2a0801a1db10ac8cc57b21",
       "key": "olivia",
       "opponents": [
         76,
@@ -2311,7 +2311,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "c10a8ae6c1170ccf39a5fc696b09df610c5c9e22cf9881d47bc561e9bffb8c9b",
+      "guide_sha256": "988bde278de22ea3c786b91427663b813a8acb74735506cb76515e54b6058744",
       "key": "acerola",
       "opponents": [
         94,
@@ -2366,7 +2366,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "9a0893a6b0ad7ac54a1e53209b300078801851fe5b2269b390ea2ddf9e8eec99",
+      "guide_sha256": "175c2ccd412c8db35aebf0e22dbbd02034e0684a764ebf9bc8b8c85253ba7b62",
       "key": "kahili",
       "opponents": [
         85,
@@ -2421,7 +2421,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "f3e104f928d98f8b5bfc189f5bd07b05fe8b37654f4eae498793ec32602a3702",
+      "guide_sha256": "05b5a0ce01a72548bc88b6589061e626cf2477c4583a5eb240f0e365296b8986",
       "key": "rika",
       "opponents": [
         28,
@@ -2476,7 +2476,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "db11fc5a9ac5e1abb2ab440107f6e4a3865624f9662fef9ff850818203f2be16",
+      "guide_sha256": "47f9a5126395a0e0fcb4e5175e8c4a42f718165ae314a5a73e4fbe78ac434d63",
       "key": "poppy",
       "opponents": [
         82,
@@ -2531,7 +2531,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "9a0893a6b0ad7ac54a1e53209b300078801851fe5b2269b390ea2ddf9e8eec99",
+      "guide_sha256": "175c2ccd412c8db35aebf0e22dbbd02034e0684a764ebf9bc8b8c85253ba7b62",
       "key": "larry",
       "opponents": [
         85,
@@ -2586,7 +2586,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "994488d132165265231bc757095934609555d0a2e520111660b157a62c30bf98",
+      "guide_sha256": "1e227af631c3b15fc6ca025e1997cf8c0cf7234f721ce2a0b4bf65e9c219f207",
       "key": "hassel",
       "opponents": [
         149,
@@ -2641,7 +2641,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "981e0d9bd4b10aa3b63a2ad66a438e9a0edd61332524739a75adc4215633f4ed",
+      "guide_sha256": "b7793f360fb218360497df20f3f03b3dfda0ce6c4884e3e9bcdc3d628a224170",
       "key": "blue",
       "opponents": [
         18,
@@ -2697,7 +2697,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "4a224adbe96e33305d3b8fd661a3f1377ee7f9e33cf0590e7ec134f6b266698a",
+      "guide_sha256": "e53bbe9ac4dcf23da4fb430ad46a73006d179a948822590fe4973aac7a9502a2",
       "key": "lance",
       "opponents": [
         6,
@@ -2753,7 +2753,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "a90e6367e9c8b13cdf774b8e81659d3208abaac55695315d292e6eb663051bb0",
+      "guide_sha256": "611f85e6c1817a02f733ef5799bd6165881effb831ffb5f2d0901b05057785d7",
       "key": "steven",
       "opponents": [
         227,
@@ -2809,7 +2809,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "e40832282ae28fc4da2fa8b4bdf1cc9ba984a845c0e28046157feef80aa1714c",
+      "guide_sha256": "cd36a0cc5f6733f59b9b8a9589208440eef6565b6ec806420141d9be9c429490",
       "key": "wallace",
       "opponents": [
         73,
@@ -2865,7 +2865,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "4b564338d3f9b7899a307f588cb133118bd6b5d95564030c54b1e7eb99a56ebf",
+      "guide_sha256": "65aaf90f0dbfb14e70e351406595cdaaa5308fb40a986348adf31964b44ac741",
       "key": "cynthia",
       "opponents": [
         94,
@@ -2921,7 +2921,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "e64a40484425d448cce0c7e189b78e25b90e7a91b6301e873dc11c118c2fb9d2",
+      "guide_sha256": "1964b9fe89a60b8d0054940fae55f10b1e42f5e94d9266e9010f6d723040da80",
       "key": "alder",
       "opponents": [
         59,
@@ -2968,16 +2968,16 @@
       "floor_guide": "guides/champions_iris.png",
       "floor_layout": {
         "ally": [
-          187.0,
-          292.0
+          182.3,
+          293.8
         ],
         "enemy": [
-          581.0,
-          255.0
+          564.6,
+          249.4
         ],
         "surface": "open_floor"
       },
-      "guide_sha256": "2c5319df838cf3b97f76b6f86382d9e9736983f27e7041992d6960cec1f8bddb",
+      "guide_sha256": "995e7d5ba7ce02369ba5f41060c1cb00d5bed8b4214545ea2c6f360f9c65e505",
       "key": "iris",
       "opponents": [
         149,
@@ -2999,18 +2999,18 @@
       ],
       "screen_feet": {
         "ally": [
-          467.5,
-          565.0
+          455.75,
+          564.5
         ],
         "enemy": [
-          1452.5,
-          472.5
+          1411.5,
+          453.5
         ]
       },
-      "sha256": "5ed4da24aefaedd4800e681cf9fbfd80a28b069fa7b7223ab2b710352c1468e1",
+      "sha256": "018e44469d06c9ed5645c187235b44dfd1f6c998766c629b86d55ab98300e19f",
       "sprite_scales": [
         4.0,
-        4.0
+        3.0
       ],
       "title": "하나 · 아이리스",
       "type": "dragon"
@@ -3028,12 +3028,12 @@
           294.0
         ],
         "enemy": [
-          587.0,
-          251.0
+          563.1,
+          245.4
         ],
         "surface": "open_floor"
       },
-      "guide_sha256": "2367893c33c3c161dc5016a4681b32ff07a82a6b7d9bde50414549dc0f1d93f6",
+      "guide_sha256": "60b8bc0ea8cd7ee9b3312bce3a0557434ab9f229391ea35de147491ea8c3c89b",
       "key": "diantha",
       "opponents": [
         38,
@@ -3059,11 +3059,11 @@
           565.0
         ],
         "enemy": [
-          1467.5,
-          457.5
+          1407.75,
+          443.5
         ]
       },
-      "sha256": "571701c6a5e15ec64888174aa04c1e4a0957223e59c654599fb331e1139f6dcb",
+      "sha256": "6f674dc724d3f473dbcbd8c68e85b608a1db7aee8e7fae77884f068789e1db66",
       "sprite_scales": [
         4.0,
         4.0
@@ -3080,16 +3080,16 @@
       "floor_guide": "guides/champions_leon.png",
       "floor_layout": {
         "ally": [
-          185.0,
-          293.0
+          176.6,
+          294.9
         ],
         "enemy": [
-          582.0,
-          242.0
+          567.5,
+          244.8
         ],
         "surface": "open_floor"
       },
-      "guide_sha256": "9bea1178e840bef78d58de98b916fd0eaf9fd6d11e0947a7d48495611a948fa9",
+      "guide_sha256": "caab1c3ee265c47bb25b03067700629eda43f88a5a5893edb927f78f40114be5",
       "key": "leon",
       "opponents": [
         6,
@@ -3111,17 +3111,17 @@
       ],
       "screen_feet": {
         "ally": [
-          462.5,
-          564.5
+          441.5,
+          564.25
         ],
         "enemy": [
-          1455.0,
-          437.0
+          1418.75,
+          439.0
         ]
       },
-      "sha256": "e95a8be283c65f47d332df7ce9534a2f6baac48acc257165d5ad67af3b233852",
+      "sha256": "19c9b120c912e4279cf7edc68887b4fbac0faad1b232ab3712b1835f522f8fa5",
       "sprite_scales": [
-        4.0,
+        3.0,
         3.0
       ],
       "title": "가라르 · 단델",
@@ -3136,16 +3136,16 @@
       "floor_guide": "guides/champions_geeta.png",
       "floor_layout": {
         "ally": [
-          183.0,
-          297.0
+          172.7,
+          287.2
         ],
         "enemy": [
-          583.0,
-          243.0
+          558.7,
+          240.2
         ],
         "surface": "open_floor"
       },
-      "guide_sha256": "ea7a0bd812338afaa18ce5917ff7aedecf893986d8c3babf1316130515680aa8",
+      "guide_sha256": "7d7460f32e3e86ff30d2e7b550846a495849d76e82ecfdcb95279ac18d2455af",
       "key": "geeta",
       "opponents": [
         103,
@@ -3167,17 +3167,17 @@
       ],
       "screen_feet": {
         "ally": [
-          457.5,
-          564.5
+          431.75,
+          565.0
         ],
         "enemy": [
-          1457.5,
-          429.5
+          1396.75,
+          447.5
         ]
       },
-      "sha256": "f0f0dc440eca6abd1f11548fe9eceb4a10e088409a1c0d1428b43c8bebf806dc",
+      "sha256": "1ffca78bb6bcf716fe6d552278aca41dde5cacf18e3cadd77b02843c18f50522",
       "sprite_scales": [
-        4.0,
+        3.0,
         4.0
       ],
       "title": "팔데아 · 테사",
@@ -3192,16 +3192,16 @@
       "floor_guide": "guides/champions_nemona.png",
       "floor_layout": {
         "ally": [
-          178.0,
-          298.0
+          168.6,
+          275.5
         ],
         "enemy": [
-          586.0,
-          259.0
+          570.6,
+          223.9
         ],
         "surface": "open_floor"
       },
-      "guide_sha256": "a819b33bb0f078613fe16bf4673910030b2c6e71b808481f200ed67ee682ff74",
+      "guide_sha256": "de0655a40684a76981fe435bd489598921cb6de92f39264513aceb9ace7eb1a6",
       "key": "nemona",
       "opponents": [
         26,
@@ -3223,15 +3223,15 @@
       ],
       "screen_feet": {
         "ally": [
-          445.0,
-          565.0
+          421.5,
+          564.75
         ],
         "enemy": [
-          1465.0,
-          467.5
+          1426.5,
+          435.75
         ]
       },
-      "sha256": "5e6f1e07bab6e56ff8d7f1fb69cd402afcf9ddb002fce3a84d63f7d2d50dab6b",
+      "sha256": "d9272eaf0e8173896251fc839790250316ba1023fad96c320a39799d264c24a1",
       "sprite_scales": [
         3.0,
         4.0
@@ -3257,7 +3257,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "bbcb66294bc0ad0851f2156e50fc130c44b317ec1dd65ce5589499ffe63670af",
+      "guide_sha256": "8ea28704e8a43628ea0dbbccf20a8d8bf7a5bb35d71862b09edb4862f41c3eb2",
       "key": "elite_normal",
       "opponents": [
         40,
@@ -3312,7 +3312,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "4dca23d291f3de3da8c2a38a943403856f35d1738c002cbcad8f7e18b2133a65",
+      "guide_sha256": "0acd5425373afbfc8b5071a1b391669662cffefaea8500f7d92e15fa9bd4e46c",
       "key": "elite_electric",
       "opponents": [
         26,
@@ -3367,7 +3367,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "aedb22da7614e8f45bd5580becdea4da639d773231c4ed87f0515dae11bcd2d8",
+      "guide_sha256": "b979fb77153d132c3485b5fd13352236a9cd1fb42a272fdaf7df322f64d9fd33",
       "key": "elite_grass",
       "opponents": [
         182,
@@ -3422,7 +3422,7 @@
         ],
         "surface": "marked_floor"
       },
-      "guide_sha256": "c8b25da95f1212ec8fcf2ced2f3b728f90246e1ffe0df5a2c0d03ed1554bc138",
+      "guide_sha256": "ee738e3a40da01f269e105ba5137fa3eb85a8eef82c7def1e4f83056cbcbdd7c",
       "key": "elite_fairy",
       "opponents": [
         36,
@@ -3468,16 +3468,16 @@
       "floor_guide": "guides/reserve_champion_fallback.png",
       "floor_layout": {
         "ally": [
-          180.0,
-          302.0
+          172.0,
+          290.8
         ],
         "enemy": [
-          580.0,
-          264.0
+          574.6,
+          221.1
         ],
         "surface": "open_floor"
       },
-      "guide_sha256": "42ddb84a7073aa2953a2e22c99fe612b4fcb356aa52dffead5b95521f32cc585",
+      "guide_sha256": "1e7ca6710c00c06076a6dbbc63427d40ead89b0fabdb17365010856fb4f649da",
       "key": "champion_fallback",
       "opponents": [
         18,
@@ -3499,18 +3499,18 @@
       ],
       "screen_feet": {
         "ally": [
-          450.0,
+          430.0,
           565.0
         ],
         "enemy": [
-          1450.0,
-          470.0
+          1436.5,
+          390.75
         ]
       },
-      "sha256": "0135a23e537b897c68e7bb4366b32d0c69d1751167048efb5aa59f20fc5629dc",
+      "sha256": "43f970416e4e9a9ee76103020ffc9390c929569ab99855b41793220b40eb7f7d",
       "sprite_scales": [
-        4.0,
-        4.0
+        3.0,
+        3.0
       ],
       "title": "공용 리그 홀",
       "type": "normal"
@@ -3518,5 +3518,6 @@
   ],
   "engine": "4.7.2-stable (official)",
   "failures": 0,
+  "floor_layout_sha256": "b0f2e796afbb02eb04bef728ae28cfd113b1b8a8d6939911d5d0371ba89724f3",
   "scene_mode": "isolated deterministic review fixtures, not campaign playthroughs"
 }
