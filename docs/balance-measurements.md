@@ -1,6 +1,6 @@
 # 원정 난도 비교 도구
 
-개체값·노력치를 제거한 현재 능력치로 스타팅·보상 주제·야영지 운영·초반 영입을 비교한다. [초반 영입 159개 종료 결과](measurements/campaign-recruitment.md)와 [미완료 1개](measurements/campaign-recruitment-incomplete.json)를 분리해 보관한다. [핵심 유물 120개 결과](measurements/campaign-core-relics.md)와 [원본 JSON](measurements/campaign-core-relics.json)을 함께 보관한다. 핵심 도입 전 [400개 측정](measurements/campaign-species-level.md)과 이전 공식의 [60개 측정](measurements/campaign-balance.md)은 별도 기록이며 현재 결과와 합치지 않는다.
+개체값·노력치를 제거한 현재 능력치로 스타팅·보상 주제·야영지 운영·초반 영입을 비교한다. 최신은 [기술 카드 누락 수정 후 160개](measurements/campaign-learning-deck.md)와 [JSON](measurements/campaign-learning-deck.json)이다. 수정 전 [초반 영입 종료 159개](measurements/campaign-recruitment.md)·[미완료 1개](measurements/campaign-recruitment-incomplete.json), [핵심 유물 120개](measurements/campaign-core-relics.md), 핵심 도입 전 [400개](measurements/campaign-species-level.md)와 이전 공식의 [60개](measurements/campaign-balance.md)는 당시 규칙의 기록으로 유지하며 서로 합치지 않는다.
 
 ## 실행
 
@@ -75,7 +75,7 @@ python3 tools/report_campaign_balance.py /tmp/balance-core.json --json /tmp/bala
 
 핵심 도입 전후는 다른 규칙 지문이므로 파일을 합치지 않는다. 새 규칙의 시드 42·여섯 정책·두 야영지 운영 12개를 별도 프로세스에서 재실행해 모든 필드가 일치했다. 현재 정책은 핵심에 맞춘 최적 전투 AI를 추가하지 않았으며, 결과는 전술 효과·보상 선택이 달라진 첫 비교다. 초반 포획·영입과 다른 파티·수동 비교는 다음 범위다.
 
-## 초반 영입 160개 실행: 종료 159개·미완료 1개
+## 기술 카드 누락 수정 전: 종료 159개·미완료 1개
 
 8개 편성 × 시드 `0,1,2,3,4,5,6,7,42,2026` × 영입 없음/초반 영입으로 실행했다. 보상은 기본 정책, 야영지는 육성·덱 관리, 전투 한도는 모두 200턴이다. [종료 결과 159개](measurements/campaign-recruitment.md)와 [JSON](measurements/campaign-recruitment.json), [한도 중단 원본 1개](measurements/campaign-recruitment-incomplete.json)를 보관한다. 한도에 걸린 원정을 패배·완주로 바꾸지 않는다. 160개 원본 실행은 미완료 때문에 종료 코드 1을 반환하며, 미완료를 포함하면 보고서도 거부한다. 분리된 종료 행만 보고서로 만들었다.
 
@@ -103,3 +103,29 @@ python3 tools/report_campaign_balance.py docs/measurements/campaign-recruitment.
 미완료는 혼합 편성·시드 5·초반 영입의 세 번째 바이옴 고스트 야생이다. 16승 뒤 해당 전투 201턴 진입 시 안전 한도에 걸렸고 원정 합계는 211턴이다. 최종 파티는 쥬피썬더·카포에라·찌리리공이다. 전투 판단과 고스트 상성에 막히는 조합을 후속으로 조사할 재현 사례이며, 이번에는 한도를 늘리거나 강제 승패 처리하지 않았다. 같은 시드 짝 비교에서 혼합 편성은 양쪽이 종료한 9쌍만 사용한다.
 
 포획 단계·종·합류/방출·교체된 종·남은 볼을 행마다 남기며 잘못된 횟수/희귀 종/단계/결정 추적은 보고서에서 거부한다. 현재 규칙의 관동·이상해씨 단독·잉어킹 단독 × 시드 42/2026 × 두 정책 12개를 별도 프로세스로 재실행해 모든 필드와 코드 지문이 일치했다. `off`의 관동 10개는 기존 핵심 유물 측정의 같은 조건과 모든 기존 필드가 일치했다. 보고서 검사 14개와 실제 포획·합류·다음 전투의 3프로세스 검사도 통과했다. 여전히 사람의 승률·최적 플레이·Windows 검증은 아니다.
+
+## 기술 카드 누락 수정 후 160개 재검증
+
+앞의 중단 사례는 덱에 없는 기술을 잊고 새 기술을 수락할 때 카드가 생성되지 않는 문제였다. 수정 전 시드 5의 쥬피썬더는 번개쇼크(`move_84`), 찌리리공은 스파크(`move_209`)를 배웠지만 둘 다 덱에는 없었다. 쥬피썬더의 꼬리흔들기(`move_39`), 찌리리공의 충전(`move_268`) 사본을 상점에서 미리 제거했기 때문에 교체할 카드가 없었다. 고스트 해골몽에는 남아 있는 노말·격투 공격이 무효였다. 이 사례를 단순히 약한 종족값이나 자동 판단의 문제로 취급하지 않는다.
+
+이제 [기술 습득](growth.md#레벨별-기술과-교체)은 기존 사본이 0장이면 새 기술의 기본 카드 한 장을 만든다. 같은 편성·시드·보상/야영지/영입 정책으로 160개를 다시 실행했고, **36개 완주·124개 실제 전멸·미완료 0개**로 종료했다. 턴 제한은 여전히 전투당 200이며 HP·경험치·적 레벨·상성·포획 조건이나 자동 정책을 바꾸지 않았다. 코드 지문이 달라 이전 결과와 보고서를 합치지 않는다.
+
+```bash
+godot --headless --path . --script res://tools/benchmark_campaign.gd -- --parties kanto,bugs,babies,psychic,water,mixed,solo,solo_fish --seeds 0,1,2,3,4,5,6,7,42,2026 --styles baseline --camps develop --recruitment off,early --max-turns 200 --output /tmp/learning-deck.json
+python3 tools/report_campaign_balance.py /tmp/learning-deck.json --json /tmp/learning-deck-report.json --markdown /tmp/learning-deck-report.md
+```
+
+| 편성 | 영입 없음 완주 | 초반 영입 완주 |
+|---|---:|---:|
+| 관동 기본 | 10/10 | 10/10 |
+| 벌레 | 1/10 | 2/10 |
+| 아기 | 0/10 | 1/10 |
+| 보조형 에스퍼 | 1/10 | 2/10 |
+| 물 보조형 | 0/10 | 0/10 |
+| 이브이·배루키·루브도 | 1/10 | 2/10 |
+| 이상해씨 단독 | 1/10 | 5/10 |
+| 잉어킹 단독 | 0/10 | 0/10 |
+
+이전과 승패/종료 상태가 달라진 세 원정은 벌레·시드 2·초반 영입(15승 전멸 → 완주), 이상해씨 단독·시드 3·영입 없음(15승 전멸 → 완주), 혼합·시드 5·초반 영입(16승 후 한도 중단 → 완주)이다. 혼합 시드 5는 번개쇼크 95회·스파크 86회 사용과 총 481턴으로 69전투·챔피언을 완료했다. 이는 카드 누락 원인을 해결한 증거이며 장기 플레이의 재미나 모든 파티의 균형을 보장하지 않는다. 물 보조형·잉어킹 단독은 여전히 완주하지 못했다.
+
+벌레·혼합·이상해씨 단독 × 시드 2/3/5 × 두 영입 정책 18개를 별도 프로세스에서 재실행해 모든 필드와 지문이 일치했다. 수정 전 미완료 행은 재현 기록으로 보존한다. 이미 저장된 덱을 자동 재구성하지 않으므로, 과거 수락한 기술 카드 누락과 의도적인 제거를 구별하지 못하는 한계는 성장·저장 문서에 명시한다.

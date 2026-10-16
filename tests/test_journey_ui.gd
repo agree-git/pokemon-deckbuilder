@@ -116,7 +116,7 @@ func run() -> void:
                     await click(ui.camp_tabs["shop"])
                     var coins := ui.journey.gold
                     var count := int(ui.journey.inventory["potion"])
-                    await click(ui.actions[1])
+                    await click(ui.page.find_child("Buy_potion",true,false))
                     check(ui.journey.gold == coins-30 and ui.journey.inventory["potion"] == count+1,"Shop purchase uses gold and enters bag")
                     await capture("shop")
                     await click(ui.camp_tabs["bag"])

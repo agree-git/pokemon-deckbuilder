@@ -256,13 +256,27 @@ func _learning() -> void:
     W.sprite(page,pokemon.species_id,Rect2(1000,230,144,144))
     W.label(page,"%s · Lv.%d" % [pokemon.display_name,pokemon.level],Rect2(550,385,1190,44),26,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
     W.label(page,"Lv.%d에 %s 습득 가능" % [offer["level"],move["name"]],Rect2(550,440,1190,48),27,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
-    W.label(page,move["description"],Rect2(550,502,1190,44),20,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
-    W.label(page,"기술은 네 개까지 · 교체한 기술의 덱 사본도 함께 바뀝니다. 강화는 유지됩니다.",Rect2(550,570,1190,40),20,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+    var face := TrainerActionCard.new()
+    face.name = "LearningCard"
+    face.key = offer["key"]
+    face.definition = journey.learning_preview(0)["incoming"]
+    face.position = Vector2(550,490)
+    page.add_child(face)
+    face.update_card(face.definition,"",false)
+    face.disabled = true
+    W.label(page,"새 기술 · 기본 카드",Rect2(550,796,220,34),16,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
     for i in pokemon.learned_skills.size():
         var known := TacticalMoves.definition(pokemon.learned_skills[i])
-        var button := _action("QWER"[i]+" · "+str(known["name"]),Rect2(550+(i%2)*606,636+floori(i/2.0)*92,584,76),_learn.bind(i),"switch")
-        button.tooltip_text = known["description"]
+        var change := journey.learning_preview(i)
+        var impact := "덱 사본 %d장 교체 · 강화 유지" % change["copies"] if change["copies"] > 0 else "덱 사본 없음 → 새 카드 1장 추가"
+        var button := _action("QWER"[i]+" · "+str(known["name"])+"
+"+impact,Rect2(810+(i%2)*474,514+floori(i/2.0)*136,456,112),_learn.bind(i),"switch")
+        button.name = "LearnSlot_%d" % i
+        button.tooltip_text = str(known["description"])+"
+"+impact+"
+덱 %d → %d장" % [change["before"],change["after"]]
         learn_buttons.append(button)
+    W.label(page,"기술은 네 개까지 · 선택한 기술의 덱 사본만 바뀝니다. 카드가 없으면 새 기술 한 장을 받습니다.",Rect2(810,800,930,52),17,W.MUTED)
     _action("새 기술 배우지 않기",Rect2(870,875,560,64),_learn.bind(-1),"next")
 func _learn(slot: int) -> void:
     if journey.resolve_learning(slot).is_empty(): refresh()

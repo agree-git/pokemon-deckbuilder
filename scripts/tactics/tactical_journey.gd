@@ -198,6 +198,16 @@ func _after_learning() -> void:
         phase = CAPTURE
         return
     _prepare_rewards()
+func learning_preview(slot: int) -> Dictionary:
+    if phase != LEARN or pending_learning.is_empty(): return {}
+    var offer := pending_learning[0]
+    for pokemon: BattlePokemon in party:
+        if pokemon.uid != int(offer["uid"]): continue
+        if slot < 0 or slot >= pokemon.learned_skills.size(): return {}
+        var previous := pokemon.learned_skills[slot]
+        var copies := deck.filter(func(card: BattleCardInstance): return card.owner_uid == pokemon.uid and card.key == previous).size()
+        return {"pokemon":pokemon,"previous":previous,"copies":copies,"before":deck.size(),"after":deck.size()+(1 if copies == 0 else 0),"incoming":reward_view({"kind":"card","key":offer["key"],"owner_uid":pokemon.uid,"upgraded":false})}
+    return {}
 func resolve_learning(slot: int) -> String:
     if phase != LEARN or pending_learning.is_empty(): return "배울 기술이 없습니다."
     var offer := pending_learning[0]
@@ -208,8 +218,14 @@ func resolve_learning(slot: int) -> String:
     if slot >= 0:
         var previous := pokemon.learned_skills[slot]
         pokemon.learned_skills[slot] = offer["key"]
+        var copies := 0
         for card: BattleCardInstance in deck:
-            if card.owner_uid == pokemon.uid and card.key == previous: card.key = offer["key"]
+            if card.owner_uid == pokemon.uid and card.key == previous:
+                card.key = offer["key"]
+                copies += 1
+        # A removed old technique has no card to replace. Learning still grants
+        # one usable unupgraded card; unrelated deliberately removed cards stay gone.
+        if copies == 0: deck.append(_allocate_card(offer["key"],pokemon.uid))
     pending_learning.pop_front()
     _after_learning()
     return notify_changed()
