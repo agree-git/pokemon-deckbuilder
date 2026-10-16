@@ -50,10 +50,10 @@ var camp_states: Dictionary = {}
 var time_of_day := ""
 var rare_hunt: Dictionary = {}
 
-func _init(run_seed: int = 2026, selected_relic: String = "field_kit", selected_starters: Array[int] = [], campaign := false) -> void:
+func _init(run_seed: int = 2026, selected_relic: String = "field_kit", selected_starters: Array[int] = [], campaign := false,route_version: int = CampaignRoute.VERSION) -> void:
     full_campaign = campaign
-    restart(run_seed,selected_relic,selected_starters)
-func restart(run_seed: int = 2026, selected_relic: String = "field_kit", selected_starters: Array[int] = []) -> void:
+    restart(run_seed,selected_relic,selected_starters,route_version)
+func restart(run_seed: int = 2026, selected_relic: String = "field_kit", selected_starters: Array[int] = [],route_version: int = CampaignRoute.VERSION) -> void:
     if not selected_starters.is_empty(): starter_ids.assign(selected_starters)
     run_id = Crypto.new().generate_random_bytes(16).hex_encode()
     seed_value = run_seed
@@ -64,7 +64,7 @@ func restart(run_seed: int = 2026, selected_relic: String = "field_kit", selecte
     badges = 0
     badge_records.clear()
     elite_wins = 0
-    route = CampaignRoute.new(run_seed) if full_campaign else null
+    route = CampaignRoute.new(run_seed,route_version) if full_campaign else null
     history.clear()
     reward_options.clear()
     relics.assign([relic])

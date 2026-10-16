@@ -39,3 +39,4 @@
 - Inspect UI in an actual running game when possible. Headless checks do not prove visual quality.
 - Never claim a test or visual inspection occurred without running it.
 - Explain progress concisely in Korean and work in small playable increments.
+- The user reviews on mobile: publish requested review galleries, ZIPs and CSVs to GitHub and provide HTTPS links, not only workspace paths. Keep large review artifacts on a separate review branch. The existing `background-review-2026-10-16` branch contains the aligned background review.

@@ -1,6 +1,8 @@
 class_name CampaignRoute
 extends RefCounted
 ## Route RNG is independent from battle draws and card rewards.
+const VERSION := 2
+var generation := VERSION
 var signature := ""
 var stops: Array[Dictionary] = []
 var biomes: Array[Dictionary] = []
@@ -10,7 +12,8 @@ var _catalog := VisualCatalog.new()
 var _rng := RandomNumberGenerator.new()
 var _battle_index := 0
 var _run_seed: int
-func _init(run_seed: int) -> void:
+func _init(run_seed: int,route_version: int = VERSION) -> void:
+    generation = route_version
     _run_seed = run_seed
     _rng.seed = run_seed ^ 7046029254386353131
     var candidates := _catalog.biomes.duplicate()
@@ -26,18 +29,28 @@ func _init(run_seed: int) -> void:
     var league: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/league.json"))
     champion = league["champions"][_rng.randi_range(0,league["champions"].size()-1)].duplicate(true)
     var excluded: Array[String] = [champion["id"]]
+    var gym_rng := RandomNumberGenerator.new()
+    gym_rng.seed = run_seed ^ 3202036534602676391
     for chapter in 8:
         var biome := biomes[chapter]
         var gym: Dictionary
-        for entry: Dictionary in _catalog.gyms:
-            if entry["type"] == biome["type"]: gym = entry
-        excluded.append(gym["leader_id"])
+        if generation == 1:
+            # Preserve exact old route signatures and RNG consumption for saves.
+            gym = _catalog.gym_for_type(biome["type"])
+            excluded.append(gym["leader_id"])
+        else:
+            gym = GymLeaders.choose(biome["type"],gym_rng,excluded)
+            gym["biome_id"] = biome["id"]
+            gym["name"] = _catalog.type_name(biome["type"])+" 체육관"
+            for id: String in gym["person_ids"]: excluded.append(id)
         for encounter in CampaignBalance.BATTLES_PER_REGION:
             var kind := str(CampaignBalance.REGIONAL_KINDS[encounter])
             if kind == "wild":
                 _append("야생 조우 %d" % (encounter+1),kind,chapter,biome,[_wild(biome,chapter == 0 and encounter < 2)])
             elif kind == "gym":
-                _append(str(gym["name"])+" · "+str(gym["leader"]),kind,chapter,biome,gym["party"],gym)
+                var title := str(gym["name"])+" · "+str(gym["leader"])
+                if generation > 1: title += " ("+str(gym["region"])+(" · 혼합" if gym["type"] == "mixed" else "")+")"
+                _append(title,kind,chapter,biome,gym["party"],gym)
             else:
                 var pool: Array = biome["encounters"].duplicate()
                 _shuffle(pool)

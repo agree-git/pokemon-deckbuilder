@@ -1,5 +1,7 @@
 # 전체 배경 화면 검토
 
+모바일용 [GitHub 갤러리](https://github.com/agree-git/pokemon-deckbuilder/tree/background-review-2026-10-16) · [전체 ZIP](https://github.com/agree-git/pokemon-deckbuilder/raw/refs/heads/background-review-2026-10-16/pokemon-background-aligned-final-2026-10-16.zip) · [좌표 CSV](https://github.com/agree-git/pokemon-deckbuilder/blob/background-review-2026-10-16/review/floor_coordinates.csv). `background-review-2026-10-16` 브랜치에 전투 65장·가이드 48장과 HTML을 게시했다. GitHub에서는 README가 이미지 갤러리이며 HTML 검색/전환은 ZIP을 풀어 `index.html`을 열어 사용한다. Pages 사이트를 게시한 것은 아니다. 이 자료는 접지 수정 커밋 `8e5a676` 기준이고 이후 관장 후보 확장 전의 화면이다.
+
 `tools/capture_background_review.gd`는 실제 `TacticalJourneyUI`를 렌더링해 **1920×1080 PNG 65장**과 모음 이미지 네 장을 만든다.
 
 | 분류 | 화면 수 | 범위 |

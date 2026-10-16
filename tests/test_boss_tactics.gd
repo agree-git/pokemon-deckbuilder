@@ -41,14 +41,14 @@ func seek(b: TacticalBattle, kind: String) -> Dictionary:
 func content_checks() -> void:
     var catalog := VisualCatalog.new()
     var rosters: Dictionary = {}
-    for entry: Dictionary in catalog.gyms: rosters["gym:"+str(entry["leader_id"])]=entry
+    for entry: Dictionary in GymLeaders.all(): rosters["gym:"+str(entry["leader_id"])]=entry
     var league: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/league.json"))
     for role: String in league:
         for entry: Dictionary in league[role]: rosters[("elite:" if role == "elite" else "champion:")+str(entry["id"])]=entry
-    check(rosters.size() == 60 and BossTactics.TRAINERS.size() == rosters.size(),"All 18 gyms, 31 Elite candidates and 11 champions have authored commands")
+    check(rosters.size() == 124 and BossTactics.trainers().size() == rosters.size(),"All 82 gym teams, 31 Elite candidates and 11 champions have commands")
     for boss: String in rosters:
         var roster: Array = rosters[boss]["party"]
-        check(BossTactics.TRAINERS.has(boss) and BossTactics.TRAINERS[boss]["styles"].size() == roster.size(),"Trainer command matches the full roster: "+boss)
+        check(BossTactics.trainers().has(boss) and BossTactics.trainers()[boss]["styles"].size() == roster.size(),"Trainer command matches the full roster: "+boss)
         for level in [18,50,100]:
             for i in roster.size():
                 var id := int(roster[i])

@@ -66,9 +66,13 @@ func move_by_id(id: int) -> Dictionary:
     return _moves_by_id.get(id, {})
 
 func gym_for_type(key: String) -> Dictionary:
+    # Frozen reference parties for legacy routes and the old art-lab preview.
     for gym: Dictionary in gyms:
         if gym["type"] == key: return gym
     return {}
+
+func gym_candidates_for_type(key: String,excluded: Array = []) -> Array[Dictionary]:
+    return GymLeaders.candidates(key,excluded)
 
 func type_name(key: String) -> String:
     return _type_names.get(key, key)

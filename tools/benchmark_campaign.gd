@@ -19,6 +19,7 @@ func rules_fingerprint() -> String:
     hash.start(HashingContext.HASH_SHA256)
     hash.update(JourneySave.fingerprint().to_utf8_buffer())
     var sources: Array[String] = ["res://tests/campaign_policy.gd","res://tests/tactical_policy.gd","res://tools/benchmark_campaign.gd","res://tools/campaign_camp_policy.gd","res://tools/campaign_recruitment_policy.gd","res://tools/campaign_battle_diagnostics.gd","res://scripts/content/encounter_preparation.gd","res://scripts/content/recruitment_preview.gd","res://scripts/content/visual_catalog.gd"]
+    sources.append_array(["res://scripts/content/gym_leaders.gd","res://data/gym_leaders.json"])
     for directory: String in ["res://scripts/tactics","res://scripts/battle"]:
         for file: String in DirAccess.get_files_at(directory):
             if file.ends_with(".gd"): sources.append(directory+"/"+file)

@@ -38,12 +38,14 @@ static func encode(j: TacticalJourney) -> Dictionary:
     combat["piles"] = [ids(b.hand),ids(b.draw_pile),ids(b.discard),ids(b.exhausted)]
     combat["rng"] = b._rng.state
     if not b.statistics.is_empty(): combat["statistics"] = b.statistics.duplicate(true)
-    return {"stat_basis":PokemonStats.BASIS,"run":state,"battle":combat,"pokemon":pokemon,"cards":cards,"route":j.route.signature if j.full_campaign else ""}
+    var encoded := {"stat_basis":PokemonStats.BASIS,"run":state,"battle":combat,"pokemon":pokemon,"cards":cards,"route":j.route.signature if j.full_campaign else ""}
+    if j.full_campaign and j.route.generation > 1: encoded["route_version"] = j.route.generation
+    return encoded
 static func restore(data: Dictionary) -> TacticalJourney:
     # Call only after validate(). Constructors provide defaults, never saved Objects.
     if not data.has("stat_basis"): data = LegacyStatsSnapshot.upgrade(data)
     var state: Dictionary = data["run"]
-    var j := TacticalJourney.new(state["seed_value"],state["relic"],[],state["full_campaign"])
+    var j := TacticalJourney.new(state["seed_value"],state["relic"],[],state["full_campaign"],int(data.get("route_version",1)))
     var pokemon := {}
     var cards := {}
     for uid: int in data["pokemon"]:
@@ -101,6 +103,7 @@ static func move(key: Variant) -> bool:
     return key.begins_with("move_") and key.trim_prefix("move_").is_valid_int() and TacticalGrowth.data()["moves"].has(key.trim_prefix("move_"))
 static func validate(data: Variant) -> bool:
     if not data is Dictionary: return false
+    if data.has("route_version") and not integer(data["route_version"],1,CampaignRoute.VERSION): return false
     var legacy: bool = not data.has("stat_basis")
     if not legacy and data["stat_basis"] != PokemonStats.BASIS: return false
     for key: String in ["run","battle","pokemon","cards"]:
@@ -226,7 +229,7 @@ static func validate(data: Variant) -> bool:
         if key not in ["potion","super_potion","revive"] and not EvolutionItems.ITEMS.has(key) and not SpecialEvolution.ITEMS.has(key): return false
         if not integer(r["inventory"][key],0,100000): return false
     if r["badge_records"].size() != r["badges"]: return false
-    var route := CampaignRoute.new(r["seed_value"])
+    var route := CampaignRoute.new(r["seed_value"],int(data.get("route_version",1)))
     if not data.get("route") is String or data["route"] != route.signature: return false
     if r.has("rare_hunt"):
         if not RareEncounter.valid(r["rare_hunt"],r,route): return false
