@@ -62,6 +62,18 @@ class CampaignReportTests(unittest.TestCase):
         self.data['rows'] *= 2
         self.reject(self.data)
 
+    def test_core_choice_must_be_exclusive_and_owned(self):
+        row = self.data['rows'][0]
+        row['core_relic'] = 'relay_core'
+        self.reject(self.data)
+        row['relics'].append('relay_core')
+        text = format_report(load_reports([self.write(self.data)]))
+        self.assertIn('순환 엔진 1', text)
+        row['relics'].append('ace_core')
+        self.reject(self.data)
+        row['core_relic'] = ''
+        self.reject(self.data)
+
     def test_incomplete_is_rejected(self):
         for key, value in [('incomplete', 'action_limit'), ('error', 'invalid action'),
                            ('statistics_valid', False), ('phase', 'battle')]:

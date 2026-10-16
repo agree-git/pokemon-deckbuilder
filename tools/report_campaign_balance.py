@@ -15,6 +15,8 @@ PARTIES = {
     'solo_fish': '잉어킹 단독',
 }
 CAMPS = {'rest': '매번 휴식', 'develop': '육성·덱 관리'}
+CORES = {'relay_core': '순환 엔진', 'ace_core': '고정 조준경', 'status_core': '침식 촉매',
+         'shield_core': '잔류 방벽', 'supply_core': '비상 보급함'}
 STYLES = {'baseline': '기존 기준', 'relay': '교대', 'ace': '에이스', 'status': '상태',
           'shield': '보호막', 'supply': '도구'}
 
@@ -41,6 +43,11 @@ def load_reports(paths):
             raise ValueError(f'{path}: measurements use different engine, rules or policies')
         for row in data['rows']:
             identity = (row['party'], row['style'], row['seed'], row.get('camp_policy', 'rest'))
+            if 'core_relic' in row:
+                core = row['core_relic']
+                acquired = [key for key in row['relics'] if key in CORES]
+                if core not in ('', *CORES) or acquired != ([] if core == '' else [core]):
+                    raise ValueError(f'{path}: inconsistent exclusive core {identity}')
             if data['version'] == 2:
                 if row.get('camp_policy') not in CAMPS:
                     raise ValueError(f'{path}: invalid camp policy {identity}')
@@ -118,6 +125,19 @@ def format_report(report):
         metrics = [f"{mean(row[key] for row in rows):.1f}" for key in ('turns', 'damage_taken', 'knockouts', 'gold_spent', 'deck_size')]
         lines.append(f"| {PARTIES.get(party, party)} | {STYLES.get(style, style)} | {CAMPS[camp]} | {clears}/{len(rows)} | " + ' | '.join(metrics) + ' |')
     lines.append('')
+    if any('core_relic' in row for row in report['rows']):
+        lines += ['## 핵심 유물 선택', '',
+                  '원정당 핵심 유물은 하나다. 각 보상 주제는 제시된 세 후보 안에서만 선호 유물을 선택하며 없는 유물을 강제로 받지 않는다. '
+                  '미획득에는 첫 관장 도달 전 전멸도 포함한다. 동일한 구성 수는 완주한 원정에서만 센다.', '',
+                  '| 파티 | 선호 전략 | 야영지 | 핵심 선택 분포 | 미획득 | 완주 유물 구성 수 |',
+                  '|---|---|---|---|---:|---:|']
+        for (party, style, camp), rows in groups.items():
+            distribution = ', '.join(f"{name} {sum(row.get('core_relic') == key for row in rows)}"
+                                     for key, name in CORES.items() if any(row.get('core_relic') == key for row in rows)) or '—'
+            missing = sum(not row.get('core_relic') for row in rows)
+            sets = {tuple(sorted(row['relics'])) for row in rows if row['phase'] == 'cleared'}
+            lines.append(f"| {PARTIES.get(party, party)} | {STYLES.get(style, style)} | {CAMPS[camp]} | {distribution} | {missing} | {len(sets)} |")
+        lines.append('')
     for party in dict.fromkeys(party for party, style, camp in groups if style != 'baseline'):
         measured = [row for row in report['rows'] if row['party'] == party and row['phase'] == 'cleared']
         relic_sets = {tuple(sorted(row['relics'])) for row in measured}

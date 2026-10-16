@@ -13,7 +13,7 @@
 
 ## 현재 상태
 
-현재는 시작부터 엔딩까지 플레이 가능한 초기 알파다. [출발 덱·Lv.5 능력치 미리보기](docs/starter-loadout.md)로 편성을 확인하고, [스타팅·빌드 난도 측정](docs/balance-measurements.md)으로 파티별 진행을 비교한다. [희귀 조우](docs/capture-unlocks.md)는 준전설·환상·초전설 21종의 단서 조사와 원정당 한 번의 포획 도전을 지원하며 초전설을 가장 어렵게 획득하도록 구분한다. [특수 진화 준비](docs/special-evolution.md)까지 연결해 1~3세대 사이의 진화 경로 184개를 지원한다. [친밀도·시간대 진화](docs/friendship.md) 9개 경로를 경험치 성장과 연결했고 야영지에서 이브이의 낮·밤 분기를 준비한다. [돌·통신 진화](docs/evolution-items.md)는 상인 재료 13종과 가방의 진화 미리보기로 33개 경로를 지원한다. [보스 전술](docs/boss-tactics.md)은 관장·사천왕·챔피언 60개 후보 편성에 방벽·회복·상태·연타 등 아홉 가지 유형을 조합하며 행동을 미리 공개한다. [원정 기록](docs/run-records.md)에서 전투별 피해·카드 사용·유물 발동·골드 지출과 덱 선택을 확인할 수 있다. [야영지 상인](docs/merchant.md)에서 조합 카드·파티 기술 사본을 구매하고 보급품·카드 제거에 골드를 나눠 쓴다. [카드·유물 조합](docs/build-synergies.md)으로 기술 교대·에이스·소모전·보호막 전환을 연결하며 공용 카드 23종·파티 유물 10종·지닌 물건 6종을 사용한다. [전체 진행 현황과 다음 작업](docs/progress.md), [적 전술과 대응](docs/enemy-tactics.md)을 참고한다.
+현재는 시작부터 엔딩까지 플레이 가능한 초기 알파다. [출발 덱·Lv.5 능력치 미리보기](docs/starter-loadout.md)로 편성을 확인하고, [스타팅·빌드 난도 측정](docs/balance-measurements.md)으로 파티별 진행을 비교한다. [희귀 조우](docs/capture-unlocks.md)는 준전설·환상·초전설 21종의 단서 조사와 원정당 한 번의 포획 도전을 지원하며 초전설을 가장 어렵게 획득하도록 구분한다. [특수 진화 준비](docs/special-evolution.md)까지 연결해 1~3세대 사이의 진화 경로 184개를 지원한다. [친밀도·시간대 진화](docs/friendship.md) 9개 경로를 경험치 성장과 연결했고 야영지에서 이브이의 낮·밤 분기를 준비한다. [돌·통신 진화](docs/evolution-items.md)는 상인 재료 13종과 가방의 진화 미리보기로 33개 경로를 지원한다. [보스 전술](docs/boss-tactics.md)은 관장·사천왕·챔피언 60개 후보 편성에 방벽·회복·상태·연타 등 아홉 가지 유형을 조합하며 행동을 미리 공개한다. [원정 기록](docs/run-records.md)에서 전투별 피해·카드 사용·유물 발동·골드 지출과 덱 선택을 확인할 수 있다. [야영지 상인](docs/merchant.md)에서 조합 카드·파티 기술 사본을 구매하고 보급품·카드 제거에 골드를 나눠 쓴다. [카드·유물 조합](docs/build-synergies.md)으로 기술 교대·에이스·소모전·보호막 전환을 연결하며 공용 카드 23종·일반 유물 10종·핵심 유물 5종·지닌 물건 6종을 사용한다. [핵심 유물](docs/core-relics.md)은 관장전에서 셋 중 하나를 골라 효과와 대가로 원정 운영을 바꾼다. [전체 진행 현황과 다음 작업](docs/progress.md), [적 전술과 대응](docs/enemy-tactics.md)을 참고한다.
 
 기본 실행은 **시작 화면 → 스타팅 최대 3마리 선택 → 원정**이다. 처음에는 이상해씨·파이리·꼬부기를 선택할 수 있고, 포획하면 해당 계열의 가장 미진화한 종을 영구 스타팅으로 해금한다. 선택 순서대로 파티를 구성하며 첫 번째 멤버가 먼저 출전한다. 기술·도구·트레이너 공유 덱과 자동 교대·유물로 **서로 다른 무작위 바이옴 8곳의 배지 8개, 무작위 사천왕 4명, 챔피언 1명**을 이기면 챔피언이 된다. 각 지역은 야생 5회·일반 트레이너 1회·엘리트 트레이너 1회·관장 1회이며, 전투 사이마다 야영지를 거친다. 전체 137개 장소·69전투다. [시작과 포획 도감](docs/start-flow.md), [정식 원정 경로](docs/full-campaign.md)를 참고한다.
 
@@ -98,6 +98,9 @@ godot --headless --path . --script res://tests/test_enemy_tactics_ui.gd
 godot --headless --path . --script res://tests/test_boss_tactics.gd
 godot --headless --path . --script res://tests/test_boss_tactics_ui.gd
 godot --headless --path . --script res://tests/test_pokemon_stats.gd
+godot --headless --path . --script res://tests/test_core_relics.gd
+godot --headless --path . --script res://tests/test_core_relics_ui.gd
+python3 tools/test_core_relics_process.py
 godot --headless --path . --script res://tests/test_deck_combat.gd
 godot --headless --path . --script res://tests/test_deck_run.gd
 godot --headless --path . --script res://tests/test_deck_ui.gd
@@ -139,7 +142,7 @@ godot --path .
 
 `test_campaign.gd`는 100개 시드 경로와 30개 시드의 실제 보상·장비 선택과 승리/전멸 결과, 고정 시드 3개의 69전투 완주, 챔피언 직전 Lv.100, 리그 진입 제한과 중복 정산을 검사한다. `test_camps.gd`는 386종의 경험치 예산·기절 30%와 야영지 이벤트의 중복 지급 방지·상인 재고를 검사한다. `test_camp_ui.gd`와 `python3 tools/test_native_pointer.py --probe native_camp_probe`는 이동 연출·입력 차단과 모든 야영지 만남을 검사한다. `test_campaign_ui.gd`와 `python3 tools/test_native_pointer.py --probe native_campaign_probe`는 마우스·1/2/3·Q/W/E/R·Enter로 전체 원정과 엔딩을 검사한다. 기존 시작·포획 UI 검사는 개발용 짧은 경로로 보존한다.
 
-종별 경험치 곡선·스테이지 배율·자동 진화·원작 레벨별 기술 교체와 야영지 상점·가방·장비를 연결했다. 원정 자동 저장과 종료 후 이어하기·백업 복구를 구현했다. 통합 카드 덱·공용 카드 23종·유물 10종·지닌 물건 6종·혼합 보상·강화·제거를 연결했다. 3세대 종족값·물리/특수 피해·자속·턴 시작 스피드 에너지까지 연결했다. 네 가지 일반 적 역할과 인물별 보스 전술을 연결했다. 카드 세 장·할인·보급품·제거를 제공하는 상점을 연결했다. 돌·통신 진화 33경로를 상인·가방·저장과 연결했다. 친밀도·시간대 진화 9경로를 연결했다. 능력치 비교·개체 분기·아름다움·껍질몬 추가 합류까지 연결했다. 준전설·환상·초전설의 조건부 희귀 포획을 연결했다. 다음은 희귀 스타팅과 빌드별 난도 조정이다. 현재 자동 검사는 기본 스타팅 세 마리로 수행하며 모든 파티 조합의 난이도를 보장하지 않는다.
+종별 경험치 곡선·스테이지 배율·자동 진화·원작 레벨별 기술 교체와 야영지 상점·가방·장비를 연결했다. 원정 자동 저장과 종료 후 이어하기·백업 복구를 구현했다. 통합 카드 덱·공용 카드 23종·일반 유물 10종·핵심 유물 5종·지닌 물건 6종·혼합 보상·강화·제거를 연결했다. 3세대 종족값·물리/특수 피해·자속·턴 시작 스피드 에너지까지 연결했다. 네 가지 일반 적 역할과 인물별 보스 전술을 연결했다. 카드 세 장·할인·보급품·제거를 제공하는 상점을 연결했다. 돌·통신 진화 33경로를 상인·가방·저장과 연결했다. 친밀도·시간대 진화 9경로를 연결했다. 진화 대상 선택·개체 분기·아름다움·껍질몬 추가 합류까지 연결했다. 준전설·환상·초전설의 조건부 희귀 포획을 연결했다. 다음은 희귀 스타팅과 빌드별 난도 조정이다. 현재 자동 검사는 기본 스타팅 세 마리로 수행하며 모든 파티 조합의 난이도를 보장하지 않는다.
 
 ## 데이터와 구조
 

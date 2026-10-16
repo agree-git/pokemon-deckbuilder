@@ -104,7 +104,7 @@ func start_with(members: Array[BattlePokemon], cards: Array[BattleCardInstance],
     for card: BattleCardInstance in cards: _next_uid = maxi(_next_uid,card.uid+1)
     _rng.seed = battle_seed
     _shuffle(draw_pile)
-    _draw(5)
+    _draw(CoreRelics.draw_count(relics))
     _record("turn","턴 1 · 에너지 %d" % energy)
 func active() -> BattlePokemon: return party[active_index]
 func enemy() -> BattlePokemon: return enemies[enemy_index]
@@ -148,6 +148,9 @@ func card_view(card: BattleCardInstance) -> Dictionary:
     view["switches"] = card.owner_uid != 0 and actor != active()
     view["retained"] = card.uid in retained
     if actor != null:
+        if card.owner_uid == turn_speed_owner_uid and has_relic("ace_core") and not turn_flags.has("ace_core"):
+            view["core_discount"] = mini(1,int(view["cost"]))
+            view["cost"] = maxi(0,int(view["cost"])-1)
         if view.has("damage"): view["preview_damage"] = attack_damage(view,actor)
         if view.has("shield_attack"): view["preview_damage"] = actor.block
         if has_relic("status_flask") and not turn_flags.has("status_flask"):
@@ -155,6 +158,7 @@ func card_view(card: BattleCardInstance) -> Dictionary:
                 if view.has(status): view["preview_"+status] = int(view[status])+1
         if view.has("condition"): view["condition_active"] = bool(turn_flags.get("technique_switch",false)) if view["condition"] == "relay" else bool(turn_flags.get("double_technique_%d" % actor.uid,false))
         if view.has("heal"): view["preview_heal"] = PokemonStats.scale(actor,int(view["heal"])+(6 if actor.held_item == "healing_bell" and view["category"] == "tool" else 0))
+        if view.has("heal") and has_relic("shield_core"): view["preview_heal"] = maxi(1,floori(int(view["preview_heal"])*0.5))
         if view.has("block"): view["preview_block"] = PokemonStats.scale(actor,int(view["block"]))+defense_bonus(actor)
         if view.has("bonus"): view["preview_bonus"] = PokemonStats.scale(actor,int(view["bonus"]))
         view["description"] = TacticalContent.description(view)
@@ -165,7 +169,8 @@ func attack_damage(view: Dictionary, actor: BattlePokemon) -> int:
     var bonus := next_attack_bonus+switched_attack
     if actor.held_item == "power_band": bonus += 3
     if enemy().statuses.has("exposed"): bonus += 2
-    return PokemonStats.damage(actor,enemy(),view,1.0 if int(view.get("move_id",0)) == 165 else multiplier(view.get("type","normal"),enemy()),bonus)
+    var amount := PokemonStats.damage(actor,enemy(),view,1.0 if int(view.get("move_id",0)) == 165 else multiplier(view.get("type","normal"),enemy()),bonus)
+    return maxi(1,floori(amount*0.8)) if amount > 0 and view.get("category","technique") == "technique" and has_relic("status_core") else amount
 func defense_bonus(actor: BattlePokemon) -> int:
     return PokemonStats.scale(actor,4) if actor.held_item == "guard_charm" else 0
 # Old input/API callers must also own a drawn card; fixed skills cannot bypass draw.
@@ -207,6 +212,9 @@ func play_card(uid: int) -> String:
     var actor := active()
     var target := enemy()
     _record("skill" if card.owner_uid != 0 else "card",("%s · " % actor.display_name if card.owner_uid != 0 else "")+str(view["name"]),{"move_id":view["move_id"],"actor":actor.uid,"card_uid":card.uid})
+    if card.owner_uid == turn_speed_owner_uid and has_relic("ace_core") and not turn_flags.has("ace_core"):
+        turn_flags["ace_core"] = true
+        if int(view.get("core_discount",0)) > 0: _record("relic","고정 조준경 · 기술 비용 -1",{"relic_key":"ace_core"})
     if view.has("damage"):
         var amount := attack_damage(view,actor)
         next_attack_bonus = 0
@@ -308,6 +316,11 @@ func play_card(uid: int) -> String:
             turn_flags["tool_belt"] = true
             _draw(1)
             _record("relic","보급 벨트 · 카드 1장",{"relic_key":"tool_belt"})
+        if view.get("exhaust",false) and has_relic("supply_core") and not turn_flags.has("supply_core"):
+            turn_flags["supply_core"] = true
+            energy += 1
+            _draw(2)
+            _record("relic","비상 보급함 · 에너지 +1 · 카드 2장",{"relic_key":"supply_core"})
     if view.get("exhaust",false) or view.has("power"): exhausted.append(card)
     else: discard.append(card)
     _outcome()
@@ -333,6 +346,10 @@ func _change_active(uid: int, technique := false) -> void:
         turn_flags[ribbon] = true
         active().block += PokemonStats.scale(active(),5)
     _record("switch",active().display_name+" 출전",{"actor":uid})
+    if technique and has_relic("relay_core") and not turn_flags.has("relay_core"):
+        turn_flags["relay_core"] = true
+        _draw(2)
+        _record("relic","순환 엔진 · 카드 2장",{"relic_key":"relay_core"})
     if technique and has_relic("relay_cell") and not turn_flags.has("relay_cell"):
         turn_flags["relay_cell"] = true
         energy += 1
@@ -341,16 +358,18 @@ func switch_reason(uid: int) -> String:
     if phase not in [PLAYER,REPLACE]: return "전투가 끝났습니다."
     var pokemon := member(uid)
     if pokemon == null or not pokemon.alive() or pokemon == active(): return "살아 있는 대기 포켓몬을 선택하세요."
-    if phase == PLAYER and energy < 1: return "수동 교대에는 에너지 1이 필요합니다. 기술 카드는 무료로 교대합니다."
+    if phase == PLAYER and energy < manual_switch_cost(): return "수동 교대에는 에너지 %d이 필요합니다. 기술 카드는 무료로 교대합니다." % manual_switch_cost()
     return ""
+func manual_switch_cost() -> int:
+    return 2 if has_relic("ace_core") else 1
 func switch_to(uid: int) -> String:
     var reason := switch_reason(uid)
     if not reason.is_empty(): return reason
     events.clear()
     var forced := phase == REPLACE
     if not forced:
-        energy -= 1
-        _stat("energy_spent")
+        energy -= manual_switch_cost()
+        _stat("energy_spent",manual_switch_cost())
     _stat("forced_switches" if forced else "manual_switches")
     _change_active(uid)
     if forced:
@@ -450,16 +469,18 @@ func _start_player() -> void:
     turn_flags.clear()
     turn_actors.clear()
     _turn_changed = false
-    for pokemon: BattlePokemon in party: pokemon.block = 0
+    for pokemon: BattlePokemon in party: pokemon.block = floori(pokemon.block*0.5) if has_relic("shield_core") and pokemon.alive() else 0
+    if has_relic("shield_core") and party.any(func(p: BattlePokemon): return p.block > 0): _record("relic","잔류 방벽 · 보호막 절반 보존",{"relic_key":"shield_core"})
     if _ace_uid == active().uid:
         if has_relic("ace_focus"): _relic_stat("ace_focus")
         active().strength += 2*int(powers.get("ace",0))+(1 if has_relic("ace_focus") else 0)+(1 if active().held_item == "ace_band" else 0)
     _ace_uid = 0
-    _draw(5)
+    _draw(CoreRelics.draw_count(relics))
     _record("turn","턴 %d · 에너지 %d" % [turn,energy])
 func status_damage(pokemon: BattlePokemon, key: String) -> int:
     var bonus := int(powers.get("attrition",0)) if pokemon.uid < 0 and key in ["burn","poison","seed"] else 0
-    return PokemonStats.scale(pokemon,2+bonus)
+    var amount := PokemonStats.scale(pokemon,2+bonus)
+    return floori(amount*1.5) if pokemon.uid < 0 and key in ["burn","poison","seed"] and has_relic("status_core") else amount
 func _tick(pokemon: BattlePokemon) -> void:
     for key: String in ["burn","seed","poison","confusion"]:
         if not pokemon.alive() or not pokemon.statuses.has(key): continue
@@ -467,6 +488,7 @@ func _tick(pokemon: BattlePokemon) -> void:
         status["turns"] = int(status["turns"])-1
         if int(status["turns"]) <= 0: pokemon.statuses.erase(key)
         var health_before := pokemon.hp
+        if pokemon.uid < 0 and key in ["burn","seed","poison"] and has_relic("status_core"): _record("relic","침식 촉매 · 지속 피해 +50%",{"relic_key":"status_core"})
         _damage(pokemon,status_damage(pokemon,key),true)
         if key == "seed":
             var owner := member(int(status["source_uid"]))

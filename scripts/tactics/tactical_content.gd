@@ -59,6 +59,11 @@ const CARDS := {
     "injury":{"name":"부상","category":"status","cost":1,"move_id":150,"description":"효과 없음. 기절 시 추가되며 야영지 휴식으로 제거."},
 }
 const RELICS := {
+    "relay_core":{"name":"순환 엔진","icon":"switch","core":true,"benefit":"매 턴 첫 기술 자동 교대 시 카드 2장 뽑기","tradeoff":"첫 턴을 포함한 턴 시작 드로우 4장","description":"매 턴 첫 기술 자동 교대 시 카드 2장 뽑기 · 대가: 첫 턴을 포함한 턴 시작 드로우 4장"},
+    "ace_core":{"name":"고정 조준경","icon":"attack","core":true,"benefit":"턴 시작 출전 멤버의 첫 기술 비용 -1 (최소 0)","tradeoff":"직접 교대 비용 2 · 기술/강제 교대는 무료","description":"턴 시작 출전 멤버의 첫 기술 비용 -1 (최소 0) · 대가: 직접 교대 비용 2 · 기술/강제 교대는 무료"},
+    "status_core":{"name":"침식 촉매","icon":"poison","core":true,"benefit":"적의 화상·독·씨앗 매회 피해 +50%","tradeoff":"기술 카드의 직접 공격 피해 -20%","description":"적의 화상·독·씨앗 매회 피해 +50% · 대가: 기술 카드의 직접 공격 피해 -20%"},
+    "shield_core":{"name":"잔류 방벽","icon":"shield","core":true,"benefit":"아군 턴 시작 시 각 동료의 보호막 절반 보존","tradeoff":"카드로 회복하는 HP -50% · 야영지 회복은 유지","description":"아군 턴 시작 시 각 동료의 보호막 절반 보존 · 대가: 카드로 회복하는 HP -50% · 야영지 회복은 유지"},
+    "supply_core":{"name":"비상 보급함","icon":"energy","core":true,"benefit":"매 턴 첫 소진 도구 사용 시 에너지 +1 · 2장 뽑기","tradeoff":"첫 턴을 포함한 턴 시작 드로우 4장","description":"매 턴 첫 소진 도구 사용 시 에너지 +1 · 2장 뽑기 · 대가: 첫 턴을 포함한 턴 시작 드로우 4장"},
     "field_kit":{"name":"탐험 구급함","icon":"heal","description":"전투 시작 시 모든 아군이 최대 HP의 10.4% 보호막을 얻습니다."},
     "seed_relay":{"name":"씨앗 전이","icon":"seed","description":"씨뿌리기 대상이 쓰러지면 남은 씨앗을 다음 적에게 옮깁니다."},
     "switch_power":{"name":"교대 배턴","icon":"switch","description":"기술로 교대한 포켓몬의 다음 공격 추가 피해 · 최대 HP의 6.3%. 턴 종료 시 해제."},
@@ -184,6 +189,7 @@ const CARD_THEMES := {
     "guard":["shield"],"counter":["shield"],"shield_strike":["shield"],
 }
 const RELIC_THEMES := {
+    "relay_core":["relay"],"ace_core":["ace"],"status_core":["status"],"shield_core":["shield"],"supply_core":["supply"],
     "seed_relay":["status"],"status_lens":["status"],"status_flask":["status"],
     "switch_power":["relay"],"relay_draw":["relay"],"relay_cell":["relay"],
     "ace_focus":["ace"],"ace_emblem":["ace"],"tool_belt":["supply"],

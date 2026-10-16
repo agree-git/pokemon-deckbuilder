@@ -79,6 +79,7 @@ func measure(case_key: String, style: String, seed_value: int, camp_policy: Stri
     row["camp_policy"] = camp_policy
     row["economy"] = j.statistics["counts"].duplicate()
     row["final_species"] = j.party.map(func(p: BattlePokemon): return p.species_id)
+    row["core_relic"] = CoreRelics.selected(j.relics)
     print("BALANCE ",case_key,"/",style,"/",camp_policy," seed=",seed_value," ",j.phase," wins=",j.wins," turns=",j.total_turns)
     return row
 func run() -> void:
@@ -143,7 +144,7 @@ func run() -> void:
                     var row := measure(party_key,style,int(seed_value),camp_policy)
                     failed = failed or not row["error"].is_empty() or not row["incomplete"].is_empty() or not row["statistics_valid"]
                     rows.append(row)
-    var report := {"version":2,"engine":Engine.get_version_info()["string"],"ruleset":JourneySave.RULESET,"stat_basis":PokemonStats.BASIS,"rules_fingerprint":rules_fingerprint(),"policy":"CampaignPolicy + preferred reward/shop theme + rest/develop camps v2","scope":"No capture, rare hunts or stat/resource overrides. Rest preserves the original camp policy. Develop resolves encounters, purchases usable evolution items with a 100-gold reserve, rests below 75% HP or for friendship, otherwise upgrades; it removes low-rated or duplicate non-damaging techniques. Combat and learning policy stay the same.","rows":rows}
+    var report := {"version":2,"engine":Engine.get_version_info()["string"],"ruleset":JourneySave.RULESET,"stat_basis":PokemonStats.BASIS,"rules_fingerprint":rules_fingerprint(),"policy":"CampaignPolicy + preferred reward/shop theme + rest/develop camps + exclusive core rewards v3","scope":"No capture, rare hunts or stat/resource overrides. Rest preserves the original camp policy. Develop resolves encounters, purchases usable evolution items with a 100-gold reserve, rests below 75% HP or for friendship, otherwise upgrades; it removes low-rated or duplicate non-damaging techniques. Combat and learning policy stay the same. Preferred rewards include one exclusive core relic at a gym.","rows":rows}
     report["limits"] = {"battle_turns":int(options["max-turns"]),"actions":15000}
     var target: String = options["output"]
     if DirAccess.make_dir_recursive_absolute(target.get_base_dir()) != OK:

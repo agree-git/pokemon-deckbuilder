@@ -149,6 +149,10 @@ func _action(title: String, rect: Rect2, callback: Callable, icon := "next") -> 
     actions.append(button)
     return button
 func _rewards() -> void:
+    if not journey.reward_options.is_empty() and journey.reward_options.all(func(o: Dictionary): return o["kind"] == "relic" and o["key"] in CoreRelics.KEYS):
+        _core_rewards()
+        _growth_summary()
+        return
     W.label(page,("배지 획득! · %d / 8  ·  " % journey.badges if journey.full_campaign and journey.current()["kind"] == "gym" else "")+"카드 · 유물 · 지닌 물건 중 보상 하나를 선택하세요.",Rect2(550,225,1200,48),22,W.MUTED)
     for i in journey.reward_options.size():
         var option := journey.reward_options[i]
@@ -173,6 +177,22 @@ func _rewards() -> void:
             actions.append(button)
     _action("보상 넘기기",Rect2(870,720,420,64),_reward.bind(-1),"next")
     _growth_summary()
+func _core_rewards() -> void:
+    W.label(page,"핵심 유물 · 이번 원정에서 하나만 선택",Rect2(550,225,1190,48),25,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER).name = "CoreRewardTitle"
+    for i in journey.reward_options.size():
+        var view := journey.reward_view(journey.reward_options[i])
+        var button := W.button(page,Rect2(550+i*404,320,382,366),_reward.bind(i))
+        button.name = "CoreReward_%d" % i
+        button.tooltip_text = view["description"]
+        W.icon(button,view["icon"],Rect2(159,24,64,64))
+        W.label(button,view["name"],Rect2(20,106,342,48),27,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+        var benefit := W.label(button,view["benefit"],Rect2(26,176,330,90),21,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
+        benefit.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+        var price := W.label(button,"대가 · "+str(view["tradeoff"]).replace(" · ","\n"),Rect2(26,280,330,68),17,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+        price.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+        actions.append(button)
+    var skip_text := "이번에는 넘기기 · 다음 관장에서 다시 선택" if int(journey.current()["chapter"]) < 7 else "핵심 유물 없이 계속 진행"
+    _action(skip_text,Rect2(710,720,880,64),_reward.bind(-1),"next")
 func _growth_summary() -> void:
     for i in journey.growth_reports.size():
         var report := journey.growth_reports[i]

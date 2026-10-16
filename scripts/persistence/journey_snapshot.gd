@@ -123,6 +123,7 @@ static func validate(data: Variant) -> bool:
             if not key is String or not TacticalContent.RELICS.has(key) or seen.has(key): return false
             seen[key] = true
         if row["relic"] not in row["relics"]: return false
+        if not CoreRelics.valid(row["relics"]): return false
     if not integer(r["_next_card_uid"],1,1000000): return false
     for key: Variant in r["held_inventory"]:
         if not key is String or not TacticalContent.HELD_ITEMS.has(key): return false
@@ -281,6 +282,7 @@ static func validate(data: Variant) -> bool:
                     elif option["owner_uid"] not in r["party"] or not move(option["key"]): return false
                 "relic":
                     if not TacticalContent.RELICS.has(option["key"]) or option["key"] in r["relics"]: return false
+                    if option["key"] in CoreRelics.KEYS and not CoreRelics.selected(r["relics"]).is_empty(): return false
                 "held":
                     if not TacticalContent.HELD_ITEMS.has(option["key"]): return false
                 _: return false

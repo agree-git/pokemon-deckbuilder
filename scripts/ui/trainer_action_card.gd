@@ -78,6 +78,7 @@ func update_card(view: Dictionary,reason: String,locked: bool) -> void:
     if key == "analysis": summaries[key] = "적 위력 -%d%%\n%d장 뽑기 · 소진" % [int(view.get("weaken",1))*10,int(view.get("draw",1))]
     effect_label.text = summaries.get(key,description)
     tooltip_text = ("위력 %d · %s\n" % [view["move_power"],"물리" if view.get("damage_class","") == "physical" else "특수"] if view.has("move_power") else "")+str(view["name"])+"\n"+caption+"\n"+description+("\n자동 교대 후 사용 · 추가 교대 비용 없음" if view.get("switches",false) else "")+("\n"+reason if not reason.is_empty() else "")
+    if int(view.get("core_discount",0)) > 0: tooltip_text += "\n고정 조준경 · 턴 시작 출전 멤버의 첫 기술 비용 -1"
     _available = not locked and reason.is_empty()
     disabled = not _available
     face.modulate = Color.WHITE if _available else Color(0.65,0.71,0.72)

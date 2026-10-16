@@ -216,6 +216,10 @@ func resolve_learning(slot: int) -> String:
 func _prepare_rewards() -> void:
     var rng := RandomNumberGenerator.new()
     rng.seed = seed_value ^ (step*104729+81173)
+    if full_campaign and current()["kind"] == "gym" and CoreRelics.selected(relics).is_empty():
+        reward_options.assign(CoreRelics.offers(relics,rng))
+        phase = REWARD
+        return
     var commons: Array = TacticalContent.CARDS.keys().filter(func(key: String): return key != "injury")
     var related := TacticalContent.synergy_cards(deck,relics)
     var candidates: Array = related if not related.is_empty() and rng.randf() < 0.5 else commons
@@ -224,7 +228,7 @@ func _prepare_rewards() -> void:
     var pokemon := party[rng.randi_range(0,party.size()-1)]
     var learned: Array = TacticalContent.skills_for(pokemon)
     reward_options.append({"kind":"card","key":learned[rng.randi_range(0,learned.size()-1)],"owner_uid":pokemon.uid,"upgraded":current()["kind"] in ["gym","elite"]})
-    var available: Array = TacticalContent.RELICS.keys().filter(func(key: String): return key not in relics)
+    var available: Array = TacticalContent.RELICS.keys().filter(func(key: String): return key not in relics and key not in CoreRelics.KEYS)
     var roll := rng.randf()
     if not available.is_empty() and (current()["kind"] in ["veteran","gym","elite"] or roll < 0.12):
         reward_options.append({"kind":"relic","key":available[rng.randi_range(0,available.size()-1)]})
@@ -304,6 +308,7 @@ func choose_reward(index: int) -> String:
     if phase != REWARD or index < -1 or index >= reward_options.size(): return "표시된 보상을 선택하세요."
     if index >= 0:
         var option := reward_options[index]
+        if option["kind"] == "relic" and option["key"] in CoreRelics.KEYS and not CoreRelics.selected(relics).is_empty(): return "핵심 유물은 원정당 하나만 선택할 수 있습니다."
         match option["kind"]:
             "card":
                 var card := _allocate_card(option["key"],int(option["owner_uid"]))

@@ -319,11 +319,29 @@ func _build_menu() -> Control:
     var overlay := _modal("메뉴",Rect2(1250,96,622,900))
     var body: Panel = overlay.get_node("Body")
     _label("파티 유물",Rect2(32,94,470,32),17,W.MUTED,HORIZONTAL_ALIGNMENT_LEFT,body)
-    for index in battle.relics.size():
-        var key := battle.relics[index]
+    var relic_scroll := ScrollContainer.new()
+    relic_scroll.name = "RelicScroll"
+    relic_scroll.position = Vector2(32,132)
+    relic_scroll.size = Vector2(558,264)
+    relic_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+    body.add_child(relic_scroll)
+    var relic_list := VBoxContainer.new()
+    relic_list.custom_minimum_size.x = 530
+    relic_list.add_theme_constant_override("separation",2)
+    relic_scroll.add_child(relic_list)
+    var ordered := battle.relics.duplicate()
+    var core := CoreRelics.selected(ordered)
+    if not core.is_empty():
+        ordered.erase(core)
+        ordered.push_front(core)
+    for key: String in ordered:
         var definition: Dictionary = TacticalContent.RELICS[key]
-        W.icon(body,definition["icon"],Rect2(36,139+index*36,24,24))
-        var label := W.label(body,definition["name"],Rect2(76,132+index*36,480,36),17)
+        var row := Control.new()
+        row.custom_minimum_size = Vector2(530,36)
+        relic_list.add_child(row)
+        W.icon(row,definition["icon"],Rect2(4,6,24,24))
+        var label := W.label(row,("핵심 · " if key in CoreRelics.KEYS else "")+str(definition["name"]),Rect2(44,0,480,36),17,W.GOLD if key in CoreRelics.KEYS else W.TEXT)
+        label.mouse_filter = Control.MOUSE_FILTER_PASS
         label.tooltip_text = definition["description"]
     restart_button = _menu_action(body,"restart","다시 시작","",420,restart)
     if run_mode:
@@ -360,7 +378,7 @@ func _build_help() -> Control:
         W.label(body,steps[i][2],Rect2(x,247,320,125),16,CREAM)
     W.panel(body,Rect2(36,420,1008,164),Color("203940"),Color.TRANSPARENT)
     W.icon(body,"switch",Rect2(60,446,32,32))
-    W.label(body,"기술 카드 자동 교대 무료 · 직접 교대는 에너지 1",Rect2(112,437,860,44),21)
+    W.label(body,"기술 카드 자동 교대 무료 · 직접 교대는 에너지 %d" % battle.manual_switch_cost(),Rect2(112,437,860,44),21)
     W.label(body,"공격 순서와 마지막 출전 포켓몬을 함께 생각하세요.\n포켓몬별 보호막과 강화 · 도구 카드 · 유물로 전술을 만드세요.",Rect2(60,495,940,70),19,W.MUTED)
     W.label(body,"교체 1 / 2 / 3     기술 Q / W / E / R     턴 종료 Enter",Rect2(36,609,1008,32),18,MINT)
     W.label(body,"아이콘과 카드에 마우스를 올리면 자세한 효과를 확인할 수 있습니다.",Rect2(36,654,1008,32),17,W.MUTED)
