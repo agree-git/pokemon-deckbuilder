@@ -23,6 +23,7 @@ var bag_item := ""
 var evolution_result: Dictionary = {}
 var special_open := false
 var rare_open := false
+var preparation_open := false
 var _evolution_catalog := VisualCatalog.new()
 var rest_button: Button
 var learn_buttons: Array[Button] = []
@@ -110,7 +111,19 @@ func refresh() -> void:
     if rare_open: _rare_picker()
     if not evolution_result.is_empty(): _evolution_reveal()
     if recruit_index >= 0 and journey.phase == TacticalJourney.CAPTURE: _recruitment_preview()
+    if preparation_open:
+        var preparation := EncounterPreparationPanel.new()
+        preparation.journey = journey
+        preparation.closed.connect(_close_preparation)
+        page.add_child(preparation)
     UiMotion.appear(page)
+func _open_preparation() -> void:
+    if EncounterPreparation.describe(journey).is_empty(): return
+    preparation_open = true
+    refresh()
+func _close_preparation() -> void:
+    preparation_open = false
+    refresh()
 func _party() -> void:
     var panel := W.panel(page,Rect2(96,280,340,420),Color("14282f"),Color("405960"))
     W.label(panel,"원정대",Rect2(24,18,292,38),23)
@@ -238,7 +251,8 @@ func _map() -> void:
             for opponent: Dictionary in opponents:
                 panel.tooltip_text += "\n%s · %s · %s" % [opponent["name"],EnemyTactics.role_title(opponent),EnemyTactics.pattern_text(opponent)]
     W.label(page,"장소에 마우스를 올리면 상대 전술을 확인할 수 있습니다.",Rect2(550,274,1190,28),14,W.MUTED)
-    _action("%s로 이동" % journey.current()["name"],Rect2(820,670,560,64),_enter)
+    _action("%s로 이동" % journey.current()["name"],Rect2(1120,670,620,64),_enter)
+    W.button(page,Rect2(550,670,530,64),_open_preparation,"다음 전투 준비").name = "EncounterPreparation"
     if journey.full_campaign:
         W.label(page,"원정 경로 · 배지 %d / 8" % journey.badges,Rect2(550,748,1190,36),19,W.MUTED)
         for i in 8:
@@ -297,6 +311,7 @@ func _rest() -> void:
         if key == camp_tab: button.add_theme_stylebox_override("normal",W.box(Color("29443f"),W.GOLD))
         camp_tabs[key] = button
     _action("준비 완료 · 출발",Rect2(1260,930,480,72),_leave_camp,"next")
+    W.button(page,Rect2(550,930,650,72),_open_preparation,"다음 전투 준비").name = "EncounterPreparation"
     match camp_tab:
         "rest":
             if journey.full_campaign:
@@ -922,6 +937,10 @@ func _home() -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
     if travelling: return
     if journey.phase == TacticalJourney.BATTLE or not event is InputEventKey or not event.pressed or event.echo: return
+    if preparation_open:
+        if event.keycode == KEY_ESCAPE: _close_preparation()
+        get_viewport().set_input_as_handled()
+        return
     if recruit_index >= 0:
         if event.keycode == KEY_ESCAPE: _close_recruit()
         get_viewport().set_input_as_handled()

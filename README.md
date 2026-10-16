@@ -30,6 +30,8 @@
 
 - 개체값·노력치 없이 3세대 종족값·레벨만으로 여섯 능력치를 계산하고 물리/특수·자속·복합타입 상성을 적용한다. 턴 시작 출전 아군이 더 빠르면 에너지 4, 아니면 3이다. [능력치와 스피드 에너지](docs/pokemon-stats.md)를 참고한다. 이번 개체값·노력치 제거 이전의 v3 원정도 능력치를 변환해 이어할 수 있다.
 
+지도·야영지의 [다음 전투 준비](docs/encounter-preparation.md)에서 실제 상대별로 현재 덱의 통하는 공격·타격 무효·지속/조건부 카드를 확인한다. 기절한 동료의 카드는 제외하며 회복 후 다시 조회할 수 있다.
+
 ## 전투 화면
 
 [전투 연출·카드 목록·야영지 가방](docs/battle-presentation.md): 포켓볼 회수·등장, 양쪽 공격·피격 동작과 이벤트 순서에 맞춘 수치 변화, 큰 보호막 표시를 적용한다. 처음 출발에도 이동 화면을 표시하며 가방은 아이템을 누른 뒤 파티 팝업에서 대상을 선택한다. 전리품 탭은 제거했다.
@@ -70,6 +72,8 @@ godot --headless --path . --script res://tests/test_journey_save.gd
 godot --headless --path . --script res://tests/test_save_files.gd
 python3 tools/test_save_process.py
 godot --headless --path . --script res://tests/test_camps.gd
+godot --headless --path . --script res://tests/test_encounter_preparation.gd
+godot --headless --path . --script res://tests/test_encounter_preparation_ui.gd
 godot --headless --path . --script res://tests/test_camp_ui.gd
 godot --headless --path . --script res://tests/test_campaign.gd
 godot --headless --path . --script res://tests/test_campaign_ui.gd
