@@ -5,6 +5,7 @@ from collections import defaultdict
 import json
 from pathlib import Path
 from statistics import mean
+from campaign_diagnostics_report import format_diagnostics, validate_diagnostics
 
 ROOT = Path(__file__).resolve().parents[1]
 PARTIES = {
@@ -92,6 +93,7 @@ def load_reports(paths):
             for key in ('turns', 'actions', 'damage_taken', 'knockouts', 'gold_spent', 'deck_size'):
                 if type(row[key]) is not int or row[key] < 0:
                     raise ValueError(f'{path}: invalid metric {key} for {identity}')
+            validate_diagnostics(row)
             rows.append(row)
     report['rows'] = rows
     return report
@@ -222,6 +224,7 @@ def format_report(report):
             lines.append(f"| {PARTIES.get(party, party)} | {STYLES.get(style, style)} | {CAMPS[camp]} | {len(matches)} | {clear[0]} | {clear[1]} | {catches} / {joins} / {replaced} |")
         lines += ['', '포획 종·장소 순서·합류/방출·빠진 동료·최종 파티·남은 볼은 원본 JSON에 보관한다. '
                   '실패한 원정의 짧은 턴을 속도 개선으로 계산하지 않는다. 영입이 있어도 생존·드로우·육성 판단이 부족하면 패배할 수 있다.', '']
+    lines += format_diagnostics(report['rows'], PARTIES, STYLES, CAMPS, RECRUITMENT, names)
     lines += ['## 해석 범위', '',
               f"- 시드 {len({row['seed'] for row in report['rows']})}개의 고정 표본이다. 자동 전투 정책이 특정 기술·상태·교대를 더 선호하며 전략별 최적 플레이를 구현한 것은 아니다.",
               '- 보조형·아기·단독 편성의 초반 탈락은 원작 능력치/기술과 영입 정책의 영향을 함께 받는다. 종족값이나 관장 레벨을 즉시 일괄 조정할 근거로 쓰지 않는다.',

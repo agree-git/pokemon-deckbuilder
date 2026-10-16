@@ -129,3 +129,22 @@ python3 tools/report_campaign_balance.py /tmp/learning-deck.json --json /tmp/lea
 이전과 승패/종료 상태가 달라진 세 원정은 벌레·시드 2·초반 영입(15승 전멸 → 완주), 이상해씨 단독·시드 3·영입 없음(15승 전멸 → 완주), 혼합·시드 5·초반 영입(16승 후 한도 중단 → 완주)이다. 혼합 시드 5는 번개쇼크 95회·스파크 86회 사용과 총 481턴으로 69전투·챔피언을 완료했다. 이는 카드 누락 원인을 해결한 증거이며 장기 플레이의 재미나 모든 파티의 균형을 보장하지 않는다. 물 보조형·잉어킹 단독은 여전히 완주하지 못했다.
 
 벌레·혼합·이상해씨 단독 × 시드 2/3/5 × 두 영입 정책 18개를 별도 프로세스에서 재실행해 모든 필드와 지문이 일치했다. 수정 전 미완료 행은 재현 기록으로 보존한다. 이미 저장된 덱을 자동 재구성하지 않으므로, 과거 수락한 기술 카드 누락과 의도적인 제거를 구별하지 못하는 한계는 성장·저장 문서에 명시한다.
+
+## 전투별 진단 — 40개 표본
+
+`--diagnostics on`을 추가하면 각 전투의 시작 파티(종·레벨·HP·배운 기술), 실제 생존 소유자의 직접 공격/발버둥 사본 수, 상대별 공격 무효·약점·조건부 카드 수와 정산 전 파티·상대 HP·실제 카드 사용·전투 카운터를 보관한다. 기본값은 `off`다. 진단은 선택 정책·대진·카드·난수·XP를 변경하지 않는다. 턴별 모든 손패를 기록하는 기능은 아니므로 덱에 공격이 있다는 사실만으로 매 턴 공격 가능하다고 해석하지 않는다.
+
+```bash
+godot --headless --path . --script res://tools/benchmark_campaign.gd -- --parties kanto,water,solo_fish,babies --seeds 0,3,5,42,2026 --camps develop --recruitment off,early --diagnostics on --max-turns 200 --output /tmp/battle-diagnostics.json
+python3 tools/report_campaign_balance.py /tmp/battle-diagnostics.json --json /tmp/battle-diagnostics-report.json --markdown /tmp/battle-diagnostics-report.md
+godot --headless --path . --script res://tests/test_campaign_diagnostics.gd
+python3 tools/test_campaign_report.py
+```
+
+[실행 결과](measurements/campaign-battle-diagnostics.md)와 [전체 원본](measurements/campaign-battle-diagnostics.json)을 보관했다. 40개 모두 정상 종료했고 이전 160개에서 해당하는 40개 행의 기존 결과 필드가 전부 같았다. 관동 기본은 10/10, 물 보조형·잉어킹 단독은 각각 0/10, 아기는 1/10 완주했다. 서로 다른 시드 다섯 개 × 두 영입 정책의 결과이며 사람의 승률이 아니다.
+
+물 보조형은 첫 덱 직접 공격 5장이 모두 발버둥이고 10개 중 8개가 첫 관장 전에 전멸했다. 잉어킹 단독도 첫 덱 직접 공격 8장이 전부 발버둥이며 열 번 모두 첫 관장 전에 전멸했다. 따라서 이 결과를 단순히 3대6 관장전 문제로 볼 수 없다. 시드 0의 물 보조형은 첫 관장에 잉어킹 Lv.13·밀로틱 Lv.9·루리리 Lv.13으로 도달했고 밀로틱은 아직 튀어오르기만 알았다. 정상 성장·진화만으로 바로 공격 기술을 얻는 것은 아니다.
+
+가장 긴 보스전은 아기·시드 5·초반 영입의 첫 전기 관장전 134턴 승리다. 시작 때 피츄/삐/푸푸린은 Lv.12/13/12, HP는 모두 가득 찼고 직접 공격은 5장뿐이었다. 표에는 장기전 승리와 실제 전멸을 구분한다. 실제 포획 없이 포획 준비 중 행동만 달라져 결과가 달라질 수도 있다. 다음 조정은 초반 공격 접근성·포획 정책·친밀도/진화 시점의 기회비용을 나눠 검증하며 전체 적 능력치를 일괄 낮추지 않는다.
+
+진단 규칙 47개와 보고서 17개 검사를 통과했다. 보고서는 진단 행 누락, 전투 순서·성장 정산 시점·타격 무효 합계 오류, 가짜 전멸과 원정 턴·피해·기절 합계 불일치를 거부한다. 이전 진단 없는 v1/v2 보고서도 그대로 읽는다.

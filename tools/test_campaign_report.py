@@ -172,6 +172,44 @@ class CampaignReportTests(unittest.TestCase):
         self.assertEqual(1, report['version'])
         self.assertIn('매번 휴식 | 42 | 1/1', format_report(report))
 
+    def diagnostics_row(self):
+        row = self.recruitment_row('off')
+        row.update(phase='failed', wins=0, turns=3, damage_taken=17, knockouts=1)
+        row['economy']['rests'] = 0
+        member = dict(uid=129, species=129, level=5, hp=17, max_hp=17, skills=['move_150'])
+        row['battle_diagnostics'] = [dict(step=0, kind='wild', place='야생 조우 1', outcome='lost', turns=3,
+            party_before=[member], party_after=[{**member, 'hp': 0}],
+            opponents_after=[dict(uid=-1, species=81, level=6, hp=12, max_hp=19, skills=[])],
+            deck_size=16, living_cards=16, direct_cards=8, fallback_cards=8,
+            coverage=[dict(species=81, level=6, tactic='balanced', attack=8, immune=0, conditional=0, strong=0)],
+            counts=dict(damage_taken=17, knockouts=1), cards=dict(move_165=7))]
+        return row
+
+    def test_diagnostics_keep_defeat_separate_from_completed_bosses(self):
+        self.data['rows'] = [self.diagnostics_row()]
+        text = format_report(load_reports([self.write(self.data)]))
+        self.assertIn('## 전투별 진단', text)
+        self.assertIn('| 1 | 0 | 1 / 0 / 0 | 3.0 | 8.0 / 8.0 |', text)
+
+    def test_diagnostics_reject_missing_battles_and_false_totals(self):
+        row = self.diagnostics_row()
+        for key, value in [('turns', 4), ('damage_taken', 18), ('knockouts', 2), ('battle_diagnostics', [])]:
+            with self.subTest(key=key):
+                self.data['rows'] = [{**row, key: value}]
+                self.reject(self.data)
+
+    def test_diagnostics_reject_impossible_snapshots_and_coverage(self):
+        for field, change in [('battle', dict(step=2)), ('battle', dict(kind='gym')),
+                              ('battle', dict(outcome='won')), ('battle', dict(fallback_cards=9)),
+                              ('party_after', dict(hp=1)), ('party_after', dict(level=6)),
+                              ('coverage', dict(attack=7)), ('coverage', dict(conditional=17))]:
+            with self.subTest(field=field, change=change):
+                row = self.diagnostics_row()
+                b = row['battle_diagnostics'][0]
+                (b if field == 'battle' else b[field][0]).update(change)
+                self.data['rows'] = [row]
+                self.reject(self.data)
+
 
 if __name__ == '__main__':
     unittest.main()

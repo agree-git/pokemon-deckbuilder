@@ -2,6 +2,7 @@ extends SceneTree
 ## Developer measurement only: public rules, fixed policy, no forced drops or stats.
 const RecruitmentPolicy = preload("res://tools/campaign_recruitment_policy.gd")
 const CampPolicy = preload("res://tools/campaign_camp_policy.gd")
+const BattleDiagnostics = preload("res://tools/campaign_battle_diagnostics.gd")
 const CASES := {
     "kanto":[1,4,7],"johto":[152,155,158],"hoenn":[252,255,258],
     "bugs":[10,13,265],"babies":[172,173,174],"psychic":[63,280,360],
@@ -11,13 +12,13 @@ const CASES := {
 }
 const STYLES := ["baseline","relay","ace","status","shield","supply"]
 const HELD := {"relay":["relay_ribbon"],"ace":["ace_band","power_band"],"status":["seed_charm"],"shield":["guard_charm"],"supply":["healing_bell"]}
-var options := {"seeds":"0,42,2026","parties":",".join(CASES.keys()),"styles":"baseline","camps":"rest","recruitment":"off","max-turns":"100","output":"/tmp/pokemon-campaign-balance.json"}
+var options := {"seeds":"0,42,2026","parties":",".join(CASES.keys()),"styles":"baseline","camps":"rest","recruitment":"off","diagnostics":"off","max-turns":"100","output":"/tmp/pokemon-campaign-balance.json"}
 func _initialize() -> void: call_deferred("run")
 func rules_fingerprint() -> String:
     var hash := HashingContext.new()
     hash.start(HashingContext.HASH_SHA256)
     hash.update(JourneySave.fingerprint().to_utf8_buffer())
-    var sources: Array[String] = ["res://tests/campaign_policy.gd","res://tests/tactical_policy.gd","res://tools/benchmark_campaign.gd","res://tools/campaign_camp_policy.gd","res://tools/campaign_recruitment_policy.gd","res://scripts/content/recruitment_preview.gd","res://scripts/content/visual_catalog.gd"]
+    var sources: Array[String] = ["res://tests/campaign_policy.gd","res://tests/tactical_policy.gd","res://tools/benchmark_campaign.gd","res://tools/campaign_camp_policy.gd","res://tools/campaign_recruitment_policy.gd","res://tools/campaign_battle_diagnostics.gd","res://scripts/content/encounter_preparation.gd","res://scripts/content/recruitment_preview.gd","res://scripts/content/visual_catalog.gd"]
     for directory: String in ["res://scripts/tactics","res://scripts/battle"]:
         for file: String in DirAccess.get_files_at(directory):
             if file.ends_with(".gd"): sources.append(directory+"/"+file)
@@ -58,14 +59,21 @@ func measure(case_key: String, style: String, seed_value: int, camp_policy: Stri
     var actions := 0
     var error := ""
     var stop := ""
+    var diagnostics: Array[Dictionary] = []
+    var entry := {}
     while j.phase not in [TacticalJourney.CLEARED,TacticalJourney.FAILED] and actions < 15000:
         actions += 1
         match j.phase:
             TacticalJourney.BATTLE:
+                if options["diagnostics"] == "on" and entry.is_empty(): entry = BattleDiagnostics.begin(j)
                 if j.battle.phase not in [TacticalBattle.WON,TacticalBattle.LOST] and j.battle.turn > int(options["max-turns"]):
                     stop = "battle_turn_limit"
                     break
-                if j.battle.phase in [TacticalBattle.WON,TacticalBattle.LOST]: error = j.settle()
+                if j.battle.phase in [TacticalBattle.WON,TacticalBattle.LOST]:
+                    if options["diagnostics"] == "on":
+                        diagnostics.append(BattleDiagnostics.finish(j,entry))
+                        entry = {}
+                    error = j.settle()
                 elif recruitment_mode == "early": error = recruitment.apply(j,recruitment.action(j))
                 else: error = CampaignPolicy.apply(j,CampaignPolicy.action(j))
             TacticalJourney.CAPTURE: error = recruitment.resolve(j)
@@ -88,12 +96,13 @@ func measure(case_key: String, style: String, seed_value: int, camp_policy: Stri
     row["captures"] = recruitment.captures.duplicate(true)
     row["recruits"] = recruitment.decisions.duplicate(true)
     row["balls_remaining"] = j.balls
+    if options["diagnostics"] == "on": row["battle_diagnostics"] = diagnostics
     print("BALANCE ",case_key,"/",style,"/",camp_policy,"/",recruitment_mode," seed=",seed_value," ",j.phase," wins=",j.wins," turns=",j.total_turns)
     return row
 func run() -> void:
     var args := OS.get_cmdline_user_args()
     if args.size()%2 != 0:
-        printerr("Expected paired --seeds, --parties, --styles, --camps, --recruitment, --max-turns, --output options")
+        printerr("Expected paired --seeds, --parties, --styles, --camps, --recruitment, --diagnostics, --max-turns, --output options")
         quit(2)
         return
     for i in range(0,args.size(),2):
@@ -103,6 +112,10 @@ func run() -> void:
             quit(2)
             return
         options[key] = args[i+1]
+    if options["diagnostics"] not in ["off","on"]:
+        printerr("Choose diagnostics off or on")
+        quit(2)
+        return
     var parties: PackedStringArray = options["parties"].split(",",false)
     var styles: PackedStringArray = options["styles"].split(",",false)
     var seeds: PackedStringArray = options["seeds"].split(",",false)
