@@ -6,6 +6,7 @@ const PLAYER := "player"
 const REPLACE := "replace"
 const WON := "won"
 const LOST := "lost"
+const MAX_BLOCK := 100000 # Existing v3 storage bound, also enforced during play.
 var full_type_chart := false
 var party: Array[BattlePokemon] = []
 var enemies: Array[BattlePokemon] = []
@@ -153,13 +154,14 @@ func card_view(card: BattleCardInstance) -> Dictionary:
             view["cost"] = maxi(0,int(view["cost"])-1)
         if view.has("damage"): view["preview_damage"] = attack_damage(view,actor)
         if view.has("shield_attack"): view["preview_damage"] = actor.block
+        if view.has("double_block"): view["preview_block_gain"] = block_gain(actor,actor.block)
         if has_relic("status_flask") and not turn_flags.has("status_flask"):
             for status: String in ["burn","poison","seed"]:
                 if view.has(status): view["preview_"+status] = int(view[status])+1
         if view.has("condition"): view["condition_active"] = bool(turn_flags.get("technique_switch",false)) if view["condition"] == "relay" else bool(turn_flags.get("double_technique_%d" % actor.uid,false))
         if view.has("heal"): view["preview_heal"] = PokemonStats.scale(actor,int(view["heal"])+(6 if actor.held_item == "healing_bell" and view["category"] == "tool" else 0))
         if view.has("heal") and has_relic("shield_core"): view["preview_heal"] = maxi(1,floori(int(view["preview_heal"])*0.5))
-        if view.has("block"): view["preview_block"] = PokemonStats.scale(actor,int(view["block"]))+defense_bonus(actor)
+        if view.has("block"): view["preview_block"] = mini(PokemonStats.scale(actor,int(view["block"]))+defense_bonus(actor),MAX_BLOCK-_block_on_entry(actor))
         if view.has("bonus"): view["preview_bonus"] = PokemonStats.scale(actor,int(view["bonus"]))
         view["description"] = TacticalContent.description(view)
     return view
@@ -170,7 +172,21 @@ func attack_damage(view: Dictionary, actor: BattlePokemon) -> int:
     if actor.held_item == "power_band": bonus += 3
     if enemy().statuses.has("exposed"): bonus += 2
     var amount := PokemonStats.damage(actor,enemy(),view,1.0 if int(view.get("move_id",0)) == 165 else multiplier(view.get("type","normal"),enemy()),bonus)
-    return maxi(1,floori(amount*0.8)) if amount > 0 and view.get("category","technique") == "technique" and has_relic("status_core") else amount
+    if amount > 0 and view.get("category","technique") == "technique" and has_relic("status_core"): amount = maxi(1,floori(amount*0.8))
+    if view.get("category","technique") == "technique" and turn_flags.get("finisher_%d" % actor.uid,false): amount *= 2
+    return amount
+func _block_on_entry(actor: BattlePokemon) -> int:
+    if actor == active(): return actor.block
+    var protection := actor.block+PokemonStats.scale(actor,3*int(powers.get("relay",0)))
+    if actor.held_item == "relay_ribbon" and not turn_flags.has("ribbon_%d" % actor.uid): protection += PokemonStats.scale(actor,5)
+    if has_relic("relay_cloak") and not turn_flags.has("relay_cloak"): protection += active().block
+    return mini(MAX_BLOCK,protection)
+func block_gain(actor: BattlePokemon,amount: int) -> int:
+    return clampi(amount,0,maxi(0,MAX_BLOCK-actor.block))
+func _gain_block(actor: BattlePokemon,amount: int) -> int:
+    var gained := block_gain(actor,amount)
+    actor.block += gained
+    return gained
 func defense_bonus(actor: BattlePokemon) -> int:
     return PokemonStats.scale(actor,4) if actor.held_item == "guard_charm" else 0
 # Old input/API callers must also own a drawn card; fixed skills cannot bypass draw.
@@ -219,6 +235,7 @@ func play_card(uid: int) -> String:
         var amount := attack_damage(view,actor)
         next_attack_bonus = 0
         switch_bonus.erase(actor.uid)
+        if card.owner_uid != 0: turn_flags.erase("finisher_%d" % actor.uid)
         _damage(target,amount)
     if view.has("shield_attack"):
         var amount := actor.block
@@ -227,10 +244,12 @@ func play_card(uid: int) -> String:
         _damage(target,amount)
     if target.alive():
         var fresh := false
+        var fresh_dot := false
         var extend := has_relic("status_flask") and not turn_flags.has("status_flask") and ["burn","poison","seed"].any(func(key: String): return view.has(key))
         for status: String in ["burn","seed","poison","sleep","paralysis","confusion"]:
             if view.has(status):
                 fresh = fresh or not target.statuses.has(status)
+                if status in ["burn","poison","seed"] and not target.statuses.has(status): fresh_dot = true
                 target.statuses[status] = {"turns":int(view[status])+(1 if extend and status in ["burn","poison","seed"] else 0),"source_uid":actor.uid}
         if extend:
             turn_flags["status_flask"] = true
@@ -239,6 +258,10 @@ func play_card(uid: int) -> String:
             turn_flags["status_lens"] = true
             energy += 1
             _record("relic","상태 관측경 · 에너지 +1",{"relic_key":"status_lens"})
+        if fresh_dot and has_relic("status_dish") and not turn_flags.has("status_dish") and ["burn","poison","seed"].filter(func(key: String): return target.statuses.has(key)).size() >= 2:
+            turn_flags["status_dish"] = true
+            _draw(2)
+            _record("relic","배양 접시 · 카드 2장",{"relic_key":"status_dish"})
         if view.has("weaken"): target.strength = maxi(-6,target.strength-int(view["weaken"]))
         if view.has("expose"): target.statuses["exposed"] = {"turns":3,"source_uid":actor.uid}
         if view.has("weaken") or view.has("expose") or ["burn","seed","poison","sleep","paralysis","confusion"].any(func(status: String): return view.has(status)):
@@ -254,9 +277,17 @@ func play_card(uid: int) -> String:
         actor.hp += recovered
         _record("heal",actor.display_name+" 회복",{"target":actor.uid,"amount":recovered})
     if view.has("block"):
-        var protection := PokemonStats.scale(actor,int(view["block"]))+defense_bonus(actor)
-        actor.block += protection
+        var protection := _gain_block(actor,PokemonStats.scale(actor,int(view["block"]))+defense_bonus(actor))
         _record("shield",actor.display_name+" 보호막",{"target":actor.uid,"amount":protection})
+    if view.has("double_block"):
+        var protection := _gain_block(actor,actor.block)
+        if protection > 0: _record("shield","방벽 압축",{"target":actor.uid,"amount":protection})
+    if view.has("finisher"):
+        turn_flags["finisher_%d" % actor.uid] = true
+        _record("status",actor.display_name+" · 이번 턴 다음 공격 기술 2배",{"target":actor.uid})
+    if view.has("pulse_status"):
+        for status: String in ["burn","seed","poison"]:
+            if target.alive() and target.statuses.has(status): _status_hit(target,status,target.statuses[status])
     if view.has("strength"): actor.strength += int(view["strength"])
     if view.has("bonus"): next_attack_bonus += int(view["bonus"])
     if view.has("temporary_strength"):
@@ -282,10 +313,13 @@ func play_card(uid: int) -> String:
         candidates.sort_custom(func(a: BattleCardInstance,b: BattleCardInstance): return int(card_view(a)["cost"]) > int(card_view(b)["cost"]))
         for i in mini(int(view.get("retain_count",1)),candidates.size()): retained.append(candidates[i].uid)
     if view.has("retrieve"):
-        for i in range(discard.size()-1,-1,-1):
-            if discard[i].owner_uid != 0 and member(discard[i].owner_uid).alive() and hand.size() < 10:
-                hand.append(discard.pop_at(i))
-                break
+        var returned := 0
+        for candidate: BattleCardInstance in _retrieval_candidates(view,actor):
+            if hand.size() >= 10 or returned >= int(view.get("retrieve_count",1)): break
+            discard.erase(candidate)
+            hand.append(candidate)
+            returned += 1
+        if returned > 0: _record("cards_returned","기술 %d장 회수" % returned,{"amount":returned})
     if view.has("redraw"):
         var count := hand.size()
         discard.append_array(hand)
@@ -297,6 +331,10 @@ func play_card(uid: int) -> String:
     if card.owner_uid != 0:
         var first_technique := "technique_%d" % actor.uid
         if turn_flags.has(first_technique):
+            if turn_flags.has("double_technique_%d" % actor.uid) and has_relic("ace_medal") and not turn_flags.has("ace_medal"):
+                turn_flags["ace_medal"] = true
+                energy += 1
+                _record("relic","돌파 훈장 · 에너지 +1",{"relic_key":"ace_medal"})
             turn_flags["double_technique_%d" % actor.uid] = true
             if has_relic("ace_emblem") and not turn_flags.has("ace_emblem"):
                 turn_flags["ace_emblem"] = true
@@ -309,8 +347,7 @@ func play_card(uid: int) -> String:
             _draw(2)
             _record("relic","릴레이 수첩 · 카드 2장",{"relic_key":"relay_draw"})
     if view["category"] == "tool":
-        var supplied := PokemonStats.scale(actor,5*int(powers.get("supply",0)))
-        actor.block += supplied
+        var supplied := _gain_block(actor,PokemonStats.scale(actor,5*int(powers.get("supply",0))))
         if supplied > 0: _record("shield","보급 작전",{"target":actor.uid,"amount":supplied})
         if has_relic("tool_belt") and not turn_flags.has("tool_belt"):
             turn_flags["tool_belt"] = true
@@ -325,9 +362,25 @@ func play_card(uid: int) -> String:
     else: discard.append(card)
     _outcome()
     return notify_changed()
+func _retrieval_candidates(view: Dictionary,actor: BattlePokemon) -> Array[BattleCardInstance]:
+    var result: Array[BattleCardInstance] = []
+    for i in range(discard.size()-1,-1,-1):
+        var card := discard[i]
+        var owner := member(card.owner_uid)
+        if owner == null or not owner.alive(): continue
+        if view.get("retrieve_scope","") == "reserve" and owner == actor: continue
+        result.append(card)
+    return result
+
 func _change_active(uid: int, technique := false) -> void:
     if uid == active().uid: return
     var old := active()
+    var inherited := 0
+    if technique and has_relic("relay_cloak") and not turn_flags.has("relay_cloak"):
+        turn_flags["relay_cloak"] = true
+        inherited = old.block
+        old.block = 0
+        if inherited > 0: _record("shield_spent",old.display_name+" · 보호막 인계",{"target":old.uid,"amount":inherited})
     old.strength -= int(temporary_strength.get(old.uid,0))
     temporary_strength.erase(old.uid)
     old.stat_stages.clear()
@@ -336,7 +389,7 @@ func _change_active(uid: int, technique := false) -> void:
     _turn_changed = true
     if technique:
         turn_flags["technique_switch"] = true
-        active().block += PokemonStats.scale(active(),3*int(powers.get("relay",0)))
+        _gain_block(active(),PokemonStats.scale(active(),3*int(powers.get("relay",0))))
         _stat("auto_switches")
         if has_relic("switch_power"):
             switch_bonus[uid] = 3
@@ -344,8 +397,12 @@ func _change_active(uid: int, technique := false) -> void:
     var ribbon := "ribbon_%d" % uid
     if active().held_item == "relay_ribbon" and not turn_flags.has(ribbon):
         turn_flags[ribbon] = true
-        active().block += PokemonStats.scale(active(),5)
+        _gain_block(active(),PokemonStats.scale(active(),5))
     _record("switch",active().display_name+" 출전",{"actor":uid})
+    if inherited > 0:
+        var received := _gain_block(active(),inherited)
+        _record("shield","인계 망토 · 보호막 인수",{"target":uid,"amount":received})
+        _record("relic","인계 망토 · 보호막 이동",{"relic_key":"relay_cloak"})
     if technique and has_relic("relay_core") and not turn_flags.has("relay_core"):
         turn_flags["relay_core"] = true
         _draw(2)
@@ -461,6 +518,7 @@ func _enemy_action() -> void:
         _pending = "player"
     else: _start_player()
 func _start_player() -> void:
+    var charged := has_relic("shield_battery") and bool(turn_flags.get("shield_battery",false))
     phase = PLAYER
     _pending = ""
     turn += 1
@@ -477,6 +535,9 @@ func _start_player() -> void:
     _ace_uid = 0
     _draw(CoreRelics.draw_count(relics))
     _record("turn","턴 %d · 에너지 %d" % [turn,energy])
+    if charged:
+        energy += 1
+        _record("relic","축전 방패 · 에너지 +1",{"relic_key":"shield_battery"})
 func status_damage(pokemon: BattlePokemon, key: String) -> int:
     var bonus := int(powers.get("attrition",0)) if pokemon.uid < 0 and key in ["burn","poison","seed"] else 0
     var amount := PokemonStats.scale(pokemon,2+bonus)
@@ -487,22 +548,24 @@ func _tick(pokemon: BattlePokemon) -> void:
         var status: Dictionary = pokemon.statuses[key]
         status["turns"] = int(status["turns"])-1
         if int(status["turns"]) <= 0: pokemon.statuses.erase(key)
-        var health_before := pokemon.hp
-        if pokemon.uid < 0 and key in ["burn","seed","poison"] and has_relic("status_core"): _record("relic","침식 촉매 · 지속 피해 +50%",{"relic_key":"status_core"})
-        _damage(pokemon,status_damage(pokemon,key),true)
-        if key == "seed":
-            var owner := member(int(status["source_uid"]))
-            if owner == null:
-                for foe: BattlePokemon in enemies:
-                    if foe.uid == int(status["source_uid"]): owner = foe
-            if owner != null and owner.alive():
-                var recovered := mini(owner.max_hp-owner.hp,health_before-pokemon.hp)
-                owner.hp += recovered
-                if recovered > 0: _record("heal","씨앗 흡수 · "+owner.display_name,{"target":owner.uid,"amount":recovered})
+        _status_hit(pokemon,key,status)
     for key: String in ["sleep","paralysis","exposed"]:
         if pokemon.statuses.has(key):
             pokemon.statuses[key]["turns"] = int(pokemon.statuses[key]["turns"])-1
             if int(pokemon.statuses[key]["turns"]) <= 0: pokemon.statuses.erase(key)
+func _status_hit(pokemon: BattlePokemon,key: String,status: Dictionary) -> void:
+    var health_before := pokemon.hp
+    if pokemon.uid < 0 and key in ["burn","seed","poison"] and has_relic("status_core"): _record("relic","침식 촉매 · 지속 피해 +50%",{"relic_key":"status_core"})
+    _damage(pokemon,status_damage(pokemon,key),true)
+    if key == "seed":
+        var owner := member(int(status["source_uid"]))
+        if owner == null:
+            for foe: BattlePokemon in enemies:
+                if foe.uid == int(status["source_uid"]): owner = foe
+        if owner != null and owner.alive():
+            var recovered := mini(owner.max_hp-owner.hp,health_before-pokemon.hp)
+            owner.hp += recovered
+            if recovered > 0: _record("heal","씨앗 흡수 · "+owner.display_name,{"target":owner.uid,"amount":recovered})
 func _damage(target: BattlePokemon, amount: int, piercing := false) -> void:
     var blocked := 0 if piercing else mini(target.block,maxi(0,amount))
     target.block -= blocked
@@ -511,6 +574,9 @@ func _damage(target: BattlePokemon, amount: int, piercing := false) -> void:
     _stat("damage_taken" if target.uid > 0 else "damage_dealt",lost)
     if target.uid > 0: _stat("shield_absorbed",blocked)
     _record("damage","%s · 피해 %d" % [target.display_name,lost],{"target":target.uid,"amount":lost,"blocked":blocked})
+    if phase == "enemy" and target.uid > 0 and blocked > 0 and lost == 0 and has_relic("shield_battery") and not turn_flags.has("shield_battery"):
+        turn_flags["shield_battery"] = true
+        _record("status","축전 방패 충전 · 다음 아군 턴 에너지 +1",{"target":target.uid})
     if target.alive() or target.knocked_out: return
     target.knocked_out = true
     if target.uid < 0:

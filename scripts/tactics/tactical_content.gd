@@ -56,6 +56,10 @@ const CARDS := {
     "shield_strike":{"name":"보호막 전환","category":"trainer","cost":1,"move_id":33,"shield_attack":true,"description":"보호막을 모두 소비해 같은 수치의 피해. 상성 무시, 적 보호막 적용."},
     "toxic_flask":{"name":"독성 캡슐","category":"tool","cost":1,"move_id":92,"poison":3,"exhaust":true,"description":""},
     "shield_cell":{"name":"방어 배터리","category":"tool","cost":0,"move_id":115,"block":6,"exhaust":true,"description":""},
+    "relay_retrieve":{"name":"연계 회수","category":"trainer","cost":1,"move_id":116,"retrieve":true,"retrieve_scope":"reserve","retrieve_count":2,"exhaust":true,"description":""},
+    "ace_finisher":{"name":"결정타 지시","category":"trainer","cost":1,"move_id":116,"finisher":true,"exhaust":true,"description":""},
+    "status_pulse":{"name":"발병 촉진","category":"tool","cost":1,"move_id":92,"pulse_status":true,"exhaust":true,"description":""},
+    "shield_double":{"name":"방벽 압축","category":"trainer","cost":1,"move_id":115,"double_block":true,"exhaust":true,"description":""},
     "injury":{"name":"부상","category":"status","cost":1,"move_id":150,"description":"효과 없음. 기절 시 추가되며 야영지 휴식으로 제거."},
 }
 const RELICS := {
@@ -73,6 +77,10 @@ const RELICS := {
     "relay_cell":{"name":"릴레이 발전기","icon":"energy","description":"매 턴 처음 기술 카드로 교대하면 에너지 +1. 수동·강제 교대는 제외."},
     "ace_emblem":{"name":"집중 문장","icon":"draw","description":"한 포켓몬이 한 턴에 두 번째 기술을 쓰면 카드 1장 뽑기. 파티 전체에서 턴당 한 번."},
     "status_flask":{"name":"잔류 시약","icon":"poison","description":"매 턴 처음 카드로 화상·독·씨앗을 부여할 때 그 카드의 지속 횟수 +1. 수면 등에는 적용되지 않음."},
+    "relay_cloak":{"name":"인계 망토","icon":"switch","description":"매 턴 첫 기술 자동 교대 시 이전 동료의 남은 보호막 전부를 새 동료에게 이동. 수동·강제 교대 제외."},
+    "ace_medal":{"name":"돌파 훈장","icon":"energy","description":"같은 포켓몬이 한 턴 세 번째 기술을 쓰면 에너지 +1. 파티 전체에서 턴당 한 번."},
+    "status_dish":{"name":"배양 접시","icon":"draw","description":"카드로 새로운 화상·독·씨앗을 걸어 적에게 두 종류 이상이 되면 카드 2장 뽑기. 턴당 한 번. 재부여 제외."},
+    "shield_battery":{"name":"축전 방패","icon":"shield","description":"적의 공격을 보호막으로 완전히 막으면 다음 아군 턴 에너지 +1. 턴당 한 번. 피해 0인 공격·지속 피해 제외."},
     "status_lens":{"name":"상태 관측경","icon":"counter","description":"매 턴 처음 새로운 상태이상을 걸면 에너지 +1."},
 }
 const HELD_ITEMS := {
@@ -111,7 +119,7 @@ static func definition(card: BattleCardInstance) -> Dictionary:
             if result.has(field):
                 result[field] = int(result[field])+4
                 increased = true
-        for field: String in ["draw","energy","strength","weaken","temporary_strength","conditional_draw"]:
+        for field: String in ["draw","energy","strength","weaken","temporary_strength","conditional_draw","retrieve_count"]:
             if result.has(field):
                 result[field] = int(result[field])+1
                 increased = true
@@ -158,7 +166,11 @@ static func description(view: Dictionary) -> String:
         parts.append("%s %d장 뽑기" % [condition,view["conditional_draw"]]+((" (충족)" if view["condition_active"] else " (미충족)") if view.has("condition_active") else ""))
     if view.has("redraw"): parts.append("손패 교체"+(" · 추가 1장" if int(view.get("redraw_bonus",0)) > 0 else ""))
     if view.has("retain"): parts.append("비용이 높은 카드 %d장 보존" % int(view.get("retain_count",1)))
-    if view.has("retrieve"): parts.append("버린 기술 카드 1장 회수")
+    if view.has("retrieve"):
+        parts.append("버린 더미에서 살아 있는 대기 동료의 기술을 최신순으로 최대 %d장 회수" % int(view["retrieve_count"]) if view.get("retrieve_scope","") == "reserve" else "버린 기술 카드 1장 회수")
+    if view.has("finisher"): parts.append("이번 턴 출전 멤버의 다음 공격 기술 피해 2배 · 중첩 불가")
+    if view.has("pulse_status"): parts.append("적의 화상·독·씨앗을 각각 1회 즉시 발동 · 남은 횟수 유지 · 보호막 무시")
+    if view.has("double_block"): parts.append("출전 멤버의 현재 보호막 2배 · 추가 %d" % int(view["preview_block_gain"]) if view.has("preview_block_gain") else "출전 멤버의 현재 보호막 2배 · 0이면 0")
     if view.has("cash"): parts.append("화상·독·씨앗 소비 · 남은 횟수마다 상대 최대 HP의 8.3% 피해")
     if view.has("power"): parts.append({"relay":"지속: 기술로 교대 시 최대 HP의 6.3% 보호막","ace":"지속: 출전 유지 시 다음 턴 위력 보정 +20%","supply":"지속: 도구 사용 시 최대 HP의 10.4% 보호막","attrition":"지속: 아군이 건 화상·독·씨앗의 매회 피해 + 상대 최대 HP의 2.1%"}[view["power"]])
     if view.has("cleanse"): parts.append("상태이상 해제")
@@ -181,7 +193,8 @@ static func starting_deck(members: Array[BattlePokemon]) -> Array[BattleCardInst
     return result
 
 const CARD_THEMES := {
-    "relay_plan":["relay"],"relay_cover":["relay"],
+    "relay_plan":["relay"],"relay_cover":["relay"],"relay_retrieve":["relay"],
+    "ace_finisher":["ace"],"status_pulse":["status","supply"],"shield_double":["shield"],
     "ace_plan":["ace"],"ace_order":["ace"],"boost_card":["ace"],"hold":["ace"],
     "status_cash":["status"],"status_plan":["status"],"toxic_flask":["status","supply"],
     "tool_plan":["supply","shield"],"shield_cell":["supply","shield"],
@@ -193,6 +206,7 @@ const RELIC_THEMES := {
     "seed_relay":["status"],"status_lens":["status"],"status_flask":["status"],
     "switch_power":["relay"],"relay_draw":["relay"],"relay_cell":["relay"],
     "ace_focus":["ace"],"ace_emblem":["ace"],"tool_belt":["supply"],
+    "relay_cloak":["relay","shield"],"ace_medal":["ace"],"status_dish":["status"],"shield_battery":["shield"],
 }
 static func synergy_cards(deck: Array[BattleCardInstance], acquired: Array[String]) -> Array[String]:
     var themes: Array[String] = []

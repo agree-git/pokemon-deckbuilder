@@ -54,6 +54,6 @@ static func analyze_cards(j: TacticalJourney, definition: Dictionary, cards: Arr
         # Current battle rules apply these effects independently of attack typing.
         # Shield conversion and status cash need setup, so never count as direct attacks.
         var ongoing: bool = ["burn","poison","seed","confusion"].any(func(key: String): return view.has(key))
-        if ongoing or view.has("shield_attack") or view.has("cash"):
+        if ongoing or view.has("shield_attack") or view.has("cash") or view.has("pulse_status"):
             groups["conditional"].append({"card":view,"label":"지속 피해" if ongoing else ("보호막 필요" if view.has("shield_attack") else "상태 필요")})
     return {"opponent":definition.duplicate(true),"groups":groups,"strong":strong,"unavailable":unavailable,"living":living}

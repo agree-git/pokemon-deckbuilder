@@ -74,8 +74,26 @@ static func render(view: Dictionary) -> String:
         rows.append("%d장을 다음 턴까지 보존" % int(view.get("retain_count",1)))
     if view.has("retrieve"):
         rows.append("버린 더미에서")
-        rows.append("가장 최근 기술 카드 1장")
-        rows.append(icon("draw")+"손패로 가져오기")
+        if view.get("retrieve_scope","") == "reserve":
+            rows.append("살아 있는 대기 동료의")
+            rows.append("기술 최대 %d장 회수" % int(view["retrieve_count"]))
+            rows.append("최신 카드부터 손패로")
+        else:
+            rows.append("가장 최근 기술 카드 1장")
+            rows.append(icon("draw")+"손패로 가져오기")
+    if view.has("finisher"):
+        rows.append("이번 턴 출전 멤버의")
+        rows.append("다음 공격 기술 "+icon("attack")+"×2")
+        rows.append("중첩 불가")
+    if view.has("pulse_status"):
+        rows.append("적의 "+icon("burn")+icon("ailment_poison")+icon("seed"))
+        rows.append("각각 1회 즉시 발동")
+        rows.append("남은 횟수 유지")
+        rows.append("적 "+icon("shield")+"무시")
+    if view.has("double_block"):
+        rows.append("출전 멤버의 현재")
+        rows.append(icon("shield")+"×2")
+        rows.append(icon("shield")+"+%d 획득" % int(view["preview_block_gain"]) if view.has("preview_block_gain") else "없으면 추가 획득 없음")
     if view.has("cash"):
         rows.append("적 "+icon("burn")+icon("ailment_poison")+icon("seed")+"제거")
         rows.append("남은 횟수 1회마다")

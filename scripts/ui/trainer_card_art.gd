@@ -3,7 +3,7 @@ extends Control
 ## Original pixel vignettes, drawn on an 84x48 grid at exactly 2x.
 @export var card_key := "analysis"
 const COLORS := {"analysis":Color("aebedd"),"guard":Color("8ec9dc"),"focus":Color("a2cdb7"),"rally":Color("e7c47c"),"counter":Color("df9e87"),"injury":Color("b9a0af")}
-const ICONS := {"analysis":"analysis","guard":"shield","focus":"draw","rally":"boost","counter":"counter","injury":"injury","redraw":"discard","hold":"draw","retrieve":"discard","relay_plan":"switch","ace_plan":"boost","tool_plan":"draw","status_cash":"fire","potion_card":"heal","boost_card":"boost","smoke_card":"counter","ether_card":"energy","antidote_card":"heal","relay_cover":"switch","ace_order":"boost","status_plan":"poison","shield_strike":"attack","toxic_flask":"poison","shield_cell":"shield"}
+const ICONS := {"analysis":"analysis","guard":"shield","focus":"draw","rally":"boost","counter":"counter","injury":"injury","redraw":"discard","hold":"draw","retrieve":"discard","relay_plan":"switch","ace_plan":"boost","tool_plan":"draw","status_cash":"fire","potion_card":"heal","boost_card":"boost","smoke_card":"counter","ether_card":"energy","antidote_card":"heal","relay_cover":"switch","ace_order":"boost","status_plan":"poison","shield_strike":"attack","toxic_flask":"poison","shield_cell":"shield","relay_retrieve":"switch","ace_finisher":"attack","status_pulse":"poison","shield_double":"shield"}
 func _ready() -> void:
     mouse_filter = Control.MOUSE_FILTER_IGNORE
     texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
@@ -39,6 +39,23 @@ func _draw() -> void:
             draw_rect(Rect2(9,27,25,14),accent.darkened(0.4))
             draw_rect(Rect2(14,22,15,5),accent.darkened(0.1))
             for i in 3: draw_rect(Rect2(60+i*5,8+i*6,9,2),accent.darkened(0.3))
+        "relay_retrieve":
+            for i in 3:
+                draw_rect(Rect2(8+i*5,25-i*4,18,14),accent.darkened(0.25+i*0.1))
+            draw_rect(Rect2(60,17,14,3),accent)
+            draw_rect(Rect2(65,12,3,14),accent)
+        "ace_finisher":
+            for i in 3: draw_rect(Rect2(8+i*7,34-i*8,4,8+i*8),Color("e3ae79"))
+            draw_rect(Rect2(63,10,10,3),accent)
+            draw_rect(Rect2(67,6,3,11),accent)
+        "status_pulse":
+            for i in 3:
+                draw_rect(Rect2(7+i*23,32,16,9),Color("aa80b6"))
+                draw_rect(Rect2(12+i*23,26,6,6),Color("d6b6d9"))
+        "shield_double":
+            for i in 5: draw_rect(Rect2(6+i*15,33-(i%2)*4,12,12),accent.darkened(0.3))
+            draw_rect(Rect2(15,12,10,3),accent)
+            draw_rect(Rect2(18,9,3,9),accent)
         "injury":
             draw_rect(Rect2(9,22,30,20),accent.darkened(0.2))
             draw_rect(Rect2(17,16,14,7),accent.darkened(0.48))

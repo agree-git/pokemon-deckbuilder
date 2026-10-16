@@ -731,6 +731,11 @@ func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
         var turns: int = pokemon.statuses[key]["turns"]
         var titles := {"burn":"화상 · %d 피해 / 물리 위력 절반" % battle.status_damage(pokemon,"burn"),"seed":"씨뿌리기 · %d 흡수" % battle.status_damage(pokemon,"seed"),"poison":"독 · %d 피해" % battle.status_damage(pokemon,"poison"),"sleep":"수면 · 행동 취소","paralysis":"마비 · 스피드 절반","confusion":"혼란 · %d 피해" % PokemonStats.scale(pokemon,2),"exposed":"방어 약화 · 공격자 체력에 비례한 추가 피해"}
         items.append([CardEffectText.STATUS_ICONS.get("expose" if key == "exposed" else key,"counter"),str(turns),str(titles.get(key,key))+" · %d회 남음" % turns])
+    var flags: Dictionary = _visual_frame.get("turn_flags",battle.turn_flags)
+    if flags.get("finisher_%d" % pokemon.uid,false):
+        items.append(["attack","×2","결정타 지시 · 이번 턴 이 멤버의 다음 공격 기술 피해 2배 · 중첩 불가"])
+    if pokemon.uid == _view_active().uid and flags.get("shield_battery",false):
+        items.append(["energy","+1","축전 방패 충전 · 다음 아군 턴 에너지 +1"])
     if pokemon.uid == battle.active().uid and battle.next_attack_bonus > 0:
         items.append(["boost","+%d" % battle.next_attack_bonus,"강화 지시 · 다음 공격 추가 피해 +%d (자속·상성 적용 전)" % PokemonStats.scale(pokemon,battle.next_attack_bonus)])
     if pokemon.uid == battle.active().uid and battle.switch_bonus.has(pokemon.uid):
@@ -932,7 +937,7 @@ func _play_event(event: Dictionary) -> void:
         # The frame shows zero HP before the combatant disappears.
         var target := int(event.get("target",0))
         if target == _view_active().uid or target == _view_enemy().uid: motion.faint(target > 0)
-    elif kind in ["relic","power","cancel","turn","capture","status","stat","shield_spent"]: _announce(event["text"])
+    elif kind in ["relic","power","cancel","turn","capture","status","stat","shield_spent","cards_returned"]: _announce(event["text"])
 func _float_value(text: String,on_ally: bool,color: Color,icon_key := "") -> void:
     var at := stage.canvas.source_anchor if on_ally else stage.canvas.target_anchor
     var number := CardEffectText.label(damage_layer,Rect2(at.x-170,at.y-120,340,90),42,color)

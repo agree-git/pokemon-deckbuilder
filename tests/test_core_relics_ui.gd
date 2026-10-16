@@ -73,7 +73,7 @@ func run() -> void:
         check(scroll != null and scroll.get_child(0).get_child(0).find_children("*","Label",true,false).any(func(label: Label): return label.text.begins_with("핵심 · ")),"Battle menu lists the chosen core first in a scrollable relic list")
         check(ui.battle_ui.relic_chip.tooltip_text.contains(TacticalContent.RELICS[key]["description"]),"Battle HUD keeps the full core benefit and price available")
         if i == 0: await picture("core-relic-menu")
-    # Endgame display fixture: one core plus all ten ordinary relics.
+    # Endgame display fixture: one core plus every ordinary relic.
     var endgame := ui.journey
     for key: String in TacticalContent.RELICS:
         if key not in CoreRelics.KEYS and key not in endgame.relics: endgame.relics.append(key)
@@ -84,15 +84,20 @@ func run() -> void:
     await click(ui.battle_ui.menu_button)
     var scroll: ScrollContainer = ui.battle_ui.menu_panel.find_child("RelicScroll",true,false)
     var list := scroll.get_child(0)
-    check(list.get_child_count() == 11,"One core and all ordinary relics fit the endgame menu")
+    check(list.get_child_count() == TacticalContent.RELICS.size()-CoreRelics.KEYS.size()+1,"One core and all ordinary relics fit the endgame menu")
+    var last := list.get_child_count()-1
     if native:
         var point := root.get_final_transform()*(scroll.get_global_transform_with_canvas()*(scroll.size*0.5))+Vector2(root.position)
-        print("OS_WHEEL ",roundi(point.x)," ",roundi(point.y)," 6")
+        print("OS_WHEEL ",roundi(point.x)," ",roundi(point.y)," ",list.get_child_count())
         await create_timer(0.25).timeout
-    else: scroll.ensure_control_visible(list.get_child(10))
+    else: scroll.ensure_control_visible(list.get_child(last))
     await process_frame
-    check(scroll.scroll_vertical > 0 and list.get_child(10).get_global_rect().end.y <= scroll.get_global_rect().end.y+1,"The last relic remains reachable inside the scroll viewport")
+    check(scroll.scroll_vertical > 0 and list.get_child(last).get_global_rect().end.y <= scroll.get_global_rect().end.y+1,"The last relic remains reachable inside the scroll viewport")
     check(scroll.get_global_rect().end.y < ui.battle_ui.restart_button.get_global_rect().position.y,"Relics never overlap the restart action")
     await picture("core-relic-endgame-menu")
+    ui.free()
+    root.get_node("GameMusic").stop_music()
+    root.get_node("GameCries").stop_all()
+    await create_timer(0.15).timeout
     print("CORE_RELICS_UI native=",native,": ",checks," checks, ",failures," failures; ",clicks," pointer inputs")
     quit(0 if failures == 0 else 1)
