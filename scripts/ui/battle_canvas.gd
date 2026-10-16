@@ -131,7 +131,7 @@ func _on_impact(move: Dictionary) -> void:
     var on_self: bool = move["vfx"]["target"] == "self"
     var hits_ally: bool = on_self != effect_from_enemy
     var sprite := source_sprite if hits_ally else target_sprite
-    var tween := create_tween()
+    var tween := UiMotion.combat(sprite,"impact_flash")
     sprite.modulate = Color(1.4, 1.4, 1.4)
     tween.tween_property(sprite, "modulate", Color.WHITE, 0.16)
     if not use_effect_statuses:

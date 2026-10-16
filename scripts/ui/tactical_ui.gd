@@ -73,6 +73,7 @@ var menu_panel: Control
 var help_panel: Control
 var pile_panel: Control
 var menu_button: Button
+var settings_button: Button
 var help_button: Button
 var draw_button: Button
 var discard_button: Button
@@ -145,7 +146,7 @@ func _start_trainer_intro() -> void:
     get_node("Intent").hide()
     _announce(str(opponent_trainer["name"])+"의 도전!")
     playback_kinds.assign(["trainer_enter"])
-    _sequence = UiMotion.begin(self,"battle_sequence")
+    _sequence = UiMotion.combat(self,"battle_sequence")
     _sequence.tween_property(trainer_intro,"slide",0.0,0.24).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
     _sequence.tween_interval(0.28)
     _sequence.tween_callback(func():
@@ -416,7 +417,7 @@ func _build_menu() -> Control:
     else:
         old_button = _menu_action(body,"route","기존 원정","F3",492,_old_run)
         lab_button = _menu_action(body,"lab","아트 랩","F2",564,_open_lab)
-    _menu_action(body,"normal","화면 전환","F11",636,_fullscreen)
+    settings_button = _menu_action(body,"settings","설정","",636,_settings)
     _menu_action(body,"exhaust","소진된 카드","",708,func(): _show_pile("exhausted"))
     if not run_mode: _menu_action(body,"route","전술 원정","F4",780,_toggle_journey)
     _label("1 / 2 / 3 교대 · Q / W / E / R 손패 1~4장",Rect2(32,848,558,32),16,W.MUTED,HORIZONTAL_ALIGNMENT_LEFT,body)
@@ -782,7 +783,7 @@ func _fly_card(card: TrainerActionCard,used := true,delay := 0.0) -> void:
     var exhausted: bool = used and (card.definition.get("exhaust",false) or card.definition.has("power"))
     var middle := Vector2(885,500)
     var destination := middle+Vector2(0,-72) if exhausted else discard_button.get_global_rect().get_center()
-    var tween := UiMotion.begin(copy,"flight",true)
+    var tween := UiMotion.combat(copy,"flight",true)
     if used:
         tween.tween_property(copy,"position",middle,0.17).set_delay(delay).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
         tween.tween_property(copy,"scale",Vector2.ONE*0.78,0.17).set_delay(delay)
@@ -847,7 +848,7 @@ func _present(reason: String) -> void:
     _apply_frame(_action_before)
     notice.text = ""
     var frames: Array = battle.events.duplicate(true)
-    _sequence = UiMotion.begin(self,"battle_sequence")
+    _sequence = UiMotion.combat(self,"battle_sequence")
     for event: Dictionary in frames:
         var kind: String = event["kind"]
         if kind in ["switch","enemy_switch"]:
@@ -883,6 +884,7 @@ func _play_event(event: Dictionary) -> void:
             stage.canvas.effect_from_enemy = from_enemy
             var start := stage.canvas.target_anchor if from_enemy else stage.canvas.source_anchor
             var finish := stage.canvas.source_anchor if from_enemy else stage.canvas.target_anchor
+            stage.canvas.effect.speed = 2.4 * UiMotion.combat_speed(self)
             stage.canvas.effect.play(definition,start,finish)
             var is_attack: bool = TacticalMoves.definition(TacticalMoves.key_for(id)).has("damage")
             if from_enemy: is_attack = event.get("action","") in ["attack","charge","barrage"]
@@ -914,7 +916,7 @@ func _float_value(text: String,on_ally: bool,color: Color,icon_key := "") -> voi
     number.text = "[center]"+(CardEffectText.icon(icon_key,36)+" " if not icon_key.is_empty() else "")+text+"[/center]"
     number.add_theme_constant_override("outline_size",8)
     number.add_theme_color_override("font_outline_color",Color("152627"))
-    var tween := UiMotion.begin(number,"float",true)
+    var tween := UiMotion.combat(number,"float",true)
     tween.tween_property(number,"position:y",number.position.y-64,0.70).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
     tween.tween_property(number,"modulate:a",0.0,0.35).set_delay(0.35)
     tween.chain().tween_callback(number.queue_free)
@@ -969,9 +971,10 @@ func _open_lab() -> void:
     get_tree().change_scene_to_file("res://scenes/art_lab.tscn")
 func _toggle_journey() -> void:
     get_tree().change_scene_to_file("res://scenes/tactical_battle.tscn" if run_mode else "res://scenes/tactical_journey.tscn")
-func _fullscreen() -> void:
-    var mode := DisplayServer.window_get_mode()
-    DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED if mode == DisplayServer.WINDOW_MODE_FULLSCREEN else DisplayServer.WINDOW_MODE_FULLSCREEN)
+func _settings() -> void:
+    if busy: return
+    _clear_action_preview()
+    get_node("/root/Preferences").show_panel(self)
 func _unhandled_key_input(event: InputEvent) -> void:
     if not event is InputEventKey or not event.pressed or event.echo: return
     if event.keycode == KEY_ESCAPE:
@@ -985,7 +988,6 @@ func _unhandled_key_input(event: InputEvent) -> void:
         match event.keycode:
             KEY_F3: _old_run()
             KEY_F4: _toggle_journey()
-            KEY_F11: _fullscreen()
         return
     if event.keycode in SKILL_KEYS:
         _skill_slot(SKILL_KEYS.find(event.keycode))
@@ -1001,7 +1003,6 @@ func _unhandled_key_input(event: InputEvent) -> void:
         KEY_F2: _open_lab()
         KEY_F3: _old_run()
         KEY_F4: _toggle_journey()
-        KEY_F11: _fullscreen()
 func _notify(message: String) -> void:
     notice.text = message
     notice.modulate.a = 1

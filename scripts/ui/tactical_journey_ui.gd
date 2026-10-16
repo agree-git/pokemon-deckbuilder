@@ -2,6 +2,7 @@ class_name TacticalJourneyUI
 extends Control
 const W = preload("res://scripts/ui/combat_widgets.gd")
 var save_button: Button
+var settings_button: Button
 var _save_session: Node
 var journey: TacticalJourney
 var battle_ui: TacticalUI
@@ -98,7 +99,8 @@ func refresh() -> void:
     page.add_child(shade)
     W.icon(page,journey.biome()["type"],Rect2(48,24,32,32))
     W.label(page,journey.biome()["name"],Rect2(96,16,500,48),24)
-    W.label(page,"골드 %d  ·  배지 %d / %d" % [journey.gold,journey.badges,8 if journey.full_campaign else 1],Rect2(1400,16,360,48),17,W.MUTED,HORIZONTAL_ALIGNMENT_RIGHT)
+    W.label(page,"골드 %d  ·  배지 %d / %d" % [journey.gold,journey.badges,8 if journey.full_campaign else 1],Rect2(1400,16,280,48),17,W.MUTED,HORIZONTAL_ALIGNMENT_RIGHT)
+    settings_button = W.icon_button(page,"settings",Rect2(1708,18,64,44),func(): get_node("/root/Preferences").show_panel(self),"설정")
     W.icon_button(page,"home",Rect2(1788,18,64,44),_home,"시작 화면")
     var titles := {TacticalJourney.LEARN:"새로운 기술",TacticalJourney.REWARD:"전투 보상",TacticalJourney.CAPTURE:"새로운 동료",TacticalJourney.MAP:"다음 장소",TacticalJourney.REST:"잠시 쉬어갑니다",TacticalJourney.CLEARED:"새로운 챔피언 탄생!" if journey.full_campaign else "레인보배지 획득!",TacticalJourney.FAILED:"원정 종료"}
     W.label(page,titles[journey.phase],Rect2(96,122,1728,70),40,W.GOLD)
@@ -1019,8 +1021,6 @@ func _unhandled_key_input(event: InputEvent) -> void:
         return
     match event.keycode:
         KEY_ESCAPE: _home()
-        KEY_F11:
-            DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN else DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 func _save_status() -> void:
     if not is_instance_valid(save_button): return

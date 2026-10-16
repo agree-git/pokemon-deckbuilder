@@ -2,6 +2,13 @@ class_name UiMotion
 extends RefCounted
 ## Interruptible presentation tweens shared by the HUD, cards and overlays.
 const META := &"ui_motion"
+static func combat_speed(node: Node) -> float:
+    var preferences := node.get_node_or_null("/root/Preferences")
+    return float(preferences.battle_speed) if preferences != null else 1.0
+static func combat(node: Node,key: String,parallel := false) -> Tween:
+    var tween := begin(node,key,parallel)
+    tween.set_speed_scale(combat_speed(node))
+    return tween
 static func begin(node: Node,key: String,parallel := false) -> Tween:
     var tracks: Dictionary = node.get_meta(META,{})
     if tracks.has(key) and tracks[key].is_valid(): tracks[key].kill()

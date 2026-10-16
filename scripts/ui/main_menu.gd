@@ -17,6 +17,7 @@ var continue_button: Button
 var collection_button: Button
 var confirm_button: Button
 var back_button: Button
+var settings_button: Button
 var search: LineEdit
 var show_locked: CheckButton
 var grid: GridContainer
@@ -63,6 +64,8 @@ func render() -> void:
     shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
     page.add_child(shade)
+    settings_button = W.icon_button(page,"settings",Rect2(1752,34,72,56),func(): get_node("/root/Preferences").show_panel(self),"설정")
+    settings_button.name = "Settings"
     if mode == "title": _title()
     else: _collection()
     page.modulate.a = 0.0
@@ -242,5 +245,3 @@ func _unhandled_key_input(event: InputEvent) -> void:
         get_viewport().set_input_as_handled()
         return
     if event.keycode == KEY_ESCAPE and mode != "title": _back()
-    elif event.keycode == KEY_F11:
-        DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN else DisplayServer.WINDOW_MODE_FULLSCREEN)

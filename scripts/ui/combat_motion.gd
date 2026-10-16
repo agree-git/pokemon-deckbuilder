@@ -13,7 +13,7 @@ func recall(on_ally: bool) -> void:
     ball_already_landed = false
     mode = "recall"
     progress = 0
-    var t := UiMotion.begin(self,"ball",true)
+    var t := UiMotion.combat(self,"ball",true)
     t.tween_property(canvas,"source_factor" if ally else "target_factor",0.02,0.24).set_trans(Tween.TRANS_QUAD)
     t.tween_property(self,"progress",1.0,0.24)
 func release(on_ally: bool,at_target := false) -> void:
@@ -22,25 +22,31 @@ func release(on_ally: bool,at_target := false) -> void:
     mode = "release"
     progress = 0
     canvas.set("source_factor" if ally else "target_factor",0.02)
-    var t := UiMotion.begin(self,"ball",true)
+    var t := UiMotion.combat(self,"ball",true)
     t.tween_property(self,"progress",1.0,0.38)
     t.tween_property(canvas,"source_factor" if ally else "target_factor",1.0,0.25).set_delay(0.13).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
     t.chain().tween_callback(func(): mode = "")
 func attack(from_enemy: bool, physical: bool) -> void:
     var property := "target_motion" if from_enemy else "source_motion"
     var direction := -1 if from_enemy else 1
-    var t := UiMotion.begin(canvas,property)
+    var t := UiMotion.combat(canvas,property)
     t.tween_property(canvas,property,Vector2(direction*(48 if physical else 22),-10),0.14).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
     t.tween_property(canvas,property,Vector2.ZERO,0.22).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 func hit(on_ally: bool, guarded := false) -> void:
+    var preferences := get_node_or_null("/root/Preferences")
+    if preferences != null and not preferences.hit_motion: return
+    var shake := UiMotion.combat(canvas,"hit_shake")
+    shake.tween_property(canvas,"position",Vector2(4,-2),0.045)
+    shake.tween_property(canvas,"position",Vector2(-3,1),0.045)
+    shake.tween_property(canvas,"position",Vector2.ZERO,0.09)
     var property := "source_motion" if on_ally else "target_motion"
     var direction := -1 if on_ally else 1
-    var t := UiMotion.begin(canvas,property)
+    var t := UiMotion.combat(canvas,property)
     t.tween_property(canvas,property,Vector2(direction*(8 if guarded else 22),0),0.06)
     t.tween_property(canvas,property,Vector2(-direction*7,0),0.07)
     t.tween_property(canvas,property,Vector2.ZERO,0.12)
 func faint(on_ally: bool) -> void:
-    var t := UiMotion.begin(canvas,"faint")
+    var t := UiMotion.combat(canvas,"faint")
     t.tween_property(canvas,"source_factor" if on_ally else "target_factor",0.0,0.24)
 func reset() -> void:
     for node: Node in [self,canvas]:
@@ -49,6 +55,7 @@ func reset() -> void:
             if tween.is_valid(): tween.kill()
     mode = ""
     ball_already_landed = false
+    canvas.position = Vector2.ZERO
     canvas.source_factor = 1
     canvas.target_factor = 1
     canvas.source_motion = Vector2.ZERO
