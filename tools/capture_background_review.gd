@@ -5,6 +5,7 @@ var output := ""
 var catalog := VisualCatalog.new()
 var captures: Array[Dictionary] = []
 var failures := 0
+var _guide_paths: Dictionary = {}
 const GROUP_NAMES := {"biomes":"바이옴 18곳","elite":"사천왕 전체 후보 31명","champions":"챔피언 전체 후보 11명","reserve":"예비 실내 룸 5개"}
 func _initialize() -> void: call_deferred("run")
 func biome_for(type: String) -> Dictionary:
@@ -96,6 +97,29 @@ func capture(entry: Dictionary) -> void:
     row["resolution"] = [1920,1080]
     row["party"] = j.party.map(func(p: BattlePokemon): return p.species_id)
     row["opponents"] = j.battle.enemies.map(func(p: BattlePokemon): return p.species_id)
+    var canvas := ui.battle_ui.stage.canvas
+    row["floor_layout"] = canvas.battlefield_layout.duplicate(true)
+    row["screen_feet"] = {"ally":[canvas.foot_anchor(true).x,canvas.foot_anchor(true).y],"enemy":[canvas.foot_anchor(false).x,canvas.foot_anchor(false).y]}
+    row["sprite_scales"] = [canvas.zoom_for(true),canvas.zoom_for(false)]
+    var guide_key := str([row["background"],row["cell"]])
+    if not _guide_paths.has(guide_key):
+        var guide_file: String = "guides/"+entry["category"]+"_"+entry["key"]+".png"
+        DirAccess.make_dir_recursive_absolute(output.path_join("guides"))
+        for child: Node in ui.battle_ui.get_children():
+            if child is Control and child != ui.battle_ui.stage: child.hide()
+        canvas.source_sprite.hide()
+        canvas.target_sprite.hide()
+        canvas.source_factor = 0
+        canvas.target_factor = 0
+        canvas.show_floor_guides = true
+        await process_frame
+        await RenderingServer.frame_post_draw
+        if root.get_texture().get_image().save_png(output.path_join(guide_file)) != OK:
+            failures += 1
+            push_error("Cannot save floor guide: "+guide_file)
+        _guide_paths[guide_key] = guide_file
+    row["floor_guide"] = _guide_paths[guide_key]
+    row["guide_sha256"] = FileAccess.get_sha256(output.path_join(row["floor_guide"]))
     captures.append(row)
     ui.free()
     print("BACKGROUND_CAPTURE ",captures.size()," ",relative)

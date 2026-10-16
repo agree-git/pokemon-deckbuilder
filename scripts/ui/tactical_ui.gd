@@ -98,6 +98,7 @@ var _sequence: Tween
 var _action_before: Dictionary = {}
 var shield_badges: Array[Control] = []
 var shield_values: Array[Label] = []
+var _hud_positions: Array[Dictionary] = []
 var playback_kinds: Array[String] = []
 var _banner_tween: Tween
 var _shake: Tween
@@ -115,7 +116,7 @@ func _ready() -> void:
     stage.canvas.use_effect_statuses = false
     stage.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     add_child(stage)
-    stage.canvas.background = VisualCatalog.biome_texture(run_background if not run_background.is_empty() else (run_biome if not run_biome.is_empty() else catalog.biomes[3]))
+    stage.canvas.set_backdrop(run_background if not run_background.is_empty() else (run_biome if not run_biome.is_empty() else catalog.biomes[3]))
     stage.canvas.effect.speed = 2.4
     motion.canvas = stage.canvas
     stage.canvas.add_child(motion)
@@ -137,6 +138,7 @@ func _start_trainer_intro() -> void:
     trainer_intro.role = opponent_trainer["kind"]
     trainer_intro.accent = VisualCatalog.type_color(opponent_trainer["type"])
     stage.canvas.add_child(trainer_intro)
+    get_node("Intent").hide()
     _announce(str(opponent_trainer["name"])+"의 도전!")
     playback_kinds.assign(["trainer_enter"])
     _sequence = UiMotion.begin(self,"battle_sequence")
@@ -235,6 +237,7 @@ func _build() -> void:
     add_child(damage_layer)
 
 func _build_combat_hud() -> void:
+    var first_child := get_child_count()
     for at: Vector2 in [Vector2(315,589),Vector2(1237,558)]:
         W.panel(self,Rect2(at,Vector2(330,90)),Color(0.04,0.085,0.10,0.93),Color("3f5653"))
     ally_label = _label("",Rect2(335,597,210,32),21)
@@ -265,6 +268,12 @@ func _build_combat_hud() -> void:
     enemy_statuses.size = Vector2(400,32)
     enemy_statuses.mouse_filter = Control.MOUSE_FILTER_IGNORE
     add_child(enemy_statuses)
+    # Preserve root node names used by refresh/input while grouping their layout.
+    for i in range(first_child,get_child_count()):
+        var widget := get_child(i) as Control
+        var ally := widget.position.x < 960
+        var base := Vector2(315,589) if ally else Vector2(1237,558)
+        _hud_positions.append({"node":widget,"ally":ally,"offset":widget.position-base})
     # A compact attack badge sits above the enemy, like intent in deck-building games.
     var intent_box := W.button(self,Rect2(1338,269,128,88),func(): pass)
     intent_box.name = "Intent"
@@ -544,19 +553,28 @@ func _position_intent() -> void:
     if texture == null: return
     var bounds := canvas.sprite_bounds(texture)
     var foot := canvas.foot_anchor(false)
-    var top := foot.y-bounds.size.y*canvas.sprite_zoom
+    var zoom := canvas.zoom_for(false)
+    var top := foot.y-bounds.size.y*zoom
     var badge := get_node("Intent") as Control
     if top-104 >= 124:
         badge.position = Vector2(foot.x-64,minf(269,top-104)).round()
     else:
         # Tall sprites (e.g. Charizard) need a side badge, clear of their face.
-        badge.position = Vector2(foot.x-bounds.size.x*canvas.sprite_zoom/2-152,maxf(164,top+28)).round()
+        badge.position = Vector2(foot.x-bounds.size.x*zoom/2-152,maxf(164,top+28)).round()
+
+func _position_combat_hud() -> void:
+    for item: Dictionary in _hud_positions:
+        var foot := stage.canvas.foot_anchor(item["ally"])
+        var left := clampf(foot.x-165,32,1300)
+        item["node"].position = (Vector2(left,foot.y+24)+item["offset"]).round()
 
 func _refresh() -> void:
     var foe := _view_enemy()
     var ally := _view_active()
     stage.canvas.set_species(ally.species_id,foe.species_id,catalog,false)
+    _position_combat_hud()
     _position_intent()
+    get_node("Intent").visible = trainer_intro == null or not trainer_intro.visible
     stage.canvas.ally_statuses.assign(ally.statuses.keys())
     stage.canvas.enemy_statuses.assign(foe.statuses.keys())
     UiMotion.text(status_label,"턴 %d" % int(_visual_frame.get("turn",battle.turn)))

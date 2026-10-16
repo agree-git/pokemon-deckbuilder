@@ -1,0 +1,551 @@
+{
+  "version": 1,
+  "coordinate_space": "atlas-cell pixels; measured at 768px width",
+  "ally_screen_y": 565,
+  "backgrounds": {
+    "res://assets/biomes/atlas_1.png": [
+      {
+        "ally": [
+          220,
+          294
+        ],
+        "enemy": [
+          599,
+          249
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          241,
+          297
+        ],
+        "enemy": [
+          604,
+          269
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          177,
+          263
+        ],
+        "enemy": [
+          599,
+          238
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          205,
+          278
+        ],
+        "enemy": [
+          600,
+          239
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          217,
+          277
+        ],
+        "enemy": [
+          590,
+          254
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          214,
+          284
+        ],
+        "enemy": [
+          603,
+          259
+        ],
+        "surface": "marked_floor"
+      }
+    ],
+    "res://assets/biomes/atlas_2.png": [
+      {
+        "ally": [
+          178,
+          295
+        ],
+        "enemy": [
+          610,
+          263
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          195,
+          292
+        ],
+        "enemy": [
+          613,
+          271
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          179,
+          299
+        ],
+        "enemy": [
+          610,
+          271
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          150,
+          299
+        ],
+        "enemy": [
+          603,
+          269
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          192,
+          288
+        ],
+        "enemy": [
+          605,
+          250
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          174,
+          287
+        ],
+        "enemy": [
+          603,
+          256
+        ],
+        "surface": "marked_floor"
+      }
+    ],
+    "res://assets/biomes/atlas_3.png": [
+      {
+        "ally": [
+          186,
+          294
+        ],
+        "enemy": [
+          592,
+          251
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          175,
+          296
+        ],
+        "enemy": [
+          611,
+          252
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          165,
+          305
+        ],
+        "enemy": [
+          599,
+          283
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          170,
+          309
+        ],
+        "enemy": [
+          594,
+          271
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          159,
+          299
+        ],
+        "enemy": [
+          610,
+          240
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          173,
+          299
+        ],
+        "enemy": [
+          600,
+          262
+        ],
+        "surface": "marked_floor"
+      }
+    ],
+    "res://assets/league/elite_1.png": [
+      {
+        "ally": [
+          175,
+          269
+        ],
+        "enemy": [
+          592,
+          215
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          171,
+          269
+        ],
+        "enemy": [
+          590,
+          211
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          174,
+          275
+        ],
+        "enemy": [
+          592,
+          213
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          171,
+          275
+        ],
+        "enemy": [
+          592,
+          213
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          173,
+          280
+        ],
+        "enemy": [
+          592,
+          220
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          173,
+          283
+        ],
+        "enemy": [
+          592,
+          218
+        ],
+        "surface": "marked_floor"
+      }
+    ],
+    "res://assets/league/elite_2.png": [
+      {
+        "ally": [
+          147,
+          268
+        ],
+        "enemy": [
+          596,
+          218
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          146,
+          266
+        ],
+        "enemy": [
+          596,
+          218
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          150,
+          276
+        ],
+        "enemy": [
+          595,
+          224
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          150,
+          276
+        ],
+        "enemy": [
+          595,
+          224
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          146,
+          265
+        ],
+        "enemy": [
+          610,
+          213
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          140,
+          268
+        ],
+        "enemy": [
+          594,
+          214
+        ],
+        "surface": "marked_floor"
+      }
+    ],
+    "res://assets/league/elite_3.png": [
+      {
+        "ally": [
+          172,
+          274
+        ],
+        "enemy": [
+          599,
+          216
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          172,
+          274
+        ],
+        "enemy": [
+          599,
+          216
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          174,
+          287
+        ],
+        "enemy": [
+          599,
+          224
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          173,
+          286
+        ],
+        "enemy": [
+          599,
+          224
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          174,
+          268
+        ],
+        "enemy": [
+          599,
+          208
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          171,
+          266
+        ],
+        "enemy": [
+          599,
+          209
+        ],
+        "surface": "marked_floor"
+      }
+    ],
+    "res://assets/league/champion_1.png": [
+      {
+        "ally": [
+          169,
+          292
+        ],
+        "enemy": [
+          575,
+          214
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          158,
+          295
+        ],
+        "enemy": [
+          570,
+          217
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          169,
+          290
+        ],
+        "enemy": [
+          572,
+          216
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          168,
+          290
+        ],
+        "enemy": [
+          570,
+          216
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          159,
+          290
+        ],
+        "enemy": [
+          574,
+          209
+        ],
+        "surface": "marked_floor"
+      },
+      {
+        "ally": [
+          166,
+          290
+        ],
+        "enemy": [
+          574,
+          209
+        ],
+        "surface": "marked_floor"
+      }
+    ],
+    "res://assets/league/champion_2.png": [
+      {
+        "ally": [
+          187,
+          292
+        ],
+        "enemy": [
+          581,
+          255
+        ],
+        "surface": "open_floor"
+      },
+      {
+        "ally": [
+          184,
+          294
+        ],
+        "enemy": [
+          587,
+          251
+        ],
+        "surface": "open_floor"
+      },
+      {
+        "ally": [
+          185,
+          293
+        ],
+        "enemy": [
+          582,
+          242
+        ],
+        "surface": "open_floor"
+      },
+      {
+        "ally": [
+          183,
+          297
+        ],
+        "enemy": [
+          583,
+          243
+        ],
+        "surface": "open_floor"
+      },
+      {
+        "ally": [
+          178,
+          298
+        ],
+        "enemy": [
+          586,
+          259
+        ],
+        "surface": "open_floor"
+      },
+      {
+        "ally": [
+          180,
+          302
+        ],
+        "enemy": [
+          580,
+          264
+        ],
+        "surface": "open_floor"
+      }
+    ]
+  }
+}

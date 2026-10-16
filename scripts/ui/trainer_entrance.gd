@@ -12,7 +12,8 @@ var projectile := false
 var ball: Texture2D = preload("res://assets/items/ball.png")
 func _process(_delta: float) -> void: queue_redraw()
 func trainer_foot() -> Vector2:
-    return canvas.foot_anchor(false)+Vector2(160+slide,0)
+    var foot := canvas.foot_anchor(false)
+    return Vector2(minf(foot.x+160,canvas.canvas_size.x-360)+slide,foot.y)
 func _pixel(rect: Rect2,color: Color) -> void:
     draw_rect(Rect2((trainer_foot()+Vector2(-72,-204)+rect.position*4).round(),rect.size*4),color)
 func _draw() -> void:
@@ -73,7 +74,7 @@ func _draw() -> void:
     if pose == "windup":
         draw_texture_rect(ball,Rect2((trainer_foot()+Vector2(-44,-172)).round(),Vector2(24,24)),false)
     if projectile:
-        var start := canvas.foot_anchor(false)+Vector2(76,-128)
+        var start := trainer_foot()+Vector2(-84,-128)
         var end := canvas.target_anchor
         var at := start.lerp(end,throw_progress)
         at.y -= sin(throw_progress*PI)*90

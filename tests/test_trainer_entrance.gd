@@ -35,6 +35,7 @@ func run() -> void:
     await process_frame
     var view := ui.battle_ui
     check(view.busy and view.trainer_intro.visible and view.stage.canvas.target_factor == 0,"Trainer appears before the first opponent Pokemon")
+    check(not view.get_node("Intent").visible,"Opponent intent cannot cover the trainer's face during the entrance")
     check(view.end_button.disabled and view.trainer_buttons.values().all(func(card: Button): return card.disabled),"Battle controls remain locked throughout the entrance")
     if native:
         print("OS_FOCUS ",DisplayServer.window_get_native_handle(DisplayServer.WINDOW_HANDLE))
@@ -59,24 +60,24 @@ func run() -> void:
         if not view.busy: break
         await create_timer(0.01).timeout
     check(not view.busy and not view.trainer_intro.visible and view.stage.canvas.target_factor == 1,"Entrance completes with normal battle controls and Pokemon visibility")
+    check(view.get_node("Intent").visible,"Opponent intent returns when the trainer entrance finishes")
     check(JourneySnapshot.encode(j) == before,"Timed trainer sequence leaves the exact campaign state unchanged")
     await picture("grounded-battle")
     ui.refresh()
     await process_frame
     check(not ui.battle_ui.busy and ui.battle_ui.trainer_intro == null,"Refreshing the same battle does not replay the entrance")
     var canvas := ui.battle_ui.stage.canvas
-    check(canvas.source_anchor.y == 477 and canvas.target_anchor.y == 400,"Ally occupies the lower foreground and opponent the upper background")
+    check(canvas.foot_anchor(true).y > canvas.foot_anchor(false).y,"Measured ally floor is below the opponent floor")
     for id in [1,6,25,93,130,143,201,249,321,386]:
         canvas.set_species(id,id,VisualCatalog.new())
         canvas._process(0)
         ui.battle_ui._position_intent()
-        var enemy_bounds := canvas.sprite_bounds(canvas.target_sprite.texture)
-        var enemy_rect := Rect2(canvas.foot_anchor(false)-Vector2(enemy_bounds.size.x*canvas.sprite_zoom/2,enemy_bounds.size.y*canvas.sprite_zoom),Vector2(enemy_bounds.size)*canvas.sprite_zoom)
+        var enemy_rect := canvas.sprite_rect(false)
         check(not ui.battle_ui.get_node("Intent").get_rect().intersects(enemy_rect),"Enemy intent does not cover the visible Pokemon for species %d" % id)
         for ally in [true,false]:
             var sprite := canvas.source_sprite if ally else canvas.target_sprite
             var bounds := canvas.sprite_bounds(sprite.texture)
-            var feet := sprite.position+(Vector2(bounds.position.x+bounds.size.x/2.0,bounds.end.y)-sprite.texture.get_size()/2)*canvas.sprite_zoom
+            var feet := sprite.position+(Vector2(bounds.position.x+bounds.size.x/2.0,bounds.end.y)-sprite.texture.get_size()/2)*canvas.zoom_for(ally)
             check(feet.distance_to(canvas.foot_anchor(ally)) <= 1,"Opaque sprite feet meet the shadow anchor for species %d" % id)
         var position := canvas.source_sprite.position
         canvas._process(5)

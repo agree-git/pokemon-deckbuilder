@@ -27,6 +27,6 @@ godot --path . --rendering-method gl_compatibility --audio-driver Dummy \
 python3 tools/package_background_review.py /tmp/pokemon-background-review
 ```
 
-두 번째 명령은 콘텐츠 ID 전체, PNG 해상도·SHA-256, 배경 셀 전체와 예비 여부를 검증하고 오프라인 `index.html`·설명·인접 ZIP을 만든다. 갤러리에는 분류/이름·타입·지방 검색, 원본 확대와 다운로드가 있다. PNG를 가공하거나 게임 에셋을 바꾸지 않는다. 콘텐츠 후보 수가 바뀌면 도구의 전체 수 검증과 갤러리 안내도 갱신한다.
+두 번째 명령은 콘텐츠 ID 전체, PNG 해상도·SHA-256, 배경 셀 전체와 예비 여부를 검증하고 오프라인 `index.html`·설명·인접 ZIP을 만든다. 갤러리에는 분류/이름·타입·지방 검색, 원본 확대와 다운로드가 있다. [접지 좌표](battlefield-layout.md) 적용 이후에는 캐릭터/HUD를 숨긴 배경별 좌표 가이드 48장, 일반/좌표 화면 전환, 전체 좌표 CSV도 제공하며 현재 계측 데이터와 실제 투영 일치를 검증한다. PNG를 가공하거나 게임 에셋을 바꾸지 않는다. 콘텐츠 후보 수가 바뀌면 도구의 전체 수 검증과 갤러리 안내도 갱신한다.
 
-2026-10-16 Linux/Godot 4.7.2 실제 렌더링 65장, 실패 0개를 확인했다. 모음 이미지 네 장을 시각 검토했다. 산출물은 체크아웃 밖 `/workspace/pokemon-background-review-2026-10-16`과 인접 ZIP에 제공했으며 Git에는 재현 도구만 보관한다. 이 절대 경로의 파일이 다른 환경에도 남아 있다고 가정하지 않는다.
+2026-10-16 Linux/Godot 4.7.2 실제 렌더링 65장, 실패 0개를 확인했다. 접지 수정 후 최신 산출물은 체크아웃 밖 `/workspace/pokemon-background-aligned-final-2026-10-16`과 인접 ZIP이며 전투 65장·가이드 48장·좌표 CSV를 포함한다. 모음 이미지 네 장과 대표 원본/가이드를 시각 검토했다. 기존 `/workspace/pokemon-background-review-2026-10-16`은 접지 수정 전 화면이다. Git에는 재현 도구를 보관하며 이 절대 경로의 파일이 다른 환경에도 남아 있다고 가정하지 않는다.

@@ -18,3 +18,4 @@ func _layout() -> void:
     canvas.canvas_size = size
     canvas.source_anchor = (size * source_ratio).round()
     canvas.target_anchor = (size * target_ratio).round()
+    canvas.layout_battlefield()

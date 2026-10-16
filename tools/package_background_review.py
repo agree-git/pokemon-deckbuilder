@@ -2,9 +2,11 @@
 """Verify the complete rendered review, then build an offline gallery and ZIP."""
 import argparse
 from collections import Counter
+import csv
 import hashlib
 import html
 import json
+import math
 from pathlib import Path
 import struct
 import subprocess
@@ -43,6 +45,23 @@ def verify(folder):
             raise ValueError(f'Invalid or changed 1920x1080 screenshot: {path}')
         if row['active'] != (row['category'] != 'reserve'):
             raise ValueError('Reserved room must not be presented as active content')
+        if row.get('floor_guide'):
+            guide = folder/row['floor_guide']
+            if not guide.resolve().is_relative_to(folder.resolve()):
+                raise ValueError('Guide must stay inside the gallery')
+            payload = guide.read_bytes()
+            if (payload[:8] != b'\x89PNG\r\n\x1a\n' or struct.unpack('>II', payload[16:24]) != (1920,1080)
+                    or hashlib.sha256(payload).hexdigest() != row['guide_sha256']):
+                raise ValueError(f'Invalid floor guide: {guide}')
+            layouts = json.loads((ROOT/'data/battlefield_layouts.json').read_text())
+            profile = layouts['backgrounds'][row['background']][int(row['cell'])]
+            if row['floor_layout'] != profile:
+                raise ValueError('Capture does not match current floor calibration')
+            origin_y = math.floor(layouts['ally_screen_y'] - profile['ally'][1]*2.5)
+            for side in ('ally', 'enemy'):
+                expected_point = [profile[side][0]*2.5, origin_y+profile[side][1]*2.5]
+                if any(abs(a-b) > .01 for a,b in zip(row['screen_feet'][side],expected_point)):
+                    raise ValueError('Sprite feet and artwork projection differ')
     for group in GROUPS:
         if not (folder/'sheets'/f'{group}.png').is_file():
             raise ValueError(f'Missing contact sheet: {group}')
@@ -75,18 +94,34 @@ def main():
 </style><header><h1>포켓몬 전투 배경 전체 검토 · 65장</h1>
 <p>바이옴 18곳 · 사천왕 후보 31명 · 챔피언 후보 11명 · 예비 룸 5개. 같은 룸을 공유하는 사천왕도 모두 촬영했습니다.<br>
 모든 원본은 Godot 실제 전투 UI의 1920×1080 스크린샷입니다. 고정 파티를 사용하는 검토용 장면이며 원정 플레이 기록은 아닙니다. 현재 연결된 배경 43종과 예비 5종을 모두 포함합니다.</p>
-<p>이미지를 누르면 원본을 크게 볼 수 있습니다. ← → 이동, Esc 닫기. 인터넷 연결 없이 사용할 수 있습니다.</p><p>__SHEETS__</p>
+<p>이미지를 누르면 원본을 크게 볼 수 있습니다. ← → 이동, Esc 닫기. 인터넷 연결 없이 사용할 수 있습니다.</p><p>__SHEETS__ __COORDINATES__</p>
 <small>화면/UI 1920×1080 · 배경은 작은 도트 원본을 확대해 표시합니다. 예비 룸은 현재 실제 상대에 배정되지 않습니다.</small></header>
-<nav><select id="group"><option value="all">전체 65장</option>__OPTIONS__</select><input id="search" placeholder="이름 · 지방 · 타입 검색" aria-label="화면 검색"><span id="count"></span></nav>
+<nav><select id="group"><option value="all">전체 65장</option>__OPTIONS__</select><input id="search" placeholder="이름 · 지방 · 타입 검색" aria-label="화면 검색">__GUIDE_TOGGLE__<span id="count"></span></nav>
 <main id="grid">__CARDS__</main><dialog id="viewer"><img id="full" alt=""><footer><button id="prev">← 이전</button><span id="caption"></span><a id="download" download>원본 PNG 저장</a><button id="next">다음 →</button><button id="close">닫기</button></footer></dialog>
 <script>
-const rows=__ROWS__, articles=[...document.querySelectorAll('article')], group=document.querySelector('#group'), search=document.querySelector('#search'), viewer=document.querySelector('#viewer');let current=0;
+const rows=__ROWS__, articles=[...document.querySelectorAll('article')], group=document.querySelector('#group'), search=document.querySelector('#search'), viewer=document.querySelector('#viewer'), guides=document.querySelector('#guides');let current=0;
+function source(r){return guides?.checked&&r.floor_guide?r.floor_guide:r.file;}
 function filter(){let total=0;for(const a of articles){a.hidden=!((group.value==='all'||a.dataset.group===group.value)&&a.dataset.search.includes(search.value.toLowerCase()));if(!a.hidden)total++;}document.querySelector('#count').textContent=total+'장';}
-function show(i){current=i;const r=rows[i];document.querySelector('#full').src=r.file;document.querySelector('#full').alt=r.title;document.querySelector('#caption').textContent=(i+1)+'/65 · '+r.title;document.querySelector('#download').href=r.file;if(!viewer.open)viewer.showModal();}
+function show(i){current=i;const r=rows[i];document.querySelector('#full').src=source(r);document.querySelector('#full').alt=r.title;document.querySelector('#caption').textContent=(i+1)+'/65 · '+r.title;document.querySelector('#download').href=source(r);if(!viewer.open)viewer.showModal();}
+if(guides)guides.onchange=()=>{articles.forEach((a,i)=>a.querySelector('img').src=source(rows[i]));if(viewer.open)show(current);};
 function step(d){const visible=articles.flatMap((a,i)=>a.hidden?[]:[i]);if(!visible.length)return;const at=visible.indexOf(current);show(visible[(at+d+visible.length)%visible.length]);}
 for(const a of document.querySelectorAll('[data-index]'))a.addEventListener('click',e=>{e.preventDefault();show(Number(a.dataset.index));});group.onchange=filter;search.oninput=filter;document.querySelector('#prev').onclick=()=>step(-1);document.querySelector('#next').onclick=()=>step(1);document.querySelector('#close').onclick=()=>viewer.close();document.addEventListener('keydown',e=>{if(viewer.open&&e.key==='ArrowLeft')step(-1);if(viewer.open&&e.key==='ArrowRight')step(1);});filter();
 </script></html>'''
-    page = page.replace('__SHEETS__', sheets).replace('__OPTIONS__', options).replace('__CARDS__', '\n'.join(cards)).replace('__ROWS__', json.dumps(rows, ensure_ascii=False).replace('<', '\\u003c'))
+    guide_toggle = '<label><input type="checkbox" id="guides">접지 좌표 보기</label>' if all(r.get('floor_guide') for r in rows) else ''
+    coordinates = ''
+    if guide_toggle:
+        coordinates = ' · <a href="floor_coordinates.csv">접지점 좌표 CSV</a>'
+        with (folder/'floor_coordinates.csv').open('w', encoding='utf-8-sig', newline='') as output:
+            writer = csv.writer(output)
+            writer.writerow(['이름','배경','셀','아군 원본 X','아군 원본 Y','상대 원본 X','상대 원본 Y','아군 화면 X','아군 화면 Y','상대 화면 X','상대 화면 Y','바닥 구분'])
+            seen = set()
+            for row in rows:
+                key = (row['background'],row['cell'])
+                if key in seen: continue
+                seen.add(key)
+                profile = row['floor_layout']
+                writer.writerow([row['title'],*key,*profile['ally'],*profile['enemy'],*row['screen_feet']['ally'],*row['screen_feet']['enemy'],profile['surface']])
+    page = page.replace('__COORDINATES__', coordinates).replace('__GUIDE_TOGGLE__', guide_toggle).replace('__SHEETS__', sheets).replace('__OPTIONS__', options).replace('__CARDS__', '\n'.join(cards)).replace('__ROWS__', json.dumps(rows, ensure_ascii=False).replace('<', '\\u003c'))
     (folder/'index.html').write_text(page)
     (folder/'README.txt').write_text(f'전체 전투 배경 검토\n\nindex.html을 브라우저로 열면 검색/분류/확대/원본 저장을 사용할 수 있습니다.\n'
         f'실제 1920x1080 렌더링 65장: 바이옴 18, 사천왕 후보 31, 챔피언 후보 11, 예비 5.\n'
@@ -94,6 +129,9 @@ for(const a of document.querySelectorAll('[data-index]'))a.addEventListener('cli
         f'고정 파티의 검토용 전투 장면이며 플레이 완주 기록은 아닙니다. 사용자 저장을 읽거나 변경하지 않습니다.\n'
         f'엔진: {manifest["engine"]}\n촬영 시 체크아웃: {revision}\n\n'
         f'screens/: UI 원본 PNG, sheets/: 모음 PNG, manifest.json: 이름/타입/지방/배경 매핑/원본 해시.\n')
+    if guide_toggle:
+        with (folder/'README.txt').open('a') as output:
+            output.write('guides/: 캐릭터와 HUD를 숨긴 접지점 검토 화면 48장. 갤러리의 접지 좌표 보기로 전환합니다.\nfloor_coordinates.csv: 배경 48종의 셀 내부 좌표와 1920x1080 투영 좌표. 발판/바닥을 수동 계측한 값이며 자동 인식 결과가 아닙니다.\n')
     archive = folder.with_suffix('.zip')
     with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED, compresslevel=6) as target:
         for path in sorted(folder.rglob('*')):
