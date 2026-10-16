@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>포켓몬 배경 위치 수정</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0b161c;color:#e7eee9;font:16px system-ui,sans-serif}main{max-width:1680px;margin:auto;padding:18px}h1{font-size:24px;margin:0 0 8px}p{line-height:1.6;margin:8px 0;color:#b2c5ca}button,select,input{font:inherit;color:inherit;background:#1b333d;border:1px solid #486370;border-radius:7px;padding:10px;min-height:44px}button{cursor:pointer;white-space:nowrap}button:disabled,input:disabled{opacity:.45;cursor:default}button.primary{background:#e0bf73;color:#18262d;font-weight:700}button[aria-pressed=true]{border-color:#f3ce78;background:#35515b}.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0}.bar label{display:flex;gap:7px;align-items:center}select{max-width:100%}#room{flex:1;min-width:min(100%,280px)}#stage{display:block;width:100%;height:auto;aspect-ratio:16/9;touch-action:none;cursor:grab;outline-offset:3px;background:#08161b}#stage:active{cursor:grabbing}#stage:focus-visible{outline:2px solid #edcb80}.frame{border:1px solid #405965;border-radius:9px;overflow:hidden}.coords{display:flex;gap:18px;flex-wrap:wrap}.coords input{width:110px}.card{background:#12262e;border:1px solid #35515d;border-radius:9px;padding:12px;flex:1;min-width:min(100%,270px)}.card strong{display:block;margin-bottom:8px}.card label{display:inline-flex;align-items:center;gap:8px;margin:3px}.muted{font-size:14px;color:#aac0c6}#status{min-height:28px;color:#f0d396}#warning{color:#ffd09d}.hidden{display:none!important}details{border-top:1px solid #35515d;margin-top:18px;padding-top:12px}summary{cursor:pointer}code{color:#f0d396;word-break:break-all}#load{display:none}a{color:#f0d396}@media(max-width:600px){main{padding:10px}h1{font-size:21px}.bar{gap:7px}.bar button{flex:1 0 auto}.coords{gap:8px}.card{padding:9px}.coords input{width:90px}#room{flex-basis:100%}#view{width:100%}}
+</style>
+<main>
+<h1>포켓몬 배경 위치 수정</h1>
+<p>배경을 고르고 포켓몬을 드래그하세요. 포켓몬을 숨긴 뒤 발판 중심을 누르면 더 정확하게 맞출 수 있습니다.</p>
+<div class="bar">
+  <select id="room" aria-label="배경 선택"></select>
+  <button id="previous" title="이전 배경">← 이전</button><button id="next" title="다음 배경">다음 →</button>
+  <select id="view" aria-label="화면 모드"><option value="edit">배경 보며 수정</option><option value="game">게임 구도 미리보기</option></select>
+</div>
+<div class="bar">
+  <button id="ally" aria-pressed="true">내 포켓몬 선택</button><button id="enemy" aria-pressed="false">상대 포켓몬 선택</button>
+  <label><input id="sprites" type="checkbox" checked>포켓몬</label>
+  <label><input id="guides" type="checkbox" checked>접지점</label>
+  <label><input id="hud" type="checkbox" checked>UI 영역</label>
+  <label><input id="grid" type="checkbox">격자</label>
+</div>
+<div class="frame"><canvas id="stage" width="1920" height="1080" tabindex="0" aria-label="배경 위치 수정 화면. 내 포켓몬 또는 상대를 선택하고 클릭하거나 드래그하세요. 방향키로 미세 조정할 수 있습니다."></canvas></div>
+<p id="hint" class="muted"></p>
+<div class="coords">
+  <section class="card"><strong style="color:#80efb4">내 포켓몬 · 뒤 모습</strong>
+    <select id="allySpecies" aria-label="내 포켓몬 종류"></select><br>
+    <label>X <input id="allyX" type="number" min="0" max="767.9" step="0.1"></label>
+    <label>Y <input id="allyY" type="number" min="0" max="341.3" step="0.1"></label>
+    <span id="allyScreen" class="muted"></span>
+  </section>
+  <section class="card"><strong style="color:#ffbc84">상대 포켓몬 · 앞 모습</strong>
+    <select id="enemySpecies" aria-label="상대 포켓몬 종류"></select><br>
+    <label>X <input id="enemyX" type="number" min="0" max="767.9" step="0.1"></label>
+    <label>Y <input id="enemyY" type="number" min="0" max="341.3" step="0.1"></label>
+    <span id="enemyScreen" class="muted"></span>
+  </section>
+</div>
+<p id="warning" role="status"></p>
+<div class="bar">
+  <button id="undo" disabled>되돌리기</button><button id="redo" disabled>다시 하기</button><button id="reset">이 배경 초기화</button>
+  <button id="save" class="primary">수정 좌표 JSON 저장</button><button id="import">JSON 불러오기</button>
+  <button id="csv">CSV 저장</button><button id="picture">미리보기 PNG 저장</button>
+  <input id="load" type="file" accept=".json,application/json">
+</div>
+<p id="status" role="status" aria-live="polite">이미지를 불러오는 중…</p>
+<details><summary>사용법 · 게임에 적용하는 방법</summary>
+<p>① 배경 48종 중 하나를 고릅니다. ② 내 포켓몬/상대를 선택한 뒤 발판 중심을 누르거나 포켓몬을 끌어서 옮깁니다. 숫자는 배경 셀 내부 좌표입니다. 방향키는 1px, Shift+방향키는 5px씩 움직입니다.</p>
+<p>③ <b>게임 구도 미리보기</b>로 전환해 실제 게임의 배경 카메라·포켓몬 배율·발 위치를 비교합니다. 이 모드는 편집하지 않습니다. 아군 발 높이를 약 565px로 맞추기 때문에 배경도 이동합니다. 편집 모드로 돌아가면 배경 전체가 다시 보입니다.</p>
+<p>④ <b>수정 좌표 JSON 저장</b>을 눌러 <code>battlefield_layouts.json</code>을 보관하세요. 다른 배경으로 바꿔도 이 파일에 48개 배경의 수정 내용이 모두 들어갑니다. JSON을 불러오면 이어서 수정할 수 있습니다.</p>
+<p>⑤ 내려받은 JSON을 보내주시면 게임에 적용하겠습니다. 직접 적용하려면 게임을 종료하고 프로젝트의 <code>data/battlefield_layouts.json</code>을 이 파일로 교체한 뒤 다시 실행하세요. 배경 PNG나 스프라이트를 바꿀 필요는 없습니다.</p>
+<p>포켓몬 종류 선택은 크기 확인용이며 게임 파티를 바꾸지 않습니다. UI 영역은 겹침 확인용 간단한 가이드입니다. 실제 카드·HP UI 전체를 실행하는 게임 화면은 아닙니다. 배경·386종 앞뒤 스프라이트가 파일 안에 들어 있고 외부 요청을 하지 않습니다.</p>
+<p>브라우저가 허용하면 임시 자동 저장을 사용합니다. 모바일 파일 미리보기 앱에서는 실행되지 않을 수 있으니 HTML 파일을 내려받아 JavaScript를 지원하는 브라우저로 여세요. 중요한 수정은 JSON으로 보관하세요. 사천왕은 같은 타입의 방을 공유하므로 한 방을 수정하면 해당 타입 후보 모두에 적용됩니다.</p>
+</details>
+</main>
+<script id="editor-data" type="application/json">__EDITOR_PAYLOAD__</script>
+<script>
+'use strict';
+const DATA=JSON.parse(document.getElementById('editor-data').textContent);
+const $=id=>document.getElementById(id), copy=v=>JSON.parse(JSON.stringify(v));
+const canvas=$('stage'), ctx=canvas.getContext('2d'), WIDTH=1920, HEIGHT=1080, CELL_W=768, CELL_H=1024/3;
+const STORAGE_KEY='pokemon-floor-editor:'+DATA.layout_sha256;
+let layouts=copy(DATA.layout), index=0, side='ally', drag=null, undo=[], redo=[], images=new Map(), generation=0, ready=false;
+let visibleSprites={}, storageAvailable=true, savedSnapshot=JSON.stringify(layouts);
+const speciesById=new Map(DATA.pokemon.map(p=>[p.id,p]));
+const current=()=>DATA.rooms[index], profile=()=>layouts.backgrounds[current().background][current().cell];
+const message=text=>{$('status').textContent=text;};
+function validate(value){
+  if(!value||value.version!==DATA.layout.version||value.coordinate_space!==DATA.layout.coordinate_space||value.ally_screen_y!==DATA.layout.ally_screen_y||!value.backgrounds)throw Error('좌표 파일 형식 또는 카메라 기준이 다릅니다.');
+  const expected=Object.keys(DATA.layout.backgrounds).sort(), actual=Object.keys(value.backgrounds).sort();
+  if(JSON.stringify(expected)!==JSON.stringify(actual))throw Error('배경 8개 아틀라스가 모두 필요합니다.');
+  for(const path of expected){
+    const cells=value.backgrounds[path];
+    if(!Array.isArray(cells)||cells.length!==6)throw Error('아틀라스마다 배경 셀 6개가 필요합니다.');
+    cells.forEach((cell,i)=>{
+      if(!cell||cell.surface!==DATA.layout.backgrounds[path][i].surface)throw Error('바닥 구분이 올바르지 않습니다.');
+      for(const key of ['ally','enemy']){
+        const p=cell[key];
+        if(!Array.isArray(p)||p.length!==2||!p.every(Number.isFinite)||p[0]<0||p[0]>=CELL_W||p[1]<0||p[1]>=CELL_H)throw Error('좌표는 해당 배경 셀 안의 숫자 두 개여야 합니다.');
+      }
+    });
+  }
+  return value;
+}
+function persist(){
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(layouts));storageAvailable=true;}catch(_){storageAvailable=false;}
+}
+function changedCount(){return DATA.rooms.filter(r=>JSON.stringify(layouts.backgrounds[r.background][r.cell])!==JSON.stringify(DATA.layout.backgrounds[r.background][r.cell])).length;}
+function commit(before){
+  if(JSON.stringify(before)===JSON.stringify(layouts))return;
+  undo.push(before);if(undo.length>100)undo.shift();redo=[];persist();sync();
+  message(`${changedCount()}/48개 배경 수정 · ${storageAvailable?'브라우저 임시 저장됨':'임시 저장 불가 — JSON으로 저장하세요'}`);
+}
+function setSide(value){side=value;$('ally').setAttribute('aria-pressed',String(side==='ally'));$('enemy').setAttribute('aria-pressed',String(side==='enemy'));render();}
+function frame(game=$('view').value==='game'){
+  return {x:0,y:game?Math.floor(HEIGHT*layouts.ally_screen_y/1080-profile().ally[1]*2.5):72,scale:WIDTH/CELL_W};
+}
+function project(p,f=frame()){return {x:f.x+p[0]*f.scale,y:f.y+p[1]*f.scale};}
+function spriteInfo(which){
+  const id=Number($(which+'Species').value), pokemon=speciesById.get(id);
+  const path=pokemon[which==='ally'?'back':'front'];return {id,pokemon,...images.get(path)};
+}
+function spriteGeometry(which,f=frame()){
+  const info=spriteInfo(which), b=info.bounds, foot=project(profile()[which],f);let zoom=4;
+  if($('view').value==='game'){
+    const roster=which==='ally'?{x:36,y:104,w:240,h:252}:{x:1644,y:104,w:240,h:450};
+    while(zoom>2){
+      const box={x:foot.x-b.w*zoom/2-8,y:foot.y-b.h*zoom-8,w:b.w*zoom+16,h:b.h*zoom+16};
+      if(box.y>=132&&!intersects(box,roster))break;zoom--;
+    }
+  }
+  // Match BattleCanvas: round the full texture's centre, then offset its used rectangle.
+  const centre={x:Math.round(foot.x-(b.x+b.w/2-info.image.width/2)*zoom),y:Math.round(foot.y-(b.y+b.h-info.image.height/2)*zoom)};
+  const x=centre.x-info.image.width*zoom/2,y=centre.y-info.image.height*zoom/2;
+  return {info,foot,zoom,x,y,box:{x:x+b.x*zoom,y:y+b.y*zoom,w:b.w*zoom,h:b.h*zoom}};
+}
+function intersects(a,b){return a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y;}
+function inside(p,b){return p.x>=b.x&&p.x<=b.x+b.w&&p.y>=b.y&&p.y<=b.y+b.h;}
+function shadow(g){
+  const radius=Math.min(108,Math.max(28,g.info.bounds.w*g.zoom*.42)), x=g.foot.x,y=g.foot.y-4;
+  for(const [start,end,height,width,alpha] of [[-16,17,20,1,.36],[-8,9,12,.63,.34]]){
+    ctx.fillStyle=`rgba(6,14,18,${alpha})`;
+    for(let dy=start;dy<end;dy+=4){const half=Math.floor(Math.sqrt(Math.max(0,1-(dy/height)**2))*radius*width/4)*4;ctx.fillRect(Math.round(x-half),Math.round(y+dy),half*2,4);}
+  }
+}
+function label(text,x,y,colour='#e7eee9',font=24){ctx.font=`600 ${font}px system-ui,sans-serif`;ctx.fillStyle=colour;ctx.fillText(text,x,y);}
+function render(){
+  if(!ready)return;
+  const room=current(), f=frame(), game=$('view').value==='game', image=images.get(room.background).image;
+  ctx.imageSmoothingEnabled=false;ctx.fillStyle='#061217';ctx.fillRect(0,0,WIDTH,HEIGHT);
+  // Source atlas region deliberately retains Godot's fractional 1024/3 height.
+  ctx.drawImage(image,(room.cell%2)*CELL_W,Math.floor(room.cell/2)*CELL_H,CELL_W,CELL_H,0,f.y,WIDTH,CELL_H*f.scale);
+  const bottom=f.y+CELL_H*f.scale;
+  if(game&&bottom<HEIGHT){
+    for(let y=Math.floor(bottom)-48;y<Math.ceil(bottom);y+=4){ctx.fillStyle=`rgba(6,15,19,${Math.max(0,Math.min(1,(y-(bottom-48))/44))})`;ctx.fillRect(0,y,WIDTH,4);}
+    ctx.fillStyle='#061217';ctx.fillRect(0,bottom,WIDTH,HEIGHT-bottom);
+  }
+  if($('grid').checked){
+    ctx.strokeStyle='#ffffff44';ctx.lineWidth=1;ctx.beginPath();
+    for(let x=0;x<CELL_W;x+=25){ctx.moveTo(x*f.scale,f.y);ctx.lineTo(x*f.scale,bottom);}
+    for(let y=0;y<CELL_H;y+=25){ctx.moveTo(0,f.y+y*f.scale);ctx.lineTo(WIDTH,f.y+y*f.scale);}ctx.stroke();
+  }
+  const sprites=['ally','enemy'].map(which=>[which,spriteGeometry(which,f)]);
+  visibleSprites=Object.fromEntries(sprites);
+  if($('sprites').checked){for(const [,g] of sprites)shadow(g);for(const [,g] of sprites)ctx.drawImage(g.info.image,g.x,g.y,g.info.image.width*g.zoom,g.info.image.height*g.zoom);}
+  if(game&&$('hud').checked){
+    ctx.fillStyle='#091a23e8';for(const b of [{x:0,y:0,w:1920,h:72},{x:36,y:104,w:240,h:252},{x:1644,y:104,w:240,h:450},{x:0,y:786,w:1920,h:294}])ctx.fillRect(b.x,b.y,b.w,b.h);
+    label('내 파티 영역',60,140);label('상대 파티 영역',1660,140);label('손패 / 에너지 / 턴 종료 영역',560,920,'#c4d4d8',32);
+    for(const [which,g] of sprites){const x=Math.max(32,Math.min(1300,g.foot.x-165));ctx.fillStyle='#091a23ed';ctx.fillRect(x,Math.round(g.foot.y+24),330,89);label(g.info.pokemon.name,x+18,g.foot.y+58);ctx.fillStyle='#96c5a4';ctx.fillRect(x+18,g.foot.y+95,294,7);}
+  }
+  if($('guides').checked){
+    for(const [which,g] of sprites){
+      const p=g.foot,colour=which==='ally'?'#80efb4':'#ffbc84';ctx.strokeStyle=colour;ctx.lineWidth=which===side?4:2;
+      ctx.beginPath();ctx.arc(p.x,p.y,24,0,Math.PI*2);ctx.moveTo(p.x-37,p.y);ctx.lineTo(p.x+37,p.y);ctx.moveTo(p.x,p.y-37);ctx.lineTo(p.x,p.y+37);ctx.stroke();
+      const text=`${which==='ally'?'내 포켓몬':'상대'} (${profile()[which].join(', ')})`, x=Math.max(8,Math.min(1500,p.x-180)),y=p.y+58;
+      ctx.fillStyle='#091a23e8';ctx.fillRect(x-8,y-28,370,39);label(text,x,y,colour,23);
+    }
+  }
+  ctx.fillStyle='#091a23eb';ctx.fillRect(0,0,WIDTH,58);label(`${room.group} · ${room.title}   |   ${game?'게임 구도 미리보기':'배경 고정 · 클릭 / 드래그로 수정'}`,24,38,'#e7eee9',26);
+}
+function sync(){
+  for(const which of ['ally','enemy']){
+    $(which+'X').value=profile()[which][0];$(which+'Y').value=profile()[which][1];
+    $(which+'X').disabled=$(which+'Y').disabled=$('view').value==='game';
+    const p=project(profile()[which],frame(true));$(which+'Screen').textContent=`게임 화면: (${p.x.toFixed(1)}, ${p.y.toFixed(1)})`;
+  }
+  $('undo').disabled=!undo.length;$('redo').disabled=!redo.length;
+  const game=$('view').value==='game';
+  $('hint').textContent=game?'실제 배경 카메라 / 정수 스프라이트 배율 미리보기입니다. 이동하려면 ‘배경 보며 수정’으로 돌아가세요.':'포켓몬을 끌어서 이동하거나, 원하는 쪽을 선택하고 발판 중심을 누르세요. 방향키로 1px, Shift와 함께 5px 이동합니다.';
+  $('warning').textContent=profile().ally[1]-profile().enemy[1]<=16?'아군과 상대의 높이 차이가 작습니다. 아군을 더 아래로 두는 것이 현재 게임 구도와 맞습니다.':'';
+  render();
+}
+async function imageFor(path){
+  if(images.has(path))return images.get(path);
+  const image=new Image();image.src=DATA.assets[path];await image.decode();
+  let bounds=null;
+  if(path.includes('/pokemon/')){
+    const scratch=document.createElement('canvas');scratch.width=image.width;scratch.height=image.height;
+    const context=scratch.getContext('2d',{willReadFrequently:true});context.drawImage(image,0,0);
+    const rgba=context.getImageData(0,0,image.width,image.height).data;
+    let left=image.width,top=image.height,right=0,bottom=0;
+    for(let y=0;y<image.height;y++)for(let x=0;x<image.width;x++)if(rgba[(y*image.width+x)*4+3]){left=Math.min(left,x);top=Math.min(top,y);right=Math.max(right,x+1);bottom=Math.max(bottom,y+1);}
+    bounds={x:left,y:top,w:right-left,h:bottom-top};
+  }
+  const value={image,bounds};images.set(path,value);return value;
+}
+async function loadScene(resetSpecies=false){
+  ready=false;const ticket=++generation;
+  if(resetSpecies){$('allySpecies').value=current().ally;$('enemySpecies').value=current().enemy;}
+  try{
+    await Promise.all([imageFor(current().background),...['ally','enemy'].map(which=>imageFor(speciesById.get(Number($(which+'Species').value))[which==='ally'?'back':'front']))]);
+    if(ticket!==generation)return;ready=true;sync();
+  }catch(error){if(ticket===generation)message('이미지를 불러오지 못했습니다: '+error.message);}
+}
+function pointFor(event){const r=canvas.getBoundingClientRect();return {x:(event.clientX-r.left)*WIDTH/r.width,y:(event.clientY-r.top)*HEIGHT/r.height};}
+function moveTo(p){
+  const f=frame(false);profile()[side]=[Math.max(0,Math.min(767.9,Math.round((p.x-f.x)/f.scale*10)/10)),Math.max(0,Math.min(341.3,Math.round((p.y-f.y)/f.scale*10)/10))];sync();
+}
+function endDrag(cancel=false){
+  if(!drag)return;const prior=drag;drag=null;
+  if(canvas.hasPointerCapture(prior.id))canvas.releasePointerCapture(prior.id);
+  if(cancel){layouts=prior.before;sync();}else commit(prior.before);
+}
+canvas.addEventListener('pointerdown',event=>{
+  if(!ready||drag||event.button!==0||$('view').value!=='edit')return;
+  event.preventDefault();canvas.focus({preventScroll:true});const p=pointFor(event), before=copy(layouts);
+  const hits=['ally','enemy'].filter(which=>{
+    const g=visibleSprites[which];return Math.hypot(p.x-g.foot.x,p.y-g.foot.y)<40||($('sprites').checked&&inside(p,g.box));
+  });
+  let offset={x:0,y:0};
+  if(hits.length){const which=hits.sort((a,b)=>Math.hypot(p.x-visibleSprites[a].foot.x,p.y-visibleSprites[a].foot.y)-Math.hypot(p.x-visibleSprites[b].foot.x,p.y-visibleSprites[b].foot.y))[0];setSide(which);const foot=visibleSprites[which].foot;offset={x:foot.x-p.x,y:foot.y-p.y};}
+  drag={id:event.pointerId,before,offset};canvas.setPointerCapture(event.pointerId);moveTo({x:p.x+offset.x,y:p.y+offset.y});
+});
+canvas.addEventListener('pointermove',event=>{if(!drag||event.pointerId!==drag.id)return;event.preventDefault();const p=pointFor(event);moveTo({x:p.x+drag.offset.x,y:p.y+drag.offset.y});});
+canvas.addEventListener('pointerup',event=>{if(drag&&event.pointerId===drag.id)endDrag();});
+canvas.addEventListener('pointercancel',()=>endDrag(true));
+canvas.addEventListener('lostpointercapture',()=>{if(drag)endDrag(true);});
+canvas.addEventListener('keydown',event=>{
+  if(!ready||$('view').value!=='edit')return;
+  const vectors={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}, v=vectors[event.key];if(!v)return;
+  event.preventDefault();const before=copy(layouts), p=profile()[side], step=event.shiftKey?5:1;
+  moveTo(project([p[0]+v[0]*step,p[1]+v[1]*step],frame(false)));commit(before);
+});
+function download(content,type,name){
+  const url=URL.createObjectURL(new Blob([content],{type})), a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function changeRoom(next){endDrag();index=(next+DATA.rooms.length)%DATA.rooms.length;$('room').value=index;loadScene(true);}
+for(const group of ['바이옴','사천왕','챔피언']){
+  const optgroup=document.createElement('optgroup');optgroup.label=group;
+  DATA.rooms.forEach((r,i)=>{if(r.group===group){const option=document.createElement('option');option.value=i;option.textContent=r.title;optgroup.append(option);}});$('room').append(optgroup);
+}
+for(const which of ['ally','enemy']){
+  for(const p of DATA.pokemon){const option=document.createElement('option');option.value=p.id;option.textContent=`${String(p.id).padStart(3,'0')} ${p.name}`;$(which+'Species').append(option);}
+  $(which).onclick=()=>setSide(which);$(which+'Species').onchange=()=>loadScene();
+  for(const [axis,n] of [['X',0],['Y',1]])$(which+axis).onchange=()=>{
+    if($('view').value!=='edit')return;const value=Number($(which+axis).value);
+    if($(which+axis).value.trim()===''||!Number.isFinite(value)){sync();return;}
+    const before=copy(layouts);profile()[which][n]=Math.round(Math.max(0,Math.min(n===0?767.9:341.3,value))*10)/10;commit(before);sync();
+  };
+}
+$('room').onchange=()=>changeRoom(Number($('room').value));$('previous').onclick=()=>changeRoom(index-1);$('next').onclick=()=>changeRoom(index+1);
+$('view').onchange=()=>{endDrag();sync();};for(const key of ['sprites','guides','grid','hud'])$(key).onchange=render;
+$('undo').onclick=()=>{endDrag();if(!undo.length)return;redo.push(copy(layouts));layouts=undo.pop();persist();sync();message('이전 수정으로 되돌렸습니다.');};
+$('redo').onclick=()=>{endDrag();if(!redo.length)return;undo.push(copy(layouts));layouts=redo.pop();persist();sync();message('수정을 다시 적용했습니다.');};
+$('reset').onclick=()=>{endDrag();const before=copy(layouts);layouts.backgrounds[current().background][current().cell]=copy(DATA.layout.backgrounds[current().background][current().cell]);commit(before);sync();};
+$('save').onclick=()=>{endDrag();validate(layouts);download(JSON.stringify(layouts,null,2)+'\n','application/json','battlefield_layouts.json');savedSnapshot=JSON.stringify(layouts);message('48개 배경의 수정 좌표 JSON을 저장했습니다. 이 파일을 보내주시면 적용하겠습니다.');};
+$('import').onclick=()=>$('load').click();
+$('load').onchange=async()=>{
+  const file=$('load').files[0];if(!file)return;
+  try{if(file.size>1024*1024)throw Error('좌표 JSON은 1MB 이하여야 합니다.');const value=validate(JSON.parse(await file.text()));endDrag();const before=copy(layouts);layouts=copy(value);commit(before);savedSnapshot=JSON.stringify(layouts);sync();message('JSON 좌표를 불러왔습니다.');}
+  catch(error){message('불러오기 실패: '+error.message);}finally{$('load').value='';}
+};
+$('csv').onclick=()=>{
+  const rows=[['분류','이름','배경','셀','아군 원본 X','아군 원본 Y','상대 원본 X','상대 원본 Y','아군 화면 X','아군 화면 Y','상대 화면 X','상대 화면 Y']];
+  for(const r of DATA.rooms){const p=layouts.backgrounds[r.background][r.cell], origin=Math.floor(565-p.ally[1]*2.5);rows.push([r.group,r.title,r.background,r.cell,...p.ally,...p.enemy,p.ally[0]*2.5,origin+p.ally[1]*2.5,p.enemy[0]*2.5,origin+p.enemy[1]*2.5]);}
+  download('\ufeff'+rows.map(row=>row.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(',')).join('\r\n')+'\r\n','text/csv;charset=utf-8','floor_coordinates.csv');
+};
+$('picture').onclick=()=>{if(ready)canvas.toBlob(blob=>{if(blob)download(blob,'image/png',`battlefield-${index+1}.png`);});};
+window.addEventListener('beforeunload',event=>{if(drag)endDrag();if(JSON.stringify(layouts)!==savedSnapshot){event.preventDefault();event.returnValue='';}});
+async function start(){
+  try{const saved=localStorage.getItem(STORAGE_KEY);if(saved){layouts=validate(JSON.parse(saved));message('브라우저에 임시 저장된 수정 내용을 복원했습니다.');}else message('배경 48종 준비됨 · 수정 후 JSON으로 저장하세요.');}
+  catch(_){layouts=copy(DATA.layout);message('배경 48종 준비됨 · 수정 후 JSON으로 저장하세요.');}
+  await loadScene(true);
+}
+start();
+</script>
+</html>
