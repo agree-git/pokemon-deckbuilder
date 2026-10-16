@@ -14,7 +14,7 @@ func run() -> void:
     if FileAccess.file_exists(preferences.path): DirAccess.remove_absolute(preferences.path)
     preferences.load_preferences()
     check(preferences.battle_speed == 1.0 and preferences.hit_motion and preferences.display_mode == "maximized", "New installs retain normal playback and maximized native UI")
-    check(preferences.master_volume == 0.75 and preferences.effects_volume == 0.8 and not preferences.audio_muted, "Legacy or missing audio fields retain moderate audible defaults")
+    check(preferences.master_volume == 0.75 and preferences.effects_volume == 0.8 and preferences.music_volume == 0.55 and not preferences.audio_muted, "Legacy or missing audio fields retain moderate audible defaults")
     preferences.set_battle_speed(2.0)
     preferences.set_hit_motion(false)
     preferences.display_mode = "windowed"
@@ -34,11 +34,12 @@ func run() -> void:
     config.set_value("display", "mode", 3)
     config.set_value("audio", "master", NAN)
     config.set_value("audio", "effects", "0.5")
+    config.set_value("audio", "music", 2.0)
     config.set_value("audio", "muted", "false")
     config.save(preferences.path)
     copy.load_preferences()
     check(copy.battle_speed == 1.0 and copy.hit_motion and copy.display_mode == "maximized", "Wrong types fall back independently to safe defaults")
-    check(copy.master_volume == 0.75 and copy.effects_volume == 0.8 and not copy.audio_muted, "Invalid audio fields independently fall back to defaults")
+    check(copy.master_volume == 0.75 and copy.effects_volume == 0.8 and copy.music_volume == 0.55 and not copy.audio_muted, "Invalid audio fields independently fall back to defaults")
     config.set_value("presentation", "battle_speed", -1.0)
     config.set_value("presentation", "hit_motion", false)
     config.set_value("display", "mode", "fullscreen")
@@ -103,5 +104,7 @@ func run() -> void:
         await process_frame
         check(ui.stage.canvas.position == Vector2.ZERO and ui.stage.canvas.source_motion == Vector2.ZERO, "Disabled hit motion keeps battlefield and Pokemon steady")
         ui.free()
+    root.get_node("GameMusic").stop_music()
+    await create_timer(0.12).timeout # Let the mixer release playback owned by the UI fixtures.
     print("SETTINGS: ", checks, " checks, ", failures, " failures")
     quit(0 if failures == 0 else 1)

@@ -10,6 +10,7 @@ var hit_motion := true
 var display_mode := "maximized"
 var master_volume := 0.75
 var effects_volume := 0.8
+var music_volume := 0.55
 var audio_muted := false
 var last_error := ""
 var panel: Control
@@ -24,6 +25,7 @@ func load_preferences() -> void:
     display_mode = "maximized"
     master_volume = 0.75
     effects_volume = 0.8
+    music_volume = 0.55
     audio_muted = false
     last_error = ""
     var config := ConfigFile.new()
@@ -39,7 +41,7 @@ func load_preferences() -> void:
     if motion is bool: hit_motion = motion
     var mode: Variant = config.get_value("display", "mode", "maximized")
     if mode is String and mode in MODES: display_mode = mode
-    for channel: String in ["master", "effects"]:
+    for channel: String in ["master", "effects", "music"]:
         var volume: Variant = config.get_value("audio", channel, get(channel + "_volume"))
         if (volume is float or volume is int) and is_finite(float(volume)) and float(volume) >= 0 and float(volume) <= 1:
             set(channel + "_volume", float(volume))
@@ -53,6 +55,7 @@ func save_preferences() -> Error:
     config.set_value("display", "mode", display_mode)
     config.set_value("audio", "master", master_volume)
     config.set_value("audio", "effects", effects_volume)
+    config.set_value("audio", "music", music_volume)
     config.set_value("audio", "muted", audio_muted)
     var error := config.save(path + ".tmp")
     if error == OK:
@@ -72,7 +75,7 @@ func set_hit_motion(value: bool) -> void:
     save_preferences()
 
 func set_audio_volume(channel: String, value: float) -> void:
-    if channel not in ["master", "effects"] or not is_finite(value) or value < 0 or value > 1: return
+    if channel not in ["master", "effects", "music"] or not is_finite(value) or value < 0 or value > 1: return
     if get(channel + "_volume") == value: return
     set(channel + "_volume", value)
     save_preferences()

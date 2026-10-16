@@ -47,6 +47,7 @@ func _ready() -> void:
     if session.get("open_starter_selection"):
         session.set("open_starter_selection",false)
         mode = "starters"
+    get_node("/root/GameMusic").play_theme("title")
     render()
 func render() -> void:
     W.clear(page)

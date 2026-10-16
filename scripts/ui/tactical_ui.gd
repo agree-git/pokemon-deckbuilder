@@ -110,6 +110,8 @@ var _preview_uid := 0
 func _ready() -> void:
     set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     if battle == null: battle = get_node("/root/BattleSession").get("tactics")
+    var music := get_node("/root/GameMusic")
+    music.play_theme("camp" if battle.phase in [TacticalBattle.WON,TacticalBattle.LOST] else music.for_battle(str(opponent_trainer.get("kind","wild"))))
     _theme()
     stage.source_ratio = Vector2(0.25,0.442)
     stage.target_ratio = Vector2(0.73,0.37)
@@ -922,6 +924,7 @@ func _float_value(text: String,on_ally: bool,color: Color,icon_key := "") -> voi
     tween.tween_property(number,"modulate:a",0.0,0.35).set_delay(0.35)
     tween.chain().tween_callback(number.queue_free)
 func _finished() -> void:
+    if battle.phase in [TacticalBattle.WON,TacticalBattle.LOST]: get_node("/root/GameMusic").play_theme("camp")
     if battle.phase == TacticalBattle.WON and "capture" not in playback_kinds: BattleSoundCues.play(self,"victory")
     elif battle.phase == TacticalBattle.LOST: BattleSoundCues.play(self,"defeat")
     stage.canvas.effect.stop()

@@ -84,6 +84,7 @@ func refresh() -> void:
         battle_ui.run_restart_requested.connect(_restart)
         page.add_child(battle_ui)
         return
+    get_node("/root/GameMusic").play_theme("title" if journey.phase == TacticalJourney.CLEARED else "camp")
     var background := TextureRect.new()
     background.texture = VisualCatalog.biome_texture(journey.biome())
     background.expand_mode = TextureRect.EXPAND_IGNORE_SIZE

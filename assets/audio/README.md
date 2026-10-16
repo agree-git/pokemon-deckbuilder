@@ -14,3 +14,11 @@ visual assets retain their separate provenance.
 
 Generation uses private seeded noise sources. Runtime playback has no random
 pitch changes and does not consume the expedition's RNG.
+
+## Original music
+
+Five original eight-bar PCM WAV loops live in `music/`, with independent motifs,
+harmony and rhythm. Rebuild with `python3 tools/generate_music.py` (Python and
+FFmpeg for the mobile MP3 preview); verify PCM, file hashes and preview integrity
+with `python3 tools/generate_music.py --check`. The tracked Godot import files
+enable forward loops and retain uncompressed PCM. See `docs/music.md`.
