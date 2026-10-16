@@ -1,6 +1,32 @@
 # 원정 난도 비교 도구
 
-개체값·노력치를 제거한 현재 능력치로 스타팅·보상 주제·야영지 운영·초반 영입을 비교한다. 최신은 [기술 카드 누락 수정 후 160개](measurements/campaign-learning-deck.md)와 [JSON](measurements/campaign-learning-deck.json)이다. 수정 전 [초반 영입 종료 159개](measurements/campaign-recruitment.md)·[미완료 1개](measurements/campaign-recruitment-incomplete.json), [핵심 유물 120개](measurements/campaign-core-relics.md), 핵심 도입 전 [400개](measurements/campaign-species-level.md)와 이전 공식의 [60개](measurements/campaign-balance.md)는 당시 규칙의 기록으로 유지하며 서로 합치지 않는다.
+개체값·노력치를 제거한 현재 능력치로 스타팅·보상 주제·야영지 운영·초반 영입을 비교한다. 최신은 **[확장 관장 대진 16개](measurements/campaign-route2-diagnostics.md)**와 [JSON](measurements/campaign-route2-diagnostics.json)이다. 이전 대진의 [기술 카드 누락 수정 후 160개](measurements/campaign-learning-deck.md)·[40개 전투 진단](measurements/campaign-battle-diagnostics.md), 그 이전 자료는 당시 규칙의 기록으로 유지하며 새 표본과 합치지 않는다.
+
+## 확장 관장 대진의 소규모 결과
+
+관동 기본·아기·물 보조형·잉어킹 단독 × 시드 **0/5** × 영입 없음/초반 영입, 총 16개다. 같은 시드를 두 정책으로 비교한 것이므로 독립된 시드 16개가 아니다. 모두 육성 야영지·기존 기준 보상·전투당 200턴 제한을 사용했고 480개 전투를 기록했다. 제한 중단·불법 행동·집계 오류는 0개다.
+
+| 편성 | 완주 / 표본 | 첫 관장 전 전멸 | 첫 관장에게 패배 |
+|---|---:|---:|---:|
+| 관동 기본 | 4 / 4 | 0 | 0 |
+| 아기 | 2 / 4 | 0 | 2 |
+| 물 보조형 | 0 / 4 | 2 | 2 |
+| 잉어킹 단독 | 0 / 4 | 4 | 0 |
+
+시드 0 첫 관장은 팔데아 단풍, 시드 5는 하나 카밀레이며 둘 다 Lv.18·6마리다. 관동 파티는 두 관장 모두 17턴에 승리했다. 아기는 단풍에게 34/39턴에 패배했지만 카밀레에게 118/108턴에 승리했다. 이 첫 관장전의 아기는 Lv.12~13·직접 공격 5장, 관동은 Lv.16·직접 공격 10장이었다. 원인 판단에는 종족값·기절 경험치·학습·덱 사용을 함께 확인해야 한다.
+
+물 보조형의 첫 덱 공격은 5장 모두 발버둥, 잉어킹 단독은 8장 모두 발버둥이다. 시드 5 잉어킹의 초반 영입 정책은 실제 찌리리공 한 마리를 포획·합류시켜 영입 없음의 4승에서 6승까지 진행했으나 첫 관장에 도달하지 못했다. 나머지 초반 영입 7개 표본은 포획 0회였다. 포획 준비 중 행동이 바뀌므로 ‘영입 정책’과 ‘실제로 동료를 얻음’을 구분한다.
+
+개선 대상은 **보조형 파티의 초반 공격 확보와 지나치게 긴 첫 관장전**이다. 종별 학습/진화·기절 30% 경험치·실제 포획 비용을 유지하며 각각의 기회비용을 나눠 검증한다. 이번 작업은 계측과 재측정이며 게임의 레벨·종족값·카드·보상 수치는 바꾸지 않았다. 자동 정책의 두 시드 결과를 사람의 승률이나 전 종 밸런스로 해석하지 않는다.
+
+재현 명령(측정 코드 `1f1e361`에서 한 프로세스로 같은 16개 표본). 새 규칙을 재측정할 때에는 `--revision`에 해당 코드의 커밋을 기록한다:
+
+```bash
+godot --headless --path . --script res://tools/benchmark_campaign.gd -- --seeds 0,5 --parties kanto,babies,water,solo_fish --styles baseline --camps develop --recruitment off,early --diagnostics on --max-turns 200 --output /tmp/route2-raw.json
+python3 tools/report_campaign_balance.py /tmp/route2-raw.json --json /tmp/route2.json --markdown /tmp/route2.md --revision 1f1e361
+```
+
+측정 전용 XDG 경로를 사용하며 아래 격리 안내를 따른다. 실제 측정은 편성별 두 작업을 병렬 실행한 뒤 같은 지문의 네 파일을 합쳤다. 첫 기록의 JSON 원본 숫자가 실수로 유지되는 직렬화 문제는 작성 측에서 정수로 고쳤고 **16개 전부를 새 지문으로 재실행**했다. 수정 전후 16개 행의 경로 메타데이터를 제외한 전투·성장·경제·영입 결과가 완전히 같은지도 검사했다. 잘못 저장된 중간 파일은 게시하지 않는다.
 
 ## 새 대진 기록 형식
 
