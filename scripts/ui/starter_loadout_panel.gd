@@ -59,18 +59,20 @@ func _filter(uid: int) -> void:
     owner_filter = uid
     W.clear(card_grid)
     scroll.scroll_vertical = 0
+    var views: Array[Dictionary] = []
     for instance: BattleCardInstance in loadout.cards:
         if uid >= 0 and instance.owner_uid != uid: continue
-        var card := TrainerActionCard.new()
-        card.name = "StarterCard_%d" % instance.uid
-        card.uid = instance.uid
-        card.key = instance.key
-        card.definition = loadout.view(instance)
+        views.append(loadout.view(instance))
+    for stack: Dictionary in CardStacks.group(views):
+        var view: Dictionary = stack["view"]
+        var card := CardStackView.new()
+        card.name = "StarterCard_%d" % view["uid"]
+        card.uid = view["uid"]
+        card.key = view["key"]
+        card.definition = view
+        card.stack_count = stack["count"]
         card_grid.add_child(card)
-        card.update_card(card.definition,"",false)
-        card.disabled = true
-        card.mouse_default_cursor_shape = Control.CURSOR_ARROW
-        if instance.key == "move_165" and instance.key not in loadout.member(instance.owner_uid).learned_skills:
+        if card.key == "move_165" and card.key not in loadout.member(int(view["owner_uid"])).learned_skills:
             card.tooltip_text += "\n공격 기술이 없는 동료에게 출발 시 제공하는 카드 · 배운 기술 슬롯을 차지하지 않습니다."
     for key: int in filter_buttons:
         filter_buttons[key].add_theme_stylebox_override("normal",W.box(Color("29443f") if key == uid else Color("14282f"),W.GOLD if key == uid else Color("405960")))

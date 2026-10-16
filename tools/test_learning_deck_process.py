@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Resume a removed-technique learning offer, accept it and play the new card in three fresh processes."""
+"""Resume and compare a removed-technique offer, accept it and play the new card in three fresh processes."""
 import os
 from pathlib import Path
 import subprocess

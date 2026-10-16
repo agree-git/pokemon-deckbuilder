@@ -24,6 +24,8 @@ var evolution_result: Dictionary = {}
 var special_open := false
 var rare_open := false
 var preparation_open := false
+var learning_compare_slot := -1
+var learning_comparison: LearningComparisonPanel
 var _evolution_catalog := VisualCatalog.new()
 var rest_button: Button
 var learn_buttons: Array[Button] = []
@@ -57,6 +59,7 @@ func _ready() -> void:
 func refresh() -> void:
     W.clear(page)
     battle_ui = null
+    learning_comparison = null
     actions.clear()
     learn_buttons.clear()
     camp_tabs.clear()
@@ -116,7 +119,22 @@ func refresh() -> void:
         preparation.journey = journey
         preparation.closed.connect(_close_preparation)
         page.add_child(preparation)
+    if learning_compare_slot >= 0 and journey.phase == TacticalJourney.LEARN:
+        learning_comparison = LearningComparisonPanel.new()
+        learning_comparison.journey = journey
+        learning_comparison.selected_slot = learning_compare_slot
+        learning_comparison.closed.connect(_close_learning_comparison)
+        learning_comparison.slot_selected.connect(func(slot: int): learning_compare_slot = slot)
+        learning_comparison.accepted.connect(_learn)
+        page.add_child(learning_comparison)
     UiMotion.appear(page)
+func _open_learning_comparison() -> void:
+    if journey.learning_preview(0).is_empty(): return
+    learning_compare_slot = 0
+    refresh()
+func _close_learning_comparison() -> void:
+    learning_compare_slot = -1
+    refresh()
 func _open_preparation() -> void:
     if EncounterPreparation.describe(journey).is_empty(): return
     preparation_open = true
@@ -267,6 +285,7 @@ func _learning() -> void:
     for member: BattlePokemon in journey.party:
         if member.uid == int(offer["uid"]): pokemon = member
     var move := TacticalMoves.definition(offer["key"])
+    W.button(page,Rect2(1435,260,305,58),_open_learning_comparison,"교체 전후 비교").name = "LearningCompare"
     W.sprite(page,pokemon.species_id,Rect2(1000,230,144,144))
     W.label(page,"%s · Lv.%d" % [pokemon.display_name,pokemon.level],Rect2(550,385,1190,44),26,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
     W.label(page,"Lv.%d에 %s 습득 가능" % [offer["level"],move["name"]],Rect2(550,440,1190,48),27,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
@@ -293,7 +312,9 @@ func _learning() -> void:
     W.label(page,"기술은 네 개까지 · 선택한 기술의 덱 사본만 바뀝니다. 카드가 없으면 새 기술 한 장을 받습니다.",Rect2(810,800,930,52),17,W.MUTED)
     _action("새 기술 배우지 않기",Rect2(870,875,560,64),_learn.bind(-1),"next")
 func _learn(slot: int) -> void:
-    if journey.resolve_learning(slot).is_empty(): refresh()
+    if journey.resolve_learning(slot).is_empty():
+        learning_compare_slot = -1
+        refresh()
 func _camp_tab(tab: String) -> void:
     camp_tab = tab
     camp_notice = ""
@@ -781,15 +802,18 @@ func _recruitment_preview() -> void:
     row.add_theme_constant_override("separation",14)
     scroll.add_child(row)
     var views: Array = change[recruit_tab]
-    for i in views.size():
-        var face := TrainerActionCard.new()
+    var stacks := CardStacks.group(views)
+    for i in stacks.size():
+        var view: Dictionary = stacks[i]["view"]
+        var face := CardStackView.new()
         face.name = "RecruitCard_%d" % i
-        face.key = views[i]["key"]
-        face.definition = views[i]
+        face.key = view["key"]
+        face.definition = view
+        face.stack_count = stacks[i]["count"]
         row.add_child(face)
-        face.update_card(views[i],"",false)
-        face.disabled = true
-    if views.is_empty(): W.label(row,"빠지는 카드가 없습니다.",Rect2(0,80,1000,100),24,W.MUTED)
+    if views.is_empty():
+        var empty := W.label(row,"빠지는 카드가 없습니다.",Rect2(0,80,1000,100),24,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+        empty.custom_minimum_size = Vector2(1128,312)
     W.button(panel,Rect2(90,758,450,72),_close_recruit,"목록으로").name = "RecruitCancel"
     W.button(panel,Rect2(660,758,450,72),_resolve_capture.bind(recruit_index),"이 편성으로 합류").name = "RecruitConfirm"
     UiMotion.appear(overlay)
@@ -814,6 +838,27 @@ func _deck() -> void:
     var scroll := ScrollContainer.new()
     scroll.position = Vector2(32,110)
     scroll.size = Vector2(816,690)
+    if deck_action.is_empty():
+        scroll.name = "JourneyDeckCards"
+        panel.add_child(scroll)
+        var grid := GridContainer.new()
+        grid.columns = 3
+        grid.add_theme_constant_override("h_separation",28)
+        grid.add_theme_constant_override("v_separation",8)
+        scroll.add_child(grid)
+        var views: Array[Dictionary] = []
+        for instance: BattleCardInstance in journey.deck:
+            var view := journey.reward_view({"kind":"card","key":instance.key,"owner_uid":instance.owner_uid,"upgraded":instance.upgraded})
+            view["uid"] = instance.uid
+            views.append(view)
+        for stack: Dictionary in CardStacks.group(views):
+            var face := CardStackView.new()
+            face.name = "DeckStack_%d" % stack["view"]["uid"]
+            face.key = stack["view"]["key"]
+            face.definition = stack["view"]
+            face.stack_count = stack["count"]
+            grid.add_child(face)
+        return
     var rows := VBoxContainer.new()
     rows.custom_minimum_size.x = 790
     rows.add_theme_constant_override("separation",8)
@@ -937,6 +982,12 @@ func _home() -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
     if travelling: return
     if journey.phase == TacticalJourney.BATTLE or not event is InputEventKey or not event.pressed or event.echo: return
+    if learning_compare_slot >= 0:
+        if event.keycode == KEY_ESCAPE: _close_learning_comparison()
+        elif event.keycode in [KEY_Q,KEY_W,KEY_E,KEY_R] and is_instance_valid(learning_comparison):
+            learning_comparison.select_slot([KEY_Q,KEY_W,KEY_E,KEY_R].find(event.keycode))
+        get_viewport().set_input_as_handled()
+        return
     if preparation_open:
         if event.keycode == KEY_ESCAPE: _close_preparation()
         get_viewport().set_input_as_handled()
@@ -974,6 +1025,10 @@ func _unhandled_key_input(event: InputEvent) -> void:
         if event.keycode == KEY_ESCAPE:
             if upgrade_preview_uid != 0: _close_upgrade_preview()
             else: _close_deck()
+        get_viewport().set_input_as_handled()
+        return
+    if journey.phase == TacticalJourney.LEARN and event.keycode in [KEY_Q,KEY_W,KEY_E,KEY_R]:
+        _learn([KEY_Q,KEY_W,KEY_E,KEY_R].find(event.keycode))
         get_viewport().set_input_as_handled()
         return
     match event.keycode:

@@ -59,10 +59,9 @@ func run() -> void:
         check(ui.recruit_tab == "removed" and face != null and face.definition["name"] == change["removed"][0]["name"],"Removed tab displays exact actual card faces, including upgrades")
         if i == 0:
             var scroll: ScrollContainer = ui.page.find_child("RecruitCards",true,false)
-            check(scroll.get_h_scroll_bar().visible,"Long departing decks have a usable horizontal scrollbar")
-            await click(scroll.get_h_scroll_bar())
-            check(scroll.scroll_horizontal > 0,"Actual pointer scrolling reveals departing cards beyond the first row")
-            scroll.scroll_horizontal = 0
+            var faces := scroll.find_children("RecruitCard_*","Button",true,false)
+            check(not scroll.get_h_scroll_bar().visible and faces.size() < change["removed"].size(),"Duplicate departing copies fit without scrolling")
+            check(faces.reduce(func(total: int, card: CardStackView): return total+card.stack_count,0) == change["removed"].size(),"Recruitment stacks preserve all departing copies, upgrades and injuries")
             await picture("recruitment-removed")
         await click(ui.actions.back()) # Release is underneath the modal.
         check(j.phase == TacticalJourney.CAPTURE and JourneySnapshot.encode(j) == before,"Preview blocks the release button underneath")

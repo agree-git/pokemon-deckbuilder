@@ -1,25 +1,32 @@
 class_name EncounterPreparation
 extends RefCounted
 ## Read-only type coverage of the actual permanent deck and living owners.
-static func describe(j: TacticalJourney) -> Dictionary:
-    if j.phase not in [TacticalJourney.MAP,TacticalJourney.REST]: return {}
+static func upcoming(j: TacticalJourney) -> Dictionary:
+    if j.phase not in [TacticalJourney.MAP,TacticalJourney.REST,TacticalJourney.LEARN]: return {}
     var stops: Array = j.route.stops if j.full_campaign else TacticalJourneyContent.STOPS
-    var index := j.step+1 if j.phase == TacticalJourney.REST else j.step
+    var index := j.step+1 if j.phase in [TacticalJourney.REST,TacticalJourney.LEARN] else j.step
     if index < stops.size() and stops[index]["kind"] == "rest": index += 1
     if index >= stops.size(): return {}
     var stop: Dictionary = stops[index]
     if j.full_campaign and j.rare_hunt.get("battle_step",-1) == index:
         stop = RareEncounter.node(stop,int(j.rare_hunt["target"]))
+    return {"step":index,"title":stop["name"],"opponents":j.opponents_at(index)}
+static func describe(j: TacticalJourney) -> Dictionary:
+    if j.phase not in [TacticalJourney.MAP,TacticalJourney.REST]: return {}
+    var target := upcoming(j)
+    if target.is_empty(): return {}
     var enemies: Array[Dictionary] = []
-    for definition: Dictionary in j.opponents_at(index): enemies.append(analyze(j,definition))
-    return {"step":index,"title":stop["name"],"enemies":enemies}
+    for definition: Dictionary in target["opponents"]: enemies.append(analyze(j,definition))
+    return {"step":target["step"],"title":target["title"],"enemies":enemies}
 static func analyze(j: TacticalJourney, definition: Dictionary) -> Dictionary:
+    return analyze_cards(j,definition,j.deck)
+static func analyze_cards(j: TacticalJourney, definition: Dictionary, cards: Array[BattleCardInstance]) -> Dictionary:
     var target := BattlePokemon.new(definition,-1)
     var groups := {"attack":[],"immune":[],"conditional":[]}
     var unavailable := 0
     var strong := 0
     var living := j.party.any(func(p: BattlePokemon): return p.alive())
-    for card: BattleCardInstance in j.deck:
+    for card: BattleCardInstance in cards:
         var owner: BattlePokemon
         if card.owner_uid != 0:
             for p: BattlePokemon in j.party:

@@ -33,6 +33,10 @@ func run() -> void:
             return
         expected(j,false)
         if phase == "learn":
+            var before := JourneySnapshot.encode(j)
+            var preview := LearningComparison.describe(j,1)
+            check(preview["before_cards"].is_empty() and preview["after_cards"].size() == 1,"Restored removed-technique offer shows a fresh real card in comparison")
+            check(JourneySnapshot.encode(j) == before,"Comparing the restored offer preserves the complete saved state")
             var uid := j._next_card_uid
             var count := j.deck.size()
             check(j.resolve_learning(1).is_empty() and j.deck.size() == count+1 and j.deck[-1].uid == uid and j.deck[-1].key == "move_55","Confirm the saved offer and allocate exactly one fresh technique")

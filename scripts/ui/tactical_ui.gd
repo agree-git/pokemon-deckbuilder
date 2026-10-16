@@ -467,20 +467,22 @@ func _show_pile(key: String) -> void:
     scroll.add_child(grid)
     # Sort a copy; browsing never exposes or changes the hidden draw order.
     pile.sort_custom(func(a: BattleCardInstance,b: BattleCardInstance): return ("%s:%04d:%s" % [a.key,a.owner_uid,a.upgraded]) < ("%s:%04d:%s" % [b.key,b.owner_uid,b.upgraded]))
+    var views: Array[Dictionary] = []
     for instance: BattleCardInstance in pile:
         var view := TacticalContent.definition(instance)
         var owner := battle.member(instance.owner_uid)
         view["owner_name"] = owner.display_name if owner != null else ""
         view["species_id"] = owner.species_id if owner != null else 0
-        var card := TrainerActionCard.new()
-        card.name = "PileCard_%d" % instance.uid
-        card.uid = instance.uid
-        card.key = instance.key
+        views.append(view)
+    for stack: Dictionary in CardStacks.group(views):
+        var view: Dictionary = stack["view"]
+        var card := CardStackView.new()
+        card.name = "PileCard_%d" % view["uid"]
+        card.uid = view["uid"]
+        card.key = view["key"]
         card.definition = view
+        card.stack_count = stack["count"]
         grid.add_child(card)
-        card.update_card(view,"",false)
-        card.disabled = true
-        card.mouse_default_cursor_shape = Control.CURSOR_ARROW
     _open_overlay(pile_panel)
 
 func _refresh() -> void:

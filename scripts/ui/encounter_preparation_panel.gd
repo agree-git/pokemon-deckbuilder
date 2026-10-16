@@ -59,17 +59,23 @@ func refresh() -> void:
     var cards := HBoxContainer.new()
     cards.add_theme_constant_override("separation",14)
     scroll.add_child(cards)
-    for i in groups[group].size():
-        var entry: Dictionary = groups[group][i]
-        var face := TrainerActionCard.new()
+    var views: Array[Dictionary] = []
+    for entry: Dictionary in groups[group]: views.append(entry["card"])
+    var stacks := CardStacks.group(views)
+    for i in stacks.size():
+        var view: Dictionary = stacks[i]["view"]
+        var face := CardStackView.new()
         face.name = "PreparationCard_%d" % i
-        face.key = entry["card"]["key"]
-        face.definition = entry["card"]
+        face.key = view["key"]
+        face.definition = view
+        face.stack_count = stacks[i]["count"]
         cards.add_child(face)
-        face.update_card(entry["card"],"",false)
-        face.disabled = true
-        W.label(face,entry["label"],Rect2(0,2,202,30),17,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
-    if groups[group].is_empty(): W.label(cards,"해당 카드가 없습니다.",Rect2(0,90,1000,80),24,W.MUTED)
+        var entry: Dictionary = groups[group].filter(func(item: Dictionary): return item["card"] == view)[0]
+        W.label(face,entry["label"],Rect2(0,2,130,30),16,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+    if groups[group].is_empty():
+        var empty := W.label(cards,"해당 카드가 없습니다.",Rect2(0,0,1168,320),24,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+        empty.name = "PreparationEmpty"
+        empty.custom_minimum_size = Vector2(1168,320)
     var note := "현재 덱 · 살아있는 동료 기준. 실제 손패·에너지·상태·보호막에 따라 결과가 달라집니다."
     if row["unavailable"] > 0: note += "\n기절한 동료의 기술 %d장은 제외했습니다. 회복 후 다시 확인하세요." % row["unavailable"]
     elif group == "conditional": note += "\n지속 피해는 타격 상성과 별개입니다. 보호막 전환·상태 회수에는 준비가 필요합니다."

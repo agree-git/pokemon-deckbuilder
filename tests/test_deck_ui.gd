@@ -104,7 +104,7 @@ func run() -> void:
     var before_pile := j.battle.snapshot()
     await click(ui.battle_ui.draw_button)
     var pile_cards := ui.battle_ui.pile_panel.find_children("PileCard_*","Button",true,false)
-    check(pile_cards.size() == j.battle.draw_pile.size() and pile_cards.all(func(card: Button): return card is TrainerActionCard),"Draw pile shows every actual card face")
+    check(pile_cards.all(func(card: Button): return card is CardStackView) and pile_cards.reduce(func(total: int, card: CardStackView): return total+card.stack_count,0) == j.battle.draw_pile.size(),"Draw pile shows actual card stacks with the exact total")
     await picture("draw-pile-cards")
     await click(ui.battle_ui.pile_panel.get_node("Body/Close"))
     check(j.battle.snapshot() == before_pile,"Card browsing preserves piles, resources and hidden order")
@@ -146,6 +146,13 @@ func run() -> void:
                 await process_frame
         elif j.phase == TacticalJourney.REST:
             check(j.wins == wins,"Real input completes combat and its settlement")
+            var before_deck := JourneySnapshot.encode(j)
+            await click(ui.deck_button)
+            var deck_faces := ui.page.find_children("DeckStack_*","Button",true,false)
+            check(not deck_faces.is_empty() and deck_faces.reduce(func(total: int, face: CardStackView): return total+face.stack_count,0) == j.deck.size(),"Permanent deck renders card stacks with the full count")
+            await picture("permanent-deck-stacks")
+            await click(ui.deck_close)
+            check(JourneySnapshot.encode(j) == before_deck,"Closing grouped permanent deck preserves exact run state")
             await click(ui.actions.filter(func(button: Button): return button.name == "Upgrade")[0])
             check(ui.deck_open,"Camp opens explicit card-upgrade selector")
             var candidates: Array = ui.page.find_children("Card_*","Button",true,false).filter(func(button: Button): return not button.disabled)
