@@ -246,8 +246,8 @@ func _build_combat_hud() -> void:
         W.panel(self,Rect2(at,Vector2(330,90)),Color(0.04,0.085,0.10,0.93),Color("3f5653"))
     ally_label = _label("",Rect2(335,597,210,32),21)
     enemy_label = _label("",Rect2(1257,566,210,32),21)
-    _label("HP",Rect2(335,632,35,24),13,W.MUTED)
-    _label("HP",Rect2(1257,601,35,24),13,W.MUTED)
+    W.icon(self,"heal",Rect2(335,633,22,22))
+    W.icon(self,"heal",Rect2(1257,602,22,22))
     ally_bar = W.bar(self,Rect2(335,662,290,7))
     enemy_bar = W.bar(self,Rect2(1257,631,290,7))
     # The HP values stay separate from names and status icons.
@@ -445,9 +445,9 @@ func _build_help() -> Control:
     W.panel(body,Rect2(36,420,1008,164),Color("203940"),Color.TRANSPARENT)
     W.icon(body,"switch",Rect2(60,446,32,32))
     W.label(body,"기술 카드 자동 교대 무료 · 직접 교대는 에너지 %d" % battle.manual_switch_cost(),Rect2(112,437,860,44),21)
-    W.label(body,"공격 순서와 마지막 출전 포켓몬을 함께 생각하세요.\n포켓몬별 보호막과 강화 · 도구 카드 · 유물로 전술을 만드세요.",Rect2(60,495,940,70),19,W.MUTED)
+    CardEffectText.status_legend(body,Rect2(60,495,940,78))
     W.label(body,"교체 1 / 2 / 3     손패 Q / W / E / R     턴 종료 Enter",Rect2(36,609,1008,32),18,MINT)
-    W.label(body,"카드를 가리키면 사용 후 HP·보호막·에너지와 야생 포획 가능 여부를 미리 봅니다.",Rect2(36,654,1008,32),17,W.MUTED)
+    CardEffectText.legend(body,Rect2(36,648,1008,42))
     return overlay
 
 func _build_log() -> void:
@@ -627,7 +627,7 @@ func _refresh() -> void:
         elif action["kind"] == "status":
             intent_label.text = "%d회" % action["value"]
             get_node("Intent/Title").text = {"burn":"화상","poison":"독","seed":"씨앗"}[action["status"]]
-            get_node("Intent/Icon").texture = W.texture({"burn":"fire","poison":"poison","seed":"seed"}[action["status"]])
+            get_node("Intent/Icon").texture = W.texture(CardEffectText.STATUS_ICONS[action["status"]])
     intent_label.add_theme_font_size_override("font_size",22 if action["kind"] in ["boost","barrage","status"] else 29)
     get_node("Intent/Tactic").text = EnemyTactics.role_title(action)
     get_node("Intent").tooltip_text = EnemyTactics.intent_text(action)+"\n"+EnemyTactics.description(battle.enemy_definitions[int(_visual_frame.get("enemy_index",battle.enemy_index))])
@@ -670,7 +670,7 @@ func _refresh() -> void:
     for i in 2:
         var pokemon := ally if i == 0 else foe
         shield_badges[i].visible = pokemon.block > 0
-        UiMotion.text(shield_values[i],"보호막 %d" % pokemon.block)
+        UiMotion.text(shield_values[i],str(pokemon.block))
     if not busy: _refresh_hand()
     else:
         for card: TrainerActionCard in trainer_buttons.values(): card.disabled = true
@@ -704,11 +704,11 @@ func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
     var items: Array = []
     if pokemon.strength != 0: items.append(["boost",str(pokemon.strength),"위력 보정 %+d%% · 이번 전투 동안 유지" % (pokemon.strength*10)])
     for stat: String in pokemon.stat_stages:
-        if pokemon.stat_stages[stat] != 0: items.append(["boost","%+d" % pokemon.stat_stages[stat],"%s %+d단계 · 교대 시 해제" % [PokemonStats.TITLES[stat],pokemon.stat_stages[stat]]])
+        if pokemon.stat_stages[stat] != 0: items.append([CardEffectText.STAT_ICONS[stat],"%+d" % pokemon.stat_stages[stat],"%s %+d단계 · 교대 시 해제" % [PokemonStats.TITLES[stat],pokemon.stat_stages[stat]]])
     for key: String in pokemon.statuses:
         var turns: int = pokemon.statuses[key]["turns"]
         var titles := {"burn":"화상 · %d 피해 / 물리 위력 절반" % battle.status_damage(pokemon,"burn"),"seed":"씨뿌리기 · %d 흡수" % battle.status_damage(pokemon,"seed"),"poison":"독 · %d 피해" % battle.status_damage(pokemon,"poison"),"sleep":"수면 · 행동 취소","paralysis":"마비 · 스피드 절반","confusion":"혼란 · %d 피해" % PokemonStats.scale(pokemon,2),"exposed":"방어 약화 · 공격자 체력에 비례한 추가 피해"}
-        items.append(["fire" if key == "burn" else ("seed" if key == "seed" else "counter"),str(turns),str(titles.get(key,key))+" · %d회 남음" % turns])
+        items.append([CardEffectText.STATUS_ICONS.get("expose" if key == "exposed" else key,"counter"),str(turns),str(titles.get(key,key))+" · %d회 남음" % turns])
     if pokemon.uid == battle.active().uid and battle.next_attack_bonus > 0:
         items.append(["boost","+%d" % battle.next_attack_bonus,"강화 지시 · 다음 공격 추가 피해 +%d (자속·상성 적용 전)" % PokemonStats.scale(pokemon,battle.next_attack_bonus)])
     if pokemon.uid == battle.active().uid and battle.switch_bonus.has(pokemon.uid):
@@ -898,9 +898,9 @@ func _play_event(event: Dictionary) -> void:
             var blocked := int(event.get("blocked",0))
             if amount > 0 or blocked > 0:
                 motion.hit(on_ally,amount == 0)
-                _float_value("−%d" % amount if amount > 0 else "방어 %d" % blocked,on_ally,Color("fff3d4") if amount > 0 else Color("9edfff"))
+                _float_value("−%d" % amount if amount > 0 else str(blocked),on_ally,Color("fff3d4") if amount > 0 else Color("9edfff"),"attack" if amount > 0 else "shield")
         elif amount > 0:
-            _float_value(("보호막 +%d" if kind == "shield" else "회복 +%d") % amount,on_ally,Color("9edfff") if kind == "shield" else MINT)
+            _float_value("+%d" % amount,on_ally,Color("9edfff") if kind == "shield" else MINT,"shield" if kind == "shield" else "heal")
             if kind == "shield": UiMotion.pulse(shield_badges[0 if on_ally else 1])
     elif kind == "knockout":
         _announce(event["text"])
@@ -908,9 +908,10 @@ func _play_event(event: Dictionary) -> void:
         var target := int(event.get("target",0))
         if target == _view_active().uid or target == _view_enemy().uid: motion.faint(target > 0)
     elif kind in ["relic","power","cancel","turn","capture","status","stat","shield_spent"]: _announce(event["text"])
-func _float_value(text: String,on_ally: bool,color: Color) -> void:
+func _float_value(text: String,on_ally: bool,color: Color,icon_key := "") -> void:
     var at := stage.canvas.source_anchor if on_ally else stage.canvas.target_anchor
-    var number := _label(text,Rect2(at.x-170,at.y-120,340,90),42,color,HORIZONTAL_ALIGNMENT_CENTER,damage_layer)
+    var number := CardEffectText.label(damage_layer,Rect2(at.x-170,at.y-120,340,90),42,color)
+    number.text = "[center]"+(CardEffectText.icon(icon_key,36)+" " if not icon_key.is_empty() else "")+text+"[/center]"
     number.add_theme_constant_override("outline_size",8)
     number.add_theme_color_override("font_outline_color",Color("152627"))
     var tween := UiMotion.begin(number,"float",true)

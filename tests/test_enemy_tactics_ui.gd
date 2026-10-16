@@ -89,7 +89,7 @@ func run() -> void:
     check(ui.get_node("Intent/Tactic").text == "수비형" and ui.get_node("Intent/Title").text == "방어","Guardian publicly starts with defense")
     var shield: int = ui.battle.intent()["value"]
     await click(ui.end_button)
-    check(ui.battle.enemy().block == shield and ui.shield_badges[1].visible and ui.shield_values[1].text == "보호막 %d" % shield,"Guardian resolves exactly the advertised large shield")
+    check(ui.battle.enemy().block == shield and ui.shield_badges[1].visible and ui.shield_values[1].text == str(shield),"Guardian resolves exactly the advertised large shield")
     check(ui.shield_badges[1].tooltip_text.contains("다음 적 행동"),"Enemy shield tooltip uses the correct expiration timing")
     await picture("guardian-shield")
     ui.free()

@@ -35,7 +35,7 @@ func point(control: Control,local: Vector2,click := false) -> void:
         await process_frame
     UiMotion.finish_tree(ui)
     await process_frame
-func fixture() -> void:
+func fixture(icon_cards := false) -> void:
     if is_instance_valid(ui): ui.free()
     journey = TacticalJourney.new(42,"field_kit",[1,4,7],true)
     journey.enter_next()
@@ -46,6 +46,8 @@ func fixture() -> void:
     b.powers["relay"] = 1
     b.energy = 4
     b.hand.assign([BattleCardInstance.new(9100,"move_33",b.party[2].uid),BattleCardInstance.new(9101,"guard",0),BattleCardInstance.new(9102,"potion_card",0),BattleCardInstance.new(9103,"shield_strike",0)])
+    if icon_cards:
+        b.hand.assign([BattleCardInstance.new(9200,"move_33",b.party[2].uid),BattleCardInstance.new(9201,"guard",0),BattleCardInstance.new(9202,"potion_card",0),BattleCardInstance.new(9203,"smoke_card",0),BattleCardInstance.new(9204,"ether_card",0),BattleCardInstance.new(9205,"toxic_flask",0),BattleCardInstance.new(9206,"relay_cover",0)])
     b.enemy().block = 0
     var damage := int(b.card_view(b.hand[0])["preview_damage"])
     b.enemy().hp = damage+floori(b.enemy().max_hp*0.25)
@@ -85,6 +87,9 @@ func run() -> void:
         check(ui.action_preview.visible,"Hover shows an immediate outcome forecast")
         check(ui.action_preview.title.text.contains("자동 교대"),"Other owner is explicitly identified as an automatic switch")
         check(ui.action_preview.result["target_after"]["hp"] == floori(journey.battle.enemy().max_hp*0.25),"The forecast uses real post-switch attack damage")
+        var hp_delta := int(ui.action_preview.result["target_after"]["hp"])-int(ui.action_preview.result["target_before"]["hp"])
+        check(ui.action_preview.target.text.contains("−"+str(absi(hp_delta))) and not ui.action_preview.target.text.contains("→"),"Hover presents HP change instead of before/after arithmetic")
+        check(not ui.action_preview.resources.text.contains("→"),"Energy preview also uses signed changes")
         check(ui.action_preview.capture.text.contains("포획 가능"),"The remaining HP/energy and balls allow capture")
         check(ui.action_preview.enemy_forecast.visible,"Enemy HP bar shows the damage portion")
         check(not ui.action_preview.ally_forecast.visible,"A bench owner's health is never overlaid on the current ally's bar")

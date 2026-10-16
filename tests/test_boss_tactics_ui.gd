@@ -105,7 +105,7 @@ func run() -> void:
     var shield: int = ui.battle.intent()["value"]
     await picture("boss-jasmine-forecast")
     await click(ui.end_button)
-    check(ui.battle.enemy().stat_stages["defense"] == 1 and ui.shield_values[1].text == "보호막 %d" % shield,"Fortification displays both the real stage and shield")
+    check(ui.battle.enemy().stat_stages["defense"] == 1 and ui.shield_values[1].text == str(shield),"Fortification displays both the real stage and shield")
     check(ui.battle.card_view(ui.battle._hand(101))["preview_damage"] < physical and ui.battle.card_view(ui.battle._hand(102))["preview_damage"] == special,"Physical and special card forecasts expose the way around a physical wall")
     var next := ui.battle.intent()
     await click(ui.party_buttons[1])
