@@ -9,6 +9,7 @@ var ally := true
 var ball_already_landed := false
 func _process(_delta: float) -> void: queue_redraw()
 func recall(on_ally: bool) -> void:
+    get_node("/root/GameCries").stop_side(on_ally)
     BattleSoundCues.play(self,"recall")
     ally = on_ally
     ball_already_landed = false
@@ -27,7 +28,11 @@ func release(on_ally: bool,at_target := false) -> void:
     var t := UiMotion.combat(self,"ball",true)
     t.tween_property(self,"progress",1.0,0.38)
     t.tween_property(canvas,"source_factor" if ally else "target_factor",1.0,0.25).set_delay(0.13).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+    t.tween_callback(_cry.bind(on_ally)).set_delay(0.13)
     t.chain().tween_callback(func(): mode = "")
+func _cry(on_ally: bool) -> void:
+    get_node("/root/GameCries").play(canvas.source_species if on_ally else canvas.target_species,on_ally)
+
 func attack(from_enemy: bool, physical: bool) -> void:
     var property := "target_motion" if from_enemy else "source_motion"
     var direction := -1 if from_enemy else 1

@@ -17,6 +17,8 @@ var target_factor := 1.0
 var source_sprite := Sprite2D.new()
 var target_sprite := Sprite2D.new()
 var effect := MoveEffect.new()
+var source_species := 0
+var target_species := 0
 var source_name := ""
 var target_name := ""
 var status := ""
@@ -113,6 +115,8 @@ func _process(delta: float) -> void:
     queue_redraw()
 
 func set_species(source_id: int, target_id: int, catalog: VisualCatalog, clear: bool = true) -> void:
+    source_species = source_id
+    target_species = target_id
     source_sprite.texture = load(VisualCatalog.sprite_path(source_id, back_view))
     target_sprite.texture = load(VisualCatalog.sprite_path(target_id))
     _fit_sprites()

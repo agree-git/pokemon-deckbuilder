@@ -10,11 +10,12 @@ func run() -> void:
         preferences.set_audio_volume("master", 0.35)
         preferences.set_audio_volume("effects", 0.6)
         preferences.set_audio_volume("music", 0.45)
+        preferences.set_audio_volume("cries", 0.65)
         preferences.set_audio_muted(true)
         if not preferences.last_error.is_empty(): quit(1); return
         print("SETTINGS RESTART: preferences written")
     elif "--read" in OS.get_cmdline_user_args():
-        if preferences.battle_speed != 1.5 or preferences.hit_motion or preferences.display_mode != "windowed" or preferences.master_volume != 0.35 or preferences.effects_volume != 0.6 or not preferences.audio_muted or preferences.music_volume != 0.45:
+        if preferences.battle_speed != 1.5 or preferences.hit_motion or preferences.display_mode != "windowed" or preferences.master_volume != 0.35 or preferences.effects_volume != 0.6 or not preferences.audio_muted or preferences.music_volume != 0.45 or preferences.cries_volume != 0.65:
             push_error("A new process did not load its preferences")
             quit(1)
             return

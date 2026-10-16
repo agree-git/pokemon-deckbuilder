@@ -6,6 +6,7 @@ var clicks := 0
 var preferences: Node
 var previewed: Array[String] = []
 var music: Node
+var cried: Array[int] = []
 func _initialize() -> void: call_deferred("run")
 func check(ok: bool, message: String) -> void:
     checks += 1
@@ -52,6 +53,8 @@ func run() -> void:
     preferences.set_audio_volume("master", 0.75)
     preferences.set_audio_volume("effects", 0.8)
     preferences.set_audio_volume("music", 0.55)
+    preferences.set_audio_volume("cries", 0.75)
+    root.get_node("GameCries").cry_played.connect(func(id: int, _ally: bool): cried.append(id))
     preferences.set_audio_muted(false)
     root.get_node("GameAudio").cue_played.connect(func(cue: String): previewed.append(cue))
     root.mode = Window.MODE_WINDOWED
@@ -89,6 +92,14 @@ func run() -> void:
     check(preferences.music_volume == 0.49 and preferences.effects_volume == 0.5, "Focused music slider supports independent arrow control")
     await key(KEY_RIGHT, "Right")
     check(preferences.music_volume == 0.5 and music.current_key == "title", "Music adjustment preserves the current title theme")
+    await click(panel.volume_sliders["cries"])
+    check(preferences.cries_volume == 0.5 and preferences.music_volume == 0.5 and panel.volume_labels["cries"].text == "50%", "Cry slider changes only cries")
+    await key(KEY_LEFT, "Left")
+    check(preferences.cries_volume == 0.49, "Cry slider accepts precise keyboard control")
+    await key(KEY_RIGHT, "Right")
+    cried.clear()
+    await click(panel.cry_preview_button)
+    check(cried == [25], "Cry preview plays Pikachu through the actual service")
     previewed.clear()
     await click(panel.preview_button)
     check("shield" in previewed, "Sound preview triggers the real effect service")
@@ -97,6 +108,9 @@ func run() -> void:
     previewed.clear()
     await click(panel.preview_button)
     check(previewed.is_empty(), "Muted preview cannot emit any sound")
+    cried.clear()
+    await click(panel.cry_preview_button)
+    check(panel.cry_preview_button.disabled and cried.is_empty(), "Muted cry preview is disabled and silent")
     await click(panel.mute_button)
     check(not preferences.audio_muted and not panel.preview_button.disabled, "Unmute restores preview without changing gains")
     await picture()
@@ -120,6 +134,8 @@ func run() -> void:
         check(preferences.effects_volume == 0.5, "Audio slider hitbox aligns at %s" % dimensions)
         await click(panel.volume_sliders["music"])
         check(preferences.music_volume == 0.5, "Music slider hitbox aligns at %s" % dimensions)
+        await click(panel.volume_sliders["cries"])
+        check(preferences.cries_volume == 0.5, "Cry slider hitbox aligns at %s" % dimensions)
         await click(panel.close_button)
         check(not is_instance_valid(preferences.panel), "Close hitbox aligns at %s" % dimensions)
     menu.free()
@@ -179,8 +195,11 @@ func run() -> void:
     var loaded: Node = load("res://scripts/preferences.gd").new()
     loaded.path = preferences.path
     loaded.load_preferences()
-    check(loaded.battle_speed == preferences.battle_speed and loaded.hit_motion == preferences.hit_motion and loaded.display_mode == preferences.display_mode and loaded.master_volume == preferences.master_volume and loaded.effects_volume == preferences.effects_volume and loaded.music_volume == preferences.music_volume and loaded.audio_muted == preferences.audio_muted, "Latest UI choices reload from disk")
+    check(loaded.battle_speed == preferences.battle_speed and loaded.hit_motion == preferences.hit_motion and loaded.display_mode == preferences.display_mode and loaded.master_volume == preferences.master_volume and loaded.effects_volume == preferences.effects_volume and loaded.music_volume == preferences.music_volume and loaded.cries_volume == preferences.cries_volume and loaded.audio_muted == preferences.audio_muted, "Latest UI choices reload from disk")
     loaded.free()
     camp.free()
+    music.stop_music()
+    root.get_node("GameCries").stop_all()
+    await create_timer(0.12).timeout
     print("SETTINGS UI native=", native, ": ", checks, " checks, ", failures, " failures; ", clicks, " clicks")
     quit(0 if failures == 0 else 1)

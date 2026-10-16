@@ -106,6 +106,7 @@ var _shake: Tween
 var _damage_events: Array[Dictionary] = []
 var action_preview := BattleActionPreview.new()
 var _preview_uid := 0
+var _opening_cry: Tween
 
 func _ready() -> void:
     set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -132,9 +133,27 @@ func _ready() -> void:
         W.panel(self,Rect2(640,88,640,38),Color(0.035,0.075,0.095,0.9),Color.TRANSPARENT,19)
         W.label(self,run_title,Rect2(640,88,640,38),17,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
     _refresh()
+    call_deferred("_opening_cries")
     if not opponent_trainer.is_empty() and battle.turn == 1 and battle.enemy_index == 0 and battle.phase == TacticalBattle.PLAYER and int(battle.statistics["counts"]["cards_played"]) == 0 and int(battle.statistics["counts"]["manual_switches"]) == 0 and not battle.get_meta("trainer_intro_seen",false):
         battle.set_meta("trainer_intro_seen",true)
         _start_trainer_intro()
+
+func _opening_cries() -> void:
+    # SceneTree emits scene_changed after _ready, stopping previous-scene audio.
+    # Start new appearance audio afterwards so that cleanup cannot cut it off.
+    if battle.phase in [TacticalBattle.WON,TacticalBattle.LOST] or (busy and trainer_intro == null): return
+    if _view_active().alive(): get_node("/root/GameCries").play(stage.canvas.source_species,true)
+    if opponent_trainer.is_empty():
+        _opening_cry = create_tween()
+        _opening_cry.tween_interval(1.0)
+        _opening_cry.tween_callback(_wild_cry)
+
+func _wild_cry() -> void:
+    if not busy and battle.phase not in [TacticalBattle.WON,TacticalBattle.LOST]:
+        get_node("/root/GameCries").play(stage.canvas.target_species,false)
+
+func _exit_tree() -> void:
+    get_node("/root/GameCries").stop_all()
 
 func _start_trainer_intro() -> void:
     busy = true
@@ -844,6 +863,7 @@ func _present(reason: String) -> void:
     if not reason.is_empty():
         _notify(reason)
         return
+    if _opening_cry != null and _opening_cry.is_valid(): _opening_cry.kill()
     busy = true
     playback_kinds.clear()
     _close_overlays(true)

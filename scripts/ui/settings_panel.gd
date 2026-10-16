@@ -14,6 +14,7 @@ var volume_sliders: Dictionary = {}
 var volume_labels: Dictionary = {}
 var mute_button: Button
 var preview_button: Button
+var cry_preview_button: Button
 
 func _ready() -> void:
     preferences = get_node("/root/Preferences")
@@ -35,22 +36,24 @@ func _ready() -> void:
     for i in modes.size():
         mode_buttons[modes[i]] = _option(titles[i], Rect2(40 + i * 294, 136, 280, 54), preferences.set_display_mode.bind(modes[i]))
     W.label(body, "화면 전환 F11 · 창 크기에 맞춰 화면 비율을 유지합니다.", Rect2(40, 198, 880, 34), 17, W.MUTED)
-    W.label(body, "전투 연출 속도", Rect2(40, 256, 850, 34), 23)
+    W.label(body, "전투 연출 속도", Rect2(40, 230, 850, 34), 23)
     for i in preferences.SPEEDS.size():
         var speed: float = preferences.SPEEDS[i]
-        speed_buttons[speed] = _option("%s배" % str(speed), Rect2(40 + i * 294, 300, 280, 54), preferences.set_battle_speed.bind(speed))
-    W.label(body, "공격·교대·카드 효과의 재생 속도에 적용됩니다.", Rect2(40, 362, 880, 34), 17, W.MUTED)
-    W.label(body, "피격 흔들림", Rect2(40, 416, 550, 44), 23)
-    motion_button = _option("", Rect2(678, 411, 240, 54), func(): preferences.set_hit_motion(not preferences.hit_motion))
-    W.label(body, "끄면 피격 시 흔들림을 줄입니다. 피해 숫자는 계속 표시됩니다.", Rect2(40, 473, 880, 34), 17, W.MUTED)
-    W.icon(body, "sound", Rect2(40, 538, 28, 28))
-    W.label(body, "소리", Rect2(82, 528, 500, 44), 23)
-    mute_button = _option("", Rect2(678, 527, 240, 48), func(): preferences.set_audio_muted(not preferences.audio_muted))
-    _audio_row("master", "전체 음량", 590)
-    _audio_row("effects", "효과음 음량", 654)
-    _audio_row("music", "음악 음량", 718)
+        speed_buttons[speed] = _option("%s배" % str(speed), Rect2(40 + i * 294, 274, 280, 54), preferences.set_battle_speed.bind(speed))
+    W.label(body, "공격·교대·카드 효과의 재생 속도에 적용됩니다.", Rect2(40, 336, 880, 34), 17, W.MUTED)
+    W.label(body, "피격 흔들림", Rect2(40, 374, 550, 44), 23)
+    motion_button = _option("", Rect2(678, 369, 240, 54), func(): preferences.set_hit_motion(not preferences.hit_motion))
+    W.label(body, "끄면 피격 시 흔들림을 줄입니다. 피해 숫자는 계속 표시됩니다.", Rect2(40, 431, 880, 34), 17, W.MUTED)
+    W.icon(body, "sound", Rect2(40, 480, 28, 28))
+    W.label(body, "소리", Rect2(82, 470, 500, 44), 23)
+    mute_button = _option("", Rect2(678, 469, 240, 48), func(): preferences.set_audio_muted(not preferences.audio_muted))
+    _audio_row("master", "전체 음량", 532)
+    _audio_row("effects", "효과음 음량", 596)
+    _audio_row("music", "음악 음량", 660)
+    _audio_row("cries", "울음소리 음량", 724)
     preview_button = _option("효과음 듣기", Rect2(40, 786, 250, 48), func(): get_node("/root/GameAudio").play("shield"))
-    W.label(body, "현재 음량으로 짧은 효과음을 재생합니다.", Rect2(314, 786, 604, 48), 17, W.MUTED)
+    cry_preview_button = _option("울음소리 듣기", Rect2(310, 786, 250, 48), func(): get_node("/root/GameCries").play(25))
+    W.label(body, "피카츄 · 현재 음량으로 재생", Rect2(584, 786, 334, 48), 17, W.MUTED)
     status = W.label(body, "", Rect2(40, 846, 680, 46), 16, W.MUTED)
     retry_button = _option("다시 저장", Rect2(748, 846, 170, 46), preferences.save_preferences)
     preferences.changed.connect(_sync)
@@ -98,6 +101,7 @@ func _sync() -> void:
     mute_button.text = "음소거 켜짐" if preferences.audio_muted else "음소거 꺼짐"
     _selected(mute_button, preferences.audio_muted)
     preview_button.disabled = preferences.audio_muted or preferences.master_volume <= 0 or preferences.effects_volume <= 0
+    cry_preview_button.disabled = preferences.audio_muted or preferences.master_volume <= 0 or preferences.cries_volume <= 0
     status.text = "변경 사항은 자동으로 저장됩니다." if preferences.last_error.is_empty() else preferences.last_error
     status.add_theme_color_override("font_color", W.MUTED if preferences.last_error.is_empty() else W.GOLD)
     retry_button.visible = not preferences.last_error.is_empty()
