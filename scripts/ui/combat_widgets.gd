@@ -1,6 +1,6 @@
 class_name CombatWidgets
 extends RefCounted
-## Native-resolution UI with original 16px icons. Children never steal button input.
+## Native-resolution UI with local icons. Children never steal button input.
 const TEXT := Color("e8ede7")
 const MUTED := Color("9bafaf")
 const GOLD := Color("edcb80")
@@ -42,10 +42,10 @@ static func label(parent: Node, value: String, rect: Rect2, font_size := 18, col
     return node
 static func icon(parent: Node, key: String, rect: Rect2) -> TextureRect:
     var node := TextureRect.new()
+    node.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
     node.texture = texture(key)
     node.position = rect.position
     node.size = rect.size
-    node.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
     node.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
     node.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
     node.mouse_filter = Control.MOUSE_FILTER_IGNORE

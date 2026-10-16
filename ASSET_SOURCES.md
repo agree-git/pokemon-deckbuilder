@@ -32,7 +32,10 @@
 
 ## UI 아이콘
 
-- `assets/ui/icons/*.svg`는 이 프로젝트가 직접 작성한 16×16 격자의 도트 아이콘 45종이다. 18개 타입·시작 화면·포획·회복·배지·야영 보급품 기호를 포함하며 외부 아이콘 폰트나 인터넷 이미지에 의존하지 않는다.
+- `assets/ui/icons/*.svg` 45종 중 **타입 18종**은 사용자 검토 후 승인받은 [duiker101/pokemon-type-svg-icons](https://github.com/duiker101/pokemon-type-svg-icons) 기호 세트, 고정 커밋 `5781623f147f1bf850f426cfe1874ba56a9b75ee`에서 가져왔다. 나머지 시작 화면·포획·회복·배지·야영 보급품 등의 **27종은 프로젝트가 작성한 16×16 도트 아이콘**이다.
+- 타입 원본은 업스트림 `icons/{type}.svg`의 흰색 기호다. 기호의 경로를 유지하고 업스트림 CSS의 타입 색상·20% 여백·60% 기호 비율을 적용해 **32×32 원형 배지 SVG**로 감쌌다. Godot에서 32px 텍스처로 임포트하고 기존 20/24/32px UI 칸에 최근접 필터로 표시한다. 화면 전체 해상도나 스프라이트는 바꾸지 않는다.
+- 원본 SVG·README·CSS는 `assets/sources/type-icons/*.txt`에 원문 그대로 보관한다. 업스트림 README의 소개는 “Very simple set of SVG icons for Pokemon types for any use.”이며 [원본 디자인 링크](https://dribbble.com/shots/4862612-Pokedex-iOS-app)를 제공한다. 이 고정 커밋에는 별도 LICENSE 파일이 없으므로 MIT 등 별도 라이선스로 표시하지 않는다. 공식 게임에서 추출한 이미지가 아니라 공개 SVG 기호 재현 세트다.
+- 고정 URL과 원본/적용 파일 SHA-256, 배경색·크기는 `assets/sources/type_icons.json`에 기록한다. `python3 tools/import_type_icons.py --offline`으로 보관된 원본에서 재현하고 `--check`로 다운로드·수정 없이 검증한다. 원본이 없으면 옵션 없이 실행해 고정 URL에서 다시 가져오며 기록된 해시와 일치해야 한다. 게임 실행에는 네트워크를 사용하지 않는다.
 - 에너지·공격·방어·타입·상태·드로우·교체·메뉴 등의 기호를 최근접 필터로 확대한다. 아이콘과 작은 수치를 함께 표시하고, 효과 설명은 툴팁·도움말로 제공한다.
 - 트레이너 카드의 일러스트 6종은 `scripts/ui/trainer_card_art.gd`에서 직접 작성한 84×48 도트 장면을 2배로 그린다. 기존 UI 아이콘과 지도·방어물·서류·깃발·구급 상자 등의 도형을 조합하며 외부 일러스트나 원작 카드 이미지를 사용하지 않는다.
 - 포켓몬 초상은 기존 스프라이트의 투명 여백을 런타임 `AtlasTexture`로 제외해 정수 배율로 표시한다. 큰 종의 작은 UI 초상은 필요하면 1/2·1/3의 정수 분모로 축소해 영역 안에 맞추고 최근접 필터를 유지한다. 원본 파일은 유지한다.
@@ -44,7 +47,7 @@
 
 ## 재현
 
-`python3 tools/import_pokemon_assets.py`로 고정 커밋에서 원본을 가져오고 `python3 tools/build_biomes.py`로 출현·관장 데이터와 목록 문서를 재생성한다. 이전 `import_kanto_assets.py`는 호환용 진입점으로 유지한다. 모든 다운로드는 HTTPS 검증을 유지하며, 파일별 URL과 SHA-256은 `assets/sources/manifest.json`에 기록한다. 동일한 파일은 재사용하며 실패한 다운로드가 있어도 완료된 파일을 재사용할 수 있다. 배경은 생성 에셋이므로 네트워크 임포터가 덮어쓰지 않는다.
+`python3 tools/import_pokemon_assets.py`로 고정 커밋에서 원본을 가져오고 `python3 tools/build_biomes.py`로 출현·관장 데이터와 목록 문서를 재생성한다. 이전 `import_kanto_assets.py`는 호환용 진입점으로 유지한다. 모든 다운로드는 HTTPS 검증을 유지하며, 파일별 URL과 SHA-256은 `assets/sources/manifest.json`에 기록한다. 타입 배지는 별도 `assets/sources/type_icons.json`과 `tools/import_type_icons.py`로 관리한다. 동일한 파일은 재사용하며 실패한 다운로드가 있어도 완료된 파일을 재사용할 수 있다. 배경은 생성 에셋이므로 네트워크 임포터가 덮어쓰지 않는다.
 
 ## 가방 아이템
 
