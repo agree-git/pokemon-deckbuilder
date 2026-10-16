@@ -10,6 +10,7 @@ var actions: Array[Button] = []
 var deck_open := false
 var report_open := false
 var deck_action := ""
+var deck_owner_filter := -1
 var upgrade_preview_uid := 0
 var removal_preview_uid := 0
 var recruit_index := -1
@@ -165,6 +166,7 @@ func _party() -> void:
         var experience := W.bar(panel,Rect2(102,148+i*82,200,3),W.GOLD)
         experience.get_child(0).size.x = 200*TacticalGrowth.progress(pokemon)
     deck_button = W.button(panel,Rect2(20,348,300,52),func():
+        deck_owner_filter = -1
         deck_open = true
         refresh(),"원정 덱 · %d장" % journey.deck.size())
     W.button(page,Rect2(96,718,340,54),func():
@@ -665,6 +667,7 @@ func _equip(key: String,uid: int) -> void:
     if reason.is_empty(): gear_open_for = 0
     refresh()
 func _select_deck_action(action: String) -> void:
+    deck_owner_filter = -1
     upgrade_preview_uid = 0
     removal_preview_uid = 0
     deck_action = action
@@ -831,62 +834,18 @@ func _capture() -> Dictionary:
         if not save_error.is_empty(): message += "\n"+save_error
     return {"reason":reason,"notice":message}
 func _deck() -> void:
-    var overlay := W.button(page,Rect2(0,0,1920,1080),_close_deck)
-    for state: String in ["normal","hover","pressed","focus"]:
-        overlay.add_theme_stylebox_override(state,W.box(Color(0.01,0.025,0.04,0.85),Color.TRANSPARENT,0))
-    var panel := W.panel(overlay,Rect2(520,120,880,840),Color("14282f"),Color("536b6e"))
-    panel.mouse_filter = Control.MOUSE_FILTER_STOP
-    W.label(panel,"원정 덱 · %d장" % journey.deck.size(),Rect2(32,24,720,60),28,W.GOLD)
-    deck_close = W.icon_button(panel,"close",Rect2(796,30,48,48),_close_deck,"닫기 · Esc")
-    var scroll := ScrollContainer.new()
-    scroll.position = Vector2(32,110)
-    scroll.size = Vector2(816,690)
-    if deck_action != "upgrade":
-        if deck_action == "remove": W.label(panel,"제거할 카드 선택 · %d 골드 · 묶음에서 1장" % journey.removal_price(),Rect2(32,78,720,30),17,W.MUTED)
-        scroll.name = "JourneyDeckCards"
-        panel.add_child(scroll)
-        var grid := GridContainer.new()
-        grid.columns = 3
-        grid.add_theme_constant_override("h_separation",28)
-        grid.add_theme_constant_override("v_separation",8)
-        scroll.add_child(grid)
-        var views: Array[Dictionary] = []
-        for instance: BattleCardInstance in journey.deck:
-            var view := journey.reward_view({"kind":"card","key":instance.key,"owner_uid":instance.owner_uid,"upgraded":instance.upgraded})
-            view["uid"] = instance.uid
-            views.append(view)
-        for stack: Dictionary in CardStacks.group(views):
-            var face := CardStackView.new()
-            face.uid = stack["view"]["uid"]
-            face.name = ("Card_%d" if deck_action == "remove" else "DeckStack_%d") % face.uid
-            face.key = stack["view"]["key"]
-            face.definition = stack["view"]
-            face.stack_count = stack["count"]
-            grid.add_child(face)
-            if deck_action == "remove":
-                face.allow_selection(journey.remove_card_reason(face.uid))
-                face.pressed.connect(_deck_select.bind(face.uid))
-        return
-    var rows := VBoxContainer.new()
-    rows.custom_minimum_size.x = 790
-    rows.add_theme_constant_override("separation",8)
-    scroll.add_child(rows)
-    panel.add_child(scroll)
-    W.label(panel,"강화할 카드 선택 · 휴식과 공유",Rect2(32,78,720,30),17,W.MUTED)
-    for card: BattleCardInstance in journey.deck:
-        var view := TacticalContent.definition(card)
-        var owner := ""
-        for pokemon: BattlePokemon in journey.party:
-            if pokemon.uid == card.owner_uid: owner = " · "+pokemon.display_name
-        var button := Button.new()
-        button.custom_minimum_size = Vector2(790,80)
-        button.text = str(view["name"])+owner+"\n"+str(view["description"])
-        button.add_theme_font_size_override("font_size",16)
-        button.tooltip_text = view["description"]
-        button.name = "Card_%d" % card.uid
-        rows.add_child(button)
-        button.disabled = not TacticalContent.can_upgrade(card) or journey.step in journey.rested_steps
-        button.pressed.connect(_deck_select.bind(card.uid))
+    var browser := JourneyDeckPanel.new()
+    browser.name = "JourneyDeckPanel"
+    browser.journey = journey
+    browser.action = deck_action
+    browser.owner_filter = deck_owner_filter
+    browser.closed.connect(_close_deck)
+    browser.filter_selected.connect(func(uid: int):
+        deck_owner_filter = uid
+        deck_close = browser.close_button)
+    browser.selected.connect(_deck_select)
+    page.add_child(browser)
+    deck_close = browser.close_button
 func _deck_select(uid: int) -> void:
     if deck_action == "upgrade":
         if not journey.deck.any(func(card: BattleCardInstance): return card.uid == uid and TacticalContent.can_upgrade(card)): return
@@ -964,6 +923,7 @@ func _upgrade_preview() -> void:
     confirm.disabled = journey.phase != TacticalJourney.REST or journey.step in journey.rested_steps or not TacticalContent.can_upgrade(selected)
     UiMotion.appear(overlay)
 func _close_deck() -> void:
+    deck_owner_filter = -1
     upgrade_preview_uid = 0
     removal_preview_uid = 0
     deck_action = ""

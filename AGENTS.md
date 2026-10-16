@@ -7,12 +7,19 @@
 - Read `README.md` and `docs/game-design.md` before implementation.
 - The design document contains provisional mechanics and tuning values. Identify any inconsistencies before implementing affected rules.
 
+## Continue work across chats
+
+- At the start of every new or resumed task, read `HANDOFF.md`, then `docs/progress.md`. Check `git status --short` and recent commits before choosing work; never assume a previous chat's uncommitted changes are absent.
+- Treat `HANDOFF.md` as the current project handoff, not a transcript. Follow the latest user request first, then the confirmed rules and next steps recorded there. Read the linked rule documents before changing affected systems.
+- Update `HANDOFF.md` whenever a meaningful milestone completes, work is interrupted, or the turn ends. Record completed work, unfinished files/steps, actual validation outcomes, blockers and the concrete next task. Keep pending work distinct from completed work.
+- Keep `docs/progress.md` for the broader implementation/validation history. Avoid copying that entire history into the handoff; remove stale pending items as they complete.
+- Never store credentials, private environment identifiers, user saves or secrets in the handoff. Keep cloud-specific setup commands clearly distinguished from general project instructions.
+
 ## Scope
 
-- Implement a playable battle with two allied Pokemon first.
-- Include a shared deck, energy, draw/discard, card ownership, switching, enemy intent, and win/loss/restart.
-- Do not expand to a map, capture, evolution, shops, or extensive content before this battle works.
-- Use simple placeholders so art production does not block gameplay.
+- The original first-battle milestone is complete. The current game starts at the main menu and supports the full 69-battle campaign, camps, capture, evolution, shops and autosave. Do not treat these implemented systems as future work.
+- Preserve the confirmed scope: Generation 1-3 originals, up to three starters, eight biome badges followed by the league, and the unified technique/tool/trainer deck. Consult `HANDOFF.md` and current rule documents for details.
+- Continue in small playable increments. Prioritize the user's requested work and the recorded remaining work; do not silently add Generation 4+, restore break/fixed-skill combat, or replace the native 1920x1080 UI with a low-resolution viewport.
 
 ## Implementation
 

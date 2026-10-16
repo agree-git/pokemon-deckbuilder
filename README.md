@@ -10,6 +10,7 @@
 - 게임 기획: [docs/game-design.md](docs/game-design.md)
 - 전투 설계와 확장 방향: [슬더스라이크 전투·원정 설계](docs/deckbuilder-direction.md) — 통합 카드 덱·자동 교대·유물·선택 보상의 구현과 추가 설계 제안.
 - Codex 작업 기준: [AGENTS.md](AGENTS.md)
+- 새 대화에서 이어갈 때: [현재 작업 인계](HANDOFF.md) → [전체 진행 현황](docs/progress.md)
 
 ## 현재 상태
 
@@ -43,6 +44,7 @@
 - 기술은 초록, 도구는 금색, 트레이너는 푸른 프레임으로 구분하며 비용·초상 또는 도트 아이콘·효과를 표시한다. 카드가 뽑히면 순서대로 등장하고, 호버하면 떠오르며, 사용하면 버린 더미로 이동한다. 소진 카드는 사용 후 사라진다.
 - 버튼 반응, 교체 페이드, 체력바 보간, 에너지·턴·유물 발동 강조와 메뉴·도움말·결과창의 열기/닫기 애니메이션을 적용했다. 자세한 효과는 툴팁에서 확인한다.
 - 상단 **? / F1**은 도움말, **… / Esc**는 메뉴다. 획득한 파티 유물 확인·원정 재시작·시작 화면 이동을 제공한다. 아트 랩과 비교용 원정은 일반 메뉴에 노출하지 않는다.
+- 원정 덱 조회·강화·제거 목록은 [전체·공용·동료별 필터](docs/deck-browser.md)를 제공한다. 강화와 제거는 묶음에서 한 장을 선택해 비교·확정한다.
 - 덱·더미·출발 덱·합류/기술 비교·전투 준비 목록에서 같은 소유자·강화·내용의 사본은 겹친 카드와 `×N`으로 묶어 표시한다. 전체 장수는 실제 카드 수다.
 - 뽑을 더미와 버린 더미 아이콘을 누르면 카드 구성을 확인할 수 있다. 소진 더미는 메뉴에서 확인한다. 더미 확인으로 드로우 순서를 공개하거나 변경하지 않는다.
 
@@ -79,6 +81,7 @@ godot --headless --path . --script res://tests/test_camp_ui.gd
 godot --headless --path . --script res://tests/test_campaign.gd
 godot --headless --path . --script res://tests/test_campaign_ui.gd
 godot --headless --path . --script res://tests/test_card_stacks.gd
+godot --headless --path . --script res://tests/test_deck_filters_ui.gd
 godot --headless --path . --script res://tests/test_removal_preview.gd
 godot --headless --path . --script res://tests/test_removal_preview_ui.gd
 godot --headless --path . --script res://tests/test_learning_comparison.gd
