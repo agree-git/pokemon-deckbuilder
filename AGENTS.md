@@ -25,8 +25,8 @@
 ## Scope
 
 - The original first-battle milestone is complete. The current game starts at the main menu and supports the full 69-battle campaign, camps, capture, evolution, shops and autosave. Do not treat these implemented systems as future work.
-- Preserve the confirmed scope: Generation 1-3 originals, up to three starters, eight biome badges followed by the league, and the unified technique/tool/trainer deck. Consult `HANDOFF.md` and current rule documents for details.
-- Continue in small playable increments. Prioritize the user's requested work and the recorded remaining work; do not silently add Generation 4+, restore break/fixed-skill combat, or replace the native 1920x1080 UI with a low-resolution viewport.
+- Preserve the confirmed scope: Generation 1-3 ordinary originals plus Generation 1-9 rare species/regional birds (see docs/rare-gen9.md), up to three starters, eight biome badges followed by the league, and the unified technique/tool/trainer deck. Consult `HANDOFF.md` and current rule documents for details.
+- Continue in small playable increments. Prioritize the user's requested work and the recorded remaining work; do not silently add ordinary Generation 4+ species, restore break/fixed-skill combat, or replace the native 1920x1080 UI with a low-resolution viewport.
 
 ## Implementation
 

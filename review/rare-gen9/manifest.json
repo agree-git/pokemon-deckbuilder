@@ -1,0 +1,539 @@
+{
+  "game_commit": "81ca3ff9be3cd5d754626250a00a536780efde9b",
+  "runtime_commit": "2674ac9a2912efd762fe7a3860c2f1e6c61d979a",
+  "engine": "Godot 4.7.2",
+  "platform": "Linux / X11 / llvmpipe",
+  "scope": {
+    "rare_base_species": 100,
+    "regional_forms": 3,
+    "rare_entries": 103,
+    "all_runtime_entries": 468,
+    "new_entries": 82,
+    "unique_arrivals": 25,
+    "clues": 463
+  },
+  "calibration_sha256": "b0f2e796afbb02eb04bef728ae28cfd113b1b8a8d6939911d5d0371ba89724f3",
+  "note": "Seeded mid-campaign boundary fixtures, not a played full expedition. Anticipation/reveal shots freeze the real tween at documented effect progress 0.40/0.67. Natural playback and OS interaction separately checked for 3 species.",
+  "screenshots": [
+    {
+      "file": "screenshots/10169-hidden.png",
+      "id": 10169,
+      "phase": "research",
+      "sha256": "b19f6af69fe3370509917129fe2bfe8491a1c26308ad9d26bb0b3494b514e540",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/10169-preparation.png",
+      "id": 10169,
+      "phase": "preparation",
+      "sha256": "2cc91c563b7a2f1bb90e43dad0971692a58bca007bd34028b218f590f730dd97",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/10169-travel.png",
+      "id": 10169,
+      "phase": "travel",
+      "sha256": "5cf290cd54b1c5165831bca3fd449659a9d0138b5695b194d5da6799acb86c1c",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/10169-ready.png",
+      "id": 10169,
+      "phase": "ready",
+      "sha256": "1fd50eacc767122337f11880398356a6c54ce05f1e9fbbfd4abc8185fb10cf1a",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/1025-hidden.png",
+      "id": 1025,
+      "phase": "research",
+      "sha256": "3f1d2de7cebe5e1cb44502d0656aa7a9a2cd77e4480aad793aeee61f5dbc60c2",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/1025-preparation.png",
+      "id": 1025,
+      "phase": "preparation",
+      "sha256": "f517b4475fd73ba70c71e5493a7ae6f0e56327dc9aaa5dec1ba7f09844a33c0e",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/1025-travel.png",
+      "id": 1025,
+      "phase": "travel",
+      "sha256": "c8e1b0e551858ea20a21095b660986a08d0c7a3937fdfe2b8ad7d73b9ff21b1d",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/1025-ready.png",
+      "id": 1025,
+      "phase": "ready",
+      "sha256": "2cf1f61dabb0b38064811d8e41c72ff33af89391f5f8e6bc468a48f7d320462a",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/1007-hidden.png",
+      "id": 1007,
+      "phase": "research",
+      "sha256": "255c7ee4c508e0541e25104b5d81731ebc7331d9f60d9ee1ceefb1bbbd341f14",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/1007-preparation.png",
+      "id": 1007,
+      "phase": "preparation",
+      "sha256": "dcec152ac6a6f48e3b4102c0ec7058e2d703e843fd46e1f01c0113f864a0a70a",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/1007-travel.png",
+      "id": 1007,
+      "phase": "travel",
+      "sha256": "c4de476950aad2c23bc29434c731292082a7e3cbe6761c474f0feff7314c4859",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/1007-ready.png",
+      "id": 1007,
+      "phase": "ready",
+      "sha256": "6c4650479c3a72b415392c360fa2a40bb347f1812021a956360101ff9f4ed384",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/789-hidden.png",
+      "id": 789,
+      "phase": "family_gate",
+      "sha256": "177fb8d4368b6406a2441eea27612f9b0426b5155c2a2b05adfbd25a6109858f",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/790-hidden.png",
+      "id": 790,
+      "phase": "family_gate",
+      "sha256": "b8e238a62698a967d171278bef60fdb93a60975c09484d57db1d66111230e875",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/150-anticipation.png",
+      "id": 150,
+      "phase": "anticipation",
+      "sha256": "60a32aa3555bad581d64b6fe0fc617bcbab11ddb9dd89a68574fb392ffc93643",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/150-reveal.png",
+      "id": 150,
+      "phase": "reveal",
+      "sha256": "9a991d21f8441b9091e141aa0d304a4b458b47819355d331ed2a3417b7efb368",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/249-anticipation.png",
+      "id": 249,
+      "phase": "anticipation",
+      "sha256": "d78c728a516622ad4dbec8fd417f0f7721f85374b3b6d066ae8b2d21641cf44e",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/249-reveal.png",
+      "id": 249,
+      "phase": "reveal",
+      "sha256": "ee4f5d5067980c36a7bb4047a6d30c72c6ee3ceeb74a9d3e01e2756c61d5e513",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/250-anticipation.png",
+      "id": 250,
+      "phase": "anticipation",
+      "sha256": "d33e60a72b16844f212d9f1588a8828f873b2fe25aaa5e9ff06eaa096a5372ab",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/250-reveal.png",
+      "id": 250,
+      "phase": "reveal",
+      "sha256": "c502df642ecf9f6ab0ef25f6fb5740b336ea77860ad9f77a4ba89b4567284429",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/382-anticipation.png",
+      "id": 382,
+      "phase": "anticipation",
+      "sha256": "ed55da7235e2673c1a8c8dd01036e22fe26dd13f5ac9bfd3da74f5e6ab973eee",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/382-reveal.png",
+      "id": 382,
+      "phase": "reveal",
+      "sha256": "4bb3272d51deade9b683b6af33cdb4d43fc234cc0e3c51f7433840f2704a50bc",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/383-anticipation.png",
+      "id": 383,
+      "phase": "anticipation",
+      "sha256": "e8ba6edaa568fbcab05efdd67ba3d4e10e36189ddc7fb4ebb55b2e5fd599145e",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/383-reveal.png",
+      "id": 383,
+      "phase": "reveal",
+      "sha256": "32b6365c340c7cf39190517c605be5cecb1eebc030eaf9f358d0c247dbaa9ea7",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/384-anticipation.png",
+      "id": 384,
+      "phase": "anticipation",
+      "sha256": "da768b46f8bc667318e908e85a1676e59e2b4cb5454f9cb97e1c4178771b51be",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/384-reveal.png",
+      "id": 384,
+      "phase": "reveal",
+      "sha256": "eab38c6a71ace5e79172163a3ac1895ffaaa1195bc446c5f07cd16c48aaf20d1",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/483-anticipation.png",
+      "id": 483,
+      "phase": "anticipation",
+      "sha256": "b24fd575362254e63bc2d0a4cad6101096a35b0e1f670eb599b317b94b16ab9f",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/483-reveal.png",
+      "id": 483,
+      "phase": "reveal",
+      "sha256": "24fc7b7c268333f37b9426193b4a153a2ec7533ce05461d46aa480a45068b0b2",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/484-anticipation.png",
+      "id": 484,
+      "phase": "anticipation",
+      "sha256": "ae162728effd2e377b8af550723ff505a4e7368067ae6892dc18f5a58998c256",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/484-reveal.png",
+      "id": 484,
+      "phase": "reveal",
+      "sha256": "e981afe75a64a6e2102f3569e71d0212c369a3862797a0ec59f139b0f1fc4068",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/487-anticipation.png",
+      "id": 487,
+      "phase": "anticipation",
+      "sha256": "84cbb1008e8d0d9f29b3a0b050e942877308035791c3ceba9f6b945ff19efba1",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/487-reveal.png",
+      "id": 487,
+      "phase": "reveal",
+      "sha256": "fcf0f0a6c57fb77e477a72bed6bc02bdbad9bae5233e7f86dd4f0785ea155f19",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/643-anticipation.png",
+      "id": 643,
+      "phase": "anticipation",
+      "sha256": "4049e21a12787c6523a3ad12e64fe05aa3062d0b808dddeb002a3d7701a0de35",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/643-reveal.png",
+      "id": 643,
+      "phase": "reveal",
+      "sha256": "179c4a4d8b4ec6097d179cf8f9a712d95cc42385f2890348e09f897c36cd4fc8",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/644-anticipation.png",
+      "id": 644,
+      "phase": "anticipation",
+      "sha256": "f4ae435ba1b7bfad2b6ccb3a57420e14c38ac705c0403191415eb34971af35a5",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/644-reveal.png",
+      "id": 644,
+      "phase": "reveal",
+      "sha256": "4917512af5c831b05ab8163dcea2e74e8233403b4b5125583fb3ffe70cdece75",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/646-anticipation.png",
+      "id": 646,
+      "phase": "anticipation",
+      "sha256": "1c619ae29eba3760d2867cad5c20c4b3d73f12cfa288814a1be735650d608a59",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/646-reveal.png",
+      "id": 646,
+      "phase": "reveal",
+      "sha256": "896d85c4d00eaf6b39de830209258a64e57cada4fa1b600644bc8cd43c809ea6",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/716-anticipation.png",
+      "id": 716,
+      "phase": "anticipation",
+      "sha256": "1a03b14f74a357a9ed614677aedab3732a884e9980596ace9be5148e8c1d7a07",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/716-reveal.png",
+      "id": 716,
+      "phase": "reveal",
+      "sha256": "dde766d5c6ec9bb0b21ffe514fc1d44a38499f881ba4eaa21e1ee033766efda8",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/717-anticipation.png",
+      "id": 717,
+      "phase": "anticipation",
+      "sha256": "abede923d2932f668ef204082c24d21d8ab10167dd8dbb2cb6f3d2825e6ae872",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/717-reveal.png",
+      "id": 717,
+      "phase": "reveal",
+      "sha256": "b2129a164efc366a82e801b6cf1016c522e5a98bc6779065704438a12e85b060",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/718-anticipation.png",
+      "id": 718,
+      "phase": "anticipation",
+      "sha256": "b3382e6ff888b858443ef3a6e468962344ce8108591a00b3eeaceb4afb45dcdd",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/718-reveal.png",
+      "id": 718,
+      "phase": "reveal",
+      "sha256": "a032b1f08e76df047ce794f03f2a31174be3cfe8aa2d3de143efc1d4d9359f99",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/791-anticipation.png",
+      "id": 791,
+      "phase": "anticipation",
+      "sha256": "c2393448120e08e554a0683107ed487e842e8730e7a4cb1ae1790e405a13fd24",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/791-reveal.png",
+      "id": 791,
+      "phase": "reveal",
+      "sha256": "c418e2daa5dc482b4914b091845fd8b8c89da3a29e92fe2080a80d6fd78dd4d2",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/792-anticipation.png",
+      "id": 792,
+      "phase": "anticipation",
+      "sha256": "4fe358d8eefcc95d17e353f703552850af546287e04359f5e929ac8d71455b78",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/792-reveal.png",
+      "id": 792,
+      "phase": "reveal",
+      "sha256": "5472dc59a02e460cdcaab077dac77d0c0ecd50cd8264a28c84b99437b34c3729",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/800-anticipation.png",
+      "id": 800,
+      "phase": "anticipation",
+      "sha256": "a9fbb5c442b0318ebc508d97dfeb0795083ec337a776081a7b7150b1628837ea",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/800-reveal.png",
+      "id": 800,
+      "phase": "reveal",
+      "sha256": "aa3d563418606841759adf75fa6c7b5933386bcdbd2706a41976767f226347e9",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/888-anticipation.png",
+      "id": 888,
+      "phase": "anticipation",
+      "sha256": "09cc862013d6436db7e3bead9ad9ccdca922d53f9e35f500b217637dcf7e1f9b",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/888-reveal.png",
+      "id": 888,
+      "phase": "reveal",
+      "sha256": "bac86babfe0aa93e10ad895241c76c234e34a94d14ff718d2cda00f846ba0b4d",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/889-anticipation.png",
+      "id": 889,
+      "phase": "anticipation",
+      "sha256": "387141bdb82d05870d93a096c4d9f8e65a268811c83aee7545ce50ce9adbe614",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/889-reveal.png",
+      "id": 889,
+      "phase": "reveal",
+      "sha256": "b70b04f473d81da2bcba1f97c3d7808b22ba43e192e6b35f50ec94addaba8058",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/890-anticipation.png",
+      "id": 890,
+      "phase": "anticipation",
+      "sha256": "7454ec9619dc09805c9dc82e6bd64ecab87d9805e315a9edee5e517fde98f411",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/890-reveal.png",
+      "id": 890,
+      "phase": "reveal",
+      "sha256": "3bfa92b7e4bd156f76ce0492d3f2c56613e4db911eed9ec92768003e609f3670",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/898-anticipation.png",
+      "id": 898,
+      "phase": "anticipation",
+      "sha256": "c1edad8ee2e8c7a5e13ecadabee70803700059d7ec081fb1a5e8795d8e379b73",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/898-reveal.png",
+      "id": 898,
+      "phase": "reveal",
+      "sha256": "6661b4204ea367377845041e5e0059d1326b4d4f6c83b914dec2e5d416562b52",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/1007-anticipation.png",
+      "id": 1007,
+      "phase": "anticipation",
+      "sha256": "77ff606281cca4f2ddd80105c08ae1212745bc0c4598633c779855f0135d3eea",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/1007-reveal.png",
+      "id": 1007,
+      "phase": "reveal",
+      "sha256": "0a18969a7af1dcbdb4ec070dda7b8e59857fa8663137abd642ffac162e521ab1",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/1008-anticipation.png",
+      "id": 1008,
+      "phase": "anticipation",
+      "sha256": "42e3e14462636d5f815e8457b5c18b2f3d9eb4098eee0d35a93ddc471a5cfdad",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/1008-reveal.png",
+      "id": 1008,
+      "phase": "reveal",
+      "sha256": "3fd42db45c3dc11d17ee10b9a5add9b623d1df36554f8eae367dcfc9a7e4592e",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/1024-anticipation.png",
+      "id": 1024,
+      "phase": "anticipation",
+      "sha256": "d4f0e071ed37bc8c28ad7da80a13d463f286083f5df85a57b991e9e92070205a",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/1024-reveal.png",
+      "id": 1024,
+      "phase": "reveal",
+      "sha256": "13dd6d49427f529c2e43199c7d95ae0679d6f72b4f51aa099404bb2419bd0fbb",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "screenshots/collection-hidden.png",
+      "id": 0,
+      "phase": "collection",
+      "sha256": "bdebe927c762465e9b21f5eb32aabd849544042fbec070e3cb125d46d15414ac",
+      "width": 1920,
+      "height": 1080
+    }
+  ]
+}

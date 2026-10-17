@@ -1,0 +1,1478 @@
+{
+  "assets/pokemon/front/480.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/suxie.gif",
+    "sha256": "6495255bbf2b5a7281a53c31608862267d6434ce112516382a4a3c4ea3f1abf7",
+    "source_sha256": "2625d6f7056adb665f7087f5f34681d43a949f242bbe264bae8fa8db71b2bb09",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 48,
+    "height": 51,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/480.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/suxie-b.gif",
+    "sha256": "e86a67a970e6163d70098d4564af81b0af40bd54f83d8a231a86e913026bb172",
+    "source_sha256": "ddab91cb7023b08c8134740e890ee864149a521b69aa96d96947bd762144baa3",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 49,
+    "height": 53,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/481.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/smesprit.gif",
+    "sha256": "81ad89d50cef8db8af1b751d3de0fe2c7f69951b1eed4ef53ab1a31d41bbeef1",
+    "source_sha256": "400f9d0cead2ba6b2d5bc9b9f41d524d2183bc8f157fda48ff2e7f77d14e85f0",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 54,
+    "height": 90,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/481.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/smesprit-b.gif",
+    "sha256": "f2b0adc6c9da9446380ae18c84b421d692fe05f317886310730b66d9120f6de8",
+    "source_sha256": "ff495d0f494d2291cb07675767e12615c6c9a3459bafcbb51202f5a9082b5717",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 56,
+    "height": 89,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/482.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sazelf.gif",
+    "sha256": "0d486d4969e35cdae0d252491c1ee988d8bcd1da6e7fe6863dca33ea3773a166",
+    "source_sha256": "ee65b48b4b93d47725214778e9ef0a81a03dd5eb044d06859bc572e146d88682",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 74,
+    "height": 60,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/482.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sazelf-b.gif",
+    "sha256": "3d631c42a2842a8cc9bfca44a0e39beb95843f0e1879502cd85ef71ae54d3c23",
+    "source_sha256": "f50159ad590d145158b392143aaa572d7b2f9c784c1a0d9cf935332bb5256028",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 76,
+    "height": 63,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/483.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sdialga.gif",
+    "sha256": "4575807521900c6cc2f833dbc5087e56579f24871bdd1f867259d458acef5c2c",
+    "source_sha256": "b80468caa18f63d8157e78b2b5cd935565f3f651bea3a402e9ebe90ef3280b3d",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 84,
+    "height": 89,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/483.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sdialga-b.gif",
+    "sha256": "ec04f70e798149efe87a64cce9789d493f68c901f3366776096c8ed311be458c",
+    "source_sha256": "a3f3dd509d2e41f2069d598e40902abe5163d5ba9fb22e42768c7a6d78e7c489",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 84,
+    "height": 86,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/484.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/spalkia.gif",
+    "sha256": "e5fe7df362c087a0a5c405a9220d7b22143a01f1f419542c4dc175a23c80fcbf",
+    "source_sha256": "c1f92f57b48dbb10bd040dae5228967e82314aed01f1e8f15f7a76d624386c04",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 86,
+    "height": 78,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/484.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/spalkia-b.gif",
+    "sha256": "e116e858427f7b3afceb13ee6473d0646736ff9835b6b7c79361bf85c8a64ba9",
+    "source_sha256": "a0f361055b483e422c9bde3ac887991bba4b66c03c13329a449a64626f092ec7",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 89,
+    "height": 82,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/485.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sheatran.gif",
+    "sha256": "825951964993a38d86d8999614f8f9302809d26a5404eef8295010751e98b866",
+    "source_sha256": "f2b58de3323e373af282d6b99124cffecef31a95e2c12518bd609cb119f0a1fa",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 85,
+    "height": 57,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/485.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sheatran-b.gif",
+    "sha256": "db77a17daa5697d619eaf8e80a44cc6fdae5a0efdeb2d378adf2a630ce5d9562",
+    "source_sha256": "63c82d9c12bdea01f405eeda80dc9a9150a11da41afb4d7b76952f8240caeded",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 88,
+    "height": 52,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/486.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sregigigas.gif",
+    "sha256": "8885070698b5a38650ea572d3e294a31a1c17d890c54999e85e266ee3d949ab9",
+    "source_sha256": "e07b8999a35b2fff6fa435d2e70e8a8c9db0d1eb7e2b9b661931af3fe9e48a7f",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 87,
+    "height": 69,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/486.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sregigigas-b.gif",
+    "sha256": "5a274df8f84ca4b96b21a184b74bf87145dd551e66d6070ddeeadcd40b55a083",
+    "source_sha256": "9b51f059c04ac6309094a0d21a41fc93774f185b059722019db8b5dab0495cc5",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 93,
+    "height": 72,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/487.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sgiratina.gif",
+    "sha256": "fdb8323e92324d22d498ff42acf7441a5f3b5195da5134d007eb11670bc1cd98",
+    "source_sha256": "e508a035b1b9b8dfb1b51af5e2581228fc58e304d4b71060420edd77ea22c941",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 102,
+    "height": 89,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/487.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sgiratina-b.gif",
+    "sha256": "8eddb4d9f23e96ea06a37e064bd09bef79a9ab21a7647633585b1cfa33e909c3",
+    "source_sha256": "ba34723636e85a160ade00b69c1bb8c60b9fc56fff20ff125a25ed05c641fb00",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 104,
+    "height": 86,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/488.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/scresselia.gif",
+    "sha256": "bfd11e4548f7a77b329bb0a55d814c324601ce8bcbbb4b2a43842b06abd36c0d",
+    "source_sha256": "a59f95e7ad39700cb0d0d9be9c0b1c5fd740635bc2722b1ddb2f1b3d3e041362",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 80,
+    "height": 78,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/488.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/scresselia-b.gif",
+    "sha256": "a96057a35668bbcf9a5e292e7fecc1170c64201a7a196d9a7d5f2cc8ed8137d2",
+    "source_sha256": "68f02ced1bfdd3e9d5ec9a3348c440c21364a57a31809483a2c58b474c4d2e86",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 95,
+    "height": 77,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/489.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sphione.gif",
+    "sha256": "8accc210aa5cc802bad5abb22ea4f557863f3353e2ba4f72f2ce1071d1d0d643",
+    "source_sha256": "4b10cc71a98769529e7acdc40e3ff87dba9cf5dc0d7935039f2a2c130824fb38",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 63,
+    "height": 49,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/489.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sphione-b.gif",
+    "sha256": "bd4f27b62338469c0d6e121b9caa13811a2e1998c46dbf445540eca268e3079d",
+    "source_sha256": "cfe544d67df34b49ab512bd9ddeacca9d358cb77062bc62cebee266b36af4b29",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 63,
+    "height": 48,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/490.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/smanaphy.gif",
+    "sha256": "71e3f30b5edc873b2bfcd801170beac8d32948b6b88931294b4460a23d58282d",
+    "source_sha256": "9c07b478f70838c9c81f7e905a45cef9d10dd28b08ae22e99914aaecaf1e148e",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 56,
+    "height": 51,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/490.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/smanaphy-b.gif",
+    "sha256": "0c4e222313e6e2e413c71e1f595195d8c2a8f11cdd263467d10be7f91a2fc1fe",
+    "source_sha256": "0f03b9e244aab9718189969919bce735fdd1f8a848c3b06293ba80379f8ef159",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 56,
+    "height": 52,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/491.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sdarkrai.gif",
+    "sha256": "492d77e216e4b3caf1dbb207d4132bf30ee9999c37c59736c39fc5ccc95dc402",
+    "source_sha256": "f0031237eb083656753671047c87b292c477a449e6f42595eeaba3f2d374b102",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 94,
+    "height": 86,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/491.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sdarkrai-b.gif",
+    "sha256": "a858e42ab395cfb8cc11ad935421507ce1ef0c4b3cb978b47f94220d3f446c54",
+    "source_sha256": "42a8840039fa573036eada964540e365923c2a5ec824cb7872e829e6bb240b59",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 91,
+    "height": 86,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/492.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sshaymin.gif",
+    "sha256": "492407d917bc26619f148716c2cc814bba2bae6d2db3a90f3cae3b6950d01003",
+    "source_sha256": "6658302a46d0c2c5f5e62d46c767afc19b69a7feda352a72e781b6703031f470",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 36,
+    "height": 36,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/492.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sshaymin-b.gif",
+    "sha256": "8474050510ab95245a9ba67075a3b5cb043e772ffa5b40940663705b9b23fc38",
+    "source_sha256": "f07e937cbeea19a4edaf4cd8f170611b341b58f5015703fbccf20d45c635780f",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 38,
+    "height": 35,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/493.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sarceus.gif",
+    "sha256": "09b2260ac94b78a94c28872e35db3f01d96a0790179aaf3413bca119f24d83b9",
+    "source_sha256": "bba02b6894bac280508dfc1e17a0a802ba951ac9e6e9e6b2082253a5b3873e44",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 70,
+    "height": 81,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/493.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sarceus-b.gif",
+    "sha256": "0a03fe98554ca80c6beaeafcd9d4498b1264c48f0d695d3c85d3ceb79c1b8dbe",
+    "source_sha256": "facb1142970dd5b6381833b07f192903c4eabec68deb3dabc9f9e2193ef56baa",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 72,
+    "height": 86,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/494.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/svictini.gif",
+    "sha256": "56fdbb5d19721534286fe7c8012e087d40afa7a429638a7d708a131b38c6e852",
+    "source_sha256": "34e2f96a971173f77a0b879c6652ac9eb03c7eb57d1e69e3aae992d61c96265d",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 53,
+    "height": 62,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/494.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/svictini-b.gif",
+    "sha256": "dfdca98b58a2130fbdf67f234fc2fac3646f08a02808781774f43ba0dbee6670",
+    "source_sha256": "d9ae8f84ffb9dd3e8e35abe2f884cd40360b4a90a28a7bcdd8393f0e5803ca5f",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 50,
+    "height": 58,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/638.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/scobalion.gif",
+    "sha256": "2a29a7c4adbbf383f0c50bea8283af4b75a5021565c82878b038a86718837770",
+    "source_sha256": "804d2be499b33c86f421802ff6fdf0700d5beba16ea41d5f847a478b5b133513",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 56,
+    "height": 79,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/638.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/scobalion-b.gif",
+    "sha256": "f0520d21c7600aef532fbef79be66c2d18bd75dd06dfc4d65f8adae382200ab3",
+    "source_sha256": "df1385974b16c948aebfe1dcfa3142c699ffbccb026cc21bba3e6f10bdc0248a",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 60,
+    "height": 81,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/639.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sterrakion.gif",
+    "sha256": "36de7c6a4cce039293b1dd1d021f3deeb6a407e584f5a8d6cff8cb77b93a3683",
+    "source_sha256": "0d02719b53cf819b231bd038ea3b2d2905cebd9b65ab69acaf70b8c9e651fb76",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 81,
+    "height": 61,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/639.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sterrakion-b.gif",
+    "sha256": "dd48253ef6ae0b27f1894ff68ff61b9e7c457364d472b40ca3f2571b194f8f39",
+    "source_sha256": "3a919ae696edff2af165793bb22fb9d8f348b9ca834088b3af3f7053c67c32d3",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 86,
+    "height": 57,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/640.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/svirizion.gif",
+    "sha256": "2e05e77eb8b6d68ea007852daf21cd4f47aca3775d109279280b1b58ca38eda4",
+    "source_sha256": "07421560c0a79d913c06f0c61929f794de39ccb271f1d83615ae6317ecda8f90",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 61,
+    "height": 73,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/640.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/svirizion-b.gif",
+    "sha256": "6a51ec09b9909f77a13a2779d7fcb1c49266c3f1672fa52f13f06b855613aff5",
+    "source_sha256": "1bd8d607912eef2cbc46fe8186a3004c4469a6d36820e45d7dc3ec4b1ffe5aa5",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 60,
+    "height": 69,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/641.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/stornadus.gif",
+    "sha256": "8ad993d8a16de0b826fb7952ee8027b441bfc157c077739f85512a5c2b24f0cc",
+    "source_sha256": "602c9b1392bd8143df584e3dd579a9e710f6617ad9dbeb5d53322c8387e8cd84",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 102,
+    "height": 98,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/641.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/stornadus-b.gif",
+    "sha256": "9fc8a8e19e9fa7c97d6b99cbd239d8a0f874d227c79ba8cd2e69fcdf14b3b66a",
+    "source_sha256": "054b8f1d22d83dca2513ef808c5448d6f8804ec2418f3d3af4c84b7dedb95e00",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 102,
+    "height": 99,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/642.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sthundurus.gif",
+    "sha256": "d9c1dfd3a085042d1f5eda567cc1888ed3c77d06d33dcfc2d1bf8bb589947ac5",
+    "source_sha256": "22a969f11b2a49a56f12ba4a1af6ea3001cef75b21ff5c97632d080c6936fae6",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 109,
+    "height": 90,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/642.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sthundurus-b.gif",
+    "sha256": "1d887d89d73576921d4660cb2f395f9610ee23d90dfca552e2a0cf67174ead42",
+    "source_sha256": "2d58049152fb8ef789553aa6d20ba54fa5e8efc665fdd39fedabf70153236bd4",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 109,
+    "height": 95,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/643.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sreshiram.gif",
+    "sha256": "8507de569a281936a88a79db94c8c95f9b4dba4a9f78e9a93b7dd786b1c24271",
+    "source_sha256": "4708615ddecbcbd0de38fd828d71ec673a43f30908434bfba484e77a06c1e9b0",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 107,
+    "height": 84,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/643.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sreshiram-b.gif",
+    "sha256": "647f42be03cbbd5f4e143fcfed83aa8a86f58ddafc1f8d713b07e47370769a99",
+    "source_sha256": "0a50ee1a6ecbc5439ef1616149565888805d7d296941e74966f48c58ee1e2c2c",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 100,
+    "height": 90,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/644.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/szekrom.gif",
+    "sha256": "2ac9acf2d4ce5749ffbd1cd634f9a9ef4d123e679c599a6cb1cb63555815dc16",
+    "source_sha256": "95904b585a0c847e64f4ba0432e0ca2b888b668cb8aaaaf0922fe1a97f1d328f",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 102,
+    "height": 92,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/644.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/szekrom-b.gif",
+    "sha256": "a2b4e81e2c8b3068b6fbcd13c7aa5e06da7d51d324c4342618cd8845eab3572c",
+    "source_sha256": "9958ef0004d8175b42f7f1b5345830c7e1990d831439410bfea64c35309d3eb2",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 108,
+    "height": 91,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/645.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/slandorus.gif",
+    "sha256": "1da0a231efc57044a378310107451c3e27d09a3eeabf96f1434735f7293f5f67",
+    "source_sha256": "5adeb6aadfd8dd8650539a346b01596bda3a77199bf48035e387c4d9184b08f6",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 87,
+    "height": 79,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/645.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/slandorus-b.gif",
+    "sha256": "2a72bd09f5741d5c3daaf52ebe89046762800b36a70d845ced8ce6193b80eb53",
+    "source_sha256": "c9ff92776c4735f047e182db241e640effe6a7c4002a074bdde410c3fc3043de",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 86,
+    "height": 78,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/646.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/skyurem.gif",
+    "sha256": "12007129cfd9280bc7e58376cb18ea14cfd744c7f9e89244e4db2d46881eb876",
+    "source_sha256": "1ba00b8c931389ad44d3f206adeac7eeef9a1f70e54d514f85761ab240d45ab9",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 99,
+    "height": 77,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/646.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/skyurem-b.gif",
+    "sha256": "fe32fb90d289b4f08b8d7a3e6e0042c47efc8f2a1456224b7a6e34ed14ceb78e",
+    "source_sha256": "348a0e9bb5997703f114e168c41c8774017d99a878ce7a2fd93ce6da0cf32276",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 80,
+    "height": 72,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/647.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/skeldeo.gif",
+    "sha256": "e26961588b8560150159473373b8e404aa9e6b567a30ae95338041c1cad6a321",
+    "source_sha256": "2774b8b7fe28851996d52b0f357600d9b1b9316ee429d3ff953b986bb3a28b99",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 64,
+    "height": 64,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/647.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/skeldeo-b.gif",
+    "sha256": "b4a1f33b34a81cf1db93960f03eca4468896bdde92b07d349712143a2515e1a7",
+    "source_sha256": "5081f9a1407e76dfecd4dee92e436f201f2c2829b884ef900c074f5a4799e7c2",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 61,
+    "height": 66,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/648.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/smeloetta.gif",
+    "sha256": "2bef9487fcf59798a5fdc3b37ea94557158d7a7ef5c9124e91ace444cd0795f7",
+    "source_sha256": "c66222dbd6068440e9c9c62d6d73150fd916020dd6c2d90ff6aa5c78aedf78f5",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 49,
+    "height": 63,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/648.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/smeloetta-b.gif",
+    "sha256": "a2c3dc86b208036eec3850eb1336c07a9fc7b23c84c7979d8fb8ce73c5dba6cb",
+    "source_sha256": "2402dd2f564553e16b59a31e54b8da774bcf62620edabbbd074e3da2f53991b3",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 40,
+    "height": 58,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/649.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sgenesect.gif",
+    "sha256": "b2b2bdd26cecd4a16e48f0ad949362ca8f4f185b652435f08e9669b55c6a17aa",
+    "source_sha256": "b71b67a3613ae8c8c771a2d9efdf382c2d3f4a04ef4c9bf0af9acaba1db07f29",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 61,
+    "height": 71,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/649.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sgenesect-b.gif",
+    "sha256": "e201726095de8e6b80607f3c1969220d4f522cc8865a4d8965651bd3ea872128",
+    "source_sha256": "e88ef0a06e2fecb74b811b90ee78bdfc1f93665841b2019b2c04587d5f076421",
+    "transformation": "GIF first frame to RGBA PNG",
+    "width": 69,
+    "height": 70,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/716.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sxerneas.png",
+    "sha256": "2ad3a4d43e195241d01a6efc12f14c41235df4effe5ca362d843550388352d09",
+    "source_sha256": "2ad3a4d43e195241d01a6efc12f14c41235df4effe5ca362d843550388352d09",
+    "transformation": "none",
+    "width": 80,
+    "height": 96,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/716.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sxerneas-b.png",
+    "sha256": "f3778579680350965293c523e1778653c44ad1a94f806d78a7b22efc408b3441",
+    "source_sha256": "f3778579680350965293c523e1778653c44ad1a94f806d78a7b22efc408b3441",
+    "transformation": "none",
+    "width": 80,
+    "height": 96,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/717.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/syveltal.png",
+    "sha256": "9a2615ff34fa3ee353cb9d12352ff283a82d1b549c0d237f5ba730486bc4eb97",
+    "source_sha256": "9a2615ff34fa3ee353cb9d12352ff283a82d1b549c0d237f5ba730486bc4eb97",
+    "transformation": "none",
+    "width": 94,
+    "height": 96,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/717.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/syveltal-b.png",
+    "sha256": "1cc21f04711f284589d66bf00e2b797cb85cbe4133ef50accbacd9e84121ba48",
+    "source_sha256": "1cc21f04711f284589d66bf00e2b797cb85cbe4133ef50accbacd9e84121ba48",
+    "transformation": "none",
+    "width": 96,
+    "height": 92,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/718.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/szygarde.png",
+    "sha256": "1c23b5347db24472013715ea741df0fca010e6836c2f89cd2d495581cd3c4d39",
+    "source_sha256": "1c23b5347db24472013715ea741df0fca010e6836c2f89cd2d495581cd3c4d39",
+    "transformation": "none",
+    "width": 72,
+    "height": 88,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/718.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/szygarde-b.png",
+    "sha256": "b5c74af646a31d5930ee6a6e5a7a8bc328e65d1d3b6753eca518ebc9d2500c37",
+    "source_sha256": "b5c74af646a31d5930ee6a6e5a7a8bc328e65d1d3b6753eca518ebc9d2500c37",
+    "transformation": "none",
+    "width": 72,
+    "height": 88,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/719.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sdiancie.png",
+    "sha256": "c1d58a673a0b0610f6aed5b9ea29f05b2a22edf9bef6348ddc5e18c3408ce4b4",
+    "source_sha256": "c1d58a673a0b0610f6aed5b9ea29f05b2a22edf9bef6348ddc5e18c3408ce4b4",
+    "transformation": "none",
+    "width": 42,
+    "height": 70,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/719.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sdiancie-b.png",
+    "sha256": "44692598dba8c8bfebff0e5eedccfeac57903c543f9500ab2afccdf40129222a",
+    "source_sha256": "44692598dba8c8bfebff0e5eedccfeac57903c543f9500ab2afccdf40129222a",
+    "transformation": "none",
+    "width": 42,
+    "height": 70,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/720.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/shoopa.png",
+    "sha256": "a1566c12022938ce5ecf246374fdc563029d68ddba677f08cee5c9733de65edf",
+    "source_sha256": "a1566c12022938ce5ecf246374fdc563029d68ddba677f08cee5c9733de65edf",
+    "transformation": "none",
+    "width": 48,
+    "height": 42,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/720.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/shoopa-b.png",
+    "sha256": "c59a735cdedc9f2c4479ee2e4a85789f91bdc1ce636d4ce4fc918dda91aec8d4",
+    "source_sha256": "c59a735cdedc9f2c4479ee2e4a85789f91bdc1ce636d4ce4fc918dda91aec8d4",
+    "transformation": "none",
+    "width": 50,
+    "height": 44,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/721.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/svolcanion.png",
+    "sha256": "12e47ec27d4320de94c08499f5fcf609ce5083fde69c59a2596b03af643cada2",
+    "source_sha256": "12e47ec27d4320de94c08499f5fcf609ce5083fde69c59a2596b03af643cada2",
+    "transformation": "none",
+    "width": 78,
+    "height": 86,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/721.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/svolcanion-b.png",
+    "sha256": "1d391de65c29aa1f25070d786bb38996fea78e2d7cdf4e0ca4c7d28cda859d2d",
+    "source_sha256": "1d391de65c29aa1f25070d786bb38996fea78e2d7cdf4e0ca4c7d28cda859d2d",
+    "transformation": "none",
+    "width": 84,
+    "height": 86,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/772.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/stype_null.png",
+    "sha256": "d9592fdb5bf9c09ec4941e7e09151a8764d1580b0d315b228a900185c6464a77",
+    "source_sha256": "d9592fdb5bf9c09ec4941e7e09151a8764d1580b0d315b228a900185c6464a77",
+    "transformation": "none",
+    "width": 68,
+    "height": 80,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/772.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/stype_null-b.png",
+    "sha256": "643c22b796a4046dea5eedec2551a067d81550d17daf08ee9094c612867d7cf8",
+    "source_sha256": "643c22b796a4046dea5eedec2551a067d81550d17daf08ee9094c612867d7cf8",
+    "transformation": "none",
+    "width": 68,
+    "height": 78,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/773.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/ssilvally.png",
+    "sha256": "c7c915993eab27bce97323c371c0da742b55004377c72d248b81eac633294a2e",
+    "source_sha256": "c7c915993eab27bce97323c371c0da742b55004377c72d248b81eac633294a2e",
+    "transformation": "none",
+    "width": 68,
+    "height": 86,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/773.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/ssilvally-b.png",
+    "sha256": "b10b5f67a3b308cf4cce6f6ebe80e9514e39839ad46eec46fa82662de06842d7",
+    "source_sha256": "b10b5f67a3b308cf4cce6f6ebe80e9514e39839ad46eec46fa82662de06842d7",
+    "transformation": "none",
+    "width": 66,
+    "height": 88,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/785.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/stapu_koko.png",
+    "sha256": "b3096648947048ccdc86530ab82dc17c74c28a9b01305a968a3009d913a504ba",
+    "source_sha256": "b3096648947048ccdc86530ab82dc17c74c28a9b01305a968a3009d913a504ba",
+    "transformation": "none",
+    "width": 80,
+    "height": 70,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/785.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/stapu_koko-b.png",
+    "sha256": "6b74b52025e090e503d22ef13a719c79fe6864e17ad17f15631f309ac27914c3",
+    "source_sha256": "6b74b52025e090e503d22ef13a719c79fe6864e17ad17f15631f309ac27914c3",
+    "transformation": "none",
+    "width": 70,
+    "height": 70,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/786.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/stapu_lele.png",
+    "sha256": "6de87faf7146730b05d5bedfd92b890d04ac294d8c057735f34df5d2e549b49c",
+    "source_sha256": "6de87faf7146730b05d5bedfd92b890d04ac294d8c057735f34df5d2e549b49c",
+    "transformation": "none",
+    "width": 38,
+    "height": 58,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/786.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/stapu_lele-b.png",
+    "sha256": "363b32d8f4cbfd0ecedbfc136ac7eadcf034bdcbad0236a103647e9e2249ec91",
+    "source_sha256": "363b32d8f4cbfd0ecedbfc136ac7eadcf034bdcbad0236a103647e9e2249ec91",
+    "transformation": "none",
+    "width": 40,
+    "height": 62,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/787.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/stapu_bulu.png",
+    "sha256": "73e75e1dbb88e84dae50c6e0c531972d350f2acf2443ff7c2bb2533395b951ce",
+    "source_sha256": "73e75e1dbb88e84dae50c6e0c531972d350f2acf2443ff7c2bb2533395b951ce",
+    "transformation": "none",
+    "width": 72,
+    "height": 78,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/787.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/stapu_bulu-b.png",
+    "sha256": "74a66f09e77620f1af12de72e87449eb7cef8466d9c37666759b1d2d1723edb0",
+    "source_sha256": "74a66f09e77620f1af12de72e87449eb7cef8466d9c37666759b1d2d1723edb0",
+    "transformation": "none",
+    "width": 72,
+    "height": 78,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/788.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/stapu_fini.png",
+    "sha256": "d1fb6eb4a5fdf378b8addedf8f57b6d223ff3b9b494671db3df395e82f7dcbfc",
+    "source_sha256": "d1fb6eb4a5fdf378b8addedf8f57b6d223ff3b9b494671db3df395e82f7dcbfc",
+    "transformation": "none",
+    "width": 58,
+    "height": 66,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/788.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/stapu_fini-b.png",
+    "sha256": "bf5fdbfb624b249a3b03165d381887161cbba9a9c4cd6e9db132f66bb453c2ff",
+    "source_sha256": "bf5fdbfb624b249a3b03165d381887161cbba9a9c4cd6e9db132f66bb453c2ff",
+    "transformation": "none",
+    "width": 56,
+    "height": 68,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/789.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/scosmog.png",
+    "sha256": "df0cbafacc90f095c52f211c27c04c6e10b527a5f02e3f24e1455e0a73b2370c",
+    "source_sha256": "df0cbafacc90f095c52f211c27c04c6e10b527a5f02e3f24e1455e0a73b2370c",
+    "transformation": "none",
+    "width": 48,
+    "height": 42,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/789.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/scosmog-b.png",
+    "sha256": "263e88a771dbdd6d4a671550d565284d5dfa396ca4da6f7a1da930747904f891",
+    "source_sha256": "263e88a771dbdd6d4a671550d565284d5dfa396ca4da6f7a1da930747904f891",
+    "transformation": "none",
+    "width": 48,
+    "height": 42,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/790.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/scosmoem.png",
+    "sha256": "3ef2efb4bb6e4dc16553098c941ccf0095fd4084d2100b375ebeec084843d8aa",
+    "source_sha256": "3ef2efb4bb6e4dc16553098c941ccf0095fd4084d2100b375ebeec084843d8aa",
+    "transformation": "none",
+    "width": 46,
+    "height": 38,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/790.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/scosmoem-b.png",
+    "sha256": "490d6cde4b69a4858fa89226cb01c6f9fde78840e0e7b50ac9d35a5f42dd3412",
+    "source_sha256": "490d6cde4b69a4858fa89226cb01c6f9fde78840e0e7b50ac9d35a5f42dd3412",
+    "transformation": "none",
+    "width": 46,
+    "height": 38,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/791.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/ssolgaleo.png",
+    "sha256": "145c6d3563053971cbc86d610132fadd5757848485d3a875d87e22cb5c6a3b5f",
+    "source_sha256": "145c6d3563053971cbc86d610132fadd5757848485d3a875d87e22cb5c6a3b5f",
+    "transformation": "none",
+    "width": 78,
+    "height": 86,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/791.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/ssolgaleo-b.png",
+    "sha256": "adb37ee9cc7e3d7b10b31cb3a18dfc26317707d82a1181f4ff7d659abdb3061a",
+    "source_sha256": "adb37ee9cc7e3d7b10b31cb3a18dfc26317707d82a1181f4ff7d659abdb3061a",
+    "transformation": "none",
+    "width": 92,
+    "height": 84,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/792.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/slunala.png",
+    "sha256": "e2f73cf1d5bc6b9a0c9a81ce7ce9c4ea6893818d13a1329ec8fe73f24186f713",
+    "source_sha256": "e2f73cf1d5bc6b9a0c9a81ce7ce9c4ea6893818d13a1329ec8fe73f24186f713",
+    "transformation": "none",
+    "width": 88,
+    "height": 88,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/792.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/slunala-b.png",
+    "sha256": "2bc0be3ff17833d1d4d166c204e1e9ba710cc980e0659db641e0c1cb87aa5fa6",
+    "source_sha256": "2bc0be3ff17833d1d4d166c204e1e9ba710cc980e0659db641e0c1cb87aa5fa6",
+    "transformation": "none",
+    "width": 96,
+    "height": 88,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/800.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/snecrozma.png",
+    "sha256": "812e27d39a4fb5ccf0556c11db210d41a0354d7abc79fe57ef2b00f30b968c44",
+    "source_sha256": "812e27d39a4fb5ccf0556c11db210d41a0354d7abc79fe57ef2b00f30b968c44",
+    "transformation": "none",
+    "width": 88,
+    "height": 86,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/800.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/snecrozma-b.png",
+    "sha256": "2ee6e3a95bfde40d8977b09549192bcddf48787abc4851d74228b1f76a742041",
+    "source_sha256": "2ee6e3a95bfde40d8977b09549192bcddf48787abc4851d74228b1f76a742041",
+    "transformation": "none",
+    "width": 88,
+    "height": 78,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/801.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/smagearna.png",
+    "sha256": "9d3b4c5ab30c55cebe35cf413f6e197a34193d6c462c58a5315909bf8585ccbf",
+    "source_sha256": "9d3b4c5ab30c55cebe35cf413f6e197a34193d6c462c58a5315909bf8585ccbf",
+    "transformation": "none",
+    "width": 50,
+    "height": 66,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/801.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/smagearna-b.png",
+    "sha256": "21137732ccf32ee93f9cc40c2115e33b07adc761de0f5ea434109f03e45c2b73",
+    "source_sha256": "21137732ccf32ee93f9cc40c2115e33b07adc761de0f5ea434109f03e45c2b73",
+    "transformation": "none",
+    "width": 44,
+    "height": 66,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/802.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/smarshadow.png",
+    "sha256": "e52cf7c3b196b4953b09562201e5c27e64a53bb2edee1895782e3d189a380ee0",
+    "source_sha256": "e52cf7c3b196b4953b09562201e5c27e64a53bb2edee1895782e3d189a380ee0",
+    "transformation": "none",
+    "width": 30,
+    "height": 48,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/802.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/smarshadow-b.png",
+    "sha256": "90a65e19c40dbdd93d56a56d09cacb154ad307a65242cb42a0d9577006589661",
+    "source_sha256": "90a65e19c40dbdd93d56a56d09cacb154ad307a65242cb42a0d9577006589661",
+    "transformation": "none",
+    "width": 28,
+    "height": 52,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/807.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/szeraora.png",
+    "sha256": "08765aef7cb2081ab4a4327e83a0e00e48d67b5829ab43d455986f7ef8e233a3",
+    "source_sha256": "08765aef7cb2081ab4a4327e83a0e00e48d67b5829ab43d455986f7ef8e233a3",
+    "transformation": "none",
+    "width": 78,
+    "height": 76,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/807.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/szeraora-b.png",
+    "sha256": "a7a25963b57a835d08749226e819b5e05679640340e850ed3e08a8bf492f195f",
+    "source_sha256": "a7a25963b57a835d08749226e819b5e05679640340e850ed3e08a8bf492f195f",
+    "transformation": "none",
+    "width": 72,
+    "height": 68,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/808.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/smeltan.png",
+    "sha256": "0e57fed14f7b344ef7b8f2a72f364c9afac709f69e245fd14c1527f2d13611fc",
+    "source_sha256": "0e57fed14f7b344ef7b8f2a72f364c9afac709f69e245fd14c1527f2d13611fc",
+    "transformation": "none",
+    "width": 30,
+    "height": 38,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/808.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/smeltan-b.png",
+    "sha256": "c406890c02bb27f1e1d613c193210b381145677b118050a8f029c6d762f59401",
+    "source_sha256": "c406890c02bb27f1e1d613c193210b381145677b118050a8f029c6d762f59401",
+    "transformation": "none",
+    "width": 30,
+    "height": 38,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/809.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/smelmetal.png",
+    "sha256": "bec14bea0e9bec5bbe0bbf86e1a9867e7b4c820e2785b199ab89e889877754d7",
+    "source_sha256": "bec14bea0e9bec5bbe0bbf86e1a9867e7b4c820e2785b199ab89e889877754d7",
+    "transformation": "none",
+    "width": 96,
+    "height": 74,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/809.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/smelmetal-b.png",
+    "sha256": "e006abac70f89cc4ed708d9a6ebd6c2ebf4f28268e02a9ef08fcccd1ad11e381",
+    "source_sha256": "e006abac70f89cc4ed708d9a6ebd6c2ebf4f28268e02a9ef08fcccd1ad11e381",
+    "transformation": "none",
+    "width": 96,
+    "height": 74,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/888.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/szacian.png",
+    "sha256": "5ae1539eb30925f85d67ee33cadd85eb0701145b5ce11e803094d3320d1625d6",
+    "source_sha256": "5ae1539eb30925f85d67ee33cadd85eb0701145b5ce11e803094d3320d1625d6",
+    "transformation": "none",
+    "width": 82,
+    "height": 94,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/888.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/szacian-b.png",
+    "sha256": "c4729a1f1216c70d35f72b65519fef2408fbca379da38e4e22bbcd87234d93fa",
+    "source_sha256": "c4729a1f1216c70d35f72b65519fef2408fbca379da38e4e22bbcd87234d93fa",
+    "transformation": "none",
+    "width": 86,
+    "height": 92,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/889.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/szamazenta.png",
+    "sha256": "7b6d08dd99a1c6f7dd40a083114d6528f2bd98a464b6a6a4a84afaf08c83ba58",
+    "source_sha256": "7b6d08dd99a1c6f7dd40a083114d6528f2bd98a464b6a6a4a84afaf08c83ba58",
+    "transformation": "none",
+    "width": 78,
+    "height": 92,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/889.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/szamazenta-b.png",
+    "sha256": "357b81a797dc6a0c1db018a99b4438a3521754f569d51d2166688ba6d2abe652",
+    "source_sha256": "357b81a797dc6a0c1db018a99b4438a3521754f569d51d2166688ba6d2abe652",
+    "transformation": "none",
+    "width": 88,
+    "height": 90,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/890.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/seternatus.png",
+    "sha256": "22ea663cc631353eb64f904686ccdf52605bddf520ca479b0ba3716035f33cf5",
+    "source_sha256": "22ea663cc631353eb64f904686ccdf52605bddf520ca479b0ba3716035f33cf5",
+    "transformation": "none",
+    "width": 90,
+    "height": 86,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/890.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/seternatus-b.png",
+    "sha256": "cd6a23a53554fef3fb0c276a88044673824fe61d83de6d176f8d39523c0fcaa0",
+    "source_sha256": "cd6a23a53554fef3fb0c276a88044673824fe61d83de6d176f8d39523c0fcaa0",
+    "transformation": "none",
+    "width": 94,
+    "height": 86,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/891.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/skubfu.png",
+    "sha256": "e3bab00fb74a42e4563d796438fdcc6428993e9a525c8cb06564971bb0636e15",
+    "source_sha256": "e3bab00fb74a42e4563d796438fdcc6428993e9a525c8cb06564971bb0636e15",
+    "transformation": "none",
+    "width": 42,
+    "height": 54,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/891.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/skubfu-b.png",
+    "sha256": "f52f838f051b9f0956a37ec24d59acafdefabea158e4a109bd213758b744f731",
+    "source_sha256": "f52f838f051b9f0956a37ec24d59acafdefabea158e4a109bd213758b744f731",
+    "transformation": "none",
+    "width": 42,
+    "height": 54,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/892.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/surshifu.png",
+    "sha256": "a3e326b269cbf3a370974bf54a9cba971ab16a283c5e8ad8ce3bdfbca6bf4383",
+    "source_sha256": "a3e326b269cbf3a370974bf54a9cba971ab16a283c5e8ad8ce3bdfbca6bf4383",
+    "transformation": "none",
+    "width": 62,
+    "height": 86,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/892.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/surshifu-b.png",
+    "sha256": "e742717d5fa642b72300b3e5bc8d2aeca1c00a5bec15c8522efb7a588c2fcd45",
+    "source_sha256": "e742717d5fa642b72300b3e5bc8d2aeca1c00a5bec15c8522efb7a588c2fcd45",
+    "transformation": "none",
+    "width": 62,
+    "height": 84,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/893.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/szarude.png",
+    "sha256": "1fa590f9ddc4efeeb025f3bcaaccfdaa88f34efa58c69803f2bfde345042ed3e",
+    "source_sha256": "1fa590f9ddc4efeeb025f3bcaaccfdaa88f34efa58c69803f2bfde345042ed3e",
+    "transformation": "none",
+    "width": 88,
+    "height": 70,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/893.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/szarude-b.png",
+    "sha256": "c304c23f986af909bd5d4ec028249eb046a40921596d9aff3808f2538c7e3194",
+    "source_sha256": "c304c23f986af909bd5d4ec028249eb046a40921596d9aff3808f2538c7e3194",
+    "transformation": "none",
+    "width": 84,
+    "height": 68,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/894.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sregieleki.png",
+    "sha256": "cad46f314025cdcedbf1bc4b01bcf43b25594a416c86d1b541be06faac3556c6",
+    "source_sha256": "cad46f314025cdcedbf1bc4b01bcf43b25594a416c86d1b541be06faac3556c6",
+    "transformation": "none",
+    "width": 94,
+    "height": 74,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/894.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sregieleki-b.png",
+    "sha256": "a6e9eaddad911da91e5bef28e4255e45b1e83dfebe6e0c86e8f074cffc9cac63",
+    "source_sha256": "a6e9eaddad911da91e5bef28e4255e45b1e83dfebe6e0c86e8f074cffc9cac63",
+    "transformation": "none",
+    "width": 94,
+    "height": 72,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/895.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sregidrago.png",
+    "sha256": "f4d6ed40488849e956cdeededeb8e47059e0f79a1ee48e5eda6624e076f14854",
+    "source_sha256": "f4d6ed40488849e956cdeededeb8e47059e0f79a1ee48e5eda6624e076f14854",
+    "transformation": "none",
+    "width": 76,
+    "height": 74,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/895.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sregidrago-b.png",
+    "sha256": "29cfb1debd51305900aa4cf4cc84005cbac5ed75f2207e0335cdbaecbf22c06c",
+    "source_sha256": "29cfb1debd51305900aa4cf4cc84005cbac5ed75f2207e0335cdbaecbf22c06c",
+    "transformation": "none",
+    "width": 76,
+    "height": 74,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/896.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sglastrier.png",
+    "sha256": "a8ee84453bc57376c6c249b2156ccccb9bb1a5af2005cd4886e35d4f1ae276ed",
+    "source_sha256": "a8ee84453bc57376c6c249b2156ccccb9bb1a5af2005cd4886e35d4f1ae276ed",
+    "transformation": "none",
+    "width": 62,
+    "height": 88,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/896.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sglastrier-b.png",
+    "sha256": "12b5d9d92585f19f46a9dff74c75c60fa5b4202afd6c13ed7059d402ec577e02",
+    "source_sha256": "12b5d9d92585f19f46a9dff74c75c60fa5b4202afd6c13ed7059d402ec577e02",
+    "transformation": "none",
+    "width": 68,
+    "height": 84,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/897.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sspectrier.png",
+    "sha256": "049173e00484697bd457915517c9e7b81dad7e3537917451c2b33a73c9b79606",
+    "source_sha256": "049173e00484697bd457915517c9e7b81dad7e3537917451c2b33a73c9b79606",
+    "transformation": "none",
+    "width": 70,
+    "height": 80,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/897.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sspectrier-b.png",
+    "sha256": "5849f938ef01d2b839cfdb82d8470c08909b8e551a427c833f80e807541a1c42",
+    "source_sha256": "5849f938ef01d2b839cfdb82d8470c08909b8e551a427c833f80e807541a1c42",
+    "transformation": "none",
+    "width": 86,
+    "height": 88,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/898.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/scalyrex.png",
+    "sha256": "c859dfe273b2165a2c4f08f1dd68a43b2977ed06fd9b45f5108f9a2e08d7bac7",
+    "source_sha256": "c859dfe273b2165a2c4f08f1dd68a43b2977ed06fd9b45f5108f9a2e08d7bac7",
+    "transformation": "none",
+    "width": 56,
+    "height": 86,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/898.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/scalyrex-b.png",
+    "sha256": "66e891fdacf1e7156d3d2b5ccc417ba8bcd278db4e7fa30ed2f20185e938ae9d",
+    "source_sha256": "66e891fdacf1e7156d3d2b5ccc417ba8bcd278db4e7fa30ed2f20185e938ae9d",
+    "transformation": "none",
+    "width": 56,
+    "height": 86,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/905.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/senamorus.png",
+    "sha256": "2a5dd18f5da5a79703e826e4e0272e7a00a83487acefcd8746e680c98fddf7db",
+    "source_sha256": "2a5dd18f5da5a79703e826e4e0272e7a00a83487acefcd8746e680c98fddf7db",
+    "transformation": "none",
+    "width": 74,
+    "height": 94,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/905.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/senamorus-b.png",
+    "sha256": "adc9eebf29a25d8f0f5fcbc2e30dd8da58f479038e9a18cd6c4a14140bf3825d",
+    "source_sha256": "adc9eebf29a25d8f0f5fcbc2e30dd8da58f479038e9a18cd6c4a14140bf3825d",
+    "transformation": "none",
+    "width": 74,
+    "height": 94,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/1001.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/swo_chien.png",
+    "sha256": "1e541a8d5be9925df86e405f4e2aff837c8036cfb9b4c54d60c04c0327ffa2b2",
+    "source_sha256": "1e541a8d5be9925df86e405f4e2aff837c8036cfb9b4c54d60c04c0327ffa2b2",
+    "transformation": "none",
+    "width": 90,
+    "height": 88,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/1001.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/swo_chien-b.png",
+    "sha256": "12f182fb55b8d2ef8fedbf2575179ee966d83683a119fd27ab47fefc8279c9b0",
+    "source_sha256": "12f182fb55b8d2ef8fedbf2575179ee966d83683a119fd27ab47fefc8279c9b0",
+    "transformation": "none",
+    "width": 90,
+    "height": 88,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/1002.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/schien_pao.png",
+    "sha256": "e4ae2fb67888abc522a00a2544acc48afcec62b112ec8fbd58f7488b8621b617",
+    "source_sha256": "e4ae2fb67888abc522a00a2544acc48afcec62b112ec8fbd58f7488b8621b617",
+    "transformation": "none",
+    "width": 82,
+    "height": 62,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/1002.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/schien_pao-b.png",
+    "sha256": "3c5003a077eac6d536ab7e251559cccbf60a50f97fa6b610bd0e7e4db6605a7f",
+    "source_sha256": "3c5003a077eac6d536ab7e251559cccbf60a50f97fa6b610bd0e7e4db6605a7f",
+    "transformation": "none",
+    "width": 82,
+    "height": 62,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/1003.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sting_lu.png",
+    "sha256": "f9f90e5325b378c143ed91956722e5e75ddcbaa017752a62cfdd8c5ae5666ccd",
+    "source_sha256": "f9f90e5325b378c143ed91956722e5e75ddcbaa017752a62cfdd8c5ae5666ccd",
+    "transformation": "none",
+    "width": 90,
+    "height": 82,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/1003.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sting_lu-b.png",
+    "sha256": "d0aee8da58cc1435bee720d287a057ab4405c877c49190f3ff563a00fb080507",
+    "source_sha256": "d0aee8da58cc1435bee720d287a057ab4405c877c49190f3ff563a00fb080507",
+    "transformation": "none",
+    "width": 90,
+    "height": 82,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/1004.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/schi_yu.png",
+    "sha256": "1a136e42e4c3733500eb1f4376abfa88b13a13bbab13ac8b64eaeab067d1b646",
+    "source_sha256": "1a136e42e4c3733500eb1f4376abfa88b13a13bbab13ac8b64eaeab067d1b646",
+    "transformation": "none",
+    "width": 50,
+    "height": 40,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/1004.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/schi_yu-b.png",
+    "sha256": "ebde7caa90bc30713cc8da6e9a59dc4ea103e5f510d23f94463179be8970b216",
+    "source_sha256": "ebde7caa90bc30713cc8da6e9a59dc4ea103e5f510d23f94463179be8970b216",
+    "transformation": "none",
+    "width": 50,
+    "height": 40,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/1007.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/skoraidon.png",
+    "sha256": "fee268e8500048a2657472bbadd59515e7c6ed914f9f8fd663bac33abf2798c5",
+    "source_sha256": "fee268e8500048a2657472bbadd59515e7c6ed914f9f8fd663bac33abf2798c5",
+    "transformation": "none",
+    "width": 90,
+    "height": 94,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/1007.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/skoraidon-b.png",
+    "sha256": "c71e4892ac91fdcf686655a52cf739a9ce04ac261ab21f2325a1f277fb4c14ed",
+    "source_sha256": "c71e4892ac91fdcf686655a52cf739a9ce04ac261ab21f2325a1f277fb4c14ed",
+    "transformation": "none",
+    "width": 90,
+    "height": 94,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/1008.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/smiraidon.png",
+    "sha256": "cd330d2449859b4445f3c35e058639c7a20a5bb9d06b0e6b53cb15688493917c",
+    "source_sha256": "cd330d2449859b4445f3c35e058639c7a20a5bb9d06b0e6b53cb15688493917c",
+    "transformation": "none",
+    "width": 86,
+    "height": 90,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/1008.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/smiraidon-b.png",
+    "sha256": "69507f81ecbe8a2744f074954c479e01c7eb24730b62d68be5638650e93b87a2",
+    "source_sha256": "69507f81ecbe8a2744f074954c479e01c7eb24730b62d68be5638650e93b87a2",
+    "transformation": "none",
+    "width": 86,
+    "height": 90,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/1009.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/swalking_wake.png",
+    "sha256": "fe7825cae4d9d38e1f84a087c9fb93294b71305399251e48db060bbe3728135e",
+    "source_sha256": "fe7825cae4d9d38e1f84a087c9fb93294b71305399251e48db060bbe3728135e",
+    "transformation": "none",
+    "width": 86,
+    "height": 86,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/1009.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/swalking_wake-b.png",
+    "sha256": "7d66287c9d9f1ca33c144fb7c3e15c0d415cdea1c1eecb39345e3a2d349d984a",
+    "source_sha256": "7d66287c9d9f1ca33c144fb7c3e15c0d415cdea1c1eecb39345e3a2d349d984a",
+    "transformation": "none",
+    "width": 86,
+    "height": 86,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/1010.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/siron_leaves.png",
+    "sha256": "872858cd7622fe9992ca6cdfb9a798715be48f43542b2d6ea1b271686b8c8c3d",
+    "source_sha256": "872858cd7622fe9992ca6cdfb9a798715be48f43542b2d6ea1b271686b8c8c3d",
+    "transformation": "none",
+    "width": 50,
+    "height": 72,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/1010.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/siron_leaves-b.png",
+    "sha256": "ad6ec1c4eacf155b78fac86ea1a917286b00e2dabdfd9085461c3ce18400f557",
+    "source_sha256": "ad6ec1c4eacf155b78fac86ea1a917286b00e2dabdfd9085461c3ce18400f557",
+    "transformation": "none",
+    "width": 50,
+    "height": 72,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/1014.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sokidogi.png",
+    "sha256": "f542707a8ec4297068217af1f80cd71699220c9ffad89b1aa5e2b898f42a0cd7",
+    "source_sha256": "f542707a8ec4297068217af1f80cd71699220c9ffad89b1aa5e2b898f42a0cd7",
+    "transformation": "none",
+    "width": 90,
+    "height": 84,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/1014.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sokidogi-b.png",
+    "sha256": "0ba9990d4f6066d1a2ca250106ccf29376accfb46b19b98a0ede803eb2b355c8",
+    "source_sha256": "0ba9990d4f6066d1a2ca250106ccf29376accfb46b19b98a0ede803eb2b355c8",
+    "transformation": "none",
+    "width": 90,
+    "height": 84,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/1015.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/smunkidori.png",
+    "sha256": "b4b99bdebbfd4cfc80975e8797cac6d6175aa1293e8948df72e1413818c834aa",
+    "source_sha256": "b4b99bdebbfd4cfc80975e8797cac6d6175aa1293e8948df72e1413818c834aa",
+    "transformation": "none",
+    "width": 38,
+    "height": 66,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/1015.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/smunkidori-b.png",
+    "sha256": "04c99a06b9f3a69e897689391b199cbe8f6ff1bee08388abfb4319e63623b856",
+    "source_sha256": "04c99a06b9f3a69e897689391b199cbe8f6ff1bee08388abfb4319e63623b856",
+    "transformation": "none",
+    "width": 38,
+    "height": 66,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/1016.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sfezandipiti.png",
+    "sha256": "a04879c4d8b15839cf8b41b5698d5edf531acf5daf67a15f092de3e327ceae37",
+    "source_sha256": "a04879c4d8b15839cf8b41b5698d5edf531acf5daf67a15f092de3e327ceae37",
+    "transformation": "none",
+    "width": 66,
+    "height": 82,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/1016.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sfezandipiti-b.png",
+    "sha256": "b5fc91aec78c822f4ddb8e2aa54988a735b36adf9c581dd5305fafd50efefde5",
+    "source_sha256": "b5fc91aec78c822f4ddb8e2aa54988a735b36adf9c581dd5305fafd50efefde5",
+    "transformation": "none",
+    "width": 66,
+    "height": 82,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/1017.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sogerpon.png",
+    "sha256": "8d29ba22aff305086a36897d9b69b19589dbb464e8b5afae6f917b49e26d8f92",
+    "source_sha256": "8d29ba22aff305086a36897d9b69b19589dbb464e8b5afae6f917b49e26d8f92",
+    "transformation": "none",
+    "width": 58,
+    "height": 70,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/1017.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sogerpon-b.png",
+    "sha256": "25af0f03420e0306700379a405cb0359129421c7e3b668cff3c3fd8673c21027",
+    "source_sha256": "25af0f03420e0306700379a405cb0359129421c7e3b668cff3c3fd8673c21027",
+    "transformation": "none",
+    "width": 58,
+    "height": 70,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/1020.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sgouging_fire.png",
+    "sha256": "9180108cd23c8d019032625ed6c89f5f2b4ec378a8e33fbbd9583a82d2aa0ed4",
+    "source_sha256": "9180108cd23c8d019032625ed6c89f5f2b4ec378a8e33fbbd9583a82d2aa0ed4",
+    "transformation": "none",
+    "width": 86,
+    "height": 84,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/1020.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sgouging_fire-b.png",
+    "sha256": "71570d2c378b7717c9b015dbc1512a439f2c3ffbc513bf2a8f2271bcdb11a41b",
+    "source_sha256": "71570d2c378b7717c9b015dbc1512a439f2c3ffbc513bf2a8f2271bcdb11a41b",
+    "transformation": "none",
+    "width": 86,
+    "height": 84,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/1021.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sraging_bolt.png",
+    "sha256": "15a3793379df7dbf706b9c3138210bbb9dfb4c1d5ef7f13d079b52679354ae67",
+    "source_sha256": "15a3793379df7dbf706b9c3138210bbb9dfb4c1d5ef7f13d079b52679354ae67",
+    "transformation": "none",
+    "width": 88,
+    "height": 96,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/1021.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sraging_bolt-b.png",
+    "sha256": "178aa5dab963a3218b605f40c3a1559b088f7250a69c2cf2d913a907ca2e266a",
+    "source_sha256": "178aa5dab963a3218b605f40c3a1559b088f7250a69c2cf2d913a907ca2e266a",
+    "transformation": "none",
+    "width": 88,
+    "height": 96,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/1022.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/siron_boulder.png",
+    "sha256": "c691e323b1119843349bc06db824066a74eb23a2e017be62e0e7f390797bdd2e",
+    "source_sha256": "c691e323b1119843349bc06db824066a74eb23a2e017be62e0e7f390797bdd2e",
+    "transformation": "none",
+    "width": 78,
+    "height": 64,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/1022.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/siron_boulder-b.png",
+    "sha256": "d43e3e48eacb1e6996726f3100c651fd50cfba3a5f961815ef52e841e77e55db",
+    "source_sha256": "d43e3e48eacb1e6996726f3100c651fd50cfba3a5f961815ef52e841e77e55db",
+    "transformation": "none",
+    "width": 78,
+    "height": 64,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/1023.png": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/0dc105d5b12416932f29b594078282ab4be045f5/sprites/pokemon/1023.png",
+    "sha256": "c7bbb2cd4544276e375586beff0f266208547786f75201efe77f36036e03aace",
+    "source_sha256": "c7bbb2cd4544276e375586beff0f266208547786f75201efe77f36036e03aace",
+    "transformation": "none",
+    "width": 96,
+    "height": 96,
+    "source_repository": "PokeAPI/sprites"
+  },
+  "assets/pokemon/back/1023.png": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/0dc105d5b12416932f29b594078282ab4be045f5/sprites/pokemon/back/1023.png",
+    "sha256": "a3ff8b1995af0c653bb81acac84f6832c3958aed4d23a7481e65f59b52bed52c",
+    "source_sha256": "a3ff8b1995af0c653bb81acac84f6832c3958aed4d23a7481e65f59b52bed52c",
+    "transformation": "none",
+    "width": 96,
+    "height": 96,
+    "source_repository": "PokeAPI/sprites"
+  },
+  "assets/pokemon/front/1024.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sterapagos.png",
+    "sha256": "9151451f844741ea228570186bd1959f35fa8d894e18659d2adf91317b028e0f",
+    "source_sha256": "9151451f844741ea228570186bd1959f35fa8d894e18659d2adf91317b028e0f",
+    "transformation": "none",
+    "width": 52,
+    "height": 44,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/1024.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sterapagos-b.png",
+    "sha256": "3b317edc30b99a641555518af72f0abc84800f71445c6a15a05f24c54529aa81",
+    "source_sha256": "3b317edc30b99a641555518af72f0abc84800f71445c6a15a05f24c54529aa81",
+    "transformation": "none",
+    "width": 52,
+    "height": 44,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/1025.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/specharunt.png",
+    "sha256": "2190d92b2c5e13525bf1632631a40ff0aaf26665770366e1890a2b8b78f7e63f",
+    "source_sha256": "2190d92b2c5e13525bf1632631a40ff0aaf26665770366e1890a2b8b78f7e63f",
+    "transformation": "none",
+    "width": 74,
+    "height": 50,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/1025.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/specharunt-b.png",
+    "sha256": "8cef20a1be199471a99a8f390ce3aa802ca265d63b6d542db77ef735d851b6ac",
+    "source_sha256": "8cef20a1be199471a99a8f390ce3aa802ca265d63b6d542db77ef735d851b6ac",
+    "transformation": "none",
+    "width": 74,
+    "height": 50,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/10169.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sarticuno-ogalar.png",
+    "sha256": "c3eec07ab82a6e5ff398586a0b857205c0600bc2f5804c12605461f9c2acf1d9",
+    "source_sha256": "c3eec07ab82a6e5ff398586a0b857205c0600bc2f5804c12605461f9c2acf1d9",
+    "transformation": "none",
+    "width": 88,
+    "height": 64,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/10169.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/sarticuno-ogalar-b.png",
+    "sha256": "09d2c42772f84e0eef5f6018e8b4328bbe73bdb67875396578a07fd38a9ca615",
+    "source_sha256": "09d2c42772f84e0eef5f6018e8b4328bbe73bdb67875396578a07fd38a9ca615",
+    "transformation": "none",
+    "width": 80,
+    "height": 64,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/10170.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/szapdos-ogalar.png",
+    "sha256": "1c833b229dd6400e2827fae7d348c34e0b9ff018e0338acfcced19769b6f666f",
+    "source_sha256": "1c833b229dd6400e2827fae7d348c34e0b9ff018e0338acfcced19769b6f666f",
+    "transformation": "none",
+    "width": 52,
+    "height": 70,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/10170.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/szapdos-ogalar-b.png",
+    "sha256": "a8fe7bc79198bc9583f6269ad8aaabcb44f14e5e2267b41cb9be451b193fefe3",
+    "source_sha256": "a8fe7bc79198bc9583f6269ad8aaabcb44f14e5e2267b41cb9be451b193fefe3",
+    "transformation": "none",
+    "width": 50,
+    "height": 68,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/front/10171.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/smoltres-ogalar.png",
+    "sha256": "db10dfa058e95f7f23bf3db130b4d91bc735bc35c95b39b01e8455495d5cd5e0",
+    "source_sha256": "db10dfa058e95f7f23bf3db130b4d91bc735bc35c95b39b01e8455495d5cd5e0",
+    "transformation": "none",
+    "width": 88,
+    "height": 70,
+    "source_repository": "smogon/sprites"
+  },
+  "assets/pokemon/back/10171.png": {
+    "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5/smoltres-ogalar-b.png",
+    "sha256": "02a0ff131e63c48215c788859cdf47d92200fb97e711e0a93a2f04e6960fc7a9",
+    "source_sha256": "02a0ff131e63c48215c788859cdf47d92200fb97e711e0a93a2f04e6960fc7a9",
+    "transformation": "none",
+    "width": 96,
+    "height": 78,
+    "source_repository": "smogon/sprites"
+  }
+}

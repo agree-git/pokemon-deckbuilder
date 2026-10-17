@@ -1,0 +1,104 @@
+﻿runtime_id,dex_id,name,generation,region,tier,types,site,clues,balls,energy,hp_percent,unique_entrance
+144,144,프리져,1,kanto,준전설,ice/flying,고요한 빙벽,3,3,2,10,no
+145,145,썬더,1,kanto,준전설,electric/flying,벼락 맞은 철탑,3,3,2,10,no
+146,146,파이어,1,kanto,준전설,fire/flying,꺼지지 않는 화구,3,3,2,10,no
+150,150,뮤츠,1,kanto,초전설,psychic,닫힌 실험실,7,5,3,10,yes
+151,151,뮤,1,kanto,환상,psychic,장난꾸러기의 숲길,5,3,2,10,no
+243,243,라이코,2,johto,준전설,electric,천둥이 머문 들판,3,3,2,10,no
+244,244,앤테이,2,johto,준전설,fire,재 속의 발자국,3,3,2,10,no
+245,245,스이쿤,2,johto,준전설,water,맑아진 물가,3,3,2,10,no
+249,249,루기아,2,johto,초전설,psychic/flying,깊은 바다의 메아리,7,5,3,10,yes
+250,250,칠색조,2,johto,초전설,fire/flying,무지개가 닿는 자리,7,5,3,10,yes
+251,251,세레비,2,johto,환상,psychic/grass,시간이 멈춘 사당,5,3,2,10,no
+377,377,레지락,3,hoenn,준전설,rock,울림이 다른 바위문,3,3,2,10,no
+378,378,레지아이스,3,hoenn,준전설,ice,서리가 새는 봉인,3,3,2,10,no
+379,379,레지스틸,3,hoenn,준전설,steel,울리는 강철문,3,3,2,10,no
+380,380,라티아스,3,hoenn,준전설,dragon/psychic,붉은 빛의 산책로,3,3,2,10,no
+381,381,라티오스,3,hoenn,준전설,dragon/psychic,푸른 궤적의 능선,3,3,2,10,no
+382,382,가이오가,3,hoenn,초전설,water,깊은 물결의 흔적,7,5,3,10,yes
+383,383,그란돈,3,hoenn,초전설,ground,깊은 땅의 흔적,7,5,3,10,yes
+384,384,레쿠쟈,3,hoenn,초전설,dragon/flying,구름 위의 궤적,7,5,3,10,yes
+385,385,지라치,3,hoenn,환상,steel/psychic,별빛이 남은 바위,5,3,2,10,no
+386,386,테오키스,3,hoenn,환상,psychic,별똥별의 낙하지,5,3,2,10,no
+480,480,유크시,4,sinnoh,준전설,psychic,잠든 지혜의 동굴,3,3,2,10,no
+481,481,엠라이트,4,sinnoh,준전설,psychic,감정이 비치는 호수,3,3,2,10,no
+482,482,아그놈,4,sinnoh,준전설,psychic,의지의 작은 섬,3,3,2,10,no
+483,483,디아루가,4,sinnoh,초전설,steel/dragon,멈춘 시간의 제단,7,5,3,10,yes
+484,484,펄기아,4,sinnoh,초전설,water/dragon,접힌 공간의 기둥,7,5,3,10,yes
+485,485,히드런,4,sinnoh,준전설,fire/steel,용암의 쇠굴,3,3,2,10,no
+486,486,레지기가스,4,sinnoh,준전설,normal,세 봉인의 신전,3,3,2,10,no
+487,487,기라티나,4,sinnoh,초전설,ghost/dragon,거꾸로 선 호수,7,5,3,10,yes
+488,488,크레세리아,4,sinnoh,준전설,psychic,초승달의 샘,3,3,2,10,no
+489,489,피오네,4,sinnoh,환상,water,따뜻한 해류 웅덩이,5,3,2,10,no
+490,490,마나피,4,sinnoh,환상,water,바다의 마음 제단,5,3,2,10,no
+491,491,다크라이,4,sinnoh,환상,dark,잠 못 드는 섬,5,3,2,10,no
+492,492,쉐이미,4,sinnoh,환상,grass,감사의 꽃밭,5,3,2,10,no
+493,493,아르세우스,4,sinnoh,환상,normal,시작의 계단,5,3,2,10,no
+494,494,비크티니,5,unova,환상,psychic/fire,승리의 등대,5,3,2,10,no
+638,638,코바르온,5,unova,준전설,steel/fighting,강철의 맹세터,3,3,2,10,no
+639,639,테라키온,5,unova,준전설,rock/fighting,무너진 성문,3,3,2,10,no
+640,640,비리디온,5,unova,준전설,grass/fighting,바람의 초원길,3,3,2,10,no
+641,641,토네로스,5,unova,준전설,flying,회오리 구름 언덕,3,3,2,10,no
+642,642,볼트로스,5,unova,준전설,electric/flying,벼락의 구름 언덕,3,3,2,10,no
+643,643,레시라무,5,unova,초전설,dragon/fire,진실의 백색 제단,7,5,3,10,yes
+644,644,제크로무,5,unova,초전설,dragon/electric,이상의 흑색 제단,7,5,3,10,yes
+645,645,랜드로스,5,unova,준전설,ground/flying,풍요의 흙 언덕,3,3,2,10,no
+646,646,큐레무,5,unova,초전설,dragon/ice,공허한 얼음 굴,7,5,3,10,yes
+647,647,케르디오,5,unova,환상,water/fighting,물칼날의 수련장,5,3,2,10,no
+648,648,메로엣타,5,unova,환상,normal/psychic,잊힌 노래의 무대,5,3,2,10,no
+649,649,게노세크트,5,unova,환상,bug/steel,개조된 고대 연구소,5,3,2,10,no
+716,716,제르네아스,6,kalos,초전설,fairy,생명의 뿌리숲,7,5,3,10,yes
+717,717,이벨타르,6,kalos,초전설,dark/flying,침묵의 고치숲,7,5,3,10,yes
+718,718,지가르데,6,kalos,초전설,dragon/ground,질서의 세포굴,7,5,3,10,yes
+719,719,디안시,6,kalos,환상,rock/fairy,지하의 보석 왕실,5,3,2,10,no
+720,720,후파,6,kalos,환상,psychic/ghost,고리 너머의 창고,5,3,2,10,no
+721,721,볼케니온,6,kalos,환상,fire/water,수증기의 비밀 골짜기,5,3,2,10,no
+772,772,타입:널,7,alola,준전설,normal,버려진 억제 실험실,3,3,2,10,no
+773,773,실버디,7,alola,준전설,normal,해방된 실험 정원,3,3,2,10,no
+785,785,카푸꼬꼬꼭,7,alola,준전설,electric/fairy,번개의 수호 제단,3,3,2,10,no
+786,786,카푸나비나,7,alola,준전설,psychic/fairy,분홍 비늘의 샘,3,3,2,10,no
+787,787,카푸브루루,7,alola,준전설,grass/fairy,황금 종의 숲,3,3,2,10,no
+788,788,카푸느지느,7,alola,준전설,water/fairy,보랏빛 안개의 해변,3,3,2,10,no
+789,789,코스모그,7,alola,초전설,psychic,작은 별의 쉼터,7,5,3,10,no
+790,790,코스모움,7,alola,초전설,psychic,별의 고치 제단,7,5,3,10,no
+791,791,솔가레오,7,alola,초전설,psychic/steel,태양의 사자 제단,7,5,3,10,yes
+792,792,루나아라,7,alola,초전설,psychic/ghost,보름달의 날개 제단,7,5,3,10,yes
+800,800,네크로즈마,7,alola,초전설,psychic,빛을 잃은 균열,7,5,3,10,yes
+801,801,마기아나,7,alola,환상,steel/fairy,인공 심장의 정원,5,3,2,10,no
+802,802,마샤도,7,alola,환상,fighting/ghost,그림자를 걷는 산길,5,3,2,10,no
+807,807,제라오라,7,alola,환상,electric,전류가 뛰는 절벽,5,3,2,10,no
+808,808,멜탄,7,alola,환상,steel,녹슨 금속 공터,5,3,2,10,no
+809,809,멜메탈,7,alola,환상,steel,거대한 너트 공장,5,3,2,10,no
+888,888,자시안,8,galar,초전설,fairy,안개의 검 제단,7,5,3,10,yes
+889,889,자마젠타,8,galar,초전설,fighting,안개의 방패 제단,7,5,3,10,yes
+890,890,무한다이노,8,galar,초전설,poison/dragon,붉은 폭풍의 탑,7,5,3,10,yes
+891,891,치고마,8,galar,준전설,fighting,어린 무도의 산장,3,3,2,10,no
+892,892,우라오스,8,galar,준전설,fighting/dark,일격의 수행 탑,3,3,2,10,no
+893,893,자루도,8,galar,환상,dark/grass,덩굴의 금단 숲,5,3,2,10,no
+894,894,레지에레키,8,galar,준전설,electric,봉인된 전기 사원,3,3,2,10,no
+895,895,레지드래고,8,galar,준전설,dragon,봉인된 용의 사원,3,3,2,10,no
+896,896,블리자포스,8,galar,준전설,ice,얼어붙은 당근밭,3,3,2,10,no
+897,897,레이스포스,8,galar,준전설,ghost,밤안개의 당근밭,3,3,2,10,no
+898,898,버드렉스,8,galar,초전설,psychic/grass,잊힌 왕의 설원,7,5,3,10,yes
+905,905,러브로스,8,galar,준전설,fairy/flying,봄바람의 연못,3,3,2,10,no
+1001,1001,총지엔,9,paldea,준전설,dark/grass,낙엽의 봉인 사당,3,3,2,10,no
+1002,1002,파오젠,9,paldea,준전설,dark/ice,빙검의 봉인 사당,3,3,2,10,no
+1003,1003,딩루,9,paldea,준전설,dark/ground,진토의 봉인 사당,3,3,2,10,no
+1004,1004,위유이,9,paldea,준전설,dark/fire,불구슬의 봉인 사당,3,3,2,10,no
+1007,1007,코라이돈,9,paldea,초전설,fighting/dragon,태고의 지층 협곡,7,5,3,10,yes
+1008,1008,미라이돈,9,paldea,초전설,electric/dragon,미래의 전송 관문,7,5,3,10,yes
+1009,1009,굽이치는물결,9,paldea,준전설,water/dragon,원시 폭포의 수면,3,3,2,10,no
+1010,1010,무쇠잎새,9,paldea,준전설,grass/psychic,미래 초원의 광선,3,3,2,10,no
+1014,1014,조타구,9,paldea,준전설,poison/fighting,독사슬의 바위터,3,3,2,10,no
+1015,1015,이야후,9,paldea,준전설,poison/psychic,독사슬의 지혜터,3,3,2,10,no
+1016,1016,기로치,9,paldea,준전설,poison/fairy,독사슬의 깃털터,3,3,2,10,no
+1017,1017,오거폰,9,paldea,준전설,grass,가면의 외딴 굴,3,3,2,10,no
+1020,1020,꿰뚫는화염,9,paldea,준전설,fire/dragon,원시 화염의 구덩이,3,3,2,10,no
+1021,1021,날뛰는우레,9,paldea,준전설,electric/dragon,원시 번개의 봉우리,3,3,2,10,no
+1022,1022,무쇠암석,9,paldea,준전설,rock/psychic,미래 암석의 격납고,3,3,2,10,no
+1023,1023,무쇠감투,9,paldea,준전설,steel/psychic,미래 강철의 격납고,3,3,2,10,no
+1024,1024,테라파고스,9,paldea,초전설,normal,일곱 빛의 지하호,7,5,3,10,yes
+1025,1025,복숭악동,9,paldea,환상,poison/ghost,금지된 복숭아 가게,5,3,2,10,no
+10169,144,프리져 (가라르),8,galar,준전설,psychic/flying,보랏빛 설원 절벽,3,3,2,10,no
+10170,145,썬더 (가라르),8,galar,준전설,fighting/flying,붉은 황야의 능선,3,3,2,10,no
+10171,146,파이어 (가라르),8,galar,준전설,dark/flying,어둠이 타는 벼랑,3,3,2,10,no
