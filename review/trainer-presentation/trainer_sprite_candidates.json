@@ -1,0 +1,301 @@
+{
+  "credits_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+  "conditions": "Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+  "network_status": "Showdown image host blocked by current cloud network policy (403); no candidate images downloaded",
+  "entries": {
+    "gym:viola": {
+      "name": "비올라",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/viola.png",
+      "artist": "Gnomowladny",
+      "status": "credits_index_confirmed"
+    },
+    "gym:grant": {
+      "name": "자크로",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/grant.png",
+      "artist": "kyledove",
+      "status": "credits_index_confirmed"
+    },
+    "gym:korrina": {
+      "name": "코르니",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/korrina.png",
+      "artist": "Gnomowladny",
+      "status": "credits_index_confirmed"
+    },
+    "gym:ramos": {
+      "name": "후쿠지",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/ramos.png",
+      "artist": "Gnomowladny",
+      "status": "credits_index_confirmed"
+    },
+    "gym:clemont": {
+      "name": "시트론",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/clemont.png",
+      "artist": null,
+      "status": "unverified_candidate"
+    },
+    "gym:valerie": {
+      "name": "마슈",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/valerie.png",
+      "artist": "Gnomowladny",
+      "status": "credits_index_confirmed"
+    },
+    "gym:olympia": {
+      "name": "고지카",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/olympia.png",
+      "artist": "Gnomowladny",
+      "status": "credits_index_confirmed"
+    },
+    "gym:wulfric": {
+      "name": "우르프",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/wulfric.png",
+      "artist": "Gnomowladny",
+      "status": "credits_index_confirmed"
+    },
+    "gym:milo": {
+      "name": "아킬",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/milo.png",
+      "artist": "Brumirage",
+      "status": "credits_index_confirmed"
+    },
+    "gym:nessa": {
+      "name": "야청",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/nessa.png",
+      "artist": "Brumirage",
+      "status": "credits_index_confirmed"
+    },
+    "gym:kabu": {
+      "name": "순무",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/kabu.png",
+      "artist": "Brumirage",
+      "status": "credits_index_confirmed"
+    },
+    "gym:bea": {
+      "name": "채두",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/bea.png",
+      "artist": "Brumirage",
+      "status": "credits_index_confirmed"
+    },
+    "gym:allister": {
+      "name": "어니언",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/allister.png",
+      "artist": "Brumirage",
+      "status": "credits_index_confirmed"
+    },
+    "gym:opal": {
+      "name": "포플러",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/opal.png",
+      "artist": "Brumirage",
+      "status": "credits_index_confirmed"
+    },
+    "gym:gordie": {
+      "name": "마쿠와",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/gordie.png",
+      "artist": "Brumirage",
+      "status": "credits_index_confirmed"
+    },
+    "gym:melony": {
+      "name": "멜론",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/melony.png",
+      "artist": "Brumirage",
+      "status": "credits_index_confirmed"
+    },
+    "gym:piers": {
+      "name": "두송",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/piers.png",
+      "artist": "Brumirage",
+      "status": "credits_index_confirmed"
+    },
+    "gym:raihan": {
+      "name": "금랑",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/raihan.png",
+      "artist": "Brumirage",
+      "status": "credits_index_confirmed"
+    },
+    "gym:bede": {
+      "name": "비트",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/bede-leader.png",
+      "artist": "Brumirage",
+      "status": "credits_index_confirmed"
+    },
+    "gym:marnie": {
+      "name": "마리",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/marnie.png",
+      "artist": "Brumirage",
+      "status": "credits_index_confirmed"
+    },
+    "gym:klara": {
+      "name": "도정",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/klara.png",
+      "artist": "Brumirage",
+      "status": "credits_index_confirmed"
+    },
+    "gym:avery": {
+      "name": "세이버리",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/avery.png",
+      "artist": "Brumirage",
+      "status": "credits_index_confirmed"
+    },
+    "gym:mustard": {
+      "name": "마스터드",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/mustard.png",
+      "artist": "Brumirage",
+      "status": "credits_index_confirmed"
+    },
+    "gym:peony": {
+      "name": "피오니",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/peony.png",
+      "artist": "Brumirage",
+      "status": "credits_index_confirmed"
+    },
+    "gym:tyme": {
+      "name": "타임",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/tyme.png",
+      "artist": "kyledove",
+      "status": "credits_index_confirmed"
+    },
+    "gym:katy": {
+      "name": "단풍",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/katy.png",
+      "artist": "kyledove",
+      "status": "credits_index_confirmed"
+    },
+    "gym:brassius": {
+      "name": "콜사",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/brassius.png",
+      "artist": "kyledove",
+      "status": "credits_index_confirmed"
+    },
+    "gym:iono": {
+      "name": "모야모",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/iono.png",
+      "artist": "kyledove",
+      "status": "credits_index_confirmed"
+    },
+    "gym:kofu": {
+      "name": "곤포",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/kofu.png",
+      "artist": "kyledove",
+      "status": "credits_index_confirmed"
+    },
+    "gym:larry": {
+      "name": "청목",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/larry.png",
+      "artist": "kyledove",
+      "status": "credits_index_confirmed"
+    },
+    "gym:ryme": {
+      "name": "라임",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/ryme.png",
+      "artist": "kyledove",
+      "status": "credits_index_confirmed"
+    },
+    "gym:tulip": {
+      "name": "리파",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/tulip.png",
+      "artist": "kyledove",
+      "status": "credits_index_confirmed"
+    },
+    "gym:grusha": {
+      "name": "그루샤",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/grusha.png",
+      "artist": "ZacWeavile",
+      "status": "credits_index_confirmed"
+    },
+    "elite:malva": {
+      "name": "파키라",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/malva.png",
+      "artist": "Gnomowladny",
+      "status": "credits_index_confirmed"
+    },
+    "elite:siebold": {
+      "name": "즈미",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/siebold.png",
+      "artist": "Gnomowladny",
+      "status": "credits_index_confirmed"
+    },
+    "elite:wikstrom": {
+      "name": "간피",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/wikstrom.png",
+      "artist": "Gnomowladny",
+      "status": "credits_index_confirmed"
+    },
+    "elite:drasna": {
+      "name": "드라세나",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/drasna.png",
+      "artist": "Gnomowladny",
+      "status": "credits_index_confirmed"
+    },
+    "elite:hala": {
+      "name": "할라",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/hala.png",
+      "artist": "Gnomowladny",
+      "status": "credits_index_confirmed"
+    },
+    "elite:olivia": {
+      "name": "라이치",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/olivia.png",
+      "artist": "Beliot419",
+      "status": "credits_index_confirmed"
+    },
+    "elite:acerola": {
+      "name": "아세로라",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/acerola.png",
+      "artist": "Beliot419",
+      "status": "credits_index_confirmed"
+    },
+    "elite:kahili": {
+      "name": "카일리",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/kahili.png",
+      "artist": "Beliot419",
+      "status": "credits_index_confirmed"
+    },
+    "elite:rika": {
+      "name": "칠리",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/rika.png",
+      "artist": "kyledove",
+      "status": "credits_index_confirmed"
+    },
+    "elite:poppy": {
+      "name": "뽀삐",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/poppy.png",
+      "artist": "kyledove",
+      "status": "credits_index_confirmed"
+    },
+    "elite:larry": {
+      "name": "청목",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/larry.png",
+      "artist": "kyledove",
+      "status": "credits_index_confirmed"
+    },
+    "elite:hassel": {
+      "name": "팔자크",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/hassel.png",
+      "artist": "kyledove",
+      "status": "credits_index_confirmed"
+    },
+    "champion:diantha": {
+      "name": "카르네",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/diantha.png",
+      "artist": "Brumirage",
+      "status": "credits_index_confirmed"
+    },
+    "champion:leon": {
+      "name": "단델",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/leon.png",
+      "artist": "Brumirage",
+      "status": "credits_index_confirmed"
+    },
+    "champion:geeta": {
+      "name": "테사",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/geeta.png",
+      "artist": "kyledove",
+      "status": "credits_index_confirmed"
+    },
+    "champion:nemona": {
+      "name": "네모",
+      "url": "https://play.pokemonshowdown.com/sprites/trainers/nemona-s.png",
+      "artist": "kyledove",
+      "status": "credits_index_confirmed"
+    }
+  }
+}
