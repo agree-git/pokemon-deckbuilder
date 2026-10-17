@@ -1,8 +1,8 @@
 {
   "source": "https://github.com/smogon/sprites",
   "commit": "a9214714f00974a8c28586829e6315d9ca5a6348",
-  "scope": "Canonical original-game trainer pixel sprites only. Community redraw candidates are recorded separately and not included.",
-  "rights": "Sprite imagery belongs to Nintendo / Game Freak / The Pokémon Company. Repository MIT applies to code, not blanket sprite permission.",
+  "scope": "75 roster identities use canonical original-game sprites; 14 additional identities use credited community trainer sprites. PNG bytes are imported unmodified. Remaining identities explicitly use the generic fallback.",
+  "rights": "Original Pokemon imagery belongs to Nintendo / Game Freak / The Pokemon Company. Fan trainer artists and the specific gallery usage notice are recorded per file; code MIT is not a blanket art license.",
   "entries": {
     "gym:brock": {
       "name": "웅",
@@ -251,8 +251,8 @@
     },
     "gym:viola": {
       "name": "비올라",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/viola-x-y-fan.png"
     },
     "gym:grant": {
       "name": "자크로",
@@ -261,13 +261,13 @@
     },
     "gym:korrina": {
       "name": "코르니",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/korrina-x-y-fan.png"
     },
     "gym:ramos": {
       "name": "후쿠지",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/ramos-x-y-fan.png"
     },
     "gym:clemont": {
       "name": "시트론",
@@ -276,18 +276,18 @@
     },
     "gym:valerie": {
       "name": "마슈",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/valerie-x-y-fan.png"
     },
     "gym:olympia": {
       "name": "고지카",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/olympia-x-y-fan.png"
     },
     "gym:wulfric": {
       "name": "우르프",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/wulfric-x-y-fan.png"
     },
     "gym:milo": {
       "name": "아킬",
@@ -511,43 +511,43 @@
     },
     "elite:malva": {
       "name": "파키라",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/malva-x-y-fan.png"
     },
     "elite:siebold": {
       "name": "즈미",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/siebold-x-y-fan.png"
     },
     "elite:wikstrom": {
       "name": "간피",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/wikstrom-x-y-fan.png"
     },
     "elite:drasna": {
       "name": "드라세나",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/drasna-x-y-fan.png"
     },
     "elite:hala": {
       "name": "할라",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/hala-sun-moon-fan.png"
     },
     "elite:olivia": {
       "name": "라이치",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/olivia-sun-moon-fan.png"
     },
     "elite:acerola": {
       "name": "아세로라",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/acerola-sun-moon-fan.png"
     },
     "elite:kahili": {
       "name": "카일리",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/kahili-sun-moon-fan.png"
     },
     "elite:rika": {
       "name": "칠리",
@@ -1720,6 +1720,314 @@
         75,
         74
       ]
+    },
+    "assets/trainers/viola-x-y-fan.png": {
+      "upstream_path": "src/_uncategorized/noncanonical/trainers/gen6/x-y/Viola.png",
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Viola.png",
+      "sha256": "ff2fb0c7cb9b2caba32499f2876f9b83a43bddc226aa94f83b6c95ae4f35a238",
+      "size": [
+        26,
+        76
+      ],
+      "bounds": [
+        2,
+        4,
+        24,
+        72
+      ],
+      "kind": "fan",
+      "artist": "Gnomowladny",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "viola.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "PNG bytes preserved. Trainer identity/artist matched to gallery credits index; image-host bytes not compared."
+    },
+    "assets/trainers/korrina-x-y-fan.png": {
+      "upstream_path": "src/_uncategorized/noncanonical/trainers/gen6/x-y/Korrina.png",
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Korrina.png",
+      "sha256": "3d062fc661a72ffc2186496d70171814e4e0d9ac5220adae437893732f0ce7d0",
+      "size": [
+        60,
+        78
+      ],
+      "bounds": [
+        0,
+        3,
+        56,
+        75
+      ],
+      "kind": "fan",
+      "artist": "Gnomowladny",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "korrina.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "PNG bytes preserved. Trainer identity/artist matched to gallery credits index; image-host bytes not compared."
+    },
+    "assets/trainers/ramos-x-y-fan.png": {
+      "upstream_path": "src/_uncategorized/noncanonical/trainers/gen6/x-y/Ramos.png",
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Ramos.png",
+      "sha256": "51f24b3e67bb418ce2a766b49b7ac75ce52e62ac361cac472a282da692762ddc",
+      "size": [
+        40,
+        72
+      ],
+      "bounds": [
+        0,
+        9,
+        37,
+        63
+      ],
+      "kind": "fan",
+      "artist": "Gnomowladny",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "ramos.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "PNG bytes preserved. Trainer identity/artist matched to gallery credits index; image-host bytes not compared."
+    },
+    "assets/trainers/valerie-x-y-fan.png": {
+      "upstream_path": "src/_uncategorized/noncanonical/trainers/gen6/x-y/Valerie.png",
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Valerie.png",
+      "sha256": "aa4a8c840c8c2051296daee0d4bfd62f6287bd003969aa28159632a531c7f419",
+      "size": [
+        80,
+        76
+      ],
+      "bounds": [
+        0,
+        0,
+        80,
+        76
+      ],
+      "kind": "fan",
+      "artist": "Gnomowladny",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "valerie.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "PNG bytes preserved. Trainer identity/artist matched to gallery credits index; image-host bytes not compared."
+    },
+    "assets/trainers/olympia-x-y-fan.png": {
+      "upstream_path": "src/_uncategorized/noncanonical/trainers/gen6/x-y/Olympia.png",
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Olympia.png",
+      "sha256": "4a5aa668452dc066d090cf7641d90dbca6b47c4368e36aa900b509c8c3305a41",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        0,
+        0,
+        80,
+        80
+      ],
+      "kind": "fan",
+      "artist": "Gnomowladny",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "olympia.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "PNG bytes preserved. Trainer identity/artist matched to gallery credits index; image-host bytes not compared."
+    },
+    "assets/trainers/wulfric-x-y-fan.png": {
+      "upstream_path": "src/_uncategorized/noncanonical/trainers/gen6/x-y/Wulfric.png",
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Wulfric.png",
+      "sha256": "d61dc5e7dea7787c93c4a5015dae1bbce1133b6e5369f6c01b9bc9da03471808",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        0,
+        0,
+        80,
+        80
+      ],
+      "kind": "fan",
+      "artist": "Gnomowladny",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "wulfric.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "PNG bytes preserved. Trainer identity/artist matched to gallery credits index; image-host bytes not compared."
+    },
+    "assets/trainers/malva-x-y-fan.png": {
+      "upstream_path": "src/_uncategorized/noncanonical/trainers/gen6/x-y/Malva.png",
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Malva.png",
+      "sha256": "59859afd00e0b1b3e09de6abfe5fcd729f46e4cf5dc5abd475ccfd2d5cf613cf",
+      "size": [
+        34,
+        80
+      ],
+      "bounds": [
+        0,
+        2,
+        30,
+        78
+      ],
+      "kind": "fan",
+      "artist": "Gnomowladny",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "malva.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "PNG bytes preserved. Trainer identity/artist matched to gallery credits index; image-host bytes not compared."
+    },
+    "assets/trainers/siebold-x-y-fan.png": {
+      "upstream_path": "src/_uncategorized/noncanonical/trainers/gen6/x-y/Siebold.png",
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Siebold.png",
+      "sha256": "bdc165eedb31f6ead194dd2a0f17083ef1cc7cb9e71b59c1545aa969e36320e9",
+      "size": [
+        38,
+        80
+      ],
+      "bounds": [
+        0,
+        1,
+        32,
+        79
+      ],
+      "kind": "fan",
+      "artist": "Gnomowladny",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "siebold.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "PNG bytes preserved. Trainer identity/artist matched to gallery credits index; image-host bytes not compared."
+    },
+    "assets/trainers/wikstrom-x-y-fan.png": {
+      "upstream_path": "src/_uncategorized/noncanonical/trainers/gen6/x-y/Wikstrom.png",
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Wikstrom.png",
+      "sha256": "b4b14c523133f15f5fee1db2b3d925aebd6c74bdecf0cf56d09c2cd84ff932f5",
+      "size": [
+        66,
+        76
+      ],
+      "bounds": [
+        7,
+        7,
+        59,
+        69
+      ],
+      "kind": "fan",
+      "artist": "Gnomowladny",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "wikstrom.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "PNG bytes preserved. Trainer identity/artist matched to gallery credits index; image-host bytes not compared."
+    },
+    "assets/trainers/drasna-x-y-fan.png": {
+      "upstream_path": "src/_uncategorized/noncanonical/trainers/gen6/x-y/Drasna.png",
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Drasna.png",
+      "sha256": "252fcf06714d014aa598a56ab8765a20e8373acb6cdd58dbc9b52756b3ca7065",
+      "size": [
+        60,
+        80
+      ],
+      "bounds": [
+        0,
+        0,
+        56,
+        80
+      ],
+      "kind": "fan",
+      "artist": "Gnomowladny",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "drasna.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "PNG bytes preserved. Trainer identity/artist matched to gallery credits index; image-host bytes not compared."
+    },
+    "assets/trainers/hala-sun-moon-fan.png": {
+      "upstream_path": "src/_uncategorized/noncanonical/trainers/gen7/sun-moon/Hala.png",
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen7/sun-moon/Hala.png",
+      "sha256": "a9a9697cfc9b575babb80185c0045a5895ba0680b65dbc4cfd043b15c8ed5e6f",
+      "size": [
+        54,
+        80
+      ],
+      "bounds": [
+        0,
+        1,
+        50,
+        79
+      ],
+      "kind": "fan",
+      "artist": "Gnomowladny",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "hala.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "PNG bytes preserved. Trainer identity/artist matched to gallery credits index; image-host bytes not compared."
+    },
+    "assets/trainers/olivia-sun-moon-fan.png": {
+      "upstream_path": "src/_uncategorized/noncanonical/trainers/gen7/sun-moon/Olivia.png",
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen7/sun-moon/Olivia.png",
+      "sha256": "44fe663febaf6bbccb10eea559b62c3e47d2a021263c87c65ee7f5fc64acdff6",
+      "size": [
+        34,
+        78
+      ],
+      "bounds": [
+        6,
+        2,
+        28,
+        76
+      ],
+      "kind": "fan",
+      "artist": "Beliot419",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "olivia.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "PNG bytes preserved. Trainer identity/artist matched to gallery credits index; image-host bytes not compared."
+    },
+    "assets/trainers/acerola-sun-moon-fan.png": {
+      "upstream_path": "src/_uncategorized/noncanonical/trainers/gen7/sun-moon/Acerola.png",
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen7/sun-moon/Acerola.png",
+      "sha256": "491b65128efe304ec434b2ace05fee34da44f4ef730b1a7d0a4763c9a2b25422",
+      "size": [
+        48,
+        78
+      ],
+      "bounds": [
+        10,
+        11,
+        38,
+        67
+      ],
+      "kind": "fan",
+      "artist": "Beliot419",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "acerola.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "PNG bytes preserved. Trainer identity/artist matched to gallery credits index; image-host bytes not compared."
+    },
+    "assets/trainers/kahili-sun-moon-fan.png": {
+      "upstream_path": "src/_uncategorized/noncanonical/trainers/gen7/sun-moon/Kahili.png",
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen7/sun-moon/Kahili.png",
+      "sha256": "4e755ebf1b8a8a009896bbd1847b09d20a1e6021f3e8303f001282714ee4f12c",
+      "size": [
+        64,
+        78
+      ],
+      "bounds": [
+        0,
+        0,
+        51,
+        78
+      ],
+      "kind": "fan",
+      "artist": "Beliot419",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "kahili.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "PNG bytes preserved. Trainer identity/artist matched to gallery credits index; image-host bytes not compared."
     }
   }
 }
