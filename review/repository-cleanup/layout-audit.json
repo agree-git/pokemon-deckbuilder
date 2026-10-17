@@ -1,0 +1,19 @@
+{
+  "old_review_branches_preserved": 4,
+  "archived_material_files_verified": 177,
+  "literal_runtime_paths_checked": 891,
+  "unchanged_runtime_assets": 1338,
+  "unchanged_data_files": 12,
+  "main_file_count": 2864,
+  "top_level": [
+    ".gitattributes",
+    ".gitignore",
+    "ASSET_SOURCES.md",
+    "README.md",
+    "assets",
+    "data",
+    "project.godot",
+    "scenes",
+    "scripts"
+  ]
+}

@@ -6,6 +6,7 @@
 |---|---|
 | 다른 채팅에서 개발 이어가기 | [AGENTS.md](AGENTS.md) → [HANDOFF.md](HANDOFF.md) |
 | 개발 진행/기획 | [진행 현황](docs/progress.md) · [게임 기획](docs/game-design.md) |
+| 저장소 정리·main 실행 검증 | [결과·화면·로그](review/repository-cleanup/README.md) |
 | 모든 검토 갤러리·ZIP·CSV | [검토 자료 모음](review/README.md) |
 | 트레이너 도트 출처 조사 | [업로드 XLSX 조사](docs/trainer-resource-research.md) · [후대 후보](docs/trainer-sprite-links.md) |
 | 테스트와 개발 도구 | [tests](tests) · [tools](tools) |
