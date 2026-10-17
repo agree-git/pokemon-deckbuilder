@@ -74,7 +74,7 @@ func run() -> void:
                 check(box.quote.get_line_count()*box.quote.get_line_height() <= box.quote.size.y and box.speaker.get_line_count()*box.speaker.get_line_height() <= box.speaker.size.y,"Actual Korean font fits the battle and result speech sizes: "+key)
                 check(box.mouse_filter == Control.MOUSE_FILTER_IGNORE and box.quote.mouse_filter == Control.MOUSE_FILTER_IGNORE,"Speech never steals UI pointer input")
         check(source == stop,"Selecting dialogue does not mutate route trainer content")
-    check(included == 89,"89 roster identities use original or credited community sprites")
+    check(included == 123,"123 roster identities use original or credited community sprites")
     check(distinct.size() == 372,"Every authored line is distinct")
     check(covered.keys().all(func(key: String): return TrainerDialogue.data().has(key)),"No mismatched or orphaned trainer content")
     for person: String in ["koga","blue","lance","wallace","iris","larry"]:

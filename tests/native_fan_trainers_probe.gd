@@ -57,7 +57,7 @@ func run() -> void:
     var keys: Array[String] = []
     for key: String in TrainerSprites.manifest()["entries"]:
         var e: Dictionary = TrainerSprites.manifest()["entries"][key]
-        if e.get("status","") == "included" and TrainerSprites.manifest()["assets"][e["path"]].get("kind","") == "fan": keys.append(key)
+        if e.get("status","") == "included" and TrainerSprites.manifest()["assets"][e["path"]].get("kind","") == "fan" and not TrainerSprites.manifest()["assets"][e["path"]].has("source_repository"): keys.append(key)
     check(keys.size() == 14,"All fourteen new trainer identities are exercised")
     var index := 0
     for key: String in keys:

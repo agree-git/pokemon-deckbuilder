@@ -30,9 +30,19 @@ def main():
     assert referenced == set(manifest['assets']), 'Orphan or missing sprite'
     for local, source in manifest['assets'].items():
         target = root / local
-        assert source['url'] == f'https://raw.githubusercontent.com/smogon/sprites/{manifest["commit"]}/{source["upstream_path"]}'
+        repository = source.get('source_repository', manifest['source'])
+        commit = source.get('source_commit', manifest['commit'])
+        assert (repository, commit) in {
+            ('https://github.com/smogon/sprites', manifest['commit']),
+            ('https://github.com/SDM0/sprites', 'b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f'),
+        }, 'Unreviewed sprite source'
+        slug = repository.removeprefix('https://github.com/')
+        assert source['url'] == f'https://raw.githubusercontent.com/{slug}/{commit}/{source["upstream_path"]}'
         if source.get('kind', 'canonical') == 'fan':
-            assert '/noncanonical/trainers/' in source['upstream_path']
+            if repository == 'https://github.com/smogon/sprites':
+                assert '/noncanonical/trainers/' in source['upstream_path']
+            else:
+                assert source['upstream_path'] == 'sprites/trainers/' + source['gallery_file']
             proof = args.credits_index.read_bytes()
             assert hashlib.sha256(proof).hexdigest() == source['credit_source_sha256']
             credits = dict(re.findall(r'"([^"]+\.png)"\s*=>\s*"([^"]+)"', proof.decode()))
