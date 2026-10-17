@@ -2,6 +2,8 @@ class_name EvolutionItems
 extends RefCounted
 ## Gen 1–3 base forms. Trade materials replace external trading in this solo game.
 const ITEMS := {
+    "darkness_scroll":{"name":"악의족자","price":220,"stock":1},
+    "metal_candy":{"name":"멜탄의사탕","price":220,"stock":1},
     "fire_stone":{"name":"불꽃의돌","price":180,"stock":1},
     "water_stone":{"name":"물의돌","price":180,"stock":1},
     "thunder_stone":{"name":"천둥의돌","price":180,"stock":1},
@@ -16,7 +18,7 @@ const ITEMS := {
     "deep_sea_tooth":{"name":"심해의이빨","price":220,"stock":1},
     "deep_sea_scale":{"name":"심해의비늘","price":220,"stock":1},
 }
-const ROUTES := {
+const ROUTES := {891:{"darkness_scroll":892},808:{"metal_candy":809},
     25:{"thunder_stone":26},30:{"moon_stone":31},33:{"moon_stone":34},35:{"moon_stone":36},
     37:{"fire_stone":38},39:{"moon_stone":40},44:{"leaf_stone":45,"sun_stone":182},
     58:{"fire_stone":59},61:{"water_stone":62,"kings_rock":186},64:{"linking_cord":65},
@@ -30,6 +32,7 @@ const ROUTES := {
 static func target(key: String, species: int) -> int:
     return int(ROUTES.get(species,{}).get(key,0))
 static func description(key: String) -> String:
+    if key in ["darkness_scroll","metal_candy"]: return "야영지에서 사용해 진화 · 1개 소비"
     return "야영지에서 사용해 진화 · 1개 소비" if key.ends_with("stone") else "통신 교환을 대신하는 진화 재료 · 야영지에서 1개 소비"
 static func options(species: int) -> Array[String]:
     var result: Array[String] = []
@@ -47,7 +50,7 @@ static func merchant_offer(seed_value: int, step: int, party: Array[BattlePokemo
         for species: int in forms:
             for key: String in options(species):
                 if key not in candidates: candidates.append(key)
-    if candidates.is_empty(): candidates.assign(ITEMS.keys())
+    if candidates.is_empty(): candidates.assign(ITEMS.keys().filter(func(key: String): return key not in ["darkness_scroll","metal_candy"]))
     candidates.sort()
     var rng := RandomNumberGenerator.new()
     rng.seed = seed_value ^ (step*15485863+32452843)

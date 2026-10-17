@@ -81,7 +81,7 @@ func select(key: String) -> void:
             W.label(content,"지출 · 카드 %d / 보급품 %d / 제거 %d / 수업 %d 골드" % [counts["gold_cards"],counts["gold_supplies"],counts["gold_removal"],counts["gold_events"]],Rect2(48,356,1220,36),18,W.MUTED)
             var choices: Array = stats["choices"].duplicate()
             choices.reverse()
-            for choice: String in choices: line(rows,choice)
+            for choice: String in choices: line(rows,RareEncounter.public_text(journey,choice))
             if choices.is_empty(): line(rows,"아직 카드·보상 선택 기록이 없습니다.")
         "build":
             W.label(content,"카드 사용은 사본·소유자를 합산합니다. 유물 발동 횟수는 실제 피해 기여도와 다릅니다.",Rect2(48,356,1220,36),17,W.MUTED)

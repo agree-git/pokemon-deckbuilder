@@ -9,6 +9,8 @@ static func upcoming(j: TacticalJourney) -> Dictionary:
     if index >= stops.size(): return {}
     var stop: Dictionary = stops[index]
     if j.full_campaign and j.rare_hunt.get("battle_step",-1) == index:
+        if not RareEncounter.identity_known(j):
+            return {"step":index,"title":"희귀 조우 · ???","opponents":[],"hidden":true}
         stop = RareEncounter.node(stop,int(j.rare_hunt["target"]))
     return {"step":index,"title":stop["name"],"opponents":j.opponents_at(index)}
 static func describe(j: TacticalJourney) -> Dictionary:
@@ -17,7 +19,7 @@ static func describe(j: TacticalJourney) -> Dictionary:
     if target.is_empty(): return {}
     var enemies: Array[Dictionary] = []
     for definition: Dictionary in target["opponents"]: enemies.append(analyze(j,definition))
-    return {"step":target["step"],"title":target["title"],"enemies":enemies}
+    return {"step":target["step"],"title":target["title"],"enemies":enemies,"hidden":target.get("hidden",false)}
 static func analyze(j: TacticalJourney, definition: Dictionary) -> Dictionary:
     return analyze_cards(j,definition,j.deck)
 static func compare(j: TacticalJourney, cards: Array[BattleCardInstance]) -> Dictionary:

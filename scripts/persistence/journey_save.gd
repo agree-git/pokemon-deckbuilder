@@ -5,6 +5,7 @@ const VERSION := 1
 const SAVE_PATH := "user://journey.json"
 const MAX_FILE_BYTES := 4*1024*1024
 const RULESET := "campaign-69-species-stats-speed-v3"
+const COMPATIBLE_CONTENT := ["1f49586798419ec8b34b5e1698a3d7b470905520caed012674308eec391001c2"]
 const CONTENT := ["res://data/base_stats.json","res://data/catalog.json","res://data/biomes.json","res://data/gyms.json","res://data/league.json","res://data/progression.json","res://data/evolutions.json","res://data/type_chart.json"]
 static var _fingerprint := ""
 var path: String
@@ -22,6 +23,8 @@ static func fingerprint() -> String:
             hash.update(FileAccess.get_file_as_bytes(source))
         _fingerprint = hash.finish().hex_encode()
     return _fingerprint
+static func compatible_content(value: Variant) -> bool:
+    return value is String and (value == fingerprint() or value in COMPATIBLE_CONTENT)
 static func _json(source: String) -> Variant:
     if not FileAccess.file_exists(source): return null
     var file := FileAccess.open(source,FileAccess.READ)
@@ -31,7 +34,7 @@ static func _json(source: String) -> Variant:
     return parser.data
 func _read(source: String, validate_state := true) -> Dictionary:
     var envelope: Variant = _json(source)
-    if not envelope is Dictionary or envelope.get("version") != VERSION or envelope.get("content") != fingerprint(): return {}
+    if not envelope is Dictionary or envelope.get("version") != VERSION or not compatible_content(envelope.get("content")): return {}
     if not envelope.get("payload") is String or not envelope.get("sha256") is String: return {}
     var bytes := Marshalls.base64_to_raw(envelope["payload"])
     if bytes.size() < 4 or bytes.size() > MAX_FILE_BYTES or bytes.hex_encode().sha256_text() != envelope["sha256"]: return {}
@@ -83,7 +86,7 @@ func load_journey() -> TacticalJourney:
         if data.is_empty() or not head is Dictionary or data["run"]["run_id"] != head.get("run_id"):
             if FileAccess.file_exists(path) or FileAccess.file_exists(path+".bak"):
                 var previous: Variant = _json(path)
-                var incompatible: bool = previous is Dictionary and previous.get("content","") != fingerprint()
+                var incompatible: bool = previous is Dictionary and not compatible_content(previous.get("content",""))
                 last_error = "전투 규칙이 바뀌어 이전 원정은 이어할 수 없습니다. 새 원정을 시작하세요. 포획 도감과 스타팅 해금은 유지됩니다." if incompatible else "원정 저장을 불러오지 못했습니다. 파일이 손상되었거나 게임 버전이 다릅니다."
             return null
         recovered = true

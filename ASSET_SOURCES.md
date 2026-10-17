@@ -31,3 +31,15 @@
 울음소리는 [PokéAPI/cries](https://github.com/PokeAPI/cries)에서 가져왔습니다. [커밋·지문·변환 명세](assets/audio/cries/manifest.json), [원문](assets/audio/cries/UPSTREAM_README.md), [라이선스](assets/audio/cries/UPSTREAM_LICENSE)를 포함합니다. #025는 MP3 비트스트림을 Ogg로 변환했으며 나머지 385개는 원본을 유지합니다. 소리의 권리는 The Pokémon Company에 있습니다.
 
 [Noto Sans KR](assets/fonts/NotoSansKR.ttf)의 [SIL Open Font License](assets/fonts/OFL.txt)를 포함합니다.
+
+
+## 9세대까지 희귀 포켓몬 확장
+
+일반 1~3세대 범위는 유지하고 희귀 기본 종 100종 + 가라르 전설의 새 3폼을 지원합니다. 기존 21종에 **82개 런타임 항목**을 추가해 전체 도감은 468개입니다. 울트라비스트와 일반 패러독스는 제외하며, 준전설 기반 패러독스 6종은 사용자 지정 준전설로 분류합니다.
+
+- 추가 앞/뒤 도트 **164장**: [Smogon / Pokémon Showdown! sprites](https://github.com/smogon/sprites/tree/a9214714f00974a8c28586829e6315d9ca5a6348/src/sprites/gen5)의 고정 커밋 `a9214714f00974a8c28586829e6315d9ca5a6348`을 사용합니다. 무쇠감투(#1023) 앞/뒤 2장은 PokéAPI/sprites `0dc105d5b12416932f29b594078282ab4be045f5`를 사용합니다. PNG는 원본 바이트를 보존하며 GIF만 첫 프레임을 RGBA PNG로 추출합니다. 원본 URL·원본/결과 SHA·변환·크기는 [manifest](assets/sources/manifest.json)에 있습니다.
+- 후대의 BW 스타일 도트는 커뮤니티 작가들의 작업입니다. 업스트림은 커뮤니티 도트의 라이선스가 확정되지 않았으며 사용 전 문의하도록 안내합니다. 이를 MIT/CC0 배포 허가로 해석하지 않습니다. [업스트림 고지 원문](assets/sources/SMOGON_SPRITES_LICENSE.txt)을 유지합니다. PMD 자료는 사용하지 않았습니다.
+- 한국어 이름·타입·종족값·성장 곡선·새 희귀의 레벨업 기술은 [PokéAPI](https://github.com/PokeAPI/pokeapi/tree/81d20919845b6a445969b9265aab5cec6b04cece/data/v2/csv) `81d20919845b6a445969b9265aab5cec6b04cece`에서 가져왔습니다. 기존 386종 데이터는 유지하고 신규 항목은 지원되는 최신 버전 그룹의 레벨업 기술을 사용합니다. 상세 수집 기록/도구는 development-materials의 `tools/rare-gen9/`에 둡니다. 기술 카드는 게임의 전술 규칙에 맞춘 변환이며 원작의 모든 기술 특수 규칙을 재현하는 것은 아닙니다.
+- 추가 울음소리 **82개**: [PokéAPI/cries](https://github.com/PokeAPI/cries) `b3a9044bb839b5e3152aaa536c7b463a0fcf0140`. [울음소리 manifest](assets/audio/cries/manifest.json)에 원본 URL·지문을 기록했습니다. 업스트림의 808/809 파일은 확장자가 `.ogg`지만 실제 MP3여서 Ogg Vorbis quality 6으로 변환했고 원본/결과 지문을 구분했습니다.
+- 새 진화 재료의 표시는 PokéAPI의 `seal-case`/`rare-candy` 아이콘을 공용 상징으로 사용합니다. 악의족자 원작 도트라고 표시하지 않습니다. 멜탄의사탕은 혼자 진행하는 원정에 맞춘 진화 재료입니다.
+- **초전설 등장 연출 25종**은 프로젝트에서 직접 작성한 절차적 도트 도형입니다. DNA·무지개·거품·지진·파도·구름·시간·공간·그림자·불꽃·번개·얼음·수풀·세포·태양·달·웜홀·칼·방패·눈보라·지층·전송 격자·스텔라 결정을 표현하며 외부 이미지나 생성 이미지를 사용하지 않았습니다. 포켓몬은 원래 권리자의 캐릭터입니다.

@@ -22,7 +22,7 @@ func _load(source: String) -> bool:
     for value: Variant in data["captured_ids"]:
         if not (value is float or value is int) or not is_finite(float(value)): return false
         var id := int(value)
-        if float(id) != float(value) or id < 1 or id > 386: return false
+        if float(id) != float(value) or not VisualCatalog.supports(id): return false
         if id not in valid: valid.append(id)
     valid.sort()
     captured_ids.assign(valid)

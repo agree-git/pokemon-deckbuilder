@@ -35,7 +35,7 @@ func _silent() -> bool:
     return preferences.audio_muted or preferences.master_volume <= 0 or preferences.cries_volume <= 0
 
 func play(species_id: int, on_ally := true) -> void:
-    if species_id < 1 or species_id > 386 or _silent(): return
+    if not VisualCatalog.supports(species_id) or _silent(): return
     if not streams.has(species_id):
         streams[species_id] = load("res://assets/audio/cries/%d.ogg" % species_id)
     _recent.erase(species_id)

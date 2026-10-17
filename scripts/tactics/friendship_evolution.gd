@@ -8,7 +8,7 @@ const VICTORY := 8
 const FAINTED := -10
 const LEVEL := 2
 const REST := 5
-const ROUTES := {172:25,173:35,174:39,42:169,175:176,298:183,113:242}
+const ROUTES := {772:773,172:25,173:35,174:39,42:169,175:176,298:183,113:242}
 static func value(pokemon: BattlePokemon) -> int:
     # Missing fields in older saves stay absent until an actual growth action.
     return pokemon.friendship if pokemon.friendship >= 0 else START

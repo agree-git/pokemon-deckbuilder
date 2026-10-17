@@ -264,6 +264,11 @@ func _map() -> void:
         var stop: Dictionary = stops[i]
         if journey.full_campaign and journey.rare_hunt.get("battle_step",-1) == i:
             stop = RareEncounter.node(stop,int(journey.rare_hunt["target"]))
+        var unknown: bool = stop.get("rare",false) and not RareEncounter.identity_known(journey)
+        if unknown:
+            stop = stop.duplicate()
+            stop["name"] = "희귀 조우 · ???"
+            stop["icon"] = "route"
         var highlighted: bool = i == journey.step or (journey.current()["kind"] == "rest" and i == journey.step-1)
         var height := 148.0 if journey.full_campaign else 220.0
         var panel := W.panel(page,Rect2(550+(column%columns)*width,310+floori(column/float(columns))*164,width-12,height),Color("20383e") if highlighted else Color("14282f"),W.GOLD if highlighted else Color("405960"))
@@ -276,12 +281,12 @@ func _map() -> void:
             W.icon(panel,"badge" if final_battle else "heal",Rect2(width-42,height-28,16,16))
             panel.mouse_filter = Control.MOUSE_FILTER_PASS
             panel.tooltip_text = ("승리하면 챔피언 등극" if final_battle else "전투 후 야영지")+" · 적 Lv.%d" % stop["level"]
-            var opponents: Array = journey.opponents_at(i)
+            var opponents: Array = [] if unknown else journey.opponents_at(i)
             if not opponents.is_empty() and opponents[0].has("boss"): panel.tooltip_text += "\n고유 전술 · "+BossTactics.heading(opponents[0])
             for opponent: Dictionary in opponents:
                 panel.tooltip_text += "\n%s · %s · %s" % [opponent["name"],EnemyTactics.role_title(opponent),EnemyTactics.pattern_text(opponent)]
     W.label(page,"장소에 마우스를 올리면 상대 전술을 확인할 수 있습니다.",Rect2(550,274,1190,28),14,W.MUTED)
-    _action("%s로 이동" % journey.current()["name"],Rect2(1120,670,620,64),_enter)
+    _action("%s로 이동" % RareEncounter.public_name(journey,journey.current()),Rect2(1120,670,620,64),_enter)
     W.button(page,Rect2(550,670,530,64),_open_preparation,"다음 전투 준비").name = "EncounterPreparation"
     if journey.full_campaign:
         W.label(page,"원정 경로 · 배지 %d / 8" % journey.badges,Rect2(550,748,1190,36),19,W.MUTED)
@@ -538,14 +543,16 @@ func _rare_picker() -> void:
     var hunt := journey.rare_info()
     var id: int = hunt["target"]
     var required := RareEncounter.requirement(id)
-    W.sprite(body,id,Rect2(64,112,192,192))
+    var known := RareEncounter.identity_known(journey)
+    if known: W.sprite(body,id,Rect2(64,112,192,192))
+    else: W.label(body,"?",Rect2(64,112,192,192),128,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER).name = "UnknownRarePortrait"
     var rule := RareEncounter.rule(id)
-    W.label(body,str(_evolution_catalog.species(id)["name"])+" · "+str(rule["name"]),Rect2(310,114,690,50),30,W.TEXT).name = "RareTarget"
+    W.label(body,(str(_evolution_catalog.species(id)["name"]) if known else "???")+" · "+str(rule["name"]),Rect2(310,114,690,50),30,W.TEXT).name = "RareTarget"
     var status := "단서 %d / %d   ·   배지 %d / %d" % [hunt["clues"].size(),required,journey.badges,required]
     if hunt["battle_step"] >= 0:
         status = "포획 성공 · 스타팅 영구 해금" if hunt["captured"] else ("다음 야생 전투에 도전 예약됨" if journey.step < hunt["battle_step"] else "이번 원정의 도전 종료")
     var story := RareEncounterStory.entry(id)
-    W.label(body,str(story.get("site","")),Rect2(310,170,720,38),23,W.MUTED).name = "RareSite"
+    W.label(body,str(story.get("site","")) if known else "발견 전까지 정체를 알 수 없습니다.",Rect2(310,170,720,38),23,W.MUTED).name = "RareSite"
     W.label(body,status,Rect2(310,220,720,72),23,W.GOLD).name = "RareProgress"
     W.panel(body,Rect2(32,316,1016,148),Color("0e2027"),Color("405960"))
     W.label(body,"전해지는 이야기" if hunt["clues"].is_empty() else "이번에 찾은 흔적",Rect2(52,326,976,32),18,W.GOLD)
@@ -966,10 +973,8 @@ func _enter() -> void:
     var heading := "다음 장소로 이동 중"
     var scenery := journey.biome()
     if journey.current().get("rare",false):
-        var story := RareEncounterStory.entry(journey.rare_info()["target"])
-        destination = str(story.get("site",destination))
-        heading = str(story.get("rumor",heading))
-        scenery = RareEncounterStory.backdrop(journey.rare_info()["target"])
+        destination = "희귀 조우 · ???"
+        heading = "정체를 알 수 없는 기척을 따라갑니다."
     travel.start(destination,scenery,journey.party,heading)
 func _restart(relic: String) -> void:
     deck_open = false

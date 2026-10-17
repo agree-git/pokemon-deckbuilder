@@ -63,6 +63,8 @@ static func award(pokemon: BattlePokemon,base: float,time_of_day := "day") -> Di
         PokemonStats.apply(pokemon)
         _learn_at(pokemon,pokemon.level,report)
         var evolution := FriendshipEvolution.target(pokemon,time_of_day)
+        if pokemon.species_id == 790 and pokemon.level >= 53:
+            evolution = 791 if time_of_day == "day" else 792
         if SpecialEvolution.target(pokemon) > 0:
             if pokemon.species_id == 265 and pokemon.evolution_personality < 0: pokemon.evolution_personality = SpecialEvolution.personality(pokemon)
             evolution = SpecialEvolution.target(pokemon)

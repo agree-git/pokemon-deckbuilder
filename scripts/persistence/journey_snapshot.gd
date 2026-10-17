@@ -137,18 +137,18 @@ static func validate(data: Variant) -> bool:
     if not integer(r["_next_pokemon_uid"],1000,1000000) or r["starter_ids"].is_empty() or r["starter_ids"].size() > 3: return false
     var catalog := VisualCatalog.new()
     for id: Variant in r["captured_ids"]:
-        if not integer(id,1,386): return false
+        if (not integer(id,1,10171) or not VisualCatalog.supports(int(id))): return false
     for key: String in ["history"]:
         for line: Variant in r[key]:
             if not line is String: return false
     for line: Variant in b["history"]:
         if not line is String: return false
     for id: Variant in r["starter_ids"]:
-        if not integer(id,1,386): return false
+        if (not integer(id,1,10171) or not VisualCatalog.supports(int(id))): return false
     for uid: Variant in ps:
         var p: Variant = ps[uid]
         if not uid is int or not p is Dictionary or not same_shape(p,fields(BattlePokemon.new(TacticalContent.PARTY[0],1),POKEMON_FIELDS)): return false
-        if p["uid"] != uid or uid == 0 or not integer(p["species_id"],1,386) or not integer(p["level"],1,100): return false
+        if p["uid"] != uid or uid == 0 or (not integer(p["species_id"],1,10171) or not VisualCatalog.supports(int(p["species_id"]))) or not integer(p["level"],1,100): return false
         if p.has("friendship") and not integer(p["friendship"],0,255): return false
         if p.has("beauty") and (not integer(p["beauty"],0,255) or p["species_id"] not in [349,350]): return false
         if p.has("evolution_personality") and (not integer(p["evolution_personality"],0,4294967295) or p["species_id"] not in [265,266,267,268,269]): return false
@@ -201,7 +201,7 @@ static func validate(data: Variant) -> bool:
         for intent: Variant in definition["intents"]:
             if not intent is Dictionary or not intent.get("kind") is String or intent["kind"] not in ["attack","charge","block","boost","barrage","fortify","recover","status"]: return false
             if intent["kind"] in ["barrage","fortify","recover","status"] and not definition.has("boss"): return false
-            if not integer(intent.get("value"),0,100000) or not integer(intent.get("move_id"),1,354): return false
+            if not integer(intent.get("value"),0,100000) or (not intent.get("move_id") is int or not TacticalGrowth.data()["moves"].has(str(intent["move_id"]))): return false
             if intent["kind"] in ["attack","charge","barrage"] and intent.get("type") not in VisualCatalog.TYPE_COLORS: return false
             if intent["kind"] == "barrage" and (not intent.get("hits") is int or intent["hits"] != 2 or not TacticalMoves.definition(TacticalMoves.key_for(intent["move_id"])).has("damage")): return false
             if intent["kind"] == "fortify" and intent.get("stat") not in ["defense","special_defense"]: return false

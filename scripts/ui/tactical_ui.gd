@@ -16,6 +16,8 @@ var opponent_trainer: Dictionary = {}
 var trainer_intro: TrainerEntrance
 var trainer_speech: TrainerSpeech
 var rare_speech: Panel
+var rare_entrance: RareEntrance
+var _rare_hidden := false
 var result_speech: TrainerSpeech
 var dialogue_history: Array[Dictionary] = []
 var _dialogue_seen: Dictionary = {}
@@ -135,7 +137,7 @@ func _ready() -> void:
     action_preview.bind_bars(ally_bar,enemy_bar)
     if run_mode:
         W.panel(self,Rect2(640,88,640,38),Color(0.035,0.075,0.095,0.9),Color.TRANSPARENT,19)
-        W.label(self,run_title,Rect2(640,88,640,38),17,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+        W.label(self,run_title,Rect2(640,88,640,38),17,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER).name = "RunTitle"
     _refresh()
     call_deferred("_opening_cries")
     if not opponent_trainer.is_empty() and battle.turn == 1 and battle.enemy_index == 0 and battle.phase == TacticalBattle.PLAYER and int(battle.statistics["counts"]["cards_played"]) == 0 and int(battle.statistics["counts"]["manual_switches"]) == 0 and not battle.get_meta("trainer_intro_seen",false):
@@ -177,11 +179,51 @@ func _start_rare_intro() -> void:
     _refresh()
     rare_speech.modulate.a = 0
     _sequence = UiMotion.combat(self,"battle_sequence")
+    rare_speech.hide()
+    _rare_hidden = true
+    stage.canvas.target_factor = 0
+    _mask_rare_identity()
+    if RareEntrance.supports(battle.enemy().species_id):
+        rare_entrance = RareEntrance.new()
+        rare_entrance.name = "RareEntranceEffect"
+        rare_entrance.species_id = battle.enemy().species_id
+        rare_entrance.center = stage.canvas.foot_anchor(false)-Vector2(0,130)
+        rare_entrance.motion_enabled = get_node("/root/Preferences").hit_motion
+        stage.canvas.add_child(rare_entrance)
+        _sequence.tween_property(rare_entrance,"progress",0.52,1.35)
+        _sequence.tween_callback(_reveal_rare)
+        _sequence.tween_property(rare_entrance,"progress",1.0,1.15)
+    else:
+        _sequence.tween_interval(0.50)
+        _sequence.tween_callback(_reveal_rare)
     _sequence.tween_property(rare_speech,"modulate:a",1.0,0.20)
-    _sequence.tween_callback(func(): get_node("/root/GameCries").play(battle.enemy().species_id,false))
-    _sequence.tween_interval(2.2)
+    _sequence.tween_interval(2.0)
     _sequence.tween_property(rare_speech,"modulate:a",0.0,0.20)
     _sequence.tween_callback(_finished)
+
+func _mask_rare_identity() -> void:
+    if not _rare_hidden: return
+    enemy_roster.hide()
+    history_button.disabled = true
+    if has_node("RunTitle"): get_node("RunTitle").text = run_title.replace(battle.enemy().display_name,"???")
+    for item: Dictionary in _hud_positions:
+        if not item["ally"]: item["node"].hide()
+    get_node("Intent").hide()
+    capture_button.hide()
+
+func _reveal_rare() -> void:
+    _rare_hidden = false
+    history_button.disabled = false
+    if has_node("RunTitle"): get_node("RunTitle").text = run_title
+    stage.canvas.target_factor = 1
+    stage.canvas.target_sprite.modulate.a = 0
+    UiMotion.combat(stage.canvas.target_sprite,"rare_reveal").tween_property(stage.canvas.target_sprite,"modulate:a",1.0,0.35)
+    enemy_roster.show()
+    for item: Dictionary in _hud_positions:
+        if not item["ally"]: item["node"].show()
+    rare_speech.show()
+    get_node("/root/GameCries").play(battle.enemy().species_id,false)
+    _refresh()
 
 func _start_trainer_intro() -> void:
     busy = true
@@ -795,6 +837,8 @@ func _refresh() -> void:
     else:
         UiMotion.close(result,true)
 
+    _mask_rare_identity()
+
 func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
     var items: Array = []
     if pokemon.strength != 0: items.append(["boost",str(pokemon.strength),"위력 보정 %+d%% · 이번 전투 동안 유지" % (pokemon.strength*10)])
@@ -1042,7 +1086,11 @@ func _float_value(text: String,on_ally: bool,color: Color,icon_key := "") -> voi
     tween.chain().tween_callback(number.queue_free)
 func _finished() -> void:
     trainer_speech.hide()
+    if _rare_hidden: _reveal_rare()
     if rare_speech != null: rare_speech.hide()
+    if is_instance_valid(rare_entrance):
+        rare_entrance.queue_free()
+        rare_entrance = null
     if battle.phase in [TacticalBattle.WON,TacticalBattle.LOST]: get_node("/root/GameMusic").play_theme("camp")
     if battle.phase == TacticalBattle.WON and "capture" not in playback_kinds: BattleSoundCues.play(self,"victory")
     elif battle.phase == TacticalBattle.LOST: BattleSoundCues.play(self,"defeat")
@@ -1072,6 +1120,12 @@ func restart(selected_relic: String = "") -> void:
     banner.modulate.a = 0.0
     trainer_speech.hide()
     dialogue_history.clear()
+    _rare_hidden = false
+    stage.canvas.target_factor = 1
+    enemy_roster.show()
+    if is_instance_valid(rare_entrance):
+        rare_entrance.queue_free()
+        rare_entrance = null
     if rare_speech != null: rare_speech.hide()
     _dialogue_seen.clear()
     _damage_events.clear()

@@ -89,7 +89,7 @@ func _title() -> void:
     start_button = _button("새 원정",Rect2(144,y,470,80),_choose,"route")
     collection_button = _button("포획 도감",Rect2(144,y+98,470,72),_open_collection,"ball")
     _button("게임 종료",Rect2(144,y+188,470,64),func(): get_tree().quit(),"close")
-    W.label(page,"포획 %d / 386  ·  스타팅 %d종 해금" % [profile.captured_ids.size(),profile.unlocked_starters(catalog).size()],Rect2(144,940,1000,44),18,W.MUTED)
+    W.label(page,"포획 %d / %d  ·  스타팅 %d종 해금" % [profile.captured_ids.size(),catalog.pokemon.size(),profile.unlocked_starters(catalog).size()],Rect2(144,940,1000,44),18,W.MUTED)
     var message := str(session.get("save_notice"))
     if not profile.last_error.is_empty(): message += (" · " if not message.is_empty() else "")+profile.last_error
     if not message.is_empty(): W.label(page,message,Rect2(144,989,1550,34),16,W.GOLD)
@@ -153,16 +153,25 @@ func _filter() -> void:
         seen.append(id)
         var allowed := id in (unlocked if mode == "starters" else profile.captured_ids)
         var species := catalog.species(id)
+        var active_run: TacticalJourney = session.get("journey")
+        var encountered: bool = active_run != null and not active_run.rare_hunt.is_empty() and RareEncounter.identity_known(active_run) and active_run.rare_hunt["target"] == id
+        var unknown: bool = id in RareEncounter.IDS and not allowed and id not in profile.captured_ids and not encountered
+        if unknown and not query.is_empty() and query not in "???": continue
         if not allowed and not show_locked.button_pressed: continue
-        if not query.is_empty() and query not in str(species["name"]).to_lower() and query not in "%03d" % id: continue
+        if not unknown and not query.is_empty() and query not in str(species["name"]).to_lower() and query not in "%03d" % id: continue
         var button := W.button(grid,Rect2(0,0,310,184),_select.bind(id))
         button.custom_minimum_size = Vector2(310,184)
-        var sprite := W.sprite(button,id,Rect2(18,34,88,104))
-        if not allowed: sprite.modulate = Color(0,0,0,0.55)
-        W.label(button,str(species["name"]) if allowed else "미해금",Rect2(112,35,184,38),22,W.TEXT if allowed else W.MUTED)
-        W.label(button,"#%03d" % id,Rect2(112,76,184,28),15,W.MUTED)
-        var types: Array = species["types"].map(func(key: String): return catalog.type_name(key))
-        W.label(button," / ".join(types),Rect2(112,111,184,28),15,VisualCatalog.type_color(species["types"][0]))
+        if unknown:
+            W.label(button,"?",Rect2(18,34,88,104),64,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+            W.label(button,"???",Rect2(112,35,184,38),22,W.MUTED)
+            W.label(button,"미발견",Rect2(112,76,184,28),15,W.MUTED)
+        else:
+            var sprite := W.sprite(button,id,Rect2(18,34,88,104))
+            if not allowed and not encountered: sprite.modulate = Color(0,0,0,0.55)
+            W.label(button,str(species["name"]) if allowed or encountered else "미해금",Rect2(112,35,184,38),22,W.TEXT if allowed else W.MUTED)
+            W.label(button,"#%03d" % int(species.get("dex_id",id)),Rect2(112,76,184,28),15,W.MUTED)
+            var types: Array = species["types"].map(func(key: String): return catalog.type_name(key))
+            W.label(button," / ".join(types),Rect2(112,111,184,28),15,VisualCatalog.type_color(species["types"][0]))
         button.disabled = not allowed
         button.tooltip_text = "포획하면 해금됩니다." if not allowed else str(species["name"])
         species_buttons[id] = button
@@ -188,7 +197,7 @@ func _select(id: int) -> void:
 func _sync_selection() -> void:
     W.clear(slots)
     if mode == "collection":
-        counter.text = "포획 %d / 386" % profile.captured_ids.size()
+        counter.text = "포획 %d / %d" % [profile.captured_ids.size(),catalog.pokemon.size()]
         W.label(slots,"원정에서 포획한 동료들을\n이곳에서 확인할 수 있습니다.",Rect2(32,180,544,120),24,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
         return
     counter.text = "원정대 · %d / %d" % [selection.size(),session.MAX_STARTERS]

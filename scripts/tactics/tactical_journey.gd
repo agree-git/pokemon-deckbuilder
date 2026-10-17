@@ -171,8 +171,7 @@ func _join_shedinja(parent: BattlePokemon, report: Dictionary) -> void:
     var catalog := VisualCatalog.new()
     var definition := TacticalContent.member_definition(292,catalog)
     definition["types"] = catalog.species(292)["types"]
-    var pokemon := BattlePokemon.new(definition,_next_pokemon_uid)
-    _next_pokemon_uid += 1
+    var pokemon := BattlePokemon.new(definition,_allocate_pokemon_uid())
     pokemon.level = parent.level
     TacticalGrowth.initialize(pokemon)
     pokemon.experience = parent.experience
@@ -280,7 +279,7 @@ func capture_reason(candidate: TacticalBattle = null) -> String:
     if _capture_catalog == null: _capture_catalog = VisualCatalog.new()
     var species := _capture_catalog.species(combat.enemy().species_id)
     if species.is_empty(): return "포획할 수 없는 포켓몬입니다."
-    if species["is_legendary"] or species["is_mythical"]:
+    if combat.enemy().species_id in RareEncounter.IDS:
         if not current().get("rare",false) or int(rare_hunt.get("target",0)) != combat.enemy().species_id or rare_hunt.get("captured",false): return "특별한 포획 조건이 필요한 포켓몬입니다."
         var rule := RareEncounter.rule(combat.enemy().species_id)
         if balls < rule["balls"]: return "희귀 포획에는 몬스터볼 %d개가 필요합니다." % rule["balls"]
@@ -298,8 +297,7 @@ func capture() -> String:
     battle.capture_enemy(int(rule["energy"]) if rare else 1)
     balls -= int(rule["balls"]) if rare else 1
     if rare: rare_hunt["captured"] = true
-    var caught := BattlePokemon.new(definition,_next_pokemon_uid)
-    _next_pokemon_uid += 1
+    var caught := BattlePokemon.new(definition,_allocate_pokemon_uid())
     TacticalGrowth.initialize(caught)
     SpecialEvolution.assign_personality(caught,seed_value)
     pending_captures.append(caught)
@@ -430,7 +428,7 @@ func challenge_rare() -> String:
     var reason := rare_challenge_reason()
     if not reason.is_empty(): return reason
     rare_hunt["battle_step"] = step+1
-    var choice := "희귀 조우 · "+str(VisualCatalog.new().species(rare_hunt["target"])["name"])+" 도전 예약"
+    var choice := "희귀 조우 · ??? 도전 예약"
     history.append(choice)
     _decision(choice)
     return notify_changed()
@@ -563,7 +561,7 @@ func biome() -> Dictionary:
     return current()["biome"] if full_campaign else VisualCatalog.new().biomes[3]
 func progress_title() -> String:
     if not full_campaign: return "%d / 5  ·  %s" % [step+1,current()["name"]]
-    return ("바이옴 %d / 8" % (int(current()["chapter"])+1) if int(current()["chapter"]) < 8 else "포켓몬 리그 · %d / 4승" % elite_wins)+"  ·  "+str(current()["name"])
+    return ("바이옴 %d / 8" % (int(current()["chapter"])+1) if int(current()["chapter"]) < 8 else "포켓몬 리그 · %d / 4승" % elite_wins)+"  ·  "+RareEncounter.public_name(self,current())
 
 func _prepare_camp() -> void:
     if not camp_states.has(step):
@@ -703,3 +701,10 @@ func _stat(key: String, amount := 1) -> void:
 func _decision(text: String) -> void:
     _ensure_statistics()
     RunStatistics.decision(statistics,step,text)
+
+func _allocate_pokemon_uid() -> int:
+    while party.any(func(p: BattlePokemon): return p.uid == _next_pokemon_uid) or pending_captures.any(func(p: BattlePokemon): return p.uid == _next_pokemon_uid):
+        _next_pokemon_uid += 1
+    var allocated := _next_pokemon_uid
+    _next_pokemon_uid += 1
+    return allocated

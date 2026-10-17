@@ -50,7 +50,7 @@ func species(id: int) -> Dictionary:
     return _pokemon_by_id.get(id, {})
 
 func starter_species_id(captured_id: int) -> int:
-    # Resolve the earliest ancestor inside the supported generation 1–3 scope.
+    # Resolve the earliest ancestor inside the supported ordinary/rare scope.
     var current := species(captured_id)
     var visited: Dictionary = {}
     while not current.is_empty():
@@ -91,3 +91,6 @@ static func biome_texture(biome: Dictionary) -> AtlasTexture:
     atlas.region = Rect2(Vector2(index % 2, floori(index / 2.0)) * cell, cell)
     atlas.filter_clip = true
     return atlas
+
+static func supports(id: int) -> bool:
+    return (id >= 1 and id <= 386) or id in RareEncounter.IDS

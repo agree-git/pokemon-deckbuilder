@@ -12,6 +12,9 @@ func _ready() -> void:
 func refresh() -> void:
     W.clear(self)
     var preview := EncounterPreparation.describe(journey)
+    if preview.get("hidden",false):
+        _unknown(preview)
+        return
     if preview.is_empty() or preview["enemies"].is_empty():
         closed.emit()
         return
@@ -81,4 +84,15 @@ func refresh() -> void:
     elif group == "conditional": note += "\n지속 피해는 타격 상성과 별개입니다. 보호막 전환·상태 회수에는 준비가 필요합니다."
     W.label(panel,note,Rect2(36,752,1168,62),17,W.MUTED).name = "PreparationNote"
     W.button(panel,Rect2(400,838,440,58),func(): closed.emit(),"준비로 돌아가기").name = "PreparationClose"
+    UiMotion.appear(self)
+
+func _unknown(preview: Dictionary) -> void:
+    var overlay := W.button(self,Rect2(0,0,1920,1080),func(): closed.emit())
+    for state: String in ["normal","hover","pressed","focus"]: overlay.add_theme_stylebox_override(state,W.box(Color(0.01,0.025,0.04,0.86),Color.TRANSPARENT,0))
+    var panel := W.panel(overlay,Rect2(540,260,840,560),Color("14282f"),W.GOLD)
+    panel.mouse_filter = Control.MOUSE_FILTER_STOP
+    W.label(panel,str(preview["title"]),Rect2(32,30,776,50),30,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+    W.label(panel,"?",Rect2(32,105,776,170),128,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+    W.label(panel,"조우 전에는 상대 정보를 알 수 없습니다.\n동료와 덱을 정비하고 흔적을 따라가세요.",Rect2(32,300,776,90),24,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER).name = "PreparationUnknown"
+    W.button(panel,Rect2(200,446,440,64),func(): closed.emit(),"준비로 돌아가기").name = "PreparationClose"
     UiMotion.appear(self)

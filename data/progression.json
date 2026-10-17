@@ -18724,6 +18724,5442 @@
           "move": 63
         }
       ]
+    },
+    "480": {
+      "growth_rate": 1,
+      "base_experience": 261,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 93
+        },
+        {
+          "level": 1,
+          "move": 156
+        },
+        {
+          "level": 7,
+          "move": 129
+        },
+        {
+          "level": 14,
+          "move": 203
+        },
+        {
+          "level": 21,
+          "move": 60
+        },
+        {
+          "level": 28,
+          "move": 286
+        },
+        {
+          "level": 35,
+          "move": 326
+        },
+        {
+          "level": 42,
+          "move": 133
+        },
+        {
+          "level": 49,
+          "move": 94
+        },
+        {
+          "level": 56,
+          "move": 281
+        },
+        {
+          "level": 63,
+          "move": 248
+        },
+        {
+          "level": 70,
+          "move": 175
+        },
+        {
+          "level": 77,
+          "move": 262
+        },
+        {
+          "level": 84,
+          "move": 832
+        }
+      ]
+    },
+    "481": {
+      "growth_rate": 1,
+      "base_experience": 261,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 93
+        },
+        {
+          "level": 1,
+          "move": 156
+        },
+        {
+          "level": 7,
+          "move": 129
+        },
+        {
+          "level": 14,
+          "move": 182
+        },
+        {
+          "level": 21,
+          "move": 60
+        },
+        {
+          "level": 28,
+          "move": 286
+        },
+        {
+          "level": 35,
+          "move": 326
+        },
+        {
+          "level": 42,
+          "move": 204
+        },
+        {
+          "level": 49,
+          "move": 94
+        },
+        {
+          "level": 56,
+          "move": 260
+        },
+        {
+          "level": 63,
+          "move": 248
+        },
+        {
+          "level": 70,
+          "move": 383
+        },
+        {
+          "level": 77,
+          "move": 361
+        },
+        {
+          "level": 84,
+          "move": 832
+        }
+      ]
+    },
+    "482": {
+      "growth_rate": 1,
+      "base_experience": 261,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 93
+        },
+        {
+          "level": 1,
+          "move": 156
+        },
+        {
+          "level": 7,
+          "move": 129
+        },
+        {
+          "level": 14,
+          "move": 197
+        },
+        {
+          "level": 21,
+          "move": 60
+        },
+        {
+          "level": 28,
+          "move": 286
+        },
+        {
+          "level": 35,
+          "move": 326
+        },
+        {
+          "level": 42,
+          "move": 417
+        },
+        {
+          "level": 49,
+          "move": 94
+        },
+        {
+          "level": 56,
+          "move": 253
+        },
+        {
+          "level": 63,
+          "move": 248
+        },
+        {
+          "level": 70,
+          "move": 387
+        },
+        {
+          "level": 77,
+          "move": 153
+        },
+        {
+          "level": 84,
+          "move": 832
+        }
+      ]
+    },
+    "483": {
+      "growth_rate": 1,
+      "base_experience": 306,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 184
+        },
+        {
+          "level": 1,
+          "move": 232
+        },
+        {
+          "level": 8,
+          "move": 225
+        },
+        {
+          "level": 16,
+          "move": 246
+        },
+        {
+          "level": 24,
+          "move": 163
+        },
+        {
+          "level": 32,
+          "move": 430
+        },
+        {
+          "level": 40,
+          "move": 337
+        },
+        {
+          "level": 48,
+          "move": 396
+        },
+        {
+          "level": 56,
+          "move": 408
+        },
+        {
+          "level": 64,
+          "move": 368
+        },
+        {
+          "level": 72,
+          "move": 414
+        },
+        {
+          "level": 80,
+          "move": 231
+        },
+        {
+          "level": 88,
+          "move": 459
+        }
+      ]
+    },
+    "484": {
+      "growth_rate": 1,
+      "base_experience": 306,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 184
+        },
+        {
+          "level": 1,
+          "move": 352
+        },
+        {
+          "level": 8,
+          "move": 225
+        },
+        {
+          "level": 16,
+          "move": 246
+        },
+        {
+          "level": 24,
+          "move": 163
+        },
+        {
+          "level": 32,
+          "move": 392
+        },
+        {
+          "level": 48,
+          "move": 396
+        },
+        {
+          "level": 56,
+          "move": 408
+        },
+        {
+          "level": 64,
+          "move": 401
+        },
+        {
+          "level": 72,
+          "move": 414
+        },
+        {
+          "level": 80,
+          "move": 460
+        },
+        {
+          "level": 88,
+          "move": 56
+        }
+      ]
+    },
+    "485": {
+      "growth_rate": 1,
+      "base_experience": 270,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 43
+        },
+        {
+          "level": 1,
+          "move": 83
+        },
+        {
+          "level": 6,
+          "move": 232
+        },
+        {
+          "level": 12,
+          "move": 246
+        },
+        {
+          "level": 18,
+          "move": 424
+        },
+        {
+          "level": 24,
+          "move": 184
+        },
+        {
+          "level": 30,
+          "move": 442
+        },
+        {
+          "level": 36,
+          "move": 242
+        },
+        {
+          "level": 42,
+          "move": 436
+        },
+        {
+          "level": 48,
+          "move": 319
+        },
+        {
+          "level": 54,
+          "move": 414
+        },
+        {
+          "level": 60,
+          "move": 257
+        },
+        {
+          "level": 66,
+          "move": 444
+        },
+        {
+          "level": 72,
+          "move": 463
+        }
+      ]
+    },
+    "486": {
+      "growth_rate": 1,
+      "base_experience": 302,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 1
+        },
+        {
+          "level": 1,
+          "move": 109
+        },
+        {
+          "level": 6,
+          "move": 371
+        },
+        {
+          "level": 12,
+          "move": 263
+        },
+        {
+          "level": 18,
+          "move": 23
+        },
+        {
+          "level": 24,
+          "move": 182
+        },
+        {
+          "level": 30,
+          "move": 282
+        },
+        {
+          "level": 36,
+          "move": 5
+        },
+        {
+          "level": 42,
+          "move": 776
+        },
+        {
+          "level": 48,
+          "move": 469
+        },
+        {
+          "level": 54,
+          "move": 428
+        },
+        {
+          "level": 60,
+          "move": 484
+        },
+        {
+          "level": 66,
+          "move": 359
+        },
+        {
+          "level": 72,
+          "move": 416
+        },
+        {
+          "level": 78,
+          "move": 462
+        }
+      ]
+    },
+    "487": {
+      "growth_rate": 1,
+      "base_experience": 306,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 425
+        },
+        {
+          "level": 1,
+          "move": 432
+        },
+        {
+          "level": 7,
+          "move": 225
+        },
+        {
+          "level": 14,
+          "move": 246
+        },
+        {
+          "level": 21,
+          "move": 506
+        },
+        {
+          "level": 28,
+          "move": 163
+        },
+        {
+          "level": 35,
+          "move": 184
+        },
+        {
+          "level": 42,
+          "move": 421
+        },
+        {
+          "level": 49,
+          "move": 220
+        },
+        {
+          "level": 56,
+          "move": 396
+        },
+        {
+          "level": 63,
+          "move": 337
+        },
+        {
+          "level": 70,
+          "move": 414
+        },
+        {
+          "level": 77,
+          "move": 467
+        },
+        {
+          "level": 84,
+          "move": 194
+        }
+      ]
+    },
+    "488": {
+      "growth_rate": 1,
+      "base_experience": 270,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 93
+        },
+        {
+          "level": 1,
+          "move": 104
+        },
+        {
+          "level": 6,
+          "move": 54
+        },
+        {
+          "level": 12,
+          "move": 62
+        },
+        {
+          "level": 18,
+          "move": 60
+        },
+        {
+          "level": 24,
+          "move": 502
+        },
+        {
+          "level": 30,
+          "move": 163
+        },
+        {
+          "level": 36,
+          "move": 427
+        },
+        {
+          "level": 42,
+          "move": 236
+        },
+        {
+          "level": 48,
+          "move": 219
+        },
+        {
+          "level": 54,
+          "move": 94
+        },
+        {
+          "level": 60,
+          "move": 585
+        },
+        {
+          "level": 66,
+          "move": 248
+        },
+        {
+          "level": 72,
+          "move": 461
+        },
+        {
+          "level": 72,
+          "move": 849
+        }
+      ]
+    },
+    "489": {
+      "growth_rate": 1,
+      "base_experience": 216,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 55
+        },
+        {
+          "level": 9,
+          "move": 204
+        },
+        {
+          "level": 16,
+          "move": 48
+        },
+        {
+          "level": 24,
+          "move": 61
+        },
+        {
+          "level": 31,
+          "move": 151
+        },
+        {
+          "level": 39,
+          "move": 250
+        },
+        {
+          "level": 46,
+          "move": 352
+        },
+        {
+          "level": 54,
+          "move": 392
+        },
+        {
+          "level": 61,
+          "move": 291
+        },
+        {
+          "level": 69,
+          "move": 240
+        },
+        {
+          "level": 75,
+          "move": 850
+        }
+      ]
+    },
+    "490": {
+      "growth_rate": 1,
+      "base_experience": 270,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 55
+        },
+        {
+          "level": 1,
+          "move": 294
+        },
+        {
+          "level": 1,
+          "move": 391
+        },
+        {
+          "level": 9,
+          "move": 204
+        },
+        {
+          "level": 16,
+          "move": 48
+        },
+        {
+          "level": 24,
+          "move": 61
+        },
+        {
+          "level": 31,
+          "move": 151
+        },
+        {
+          "level": 39,
+          "move": 250
+        },
+        {
+          "level": 46,
+          "move": 352
+        },
+        {
+          "level": 54,
+          "move": 392
+        },
+        {
+          "level": 61,
+          "move": 291
+        },
+        {
+          "level": 69,
+          "move": 240
+        },
+        {
+          "level": 76,
+          "move": 850
+        }
+      ]
+    },
+    "491": {
+      "growth_rate": 1,
+      "base_experience": 270,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 50
+        },
+        {
+          "level": 11,
+          "move": 98
+        },
+        {
+          "level": 20,
+          "move": 95
+        },
+        {
+          "level": 29,
+          "move": 389
+        },
+        {
+          "level": 38,
+          "move": 101
+        },
+        {
+          "level": 47,
+          "move": 104
+        },
+        {
+          "level": 57,
+          "move": 114
+        },
+        {
+          "level": 66,
+          "move": 464
+        },
+        {
+          "level": 75,
+          "move": 417
+        },
+        {
+          "level": 84,
+          "move": 138
+        },
+        {
+          "level": 93,
+          "move": 399
+        }
+      ]
+    },
+    "492": {
+      "growth_rate": 4,
+      "base_experience": 270,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 74
+        },
+        {
+          "level": 10,
+          "move": 345
+        },
+        {
+          "level": 19,
+          "move": 73
+        },
+        {
+          "level": 28,
+          "move": 235
+        },
+        {
+          "level": 37,
+          "move": 230
+        },
+        {
+          "level": 46,
+          "move": 583
+        },
+        {
+          "level": 55,
+          "move": 388
+        },
+        {
+          "level": 64,
+          "move": 580
+        },
+        {
+          "level": 73,
+          "move": 412
+        },
+        {
+          "level": 82,
+          "move": 186
+        },
+        {
+          "level": 91,
+          "move": 361
+        },
+        {
+          "level": 100,
+          "move": 465
+        }
+      ]
+    },
+    "493": {
+      "growth_rate": 1,
+      "base_experience": 324,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 69
+        },
+        {
+          "level": 1,
+          "move": 322
+        },
+        {
+          "level": 10,
+          "move": 356
+        },
+        {
+          "level": 20,
+          "move": 414
+        },
+        {
+          "level": 30,
+          "move": 304
+        },
+        {
+          "level": 40,
+          "move": 245
+        },
+        {
+          "level": 50,
+          "move": 361
+        },
+        {
+          "level": 60,
+          "move": 248
+        },
+        {
+          "level": 70,
+          "move": 105
+        },
+        {
+          "level": 80,
+          "move": 63
+        },
+        {
+          "level": 90,
+          "move": 195
+        },
+        {
+          "level": 100,
+          "move": 449
+        }
+      ]
+    },
+    "494": {
+      "growth_rate": 1,
+      "base_experience": 270,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 557
+        },
+        {
+          "level": 1,
+          "move": 98
+        },
+        {
+          "level": 1,
+          "move": 488
+        },
+        {
+          "level": 1,
+          "move": 93
+        },
+        {
+          "level": 1,
+          "move": 116
+        },
+        {
+          "level": 7,
+          "move": 526
+        },
+        {
+          "level": 14,
+          "move": 510
+        },
+        {
+          "level": 21,
+          "move": 500
+        },
+        {
+          "level": 28,
+          "move": 29
+        },
+        {
+          "level": 35,
+          "move": 203
+        },
+        {
+          "level": 42,
+          "move": 428
+        },
+        {
+          "level": 49,
+          "move": 517
+        },
+        {
+          "level": 56,
+          "move": 179
+        },
+        {
+          "level": 63,
+          "move": 545
+        },
+        {
+          "level": 70,
+          "move": 38
+        },
+        {
+          "level": 77,
+          "move": 394
+        },
+        {
+          "level": 84,
+          "move": 315
+        },
+        {
+          "level": 91,
+          "move": 515
+        }
+      ]
+    },
+    "638": {
+      "growth_rate": 1,
+      "base_experience": 261,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 43
+        },
+        {
+          "level": 1,
+          "move": 98
+        },
+        {
+          "level": 1,
+          "move": 270
+        },
+        {
+          "level": 1,
+          "move": 526
+        },
+        {
+          "level": 7,
+          "move": 232
+        },
+        {
+          "level": 14,
+          "move": 501
+        },
+        {
+          "level": 21,
+          "move": 24
+        },
+        {
+          "level": 28,
+          "move": 514
+        },
+        {
+          "level": 35,
+          "move": 368
+        },
+        {
+          "level": 42,
+          "move": 36
+        },
+        {
+          "level": 49,
+          "move": 533
+        },
+        {
+          "level": 56,
+          "move": 14
+        },
+        {
+          "level": 63,
+          "move": 442
+        },
+        {
+          "level": 70,
+          "move": 370
+        }
+      ]
+    },
+    "639": {
+      "growth_rate": 1,
+      "base_experience": 261,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 43
+        },
+        {
+          "level": 1,
+          "move": 98
+        },
+        {
+          "level": 1,
+          "move": 270
+        },
+        {
+          "level": 1,
+          "move": 526
+        },
+        {
+          "level": 7,
+          "move": 479
+        },
+        {
+          "level": 14,
+          "move": 501
+        },
+        {
+          "level": 21,
+          "move": 24
+        },
+        {
+          "level": 28,
+          "move": 514
+        },
+        {
+          "level": 35,
+          "move": 157
+        },
+        {
+          "level": 42,
+          "move": 36
+        },
+        {
+          "level": 49,
+          "move": 533
+        },
+        {
+          "level": 56,
+          "move": 14
+        },
+        {
+          "level": 63,
+          "move": 444
+        },
+        {
+          "level": 70,
+          "move": 370
+        }
+      ]
+    },
+    "640": {
+      "growth_rate": 1,
+      "base_experience": 261,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 43
+        },
+        {
+          "level": 1,
+          "move": 98
+        },
+        {
+          "level": 1,
+          "move": 270
+        },
+        {
+          "level": 1,
+          "move": 526
+        },
+        {
+          "level": 7,
+          "move": 345
+        },
+        {
+          "level": 14,
+          "move": 501
+        },
+        {
+          "level": 21,
+          "move": 24
+        },
+        {
+          "level": 28,
+          "move": 514
+        },
+        {
+          "level": 35,
+          "move": 202
+        },
+        {
+          "level": 42,
+          "move": 235
+        },
+        {
+          "level": 49,
+          "move": 533
+        },
+        {
+          "level": 56,
+          "move": 14
+        },
+        {
+          "level": 63,
+          "move": 348
+        },
+        {
+          "level": 70,
+          "move": 370
+        }
+      ]
+    },
+    "641": {
+      "growth_rate": 1,
+      "base_experience": 261,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 16
+        },
+        {
+          "level": 1,
+          "move": 310
+        },
+        {
+          "level": 5,
+          "move": 43
+        },
+        {
+          "level": 10,
+          "move": 207
+        },
+        {
+          "level": 15,
+          "move": 44
+        },
+        {
+          "level": 20,
+          "move": 314
+        },
+        {
+          "level": 25,
+          "move": 97
+        },
+        {
+          "level": 30,
+          "move": 366
+        },
+        {
+          "level": 35,
+          "move": 403
+        },
+        {
+          "level": 40,
+          "move": 242
+        },
+        {
+          "level": 45,
+          "move": 326
+        },
+        {
+          "level": 50,
+          "move": 253
+        },
+        {
+          "level": 55,
+          "move": 359
+        },
+        {
+          "level": 60,
+          "move": 240
+        },
+        {
+          "level": 65,
+          "move": 542
+        },
+        {
+          "level": 70,
+          "move": 37
+        },
+        {
+          "level": 77,
+          "move": 846
+        }
+      ]
+    },
+    "642": {
+      "growth_rate": 1,
+      "base_experience": 261,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 84
+        },
+        {
+          "level": 1,
+          "move": 310
+        },
+        {
+          "level": 5,
+          "move": 43
+        },
+        {
+          "level": 10,
+          "move": 207
+        },
+        {
+          "level": 15,
+          "move": 44
+        },
+        {
+          "level": 20,
+          "move": 351
+        },
+        {
+          "level": 25,
+          "move": 97
+        },
+        {
+          "level": 30,
+          "move": 268
+        },
+        {
+          "level": 35,
+          "move": 521
+        },
+        {
+          "level": 40,
+          "move": 242
+        },
+        {
+          "level": 45,
+          "move": 435
+        },
+        {
+          "level": 50,
+          "move": 253
+        },
+        {
+          "level": 55,
+          "move": 359
+        },
+        {
+          "level": 60,
+          "move": 240
+        },
+        {
+          "level": 65,
+          "move": 87
+        },
+        {
+          "level": 70,
+          "move": 37
+        },
+        {
+          "level": 75,
+          "move": 847
+        }
+      ]
+    },
+    "643": {
+      "growth_rate": 1,
+      "base_experience": 306,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 225
+        },
+        {
+          "level": 1,
+          "move": 246
+        },
+        {
+          "level": 1,
+          "move": 424
+        },
+        {
+          "level": 1,
+          "move": 568
+        },
+        {
+          "level": 8,
+          "move": 163
+        },
+        {
+          "level": 16,
+          "move": 242
+        },
+        {
+          "level": 24,
+          "move": 326
+        },
+        {
+          "level": 32,
+          "move": 406
+        },
+        {
+          "level": 40,
+          "move": 53
+        },
+        {
+          "level": 48,
+          "move": 558
+        },
+        {
+          "level": 56,
+          "move": 304
+        },
+        {
+          "level": 64,
+          "move": 126
+        },
+        {
+          "level": 72,
+          "move": 286
+        },
+        {
+          "level": 80,
+          "move": 200
+        },
+        {
+          "level": 88,
+          "move": 551
+        }
+      ]
+    },
+    "644": {
+      "growth_rate": 1,
+      "base_experience": 306,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 225
+        },
+        {
+          "level": 1,
+          "move": 246
+        },
+        {
+          "level": 1,
+          "move": 422
+        },
+        {
+          "level": 1,
+          "move": 568
+        },
+        {
+          "level": 8,
+          "move": 163
+        },
+        {
+          "level": 16,
+          "move": 242
+        },
+        {
+          "level": 24,
+          "move": 428
+        },
+        {
+          "level": 32,
+          "move": 337
+        },
+        {
+          "level": 40,
+          "move": 85
+        },
+        {
+          "level": 48,
+          "move": 559
+        },
+        {
+          "level": 56,
+          "move": 304
+        },
+        {
+          "level": 64,
+          "move": 87
+        },
+        {
+          "level": 72,
+          "move": 286
+        },
+        {
+          "level": 80,
+          "move": 200
+        },
+        {
+          "level": 88,
+          "move": 550
+        }
+      ]
+    },
+    "645": {
+      "growth_rate": 1,
+      "base_experience": 270,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 479
+        },
+        {
+          "level": 1,
+          "move": 328
+        },
+        {
+          "level": 5,
+          "move": 43
+        },
+        {
+          "level": 10,
+          "move": 335
+        },
+        {
+          "level": 15,
+          "move": 523
+        },
+        {
+          "level": 20,
+          "move": 317
+        },
+        {
+          "level": 30,
+          "move": 286
+        },
+        {
+          "level": 35,
+          "move": 157
+        },
+        {
+          "level": 40,
+          "move": 414
+        },
+        {
+          "level": 45,
+          "move": 326
+        },
+        {
+          "level": 50,
+          "move": 444
+        },
+        {
+          "level": 55,
+          "move": 359
+        },
+        {
+          "level": 60,
+          "move": 201
+        },
+        {
+          "level": 65,
+          "move": 89
+        },
+        {
+          "level": 70,
+          "move": 200
+        },
+        {
+          "level": 75,
+          "move": 90
+        },
+        {
+          "level": 80,
+          "move": 848
+        }
+      ]
+    },
+    "646": {
+      "growth_rate": 1,
+      "base_experience": 297,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 225
+        },
+        {
+          "level": 1,
+          "move": 246
+        },
+        {
+          "level": 1,
+          "move": 568
+        },
+        {
+          "level": 1,
+          "move": 573
+        },
+        {
+          "level": 8,
+          "move": 163
+        },
+        {
+          "level": 16,
+          "move": 283
+        },
+        {
+          "level": 24,
+          "move": 406
+        },
+        {
+          "level": 32,
+          "move": 58
+        },
+        {
+          "level": 40,
+          "move": 304
+        },
+        {
+          "level": 48,
+          "move": 184
+        },
+        {
+          "level": 56,
+          "move": 59
+        },
+        {
+          "level": 64,
+          "move": 286
+        },
+        {
+          "level": 72,
+          "move": 200
+        },
+        {
+          "level": 80,
+          "move": 549
+        },
+        {
+          "level": 88,
+          "move": 329
+        }
+      ]
+    },
+    "647": {
+      "growth_rate": 1,
+      "base_experience": 261,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 43
+        },
+        {
+          "level": 1,
+          "move": 270
+        },
+        {
+          "level": 1,
+          "move": 453
+        },
+        {
+          "level": 1,
+          "move": 526
+        },
+        {
+          "level": 1,
+          "move": 548
+        },
+        {
+          "level": 7,
+          "move": 61
+        },
+        {
+          "level": 14,
+          "move": 501
+        },
+        {
+          "level": 21,
+          "move": 24
+        },
+        {
+          "level": 28,
+          "move": 514
+        },
+        {
+          "level": 35,
+          "move": 401
+        },
+        {
+          "level": 42,
+          "move": 36
+        },
+        {
+          "level": 49,
+          "move": 533
+        },
+        {
+          "level": 56,
+          "move": 14
+        },
+        {
+          "level": 63,
+          "move": 56
+        },
+        {
+          "level": 70,
+          "move": 370
+        }
+      ]
+    },
+    "648": {
+      "growth_rate": 1,
+      "base_experience": 270,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 47
+        },
+        {
+          "level": 1,
+          "move": 93
+        },
+        {
+          "level": 1,
+          "move": 98
+        },
+        {
+          "level": 1,
+          "move": 496
+        },
+        {
+          "level": 21,
+          "move": 298
+        },
+        {
+          "level": 26,
+          "move": 512
+        },
+        {
+          "level": 31,
+          "move": 60
+        },
+        {
+          "level": 36,
+          "move": 497
+        },
+        {
+          "level": 43,
+          "move": 369
+        },
+        {
+          "level": 50,
+          "move": 547
+        },
+        {
+          "level": 57,
+          "move": 94
+        },
+        {
+          "level": 64,
+          "move": 304
+        },
+        {
+          "level": 71,
+          "move": 272
+        },
+        {
+          "level": 78,
+          "move": 370
+        },
+        {
+          "level": 85,
+          "move": 195
+        }
+      ]
+    },
+    "649": {
+      "growth_rate": 1,
+      "base_experience": 270,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 210
+        },
+        {
+          "level": 1,
+          "move": 98
+        },
+        {
+          "level": 7,
+          "move": 103
+        },
+        {
+          "level": 14,
+          "move": 232
+        },
+        {
+          "level": 21,
+          "move": 565
+        },
+        {
+          "level": 28,
+          "move": 488
+        },
+        {
+          "level": 35,
+          "move": 319
+        },
+        {
+          "level": 42,
+          "move": 404
+        },
+        {
+          "level": 49,
+          "move": 393
+        },
+        {
+          "level": 56,
+          "move": 405
+        },
+        {
+          "level": 63,
+          "move": 493
+        },
+        {
+          "level": 70,
+          "move": 192
+        },
+        {
+          "level": 77,
+          "move": 199
+        },
+        {
+          "level": 84,
+          "move": 546
+        },
+        {
+          "level": 91,
+          "move": 120
+        }
+      ]
+    },
+    "716": {
+      "growth_rate": 1,
+      "base_experience": 306,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 33
+        },
+        {
+          "level": 1,
+          "move": 356
+        },
+        {
+          "level": 5,
+          "move": 113
+        },
+        {
+          "level": 10,
+          "move": 62
+        },
+        {
+          "level": 15,
+          "move": 267
+        },
+        {
+          "level": 20,
+          "move": 400
+        },
+        {
+          "level": 25,
+          "move": 312
+        },
+        {
+          "level": 30,
+          "move": 244
+        },
+        {
+          "level": 35,
+          "move": 532
+        },
+        {
+          "level": 40,
+          "move": 581
+        },
+        {
+          "level": 45,
+          "move": 275
+        },
+        {
+          "level": 50,
+          "move": 36
+        },
+        {
+          "level": 55,
+          "move": 601
+        },
+        {
+          "level": 60,
+          "move": 585
+        },
+        {
+          "level": 65,
+          "move": 505
+        },
+        {
+          "level": 70,
+          "move": 224
+        },
+        {
+          "level": 75,
+          "move": 370
+        },
+        {
+          "level": 80,
+          "move": 200
+        },
+        {
+          "level": 85,
+          "move": 416
+        }
+      ]
+    },
+    "717": {
+      "growth_rate": 1,
+      "base_experience": 306,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 16
+        },
+        {
+          "level": 1,
+          "move": 104
+        },
+        {
+          "level": 5,
+          "move": 269
+        },
+        {
+          "level": 10,
+          "move": 555
+        },
+        {
+          "level": 15,
+          "move": 50
+        },
+        {
+          "level": 20,
+          "move": 389
+        },
+        {
+          "level": 25,
+          "move": 366
+        },
+        {
+          "level": 30,
+          "move": 355
+        },
+        {
+          "level": 35,
+          "move": 403
+        },
+        {
+          "level": 40,
+          "move": 399
+        },
+        {
+          "level": 45,
+          "move": 94
+        },
+        {
+          "level": 50,
+          "move": 613
+        },
+        {
+          "level": 55,
+          "move": 566
+        },
+        {
+          "level": 60,
+          "move": 492
+        },
+        {
+          "level": 65,
+          "move": 407
+        },
+        {
+          "level": 70,
+          "move": 542
+        },
+        {
+          "level": 75,
+          "move": 411
+        },
+        {
+          "level": 80,
+          "move": 143
+        },
+        {
+          "level": 85,
+          "move": 63
+        }
+      ]
+    },
+    "718": {
+      "growth_rate": 1,
+      "base_experience": 270,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 614
+        },
+        {
+          "level": 1,
+          "move": 615
+        },
+        {
+          "level": 1,
+          "move": 687
+        },
+        {
+          "level": 1,
+          "move": 20
+        },
+        {
+          "level": 1,
+          "move": 523
+        },
+        {
+          "level": 1,
+          "move": 225
+        },
+        {
+          "level": 1,
+          "move": 44
+        },
+        {
+          "level": 8,
+          "move": 114
+        },
+        {
+          "level": 16,
+          "move": 91
+        },
+        {
+          "level": 24,
+          "move": 219
+        },
+        {
+          "level": 32,
+          "move": 242
+        },
+        {
+          "level": 40,
+          "move": 406
+        },
+        {
+          "level": 48,
+          "move": 616
+        },
+        {
+          "level": 56,
+          "move": 137
+        },
+        {
+          "level": 64,
+          "move": 201
+        },
+        {
+          "level": 72,
+          "move": 489
+        },
+        {
+          "level": 80,
+          "move": 89
+        },
+        {
+          "level": 88,
+          "move": 200
+        }
+      ]
+    },
+    "719": {
+      "growth_rate": 1,
+      "base_experience": 270,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 33
+        },
+        {
+          "level": 1,
+          "move": 106
+        },
+        {
+          "level": 1,
+          "move": 591
+        },
+        {
+          "level": 7,
+          "move": 470
+        },
+        {
+          "level": 14,
+          "move": 479
+        },
+        {
+          "level": 21,
+          "move": 175
+        },
+        {
+          "level": 28,
+          "move": 246
+        },
+        {
+          "level": 35,
+          "move": 397
+        },
+        {
+          "level": 42,
+          "move": 113
+        },
+        {
+          "level": 49,
+          "move": 157
+        },
+        {
+          "level": 56,
+          "move": 285
+        },
+        {
+          "level": 63,
+          "move": 408
+        },
+        {
+          "level": 70,
+          "move": 446
+        },
+        {
+          "level": 77,
+          "move": 585
+        },
+        {
+          "level": 84,
+          "move": 444
+        }
+      ]
+    },
+    "720": {
+      "growth_rate": 1,
+      "base_experience": 270,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 93
+        },
+        {
+          "level": 1,
+          "move": 502
+        },
+        {
+          "level": 1,
+          "move": 194
+        },
+        {
+          "level": 6,
+          "move": 310
+        },
+        {
+          "level": 10,
+          "move": 271
+        },
+        {
+          "level": 15,
+          "move": 113
+        },
+        {
+          "level": 19,
+          "move": 60
+        },
+        {
+          "level": 25,
+          "move": 285
+        },
+        {
+          "level": 29,
+          "move": 470
+        },
+        {
+          "level": 29,
+          "move": 471
+        },
+        {
+          "level": 35,
+          "move": 566
+        },
+        {
+          "level": 46,
+          "move": 428
+        },
+        {
+          "level": 50,
+          "move": 433
+        },
+        {
+          "level": 50,
+          "move": 472
+        },
+        {
+          "level": 55,
+          "move": 247
+        },
+        {
+          "level": 68,
+          "move": 417
+        },
+        {
+          "level": 75,
+          "move": 94
+        },
+        {
+          "level": 85,
+          "move": 593
+        }
+      ]
+    },
+    "721": {
+      "growth_rate": 1,
+      "base_experience": 270,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 592
+        },
+        {
+          "level": 1,
+          "move": 55
+        },
+        {
+          "level": 1,
+          "move": 83
+        },
+        {
+          "level": 6,
+          "move": 43
+        },
+        {
+          "level": 12,
+          "move": 311
+        },
+        {
+          "level": 18,
+          "move": 488
+        },
+        {
+          "level": 24,
+          "move": 352
+        },
+        {
+          "level": 30,
+          "move": 184
+        },
+        {
+          "level": 36,
+          "move": 510
+        },
+        {
+          "level": 42,
+          "move": 23
+        },
+        {
+          "level": 48,
+          "move": 503
+        },
+        {
+          "level": 54,
+          "move": 36
+        },
+        {
+          "level": 60,
+          "move": 54
+        },
+        {
+          "level": 60,
+          "move": 114
+        },
+        {
+          "level": 66,
+          "move": 56
+        },
+        {
+          "level": 78,
+          "move": 394
+        },
+        {
+          "level": 84,
+          "move": 315
+        },
+        {
+          "level": 90,
+          "move": 153
+        }
+      ]
+    },
+    "772": {
+      "growth_rate": 1,
+      "base_experience": 107,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 33
+        },
+        {
+          "level": 1,
+          "move": 286
+        },
+        {
+          "level": 5,
+          "move": 332
+        },
+        {
+          "level": 10,
+          "move": 184
+        },
+        {
+          "level": 15,
+          "move": 458
+        },
+        {
+          "level": 20,
+          "move": 319
+        },
+        {
+          "level": 25,
+          "move": 306
+        },
+        {
+          "level": 30,
+          "move": 403
+        },
+        {
+          "level": 35,
+          "move": 161
+        },
+        {
+          "level": 40,
+          "move": 404
+        },
+        {
+          "level": 45,
+          "move": 442
+        },
+        {
+          "level": 50,
+          "move": 36
+        },
+        {
+          "level": 55,
+          "move": 38
+        }
+      ]
+    },
+    "773": {
+      "growth_rate": 1,
+      "base_experience": 257,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 718
+        },
+        {
+          "level": 1,
+          "move": 153
+        },
+        {
+          "level": 1,
+          "move": 422
+        },
+        {
+          "level": 1,
+          "move": 423
+        },
+        {
+          "level": 1,
+          "move": 424
+        },
+        {
+          "level": 1,
+          "move": 305
+        },
+        {
+          "level": 1,
+          "move": 286
+        },
+        {
+          "level": 1,
+          "move": 442
+        },
+        {
+          "level": 1,
+          "move": 33
+        },
+        {
+          "level": 1,
+          "move": 44
+        },
+        {
+          "level": 1,
+          "move": 332
+        },
+        {
+          "level": 1,
+          "move": 184
+        },
+        {
+          "level": 15,
+          "move": 458
+        },
+        {
+          "level": 20,
+          "move": 319
+        },
+        {
+          "level": 25,
+          "move": 306
+        },
+        {
+          "level": 30,
+          "move": 403
+        },
+        {
+          "level": 35,
+          "move": 161
+        },
+        {
+          "level": 40,
+          "move": 404
+        },
+        {
+          "level": 45,
+          "move": 242
+        },
+        {
+          "level": 50,
+          "move": 36
+        },
+        {
+          "level": 55,
+          "move": 38
+        },
+        {
+          "level": 60,
+          "move": 575
+        }
+      ]
+    },
+    "785": {
+      "growth_rate": 1,
+      "base_experience": 257,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 98
+        },
+        {
+          "level": 1,
+          "move": 84
+        },
+        {
+          "level": 5,
+          "move": 110
+        },
+        {
+          "level": 10,
+          "move": 584
+        },
+        {
+          "level": 15,
+          "move": 206
+        },
+        {
+          "level": 20,
+          "move": 209
+        },
+        {
+          "level": 25,
+          "move": 351
+        },
+        {
+          "level": 30,
+          "move": 268
+        },
+        {
+          "level": 35,
+          "move": 97
+        },
+        {
+          "level": 40,
+          "move": 103
+        },
+        {
+          "level": 45,
+          "move": 435
+        },
+        {
+          "level": 50,
+          "move": 212
+        },
+        {
+          "level": 55,
+          "move": 717
+        },
+        {
+          "level": 60,
+          "move": 528
+        },
+        {
+          "level": 65,
+          "move": 413
+        },
+        {
+          "level": 70,
+          "move": 384
+        },
+        {
+          "level": 75,
+          "move": 604
+        }
+      ]
+    },
+    "786": {
+      "growth_rate": 1,
+      "base_experience": 257,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 310
+        },
+        {
+          "level": 1,
+          "move": 93
+        },
+        {
+          "level": 5,
+          "move": 110
+        },
+        {
+          "level": 10,
+          "move": 312
+        },
+        {
+          "level": 15,
+          "move": 577
+        },
+        {
+          "level": 20,
+          "move": 60
+        },
+        {
+          "level": 25,
+          "move": 260
+        },
+        {
+          "level": 30,
+          "move": 597
+        },
+        {
+          "level": 35,
+          "move": 230
+        },
+        {
+          "level": 40,
+          "move": 326
+        },
+        {
+          "level": 45,
+          "move": 473
+        },
+        {
+          "level": 50,
+          "move": 212
+        },
+        {
+          "level": 55,
+          "move": 717
+        },
+        {
+          "level": 60,
+          "move": 585
+        },
+        {
+          "level": 65,
+          "move": 321
+        },
+        {
+          "level": 70,
+          "move": 285
+        },
+        {
+          "level": 75,
+          "move": 678
+        }
+      ]
+    },
+    "787": {
+      "growth_rate": 1,
+      "base_experience": 257,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 670
+        },
+        {
+          "level": 1,
+          "move": 249
+        },
+        {
+          "level": 5,
+          "move": 110
+        },
+        {
+          "level": 10,
+          "move": 50
+        },
+        {
+          "level": 15,
+          "move": 73
+        },
+        {
+          "level": 20,
+          "move": 72
+        },
+        {
+          "level": 25,
+          "move": 18
+        },
+        {
+          "level": 30,
+          "move": 30
+        },
+        {
+          "level": 35,
+          "move": 184
+        },
+        {
+          "level": 40,
+          "move": 532
+        },
+        {
+          "level": 45,
+          "move": 428
+        },
+        {
+          "level": 50,
+          "move": 212
+        },
+        {
+          "level": 55,
+          "move": 717
+        },
+        {
+          "level": 60,
+          "move": 452
+        },
+        {
+          "level": 65,
+          "move": 224
+        },
+        {
+          "level": 70,
+          "move": 130
+        },
+        {
+          "level": 75,
+          "move": 580
+        }
+      ]
+    },
+    "788": {
+      "growth_rate": 1,
+      "base_experience": 257,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 574
+        },
+        {
+          "level": 1,
+          "move": 55
+        },
+        {
+          "level": 5,
+          "move": 110
+        },
+        {
+          "level": 10,
+          "move": 54
+        },
+        {
+          "level": 10,
+          "move": 114
+        },
+        {
+          "level": 15,
+          "move": 392
+        },
+        {
+          "level": 20,
+          "move": 352
+        },
+        {
+          "level": 25,
+          "move": 362
+        },
+        {
+          "level": 30,
+          "move": 432
+        },
+        {
+          "level": 35,
+          "move": 505
+        },
+        {
+          "level": 40,
+          "move": 57
+        },
+        {
+          "level": 45,
+          "move": 330
+        },
+        {
+          "level": 50,
+          "move": 212
+        },
+        {
+          "level": 55,
+          "move": 717
+        },
+        {
+          "level": 60,
+          "move": 585
+        },
+        {
+          "level": 65,
+          "move": 56
+        },
+        {
+          "level": 70,
+          "move": 487
+        },
+        {
+          "level": 75,
+          "move": 581
+        }
+      ]
+    },
+    "789": {
+      "growth_rate": 1,
+      "base_experience": 40,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 150
+        },
+        {
+          "level": 1,
+          "move": 100
+        }
+      ]
+    },
+    "790": {
+      "growth_rate": 1,
+      "base_experience": 140,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 100
+        },
+        {
+          "level": 1,
+          "move": 322
+        }
+      ]
+    },
+    "791": {
+      "growth_rate": 1,
+      "base_experience": 306,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 713
+        },
+        {
+          "level": 1,
+          "move": 100
+        },
+        {
+          "level": 1,
+          "move": 232
+        },
+        {
+          "level": 1,
+          "move": 322
+        },
+        {
+          "level": 1,
+          "move": 568
+        },
+        {
+          "level": 7,
+          "move": 442
+        },
+        {
+          "level": 14,
+          "move": 319
+        },
+        {
+          "level": 21,
+          "move": 428
+        },
+        {
+          "level": 28,
+          "move": 430
+        },
+        {
+          "level": 35,
+          "move": 234
+        },
+        {
+          "level": 42,
+          "move": 242
+        },
+        {
+          "level": 49,
+          "move": 368
+        },
+        {
+          "level": 56,
+          "move": 528
+        },
+        {
+          "level": 63,
+          "move": 76
+        },
+        {
+          "level": 70,
+          "move": 394
+        },
+        {
+          "level": 77,
+          "move": 469
+        },
+        {
+          "level": 84,
+          "move": 416
+        }
+      ]
+    },
+    "792": {
+      "growth_rate": 1,
+      "base_experience": 306,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 714
+        },
+        {
+          "level": 1,
+          "move": 93
+        },
+        {
+          "level": 1,
+          "move": 95
+        },
+        {
+          "level": 1,
+          "move": 100
+        },
+        {
+          "level": 1,
+          "move": 322
+        },
+        {
+          "level": 7,
+          "move": 101
+        },
+        {
+          "level": 14,
+          "move": 109
+        },
+        {
+          "level": 21,
+          "move": 403
+        },
+        {
+          "level": 28,
+          "move": 247
+        },
+        {
+          "level": 35,
+          "move": 236
+        },
+        {
+          "level": 42,
+          "move": 539
+        },
+        {
+          "level": 49,
+          "move": 94
+        },
+        {
+          "level": 56,
+          "move": 585
+        },
+        {
+          "level": 63,
+          "move": 566
+        },
+        {
+          "level": 70,
+          "move": 138
+        },
+        {
+          "level": 77,
+          "move": 469
+        }
+      ]
+    },
+    "800": {
+      "growth_rate": 1,
+      "base_experience": 270,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 93
+        },
+        {
+          "level": 1,
+          "move": 232
+        },
+        {
+          "level": 1,
+          "move": 234
+        },
+        {
+          "level": 1,
+          "move": 236
+        },
+        {
+          "level": 1,
+          "move": 451
+        },
+        {
+          "level": 8,
+          "move": 446
+        },
+        {
+          "level": 16,
+          "move": 163
+        },
+        {
+          "level": 24,
+          "move": 400
+        },
+        {
+          "level": 32,
+          "move": 427
+        },
+        {
+          "level": 40,
+          "move": 500
+        },
+        {
+          "level": 48,
+          "move": 350
+        },
+        {
+          "level": 56,
+          "move": 334
+        },
+        {
+          "level": 64,
+          "move": 408
+        },
+        {
+          "level": 72,
+          "move": 722
+        },
+        {
+          "level": 80,
+          "move": 356
+        },
+        {
+          "level": 88,
+          "move": 711
+        }
+      ]
+    },
+    "801": {
+      "growth_rate": 1,
+      "base_experience": 270,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 360
+        },
+        {
+          "level": 1,
+          "move": 270
+        },
+        {
+          "level": 6,
+          "move": 111
+        },
+        {
+          "level": 12,
+          "move": 205
+        },
+        {
+          "level": 18,
+          "move": 334
+        },
+        {
+          "level": 24,
+          "move": 602
+        },
+        {
+          "level": 30,
+          "move": 60
+        },
+        {
+          "level": 36,
+          "move": 62
+        },
+        {
+          "level": 42,
+          "move": 199
+        },
+        {
+          "level": 48,
+          "move": 508
+        },
+        {
+          "level": 54,
+          "move": 271
+        },
+        {
+          "level": 60,
+          "move": 442
+        },
+        {
+          "level": 66,
+          "move": 396
+        },
+        {
+          "level": 72,
+          "move": 430
+        },
+        {
+          "level": 78,
+          "move": 220
+        },
+        {
+          "level": 84,
+          "move": 192
+        },
+        {
+          "level": 90,
+          "move": 705
+        }
+      ]
+    },
+    "802": {
+      "growth_rate": 1,
+      "base_experience": 270,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 9
+        },
+        {
+          "level": 1,
+          "move": 7
+        },
+        {
+          "level": 1,
+          "move": 8
+        },
+        {
+          "level": 1,
+          "move": 383
+        },
+        {
+          "level": 1,
+          "move": 425
+        },
+        {
+          "level": 1,
+          "move": 364
+        },
+        {
+          "level": 1,
+          "move": 68
+        },
+        {
+          "level": 9,
+          "move": 272
+        },
+        {
+          "level": 18,
+          "move": 325
+        },
+        {
+          "level": 27,
+          "move": 395
+        },
+        {
+          "level": 36,
+          "move": 372
+        },
+        {
+          "level": 45,
+          "move": 389
+        },
+        {
+          "level": 54,
+          "move": 409
+        },
+        {
+          "level": 63,
+          "move": 244
+        },
+        {
+          "level": 72,
+          "move": 712
+        },
+        {
+          "level": 81,
+          "move": 673
+        },
+        {
+          "level": 90,
+          "move": 283
+        },
+        {
+          "level": 99,
+          "move": 370
+        }
+      ]
+    },
+    "807": {
+      "growth_rate": 1,
+      "base_experience": 270,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 612
+        },
+        {
+          "level": 1,
+          "move": 252
+        },
+        {
+          "level": 1,
+          "move": 10
+        },
+        {
+          "level": 1,
+          "move": 98
+        },
+        {
+          "level": 1,
+          "move": 555
+        },
+        {
+          "level": 1,
+          "move": 209
+        },
+        {
+          "level": 8,
+          "move": 154
+        },
+        {
+          "level": 16,
+          "move": 501
+        },
+        {
+          "level": 24,
+          "move": 163
+        },
+        {
+          "level": 32,
+          "move": 521
+        },
+        {
+          "level": 40,
+          "move": 268
+        },
+        {
+          "level": 48,
+          "move": 9
+        },
+        {
+          "level": 56,
+          "move": 468
+        },
+        {
+          "level": 64,
+          "move": 435
+        },
+        {
+          "level": 72,
+          "move": 528
+        },
+        {
+          "level": 80,
+          "move": 97
+        },
+        {
+          "level": 88,
+          "move": 721
+        },
+        {
+          "level": 96,
+          "move": 370
+        }
+      ]
+    },
+    "808": {
+      "growth_rate": 1,
+      "base_experience": 135,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 84
+        },
+        {
+          "level": 1,
+          "move": 106
+        },
+        {
+          "level": 8,
+          "move": 39
+        },
+        {
+          "level": 16,
+          "move": 29
+        },
+        {
+          "level": 24,
+          "move": 86
+        },
+        {
+          "level": 32,
+          "move": 151
+        },
+        {
+          "level": 40,
+          "move": 430
+        }
+      ]
+    },
+    "809": {
+      "growth_rate": 1,
+      "base_experience": 270,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 9
+        },
+        {
+          "level": 1,
+          "move": 84
+        },
+        {
+          "level": 1,
+          "move": 106
+        },
+        {
+          "level": 1,
+          "move": 39
+        },
+        {
+          "level": 1,
+          "move": 29
+        },
+        {
+          "level": 24,
+          "move": 86
+        },
+        {
+          "level": 32,
+          "move": 151
+        },
+        {
+          "level": 40,
+          "move": 430
+        },
+        {
+          "level": 48,
+          "move": 5
+        },
+        {
+          "level": 56,
+          "move": 182
+        },
+        {
+          "level": 64,
+          "move": 435
+        },
+        {
+          "level": 72,
+          "move": 223
+        },
+        {
+          "level": 80,
+          "move": 276
+        },
+        {
+          "level": 88,
+          "move": 742
+        },
+        {
+          "level": 96,
+          "move": 63
+        }
+      ]
+    },
+    "888": {
+      "growth_rate": 1,
+      "base_experience": 335,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 44
+        },
+        {
+          "level": 1,
+          "move": 98
+        },
+        {
+          "level": 1,
+          "move": 232
+        },
+        {
+          "level": 1,
+          "move": 336
+        },
+        {
+          "level": 1,
+          "move": 501
+        },
+        {
+          "level": 1,
+          "move": 533
+        },
+        {
+          "level": 11,
+          "move": 163
+        },
+        {
+          "level": 22,
+          "move": 14
+        },
+        {
+          "level": 33,
+          "move": 442
+        },
+        {
+          "level": 44,
+          "move": 568
+        },
+        {
+          "level": 55,
+          "move": 242
+        },
+        {
+          "level": 66,
+          "move": 585
+        },
+        {
+          "level": 77,
+          "move": 370
+        },
+        {
+          "level": 88,
+          "move": 416
+        }
+      ]
+    },
+    "889": {
+      "growth_rate": 1,
+      "base_experience": 335,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 44
+        },
+        {
+          "level": 1,
+          "move": 98
+        },
+        {
+          "level": 1,
+          "move": 232
+        },
+        {
+          "level": 1,
+          "move": 336
+        },
+        {
+          "level": 1,
+          "move": 469
+        },
+        {
+          "level": 11,
+          "move": 163
+        },
+        {
+          "level": 22,
+          "move": 334
+        },
+        {
+          "level": 33,
+          "move": 442
+        },
+        {
+          "level": 44,
+          "move": 368
+        },
+        {
+          "level": 55,
+          "move": 242
+        },
+        {
+          "level": 66,
+          "move": 585
+        },
+        {
+          "level": 77,
+          "move": 370
+        },
+        {
+          "level": 88,
+          "move": 416
+        }
+      ]
+    },
+    "890": {
+      "growth_rate": 1,
+      "base_experience": 345,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 97
+        },
+        {
+          "level": 1,
+          "move": 109
+        },
+        {
+          "level": 1,
+          "move": 342
+        },
+        {
+          "level": 1,
+          "move": 525
+        },
+        {
+          "level": 8,
+          "move": 92
+        },
+        {
+          "level": 16,
+          "move": 474
+        },
+        {
+          "level": 24,
+          "move": 349
+        },
+        {
+          "level": 32,
+          "move": 440
+        },
+        {
+          "level": 40,
+          "move": 406
+        },
+        {
+          "level": 48,
+          "move": 53
+        },
+        {
+          "level": 56,
+          "move": 744
+        },
+        {
+          "level": 64,
+          "move": 322
+        },
+        {
+          "level": 72,
+          "move": 105
+        },
+        {
+          "level": 80,
+          "move": 63
+        },
+        {
+          "level": 88,
+          "move": 200
+        }
+      ]
+    },
+    "891": {
+      "growth_rate": 1,
+      "base_experience": 77,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 43
+        },
+        {
+          "level": 1,
+          "move": 249
+        },
+        {
+          "level": 4,
+          "move": 203
+        },
+        {
+          "level": 8,
+          "move": 116
+        },
+        {
+          "level": 12,
+          "move": 332
+        },
+        {
+          "level": 16,
+          "move": 184
+        },
+        {
+          "level": 20,
+          "move": 29
+        },
+        {
+          "level": 24,
+          "move": 280
+        },
+        {
+          "level": 28,
+          "move": 197
+        },
+        {
+          "level": 32,
+          "move": 339
+        },
+        {
+          "level": 36,
+          "move": 442
+        },
+        {
+          "level": 40,
+          "move": 223
+        },
+        {
+          "level": 44,
+          "move": 68
+        },
+        {
+          "level": 48,
+          "move": 370
+        },
+        {
+          "level": 52,
+          "move": 264
+        }
+      ]
+    },
+    "892": {
+      "growth_rate": 1,
+      "base_experience": 275,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 817
+        },
+        {
+          "level": 1,
+          "move": 203
+        },
+        {
+          "level": 1,
+          "move": 389
+        },
+        {
+          "level": 1,
+          "move": 249
+        },
+        {
+          "level": 1,
+          "move": 43
+        },
+        {
+          "level": 1,
+          "move": 116
+        },
+        {
+          "level": 12,
+          "move": 332
+        },
+        {
+          "level": 16,
+          "move": 184
+        },
+        {
+          "level": 20,
+          "move": 29
+        },
+        {
+          "level": 24,
+          "move": 280
+        },
+        {
+          "level": 28,
+          "move": 197
+        },
+        {
+          "level": 32,
+          "move": 339
+        },
+        {
+          "level": 36,
+          "move": 442
+        },
+        {
+          "level": 40,
+          "move": 223
+        },
+        {
+          "level": 44,
+          "move": 68
+        },
+        {
+          "level": 48,
+          "move": 370
+        },
+        {
+          "level": 52,
+          "move": 264
+        }
+      ]
+    },
+    "893": {
+      "growth_rate": 1,
+      "base_experience": 300,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 10
+        },
+        {
+          "level": 1,
+          "move": 20
+        },
+        {
+          "level": 6,
+          "move": 43
+        },
+        {
+          "level": 12,
+          "move": 22
+        },
+        {
+          "level": 18,
+          "move": 74
+        },
+        {
+          "level": 24,
+          "move": 154
+        },
+        {
+          "level": 30,
+          "move": 184
+        },
+        {
+          "level": 36,
+          "move": 447
+        },
+        {
+          "level": 42,
+          "move": 44
+        },
+        {
+          "level": 48,
+          "move": 369
+        },
+        {
+          "level": 54,
+          "move": 207
+        },
+        {
+          "level": 60,
+          "move": 412
+        },
+        {
+          "level": 66,
+          "move": 235
+        },
+        {
+          "level": 72,
+          "move": 359
+        },
+        {
+          "level": 78,
+          "move": 37
+        },
+        {
+          "level": 84,
+          "move": 438
+        },
+        {
+          "level": 90,
+          "move": 816
+        }
+      ]
+    },
+    "894": {
+      "growth_rate": 1,
+      "base_experience": 290,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 84
+        },
+        {
+          "level": 1,
+          "move": 229
+        },
+        {
+          "level": 6,
+          "move": 527
+        },
+        {
+          "level": 12,
+          "move": 246
+        },
+        {
+          "level": 18,
+          "move": 351
+        },
+        {
+          "level": 24,
+          "move": 86
+        },
+        {
+          "level": 30,
+          "move": 245
+        },
+        {
+          "level": 36,
+          "move": 819
+        },
+        {
+          "level": 42,
+          "move": 85
+        },
+        {
+          "level": 48,
+          "move": 393
+        },
+        {
+          "level": 54,
+          "move": 37
+        },
+        {
+          "level": 60,
+          "move": 199
+        },
+        {
+          "level": 66,
+          "move": 192
+        },
+        {
+          "level": 72,
+          "move": 63
+        },
+        {
+          "level": 78,
+          "move": 153
+        }
+      ]
+    },
+    "895": {
+      "growth_rate": 1,
+      "base_experience": 290,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 239
+        },
+        {
+          "level": 6,
+          "move": 44
+        },
+        {
+          "level": 12,
+          "move": 246
+        },
+        {
+          "level": 18,
+          "move": 225
+        },
+        {
+          "level": 30,
+          "move": 242
+        },
+        {
+          "level": 36,
+          "move": 337
+        },
+        {
+          "level": 42,
+          "move": 359
+        },
+        {
+          "level": 48,
+          "move": 349
+        },
+        {
+          "level": 54,
+          "move": 37
+        },
+        {
+          "level": 60,
+          "move": 116
+        },
+        {
+          "level": 66,
+          "move": 820
+        },
+        {
+          "level": 72,
+          "move": 63
+        },
+        {
+          "level": 78,
+          "move": 153
+        }
+      ]
+    },
+    "896": {
+      "growth_rate": 1,
+      "base_experience": 290,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 33
+        },
+        {
+          "level": 1,
+          "move": 39
+        },
+        {
+          "level": 6,
+          "move": 24
+        },
+        {
+          "level": 12,
+          "move": 419
+        },
+        {
+          "level": 18,
+          "move": 23
+        },
+        {
+          "level": 24,
+          "move": 259
+        },
+        {
+          "level": 30,
+          "move": 54
+        },
+        {
+          "level": 36,
+          "move": 556
+        },
+        {
+          "level": 42,
+          "move": 36
+        },
+        {
+          "level": 48,
+          "move": 334
+        },
+        {
+          "level": 54,
+          "move": 37
+        },
+        {
+          "level": 60,
+          "move": 269
+        },
+        {
+          "level": 66,
+          "move": 38
+        },
+        {
+          "level": 72,
+          "move": 14
+        }
+      ]
+    },
+    "897": {
+      "growth_rate": 1,
+      "base_experience": 290,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 33
+        },
+        {
+          "level": 1,
+          "move": 39
+        },
+        {
+          "level": 6,
+          "move": 24
+        },
+        {
+          "level": 12,
+          "move": 506
+        },
+        {
+          "level": 18,
+          "move": 23
+        },
+        {
+          "level": 24,
+          "move": 109
+        },
+        {
+          "level": 30,
+          "move": 114
+        },
+        {
+          "level": 36,
+          "move": 247
+        },
+        {
+          "level": 42,
+          "move": 36
+        },
+        {
+          "level": 48,
+          "move": 97
+        },
+        {
+          "level": 54,
+          "move": 37
+        },
+        {
+          "level": 60,
+          "move": 50
+        },
+        {
+          "level": 66,
+          "move": 38
+        },
+        {
+          "level": 72,
+          "move": 417
+        }
+      ]
+    },
+    "898": {
+      "growth_rate": 1,
+      "base_experience": 250,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 1
+        },
+        {
+          "level": 1,
+          "move": 72
+        },
+        {
+          "level": 1,
+          "move": 74
+        },
+        {
+          "level": 1,
+          "move": 93
+        },
+        {
+          "level": 8,
+          "move": 791
+        },
+        {
+          "level": 16,
+          "move": 202
+        },
+        {
+          "level": 24,
+          "move": 473
+        },
+        {
+          "level": 32,
+          "move": 270
+        },
+        {
+          "level": 40,
+          "move": 580
+        },
+        {
+          "level": 40,
+          "move": 678
+        },
+        {
+          "level": 48,
+          "move": 412
+        },
+        {
+          "level": 56,
+          "move": 94
+        },
+        {
+          "level": 64,
+          "move": 73
+        },
+        {
+          "level": 72,
+          "move": 505
+        },
+        {
+          "level": 80,
+          "move": 76
+        },
+        {
+          "level": 88,
+          "move": 248
+        }
+      ]
+    },
+    "905": {
+      "growth_rate": 1,
+      "base_experience": 116,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 310
+        },
+        {
+          "level": 1,
+          "move": 584
+        },
+        {
+          "level": 5,
+          "move": 259
+        },
+        {
+          "level": 10,
+          "move": 260
+        },
+        {
+          "level": 15,
+          "move": 239
+        },
+        {
+          "level": 20,
+          "move": 577
+        },
+        {
+          "level": 25,
+          "move": 334
+        },
+        {
+          "level": 30,
+          "move": 286
+        },
+        {
+          "level": 35,
+          "move": 595
+        },
+        {
+          "level": 40,
+          "move": 605
+        },
+        {
+          "level": 45,
+          "move": 326
+        },
+        {
+          "level": 50,
+          "move": 253
+        },
+        {
+          "level": 55,
+          "move": 276
+        },
+        {
+          "level": 60,
+          "move": 361
+        },
+        {
+          "level": 65,
+          "move": 585
+        },
+        {
+          "level": 70,
+          "move": 200
+        },
+        {
+          "level": 75,
+          "move": 831
+        }
+      ]
+    },
+    "1001": {
+      "growth_rate": 1,
+      "base_experience": 285,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 71
+        },
+        {
+          "level": 1,
+          "move": 180
+        },
+        {
+          "level": 1,
+          "move": 212
+        },
+        {
+          "level": 5,
+          "move": 321
+        },
+        {
+          "level": 10,
+          "move": 371
+        },
+        {
+          "level": 15,
+          "move": 77
+        },
+        {
+          "level": 15,
+          "move": 78
+        },
+        {
+          "level": 20,
+          "move": 72
+        },
+        {
+          "level": 25,
+          "move": 73
+        },
+        {
+          "level": 30,
+          "move": 74
+        },
+        {
+          "level": 35,
+          "move": 275
+        },
+        {
+          "level": 40,
+          "move": 399
+        },
+        {
+          "level": 45,
+          "move": 202
+        },
+        {
+          "level": 50,
+          "move": 877
+        },
+        {
+          "level": 55,
+          "move": 492
+        },
+        {
+          "level": 60,
+          "move": 438
+        },
+        {
+          "level": 65,
+          "move": 580
+        },
+        {
+          "level": 70,
+          "move": 282
+        },
+        {
+          "level": 75,
+          "move": 437
+        }
+      ]
+    },
+    "1002": {
+      "growth_rate": 1,
+      "base_experience": 285,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 180
+        },
+        {
+          "level": 1,
+          "move": 181
+        },
+        {
+          "level": 1,
+          "move": 212
+        },
+        {
+          "level": 5,
+          "move": 196
+        },
+        {
+          "level": 10,
+          "move": 371
+        },
+        {
+          "level": 15,
+          "move": 54
+        },
+        {
+          "level": 15,
+          "move": 114
+        },
+        {
+          "level": 20,
+          "move": 420
+        },
+        {
+          "level": 25,
+          "move": 14
+        },
+        {
+          "level": 30,
+          "move": 883
+        },
+        {
+          "level": 35,
+          "move": 400
+        },
+        {
+          "level": 40,
+          "move": 399
+        },
+        {
+          "level": 45,
+          "move": 556
+        },
+        {
+          "level": 50,
+          "move": 877
+        },
+        {
+          "level": 55,
+          "move": 389
+        },
+        {
+          "level": 60,
+          "move": 533
+        },
+        {
+          "level": 65,
+          "move": 105
+        },
+        {
+          "level": 70,
+          "move": 675
+        },
+        {
+          "level": 75,
+          "move": 329
+        }
+      ]
+    },
+    "1003": {
+      "growth_rate": 1,
+      "base_experience": 285,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 212
+        },
+        {
+          "level": 1,
+          "move": 328
+        },
+        {
+          "level": 1,
+          "move": 180
+        },
+        {
+          "level": 5,
+          "move": 191
+        },
+        {
+          "level": 10,
+          "move": 371
+        },
+        {
+          "level": 15,
+          "move": 23
+        },
+        {
+          "level": 20,
+          "move": 523
+        },
+        {
+          "level": 25,
+          "move": 18
+        },
+        {
+          "level": 30,
+          "move": 269
+        },
+        {
+          "level": 35,
+          "move": 37
+        },
+        {
+          "level": 40,
+          "move": 399
+        },
+        {
+          "level": 45,
+          "move": 707
+        },
+        {
+          "level": 50,
+          "move": 877
+        },
+        {
+          "level": 55,
+          "move": 675
+        },
+        {
+          "level": 60,
+          "move": 157
+        },
+        {
+          "level": 65,
+          "move": 262
+        },
+        {
+          "level": 70,
+          "move": 89
+        },
+        {
+          "level": 75,
+          "move": 90
+        }
+      ]
+    },
+    "1004": {
+      "growth_rate": 1,
+      "base_experience": 285,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 52
+        },
+        {
+          "level": 1,
+          "move": 180
+        },
+        {
+          "level": 1,
+          "move": 212
+        },
+        {
+          "level": 5,
+          "move": 172
+        },
+        {
+          "level": 10,
+          "move": 371
+        },
+        {
+          "level": 15,
+          "move": 261
+        },
+        {
+          "level": 20,
+          "move": 488
+        },
+        {
+          "level": 25,
+          "move": 510
+        },
+        {
+          "level": 30,
+          "move": 109
+        },
+        {
+          "level": 35,
+          "move": 417
+        },
+        {
+          "level": 40,
+          "move": 399
+        },
+        {
+          "level": 45,
+          "move": 436
+        },
+        {
+          "level": 50,
+          "move": 877
+        },
+        {
+          "level": 55,
+          "move": 340
+        },
+        {
+          "level": 60,
+          "move": 207
+        },
+        {
+          "level": 65,
+          "move": 517
+        },
+        {
+          "level": 70,
+          "move": 262
+        },
+        {
+          "level": 75,
+          "move": 315
+        }
+      ]
+    },
+    "1007": {
+      "growth_rate": 1,
+      "base_experience": 335,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 241
+        },
+        {
+          "level": 1,
+          "move": 784
+        },
+        {
+          "level": 7,
+          "move": 249
+        },
+        {
+          "level": 14,
+          "move": 246
+        },
+        {
+          "level": 21,
+          "move": 409
+        },
+        {
+          "level": 28,
+          "move": 280
+        },
+        {
+          "level": 35,
+          "move": 97
+        },
+        {
+          "level": 42,
+          "move": 337
+        },
+        {
+          "level": 49,
+          "move": 53
+        },
+        {
+          "level": 56,
+          "move": 878
+        },
+        {
+          "level": 63,
+          "move": 103
+        },
+        {
+          "level": 70,
+          "move": 68
+        },
+        {
+          "level": 77,
+          "move": 200
+        },
+        {
+          "level": 84,
+          "move": 370
+        },
+        {
+          "level": 91,
+          "move": 394
+        },
+        {
+          "level": 98,
+          "move": 416
+        }
+      ]
+    },
+    "1008": {
+      "growth_rate": 1,
+      "base_experience": 335,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 84
+        },
+        {
+          "level": 1,
+          "move": 225
+        },
+        {
+          "level": 1,
+          "move": 604
+        },
+        {
+          "level": 7,
+          "move": 351
+        },
+        {
+          "level": 14,
+          "move": 268
+        },
+        {
+          "level": 21,
+          "move": 570
+        },
+        {
+          "level": 28,
+          "move": 435
+        },
+        {
+          "level": 35,
+          "move": 97
+        },
+        {
+          "level": 42,
+          "move": 406
+        },
+        {
+          "level": 56,
+          "move": 879
+        },
+        {
+          "level": 63,
+          "move": 319
+        },
+        {
+          "level": 70,
+          "move": 243
+        },
+        {
+          "level": 77,
+          "move": 200
+        },
+        {
+          "level": 84,
+          "move": 87
+        },
+        {
+          "level": 91,
+          "move": 315
+        },
+        {
+          "level": 98,
+          "move": 63
+        }
+      ]
+    },
+    "1009": {
+      "growth_rate": 1,
+      "base_experience": 295,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 43
+        },
+        {
+          "level": 1,
+          "move": 46
+        },
+        {
+          "level": 1,
+          "move": 239
+        },
+        {
+          "level": 1,
+          "move": 453
+        },
+        {
+          "level": 7,
+          "move": 44
+        },
+        {
+          "level": 14,
+          "move": 352
+        },
+        {
+          "level": 21,
+          "move": 568
+        },
+        {
+          "level": 28,
+          "move": 225
+        },
+        {
+          "level": 35,
+          "move": 784
+        },
+        {
+          "level": 42,
+          "move": 407
+        },
+        {
+          "level": 56,
+          "move": 876
+        },
+        {
+          "level": 63,
+          "move": 406
+        },
+        {
+          "level": 70,
+          "move": 200
+        },
+        {
+          "level": 77,
+          "move": 53
+        },
+        {
+          "level": 84,
+          "move": 56
+        }
+      ]
+    },
+    "1010": {
+      "growth_rate": 1,
+      "base_experience": 295,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 43
+        },
+        {
+          "level": 1,
+          "move": 98
+        },
+        {
+          "level": 1,
+          "move": 270
+        },
+        {
+          "level": 1,
+          "move": 526
+        },
+        {
+          "level": 7,
+          "move": 345
+        },
+        {
+          "level": 14,
+          "move": 514
+        },
+        {
+          "level": 21,
+          "move": 501
+        },
+        {
+          "level": 28,
+          "move": 400
+        },
+        {
+          "level": 35,
+          "move": 14
+        },
+        {
+          "level": 42,
+          "move": 533
+        },
+        {
+          "level": 49,
+          "move": 348
+        },
+        {
+          "level": 56,
+          "move": 875
+        },
+        {
+          "level": 63,
+          "move": 370
+        },
+        {
+          "level": 70,
+          "move": 286
+        },
+        {
+          "level": 77,
+          "move": 224
+        },
+        {
+          "level": 84,
+          "move": 502
+        },
+        {
+          "level": 91,
+          "move": 669
+        }
+      ]
+    },
+    "1014": {
+      "growth_rate": 1,
+      "base_experience": 278,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 44
+        },
+        {
+          "level": 1,
+          "move": 67
+        },
+        {
+          "level": 1,
+          "move": 339
+        },
+        {
+          "level": 8,
+          "move": 336
+        },
+        {
+          "level": 16,
+          "move": 305
+        },
+        {
+          "level": 24,
+          "move": 395
+        },
+        {
+          "level": 32,
+          "move": 68
+        },
+        {
+          "level": 40,
+          "move": 398
+        },
+        {
+          "level": 48,
+          "move": 693
+        },
+        {
+          "level": 56,
+          "move": 242
+        },
+        {
+          "level": 64,
+          "move": 276
+        },
+        {
+          "level": 72,
+          "move": 416
+        }
+      ]
+    },
+    "1015": {
+      "growth_rate": 1,
+      "base_experience": 278,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 10
+        },
+        {
+          "level": 1,
+          "move": 93
+        },
+        {
+          "level": 1,
+          "move": 252
+        },
+        {
+          "level": 1,
+          "move": 260
+        },
+        {
+          "level": 8,
+          "move": 270
+        },
+        {
+          "level": 16,
+          "move": 60
+        },
+        {
+          "level": 24,
+          "move": 499
+        },
+        {
+          "level": 32,
+          "move": 398
+        },
+        {
+          "level": 40,
+          "move": 94
+        },
+        {
+          "level": 48,
+          "move": 482
+        },
+        {
+          "level": 56,
+          "move": 417
+        },
+        {
+          "level": 64,
+          "move": 248
+        },
+        {
+          "level": 72,
+          "move": 575
+        }
+      ]
+    },
+    "1016": {
+      "growth_rate": 1,
+      "base_experience": 278,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 24
+        },
+        {
+          "level": 1,
+          "move": 64
+        },
+        {
+          "level": 1,
+          "move": 139
+        },
+        {
+          "level": 1,
+          "move": 574
+        },
+        {
+          "level": 8,
+          "move": 98
+        },
+        {
+          "level": 16,
+          "move": 213
+        },
+        {
+          "level": 24,
+          "move": 17
+        },
+        {
+          "level": 32,
+          "move": 440
+        },
+        {
+          "level": 40,
+          "move": 541
+        },
+        {
+          "level": 48,
+          "move": 251
+        },
+        {
+          "level": 56,
+          "move": 207
+        },
+        {
+          "level": 56,
+          "move": 260
+        },
+        {
+          "level": 64,
+          "move": 355
+        },
+        {
+          "level": 72,
+          "move": 585
+        }
+      ]
+    },
+    "1017": {
+      "growth_rate": 1,
+      "base_experience": 275,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 22
+        },
+        {
+          "level": 1,
+          "move": 73
+        },
+        {
+          "level": 1,
+          "move": 98
+        },
+        {
+          "level": 1,
+          "move": 266
+        },
+        {
+          "level": 6,
+          "move": 116
+        },
+        {
+          "level": 12,
+          "move": 74
+        },
+        {
+          "level": 18,
+          "move": 21
+        },
+        {
+          "level": 24,
+          "move": 490
+        },
+        {
+          "level": 30,
+          "move": 904
+        },
+        {
+          "level": 36,
+          "move": 675
+        },
+        {
+          "level": 42,
+          "move": 235
+        },
+        {
+          "level": 48,
+          "move": 596
+        },
+        {
+          "level": 54,
+          "move": 438
+        },
+        {
+          "level": 60,
+          "move": 276
+        },
+        {
+          "level": 66,
+          "move": 452
+        }
+      ]
+    },
+    "1020": {
+      "growth_rate": 1,
+      "base_experience": 295,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 23
+        },
+        {
+          "level": 1,
+          "move": 43
+        },
+        {
+          "level": 1,
+          "move": 510
+        },
+        {
+          "level": 1,
+          "move": 241
+        },
+        {
+          "level": 7,
+          "move": 424
+        },
+        {
+          "level": 14,
+          "move": 336
+        },
+        {
+          "level": 21,
+          "move": 44
+        },
+        {
+          "level": 28,
+          "move": 337
+        },
+        {
+          "level": 35,
+          "move": 306
+        },
+        {
+          "level": 42,
+          "move": 234
+        },
+        {
+          "level": 49,
+          "move": 908
+        },
+        {
+          "level": 56,
+          "move": 407
+        },
+        {
+          "level": 63,
+          "move": 126
+        },
+        {
+          "level": 70,
+          "move": 436
+        },
+        {
+          "level": 77,
+          "move": 200
+        },
+        {
+          "level": 84,
+          "move": 394
+        },
+        {
+          "level": 91,
+          "move": 833
+        }
+      ]
+    },
+    "1021": {
+      "growth_rate": 1,
+      "base_experience": 295,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 239
+        },
+        {
+          "level": 1,
+          "move": 241
+        },
+        {
+          "level": 1,
+          "move": 351
+        },
+        {
+          "level": 1,
+          "move": 23
+        },
+        {
+          "level": 7,
+          "move": 268
+        },
+        {
+          "level": 14,
+          "move": 225
+        },
+        {
+          "level": 21,
+          "move": 604
+        },
+        {
+          "level": 28,
+          "move": 435
+        },
+        {
+          "level": 35,
+          "move": 525
+        },
+        {
+          "level": 42,
+          "move": 347
+        },
+        {
+          "level": 49,
+          "move": 909
+        },
+        {
+          "level": 56,
+          "move": 692
+        },
+        {
+          "level": 63,
+          "move": 804
+        },
+        {
+          "level": 70,
+          "move": 406
+        },
+        {
+          "level": 77,
+          "move": 192
+        },
+        {
+          "level": 84,
+          "move": 776
+        },
+        {
+          "level": 91,
+          "move": 87
+        }
+      ]
+    },
+    "1022": {
+      "growth_rate": 1,
+      "base_experience": 295,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 30
+        },
+        {
+          "level": 1,
+          "move": 43
+        },
+        {
+          "level": 1,
+          "move": 88
+        },
+        {
+          "level": 1,
+          "move": 604
+        },
+        {
+          "level": 7,
+          "move": 98
+        },
+        {
+          "level": 14,
+          "move": 163
+        },
+        {
+          "level": 21,
+          "move": 97
+        },
+        {
+          "level": 28,
+          "move": 427
+        },
+        {
+          "level": 35,
+          "move": 68
+        },
+        {
+          "level": 42,
+          "move": 317
+        },
+        {
+          "level": 49,
+          "move": 533
+        },
+        {
+          "level": 56,
+          "move": 910
+        },
+        {
+          "level": 63,
+          "move": 14
+        },
+        {
+          "level": 70,
+          "move": 224
+        },
+        {
+          "level": 77,
+          "move": 501
+        },
+        {
+          "level": 84,
+          "move": 444
+        },
+        {
+          "level": 91,
+          "move": 416
+        }
+      ]
+    },
+    "1023": {
+      "growth_rate": 1,
+      "base_experience": 295,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 43
+        },
+        {
+          "level": 1,
+          "move": 604
+        },
+        {
+          "level": 1,
+          "move": 93
+        },
+        {
+          "level": 1,
+          "move": 232
+        },
+        {
+          "level": 7,
+          "move": 684
+        },
+        {
+          "level": 14,
+          "move": 163
+        },
+        {
+          "level": 21,
+          "move": 334
+        },
+        {
+          "level": 28,
+          "move": 473
+        },
+        {
+          "level": 35,
+          "move": 427
+        },
+        {
+          "level": 42,
+          "move": 430
+        },
+        {
+          "level": 49,
+          "move": 533
+        },
+        {
+          "level": 56,
+          "move": 911
+        },
+        {
+          "level": 63,
+          "move": 248
+        },
+        {
+          "level": 70,
+          "move": 521
+        },
+        {
+          "level": 77,
+          "move": 501
+        },
+        {
+          "level": 84,
+          "move": 368
+        },
+        {
+          "level": 91,
+          "move": 63
+        }
+      ]
+    },
+    "1024": {
+      "growth_rate": 1,
+      "base_experience": 90,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 110
+        },
+        {
+          "level": 1,
+          "move": 161
+        },
+        {
+          "level": 1,
+          "move": 229
+        },
+        {
+          "level": 10,
+          "move": 246
+        },
+        {
+          "level": 20,
+          "move": 29
+        },
+        {
+          "level": 30,
+          "move": 182
+        },
+        {
+          "level": 40,
+          "move": 414
+        },
+        {
+          "level": 50,
+          "move": 484
+        },
+        {
+          "level": 60,
+          "move": 906
+        },
+        {
+          "level": 70,
+          "move": 38
+        },
+        {
+          "level": 80,
+          "move": 397
+        },
+        {
+          "level": 90,
+          "move": 360
+        }
+      ]
+    },
+    "1025": {
+      "growth_rate": 1,
+      "base_experience": 300,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 123
+        },
+        {
+          "level": 1,
+          "move": 139
+        },
+        {
+          "level": 1,
+          "move": 262
+        },
+        {
+          "level": 1,
+          "move": 310
+        },
+        {
+          "level": 8,
+          "move": 110
+        },
+        {
+          "level": 16,
+          "move": 194
+        },
+        {
+          "level": 24,
+          "move": 313
+        },
+        {
+          "level": 32,
+          "move": 575
+        },
+        {
+          "level": 40,
+          "move": 247
+        },
+        {
+          "level": 48,
+          "move": 919
+        },
+        {
+          "level": 56,
+          "move": 92
+        },
+        {
+          "level": 64,
+          "move": 417
+        },
+        {
+          "level": 72,
+          "move": 105
+        }
+      ]
+    },
+    "10169": {
+      "growth_rate": 1,
+      "base_experience": 290,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 16
+        },
+        {
+          "level": 5,
+          "move": 93
+        },
+        {
+          "level": 10,
+          "move": 115
+        },
+        {
+          "level": 15,
+          "move": 95
+        },
+        {
+          "level": 20,
+          "move": 97
+        },
+        {
+          "level": 25,
+          "move": 246
+        },
+        {
+          "level": 30,
+          "move": 366
+        },
+        {
+          "level": 35,
+          "move": 427
+        },
+        {
+          "level": 40,
+          "move": 105
+        },
+        {
+          "level": 45,
+          "move": 821
+        },
+        {
+          "level": 50,
+          "move": 138
+        },
+        {
+          "level": 55,
+          "move": 542
+        },
+        {
+          "level": 60,
+          "move": 104
+        },
+        {
+          "level": 65,
+          "move": 248
+        },
+        {
+          "level": 70,
+          "move": 433
+        }
+      ]
+    },
+    "10170": {
+      "growth_rate": 1,
+      "base_experience": 290,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 64
+        },
+        {
+          "level": 1,
+          "move": 116
+        },
+        {
+          "level": 5,
+          "move": 249
+        },
+        {
+          "level": 10,
+          "move": 113
+        },
+        {
+          "level": 15,
+          "move": 365
+        },
+        {
+          "level": 20,
+          "move": 97
+        },
+        {
+          "level": 25,
+          "move": 246
+        },
+        {
+          "level": 30,
+          "move": 280
+        },
+        {
+          "level": 35,
+          "move": 65
+        },
+        {
+          "level": 40,
+          "move": 501
+        },
+        {
+          "level": 45,
+          "move": 823
+        },
+        {
+          "level": 50,
+          "move": 339
+        },
+        {
+          "level": 55,
+          "move": 68
+        },
+        {
+          "level": 60,
+          "move": 197
+        },
+        {
+          "level": 65,
+          "move": 370
+        },
+        {
+          "level": 70,
+          "move": 179
+        }
+      ]
+    },
+    "10171": {
+      "growth_rate": 1,
+      "base_experience": 290,
+      "learnset": [
+        {
+          "level": 1,
+          "move": 16
+        },
+        {
+          "level": 1,
+          "move": 43
+        },
+        {
+          "level": 5,
+          "move": 371
+        },
+        {
+          "level": 10,
+          "move": 219
+        },
+        {
+          "level": 15,
+          "move": 17
+        },
+        {
+          "level": 20,
+          "move": 97
+        },
+        {
+          "level": 25,
+          "move": 246
+        },
+        {
+          "level": 30,
+          "move": 389
+        },
+        {
+          "level": 35,
+          "move": 403
+        },
+        {
+          "level": 40,
+          "move": 495
+        },
+        {
+          "level": 45,
+          "move": 822
+        },
+        {
+          "level": 50,
+          "move": 417
+        },
+        {
+          "level": 55,
+          "move": 542
+        },
+        {
+          "level": 60,
+          "move": 203
+        },
+        {
+          "level": 65,
+          "move": 262
+        },
+        {
+          "level": 70,
+          "move": 143
+        }
+      ]
     }
   },
   "moves": {
@@ -25154,6 +30590,3869 @@
           "change": -2
         }
       ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "355": {
+      "id": 355,
+      "name": "날개쉬기",
+      "type": "flying",
+      "power": 0,
+      "category": 1,
+      "target": 7,
+      "stats": [],
+      "ailment": 0,
+      "healing": 50,
+      "drain": 0,
+      "vfx": {
+        "primary": "heal",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    "356": {
+      "id": 356,
+      "name": "중력",
+      "type": "psychic",
+      "power": 0,
+      "category": 1,
+      "target": 12,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "359": {
+      "id": 359,
+      "name": "암해머",
+      "type": "fighting",
+      "power": 100,
+      "category": 2,
+      "target": 10,
+      "stats": [
+        {
+          "stat_id": 6,
+          "change": -1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "360": {
+      "id": 360,
+      "name": "자이로볼",
+      "type": "steel",
+      "power": 0,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "361": {
+      "id": 361,
+      "name": "치유소원",
+      "type": "psychic",
+      "power": 0,
+      "category": 1,
+      "target": 7,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    "362": {
+      "id": 362,
+      "name": "소금물",
+      "type": "water",
+      "power": 65,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "364": {
+      "id": 364,
+      "name": "페인트",
+      "type": "normal",
+      "power": 30,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "365": {
+      "id": 365,
+      "name": "쪼아대기",
+      "type": "flying",
+      "power": 60,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "366": {
+      "id": 366,
+      "name": "순풍",
+      "type": "flying",
+      "power": 0,
+      "category": 1,
+      "target": 4,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    "368": {
+      "id": 368,
+      "name": "메탈버스트",
+      "type": "steel",
+      "power": 0,
+      "category": 2,
+      "target": 1,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "369": {
+      "id": 369,
+      "name": "유턴",
+      "type": "bug",
+      "power": 70,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "370": {
+      "id": 370,
+      "name": "인파이트",
+      "type": "fighting",
+      "power": 120,
+      "category": 2,
+      "target": 10,
+      "stats": [
+        {
+          "stat_id": 3,
+          "change": -1
+        },
+        {
+          "stat_id": 5,
+          "change": -1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "371": {
+      "id": 371,
+      "name": "보복",
+      "type": "dark",
+      "power": 50,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "372": {
+      "id": 372,
+      "name": "승부굳히기",
+      "type": "dark",
+      "power": 60,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "383": {
+      "id": 383,
+      "name": "흉내쟁이",
+      "type": "normal",
+      "power": 0,
+      "category": 1,
+      "target": 7,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    "384": {
+      "id": 384,
+      "name": "파워스왑",
+      "type": "psychic",
+      "power": 0,
+      "category": 1,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "387": {
+      "id": 387,
+      "name": "비장의무기",
+      "type": "normal",
+      "power": 140,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "388": {
+      "id": 388,
+      "name": "고민씨",
+      "type": "grass",
+      "power": 0,
+      "category": 1,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "389": {
+      "id": 389,
+      "name": "기습",
+      "type": "dark",
+      "power": 70,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "391": {
+      "id": 391,
+      "name": "하트스왑",
+      "type": "psychic",
+      "power": 0,
+      "category": 1,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "392": {
+      "id": 392,
+      "name": "아쿠아링",
+      "type": "water",
+      "power": 0,
+      "category": 1,
+      "target": 7,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    "393": {
+      "id": 393,
+      "name": "전자부유",
+      "type": "electric",
+      "power": 0,
+      "category": 1,
+      "target": 7,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    "394": {
+      "id": 394,
+      "name": "플레어드라이브",
+      "type": "fire",
+      "power": 120,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 4,
+      "healing": 0,
+      "drain": -33,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": "burn"
+      }
+    },
+    "395": {
+      "id": 395,
+      "name": "발경",
+      "type": "fighting",
+      "power": 60,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 1,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": "paralysis"
+      }
+    },
+    "396": {
+      "id": 396,
+      "name": "파동탄",
+      "type": "fighting",
+      "power": 80,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "397": {
+      "id": 397,
+      "name": "록커트",
+      "type": "rock",
+      "power": 0,
+      "category": 1,
+      "target": 7,
+      "stats": [
+        {
+          "stat_id": 6,
+          "change": 2
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "stat_up",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    "398": {
+      "id": 398,
+      "name": "독찌르기",
+      "type": "poison",
+      "power": 80,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 5,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": "poison"
+      }
+    },
+    "399": {
+      "id": 399,
+      "name": "악의파동",
+      "type": "dark",
+      "power": 80,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "400": {
+      "id": 400,
+      "name": "깜짝베기",
+      "type": "dark",
+      "power": 70,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "401": {
+      "id": 401,
+      "name": "아쿠아테일",
+      "type": "water",
+      "power": 90,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "403": {
+      "id": 403,
+      "name": "에어슬래시",
+      "type": "flying",
+      "power": 75,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "404": {
+      "id": 404,
+      "name": "시저크로스",
+      "type": "bug",
+      "power": 80,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "405": {
+      "id": 405,
+      "name": "벌레의야단법석",
+      "type": "bug",
+      "power": 90,
+      "category": 3,
+      "target": 10,
+      "stats": [
+        {
+          "stat_id": 5,
+          "change": -1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "406": {
+      "id": 406,
+      "name": "용의파동",
+      "type": "dragon",
+      "power": 85,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "407": {
+      "id": 407,
+      "name": "드래곤다이브",
+      "type": "dragon",
+      "power": 100,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "408": {
+      "id": 408,
+      "name": "파워젬",
+      "type": "rock",
+      "power": 80,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "409": {
+      "id": 409,
+      "name": "드레인펀치",
+      "type": "fighting",
+      "power": 75,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 50,
+      "vfx": {
+        "primary": "drain",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "411": {
+      "id": 411,
+      "name": "기합구슬",
+      "type": "fighting",
+      "power": 120,
+      "category": 3,
+      "target": 10,
+      "stats": [
+        {
+          "stat_id": 5,
+          "change": -1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "412": {
+      "id": 412,
+      "name": "에너지볼",
+      "type": "grass",
+      "power": 90,
+      "category": 3,
+      "target": 10,
+      "stats": [
+        {
+          "stat_id": 5,
+          "change": -1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "413": {
+      "id": 413,
+      "name": "브레이브버드",
+      "type": "flying",
+      "power": 120,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": -33,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "414": {
+      "id": 414,
+      "name": "대지의힘",
+      "type": "ground",
+      "power": 90,
+      "category": 3,
+      "target": 10,
+      "stats": [
+        {
+          "stat_id": 5,
+          "change": -1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "416": {
+      "id": 416,
+      "name": "기가임팩트",
+      "type": "normal",
+      "power": 150,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "417": {
+      "id": 417,
+      "name": "나쁜음모",
+      "type": "dark",
+      "power": 0,
+      "category": 1,
+      "target": 7,
+      "stats": [
+        {
+          "stat_id": 4,
+          "change": 2
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "stat_up",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    "419": {
+      "id": 419,
+      "name": "눈사태",
+      "type": "ice",
+      "power": 60,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "420": {
+      "id": 420,
+      "name": "얼음뭉치",
+      "type": "ice",
+      "power": 40,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "421": {
+      "id": 421,
+      "name": "섀도클로",
+      "type": "ghost",
+      "power": 70,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "422": {
+      "id": 422,
+      "name": "번개엄니",
+      "type": "electric",
+      "power": 65,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 1,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": "paralysis"
+      }
+    },
+    "423": {
+      "id": 423,
+      "name": "얼음엄니",
+      "type": "ice",
+      "power": 65,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 3,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": "freeze"
+      }
+    },
+    "424": {
+      "id": 424,
+      "name": "불꽃엄니",
+      "type": "fire",
+      "power": 65,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 4,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": "burn"
+      }
+    },
+    "425": {
+      "id": 425,
+      "name": "야습",
+      "type": "ghost",
+      "power": 40,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "427": {
+      "id": 427,
+      "name": "사이코커터",
+      "type": "psychic",
+      "power": 70,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "428": {
+      "id": 428,
+      "name": "사념의박치기",
+      "type": "psychic",
+      "power": 80,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "430": {
+      "id": 430,
+      "name": "러스터캐논",
+      "type": "steel",
+      "power": 80,
+      "category": 3,
+      "target": 10,
+      "stats": [
+        {
+          "stat_id": 5,
+          "change": -1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "432": {
+      "id": 432,
+      "name": "안개제거",
+      "type": "flying",
+      "power": 0,
+      "category": 1,
+      "target": 10,
+      "stats": [
+        {
+          "stat_id": 8,
+          "change": -1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "stat_down",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "433": {
+      "id": 433,
+      "name": "트릭룸",
+      "type": "psychic",
+      "power": 0,
+      "category": 1,
+      "target": 12,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "435": {
+      "id": 435,
+      "name": "방전",
+      "type": "electric",
+      "power": 80,
+      "category": 3,
+      "target": 9,
+      "stats": [],
+      "ailment": 1,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "paralysis"
+      }
+    },
+    "436": {
+      "id": 436,
+      "name": "분연",
+      "type": "fire",
+      "power": 80,
+      "category": 3,
+      "target": 9,
+      "stats": [],
+      "ailment": 4,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "burn"
+      }
+    },
+    "437": {
+      "id": 437,
+      "name": "리프스톰",
+      "type": "grass",
+      "power": 130,
+      "category": 3,
+      "target": 10,
+      "stats": [
+        {
+          "stat_id": 4,
+          "change": -2
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "438": {
+      "id": 438,
+      "name": "파워휩",
+      "type": "grass",
+      "power": 120,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "440": {
+      "id": 440,
+      "name": "크로스포이즌",
+      "type": "poison",
+      "power": 70,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 5,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": "poison"
+      }
+    },
+    "442": {
+      "id": 442,
+      "name": "아이언헤드",
+      "type": "steel",
+      "power": 80,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "444": {
+      "id": 444,
+      "name": "스톤에지",
+      "type": "rock",
+      "power": 100,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "446": {
+      "id": 446,
+      "name": "스텔스록",
+      "type": "rock",
+      "power": 0,
+      "category": 1,
+      "target": 6,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "447": {
+      "id": 447,
+      "name": "풀묶기",
+      "type": "grass",
+      "power": 0,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "449": {
+      "id": 449,
+      "name": "심판의뭉치",
+      "type": "normal",
+      "power": 100,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "451": {
+      "id": 451,
+      "name": "차지빔",
+      "type": "electric",
+      "power": 50,
+      "category": 3,
+      "target": 10,
+      "stats": [
+        {
+          "stat_id": 4,
+          "change": 1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "452": {
+      "id": 452,
+      "name": "우드해머",
+      "type": "grass",
+      "power": 120,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": -33,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "453": {
+      "id": 453,
+      "name": "아쿠아제트",
+      "type": "water",
+      "power": 40,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "458": {
+      "id": 458,
+      "name": "더블어택",
+      "type": "normal",
+      "power": 35,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "459": {
+      "id": 459,
+      "name": "시간의포효",
+      "type": "dragon",
+      "power": 150,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "460": {
+      "id": 460,
+      "name": "공간절단",
+      "type": "dragon",
+      "power": 100,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "461": {
+      "id": 461,
+      "name": "초승달춤",
+      "type": "psychic",
+      "power": 0,
+      "category": 1,
+      "target": 7,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    "462": {
+      "id": 462,
+      "name": "묵사발",
+      "type": "normal",
+      "power": 0,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "463": {
+      "id": 463,
+      "name": "마그마스톰",
+      "type": "fire",
+      "power": 100,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 8,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "bind"
+      }
+    },
+    "464": {
+      "id": 464,
+      "name": "다크홀",
+      "type": "dark",
+      "power": 0,
+      "category": 1,
+      "target": 11,
+      "stats": [],
+      "ailment": 2,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "sleep",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "465": {
+      "id": 465,
+      "name": "시드플레어",
+      "type": "grass",
+      "power": 120,
+      "category": 3,
+      "target": 10,
+      "stats": [
+        {
+          "stat_id": 5,
+          "change": -2
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "467": {
+      "id": 467,
+      "name": "섀도다이브",
+      "type": "ghost",
+      "power": 120,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "468": {
+      "id": 468,
+      "name": "손톱갈기",
+      "type": "dark",
+      "power": 0,
+      "category": 1,
+      "target": 7,
+      "stats": [
+        {
+          "stat_id": 2,
+          "change": 1
+        },
+        {
+          "stat_id": 7,
+          "change": 1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "stat_up",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    "469": {
+      "id": 469,
+      "name": "와이드가드",
+      "type": "rock",
+      "power": 0,
+      "category": 1,
+      "target": 4,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    "470": {
+      "id": 470,
+      "name": "가드셰어",
+      "type": "psychic",
+      "power": 0,
+      "category": 1,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "471": {
+      "id": 471,
+      "name": "파워셰어",
+      "type": "psychic",
+      "power": 0,
+      "category": 1,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "472": {
+      "id": 472,
+      "name": "원더룸",
+      "type": "psychic",
+      "power": 0,
+      "category": 1,
+      "target": 12,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "473": {
+      "id": 473,
+      "name": "사이코쇼크",
+      "type": "psychic",
+      "power": 80,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "474": {
+      "id": 474,
+      "name": "베놈쇼크",
+      "type": "poison",
+      "power": 65,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "479": {
+      "id": 479,
+      "name": "떨어뜨리기",
+      "type": "rock",
+      "power": 50,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": -1,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "482": {
+      "id": 482,
+      "name": "오물웨이브",
+      "type": "poison",
+      "power": 95,
+      "category": 3,
+      "target": 9,
+      "stats": [],
+      "ailment": 5,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "poison"
+      }
+    },
+    "484": {
+      "id": 484,
+      "name": "헤비봄버",
+      "type": "steel",
+      "power": 0,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "487": {
+      "id": 487,
+      "name": "물붓기",
+      "type": "water",
+      "power": 0,
+      "category": 1,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "488": {
+      "id": 488,
+      "name": "니트로차지",
+      "type": "fire",
+      "power": 50,
+      "category": 2,
+      "target": 10,
+      "stats": [
+        {
+          "stat_id": 6,
+          "change": 1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "489": {
+      "id": 489,
+      "name": "똬리틀기",
+      "type": "poison",
+      "power": 0,
+      "category": 1,
+      "target": 7,
+      "stats": [
+        {
+          "stat_id": 2,
+          "change": 1
+        },
+        {
+          "stat_id": 3,
+          "change": 1
+        },
+        {
+          "stat_id": 7,
+          "change": 1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "stat_up",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    "490": {
+      "id": 490,
+      "name": "로킥",
+      "type": "fighting",
+      "power": 65,
+      "category": 2,
+      "target": 10,
+      "stats": [
+        {
+          "stat_id": 6,
+          "change": -1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "492": {
+      "id": 492,
+      "name": "속임수",
+      "type": "dark",
+      "power": 95,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "493": {
+      "id": 493,
+      "name": "심플빔",
+      "type": "normal",
+      "power": 0,
+      "category": 1,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "495": {
+      "id": 495,
+      "name": "당신먼저",
+      "type": "normal",
+      "power": 0,
+      "category": 1,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "496": {
+      "id": 496,
+      "name": "돌림노래",
+      "type": "normal",
+      "power": 60,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "497": {
+      "id": 497,
+      "name": "에코보이스",
+      "type": "normal",
+      "power": 40,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "499": {
+      "id": 499,
+      "name": "클리어스모그",
+      "type": "poison",
+      "power": 50,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "500": {
+      "id": 500,
+      "name": "어시스트파워",
+      "type": "psychic",
+      "power": 20,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "501": {
+      "id": 501,
+      "name": "패스트가드",
+      "type": "fighting",
+      "power": 0,
+      "category": 1,
+      "target": 4,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    "502": {
+      "id": 502,
+      "name": "사이드체인지",
+      "type": "psychic",
+      "power": 0,
+      "category": 1,
+      "target": 7,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    "503": {
+      "id": 503,
+      "name": "열탕",
+      "type": "water",
+      "power": 80,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 4,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "burn"
+      }
+    },
+    "505": {
+      "id": 505,
+      "name": "치유파동",
+      "type": "psychic",
+      "power": 0,
+      "category": 1,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 50,
+      "drain": 0,
+      "vfx": {
+        "primary": "heal",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    "506": {
+      "id": 506,
+      "name": "병상첨병",
+      "type": "ghost",
+      "power": 65,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "508": {
+      "id": 508,
+      "name": "기어체인지",
+      "type": "steel",
+      "power": 0,
+      "category": 1,
+      "target": 7,
+      "stats": [
+        {
+          "stat_id": 2,
+          "change": 1
+        },
+        {
+          "stat_id": 6,
+          "change": 2
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "stat_up",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    "510": {
+      "id": 510,
+      "name": "불태우기",
+      "type": "fire",
+      "power": 60,
+      "category": 3,
+      "target": 11,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "512": {
+      "id": 512,
+      "name": "애크러뱃",
+      "type": "flying",
+      "power": 55,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "514": {
+      "id": 514,
+      "name": "원수갚기",
+      "type": "normal",
+      "power": 70,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "515": {
+      "id": 515,
+      "name": "목숨걸기",
+      "type": "fighting",
+      "power": 0,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "517": {
+      "id": 517,
+      "name": "연옥",
+      "type": "fire",
+      "power": 100,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 4,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "burn"
+      }
+    },
+    "521": {
+      "id": 521,
+      "name": "볼트체인지",
+      "type": "electric",
+      "power": 70,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "523": {
+      "id": 523,
+      "name": "땅고르기",
+      "type": "ground",
+      "power": 60,
+      "category": 2,
+      "target": 9,
+      "stats": [
+        {
+          "stat_id": 6,
+          "change": -1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "525": {
+      "id": 525,
+      "name": "드래곤테일",
+      "type": "dragon",
+      "power": 60,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "526": {
+      "id": 526,
+      "name": "분발",
+      "type": "normal",
+      "power": 0,
+      "category": 1,
+      "target": 7,
+      "stats": [
+        {
+          "stat_id": 2,
+          "change": 1
+        },
+        {
+          "stat_id": 4,
+          "change": 1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "stat_up",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    "527": {
+      "id": 527,
+      "name": "일렉트릭네트",
+      "type": "electric",
+      "power": 55,
+      "category": 3,
+      "target": 11,
+      "stats": [
+        {
+          "stat_id": 6,
+          "change": -1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "528": {
+      "id": 528,
+      "name": "와일드볼트",
+      "type": "electric",
+      "power": 90,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": -25,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "532": {
+      "id": 532,
+      "name": "우드혼",
+      "type": "grass",
+      "power": 75,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 50,
+      "vfx": {
+        "primary": "drain",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "533": {
+      "id": 533,
+      "name": "성스러운칼",
+      "type": "fighting",
+      "power": 90,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "539": {
+      "id": 539,
+      "name": "나이트버스트",
+      "type": "dark",
+      "power": 85,
+      "category": 3,
+      "target": 10,
+      "stats": [
+        {
+          "stat_id": 7,
+          "change": -1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "541": {
+      "id": 541,
+      "name": "스위프뺨치기",
+      "type": "normal",
+      "power": 25,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "542": {
+      "id": 542,
+      "name": "폭풍",
+      "type": "flying",
+      "power": 110,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 6,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "confusion"
+      }
+    },
+    "545": {
+      "id": 545,
+      "name": "화염탄",
+      "type": "fire",
+      "power": 100,
+      "category": 3,
+      "target": 9,
+      "stats": [],
+      "ailment": 4,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "burn"
+      }
+    },
+    "546": {
+      "id": 546,
+      "name": "테크노버스터",
+      "type": "normal",
+      "power": 120,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "547": {
+      "id": 547,
+      "name": "옛노래",
+      "type": "normal",
+      "power": 75,
+      "category": 3,
+      "target": 11,
+      "stats": [],
+      "ailment": 2,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "sleep"
+      }
+    },
+    "548": {
+      "id": 548,
+      "name": "신비의칼",
+      "type": "fighting",
+      "power": 85,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "549": {
+      "id": 549,
+      "name": "얼어붙은세계",
+      "type": "ice",
+      "power": 65,
+      "category": 3,
+      "target": 11,
+      "stats": [
+        {
+          "stat_id": 6,
+          "change": -1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "550": {
+      "id": 550,
+      "name": "뇌격",
+      "type": "electric",
+      "power": 130,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 1,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": "paralysis"
+      }
+    },
+    "551": {
+      "id": 551,
+      "name": "푸른불꽃",
+      "type": "fire",
+      "power": 130,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 4,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "burn"
+      }
+    },
+    "555": {
+      "id": 555,
+      "name": "바크아웃",
+      "type": "dark",
+      "power": 55,
+      "category": 3,
+      "target": 11,
+      "stats": [
+        {
+          "stat_id": 4,
+          "change": -1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "556": {
+      "id": 556,
+      "name": "고드름떨구기",
+      "type": "ice",
+      "power": 85,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "557": {
+      "id": 557,
+      "name": "V제너레이트",
+      "type": "fire",
+      "power": 180,
+      "category": 2,
+      "target": 10,
+      "stats": [
+        {
+          "stat_id": 3,
+          "change": -1
+        },
+        {
+          "stat_id": 5,
+          "change": -1
+        },
+        {
+          "stat_id": 6,
+          "change": -1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "558": {
+      "id": 558,
+      "name": "크로스플레임",
+      "type": "fire",
+      "power": 100,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "559": {
+      "id": 559,
+      "name": "크로스썬더",
+      "type": "electric",
+      "power": 100,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "565": {
+      "id": 565,
+      "name": "마지막일침",
+      "type": "bug",
+      "power": 50,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "566": {
+      "id": 566,
+      "name": "고스트다이브",
+      "type": "ghost",
+      "power": 90,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "568": {
+      "id": 568,
+      "name": "부르짖기",
+      "type": "normal",
+      "power": 0,
+      "category": 1,
+      "target": 10,
+      "stats": [
+        {
+          "stat_id": 2,
+          "change": -1
+        },
+        {
+          "stat_id": 4,
+          "change": -1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "stat_down",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "570": {
+      "id": 570,
+      "name": "파라볼라차지",
+      "type": "electric",
+      "power": 65,
+      "category": 3,
+      "target": 9,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 50,
+      "vfx": {
+        "primary": "drain",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "573": {
+      "id": 573,
+      "name": "프리즈드라이",
+      "type": "ice",
+      "power": 70,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 3,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "freeze"
+      }
+    },
+    "574": {
+      "id": 574,
+      "name": "차밍보이스",
+      "type": "fairy",
+      "power": 40,
+      "category": 3,
+      "target": 11,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "575": {
+      "id": 575,
+      "name": "막말내뱉기",
+      "type": "dark",
+      "power": 0,
+      "category": 1,
+      "target": 10,
+      "stats": [
+        {
+          "stat_id": 2,
+          "change": -1
+        },
+        {
+          "stat_id": 4,
+          "change": -1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "stat_down",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "577": {
+      "id": 577,
+      "name": "드레인키스",
+      "type": "fairy",
+      "power": 50,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 75,
+      "vfx": {
+        "primary": "drain",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "580": {
+      "id": 580,
+      "name": "그래스필드",
+      "type": "grass",
+      "power": 0,
+      "category": 1,
+      "target": 12,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "581": {
+      "id": 581,
+      "name": "미스트필드",
+      "type": "fairy",
+      "power": 0,
+      "category": 1,
+      "target": 12,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "583": {
+      "id": 583,
+      "name": "치근거리기",
+      "type": "fairy",
+      "power": 90,
+      "category": 2,
+      "target": 10,
+      "stats": [
+        {
+          "stat_id": 2,
+          "change": -1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "584": {
+      "id": 584,
+      "name": "요정의바람",
+      "type": "fairy",
+      "power": 40,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "585": {
+      "id": 585,
+      "name": "문포스",
+      "type": "fairy",
+      "power": 95,
+      "category": 3,
+      "target": 10,
+      "stats": [
+        {
+          "stat_id": 4,
+          "change": -1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "591": {
+      "id": 591,
+      "name": "다이아스톰",
+      "type": "rock",
+      "power": 100,
+      "category": 2,
+      "target": 11,
+      "stats": [
+        {
+          "stat_id": 3,
+          "change": 2
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "592": {
+      "id": 592,
+      "name": "스팀버스트",
+      "type": "water",
+      "power": 110,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 4,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "burn"
+      }
+    },
+    "593": {
+      "id": 593,
+      "name": "이차원홀",
+      "type": "psychic",
+      "power": 80,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "595": {
+      "id": 595,
+      "name": "매지컬플레임",
+      "type": "fire",
+      "power": 75,
+      "category": 3,
+      "target": 10,
+      "stats": [
+        {
+          "stat_id": 4,
+          "change": -1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "596": {
+      "id": 596,
+      "name": "니들가드",
+      "type": "grass",
+      "power": 0,
+      "category": 1,
+      "target": 7,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    "597": {
+      "id": 597,
+      "name": "아로마미스트",
+      "type": "fairy",
+      "power": 0,
+      "category": 1,
+      "target": 3,
+      "stats": [
+        {
+          "stat_id": 5,
+          "change": 1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "stat_up",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "601": {
+      "id": 601,
+      "name": "지오컨트롤",
+      "type": "fairy",
+      "power": 0,
+      "category": 1,
+      "target": 7,
+      "stats": [
+        {
+          "stat_id": 4,
+          "change": 2
+        },
+        {
+          "stat_id": 5,
+          "change": 2
+        },
+        {
+          "stat_id": 6,
+          "change": 2
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "stat_up",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    "602": {
+      "id": 602,
+      "name": "자기장조작",
+      "type": "electric",
+      "power": 0,
+      "category": 1,
+      "target": 13,
+      "stats": [
+        {
+          "stat_id": 3,
+          "change": 1
+        },
+        {
+          "stat_id": 5,
+          "change": 1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "stat_up",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    "604": {
+      "id": 604,
+      "name": "일렉트릭필드",
+      "type": "electric",
+      "power": 0,
+      "category": 1,
+      "target": 12,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "605": {
+      "id": 605,
+      "name": "매지컬샤인",
+      "type": "fairy",
+      "power": 80,
+      "category": 3,
+      "target": 11,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "612": {
+      "id": 612,
+      "name": "그로우펀치",
+      "type": "fighting",
+      "power": 40,
+      "category": 2,
+      "target": 10,
+      "stats": [
+        {
+          "stat_id": 2,
+          "change": 1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "613": {
+      "id": 613,
+      "name": "데스윙",
+      "type": "flying",
+      "power": 80,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 75,
+      "vfx": {
+        "primary": "drain",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "614": {
+      "id": 614,
+      "name": "사우전드애로",
+      "type": "ground",
+      "power": 90,
+      "category": 2,
+      "target": 11,
+      "stats": [],
+      "ailment": -1,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "615": {
+      "id": 615,
+      "name": "사우전드웨이브",
+      "type": "ground",
+      "power": 90,
+      "category": 2,
+      "target": 11,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "616": {
+      "id": 616,
+      "name": "그라운드포스",
+      "type": "ground",
+      "power": 90,
+      "category": 2,
+      "target": 11,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "669": {
+      "id": 669,
+      "name": "솔라블레이드",
+      "type": "grass",
+      "power": 125,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "670": {
+      "id": 670,
+      "name": "나뭇잎",
+      "type": "grass",
+      "power": 40,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "673": {
+      "id": 673,
+      "name": "예민해지기",
+      "type": "normal",
+      "power": 0,
+      "category": 1,
+      "target": 7,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    "675": {
+      "id": 675,
+      "name": "지옥찌르기",
+      "type": "dark",
+      "power": 80,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 24,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "678": {
+      "id": 678,
+      "name": "사이코필드",
+      "type": "psychic",
+      "power": 0,
+      "category": 1,
+      "target": 12,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "684": {
+      "id": 684,
+      "name": "스마트혼",
+      "type": "steel",
+      "power": 70,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "687": {
+      "id": 687,
+      "name": "코어퍼니셔",
+      "type": "dragon",
+      "power": 100,
+      "category": 3,
+      "target": 11,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "692": {
+      "id": 692,
+      "name": "드래곤해머",
+      "type": "dragon",
+      "power": 90,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "693": {
+      "id": 693,
+      "name": "세차게휘두르기",
+      "type": "dark",
+      "power": 60,
+      "category": 2,
+      "target": 9,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "705": {
+      "id": 705,
+      "name": "플뢰르캐논",
+      "type": "fairy",
+      "power": 130,
+      "category": 3,
+      "target": 10,
+      "stats": [
+        {
+          "stat_id": 4,
+          "change": -2
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "707": {
+      "id": 707,
+      "name": "분함의발구르기",
+      "type": "ground",
+      "power": 75,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "711": {
+      "id": 711,
+      "name": "프리즘레이저",
+      "type": "psychic",
+      "power": 160,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "712": {
+      "id": 712,
+      "name": "섀도스틸",
+      "type": "ghost",
+      "power": 90,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "713": {
+      "id": 713,
+      "name": "메테오드라이브",
+      "type": "steel",
+      "power": 100,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "714": {
+      "id": 714,
+      "name": "섀도레이",
+      "type": "ghost",
+      "power": 100,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "717": {
+      "id": 717,
+      "name": "자연의분노",
+      "type": "fairy",
+      "power": 0,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "718": {
+      "id": 718,
+      "name": "멀티어택",
+      "type": "normal",
+      "power": 120,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "721": {
+      "id": 721,
+      "name": "플라스마피스트",
+      "type": "electric",
+      "power": 100,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "722": {
+      "id": 722,
+      "name": "포톤가이저",
+      "type": "psychic",
+      "power": 100,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "742": {
+      "id": 742,
+      "name": "더블펀처",
+      "type": "steel",
+      "power": 60,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "744": {
+      "id": 744,
+      "name": "다이맥스포",
+      "type": "dragon",
+      "power": 100,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "776": {
+      "id": 776,
+      "name": "바디프레스",
+      "type": "fighting",
+      "power": 80,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "784": {
+      "id": 784,
+      "name": "와이드브레이커",
+      "type": "dragon",
+      "power": 60,
+      "category": 2,
+      "target": 11,
+      "stats": [
+        {
+          "stat_id": 2,
+          "change": -1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "791": {
+      "id": 791,
+      "name": "생명의물방울",
+      "type": "water",
+      "power": 0,
+      "category": 1,
+      "target": 13,
+      "stats": [],
+      "ailment": 0,
+      "healing": 25,
+      "drain": 0,
+      "vfx": {
+        "primary": "heal",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    "804": {
+      "id": 804,
+      "name": "라이징볼트",
+      "type": "electric",
+      "power": 70,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "816": {
+      "id": 816,
+      "name": "정글힐",
+      "type": "grass",
+      "power": 0,
+      "category": 1,
+      "target": 13,
+      "stats": [],
+      "ailment": 0,
+      "healing": 25,
+      "drain": 0,
+      "vfx": {
+        "primary": "heal",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    "817": {
+      "id": 817,
+      "name": "암흑강타",
+      "type": "dark",
+      "power": 75,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "819": {
+      "id": 819,
+      "name": "썬더프리즌",
+      "type": "electric",
+      "power": 80,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 8,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "bind"
+      }
+    },
+    "820": {
+      "id": 820,
+      "name": "드래곤에너지",
+      "type": "dragon",
+      "power": 150,
+      "category": 3,
+      "target": 11,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "821": {
+      "id": 821,
+      "name": "얼어붙는시선",
+      "type": "psychic",
+      "power": 90,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 3,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": "freeze"
+      }
+    },
+    "822": {
+      "id": 822,
+      "name": "타오르는분노",
+      "type": "dark",
+      "power": 90,
+      "category": 3,
+      "target": 11,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "823": {
+      "id": 823,
+      "name": "천둥차기",
+      "type": "fighting",
+      "power": 90,
+      "category": 2,
+      "target": 10,
+      "stats": [
+        {
+          "stat_id": 3,
+          "change": -1
+        }
+      ],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "831": {
+      "id": 831,
+      "name": "봄의폭풍",
+      "type": "fairy",
+      "power": 100,
+      "category": 3,
+      "target": 11,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "832": {
+      "id": 832,
+      "name": "신비의힘",
+      "type": "psychic",
+      "power": 70,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "833": {
+      "id": 833,
+      "name": "대격분",
+      "type": "fire",
+      "power": 120,
+      "category": 2,
+      "target": 8,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "846": {
+      "id": 846,
+      "name": "찬바람폭풍",
+      "type": "flying",
+      "power": 100,
+      "category": 3,
+      "target": 11,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "847": {
+      "id": 847,
+      "name": "번개폭풍",
+      "type": "electric",
+      "power": 100,
+      "category": 3,
+      "target": 11,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "848": {
+      "id": 848,
+      "name": "열사의폭풍",
+      "type": "ground",
+      "power": 100,
+      "category": 3,
+      "target": 11,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "849": {
+      "id": 849,
+      "name": "초승달의기도",
+      "type": "psychic",
+      "power": 0,
+      "category": 1,
+      "target": 15,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "850": {
+      "id": 850,
+      "name": "브레이브차지",
+      "type": "psychic",
+      "power": 0,
+      "category": 1,
+      "target": 15,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "875": {
+      "id": 875,
+      "name": "사이코블레이드",
+      "type": "psychic",
+      "power": 80,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "876": {
+      "id": 876,
+      "name": "하이드로스팀",
+      "type": "water",
+      "power": 80,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "877": {
+      "id": 877,
+      "name": "카타스트로피",
+      "type": "dark",
+      "power": 1,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "878": {
+      "id": 878,
+      "name": "엑셀브레이크",
+      "type": "fighting",
+      "power": 100,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "879": {
+      "id": 879,
+      "name": "라이트닝드라이브",
+      "type": "electric",
+      "power": 100,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "883": {
+      "id": 883,
+      "name": "설경",
+      "type": "ice",
+      "power": 0,
+      "category": 1,
+      "target": 12,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "904": {
+      "id": 904,
+      "name": "덩굴방망이",
+      "type": "grass",
+      "power": 100,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "906": {
+      "id": 906,
+      "name": "테라클러스터",
+      "type": "normal",
+      "power": 120,
+      "category": 3,
+      "target": 11,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "908": {
+      "id": 908,
+      "name": "화염의수호",
+      "type": "fire",
+      "power": 0,
+      "category": 1,
+      "target": 7,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "utility",
+        "target": "self",
+        "secondary": ""
+      }
+    },
+    "909": {
+      "id": 909,
+      "name": "질풍신뢰",
+      "type": "electric",
+      "power": 70,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "910": {
+      "id": 910,
+      "name": "파워풀에지",
+      "type": "rock",
+      "power": 95,
+      "category": 2,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "impact",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "911": {
+      "id": 911,
+      "name": "타키온커터",
+      "type": "steel",
+      "power": 50,
+      "category": 3,
+      "target": 10,
+      "stats": [],
+      "ailment": 0,
+      "healing": 0,
+      "drain": 0,
+      "vfx": {
+        "primary": "projectile",
+        "target": "opponent",
+        "secondary": ""
+      }
+    },
+    "919": {
+      "id": 919,
+      "name": "악독사슬",
+      "type": "poison",
+      "power": 100,
+      "category": 3,
+      "target": 10,
+      "stats": [],
       "ailment": 0,
       "healing": 0,
       "drain": 0,
