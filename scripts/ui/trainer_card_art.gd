@@ -3,13 +3,21 @@ extends Control
 ## Original pixel vignettes, drawn on an 84x48 grid at exactly 2x.
 @export var card_key := "analysis"
 const COLORS := {"analysis":Color("aebedd"),"guard":Color("8ec9dc"),"focus":Color("a2cdb7"),"rally":Color("e7c47c"),"counter":Color("df9e87"),"injury":Color("b9a0af")}
-const ICONS := {"analysis":"analysis","guard":"shield","focus":"draw","rally":"boost","counter":"counter","injury":"injury","redraw":"discard","hold":"draw","retrieve":"discard","relay_plan":"switch","ace_plan":"boost","tool_plan":"draw","status_cash":"fire","potion_card":"heal","boost_card":"boost","smoke_card":"counter","ether_card":"energy","antidote_card":"heal","relay_cover":"switch","ace_order":"boost","status_plan":"poison","shield_strike":"attack","toxic_flask":"poison","shield_cell":"shield","relay_retrieve":"switch","ace_finisher":"attack","status_pulse":"poison","shield_double":"shield"}
+const ICONS := {"weather_rain":"weather_rain","weather_snow":"weather_snow","weather_sun":"weather_sun","weather_sand":"weather_sand","analysis":"analysis","guard":"shield","focus":"draw","rally":"boost","counter":"counter","injury":"injury","redraw":"discard","hold":"draw","retrieve":"discard","relay_plan":"switch","ace_plan":"boost","tool_plan":"draw","status_cash":"fire","potion_card":"heal","boost_card":"boost","smoke_card":"counter","ether_card":"energy","antidote_card":"heal","relay_cover":"switch","ace_order":"boost","status_plan":"poison","shield_strike":"attack","toxic_flask":"poison","shield_cell":"shield","relay_retrieve":"switch","ace_finisher":"attack","status_pulse":"poison","shield_double":"shield",
+"relay_formation":"shield","relay_accelerate":"energy","relay_command":"boost","relay_cycle_plan":"draw",
+"ace_retrieve":"discard","ace_precision":"attack","ace_reserve":"energy","ace_breathing":"shield",
+"status_catalyst":"poison","status_ampoule":"burn","status_analysis":"analysis","status_absorption":"heal",
+"shield_lock":"shield","shield_inspect":"analysis","shield_regroup":"draw","shield_fortress":"shield",
+"supply_recycle":"exhaust","supply_pack":"heal","supply_dynamo":"energy","supply_assembly":"boost",
+"cycle_filter":"discard","cycle_preserve":"draw","cycle_opportunity":"discard","cycle_engine":"energy"}
 func _ready() -> void:
     mouse_filter = Control.MOUSE_FILTER_IGNORE
     texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 func _draw() -> void:
     draw_set_transform(Vector2.ZERO,0,Vector2(2,2))
+    var concept := str(TacticalContent.CARDS.get(card_key,{}).get("concept",""))
     var accent: Color = COLORS.get(card_key,Color("aebedd"))
+    if not concept.is_empty(): accent = Color({"relay":"8dcdb0","ace":"e1a583","status":"bd92cc","shield":"8ec9dc","supply":"e5c280","cycle":"b2bce4"}[concept])
     if TacticalContent.CARDS.get(card_key,{}).get("category","") == "tool": accent = Color("e5c280")
     draw_rect(Rect2(0,0,84,48),accent.darkened(0.82))
     for i in 7:
@@ -61,8 +69,13 @@ func _draw() -> void:
             draw_rect(Rect2(17,16,14,7),accent.darkened(0.48))
             draw_rect(Rect2(21,26,5,12),Color("e6d4c2"))
             draw_rect(Rect2(17,30,13,4),Color("e6d4c2"))
+    if not concept.is_empty():
+        var pattern: int = BuildConceptContent.GROUPS[concept].find(card_key)+1
+        for i in 3:
+            draw_rect(Rect2(7+i*5,30-i*5,18,10),accent.darkened(0.22+i*0.12))
+            draw_rect(Rect2(62+i*4,13+pattern+i*5,7,2),accent.darkened(0.15))
     var icon_at := Vector2(37,6) if card_key in ["analysis","focus","injury"] else Vector2(29,4)
-    draw_texture_rect(CombatWidgets.texture(ICONS.get(card_key,"heal" if card_key.ends_with("_card") else "boost")),Rect2(icon_at,Vector2(28,28)),false)
+    draw_texture_rect(CombatWidgets.texture(ICONS.get(card_key,BuildConceptContent.ICONS.get(concept,"heal" if card_key.ends_with("_card") else "boost"))),Rect2(icon_at,Vector2(28,28)),false)
     for at: Vector2 in [Vector2(8,10),Vector2(69,24),Vector2(62,8)]:
         draw_rect(Rect2(at,Vector2(2,2)),Color(accent,0.6))
     draw_set_transform(Vector2.ZERO)

@@ -131,7 +131,7 @@ func intent_for(defender: BattlePokemon) -> Dictionary:
         move["type"] = result.get("type",move.get("type","normal"))
         result["damage_class"] = move.get("damage_class","physical")
         var pressure := 0.55 if result["kind"] == "barrage" else (1.2 if result["kind"] == "charge" else 1.0)
-        result["value"] = PokemonStats.damage(enemy(),defender,move,1.0 if int(result["move_id"]) == 165 else multiplier(move["type"],defender),0,pressure)
+        result["value"] = PokemonStats.damage(enemy(),defender,move,1.0 if int(result["move_id"]) == 165 else multiplier(move["type"],defender),0,pressure,BattleWeather.kind(powers))
         if result["kind"] == "barrage":
             result["per_hit"] = result["value"]
             result["value"] = int(result["per_hit"])*int(result["hits"])
@@ -152,13 +152,16 @@ func card_view(card: BattleCardInstance) -> Dictionary:
         if card.owner_uid == turn_speed_owner_uid and has_relic("ace_core") and not turn_flags.has("ace_core"):
             view["core_discount"] = mini(1,int(view["cost"]))
             view["cost"] = maxi(0,int(view["cost"])-1)
+        if view["category"] == "tool" and has_relic("tool_discount") and not turn_flags.has("tool_discount"):
+            view["tool_discount"] = mini(1,int(view["cost"]))
+            view["cost"] = maxi(0,int(view["cost"])-1)
         if view.has("damage"): view["preview_damage"] = attack_damage(view,actor)
         if view.has("shield_attack"): view["preview_damage"] = actor.block
         if view.has("double_block"): view["preview_block_gain"] = block_gain(actor,actor.block)
         if has_relic("status_flask") and not turn_flags.has("status_flask"):
             for status: String in ["burn","poison","seed"]:
                 if view.has(status): view["preview_"+status] = int(view[status])+1
-        if view.has("condition"): view["condition_active"] = bool(turn_flags.get("technique_switch",false)) if view["condition"] == "relay" else bool(turn_flags.get("double_technique_%d" % actor.uid,false))
+        if view.has("condition"): view["condition_active"] = BuildConceptRules.condition(self,actor,str(view["condition"]))
         if view.has("heal"): view["preview_heal"] = PokemonStats.scale(actor,int(view["heal"])+(6 if actor.held_item == "healing_bell" and view["category"] == "tool" else 0))
         if view.has("heal") and has_relic("shield_core"): view["preview_heal"] = maxi(1,floori(int(view["preview_heal"])*0.5))
         if view.has("block"): view["preview_block"] = mini(PokemonStats.scale(actor,int(view["block"]))+defense_bonus(actor),MAX_BLOCK-_block_on_entry(actor))
@@ -171,8 +174,9 @@ func attack_damage(view: Dictionary, actor: BattlePokemon) -> int:
     var bonus := next_attack_bonus+switched_attack
     if actor.held_item == "power_band": bonus += 3
     if enemy().statuses.has("exposed"): bonus += 2
-    var amount := PokemonStats.damage(actor,enemy(),view,1.0 if int(view.get("move_id",0)) == 165 else multiplier(view.get("type","normal"),enemy()),bonus)
+    var amount := PokemonStats.damage(actor,enemy(),view,1.0 if int(view.get("move_id",0)) == 165 else multiplier(view.get("type","normal"),enemy()),bonus,1.0,BattleWeather.kind(powers))
     if amount > 0 and view.get("category","technique") == "technique" and has_relic("status_core"): amount = maxi(1,floori(amount*0.8))
+    if amount > 0 and BuildConceptRules.sight_active(self,view,actor): amount = maxi(1,floori(amount*1.25))
     if view.get("category","technique") == "technique" and turn_flags.get("finisher_%d" % actor.uid,false): amount *= 2
     return amount
 func _block_on_entry(actor: BattlePokemon) -> int:
@@ -188,7 +192,7 @@ func _gain_block(actor: BattlePokemon,amount: int) -> int:
     actor.block += gained
     return gained
 func defense_bonus(actor: BattlePokemon) -> int:
-    return PokemonStats.scale(actor,4) if actor.held_item == "guard_charm" else 0
+    return (PokemonStats.scale(actor,4) if actor.held_item == "guard_charm" else 0)+(PokemonStats.scale(actor,3) if has_relic("shield_pad") and not turn_flags.has("shield_pad") else 0)
 # Old input/API callers must also own a drawn card; fixed skills cannot bypass draw.
 func skill_view(key: String) -> Dictionary:
     for card: BattleCardInstance in hand:
@@ -227,12 +231,18 @@ func play_card(uid: int) -> String:
     if card.owner_uid != 0 and card.owner_uid != active().uid: _change_active(card.owner_uid,true)
     var actor := active()
     var target := enemy()
+    if view["category"] == "tool" and has_relic("tool_discount") and not turn_flags.has("tool_discount"):
+        turn_flags["tool_discount"] = true
+        if int(view.get("tool_discount",0)) > 0: BuildConceptRules.relic(self,"tool_discount","정밀 공구 · 도구 비용 -1")
     _record("skill" if card.owner_uid != 0 else "card",("%s · " % actor.display_name if card.owner_uid != 0 else "")+str(view["name"]),{"move_id":view["move_id"],"actor":actor.uid,"card_uid":card.uid})
     if card.owner_uid == turn_speed_owner_uid and has_relic("ace_core") and not turn_flags.has("ace_core"):
         turn_flags["ace_core"] = true
         if int(view.get("core_discount",0)) > 0: _record("relic","고정 조준경 · 기술 비용 -1",{"relic_key":"ace_core"})
     if view.has("damage"):
         var amount := attack_damage(view,actor)
+        if BuildConceptRules.sight_active(self,view,actor):
+            turn_flags["ace_sight"] = true
+            BuildConceptRules.relic(self,"ace_sight","에이스 조준기 · 첫 공격 기술 +25%")
         next_attack_bonus = 0
         switch_bonus.erase(actor.uid)
         if card.owner_uid != 0: turn_flags.erase("finisher_%d" % actor.uid)
@@ -279,6 +289,9 @@ func play_card(uid: int) -> String:
     if view.has("block"):
         var protection := _gain_block(actor,PokemonStats.scale(actor,int(view["block"]))+defense_bonus(actor))
         _record("shield",actor.display_name+" 보호막",{"target":actor.uid,"amount":protection})
+        if protection > 0 and has_relic("shield_pad") and not turn_flags.has("shield_pad"):
+            turn_flags["shield_pad"] = true
+            BuildConceptRules.relic(self,"shield_pad","완충 패드 · 첫 보호막 카드 추가 보호")
     if view.has("double_block"):
         var protection := _gain_block(actor,actor.block)
         if protection > 0: _record("shield","방벽 압축",{"target":actor.uid,"amount":protection})
@@ -306,6 +319,8 @@ func play_card(uid: int) -> String:
             ticks += int(target.statuses.get(status,{}).get("turns",0))
             target.statuses.erase(status)
         _damage(target,PokemonStats.scale(target,ticks*4),true)
+    if view.has("weather"): BattleWeather.apply(self,str(view["weather"]))
+    BuildConceptRules.apply(self,view,actor,target)
     if view.has("retain") and not hand.is_empty():
         var candidates: Array[BattleCardInstance] = []
         for candidate: BattleCardInstance in hand:
@@ -327,8 +342,9 @@ func play_card(uid: int) -> String:
         retained.clear()
         _draw(count+int(view.get("redraw_bonus",0)))
     if view.has("draw"): _draw(int(view["draw"]))
-    if view.get("condition_active",false): _draw(int(view["conditional_draw"]))
+    if view.get("condition_active",false) and view.has("conditional_draw"): _draw(int(view["conditional_draw"]))
     if card.owner_uid != 0:
+        BuildConceptRules.technique(self,actor)
         var first_technique := "technique_%d" % actor.uid
         if turn_flags.has(first_technique):
             if turn_flags.has("double_technique_%d" % actor.uid) and has_relic("ace_medal") and not turn_flags.has("ace_medal"):
@@ -358,6 +374,7 @@ func play_card(uid: int) -> String:
             energy += 1
             _draw(2)
             _record("relic","비상 보급함 · 에너지 +1 · 카드 2장",{"relic_key":"supply_core"})
+    BuildConceptRules.after_card(self,view,actor)
     if view.get("exhaust",false) or view.has("power"): exhausted.append(card)
     else: discard.append(card)
     _outcome()
@@ -369,6 +386,7 @@ func _retrieval_candidates(view: Dictionary,actor: BattlePokemon) -> Array[Battl
         var owner := member(card.owner_uid)
         if owner == null or not owner.alive(): continue
         if view.get("retrieve_scope","") == "reserve" and owner == actor: continue
+        if view.get("retrieve_scope","") == "active" and owner != actor: continue
         result.append(card)
     return result
 
@@ -411,6 +429,7 @@ func _change_active(uid: int, technique := false) -> void:
         turn_flags["relay_cell"] = true
         energy += 1
         _record("relic","릴레이 발전기 · 에너지 +1",{"relic_key":"relay_cell"})
+    BuildConceptRules.after_switch(self,technique)
 func switch_reason(uid: int) -> String:
     if phase not in [PLAYER,REPLACE]: return "전투가 끝났습니다."
     var pokemon := member(uid)
@@ -418,7 +437,8 @@ func switch_reason(uid: int) -> String:
     if phase == PLAYER and energy < manual_switch_cost(): return "수동 교대에는 에너지 %d이 필요합니다. 기술 카드는 무료로 교대합니다." % manual_switch_cost()
     return ""
 func manual_switch_cost() -> int:
-    return 2 if has_relic("ace_core") else 1
+    var base := 2 if has_relic("ace_core") else 1
+    return maxi(0,base-1) if has_relic("manual_pin") and not turn_flags.has("manual_pin") else base
 func switch_to(uid: int) -> String:
     var reason := switch_reason(uid)
     if not reason.is_empty(): return reason
@@ -427,6 +447,9 @@ func switch_to(uid: int) -> String:
     if not forced:
         energy -= manual_switch_cost()
         _stat("energy_spent",manual_switch_cost())
+    if not forced and has_relic("manual_pin") and not turn_flags.has("manual_pin"):
+        turn_flags["manual_pin"] = true
+        BuildConceptRules.relic(self,"manual_pin","안전 교대핀 · 직접 교대 비용 -1")
     _stat("forced_switches" if forced else "manual_switches")
     _change_active(uid)
     if forced:
@@ -458,6 +481,7 @@ func capture_enemy(energy_cost: int = 1) -> String:
 func end_turn() -> String:
     if phase != PLAYER: return "현재 턴을 종료할 수 없습니다."
     events.clear()
+    BuildConceptRules.end_turn(self)
     _stat("unused_energy",energy)
     _ace_uid = active().uid if not _turn_changed else 0
     for card: BattleCardInstance in hand.duplicate():
@@ -481,6 +505,7 @@ func end_turn() -> String:
 func _enemy_action() -> void:
     _pending = ""
     enemy().block = 0
+    var weather_foe := enemy()
     var state := opening()
     var action := intent()
     if enemy().statuses.has("sleep"):
@@ -513,12 +538,16 @@ func _enemy_action() -> void:
     if _outcome(): return
     _tick(enemy())
     if _outcome(): return
+    BattleWeather.end_round(self,weather_foe)
+    if _outcome(): return
     if not active().alive():
         phase = REPLACE
         _pending = "player"
     else: _start_player()
 func _start_player() -> void:
     var charged := has_relic("shield_battery") and bool(turn_flags.get("shield_battery",false))
+    var previous_flags := turn_flags.duplicate(true)
+    var stayed := _ace_uid == active().uid
     phase = PLAYER
     _pending = ""
     turn += 1
@@ -527,8 +556,12 @@ func _start_player() -> void:
     turn_flags.clear()
     turn_actors.clear()
     _turn_changed = false
-    for pokemon: BattlePokemon in party: pokemon.block = floori(pokemon.block*0.5) if has_relic("shield_core") and pokemon.alive() else 0
-    if has_relic("shield_core") and party.any(func(p: BattlePokemon): return p.block > 0): _record("relic","잔류 방벽 · 보호막 절반 보존",{"relic_key":"shield_core"})
+    var core_preserved := false
+    for pokemon: BattlePokemon in party:
+        if pokemon.alive() and previous_flags.get("keep_block_%d" % pokemon.uid,false): continue
+        pokemon.block = floori(pokemon.block*0.5) if has_relic("shield_core") and pokemon.alive() else 0
+        core_preserved = core_preserved or pokemon.block > 0
+    if core_preserved: _record("relic","잔류 방벽 · 보호막 절반 보존",{"relic_key":"shield_core"})
     if _ace_uid == active().uid:
         if has_relic("ace_focus"): _relic_stat("ace_focus")
         active().strength += 2*int(powers.get("ace",0))+(1 if has_relic("ace_focus") else 0)+(1 if active().held_item == "ace_band" else 0)
@@ -538,6 +571,7 @@ func _start_player() -> void:
     if charged:
         energy += 1
         _record("relic","축전 방패 · 에너지 +1",{"relic_key":"shield_battery"})
+    BuildConceptRules.start_turn(self,previous_flags,stayed)
 func status_damage(pokemon: BattlePokemon, key: String) -> int:
     var bonus := int(powers.get("attrition",0)) if pokemon.uid < 0 and key in ["burn","poison","seed"] else 0
     var amount := PokemonStats.scale(pokemon,2+bonus)
@@ -547,8 +581,10 @@ func _tick(pokemon: BattlePokemon) -> void:
         if not pokemon.alive() or not pokemon.statuses.has(key): continue
         var status: Dictionary = pokemon.statuses[key]
         status["turns"] = int(status["turns"])-1
-        if int(status["turns"]) <= 0: pokemon.statuses.erase(key)
+        var expired := int(status["turns"]) <= 0
+        if expired: pokemon.statuses.erase(key)
         _status_hit(pokemon,key,status)
+        if expired: BuildConceptRules.expired(self,pokemon,key)
     for key: String in ["sleep","paralysis","exposed"]:
         if pokemon.statuses.has(key):
             pokemon.statuses[key]["turns"] = int(pokemon.statuses[key]["turns"])-1
@@ -557,6 +593,7 @@ func _status_hit(pokemon: BattlePokemon,key: String,status: Dictionary) -> void:
     var health_before := pokemon.hp
     if pokemon.uid < 0 and key in ["burn","seed","poison"] and has_relic("status_core"): _record("relic","침식 촉매 · 지속 피해 +50%",{"relic_key":"status_core"})
     _damage(pokemon,status_damage(pokemon,key),true)
+    BuildConceptRules.status_hit(self,pokemon,key,health_before-pokemon.hp)
     if key == "seed":
         var owner := member(int(status["source_uid"]))
         if owner == null:
@@ -577,6 +614,7 @@ func _damage(target: BattlePokemon, amount: int, piercing := false) -> void:
     if phase == "enemy" and target.uid > 0 and blocked > 0 and lost == 0 and has_relic("shield_battery") and not turn_flags.has("shield_battery"):
         turn_flags["shield_battery"] = true
         _record("status","축전 방패 충전 · 다음 아군 턴 에너지 +1",{"target":target.uid})
+    BuildConceptRules.full_guard(self,target,blocked,lost)
     if target.alive() or target.knocked_out: return
     target.knocked_out = true
     if target.uid < 0:
@@ -618,6 +656,7 @@ func _outcome() -> bool:
             return true
     return false
 func _clear_statuses() -> void:
+    BattleWeather.clear(powers)
     _relay.clear()
     for pokemon: BattlePokemon in party+enemies:
         pokemon.statuses.clear()
@@ -638,6 +677,7 @@ func _draw(count: int) -> void:
             draw_pile.append_array(discard)
             discard.clear()
             _shuffle(draw_pile)
+            if not draw_pile.is_empty(): BuildConceptRules.reshuffle(self)
         if draw_pile.is_empty(): break
         var card := draw_pile.pop_back() as BattleCardInstance
         var owner := member(card.owner_uid)

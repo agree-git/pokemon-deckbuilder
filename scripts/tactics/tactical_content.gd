@@ -60,6 +60,34 @@ const CARDS := {
     "ace_finisher":{"name":"결정타 지시","category":"trainer","cost":1,"move_id":116,"finisher":true,"exhaust":true,"description":""},
     "status_pulse":{"name":"발병 촉진","category":"tool","cost":1,"move_id":92,"pulse_status":true,"exhaust":true,"description":""},
     "shield_double":{"name":"방벽 압축","category":"trainer","cost":1,"move_id":115,"double_block":true,"exhaust":true,"description":""},
+    "relay_formation":{"name":"대열 정비","cost":1,"party_block":4,"upgrade":{"party_block":6},"category":"trainer","move_id":97,"concept":"relay","description":""},
+    "relay_accelerate":{"name":"교대 가속","cost":0,"draw":1,"condition":"relay","conditional_energy":1,"exhaust":true,"upgrade":{"draw":2},"category":"trainer","move_id":97,"concept":"relay","description":""},
+    "relay_command":{"name":"합동 지휘","cost":1,"team_bonus":4,"upgrade":{"team_bonus":6},"category":"trainer","move_id":97,"concept":"relay","description":""},
+    "relay_cycle_plan":{"name":"순환 작전","cost":1,"power":"relay_cycle","upgrade":{"cost":0},"category":"trainer","move_id":97,"concept":"relay","description":""},
+    "ace_retrieve":{"name":"전담 회수","cost":1,"retrieve":true,"retrieve_scope":"active","retrieve_count":2,"exhaust":true,"upgrade":{"retrieve_count":3},"category":"trainer","move_id":116,"concept":"ace","description":""},
+    "ace_precision":{"name":"일점 집중","cost":1,"bonus":5,"condition":"ace","conditional_bonus":5,"upgrade":{"bonus":7,"conditional_bonus":7},"category":"trainer","move_id":116,"concept":"ace","description":""},
+    "ace_reserve":{"name":"전력 비축","cost":0,"bank_energy":1,"exhaust":true,"upgrade":{"bank_energy":2},"category":"trainer","move_id":116,"concept":"ace","description":""},
+    "ace_breathing":{"name":"침착한 호흡","cost":1,"power":"ace_guard","upgrade":{"cost":0},"category":"trainer","move_id":116,"concept":"ace","description":""},
+    "status_catalyst":{"name":"지속 촉매","cost":1,"extend_status":1,"exhaust":true,"upgrade":{"extend_status":2},"category":"trainer","move_id":92,"concept":"status","description":""},
+    "status_ampoule":{"name":"화상 앰풀","cost":1,"burn":3,"exhaust":true,"upgrade":{"cost":0},"category":"tool","move_id":52,"concept":"status","description":""},
+    "status_analysis":{"name":"오염 분석","cost":1,"draw":1,"condition":"status","conditional_draw":2,"upgrade":{"draw":2},"category":"trainer","move_id":92,"concept":"status","description":""},
+    "status_absorption":{"name":"흡수 작전","cost":1,"power":"toxin_heal","upgrade":{"cost":0},"category":"trainer","move_id":92,"concept":"status","description":""},
+    "shield_lock":{"name":"방벽 고정","cost":1,"keep_block":true,"exhaust":true,"upgrade":{"cost":0},"category":"trainer","move_id":115,"concept":"shield","description":""},
+    "shield_inspect":{"name":"방패 점검","cost":0,"draw":1,"condition":"shield","conditional_energy":1,"exhaust":true,"upgrade":{"draw":2},"category":"trainer","move_id":115,"concept":"shield","description":""},
+    "shield_regroup":{"name":"수비 재정비","cost":1,"block":6,"condition":"shield","conditional_draw":2,"upgrade":{"block":10},"category":"trainer","move_id":115,"concept":"shield","description":""},
+    "shield_fortress":{"name":"요새 작전","cost":2,"power":"bulwark","upgrade":{"cost":1},"category":"trainer","move_id":115,"concept":"shield","description":""},
+    "supply_recycle":{"name":"도구 재활용","cost":1,"recover_tool":1,"exhaust":true,"upgrade":{"cost":0},"category":"trainer","move_id":116,"concept":"supply","description":""},
+    "supply_pack":{"name":"만능 보급","cost":1,"heal":6,"block":6,"exhaust":true,"upgrade":{"heal":8,"block":8},"category":"tool","move_id":105,"concept":"supply","description":""},
+    "supply_dynamo":{"name":"긴급 동력","cost":1,"energy":2,"draw":1,"exhaust":true,"upgrade":{"energy":3},"category":"tool","move_id":116,"concept":"supply","description":""},
+    "supply_assembly":{"name":"현장 조립","cost":1,"power":"tool_bonus","upgrade":{"cost":0},"category":"trainer","move_id":116,"concept":"supply","description":""},
+    "cycle_filter":{"name":"선별 정리","cost":0,"cycle_discard":1,"draw":2,"exhaust":true,"upgrade":{"draw":3},"category":"trainer","move_id":116,"concept":"cycle","description":""},
+    "cycle_preserve":{"name":"계획 보존","cost":1,"retain_all":true,"exhaust":true,"upgrade":{"cost":0},"category":"trainer","move_id":116,"concept":"cycle","description":""},
+    "cycle_opportunity":{"name":"되찾은 기회","cost":0,"retrieve":true,"retrieve_count":1,"condition":"cycle","conditional_energy":1,"exhaust":true,"upgrade":{"retrieve_count":2},"category":"trainer","move_id":116,"concept":"cycle","description":""},
+    "cycle_engine":{"name":"재순환 엔진","cost":1,"power":"cycle_energy","upgrade":{"cost":0},"category":"trainer","move_id":116,"concept":"cycle","description":""},
+    "weather_rain":{"name":"비 작전","cost":1,"weather":"rain","upgrade":{"cost":0},"category":"trainer","move_id":240,"description":""},
+    "weather_snow":{"name":"눈 작전","cost":1,"weather":"snow","upgrade":{"cost":0},"category":"trainer","move_id":258,"description":""},
+    "weather_sun":{"name":"쾌청 작전","cost":1,"weather":"sun","upgrade":{"cost":0},"category":"trainer","move_id":241,"description":""},
+    "weather_sand":{"name":"모래바람 작전","cost":1,"weather":"sand","upgrade":{"cost":0},"category":"trainer","move_id":201,"description":""},
     "injury":{"name":"부상","category":"status","cost":1,"move_id":150,"description":"효과 없음. 기절 시 추가되며 야영지 휴식으로 제거."},
 }
 const RELICS := {
@@ -81,6 +109,18 @@ const RELICS := {
     "ace_medal":{"name":"돌파 훈장","icon":"energy","description":"같은 포켓몬이 한 턴 세 번째 기술을 쓰면 에너지 +1. 파티 전체에서 턴당 한 번."},
     "status_dish":{"name":"배양 접시","icon":"draw","description":"카드로 새로운 화상·독·씨앗을 걸어 적에게 두 종류 이상이 되면 카드 2장 뽑기. 턴당 한 번. 재부여 제외."},
     "shield_battery":{"name":"축전 방패","icon":"shield","description":"적의 공격을 보호막으로 완전히 막으면 다음 아군 턴 에너지 +1. 턴당 한 번. 피해 0인 공격·지속 피해 제외."},
+    "relay_signal":{"name":"교차 신호기","icon":"draw","description":"한 턴에 서로 다른 동료 2마리가 기술을 쓰면 카드 1장 뽑기. 턴당 한 번."},
+    "manual_pin":{"name":"안전 교대핀","icon":"switch","description":"매 턴 첫 직접 교대 비용 -1, 최소 0. 고정 조준경의 직접 교대 비용에도 적용. 강제 교대 제외."},
+    "ace_sight":{"name":"에이스 조준기","icon":"attack","description":"턴 시작 출전 멤버의 첫 공격 기술 피해 +25%. 다른 동료·공격 외 기술 제외. 상성 무효는 0."},
+    "ace_calm":{"name":"고요한 메달","icon":"draw","description":"교대 없이 턴을 마치면 다음 아군 턴 카드 1장 추가로 뽑기."},
+    "status_ember":{"name":"잔열 결정","icon":"boost","description":"매 턴 처음 적이 화상·독·씨앗으로 실제 HP 피해를 받으면 다음 공격 추가 피해 +3. 다음 공격자 최대 HP 기준으로 환산."},
+    "status_vial":{"name":"봉인 유리병","icon":"draw","description":"적 화상·독·씨앗이 정상 발동으로 남은 횟수를 모두 쓰면 카드 1장 뽑기. 턴당 한 번. 제거·즉시 발동 제외."},
+    "shield_pad":{"name":"완충 패드","icon":"shield","description":"매 턴 처음 기본 효과로 보호막을 얻는 카드의 보호막 +3. 받는 동료 최대 HP 기준으로 환산. 압축·파티 보호막 제외."},
+    "shield_badge":{"name":"보루 휘장","icon":"draw","description":"적의 양수 공격 피해를 보호막으로 완전히 막으면 다음 아군 턴 카드 1장 추가로 뽑기. 턴당 한 번. 지속 피해 제외."},
+    "tool_pouch":{"name":"구조 파우치","icon":"heal","description":"매 턴 첫 소진 도구 사용 시 출전 멤버 HP 3 회복. 해당 멤버 최대 HP 기준으로 환산."},
+    "tool_discount":{"name":"정밀 공구","icon":"energy","description":"매 턴 첫 도구 카드 비용 -1, 최소 0. 원래 0비용인 도구도 해당 턴 기회를 사용."},
+    "cycle_spring":{"name":"되감기 태엽","icon":"shield","description":"매 턴 처음 버린 더미를 다시 섞으면 출전 멤버 보호막 4. 해당 멤버 최대 HP 기준으로 환산."},
+    "cycle_bookmark":{"name":"보존 책갈피","icon":"energy","description":"손패 카드를 실제로 보존해 턴을 마치면 다음 아군 턴 에너지 +1. 여러 장이어도 한 번."},
     "status_lens":{"name":"상태 관측경","icon":"counter","description":"매 턴 처음 새로운 상태이상을 걸면 에너지 +1."},
 }
 const HELD_ITEMS := {
@@ -100,7 +140,10 @@ static func definition(card: BattleCardInstance) -> Dictionary:
     result["key"] = card.key
     result["owner_uid"] = card.owner_uid
     if card.owner_uid != 0 and result.has("heal") and not result.has("damage"): result["exhaust"] = true
-    if card.upgraded:
+    if card.upgraded and result.has("upgrade"):
+        for field: String in result["upgrade"]: result[field] = result["upgrade"][field]
+        result["name"] += " +"
+    elif card.upgraded:
         result["name"] += " +"
         var increased := false
         if result.has("move_power"):
@@ -146,7 +189,8 @@ static func description(view: Dictionary) -> String:
         if view.has(field):
             if field in ["block","heal","bonus"]:
                 var title: String = {"block":"보호막","heal":"회복","bonus":"다음 공격 추가 피해"}[field]
-                parts.append("%s %d" % [title,view["preview_"+field]] if view.has("preview_"+field) else "%s · 최대 HP의 %s" % [title,PokemonStats.percent(int(view[field]))])
+                if field == "bonus" and view.has("concept"): parts.append("다음 공격 추가 피해 · 다음 공격자 최대 HP의 "+PokemonStats.percent(int(view[field])))
+                else: parts.append("%s %d" % [title,view["preview_"+field]] if view.has("preview_"+field) else "%s · 최대 HP의 %s" % [title,PokemonStats.percent(int(view[field]))])
                 continue
             parts.append({"damage":"피해 %d","block":"보호막 %d","heal":"회복 %d","strength":"위력 보정 +%d%%","weaken":"적 위력 보정 -%d%%","draw":"%d장 뽑기","energy":"에너지 +%d","bonus":"다음 공격 +%d","temporary_strength":"교대 전까지 위력 보정 +%d%%"}[field] % (int(view[field])*10 if field in ["strength","weaken","temporary_strength"] else int(view[field])))
     if view.has("stat_changes"):
@@ -161,18 +205,23 @@ static func description(view: Dictionary) -> String:
         if view.has(status): parts.append({"burn":"화상","seed":"씨뿌리기","poison":"독","sleep":"수면","paralysis":"마비","confusion":"혼란","expose":"방어 약화"}[status]+" %d회" % int(view.get("preview_"+status,view[status])))
     if view.has("shield_attack"):
         parts.append("보호막 모두 소비 → 피해 %d · 상성 무시 · 적 보호막 적용" % int(view["preview_damage"]) if view.has("preview_damage") else "보호막 모두 소비 → 같은 수치의 피해 · 상성 무시 · 적 보호막 적용")
+    if view.has("condition"):
+        parts.append(BuildConceptContent.condition_text(str(view["condition"]))+((" (충족)" if view["condition_active"] else " (미충족)") if view.has("condition_active") else ""))
     if view.has("conditional_draw"):
-        var condition: String = {"relay":"이번 턴 기술로 교대했다면","ace":"출전 멤버가 이번 턴 기술을 2회 이상 썼다면"}[view["condition"]]
-        parts.append("%s %d장 뽑기" % [condition,view["conditional_draw"]]+((" (충족)" if view["condition_active"] else " (미충족)") if view.has("condition_active") else ""))
+        parts.append("조건 충족 시 %d장 뽑기" % int(view["conditional_draw"]))
+    if view.has("conditional_energy"): parts.append("조건 충족 시 에너지 +%d" % int(view["conditional_energy"]))
+    if view.has("conditional_bonus"): parts.append("조건 충족 시 다음 공격 추가 피해 + 다음 공격자 최대 HP의 "+PokemonStats.percent(int(view["conditional_bonus"])))
+    if view.has("weather"): parts.append(BattleWeather.tooltip(str(view["weather"])))
+    parts.append_array(BuildConceptContent.describe(view))
     if view.has("redraw"): parts.append("손패 교체"+(" · 추가 1장" if int(view.get("redraw_bonus",0)) > 0 else ""))
     if view.has("retain"): parts.append("비용이 높은 카드 %d장 보존" % int(view.get("retain_count",1)))
     if view.has("retrieve"):
-        parts.append("버린 더미에서 살아 있는 대기 동료의 기술을 최신순으로 최대 %d장 회수" % int(view["retrieve_count"]) if view.get("retrieve_scope","") == "reserve" else "버린 기술 카드 1장 회수")
+        parts.append("버린 더미에서 살아 있는 대기 동료의 기술을 최신순으로 최대 %d장 회수" % int(view["retrieve_count"]) if view.get("retrieve_scope","") == "reserve" else "버린 더미에서 출전 멤버의 기술을 최신순으로 최대 %d장 회수" % int(view["retrieve_count"]) if view.get("retrieve_scope","") == "active" else "버린 기술 카드 최대 %d장 회수" % int(view.get("retrieve_count",1)))
     if view.has("finisher"): parts.append("이번 턴 출전 멤버의 다음 공격 기술 피해 2배 · 중첩 불가")
     if view.has("pulse_status"): parts.append("적의 화상·독·씨앗을 각각 1회 즉시 발동 · 남은 횟수 유지 · 보호막 무시")
     if view.has("double_block"): parts.append("출전 멤버의 현재 보호막 2배 · 추가 %d" % int(view["preview_block_gain"]) if view.has("preview_block_gain") else "출전 멤버의 현재 보호막 2배 · 0이면 0")
     if view.has("cash"): parts.append("화상·독·씨앗 소비 · 남은 횟수마다 상대 최대 HP의 8.3% 피해")
-    if view.has("power"): parts.append({"relay":"지속: 기술로 교대 시 최대 HP의 6.3% 보호막","ace":"지속: 출전 유지 시 다음 턴 위력 보정 +20%","supply":"지속: 도구 사용 시 최대 HP의 10.4% 보호막","attrition":"지속: 아군이 건 화상·독·씨앗의 매회 피해 + 상대 최대 HP의 2.1%"}[view["power"]])
+    if view.has("power"): parts.append({"relay":"지속: 기술로 교대 시 최대 HP의 6.3% 보호막","ace":"지속: 출전 유지 시 다음 턴 위력 보정 +20%","supply":"지속: 도구 사용 시 최대 HP의 10.4% 보호막","attrition":"지속: 아군이 건 화상·독·씨앗의 매회 피해 + 상대 최대 HP의 2.1%"}.get(view["power"],BuildConceptContent.POWER_TEXT.get(view["power"],"")))
     if view.has("cleanse"): parts.append("상태이상 해제")
     if view.get("exhaust",false): parts.append("소진")
     return " · ".join(parts) if not parts.is_empty() else str(view.get("description","효과 없음"))
@@ -193,15 +242,53 @@ static func starting_deck(members: Array[BattlePokemon]) -> Array[BattleCardInst
     return result
 
 const CARD_THEMES := {
+    "relay_formation":["relay"],
+    "relay_accelerate":["relay"],
+    "relay_command":["relay"],
+    "relay_cycle_plan":["relay"],
+    "ace_retrieve":["ace"],
+    "ace_precision":["ace"],
+    "ace_reserve":["ace"],
+    "ace_breathing":["ace"],
+    "status_catalyst":["status"],
+    "status_ampoule":["status"],
+    "status_analysis":["status"],
+    "status_absorption":["status"],
+    "shield_lock":["shield"],
+    "shield_inspect":["shield"],
+    "shield_regroup":["shield"],
+    "shield_fortress":["shield"],
+    "supply_recycle":["supply"],
+    "supply_pack":["supply"],
+    "supply_dynamo":["supply"],
+    "supply_assembly":["supply"],
+    "cycle_filter":["cycle"],
+    "cycle_preserve":["cycle"],
+    "cycle_opportunity":["cycle"],
+    "cycle_engine":["cycle"],
+
     "relay_plan":["relay"],"relay_cover":["relay"],"relay_retrieve":["relay"],
     "ace_finisher":["ace"],"status_pulse":["status","supply"],"shield_double":["shield"],
-    "ace_plan":["ace"],"ace_order":["ace"],"boost_card":["ace"],"hold":["ace"],
+    "ace_plan":["ace"],"ace_order":["ace"],"boost_card":["ace"],"hold":["ace","cycle"],"redraw":["cycle"],"retrieve":["cycle"],
     "status_cash":["status"],"status_plan":["status"],"toxic_flask":["status","supply"],
     "tool_plan":["supply","shield"],"shield_cell":["supply","shield"],
     "potion_card":["supply"],"smoke_card":["supply"],"ether_card":["supply"],"antidote_card":["supply"],
     "guard":["shield"],"counter":["shield"],"shield_strike":["shield"],
 }
 const RELIC_THEMES := {
+    "relay_signal":["relay"],
+    "manual_pin":["relay"],
+    "ace_sight":["ace"],
+    "ace_calm":["ace"],
+    "status_ember":["status"],
+    "status_vial":["status"],
+    "shield_pad":["shield"],
+    "shield_badge":["shield"],
+    "tool_pouch":["supply"],
+    "tool_discount":["supply"],
+    "cycle_spring":["cycle"],
+    "cycle_bookmark":["cycle"],
+
     "relay_core":["relay"],"ace_core":["ace"],"status_core":["status"],"shield_core":["shield"],"supply_core":["supply"],
     "seed_relay":["status"],"status_lens":["status"],"status_flask":["status"],
     "switch_power":["relay"],"relay_draw":["relay"],"relay_cell":["relay"],

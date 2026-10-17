@@ -78,6 +78,7 @@ func update_card(view: Dictionary,reason: String,locked: bool) -> void:
     tooltip_text = ("위력 %d · %s\n" % [view["move_power"],"물리" if view.get("damage_class","") == "physical" else "특수"] if view.has("move_power") else "")+str(view["name"])+"\n"+caption+"\n"+description+("\n자동 교대 후 사용 · 추가 교대 비용 없음" if view.get("switches",false) else "")+("\n"+reason if not reason.is_empty() else "")
     if view.get("exhaust",false): tooltip_text += "\n소진: 사용 후 이번 전투에서 제외됩니다."
     if int(view.get("core_discount",0)) > 0: tooltip_text += "\n고정 조준경 · 턴 시작 출전 멤버의 첫 기술 비용 -1"
+    if int(view.get("tool_discount",0)) > 0: tooltip_text += "\n정밀 공구 · 첫 도구 카드 비용 -1"
     _available = not locked and reason.is_empty()
     _locked = locked
     disabled = not _available

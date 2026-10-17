@@ -95,6 +95,17 @@ func run() -> void:
     check(scroll.scroll_vertical > 0 and list.get_child(last).get_global_rect().end.y <= scroll.get_global_rect().end.y+1,"The last relic remains reachable inside the scroll viewport")
     check(scroll.get_global_rect().end.y < ui.battle_ui.restart_button.get_global_rect().position.y,"Relics never overlap the restart action")
     await picture("core-relic-endgame-menu")
+    var b := ui.battle_ui.battle
+    var before_cost := b.manual_switch_cost()
+    check(ui.battle_ui.switch_label.text == "직접 교대 %d" % before_cost,"Endgame HUD displays actual discounted manual cost")
+    check(ui.battle_ui.help_panel.find_child("SwitchCostHint",true,false).text.ends_with(str(before_cost)),"Help uses the same actual switch cost")
+    check(ui.battle_ui.relic_chip.tooltip_text.length() < 1400 and ui.battle_ui.relic_chip.tooltip_text.contains("전체 %d개 확인" % b.relics.size()),"Large relic collection has a bounded HUD summary and full-menu entry")
+    var candidates: Array[BattlePokemon] = b.party.filter(func(p: BattlePokemon): return p.alive() and p != b.active())
+    if not candidates.is_empty():
+        ui.battle_ui.menu_panel.hide()
+        var index := b.party.find(candidates[0])
+        await click(ui.battle_ui.party_buttons[index])
+        check(b.turn_flags.has("manual_pin") and ui.battle_ui.switch_label.text == "직접 교대 %d" % b.manual_switch_cost(),"Manual pointer switch spends pin and refreshes the new cost")
     ui.free()
     root.get_node("GameMusic").stop_music()
     root.get_node("GameCries").stop_all()

@@ -48,5 +48,6 @@ static func analyze(battle: TacticalBattle,uid: int,capture_check: Callable = Ca
         "actor_after":BattleFrame.member(sandbox.active()),"target_before":target_before,
         "target_after":BattleFrame.member(target),"switched":actor.uid != battle.active().uid,
         "energy_before":battle.energy,"energy_after":sandbox.energy,
+        "weather_after":BattleWeather.kind(sandbox.powers) if battle.card_view(card).has("weather") else "",
         "won":sandbox.phase == TacticalBattle.WON,"enemy_changed":sandbox.enemy_index != battle.enemy_index,"intent":sandbox.intent(),
         "capture_shown":capture_check.is_valid(),"capture_reason":capture_reason}

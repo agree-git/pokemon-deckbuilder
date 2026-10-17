@@ -23,6 +23,11 @@ static func definition(key: String) -> Dictionary:
         view["description"] = "아무 일도 일어나지 않습니다."
         _definitions[key] = view
         return view
+    if BattleWeather.MOVES.has(int(raw["id"])):
+        view["weather"] = BattleWeather.MOVES[int(raw["id"])]
+        view["description"] = BattleWeather.tooltip(view["weather"])
+        _definitions[key] = view
+        return view
     var effects: Array[String] = []
     if int(raw["category"]) != 1:
         view["move_power"] = int(raw["power"]) if int(raw["power"]) > 0 else 40

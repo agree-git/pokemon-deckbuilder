@@ -36,11 +36,11 @@ static func scale(pokemon: BattlePokemon, points: int) -> int:
     return maxi(1,roundi(points*pokemon.max_hp/48.0))
 static func percent(points: int) -> String:
     return String.num(points*100.0/48.0,1).trim_suffix(".0")+"%"
-static func damage(actor: BattlePokemon, target: BattlePokemon, move: Dictionary, affinity: float, flat_bonus := 0, pressure := 1.0) -> int:
+static func damage(actor: BattlePokemon, target: BattlePokemon, move: Dictionary, affinity: float, flat_bonus := 0, pressure := 1.0, weather := "") -> int:
     if affinity <= 0: return 0
     var special: bool = move.get("damage_class","physical") == "special"
     var offense := effective(actor,"special_attack" if special else "attack")
-    var defense := effective(target,"special_defense" if special else "defense")
+    var defense := maxi(1,floori(effective(target,"special_defense" if special else "defense")*BattleWeather.defense_factor(weather,target,special)))
     var power := maxi(1,int(move.get("move_power",40)))
     var level_factor := floori(2*actor.level/5.0)+2
     var raw := floori(floori(level_factor*power*offense/float(defense))/50.0)+2
@@ -48,6 +48,6 @@ static func damage(actor: BattlePokemon, target: BattlePokemon, move: Dictionary
     var stab := 1.5 if not struggle and move.get("type","normal") in actor.types else 1.0
     var tactical := maxf(0.4,1.0+actor.strength*0.1)
     var burn := 0.5 if not special and actor.statuses.has("burn") else 1.0
-    return maxi(1,floori((raw*DAMAGE_SCALE*tactical*burn+scale(actor,flat_bonus))*stab*affinity*pressure))
+    return maxi(1,floori((raw*DAMAGE_SCALE*tactical*burn+scale(actor,flat_bonus))*stab*affinity*pressure*BattleWeather.attack_factor(weather,str(move.get("type","normal")))))
 static func summary(pokemon: BattlePokemon) -> String:
     return "HP %d · 공격 %d · 방어 %d\n특공 %d · 특방 %d · 스피드 %d" % [pokemon.max_hp,effective(pokemon,"attack"),effective(pokemon,"defense"),effective(pokemon,"special_attack"),effective(pokemon,"special_defense"),effective(pokemon,"speed")]

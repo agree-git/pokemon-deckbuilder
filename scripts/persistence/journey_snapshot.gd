@@ -207,8 +207,14 @@ static func validate(data: Variant) -> bool:
             if intent["kind"] == "fortify" and intent.get("stat") not in ["defense","special_defense"]: return false
             if intent["kind"] == "status" and (intent.get("status") not in ["burn","poison","seed"] or not integer(intent["value"],1,3)): return false
             if intent["kind"] in ["fortify","recover"] and not integer(intent["value"],0,16): return false
+    var weather_count := 0
     for key: Variant in b["powers"]:
-        if key not in ["relay","ace","supply","attrition"] or not integer(b["powers"][key],1,512): return false
+        if key in ["weather_rain","weather_snow","weather_sun","weather_sand"]:
+            if not integer(b["powers"][key],1,BattleWeather.TURNS): return false
+            weather_count += 1
+            continue
+        if key not in ["relay","ace","supply","attrition","relay_cycle","ace_guard","toxin_heal","bulwark","tool_bonus","cycle_energy","energy_bank"] or not integer(b["powers"][key],1,512): return false
+    if weather_count > 1: return false
     for key: Variant in b["turn_flags"]:
         if not key is String or not b["turn_flags"][key] is bool: return false
     for uid: Variant in b["turn_actors"]:

@@ -74,6 +74,9 @@ func display(value: Dictionary,current_actor_uid: int) -> void:
     var energy_change := int(value["energy_after"])-int(value["energy_before"])
     resources.text = (CardEffectText.icon("energy")+" "+_signed(energy_change) if energy_change != 0 else "")
     if not incoming.is_empty(): resources.text += (" · " if not resources.text.is_empty() else "")+incoming
+    if not str(value.get("weather_after","")).is_empty():
+        var key := str(value["weather_after"])
+        resources.text += (" · " if not resources.text.is_empty() else "")+CardEffectText.icon("weather_"+key)+"5턴"
     resources.visible = not resources.text.is_empty()
     capture.visible = value["capture_shown"]
     capture.text = "포획 가능 · 사용 후 C" if value["capture_reason"] == "" else str(value["capture_reason"])

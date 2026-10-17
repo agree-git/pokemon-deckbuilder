@@ -77,6 +77,7 @@ var settings_button: Button
 var help_button: Button
 var draw_button: Button
 var discard_button: Button
+var weather_chip: Button
 var relic_chip: Button
 var ally_statuses := Control.new()
 var enemy_statuses := Control.new()
@@ -234,6 +235,12 @@ func _build() -> void:
     relic_chip = W.button(self,Rect2(274,16,208,40),func(): _open_overlay(menu_panel))
     W.icon(relic_chip,"seed",Rect2(12,8,24,24)).name = "Icon"
     W.label(relic_chip,"",Rect2(48,0,146,40),17,W.MUTED).name = "Title"
+    weather_chip = W.button(self,Rect2(512,16,244,40),func(): pass)
+    weather_chip.name = "WeatherChip"
+    W.icon(weather_chip,"weather_rain",Rect2(12,8,24,24)).name = "Icon"
+    W.label(weather_chip,"",Rect2(48,0,184,40),18,W.TEXT).name = "Title"
+    weather_chip.mouse_default_cursor_shape = Control.CURSOR_ARROW
+    weather_chip.focus_mode = Control.FOCUS_NONE
     status_label = _label("",Rect2(830,18,260,36),20,CREAM,HORIZONTAL_ALIGNMENT_CENTER)
     history_button = W.icon_button(self,"history",Rect2(1660,14,48,44),func(): _open_overlay(log_panel),"전투 기록")
     help_button = W.icon_button(self,"help",Rect2(1724,14,48,44),func(): _open_overlay(help_panel),"전투 도움말 · F1")
@@ -466,7 +473,7 @@ func _build_help() -> Control:
         W.label(body,steps[i][2],Rect2(x,247,320,125),16,CREAM)
     W.panel(body,Rect2(36,420,1008,164),Color("203940"),Color.TRANSPARENT)
     W.icon(body,"switch",Rect2(60,446,32,32))
-    W.label(body,"기술 카드 자동 교대 무료 · 직접 교대는 에너지 %d" % battle.manual_switch_cost(),Rect2(112,437,860,44),21)
+    W.label(body,"기술 카드 자동 교대 무료 · 직접 교대는 에너지 %d" % battle.manual_switch_cost(),Rect2(112,437,860,44),21).name = "SwitchCostHint"
     CardEffectText.status_legend(body,Rect2(60,495,940,78))
     W.label(body,"교체 1 / 2 / 3     손패 Q / W / E / R     턴 종료 Enter",Rect2(36,609,1008,32),18,MINT)
     CardEffectText.legend(body,Rect2(36,648,1008,42))
@@ -669,7 +676,9 @@ func _refresh() -> void:
     end_button.get_node("Title").text = "교체 선택" if battle.phase == TacticalBattle.REPLACE else "턴 종료"
     end_button.get_node("Title").add_theme_color_override("font_color",W.MUTED if end_button.disabled else Color("10232b"))
     end_button.get_child(1).modulate.a = 0.35 if end_button.disabled else 1.0
-    switch_label.text = "교대 선택" if battle.phase == TacticalBattle.REPLACE else "직접 교대 1"
+    switch_label.text = "교대 선택" if battle.phase == TacticalBattle.REPLACE else "직접 교대 %d" % battle.manual_switch_cost()
+    var cost_hint: Label = help_panel.find_child("SwitchCostHint",true,false)
+    if cost_hint != null: cost_hint.text = "기술 카드 자동 교대 무료 · 직접 교대는 에너지 %d" % battle.manual_switch_cost()
     for i in party_buttons.size():
         var pokemon := _view_member(battle.party[i])
         var button := party_buttons[i]
@@ -699,8 +708,26 @@ func _refresh() -> void:
     relic_chip.get_node("Icon").texture = W.texture("badge")
     relic_chip.get_node("Title").text = "파티 유물 · %d" % battle.relics.size()
     var descriptions: Array[String] = []
-    for key: String in battle.relics: descriptions.append(str(TacticalContent.RELICS[key]["name"])+" · "+str(TacticalContent.RELICS[key]["description"]))
-    for key: String in battle.powers: descriptions.append("지속 작전 · %s ×%d" % [{"relay":"릴레이","ace":"에이스","supply":"보급","attrition":"소모전"}[key],battle.powers[key]])
+    var shown_relics: Array[String] = []
+    var core := CoreRelics.selected(battle.relics)
+    if not core.is_empty(): shown_relics.append(core)
+    var ordinary: Array[String] = []
+    for key: String in battle.relics:
+        if key not in CoreRelics.KEYS: ordinary.append(key)
+    shown_relics.append_array(ordinary.slice(maxi(0,ordinary.size()-3)))
+    for key: String in shown_relics: descriptions.append(str(TacticalContent.RELICS[key]["name"])+" · "+str(TacticalContent.RELICS[key]["description"]))
+    if ordinary.size() > 3: descriptions.append("최근 일반 유물 3개 표시 · 클릭해서 전체 %d개 확인" % battle.relics.size())
+    var shown_powers: Dictionary = _visual_frame.get("powers",battle.powers)
+    for key: String in shown_powers:
+        if key.begins_with("weather_"): continue
+        descriptions.append("지속 효과 · %s ×%d" % [{"relay":"릴레이","ace":"에이스","supply":"보급","attrition":"소모전"}.get(key,BuildConceptContent.POWER_TITLES.get(key,key)),shown_powers[key]])
+    var weather := BattleWeather.kind(shown_powers)
+    weather_chip.visible = not weather.is_empty()
+    stage.canvas.weather = weather
+    if not weather.is_empty():
+        weather_chip.get_node("Icon").texture = W.texture("weather_"+weather)
+        weather_chip.get_node("Title").text = "%s · %d턴" % [BattleWeather.TITLES[weather],BattleWeather.remaining(shown_powers)]
+        weather_chip.tooltip_text = BattleWeather.tooltip(weather)
     relic_chip.tooltip_text = "\n".join(descriptions)
     log_text.text = "\n".join(battle.history)
     if run_mode and capture_status.is_valid():
@@ -734,6 +761,9 @@ func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
     var flags: Dictionary = _visual_frame.get("turn_flags",battle.turn_flags)
     if flags.get("finisher_%d" % pokemon.uid,false):
         items.append(["attack","×2","결정타 지시 · 이번 턴 이 멤버의 다음 공격 기술 피해 2배 · 중첩 불가"])
+    if flags.get("keep_block_%d" % pokemon.uid,false): items.append(["shield","보존","이 멤버의 남은 보호막을 다음 아군 턴 시작에 1회 전부 보존"])
+    var shown_powers: Dictionary = _visual_frame.get("powers",battle.powers)
+    if pokemon.uid == _view_active().uid and int(shown_powers.get("energy_bank",0)) > 0: items.append(["energy","+%d" % int(shown_powers["energy_bank"]),"다음 아군 턴 비축 에너지"])
     if pokemon.uid == _view_active().uid and flags.get("shield_battery",false):
         items.append(["energy","+1","축전 방패 충전 · 다음 아군 턴 에너지 +1"])
     if pokemon.uid == battle.active().uid and battle.next_attack_bonus > 0:
@@ -937,7 +967,7 @@ func _play_event(event: Dictionary) -> void:
         # The frame shows zero HP before the combatant disappears.
         var target := int(event.get("target",0))
         if target == _view_active().uid or target == _view_enemy().uid: motion.faint(target > 0)
-    elif kind in ["relic","power","cancel","turn","capture","status","stat","shield_spent","cards_returned"]: _announce(event["text"])
+    elif kind in ["relic","power","cancel","turn","capture","status","stat","shield_spent","cards_returned","cards_discarded","weather","weather_tick","weather_turn","weather_end"]: _announce(event["text"])
 func _float_value(text: String,on_ally: bool,color: Color,icon_key := "") -> void:
     var at := stage.canvas.source_anchor if on_ally else stage.canvas.target_anchor
     var number := CardEffectText.label(damage_layer,Rect2(at.x-170,at.y-120,340,90),42,color)
