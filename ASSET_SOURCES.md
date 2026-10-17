@@ -22,7 +22,7 @@
 
 타입 배지는 [duiker101/pokemon-type-svg-icons](https://github.com/duiker101/pokemon-type-svg-icons), 커밋 `5781623f147f1bf850f426cfe1874ba56a9b75ee`를 바탕으로 합니다. [원 디자인](https://dribbble.com/shots/4862612-Pokedex-iOS-app), [업스트림 안내](assets/sources/type-icons/README.md.txt), [명세](assets/sources/type_icons.json)를 유지합니다. “Very simple set of SVG icons for Pokemon types for any use.”라는 안내가 있으며 별도 LICENSE는 없습니다.
 
-바이옴/리그 배경은 프로젝트용으로 이미지 생성 도구에서 제작했습니다. [바이옴 지문](assets/biomes/manifest.json)·[리그 지문](assets/league/manifest.json)과 `data/battlefield_layouts.json` 좌표를 사용합니다. 그 밖의 UI 기호·카드 그림·공용 트레이너·기술/날씨 연출은 코드로 직접 작성했습니다. 보스 대사는 자체 작성입니다.
+바이옴/리그 배경은 프로젝트용으로 이미지 생성 도구에서 제작했습니다. [바이옴 지문](assets/biomes/manifest.json)·[리그 지문](assets/league/manifest.json)과 `data/battlefield_layouts.json` 좌표를 사용합니다. 그 밖의 UI 기호·카드 그림·공용 트레이너·기술/날씨 연출은 코드로 직접 작성했습니다. 보스 대사와 희귀 포켓몬의 조우·포획·합류·방출 문구는 자체 작성입니다.
 
 ## 오디오·글꼴
 

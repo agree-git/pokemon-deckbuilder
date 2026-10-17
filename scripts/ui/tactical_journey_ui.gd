@@ -35,6 +35,7 @@ var learn_buttons: Array[Button] = []
 var travelling := false
 var travel: JourneyTravel
 var encounter_buttons: Array[Button] = []
+var rare_reaction: Dictionary = {}
 
 func _ready() -> void:
     set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -144,6 +145,15 @@ func refresh() -> void:
         learning_comparison.accepted.connect(_learn)
         page.add_child(learning_comparison)
     UiMotion.appear(page)
+    if not rare_reaction.is_empty():
+        var reaction := RareReactionPanel.new()
+        reaction.species_id = rare_reaction["id"]
+        reaction.event = rare_reaction["event"]
+        reaction.closed.connect(_close_rare_reaction)
+        page.add_child(reaction)
+func _close_rare_reaction() -> void:
+    rare_reaction.clear()
+    refresh()
 func _open_learning_comparison() -> void:
     if journey.learning_preview(0).is_empty(): return
     learning_compare_slot = 0
@@ -780,16 +790,25 @@ func _capture_choice() -> void:
     var catalog := VisualCatalog.new()
     var basic := catalog.species(catalog.starter_species_id(caught.species_id))
     W.label(page,"스타팅 해금 · "+str(basic["name"]),Rect2(550,535,1190,40),21,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
+    var reaction := RareCaptureReaction.line(caught.species_id, "capture")
+    if not reaction.is_empty():
+        var quote := W.label(page, reaction, Rect2(550, 574, 1190, 48), 21, W.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
+        quote.name = "RareCaptureQuote"
+        quote.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     if journey.party.size() < 3:
         _action("합류할 기술 카드 확인",Rect2(820,630,560,76),_preview_recruit.bind(0),"ball").name = "Recruit_0"
     else:
         for i in journey.party.size():
             _action(journey.party[i].display_name+"와 교체 확인",Rect2(550+i*404,630,382,76),_preview_recruit.bind(i),"switch").name = "Recruit_%d" % i
-    _action("풀어주기",Rect2(900,740,470,62),_resolve_capture.bind(-1),"next")
+    _action("풀어주기",Rect2(900,740,470,62),_resolve_capture.bind(-1),"next").name = "ReleaseCapture"
 func _resolve_capture(index: int) -> void:
+    var id := journey.pending_captures[0].species_id if journey.phase == TacticalJourney.CAPTURE and not journey.pending_captures.is_empty() else 0
     if journey.resolve_capture(index).is_empty():
         recruit_index = -1
+        if id in RareEncounter.IDS:
+            rare_reaction = {"id":id, "event":"released" if index < 0 else "joined"}
         refresh()
+        if id in RareEncounter.IDS: get_node("/root/GameCries").play(id)
 func _preview_recruit(index: int) -> void:
     if RecruitmentPreview.describe(journey,index).is_empty(): return
     recruit_index = index

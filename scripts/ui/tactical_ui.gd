@@ -19,6 +19,7 @@ var rare_speech: Panel
 var rare_entrance: RareEntrance
 var _rare_hidden := false
 var result_speech: TrainerSpeech
+var capture_quote: Label
 var dialogue_history: Array[Dictionary] = []
 var _dialogue_seen: Dictionary = {}
 signal run_continue_requested
@@ -592,6 +593,10 @@ func _build_result() -> void:
     result_speech.size = Vector2(688,90)
     result_speech.compact = true
     body.add_child(result_speech)
+    capture_quote = W.label(body, "", Rect2(48, 318, 664, 80), 20, CREAM, HORIZONTAL_ALIGNMENT_CENTER)
+    capture_quote.name = "RareCaptureResultQuote"
+    capture_quote.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+    capture_quote.hide()
     result_restart = W.button(body,Rect2(200,395,360,68),restart,"원정 다시 하기" if run_mode else "다시 하기")
     result_next = W.button(body,Rect2(200,483,360,56),func():
         if run_mode: run_continue_requested.emit()
@@ -846,6 +851,18 @@ func _refresh() -> void:
         result_next.position.y = 513 if result_speech.visible else 483
         result_title.text = "승리!" if battle.phase == TacticalBattle.WON else "파티가 쓰러졌습니다"
         var captures := battle.enemy_states.filter(func(s: Dictionary): return s.get("captured",false)).size()
+        var captured_rare := 0
+        for i in battle.enemies.size():
+            if battle.enemy_states[i].get("captured", false) and battle.enemies[i].species_id in RareEncounter.IDS:
+                captured_rare = battle.enemies[i].species_id
+                break
+        capture_quote.text = RareCaptureReaction.line(captured_rare, "capture") if battle.phase == TacticalBattle.WON else ""
+        capture_quote.visible = not capture_quote.text.is_empty()
+        if capture_quote.visible:
+            result_title.text = "포획 성공!"
+            result_detail.position.y = 260
+            result_restart.position.y = 425
+            result_next.position.y = 513
         result_detail.text = "%d턴  ·  격파 %d  ·  포획 %d" % [int(_visual_frame.get("turn",battle.turn)),battle.enemies.filter(func(p: BattlePokemon): return not p.alive()).size()-captures,captures]
     else:
         UiMotion.close(result,true)
