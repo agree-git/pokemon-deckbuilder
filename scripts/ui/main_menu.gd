@@ -1,6 +1,6 @@
 class_name MainMenu
 extends Control
-## Development probes may retain the short authored route. Normal games use the campaign.
+## New campaigns, saved-game resume and collection browsing.
 var full_campaign := true
 const W = preload("res://scripts/ui/combat_widgets.gd")
 var catalog := VisualCatalog.new()

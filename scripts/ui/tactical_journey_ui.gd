@@ -961,9 +961,6 @@ func _restart(relic: String) -> void:
 func _new_seed() -> void:
     journey.restart(int(Time.get_unix_time_from_system()) ^ Time.get_ticks_usec(),journey.relic)
     refresh()
-func _lab() -> void:
-    get_node("/root/BattleSession").set("return_scene","res://scenes/tactical_journey.tscn")
-    get_tree().change_scene_to_file("res://scenes/art_lab.tscn")
 func _home() -> void:
     get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 func _unhandled_key_input(event: InputEvent) -> void:

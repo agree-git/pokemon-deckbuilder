@@ -2,8 +2,6 @@ extends Node
 signal save_status_changed
 const MAX_STARTERS := 3
 ## Owns the auto-saved campaign and the separately persistent collection.
-var run := RunState.new(2026)
-var tactics := TacticalBattle.new(2026)
 var journey := TacticalJourney.new(2026)
 var profile := PlayerProfile.new()
 var save_store := JourneySave.new()
@@ -11,10 +9,6 @@ var save_notice := ""
 var _tracked_journey: TacticalJourney
 var has_journey := false
 var open_starter_selection := false
-var return_scene := "res://scenes/tactical_battle.tscn"
-var battle: BattleState:
-    get:
-        return run.battle
 
 func start_journey(starters: Array[int],run_seed: int, full_campaign := true) -> String:
     var catalog := VisualCatalog.new()

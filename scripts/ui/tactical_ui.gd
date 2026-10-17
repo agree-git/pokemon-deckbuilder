@@ -43,8 +43,6 @@ var relic_buttons: Dictionary = {}
 var trainer_buttons: Dictionary = {}
 var end_button: Button
 var restart_button: Button
-var old_button: Button
-var lab_button: Button
 var history_button: Button
 var ally_bar: ColorRect
 var enemy_bar: ColorRect
@@ -115,7 +113,7 @@ var _opening_cry: Tween
 
 func _ready() -> void:
     set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-    if battle == null: battle = get_node("/root/BattleSession").get("tactics")
+    if battle == null: battle = TacticalBattle.new(2026)
     var music := get_node("/root/GameMusic")
     music.play_theme("camp" if battle.phase in [TacticalBattle.WON,TacticalBattle.LOST] else music.for_battle(str(opponent_trainer.get("kind","wild"))))
     _theme()
@@ -455,11 +453,9 @@ func _build_menu() -> Control:
         home_button = _menu_action(body,"home","시작 화면","",492,_home)
         bag_button = _menu_action(body,"heal","가방","",564,_show_bag)
     else:
-        old_button = _menu_action(body,"route","기존 원정","F3",492,_old_run)
-        lab_button = _menu_action(body,"lab","아트 랩","F2",564,_open_lab)
+        home_button = _menu_action(body,"home","시작 화면","",492,_home)
     settings_button = _menu_action(body,"settings","설정","",636,_settings)
     _menu_action(body,"exhaust","소진된 카드","",708,func(): _show_pile("exhausted"))
-    if not run_mode: _menu_action(body,"route","전술 원정","F4",780,_toggle_journey)
     _label("1 / 2 / 3 교대 · Q / W / E / R 손패 1~4장",Rect2(32,848,558,32),16,W.MUTED,HORIZONTAL_ALIGNMENT_LEFT,body)
     return overlay
 
@@ -517,7 +513,7 @@ func _build_result() -> void:
     result_restart = W.button(body,Rect2(200,395,360,68),restart,"원정 다시 하기" if run_mode else "다시 하기")
     result_next = W.button(body,Rect2(200,483,360,56),func():
         if run_mode: run_continue_requested.emit()
-        else: _old_run(),"계속 진행" if run_mode else "짧은 원정으로")
+        else: _home(),"계속 진행" if run_mode else "시작 화면으로")
 
 func _open_overlay(overlay: Control) -> void:
     if result.visible or busy: return
@@ -1066,15 +1062,8 @@ func restart(selected_relic: String = "") -> void:
     battle.restart(battle.seed_value,battle.relic if selected_relic.is_empty() else selected_relic)
     notice.text = ""
     _refresh()
-func _old_run() -> void:
-    get_tree().change_scene_to_file("res://scenes/battle_preview.tscn")
 func _home() -> void:
     get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
-func _open_lab() -> void:
-    get_node("/root/BattleSession").set("return_scene","res://scenes/tactical_journey.tscn" if run_mode else "res://scenes/tactical_battle.tscn")
-    get_tree().change_scene_to_file("res://scenes/art_lab.tscn")
-func _toggle_journey() -> void:
-    get_tree().change_scene_to_file("res://scenes/tactical_battle.tscn" if run_mode else "res://scenes/tactical_journey.tscn")
 func _settings() -> void:
     if busy: return
     _clear_action_preview()
@@ -1087,12 +1076,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
         get_viewport().set_input_as_handled()
         return
     if _overlay_open(): return
-    if run_mode and event.keycode in [KEY_F2,KEY_F3,KEY_F4]: return
-    if result.visible:
-        match event.keycode:
-            KEY_F3: _old_run()
-            KEY_F4: _toggle_journey()
-        return
+    if result.visible: return
     if event.keycode in SKILL_KEYS:
         _skill_slot(SKILL_KEYS.find(event.keycode))
         return
@@ -1104,9 +1088,6 @@ func _unhandled_key_input(event: InputEvent) -> void:
             if run_mode: _capture()
         KEY_ENTER: _end()
         KEY_F1: _open_overlay(help_panel)
-        KEY_F2: _open_lab()
-        KEY_F3: _old_run()
-        KEY_F4: _toggle_journey()
 func _notify(message: String) -> void:
     notice.text = message
     notice.modulate.a = 1
