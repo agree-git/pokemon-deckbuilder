@@ -45,3 +45,7 @@
 - 추가 울음소리 **82개**: [PokéAPI/cries](https://github.com/PokeAPI/cries) `b3a9044bb839b5e3152aaa536c7b463a0fcf0140`. [울음소리 manifest](assets/audio/cries/manifest.json)에 원본 URL·지문을 기록했습니다. 업스트림의 808/809 파일은 확장자가 `.ogg`지만 실제 MP3여서 Ogg Vorbis quality 6으로 변환했고 원본/결과 지문을 구분했습니다.
 - 새 진화 재료의 표시는 PokéAPI의 `seal-case`/`rare-candy` 아이콘을 공용 상징으로 사용합니다. 악의족자 원작 도트라고 표시하지 않습니다. 멜탄의사탕은 혼자 진행하는 원정에 맞춘 진화 재료입니다.
 - **최종 초전설 등장 연출 25종**은 프로젝트에서 직접 작성한 절차적 도트 도형입니다. DNA·무지개·거품·지진·파도·구름·시간·공간·그림자·불꽃·번개·얼음·수풀·세포·태양·달·웜홀·칼·방패·눈보라·지층·전송 격자·스텔라 결정을 표현하며 외부 이미지나 생성 이미지를 사용하지 않았습니다. 포켓몬은 원래 권리자의 캐릭터입니다.
+
+## Windows 실행 파일의 엔진 고지
+
+Windows 시험 빌드는 공식 Godot **4.7.2** 엔진을 포함합니다. Godot은 MIT 라이선스이며, 배포 폴더의 `licenses/Godot-LICENSE.txt`와 `licenses/Godot-COPYRIGHT.txt`에 엔진 및 포함된 라이브러리 고지를 함께 보관합니다. 에셋·폰트의 고지는 이 문서와 `assets` 아래에 유지합니다.

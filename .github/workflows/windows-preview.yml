@@ -1,0 +1,78 @@
+name: Windows preview
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'export_presets.cfg'
+      - 'project.godot'
+      - 'scripts/**'
+      - 'scenes/**'
+      - 'data/**'
+      - 'assets/**'
+      - '.github/workflows/windows-preview.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: windows-preview-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    env:
+      PYTHONUTF8: '1'
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - name: Checkout game
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Checkout development tools
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: development-materials
+          path: .dev-materials
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Prepare official Godot 4.7.2
+        run: |
+          python .dev-materials/tools/prepare_godot.py --cache-dir "$env:RUNNER_TEMP/godot-4.7.2"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $toolchain = Get-Content "$env:RUNNER_TEMP/godot-4.7.2/toolchain.json" -Raw | ConvertFrom-Json
+          "GODOT=$($toolchain.godot)" >> $env:GITHUB_ENV
+          "GODOT_TOOLCHAIN=$env:RUNNER_TEMP/godot-4.7.2" >> $env:GITHUB_ENV
+      - name: Build Windows x86_64 preview
+        run: |
+          python .dev-materials/tools/build_windows.py --game-dir . --godot "$env:GODOT" --toolchain-dir "$env:GODOT_TOOLCHAIN" --output-dir builds/windows
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Launch the shipped EXE and check the Windows runtime
+        run: |
+          python .dev-materials/tools/verify_export.py --bundle-dir builds/windows/PokemonExpedition --validation-dir builds/windows/validation --mode windows-native --report builds/windows/windows-native-report.json
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Upload tested preview
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: PokemonExpedition-Windows-x86_64-${{ github.sha }}
+          path: |
+            builds/windows/PokemonExpedition
+            builds/windows/windows-native-report.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: Keep diagnostic logs
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: Windows-preview-logs-${{ github.sha }}
+          path: |
+            builds/windows/logs
+            builds/windows/*.log
+          if-no-files-found: ignore
+          retention-days: 7
