@@ -13,6 +13,7 @@ import uuid
 ROOT = Path(__file__).resolve().parents[1]
 SUITES = {
     'smoke': ['test_start.gd','test_battle.gd','test_stats.gd','test_weather.gd'],
+    'reactions': ['test_rare_reactions.gd','test_visibility.gd','test_compatibility.gd','test_rare_capture.gd'],
     'soundscape': ['test_soundscape.gd'],
     'campaign': ['test_deck_run.gd','test_save.gd'],
     'rare': ['test_rare.gd','test_rare_capture.gd','test_rare_stories.gd',
@@ -54,7 +55,7 @@ def main():
     if not binary:parser.error('Godot not found; install 4.7.2 or pass --godot /path/to/godot')
     version=subprocess.check_output([binary,'--version'],text=True).strip()
     if not re.match(r'^4\.7\.2(?:\.|$)',version):parser.error(f'Expected Godot 4.7.2; found {version}')
-    cases=[case for name,cases in SUITES.items() if args.suite in [name,'all'] for case in cases]
+    cases=list(dict.fromkeys(case for name,cases in SUITES.items() if args.suite in [name,'all'] for case in cases))
     print(f'{version} | {game} | {args.suite}: {len(cases)} test scripts',flush=True)
     with tempfile.TemporaryDirectory(prefix='pokemon-checks-') as directory:
         env=os.environ.copy()

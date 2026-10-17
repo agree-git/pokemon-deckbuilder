@@ -14,7 +14,8 @@ Linux 자동 검증은 수행했지만 Windows 내보내기/실행 완료로 설
 | 전투 규칙·카드 행동 | `scripts/tactics/tactical_battle.gd`, `tactical_content.gd`, `tactical_moves.gd` |
 | 원정·보상·야영·포획 | `scripts/tactics/tactical_journey.gd`, `campaign_route.gd`, `campaign_balance.gd` |
 | 능력치·성장·진화 | `scripts/tactics/pokemon_stats.gd`, `tactical_growth.gd`, `evolution_items.gd`, `friendship_evolution.gd`, `special_evolution.gd` |
-| 희귀 | `scripts/tactics/rare_encounter.gd`, `scripts/content/rare_encounter_story.gd`, `data/rare_stories.json` |
+| 희귀 | `scripts/tactics/rare_encounter.gd`, `scripts/content/rare_encounter_story.gd`, `rare_capture_reaction.gd`, `data/rare_stories.json`, `rare_reactions.json` |
+| 포획 후 반응창 | `scripts/ui/rare_reaction_panel.gd`, `tactical_ui.gd`, `tactical_journey_ui.gd` |
 | 전투/원정UI | `scripts/ui/tactical_ui.gd`, `tactical_journey_ui.gd` |
 | 손패·단계 연출 | `scripts/ui/battle_hand_layout.gd`, `combat_motion.gd`, `ui_motion.gd`, `rare_entrance.gd` |
 | 배경·접지·날씨 | `scripts/ui/battle_canvas.gd`, `scripts/content/battlefield_layout.gd`, `scripts/ui/battle_weather_visual.gd` |
@@ -32,6 +33,7 @@ Linux 자동 검증은 수행했지만 Windows 내보내기/실행 완료로 설
 ```bash
 python3 tools/check.py --game-dir /path/to/main --suite smoke
 python3 tools/check.py --game-dir /path/to/main --suite soundscape
+python3 tools/check.py --game-dir /path/to/main --suite reactions
 python3 tools/check.py --game-dir /path/to/main --suite campaign
 python3 tools/check.py --game-dir /path/to/main --suite rare
 # 모두 필요할 때만:
@@ -39,6 +41,7 @@ python3 tools/check.py --game-dir /path/to/main --suite all
 ```
 
 - `smoke`: 시작/해금, 카드 전투, 6능력치/상성, 날씨.
+- `reactions`: 희귀103종 반응309문구·전 종 실제 포획/합류/방출/UI·빈자리/교체·구저장/정체 숨김·기존 포획 회귀.
 - `soundscape`: 바이옴36음원 Godot 디코딩/루프 경계, 실시간 전환·중단·음량·구설정 호환, 원정/희귀UI·난수 불변.
 - `campaign`: 덱/보상/캠페인과 원정 저장/복구.
 - `rare`: 103종 데이터/포획/스타팅, 대표20종 정산/합류, 종별이야기/UI, 정체 숨김, 이전 풀/지문 호환, 진화, 울음소리 디코딩.
@@ -74,6 +77,12 @@ RARE_REVIEW_DIR=/path/to/output python3 tools/native_pointer.py \
 
 ```bash
 python3 tools/native_pointer.py --project-dir /path/to/main --script tests/native_soundscape.gd
+```
+
+희귀 포획 후 반응은 아래 선택 검사로 실제 C키 포획→계속→합류 미리보기/취소/확정 또는 방출→반응창 닫기를 확인한다. 역시 별도 테스트 사용자 프로필이 필요하며, `RARE_REACTION_REVIEW_DIR`을 지정한 경우에만 화면을 저장한다. 중간 원정 fixture로 시작하므로 처음부터 정상 플레이한 결과는 아니다.
+
+```bash
+python3 tools/native_pointer.py --project-dir /path/to/main --script tests/native_rare_reactions.gd
 ```
 
 실제 OS 클릭으로 조사→예약→준비→이동→등장을 확인하고25종 keyframe/공용 희귀 도입을 촬영한다. 이 검사는 직접 지정한 게임/사용자 데이터 폴더를 사용하므로 별도 테스트용 사용자 프로필을 준비한다. Windows/macOS의 실제 포인터 자동화는 아직 제공하지 않는다. 사람의 F5 실행/수동 입력으로도 확인할 수 있다.
