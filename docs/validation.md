@@ -1,5 +1,13 @@
 # 검증 현황
 
+## 시작 로고·게임 아이콘 · 2026-10-17
+
+- main `65bf3c3601f1b77d7feeda6107b803bf2dd8e6a2`, 제작/검사 도구 `dba2315322d9bfceead8c14cdccd08bda85f87ec`. Godot 기본 로고 대신 원정대 자체 문양·한글 제목의 1920×1080 시작 화면, 512 PNG 창 아이콘, 16/32/48/64/128/256 ICO를 적용했다. Godot4.7.2 내장 PE 편집기로 외부 도구 없이 EXE 아이콘을 넣는다.
+- Linux X11/llvmpipe 실제 창에서 시작 PNG 표시와 기존 타이틀로의 전환을 촬영해 확인했다. 테스트용 프로필과 Dummy 오디오를 사용했다. Windows EXE/검증 EXE 아이콘 그룹의 여섯 크기·연결된 리소스 payload가 원본 ICO와 일치한다.
+- Linux release template: 배포17개 파일·배포/검증PCK게임항목 **3,551개 동일**·타이틀 시작·**1,902검사·실패0**. 시작 설정·raw 시작 PNG 읽기·packed 창 아이콘 읽기3개 검사를 기존1,899개에 추가했다. 고유 프로필 제거, 원본 checkout 깨끗함, 게임 코드/씬/데이터는 직전 main과 바이트가 같다. 알려진 title.wav 강제 종료 진단은 그대로 기록하며 해결했다고 주장하지 않는다.
+- 로컬 배포 ZIP SHA256 `11a87ee0f38fc7eddbfe82937065e43e8026c9147b2511f0feb750ef42488411`, 소스SHA256 `7a926a87ffeb25e6cff3342ea5b54deed0f29168ed9c27bfabdcc9ecbc1d76d5`. ZIP/촬영물은 Git에 커밋하지 않았다.
+- [Windows native CI #2](https://github.com/agree-git/pokemon-deckbuilder/actions/runs/39040924907) 성공: 공식 Windows4.7.2로 제작하고 실제 Windows release EXE에서 동일17파일·3,551게임항목·**1,902검사·실패0**, 여섯 크기 아이콘 일치. [새 아티팩트12104087342](https://github.com/agree-git/pokemon-deckbuilder/actions/runs/39040924907/artifacts/12104087342), 약80.9MB·14일 보관·로그인 필요. GitHub 아티팩트 ZIP SHA256 `acf6eb7324fb86fe9efdcbf7da639c6635cb0902e50fd78f8e702cabf56d46a6`. CI 내부 제작 ZIP hash `8980193f99336dea9c330712766c4b842821857abc2d83a88d95d64698a91f66`과 구분한다. 기존 title.wav 강제 종료 진단은 Windows에서도 남는다. 실제 Windows GPU/작업 표시줄의 시각 검토·소리·긴 플레이는 자동 검사 범위 밖이다.
+
 ## Windows 내보내기·네이티브 실행 · 2026-10-17
 
 - 공식 Godot4.7.2 export_templates 약1.28GB의 고정SHA512를 검증했다. Windows x86_64 release PE와 외부PCK를 생성하고 실행 안내·출처/라이선스·파일별SHA256을 묶은 약77MB ZIP을 만들었다. 최종 산출물은 Git에 커밋하지 않는다.
