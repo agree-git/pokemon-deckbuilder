@@ -23,7 +23,11 @@ var source_name := ""
 var target_name := ""
 var status := ""
 var status_on_self := false
-var weather := ""
+var weather_layer := BattleWeatherVisual.new()
+var weather := "":
+    set(value):
+        weather = value
+        weather_layer.set_weather(value)
 var clock := 0.0
 var back_view := true
 var font := FontVariation.new()
@@ -104,11 +108,16 @@ func _ready() -> void:
     add_child(target_sprite)
     source_sprite.scale = Vector2.ONE * sprite_zoom
     target_sprite.scale = Vector2.ONE * sprite_zoom
+    add_child(weather_layer)
     add_child(effect)
     effect.impact.connect(_on_impact)
 
 func _process(delta: float) -> void:
     clock += delta
+    var top := 72.0 if frame_for_hand else 0.0
+    var bottom := minf(780.0,canvas_size.y) if frame_for_hand else canvas_size.y
+    weather_layer.position = Vector2(0,top)
+    weather_layer.size = Vector2(canvas_size.x,maxf(0,bottom-top))
     source_sprite.position = _grounded_position(source_sprite,true)
     target_sprite.position = _grounded_position(target_sprite,false)
     source_sprite.scale = Vector2.ONE*zoom_for(true)*source_factor
@@ -171,7 +180,6 @@ func _draw() -> void:
             draw_rect(Rect2(0,bottom,canvas_size.x,canvas_size.y-bottom),floor_color)
     else:
         draw_rect(Rect2(Vector2.ZERO, canvas_size), Color("243d3a"))
-    _draw_weather()
     _contact_shadow(true)
     _contact_shadow(false)
     if show_floor_guides and not battlefield_layout.is_empty():
@@ -220,18 +228,3 @@ func _nameplate(point: Vector2, text: String, color: Color) -> void:
     draw_rect(Rect2(point + Vector2(-12, -40), Vector2(246, 54)), Color(0.025, 0.06, 0.09, 0.83))
     draw_rect(Rect2(point + Vector2(-12, -40), Vector2(5, 54)), color)
     draw_string(font, point, text, HORIZONTAL_ALIGNMENT_LEFT, 228, 40, Color("f3f3e9"))
-
-func _draw_weather() -> void:
-    if weather.is_empty(): return
-    var height := 780.0 if frame_for_hand else canvas_size.y
-    var tint: Color = {"rain":Color(0.12,0.23,0.45,0.12),"snow":Color(0.75,0.9,1,0.07),"sun":Color(1,0.72,0.2,0.1),"sand":Color(0.65,0.44,0.16,0.13)}[weather]
-    draw_rect(Rect2(0,72 if frame_for_hand else 0,canvas_size.x,height),tint)
-    if weather == "sun": return
-    # Fixed arithmetic particles keep visual animation out of the seeded RNG.
-    for i in 55:
-        var speed := 330.0 if weather == "rain" else (180.0 if weather == "sand" else 55.0)
-        var p := Vector2(fposmod(i*137.0+clock*(90 if weather == "sand" else -22),canvas_size.x),fposmod(i*83.0+clock*speed,height))
-        if frame_for_hand and p.y < 74: continue
-        p = (p/3).floor()*3
-        if weather == "rain": draw_line(p,p+Vector2(-6,21),Color(0.65,0.83,1,0.42),3)
-        else: draw_rect(Rect2(p,Vector2(6 if weather == "sand" else 3,3)),Color(0.92,0.76,0.43,0.4) if weather == "sand" else Color(0.9,0.98,1,0.65))

@@ -188,5 +188,9 @@ func run() -> void:
     await picture("first-departure")
     await scene_changed
     check(current_scene is TacticalJourneyUI and current_scene.journey == first_run,"Departure arrives in the selected party's real battle")
+    current_scene.free()
+    root.get_node("GameMusic").stop_music()
+    root.get_node("GameCries").stop_all()
+    await create_timer(0.2).timeout
     print("PRESENTATION native=",native,": ",checks," checks, ",failures," failures; ",clicks," pointer actions")
     quit(0 if failures == 0 else 1)

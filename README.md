@@ -47,7 +47,7 @@
 
 지도·야영지의 [다음 전투 준비](docs/encounter-preparation.md)에서 실제 상대별로 현재 덱의 통하는 공격·타격 무효·지속/조건부 카드를 확인한다. 기절한 동료의 카드는 제외하며 회복 후 다시 조회할 수 있다.
 
-[날씨](docs/weather.md): 비·눈·쾌청·모래바람 카드 4종, 5턴 공통 효과·남은 턴·입자 연출을 추가했다.
+[날씨](docs/weather.md): 비·눈·쾌청·모래바람 카드 4종, 5턴 공통 효과·남은 턴과 전장 전체의 입자/조명을 연결했다. 쾌청은 왼쪽 위 햇살과 렌즈 플레어를 사용한다. [야외·실내 날씨 화면](https://github.com/agree-git/pokemon-deckbuilder/blob/weather-field-review-2026-10-17/review/weather-field/README.md)에서 비교할 수 있다.
 
 ## 전투 화면
 
