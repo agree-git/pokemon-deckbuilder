@@ -58,7 +58,7 @@
           "path": "review/background/review/floor_coordinates.csv",
           "original_path": "review/floor_coordinates.csv",
           "sha256": "dc688b5412ab6e8a2440966da2ce9112cd042b62a5360458ed10a30b229a2b12",
-          "archived_sha256": "dc688b5412ab6e8a2440966da2ce9112cd042b62a5360458ed10a30b229a2b12"
+          "archived_sha256": "0a15660128448419e831292a24729794fabde7b49192763dd4309c8b83cc91c8"
         },
         {
           "path": "review/background/review/guides/biomes_bug.png",
