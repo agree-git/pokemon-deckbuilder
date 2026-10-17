@@ -26,11 +26,11 @@
 
 기존 v3 저장의 `powers`에 날씨 ID와 남은 턴을 저장한다. 최대 한 종류·1~5턴만 허용하고 예전 날씨 없는 저장도 그대로 읽는다. 카드 사용 미리보기와 단계별 재생은 날씨 사본을 사용한다.
 
-[처음 추가한 날씨 카드·전투 화면](https://github.com/agree-git/pokemon-deckbuilder/blob/concept-review-2026-10-17/review/build-concepts/README.md#날씨)에서 확인할 수 있다. Godot 4.7.2/Linux의 규칙·디스크 저장/복원·화면·실제 X11 포인터 검사를 수행했다. 세부 검증은 [진행 현황](progress.md)을 따른다. 기존 적 난도·경험치·보상 경제 조정은 보류한다.
+[처음 추가한 날씨 카드·전투 화면](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/review/build-concepts/README.md#날씨)에서 확인할 수 있다. Godot 4.7.2/Linux의 규칙·디스크 저장/복원·화면·실제 X11 포인터 검사를 수행했다. 세부 검증은 [진행 현황](progress.md)을 따른다. 기존 적 난도·경험치·보상 경제 조정은 보류한다.
 
 ## 전장 연출 보강 검증
 
-[최신 야외·실내 날씨 화면 8장과 ZIP](https://github.com/agree-git/pokemon-deckbuilder/blob/weather-field-review-2026-10-17/review/weather-field/README.md)에서 각 날씨를 비교할 수 있다. 같은 파티로 배경과 날씨만 바꾼 연출 검토 장면이며 정상 챔피언 대진을 보여주는 자료는 아니다.
+[최신 야외·실내 날씨 화면 8장과 ZIP](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/review/weather-field/README.md)에서 각 날씨를 비교할 수 있다. 같은 파티로 배경과 날씨만 바꾼 연출 검토 장면이며 정상 챔피언 대진을 보여주는 자료는 아니다.
 
 Godot 4.7.2/Linux: 실제 렌더러 97개(화면 픽셀·움직임·전환/종료·왼쪽 위 광원·UI 보호·두 배경·세 창 비율), 헤드리스 전장 31개, 실제 X11 날씨 카드 33개/12클릭, 기존 날씨 규칙/저장/획득 121개와 전투 연출 28개를 확인했다. 검사 도중 배경 좌표·전투 스냅샷·시드 난수가 유지되는지도 비교했다. 기존 연출 테스트는 마지막 장면과 오디오를 종료한 뒤 믹서 정리를 기다리도록 정리했다. Windows 실행은 별도다.
 

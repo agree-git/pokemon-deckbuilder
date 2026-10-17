@@ -1,0 +1,1095 @@
+{
+  "previous_main": "232b60e3cf55dfaf59d223531901b918f56bfad0",
+  "branches": [
+    {
+      "name": "background-review-2026-10-16",
+      "commit": "e6a1ef7c12d1bc492da7f92585f2ce02388dffad",
+      "browse_commit": "https://github.com/agree-git/pokemon-deckbuilder/tree/e6a1ef7c12d1bc492da7f92585f2ce02388dffad",
+      "material_files": [
+        {
+          "path": "review/background/README.md",
+          "original_path": "README.md",
+          "sha256": "9ebd0d642a0513d2388a652830ecd6c7cc5bbf5343a337b88116ae32ecc905fc",
+          "archived_sha256": "6cb7decbc87cf807700219e34e411baefdfff778f860641add8c96c06458196c"
+        },
+        {
+          "path": "review/background/editor-game-preview.png",
+          "original_path": "editor-game-preview.png",
+          "sha256": "9e5935cf35a5756d6c8388cebb7cf85e349948f09df64b3b7f0deacee8d78aa4",
+          "archived_sha256": "9e5935cf35a5756d6c8388cebb7cf85e349948f09df64b3b7f0deacee8d78aa4"
+        },
+        {
+          "path": "review/background/editor-preview.png",
+          "original_path": "editor-preview.png",
+          "sha256": "e92935fc6c9e4273b97c80e0499e611e27745d8be4f83de95115fda6d5d2e935",
+          "archived_sha256": "e92935fc6c9e4273b97c80e0499e611e27745d8be4f83de95115fda6d5d2e935"
+        },
+        {
+          "path": "review/background/pokemon-background-aligned-final-2026-10-16.zip",
+          "original_path": "pokemon-background-aligned-final-2026-10-16.zip",
+          "sha256": "5b57873624981ff0234c5f3fdb94e02508f2a06552f4228034d2851bca193183",
+          "archived_sha256": "5b57873624981ff0234c5f3fdb94e02508f2a06552f4228034d2851bca193183"
+        },
+        {
+          "path": "review/background/pokemon-background-editor.html",
+          "original_path": "pokemon-background-editor.html",
+          "sha256": "73efe64b865797fd414e41527c70d0822da03a2c2b99e7f163569ffc3149e592",
+          "archived_sha256": "73efe64b865797fd414e41527c70d0822da03a2c2b99e7f163569ffc3149e592"
+        },
+        {
+          "path": "review/background/pokemon-background-editor.zip",
+          "original_path": "pokemon-background-editor.zip",
+          "sha256": "aa439ce6eb1da9a82f65e7a97938f59f218cf32327a3e57977469b93c8954a77",
+          "archived_sha256": "aa439ce6eb1da9a82f65e7a97938f59f218cf32327a3e57977469b93c8954a77"
+        },
+        {
+          "path": "review/background/review/README.txt",
+          "original_path": "review/README.txt",
+          "sha256": "1b0985bde3e93175a29a243231f43e8daf6bf67bdf84e540f85e489f8a6b19d1",
+          "archived_sha256": "1b0985bde3e93175a29a243231f43e8daf6bf67bdf84e540f85e489f8a6b19d1"
+        },
+        {
+          "path": "review/background/review/battlefield_layouts.json",
+          "original_path": "review/battlefield_layouts.json",
+          "sha256": "b0f2e796afbb02eb04bef728ae28cfd113b1b8a8d6939911d5d0371ba89724f3",
+          "archived_sha256": "b0f2e796afbb02eb04bef728ae28cfd113b1b8a8d6939911d5d0371ba89724f3"
+        },
+        {
+          "path": "review/background/review/floor_coordinates.csv",
+          "original_path": "review/floor_coordinates.csv",
+          "sha256": "dc688b5412ab6e8a2440966da2ce9112cd042b62a5360458ed10a30b229a2b12",
+          "archived_sha256": "dc688b5412ab6e8a2440966da2ce9112cd042b62a5360458ed10a30b229a2b12"
+        },
+        {
+          "path": "review/background/review/guides/biomes_bug.png",
+          "original_path": "review/guides/biomes_bug.png",
+          "sha256": "4afc04399d5f1ffea30628cd8ca9d7ed0867d0ee0405b6e89eec52ee9580dd88",
+          "archived_sha256": "4afc04399d5f1ffea30628cd8ca9d7ed0867d0ee0405b6e89eec52ee9580dd88"
+        },
+        {
+          "path": "review/background/review/guides/biomes_dark.png",
+          "original_path": "review/guides/biomes_dark.png",
+          "sha256": "9ff97636a832a955d7d41280da93dd175b0e0771e4a10a295c8f57e35b47a5d0",
+          "archived_sha256": "9ff97636a832a955d7d41280da93dd175b0e0771e4a10a295c8f57e35b47a5d0"
+        },
+        {
+          "path": "review/background/review/guides/biomes_dragon.png",
+          "original_path": "review/guides/biomes_dragon.png",
+          "sha256": "f62009026c2bc729cc8e18853dfe0f74dc79c11f63b72b8e05290408f8303d51",
+          "archived_sha256": "f62009026c2bc729cc8e18853dfe0f74dc79c11f63b72b8e05290408f8303d51"
+        },
+        {
+          "path": "review/background/review/guides/biomes_electric.png",
+          "original_path": "review/guides/biomes_electric.png",
+          "sha256": "91c4f2a97f8f5ade5d474c553d7dca5f12dccfb53b7b24c6eb5af8a7e87de8ca",
+          "archived_sha256": "91c4f2a97f8f5ade5d474c553d7dca5f12dccfb53b7b24c6eb5af8a7e87de8ca"
+        },
+        {
+          "path": "review/background/review/guides/biomes_fairy.png",
+          "original_path": "review/guides/biomes_fairy.png",
+          "sha256": "00ea5c4641812fb1ffcb60f7bed4449a58dcd14676189742d884b86f778317d7",
+          "archived_sha256": "00ea5c4641812fb1ffcb60f7bed4449a58dcd14676189742d884b86f778317d7"
+        },
+        {
+          "path": "review/background/review/guides/biomes_fighting.png",
+          "original_path": "review/guides/biomes_fighting.png",
+          "sha256": "860e7cd78b1d89a43e0c142fd317f6627102548ff627080d570c1163875a40ad",
+          "archived_sha256": "860e7cd78b1d89a43e0c142fd317f6627102548ff627080d570c1163875a40ad"
+        },
+        {
+          "path": "review/background/review/guides/biomes_fire.png",
+          "original_path": "review/guides/biomes_fire.png",
+          "sha256": "d7ee4a383d4f335bdc202ac15c44df4842d6e86c07122e427ec5568f088501af",
+          "archived_sha256": "d7ee4a383d4f335bdc202ac15c44df4842d6e86c07122e427ec5568f088501af"
+        },
+        {
+          "path": "review/background/review/guides/biomes_flying.png",
+          "original_path": "review/guides/biomes_flying.png",
+          "sha256": "95208e7354e66d8de4b5f3151d9b5e51ef0a6118d8996368609fe0b5ce0d17c1",
+          "archived_sha256": "95208e7354e66d8de4b5f3151d9b5e51ef0a6118d8996368609fe0b5ce0d17c1"
+        },
+        {
+          "path": "review/background/review/guides/biomes_ghost.png",
+          "original_path": "review/guides/biomes_ghost.png",
+          "sha256": "2eb9992a04c537da0747cb875003276b103493ab93e98fc763ec1abbf6cc8c43",
+          "archived_sha256": "2eb9992a04c537da0747cb875003276b103493ab93e98fc763ec1abbf6cc8c43"
+        },
+        {
+          "path": "review/background/review/guides/biomes_grass.png",
+          "original_path": "review/guides/biomes_grass.png",
+          "sha256": "47e29b786badb3dfab81becb56168fab8fbc87a0bc7cd3737f192ab36e14c960",
+          "archived_sha256": "47e29b786badb3dfab81becb56168fab8fbc87a0bc7cd3737f192ab36e14c960"
+        },
+        {
+          "path": "review/background/review/guides/biomes_ground.png",
+          "original_path": "review/guides/biomes_ground.png",
+          "sha256": "f390b26c89d07f09980cef6a19faa45bf997c31f0720ff3ba98decf2ae7fbd92",
+          "archived_sha256": "f390b26c89d07f09980cef6a19faa45bf997c31f0720ff3ba98decf2ae7fbd92"
+        },
+        {
+          "path": "review/background/review/guides/biomes_ice.png",
+          "original_path": "review/guides/biomes_ice.png",
+          "sha256": "912fa748634606e0714d070cfed875f301657e0fdb222ea15e72d4c91d6b0f7d",
+          "archived_sha256": "912fa748634606e0714d070cfed875f301657e0fdb222ea15e72d4c91d6b0f7d"
+        },
+        {
+          "path": "review/background/review/guides/biomes_normal.png",
+          "original_path": "review/guides/biomes_normal.png",
+          "sha256": "6be7640d1dd9289d5dc2a39f40155156010d7d63391f2a2048ecae6f63111b63",
+          "archived_sha256": "6be7640d1dd9289d5dc2a39f40155156010d7d63391f2a2048ecae6f63111b63"
+        },
+        {
+          "path": "review/background/review/guides/biomes_poison.png",
+          "original_path": "review/guides/biomes_poison.png",
+          "sha256": "53f14bd5a29a1ba52548a46326179a633a4ce825018a26151af0ea8b1dd0eea0",
+          "archived_sha256": "53f14bd5a29a1ba52548a46326179a633a4ce825018a26151af0ea8b1dd0eea0"
+        },
+        {
+          "path": "review/background/review/guides/biomes_psychic.png",
+          "original_path": "review/guides/biomes_psychic.png",
+          "sha256": "407ef589c2b0788cc139c4ad0b9e9ebc19a00301a7453a4f99fc851d6f8df4fb",
+          "archived_sha256": "407ef589c2b0788cc139c4ad0b9e9ebc19a00301a7453a4f99fc851d6f8df4fb"
+        },
+        {
+          "path": "review/background/review/guides/biomes_rock.png",
+          "original_path": "review/guides/biomes_rock.png",
+          "sha256": "c7d84dbc06a51369248d66f381267baf8ff4cf5a9657a04a8fcfc9c0fc6aab5e",
+          "archived_sha256": "c7d84dbc06a51369248d66f381267baf8ff4cf5a9657a04a8fcfc9c0fc6aab5e"
+        },
+        {
+          "path": "review/background/review/guides/biomes_steel.png",
+          "original_path": "review/guides/biomes_steel.png",
+          "sha256": "36daa902dc4f9e8f982036ce2f316260b0c322ab10048c3109185d630d257a65",
+          "archived_sha256": "36daa902dc4f9e8f982036ce2f316260b0c322ab10048c3109185d630d257a65"
+        },
+        {
+          "path": "review/background/review/guides/biomes_water.png",
+          "original_path": "review/guides/biomes_water.png",
+          "sha256": "b454423b40d5c3c4330ec916e791ff24f7031dedc5b143b35e12bd3e4c259aa1",
+          "archived_sha256": "b454423b40d5c3c4330ec916e791ff24f7031dedc5b143b35e12bd3e4c259aa1"
+        },
+        {
+          "path": "review/background/review/guides/champions_alder.png",
+          "original_path": "review/guides/champions_alder.png",
+          "sha256": "1964b9fe89a60b8d0054940fae55f10b1e42f5e94d9266e9010f6d723040da80",
+          "archived_sha256": "1964b9fe89a60b8d0054940fae55f10b1e42f5e94d9266e9010f6d723040da80"
+        },
+        {
+          "path": "review/background/review/guides/champions_blue.png",
+          "original_path": "review/guides/champions_blue.png",
+          "sha256": "b7793f360fb218360497df20f3f03b3dfda0ce6c4884e3e9bcdc3d628a224170",
+          "archived_sha256": "b7793f360fb218360497df20f3f03b3dfda0ce6c4884e3e9bcdc3d628a224170"
+        },
+        {
+          "path": "review/background/review/guides/champions_cynthia.png",
+          "original_path": "review/guides/champions_cynthia.png",
+          "sha256": "65aaf90f0dbfb14e70e351406595cdaaa5308fb40a986348adf31964b44ac741",
+          "archived_sha256": "65aaf90f0dbfb14e70e351406595cdaaa5308fb40a986348adf31964b44ac741"
+        },
+        {
+          "path": "review/background/review/guides/champions_diantha.png",
+          "original_path": "review/guides/champions_diantha.png",
+          "sha256": "60b8bc0ea8cd7ee9b3312bce3a0557434ab9f229391ea35de147491ea8c3c89b",
+          "archived_sha256": "60b8bc0ea8cd7ee9b3312bce3a0557434ab9f229391ea35de147491ea8c3c89b"
+        },
+        {
+          "path": "review/background/review/guides/champions_geeta.png",
+          "original_path": "review/guides/champions_geeta.png",
+          "sha256": "7d7460f32e3e86ff30d2e7b550846a495849d76e82ecfdcb95279ac18d2455af",
+          "archived_sha256": "7d7460f32e3e86ff30d2e7b550846a495849d76e82ecfdcb95279ac18d2455af"
+        },
+        {
+          "path": "review/background/review/guides/champions_iris.png",
+          "original_path": "review/guides/champions_iris.png",
+          "sha256": "995e7d5ba7ce02369ba5f41060c1cb00d5bed8b4214545ea2c6f360f9c65e505",
+          "archived_sha256": "995e7d5ba7ce02369ba5f41060c1cb00d5bed8b4214545ea2c6f360f9c65e505"
+        },
+        {
+          "path": "review/background/review/guides/champions_lance.png",
+          "original_path": "review/guides/champions_lance.png",
+          "sha256": "e53bbe9ac4dcf23da4fb430ad46a73006d179a948822590fe4973aac7a9502a2",
+          "archived_sha256": "e53bbe9ac4dcf23da4fb430ad46a73006d179a948822590fe4973aac7a9502a2"
+        },
+        {
+          "path": "review/background/review/guides/champions_leon.png",
+          "original_path": "review/guides/champions_leon.png",
+          "sha256": "caab1c3ee265c47bb25b03067700629eda43f88a5a5893edb927f78f40114be5",
+          "archived_sha256": "caab1c3ee265c47bb25b03067700629eda43f88a5a5893edb927f78f40114be5"
+        },
+        {
+          "path": "review/background/review/guides/champions_nemona.png",
+          "original_path": "review/guides/champions_nemona.png",
+          "sha256": "de0655a40684a76981fe435bd489598921cb6de92f39264513aceb9ace7eb1a6",
+          "archived_sha256": "de0655a40684a76981fe435bd489598921cb6de92f39264513aceb9ace7eb1a6"
+        },
+        {
+          "path": "review/background/review/guides/champions_steven.png",
+          "original_path": "review/guides/champions_steven.png",
+          "sha256": "611f85e6c1817a02f733ef5799bd6165881effb831ffb5f2d0901b05057785d7",
+          "archived_sha256": "611f85e6c1817a02f733ef5799bd6165881effb831ffb5f2d0901b05057785d7"
+        },
+        {
+          "path": "review/background/review/guides/champions_wallace.png",
+          "original_path": "review/guides/champions_wallace.png",
+          "sha256": "cd36a0cc5f6733f59b9b8a9589208440eef6565b6ec806420141d9be9c429490",
+          "archived_sha256": "cd36a0cc5f6733f59b9b8a9589208440eef6565b6ec806420141d9be9c429490"
+        },
+        {
+          "path": "review/background/review/guides/elite_aaron.png",
+          "original_path": "review/guides/elite_aaron.png",
+          "sha256": "9d52be1ceed0f6c43e8186920747b95498970cc2d6430f29adaa5b4697436e19",
+          "archived_sha256": "9d52be1ceed0f6c43e8186920747b95498970cc2d6430f29adaa5b4697436e19"
+        },
+        {
+          "path": "review/background/review/guides/elite_agatha.png",
+          "original_path": "review/guides/elite_agatha.png",
+          "sha256": "988bde278de22ea3c786b91427663b813a8acb74735506cb76515e54b6058744",
+          "archived_sha256": "988bde278de22ea3c786b91427663b813a8acb74735506cb76515e54b6058744"
+        },
+        {
+          "path": "review/background/review/guides/elite_bertha.png",
+          "original_path": "review/guides/elite_bertha.png",
+          "sha256": "05b5a0ce01a72548bc88b6589061e626cf2477c4583a5eb240f0e365296b8986",
+          "archived_sha256": "05b5a0ce01a72548bc88b6589061e626cf2477c4583a5eb240f0e365296b8986"
+        },
+        {
+          "path": "review/background/review/guides/elite_bruno.png",
+          "original_path": "review/guides/elite_bruno.png",
+          "sha256": "a112ee900101f1b4e81895fdd0a44f5566462f9200564a35621e443312071488",
+          "archived_sha256": "a112ee900101f1b4e81895fdd0a44f5566462f9200564a35621e443312071488"
+        },
+        {
+          "path": "review/background/review/guides/elite_flint.png",
+          "original_path": "review/guides/elite_flint.png",
+          "sha256": "d8c45d93f297bde73cc0464df83b1cfcc538ecd6a1202adbbc0a0ff8c24b48f2",
+          "archived_sha256": "d8c45d93f297bde73cc0464df83b1cfcc538ecd6a1202adbbc0a0ff8c24b48f2"
+        },
+        {
+          "path": "review/background/review/guides/elite_kahili.png",
+          "original_path": "review/guides/elite_kahili.png",
+          "sha256": "175c2ccd412c8db35aebf0e22dbbd02034e0684a764ebf9bc8b8c85253ba7b62",
+          "archived_sha256": "175c2ccd412c8db35aebf0e22dbbd02034e0684a764ebf9bc8b8c85253ba7b62"
+        },
+        {
+          "path": "review/background/review/guides/elite_karen.png",
+          "original_path": "review/guides/elite_karen.png",
+          "sha256": "4fafd263f819f1b9f66a179764404120ba501262893d7b8c2773a5b285459686",
+          "archived_sha256": "4fafd263f819f1b9f66a179764404120ba501262893d7b8c2773a5b285459686"
+        },
+        {
+          "path": "review/background/review/guides/elite_koga.png",
+          "original_path": "review/guides/elite_koga.png",
+          "sha256": "4a2e219b40adf373e916fd24f62f517ef5290b0e6a58f18653486424ea53b328",
+          "archived_sha256": "4a2e219b40adf373e916fd24f62f517ef5290b0e6a58f18653486424ea53b328"
+        },
+        {
+          "path": "review/background/review/guides/elite_lance.png",
+          "original_path": "review/guides/elite_lance.png",
+          "sha256": "1e227af631c3b15fc6ca025e1997cf8c0cf7234f721ce2a0b4bf65e9c219f207",
+          "archived_sha256": "1e227af631c3b15fc6ca025e1997cf8c0cf7234f721ce2a0b4bf65e9c219f207"
+        },
+        {
+          "path": "review/background/review/guides/elite_lorelei.png",
+          "original_path": "review/guides/elite_lorelei.png",
+          "sha256": "03be531ee5ef43485ac51489defaaa145872bb028f6399a77ad2ba559d5844dc",
+          "archived_sha256": "03be531ee5ef43485ac51489defaaa145872bb028f6399a77ad2ba559d5844dc"
+        },
+        {
+          "path": "review/background/review/guides/elite_olivia.png",
+          "original_path": "review/guides/elite_olivia.png",
+          "sha256": "de6abc7715e79b19bab40e06b9d50e1afae6e04aff2a0801a1db10ac8cc57b21",
+          "archived_sha256": "de6abc7715e79b19bab40e06b9d50e1afae6e04aff2a0801a1db10ac8cc57b21"
+        },
+        {
+          "path": "review/background/review/guides/elite_siebold.png",
+          "original_path": "review/guides/elite_siebold.png",
+          "sha256": "c3e2ccb45b156023ecf5bd637ec8bfa9db5081e717c6f6e3f869b167d592e322",
+          "archived_sha256": "c3e2ccb45b156023ecf5bd637ec8bfa9db5081e717c6f6e3f869b167d592e322"
+        },
+        {
+          "path": "review/background/review/guides/elite_wikstrom.png",
+          "original_path": "review/guides/elite_wikstrom.png",
+          "sha256": "47f9a5126395a0e0fcb4e5175e8c4a42f718165ae314a5a73e4fbe78ac434d63",
+          "archived_sha256": "47f9a5126395a0e0fcb4e5175e8c4a42f718165ae314a5a73e4fbe78ac434d63"
+        },
+        {
+          "path": "review/background/review/guides/elite_will.png",
+          "original_path": "review/guides/elite_will.png",
+          "sha256": "1b1ca3cad2f40d370a6555ea202813fd2c56397a09bbb106976c441640f274af",
+          "archived_sha256": "1b1ca3cad2f40d370a6555ea202813fd2c56397a09bbb106976c441640f274af"
+        },
+        {
+          "path": "review/background/review/guides/reserve_champion_fallback.png",
+          "original_path": "review/guides/reserve_champion_fallback.png",
+          "sha256": "1e7ca6710c00c06076a6dbbc63427d40ead89b0fabdb17365010856fb4f649da",
+          "archived_sha256": "1e7ca6710c00c06076a6dbbc63427d40ead89b0fabdb17365010856fb4f649da"
+        },
+        {
+          "path": "review/background/review/guides/reserve_elite_electric.png",
+          "original_path": "review/guides/reserve_elite_electric.png",
+          "sha256": "0acd5425373afbfc8b5071a1b391669662cffefaea8500f7d92e15fa9bd4e46c",
+          "archived_sha256": "0acd5425373afbfc8b5071a1b391669662cffefaea8500f7d92e15fa9bd4e46c"
+        },
+        {
+          "path": "review/background/review/guides/reserve_elite_fairy.png",
+          "original_path": "review/guides/reserve_elite_fairy.png",
+          "sha256": "ee738e3a40da01f269e105ba5137fa3eb85a8eef82c7def1e4f83056cbcbdd7c",
+          "archived_sha256": "ee738e3a40da01f269e105ba5137fa3eb85a8eef82c7def1e4f83056cbcbdd7c"
+        },
+        {
+          "path": "review/background/review/guides/reserve_elite_grass.png",
+          "original_path": "review/guides/reserve_elite_grass.png",
+          "sha256": "b979fb77153d132c3485b5fd13352236a9cd1fb42a272fdaf7df322f64d9fd33",
+          "archived_sha256": "b979fb77153d132c3485b5fd13352236a9cd1fb42a272fdaf7df322f64d9fd33"
+        },
+        {
+          "path": "review/background/review/guides/reserve_elite_normal.png",
+          "original_path": "review/guides/reserve_elite_normal.png",
+          "sha256": "8ea28704e8a43628ea0dbbccf20a8d8bf7a5bb35d71862b09edb4862f41c3eb2",
+          "archived_sha256": "8ea28704e8a43628ea0dbbccf20a8d8bf7a5bb35d71862b09edb4862f41c3eb2"
+        },
+        {
+          "path": "review/background/review/index.html",
+          "original_path": "review/index.html",
+          "sha256": "f95937fae36e1fd16e1467f57919b4facd8f3cd5be356053e099aad96dae45e5",
+          "archived_sha256": "f95937fae36e1fd16e1467f57919b4facd8f3cd5be356053e099aad96dae45e5"
+        },
+        {
+          "path": "review/background/review/manifest.json",
+          "original_path": "review/manifest.json",
+          "sha256": "671c16e057442f9288aad65bd7e3eeecf2d7cc0851767e865263f2f8a13173d4",
+          "archived_sha256": "671c16e057442f9288aad65bd7e3eeecf2d7cc0851767e865263f2f8a13173d4"
+        },
+        {
+          "path": "review/background/review/screens/biomes/bug.png",
+          "original_path": "review/screens/biomes/bug.png",
+          "sha256": "537a78fbcc1108b08fe0f9c5ff71272f6ec22e87b8bc1d8bff49a4571e0e1dff",
+          "archived_sha256": "537a78fbcc1108b08fe0f9c5ff71272f6ec22e87b8bc1d8bff49a4571e0e1dff"
+        },
+        {
+          "path": "review/background/review/screens/biomes/dark.png",
+          "original_path": "review/screens/biomes/dark.png",
+          "sha256": "8c6039b0f1e03c526c61f0c9e657b9cc1634a1334ad952777f876b69782d957d",
+          "archived_sha256": "8c6039b0f1e03c526c61f0c9e657b9cc1634a1334ad952777f876b69782d957d"
+        },
+        {
+          "path": "review/background/review/screens/biomes/dragon.png",
+          "original_path": "review/screens/biomes/dragon.png",
+          "sha256": "74a5afcecff7ee4ca842c447be23ef698fcb78a09237537805f5a511e6ee5b30",
+          "archived_sha256": "74a5afcecff7ee4ca842c447be23ef698fcb78a09237537805f5a511e6ee5b30"
+        },
+        {
+          "path": "review/background/review/screens/biomes/electric.png",
+          "original_path": "review/screens/biomes/electric.png",
+          "sha256": "029081e18048429e4678c5435c60640c8e663e27d14fa87248abe1c1b7fee416",
+          "archived_sha256": "029081e18048429e4678c5435c60640c8e663e27d14fa87248abe1c1b7fee416"
+        },
+        {
+          "path": "review/background/review/screens/biomes/fairy.png",
+          "original_path": "review/screens/biomes/fairy.png",
+          "sha256": "dab9f0466c61843eebc91fc4770696d978aaa4d68fcb390645fea95ec9b9d6aa",
+          "archived_sha256": "dab9f0466c61843eebc91fc4770696d978aaa4d68fcb390645fea95ec9b9d6aa"
+        },
+        {
+          "path": "review/background/review/screens/biomes/fighting.png",
+          "original_path": "review/screens/biomes/fighting.png",
+          "sha256": "f4d52138594a649e2119c9637f3e816b63c2278601f09035c0a7f346a7ef2fbc",
+          "archived_sha256": "f4d52138594a649e2119c9637f3e816b63c2278601f09035c0a7f346a7ef2fbc"
+        },
+        {
+          "path": "review/background/review/screens/biomes/fire.png",
+          "original_path": "review/screens/biomes/fire.png",
+          "sha256": "e407f05567067534b85bd7a02cbfc8cea16a782a234f9acf9932ada5603f3fe7",
+          "archived_sha256": "e407f05567067534b85bd7a02cbfc8cea16a782a234f9acf9932ada5603f3fe7"
+        },
+        {
+          "path": "review/background/review/screens/biomes/flying.png",
+          "original_path": "review/screens/biomes/flying.png",
+          "sha256": "b333752d55c659f954a2b6bffd5f3db1f06595284af17aa247ccdebde2a8761a",
+          "archived_sha256": "b333752d55c659f954a2b6bffd5f3db1f06595284af17aa247ccdebde2a8761a"
+        },
+        {
+          "path": "review/background/review/screens/biomes/ghost.png",
+          "original_path": "review/screens/biomes/ghost.png",
+          "sha256": "490181e06bb27ab5080a8f7dcabf445e2039eb309e572071efc251da53e0026d",
+          "archived_sha256": "490181e06bb27ab5080a8f7dcabf445e2039eb309e572071efc251da53e0026d"
+        },
+        {
+          "path": "review/background/review/screens/biomes/grass.png",
+          "original_path": "review/screens/biomes/grass.png",
+          "sha256": "48e4577e6869d6280375dd1edba516b75ca54d9d3a3bf0acf49a5979a84099e3",
+          "archived_sha256": "48e4577e6869d6280375dd1edba516b75ca54d9d3a3bf0acf49a5979a84099e3"
+        },
+        {
+          "path": "review/background/review/screens/biomes/ground.png",
+          "original_path": "review/screens/biomes/ground.png",
+          "sha256": "1799dc8a9864f286931103c1d1161a5b71b16b0f1a4fad424e4a13f098ed3468",
+          "archived_sha256": "1799dc8a9864f286931103c1d1161a5b71b16b0f1a4fad424e4a13f098ed3468"
+        },
+        {
+          "path": "review/background/review/screens/biomes/ice.png",
+          "original_path": "review/screens/biomes/ice.png",
+          "sha256": "8788aaa219c1c08313ef511d613258af96bd6e0de79672e59d74d3aff5e1e64c",
+          "archived_sha256": "8788aaa219c1c08313ef511d613258af96bd6e0de79672e59d74d3aff5e1e64c"
+        },
+        {
+          "path": "review/background/review/screens/biomes/normal.png",
+          "original_path": "review/screens/biomes/normal.png",
+          "sha256": "a2f2a51ae466a473820426bd19f1656543ef630095254e2fe305fe26ed971196",
+          "archived_sha256": "a2f2a51ae466a473820426bd19f1656543ef630095254e2fe305fe26ed971196"
+        },
+        {
+          "path": "review/background/review/screens/biomes/poison.png",
+          "original_path": "review/screens/biomes/poison.png",
+          "sha256": "639b15a987b55eef6f2a5ea5fa9ad4b4007607010bf1ae03c94192bd646134ea",
+          "archived_sha256": "639b15a987b55eef6f2a5ea5fa9ad4b4007607010bf1ae03c94192bd646134ea"
+        },
+        {
+          "path": "review/background/review/screens/biomes/psychic.png",
+          "original_path": "review/screens/biomes/psychic.png",
+          "sha256": "3cc8d0ea1dbcd0fa192702b9888fe115a96b43e8eabf58c1f29193c5a663243e",
+          "archived_sha256": "3cc8d0ea1dbcd0fa192702b9888fe115a96b43e8eabf58c1f29193c5a663243e"
+        },
+        {
+          "path": "review/background/review/screens/biomes/rock.png",
+          "original_path": "review/screens/biomes/rock.png",
+          "sha256": "b918c048ded1653f7e0993b59aca6c64d5c005e001b3a1f48fde15e210be1b7c",
+          "archived_sha256": "b918c048ded1653f7e0993b59aca6c64d5c005e001b3a1f48fde15e210be1b7c"
+        },
+        {
+          "path": "review/background/review/screens/biomes/steel.png",
+          "original_path": "review/screens/biomes/steel.png",
+          "sha256": "4e70b07074576d72a021081b753864f81282f0d3e68b4f9e10d395fedb8fb16b",
+          "archived_sha256": "4e70b07074576d72a021081b753864f81282f0d3e68b4f9e10d395fedb8fb16b"
+        },
+        {
+          "path": "review/background/review/screens/biomes/water.png",
+          "original_path": "review/screens/biomes/water.png",
+          "sha256": "c21beec1607ff68fd89c145a71f5b0835d463daf5671621997ee64a352b4486f",
+          "archived_sha256": "c21beec1607ff68fd89c145a71f5b0835d463daf5671621997ee64a352b4486f"
+        },
+        {
+          "path": "review/background/review/screens/champions/alder.png",
+          "original_path": "review/screens/champions/alder.png",
+          "sha256": "c346954d17407ab00ba0483eb393bb14998a76fb62a9c2070a5b649665157e96",
+          "archived_sha256": "c346954d17407ab00ba0483eb393bb14998a76fb62a9c2070a5b649665157e96"
+        },
+        {
+          "path": "review/background/review/screens/champions/blue.png",
+          "original_path": "review/screens/champions/blue.png",
+          "sha256": "748a85f3abbdbc4049bea0f2d8e063db9da6531d9403fe7ed2e4c98c11002280",
+          "archived_sha256": "748a85f3abbdbc4049bea0f2d8e063db9da6531d9403fe7ed2e4c98c11002280"
+        },
+        {
+          "path": "review/background/review/screens/champions/cynthia.png",
+          "original_path": "review/screens/champions/cynthia.png",
+          "sha256": "398a345a640c26911ac9526dccb75d44a1a4f0bebdd8a19768dc73d7d5b687e3",
+          "archived_sha256": "398a345a640c26911ac9526dccb75d44a1a4f0bebdd8a19768dc73d7d5b687e3"
+        },
+        {
+          "path": "review/background/review/screens/champions/diantha.png",
+          "original_path": "review/screens/champions/diantha.png",
+          "sha256": "6f674dc724d3f473dbcbd8c68e85b608a1db7aee8e7fae77884f068789e1db66",
+          "archived_sha256": "6f674dc724d3f473dbcbd8c68e85b608a1db7aee8e7fae77884f068789e1db66"
+        },
+        {
+          "path": "review/background/review/screens/champions/geeta.png",
+          "original_path": "review/screens/champions/geeta.png",
+          "sha256": "1ffca78bb6bcf716fe6d552278aca41dde5cacf18e3cadd77b02843c18f50522",
+          "archived_sha256": "1ffca78bb6bcf716fe6d552278aca41dde5cacf18e3cadd77b02843c18f50522"
+        },
+        {
+          "path": "review/background/review/screens/champions/iris.png",
+          "original_path": "review/screens/champions/iris.png",
+          "sha256": "018e44469d06c9ed5645c187235b44dfd1f6c998766c629b86d55ab98300e19f",
+          "archived_sha256": "018e44469d06c9ed5645c187235b44dfd1f6c998766c629b86d55ab98300e19f"
+        },
+        {
+          "path": "review/background/review/screens/champions/lance.png",
+          "original_path": "review/screens/champions/lance.png",
+          "sha256": "587a39d069dd9d79b50b25971f516c19312cd3576b097da89d8594afab334b9f",
+          "archived_sha256": "587a39d069dd9d79b50b25971f516c19312cd3576b097da89d8594afab334b9f"
+        },
+        {
+          "path": "review/background/review/screens/champions/leon.png",
+          "original_path": "review/screens/champions/leon.png",
+          "sha256": "19c9b120c912e4279cf7edc68887b4fbac0faad1b232ab3712b1835f522f8fa5",
+          "archived_sha256": "19c9b120c912e4279cf7edc68887b4fbac0faad1b232ab3712b1835f522f8fa5"
+        },
+        {
+          "path": "review/background/review/screens/champions/nemona.png",
+          "original_path": "review/screens/champions/nemona.png",
+          "sha256": "d9272eaf0e8173896251fc839790250316ba1023fad96c320a39799d264c24a1",
+          "archived_sha256": "d9272eaf0e8173896251fc839790250316ba1023fad96c320a39799d264c24a1"
+        },
+        {
+          "path": "review/background/review/screens/champions/steven.png",
+          "original_path": "review/screens/champions/steven.png",
+          "sha256": "ace5e1a8813ac1b53daa80f1a5c1d646c1335eeb463f4e9bbc85b1cdcbac5bff",
+          "archived_sha256": "ace5e1a8813ac1b53daa80f1a5c1d646c1335eeb463f4e9bbc85b1cdcbac5bff"
+        },
+        {
+          "path": "review/background/review/screens/champions/wallace.png",
+          "original_path": "review/screens/champions/wallace.png",
+          "sha256": "89013fb848ae24fb7d7873049a60540a38dc174dcb508fa39c9d563e2ddbe819",
+          "archived_sha256": "89013fb848ae24fb7d7873049a60540a38dc174dcb508fa39c9d563e2ddbe819"
+        },
+        {
+          "path": "review/background/review/screens/elite/aaron.png",
+          "original_path": "review/screens/elite/aaron.png",
+          "sha256": "6b5e52a42dcfdad6ee2626b7e797ecd1b6527a66f9b218a6ae4c3571f58719de",
+          "archived_sha256": "6b5e52a42dcfdad6ee2626b7e797ecd1b6527a66f9b218a6ae4c3571f58719de"
+        },
+        {
+          "path": "review/background/review/screens/elite/acerola.png",
+          "original_path": "review/screens/elite/acerola.png",
+          "sha256": "6228154566a08f4db5eacc5f74183d01e3371c899a3538401aa2ff1b164accda",
+          "archived_sha256": "6228154566a08f4db5eacc5f74183d01e3371c899a3538401aa2ff1b164accda"
+        },
+        {
+          "path": "review/background/review/screens/elite/agatha.png",
+          "original_path": "review/screens/elite/agatha.png",
+          "sha256": "418cdd07b481b712e52b6f4d32a6944e11e6f168aa1cfe9a01db24208b74964d",
+          "archived_sha256": "418cdd07b481b712e52b6f4d32a6944e11e6f168aa1cfe9a01db24208b74964d"
+        },
+        {
+          "path": "review/background/review/screens/elite/bertha.png",
+          "original_path": "review/screens/elite/bertha.png",
+          "sha256": "21f556c677039a450e2b9c9ecb0b1869e9972ea9ba63e4aa84eb13d359547f39",
+          "archived_sha256": "21f556c677039a450e2b9c9ecb0b1869e9972ea9ba63e4aa84eb13d359547f39"
+        },
+        {
+          "path": "review/background/review/screens/elite/bruno.png",
+          "original_path": "review/screens/elite/bruno.png",
+          "sha256": "847d15b12283eb6b17ff9295a5efb17de60cbc74e279ce92d4dc4ffef631d4b7",
+          "archived_sha256": "847d15b12283eb6b17ff9295a5efb17de60cbc74e279ce92d4dc4ffef631d4b7"
+        },
+        {
+          "path": "review/background/review/screens/elite/caitlin.png",
+          "original_path": "review/screens/elite/caitlin.png",
+          "sha256": "1cc99cd801ad2a7f38183ac2be57a83a4e5972f0fbac339f66be1a291062482a",
+          "archived_sha256": "1cc99cd801ad2a7f38183ac2be57a83a4e5972f0fbac339f66be1a291062482a"
+        },
+        {
+          "path": "review/background/review/screens/elite/drake.png",
+          "original_path": "review/screens/elite/drake.png",
+          "sha256": "88500e5dd7c4e0fb984bab229519a23943d45ab36a0a3dfcf88241aa515a3ece",
+          "archived_sha256": "88500e5dd7c4e0fb984bab229519a23943d45ab36a0a3dfcf88241aa515a3ece"
+        },
+        {
+          "path": "review/background/review/screens/elite/drasna.png",
+          "original_path": "review/screens/elite/drasna.png",
+          "sha256": "8fb0c72e4cd3d42733dd190bb978a1da0b30de98bd7df80938d38d2c65db4ad8",
+          "archived_sha256": "8fb0c72e4cd3d42733dd190bb978a1da0b30de98bd7df80938d38d2c65db4ad8"
+        },
+        {
+          "path": "review/background/review/screens/elite/flint.png",
+          "original_path": "review/screens/elite/flint.png",
+          "sha256": "b3b9fa3ed93034f20703603ee434f279ba8ba915bcbd681163f0fc6bf91096bf",
+          "archived_sha256": "b3b9fa3ed93034f20703603ee434f279ba8ba915bcbd681163f0fc6bf91096bf"
+        },
+        {
+          "path": "review/background/review/screens/elite/glacia.png",
+          "original_path": "review/screens/elite/glacia.png",
+          "sha256": "2e91c7a829f5614836a5fc5ffae0283d7a624c9654fa16e75a9c48c3a98d3abe",
+          "archived_sha256": "2e91c7a829f5614836a5fc5ffae0283d7a624c9654fa16e75a9c48c3a98d3abe"
+        },
+        {
+          "path": "review/background/review/screens/elite/grimsley.png",
+          "original_path": "review/screens/elite/grimsley.png",
+          "sha256": "8c29782706e9f1159a96fa1d67df036fd2e690b155864682f43d10c51b91f641",
+          "archived_sha256": "8c29782706e9f1159a96fa1d67df036fd2e690b155864682f43d10c51b91f641"
+        },
+        {
+          "path": "review/background/review/screens/elite/hala.png",
+          "original_path": "review/screens/elite/hala.png",
+          "sha256": "52ecf1a86a6604d3f7905c94b7d409dc6a8f840904b0049f080dc11e3ae66d3c",
+          "archived_sha256": "52ecf1a86a6604d3f7905c94b7d409dc6a8f840904b0049f080dc11e3ae66d3c"
+        },
+        {
+          "path": "review/background/review/screens/elite/hassel.png",
+          "original_path": "review/screens/elite/hassel.png",
+          "sha256": "02e081fa2b0441b66e29d0b03b8b72905dc0f46c82f6674ae1ff78e0a35906ef",
+          "archived_sha256": "02e081fa2b0441b66e29d0b03b8b72905dc0f46c82f6674ae1ff78e0a35906ef"
+        },
+        {
+          "path": "review/background/review/screens/elite/kahili.png",
+          "original_path": "review/screens/elite/kahili.png",
+          "sha256": "b07aafbdf15cb4bb21806ed45cd5a13cb1f15fb9b219948e7b3f00a2ae5df92d",
+          "archived_sha256": "b07aafbdf15cb4bb21806ed45cd5a13cb1f15fb9b219948e7b3f00a2ae5df92d"
+        },
+        {
+          "path": "review/background/review/screens/elite/karen.png",
+          "original_path": "review/screens/elite/karen.png",
+          "sha256": "f74a6dd6c94a1bc873a8a9d4ec951cf2189d40e5c62835faf62b3c11278ccc46",
+          "archived_sha256": "f74a6dd6c94a1bc873a8a9d4ec951cf2189d40e5c62835faf62b3c11278ccc46"
+        },
+        {
+          "path": "review/background/review/screens/elite/koga.png",
+          "original_path": "review/screens/elite/koga.png",
+          "sha256": "6ed438058463f067b771a49dd49958ea2975be4584a8a942387798d5002bcae4",
+          "archived_sha256": "6ed438058463f067b771a49dd49958ea2975be4584a8a942387798d5002bcae4"
+        },
+        {
+          "path": "review/background/review/screens/elite/lance.png",
+          "original_path": "review/screens/elite/lance.png",
+          "sha256": "6af5051f12ac4c7110497028057b531366e473e772488c1b11cbc61ad6073064",
+          "archived_sha256": "6af5051f12ac4c7110497028057b531366e473e772488c1b11cbc61ad6073064"
+        },
+        {
+          "path": "review/background/review/screens/elite/larry.png",
+          "original_path": "review/screens/elite/larry.png",
+          "sha256": "b4fcfac62660305584acfc5f85935d3a741cb37501b8637aadb66bf7cce6080f",
+          "archived_sha256": "b4fcfac62660305584acfc5f85935d3a741cb37501b8637aadb66bf7cce6080f"
+        },
+        {
+          "path": "review/background/review/screens/elite/lorelei.png",
+          "original_path": "review/screens/elite/lorelei.png",
+          "sha256": "ff3dc1a6f73aba365f0e93f12d58e90a80f2899edd75303efb229f3615ef028e",
+          "archived_sha256": "ff3dc1a6f73aba365f0e93f12d58e90a80f2899edd75303efb229f3615ef028e"
+        },
+        {
+          "path": "review/background/review/screens/elite/lucian.png",
+          "original_path": "review/screens/elite/lucian.png",
+          "sha256": "009e5b34bf0051801561be75b0e8fcaa77472cf7048612347e081de7adeea916",
+          "archived_sha256": "009e5b34bf0051801561be75b0e8fcaa77472cf7048612347e081de7adeea916"
+        },
+        {
+          "path": "review/background/review/screens/elite/malva.png",
+          "original_path": "review/screens/elite/malva.png",
+          "sha256": "a150cdd24dd667d7220d19e989034dc8bd7b7d4765bee796f13aec79b01c4658",
+          "archived_sha256": "a150cdd24dd667d7220d19e989034dc8bd7b7d4765bee796f13aec79b01c4658"
+        },
+        {
+          "path": "review/background/review/screens/elite/marshal.png",
+          "original_path": "review/screens/elite/marshal.png",
+          "sha256": "845d122460efd046517036cfdb42ab1a1c2b9b5685429b23b58f99301efba299",
+          "archived_sha256": "845d122460efd046517036cfdb42ab1a1c2b9b5685429b23b58f99301efba299"
+        },
+        {
+          "path": "review/background/review/screens/elite/olivia.png",
+          "original_path": "review/screens/elite/olivia.png",
+          "sha256": "3807afdb31933a9819f0e0a667431110afcee629f6bba76fb415c8d8b3b51297",
+          "archived_sha256": "3807afdb31933a9819f0e0a667431110afcee629f6bba76fb415c8d8b3b51297"
+        },
+        {
+          "path": "review/background/review/screens/elite/phoebe.png",
+          "original_path": "review/screens/elite/phoebe.png",
+          "sha256": "da0fcd4feeb06cbff637bee95643b8f263a0eeb2cf8914c99963ab7109e054f3",
+          "archived_sha256": "da0fcd4feeb06cbff637bee95643b8f263a0eeb2cf8914c99963ab7109e054f3"
+        },
+        {
+          "path": "review/background/review/screens/elite/poppy.png",
+          "original_path": "review/screens/elite/poppy.png",
+          "sha256": "a8545a25bd197857cf7c060461d2db31035af6263aad204f02fe2c6e3c8a380a",
+          "archived_sha256": "a8545a25bd197857cf7c060461d2db31035af6263aad204f02fe2c6e3c8a380a"
+        },
+        {
+          "path": "review/background/review/screens/elite/rika.png",
+          "original_path": "review/screens/elite/rika.png",
+          "sha256": "d0b1d174f67a2637c481a310bc37e921c7de05684e3e723223dd4e1be9d557fd",
+          "archived_sha256": "d0b1d174f67a2637c481a310bc37e921c7de05684e3e723223dd4e1be9d557fd"
+        },
+        {
+          "path": "review/background/review/screens/elite/shauntal.png",
+          "original_path": "review/screens/elite/shauntal.png",
+          "sha256": "d453133f3ce8bfff5a8f5a682ad85247f50fe5dc0edf223de6c8b220ccf22ce9",
+          "archived_sha256": "d453133f3ce8bfff5a8f5a682ad85247f50fe5dc0edf223de6c8b220ccf22ce9"
+        },
+        {
+          "path": "review/background/review/screens/elite/sidney.png",
+          "original_path": "review/screens/elite/sidney.png",
+          "sha256": "c2fb061c9e5b72d99d3de2f488ad84230a8ca828a1841fac44323949df96e3a9",
+          "archived_sha256": "c2fb061c9e5b72d99d3de2f488ad84230a8ca828a1841fac44323949df96e3a9"
+        },
+        {
+          "path": "review/background/review/screens/elite/siebold.png",
+          "original_path": "review/screens/elite/siebold.png",
+          "sha256": "127fef8fbf79296ef75aa19ec12b0d69cd1e40684e5349db05daf7b47e71d084",
+          "archived_sha256": "127fef8fbf79296ef75aa19ec12b0d69cd1e40684e5349db05daf7b47e71d084"
+        },
+        {
+          "path": "review/background/review/screens/elite/wikstrom.png",
+          "original_path": "review/screens/elite/wikstrom.png",
+          "sha256": "66ae117141b8e2e3a061a6e04b734c37041f006953b2cb0da9bacba8c1c39764",
+          "archived_sha256": "66ae117141b8e2e3a061a6e04b734c37041f006953b2cb0da9bacba8c1c39764"
+        },
+        {
+          "path": "review/background/review/screens/elite/will.png",
+          "original_path": "review/screens/elite/will.png",
+          "sha256": "f1c086a060f7ca027feef1e40db66666fa5fb29014e8c5ac1cadf5bda65ab814",
+          "archived_sha256": "f1c086a060f7ca027feef1e40db66666fa5fb29014e8c5ac1cadf5bda65ab814"
+        },
+        {
+          "path": "review/background/review/screens/reserve/champion_fallback.png",
+          "original_path": "review/screens/reserve/champion_fallback.png",
+          "sha256": "43f970416e4e9a9ee76103020ffc9390c929569ab99855b41793220b40eb7f7d",
+          "archived_sha256": "43f970416e4e9a9ee76103020ffc9390c929569ab99855b41793220b40eb7f7d"
+        },
+        {
+          "path": "review/background/review/screens/reserve/elite_electric.png",
+          "original_path": "review/screens/reserve/elite_electric.png",
+          "sha256": "de491667ac32219b4dde17fe6c399c3bf9a33e798f64b7dd0548ace4ffa152fb",
+          "archived_sha256": "de491667ac32219b4dde17fe6c399c3bf9a33e798f64b7dd0548ace4ffa152fb"
+        },
+        {
+          "path": "review/background/review/screens/reserve/elite_fairy.png",
+          "original_path": "review/screens/reserve/elite_fairy.png",
+          "sha256": "1f881bdef6b598ad1f906c4455c29766812901b7fda1846e85a4e7a15d4483b6",
+          "archived_sha256": "1f881bdef6b598ad1f906c4455c29766812901b7fda1846e85a4e7a15d4483b6"
+        },
+        {
+          "path": "review/background/review/screens/reserve/elite_grass.png",
+          "original_path": "review/screens/reserve/elite_grass.png",
+          "sha256": "a67ec2cff5b4630c9ab32d893695768e36607a89cfea57fba27c10dd42123d58",
+          "archived_sha256": "a67ec2cff5b4630c9ab32d893695768e36607a89cfea57fba27c10dd42123d58"
+        },
+        {
+          "path": "review/background/review/screens/reserve/elite_normal.png",
+          "original_path": "review/screens/reserve/elite_normal.png",
+          "sha256": "9113ab4ac07320d5a1bbeb80e7b2d0b6986bebad2dc10d29d578afb619728bfd",
+          "archived_sha256": "9113ab4ac07320d5a1bbeb80e7b2d0b6986bebad2dc10d29d578afb619728bfd"
+        },
+        {
+          "path": "review/background/review/sheets/biomes.png",
+          "original_path": "review/sheets/biomes.png",
+          "sha256": "a8a50aa19ed8062ca620d2e5eb48ad63914ae35ecb32e41641977bdef1698e1c",
+          "archived_sha256": "a8a50aa19ed8062ca620d2e5eb48ad63914ae35ecb32e41641977bdef1698e1c"
+        },
+        {
+          "path": "review/background/review/sheets/champions.png",
+          "original_path": "review/sheets/champions.png",
+          "sha256": "0f933a68911dd39bf5a27f371aab810b110c31f2e1b1361134d612405ce843cc",
+          "archived_sha256": "0f933a68911dd39bf5a27f371aab810b110c31f2e1b1361134d612405ce843cc"
+        },
+        {
+          "path": "review/background/review/sheets/elite.png",
+          "original_path": "review/sheets/elite.png",
+          "sha256": "9d5a18b35623ac15d25d42e3c7cf64083451423f3566765cc40b004e82f346fd",
+          "archived_sha256": "9d5a18b35623ac15d25d42e3c7cf64083451423f3566765cc40b004e82f346fd"
+        },
+        {
+          "path": "review/background/review/sheets/reserve.png",
+          "original_path": "review/sheets/reserve.png",
+          "sha256": "a6c7b756b4ef82ce3a3f48ca0a4a4f527c45c56eae2bb3e845a3a3181386f2ef",
+          "archived_sha256": "a6c7b756b4ef82ce3a3f48ca0a4a4f527c45c56eae2bb3e845a3a3181386f2ef"
+        }
+      ]
+    },
+    {
+      "name": "concept-review-2026-10-17",
+      "commit": "12d7a36908dcd424926a7e2f02345850fb4cd357",
+      "browse_commit": "https://github.com/agree-git/pokemon-deckbuilder/tree/12d7a36908dcd424926a7e2f02345850fb4cd357",
+      "material_files": [
+        {
+          "path": "review/build-concepts/.gdignore",
+          "original_path": "review/build-concepts/.gdignore",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "archived_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "review/build-concepts/README.md",
+          "original_path": "review/build-concepts/README.md",
+          "sha256": "8de54b9b1304cb9d5721f2f1162761cdfa2c7f1c4deb35baf3dfb46498c5a4a9",
+          "archived_sha256": "3a13e564ce65b4b34fa1a4ba232a6bb5ebc7d182219b9fe8ad52b8d202d29611"
+        },
+        {
+          "path": "review/build-concepts/ace.png",
+          "original_path": "review/build-concepts/ace.png",
+          "sha256": "04c9c90c4808f270cf74491d447f2ef36ab42b8cf98851579cc92b9095a829bd",
+          "archived_sha256": "04c9c90c4808f270cf74491d447f2ef36ab42b8cf98851579cc92b9095a829bd"
+        },
+        {
+          "path": "review/build-concepts/build-concepts.zip",
+          "original_path": "review/build-concepts/build-concepts.zip",
+          "sha256": "dccee716ced138c993850aff9d14f15d137a55d01f9b5493be6ad969d6beed43",
+          "archived_sha256": "dccee716ced138c993850aff9d14f15d137a55d01f9b5493be6ad969d6beed43"
+        },
+        {
+          "path": "review/build-concepts/cycle.png",
+          "original_path": "review/build-concepts/cycle.png",
+          "sha256": "b059d56a2bfe8e9fe351d8137ae95645345b1ae9a1be5b0ace4fe048a9f0eae7",
+          "archived_sha256": "b059d56a2bfe8e9fe351d8137ae95645345b1ae9a1be5b0ace4fe048a9f0eae7"
+        },
+        {
+          "path": "review/build-concepts/relay.png",
+          "original_path": "review/build-concepts/relay.png",
+          "sha256": "7da0377a4205e250d289dc58bf2144faf0bf739ac9cd62b702dbd04ffb4858f2",
+          "archived_sha256": "7da0377a4205e250d289dc58bf2144faf0bf739ac9cd62b702dbd04ffb4858f2"
+        },
+        {
+          "path": "review/build-concepts/shield.png",
+          "original_path": "review/build-concepts/shield.png",
+          "sha256": "3381b939b73eac60b87d6b14aada0c693576ef11875dbb72bb8a6151b645453a",
+          "archived_sha256": "3381b939b73eac60b87d6b14aada0c693576ef11875dbb72bb8a6151b645453a"
+        },
+        {
+          "path": "review/build-concepts/status.png",
+          "original_path": "review/build-concepts/status.png",
+          "sha256": "c2a7dda5f70f2339efe218e67df53f84e550b45360f75450bca1bb4871544b57",
+          "archived_sha256": "c2a7dda5f70f2339efe218e67df53f84e550b45360f75450bca1bb4871544b57"
+        },
+        {
+          "path": "review/build-concepts/supply.png",
+          "original_path": "review/build-concepts/supply.png",
+          "sha256": "118d8e2aa46135d7b86f268525f6768b9dc05b354fb0106aadd009a61bb6b6df",
+          "archived_sha256": "118d8e2aa46135d7b86f268525f6768b9dc05b354fb0106aadd009a61bb6b6df"
+        },
+        {
+          "path": "review/build-concepts/weather-rain-battle.png",
+          "original_path": "review/build-concepts/weather-rain-battle.png",
+          "sha256": "0ac195ec5d2b5b7b828cfdbecd558a34b6335dfa0640cb38e6c9c1a3da6f7f1a",
+          "archived_sha256": "0ac195ec5d2b5b7b828cfdbecd558a34b6335dfa0640cb38e6c9c1a3da6f7f1a"
+        },
+        {
+          "path": "review/build-concepts/weather-sand-battle.png",
+          "original_path": "review/build-concepts/weather-sand-battle.png",
+          "sha256": "936f5f343b5b066b2f8bd10799e7491841aca20c32b7aaed2bf87e3322dd91ff",
+          "archived_sha256": "936f5f343b5b066b2f8bd10799e7491841aca20c32b7aaed2bf87e3322dd91ff"
+        },
+        {
+          "path": "review/build-concepts/weather-snow-battle.png",
+          "original_path": "review/build-concepts/weather-snow-battle.png",
+          "sha256": "a19071cfb58ebcdb49f6f802306c31d9190ce3e702d96be6b78b11e1a630f4bd",
+          "archived_sha256": "a19071cfb58ebcdb49f6f802306c31d9190ce3e702d96be6b78b11e1a630f4bd"
+        },
+        {
+          "path": "review/build-concepts/weather-sun-battle.png",
+          "original_path": "review/build-concepts/weather-sun-battle.png",
+          "sha256": "12d5995495ed198f8a33fbdf0cc923c450d7e86ff873a8be5f1ac1a11e6736d3",
+          "archived_sha256": "12d5995495ed198f8a33fbdf0cc923c450d7e86ff873a8be5f1ac1a11e6736d3"
+        },
+        {
+          "path": "review/build-concepts/weather.png",
+          "original_path": "review/build-concepts/weather.png",
+          "sha256": "b59d1ba256dfe75dccc95c38a111ae57314091268135c8ec151b89132f5867e5",
+          "archived_sha256": "b59d1ba256dfe75dccc95c38a111ae57314091268135c8ec151b89132f5867e5"
+        }
+      ]
+    },
+    {
+      "name": "trainer-dialogue-review-2026-10-17",
+      "commit": "9b78b9cd77d1c8cf5bd8c15dc69dec4cb7a4f444",
+      "browse_commit": "https://github.com/agree-git/pokemon-deckbuilder/tree/9b78b9cd77d1c8cf5bd8c15dc69dec4cb7a4f444",
+      "material_files": [
+        {
+          "path": "review/trainer-presentation/README.md",
+          "original_path": "review/trainer-presentation/README.md",
+          "sha256": "d65b6e6ee98fd45fc673d94ba173434389565c46f2d011f881eda7b715526525",
+          "archived_sha256": "a31bfb2869fc1ff2c609c126881328a5c504b28c06c943d1a3574d099dc6f17d"
+        },
+        {
+          "path": "review/trainer-presentation/champion-cynthia-defeat.png",
+          "original_path": "review/trainer-presentation/champion-cynthia-defeat.png",
+          "sha256": "7c2b80f70686c8807464d6270c8337b01aa67003c23001c9be1291f6088e74e5",
+          "archived_sha256": "7c2b80f70686c8807464d6270c8337b01aa67003c23001c9be1291f6088e74e5"
+        },
+        {
+          "path": "review/trainer-presentation/champion-cynthia-intro.png",
+          "original_path": "review/trainer-presentation/champion-cynthia-intro.png",
+          "sha256": "8420cb1219ab815a73c6a7dc58c91c5b571430b8418e5e5b20340fd8401966a3",
+          "archived_sha256": "8420cb1219ab815a73c6a7dc58c91c5b571430b8418e5e5b20340fd8401966a3"
+        },
+        {
+          "path": "review/trainer-presentation/champion-cynthia-last.png",
+          "original_path": "review/trainer-presentation/champion-cynthia-last.png",
+          "sha256": "1a95f133c1b7a80298bdd8411b1285ca944c6c48dda4472a44131459b5f7b57b",
+          "archived_sha256": "1a95f133c1b7a80298bdd8411b1285ca944c6c48dda4472a44131459b5f7b57b"
+        },
+        {
+          "path": "review/trainer-presentation/champion-cynthia-throw.png",
+          "original_path": "review/trainer-presentation/champion-cynthia-throw.png",
+          "sha256": "baea8419f49b41daa7497f4ea2d2199472359d864bf694c8ef23c3864d827295",
+          "archived_sha256": "baea8419f49b41daa7497f4ea2d2199472359d864bf694c8ef23c3864d827295"
+        },
+        {
+          "path": "review/trainer-presentation/elite-lance-defeat.png",
+          "original_path": "review/trainer-presentation/elite-lance-defeat.png",
+          "sha256": "a8cb5f3d0b81cb57975e0007da741838c9f179d6ffcb327fc349473b39090f74",
+          "archived_sha256": "a8cb5f3d0b81cb57975e0007da741838c9f179d6ffcb327fc349473b39090f74"
+        },
+        {
+          "path": "review/trainer-presentation/elite-lance-intro.png",
+          "original_path": "review/trainer-presentation/elite-lance-intro.png",
+          "sha256": "d69b7d19841d99b4f8159e62903ca49a5770a9c5bd7a40fc60419d8fa61a3b8b",
+          "archived_sha256": "d69b7d19841d99b4f8159e62903ca49a5770a9c5bd7a40fc60419d8fa61a3b8b"
+        },
+        {
+          "path": "review/trainer-presentation/elite-lance-last.png",
+          "original_path": "review/trainer-presentation/elite-lance-last.png",
+          "sha256": "54cc7eb9896db3b68af01715cad01025176f4cafc49167166a098a34e3f9ccfd",
+          "archived_sha256": "54cc7eb9896db3b68af01715cad01025176f4cafc49167166a098a34e3f9ccfd"
+        },
+        {
+          "path": "review/trainer-presentation/elite-lance-throw.png",
+          "original_path": "review/trainer-presentation/elite-lance-throw.png",
+          "sha256": "d37815ed8cb892fc133822376b2e1e957f919082d9310718bab9d5e0c4b11b96",
+          "archived_sha256": "d37815ed8cb892fc133822376b2e1e957f919082d9310718bab9d5e0c4b11b96"
+        },
+        {
+          "path": "review/trainer-presentation/elite-larry-defeat.png",
+          "original_path": "review/trainer-presentation/elite-larry-defeat.png",
+          "sha256": "856f84a949bdd686f65560072a9e5553dde91abf56819b1f93722f22c44188bd",
+          "archived_sha256": "856f84a949bdd686f65560072a9e5553dde91abf56819b1f93722f22c44188bd"
+        },
+        {
+          "path": "review/trainer-presentation/elite-larry-intro.png",
+          "original_path": "review/trainer-presentation/elite-larry-intro.png",
+          "sha256": "89ae5ad0ad771921747c648970e63266198da0a543505371f586923698d3d903",
+          "archived_sha256": "89ae5ad0ad771921747c648970e63266198da0a543505371f586923698d3d903"
+        },
+        {
+          "path": "review/trainer-presentation/elite-larry-last.png",
+          "original_path": "review/trainer-presentation/elite-larry-last.png",
+          "sha256": "170fb9e3bc01f40b3f6d17962f8e39d8008692586e9c278b80ff574e495f23d0",
+          "archived_sha256": "170fb9e3bc01f40b3f6d17962f8e39d8008692586e9c278b80ff574e495f23d0"
+        },
+        {
+          "path": "review/trainer-presentation/gym-brock-defeat.png",
+          "original_path": "review/trainer-presentation/gym-brock-defeat.png",
+          "sha256": "a6f24d043ec0b60222f01a0eca2ac92f820c025ebaab1b0a3a2704db20f03562",
+          "archived_sha256": "a6f24d043ec0b60222f01a0eca2ac92f820c025ebaab1b0a3a2704db20f03562"
+        },
+        {
+          "path": "review/trainer-presentation/gym-brock-intro.png",
+          "original_path": "review/trainer-presentation/gym-brock-intro.png",
+          "sha256": "d2688eede028a9a3b5e4e695c3daf376c6c8e8692ca6b40678b3ac783c6d0cf0",
+          "archived_sha256": "d2688eede028a9a3b5e4e695c3daf376c6c8e8692ca6b40678b3ac783c6d0cf0"
+        },
+        {
+          "path": "review/trainer-presentation/gym-brock-last.png",
+          "original_path": "review/trainer-presentation/gym-brock-last.png",
+          "sha256": "c374aa6dd9d330994d5cd5b36acf038e23a776796c74c1686d87156f726c6957",
+          "archived_sha256": "c374aa6dd9d330994d5cd5b36acf038e23a776796c74c1686d87156f726c6957"
+        },
+        {
+          "path": "review/trainer-presentation/gym-brock-throw.png",
+          "original_path": "review/trainer-presentation/gym-brock-throw.png",
+          "sha256": "21ab27eac228957292ab0b4bc7feec04eaab3980afb66da54490cf6ba89070e8",
+          "archived_sha256": "21ab27eac228957292ab0b4bc7feec04eaab3980afb66da54490cf6ba89070e8"
+        },
+        {
+          "path": "review/trainer-presentation/gym-iono-defeat.png",
+          "original_path": "review/trainer-presentation/gym-iono-defeat.png",
+          "sha256": "4a47e702a873a2c92938058444516c0ba296125f2eead18e1921a5d157c1aa23",
+          "archived_sha256": "4a47e702a873a2c92938058444516c0ba296125f2eead18e1921a5d157c1aa23"
+        },
+        {
+          "path": "review/trainer-presentation/gym-iono-intro.png",
+          "original_path": "review/trainer-presentation/gym-iono-intro.png",
+          "sha256": "b52785eae939bf471d18e473cddbb59b7119c53b8404693e75af85cbf3d5d4f2",
+          "archived_sha256": "b52785eae939bf471d18e473cddbb59b7119c53b8404693e75af85cbf3d5d4f2"
+        },
+        {
+          "path": "review/trainer-presentation/gym-iono-last.png",
+          "original_path": "review/trainer-presentation/gym-iono-last.png",
+          "sha256": "3374524c69fa286bee1322c3b2a79fb50573ee24c90468351eab9ded35d9fdc6",
+          "archived_sha256": "3374524c69fa286bee1322c3b2a79fb50573ee24c90468351eab9ded35d9fdc6"
+        },
+        {
+          "path": "review/trainer-presentation/index.html",
+          "original_path": "review/trainer-presentation/index.html",
+          "sha256": "3874d831e182f7ba461fd7ee2053a093f1a43998ab29179ee192d439cc445807",
+          "archived_sha256": "3874d831e182f7ba461fd7ee2053a093f1a43998ab29179ee192d439cc445807"
+        },
+        {
+          "path": "review/trainer-presentation/trainer-presentation.zip",
+          "original_path": "review/trainer-presentation/trainer-presentation.zip",
+          "sha256": "ddf31f6def1a96a446144e169a5f90d393c07bd2e23f6188b10487fda1e29049",
+          "archived_sha256": "ddf31f6def1a96a446144e169a5f90d393c07bd2e23f6188b10487fda1e29049"
+        },
+        {
+          "path": "review/trainer-presentation/trainer_sprite_candidates.json",
+          "original_path": "review/trainer-presentation/trainer_sprite_candidates.json",
+          "sha256": "12f5a9272599d13872a586d8844e1df2624c4ddf23bd17e5b54f92d04200ed9e",
+          "archived_sha256": "12f5a9272599d13872a586d8844e1df2624c4ddf23bd17e5b54f92d04200ed9e"
+        },
+        {
+          "path": "review/trainer-presentation/trainer_sprites.csv",
+          "original_path": "review/trainer-presentation/trainer_sprites.csv",
+          "sha256": "dc7b7e22c241e867a9c87fb3a7ba974ef2b18a4a156b63fb838c8869d29dfe30",
+          "archived_sha256": "dc7b7e22c241e867a9c87fb3a7ba974ef2b18a4a156b63fb838c8869d29dfe30"
+        },
+        {
+          "path": "review/trainer-presentation/trainer_sprites.json",
+          "original_path": "review/trainer-presentation/trainer_sprites.json",
+          "sha256": "e952e32bac37eeb259a615ca1e041eb0bebaa9c632b6aca16b85eebb8b393763",
+          "archived_sha256": "e952e32bac37eeb259a615ca1e041eb0bebaa9c632b6aca16b85eebb8b393763"
+        }
+      ]
+    },
+    {
+      "name": "weather-field-review-2026-10-17",
+      "commit": "d7464996516c54454cf9bc897f77a86ef384c9a3",
+      "browse_commit": "https://github.com/agree-git/pokemon-deckbuilder/tree/d7464996516c54454cf9bc897f77a86ef384c9a3",
+      "material_files": [
+        {
+          "path": "review/weather-field/.gdignore",
+          "original_path": "review/weather-field/.gdignore",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "archived_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "review/weather-field/README.md",
+          "original_path": "review/weather-field/README.md",
+          "sha256": "04b48e86107176558696eafd6434274fb8f6e04ba6f51acb85a5a20cd366a4a0",
+          "archived_sha256": "c49c8fc7ac385e85a71326a587a58df8b700ab72355ba7f92a09e10a62bab6f7"
+        },
+        {
+          "path": "review/weather-field/forest-rain.png",
+          "original_path": "review/weather-field/forest-rain.png",
+          "sha256": "656ec989a2f5174eb2a1799077ec295b689893ccb7f7aaee51e26b005ffd343e",
+          "archived_sha256": "656ec989a2f5174eb2a1799077ec295b689893ccb7f7aaee51e26b005ffd343e"
+        },
+        {
+          "path": "review/weather-field/forest-sand.png",
+          "original_path": "review/weather-field/forest-sand.png",
+          "sha256": "85eb22580499001011883e5c6dba4118619d0a36c0ea560875b149e550313d3f",
+          "archived_sha256": "85eb22580499001011883e5c6dba4118619d0a36c0ea560875b149e550313d3f"
+        },
+        {
+          "path": "review/weather-field/forest-snow.png",
+          "original_path": "review/weather-field/forest-snow.png",
+          "sha256": "df425eb80607c7a1752184ef75105841e0f7990895ac2b9c29acbfe8c0f041e7",
+          "archived_sha256": "df425eb80607c7a1752184ef75105841e0f7990895ac2b9c29acbfe8c0f041e7"
+        },
+        {
+          "path": "review/weather-field/forest-sun.png",
+          "original_path": "review/weather-field/forest-sun.png",
+          "sha256": "43cab2ed32cb8fe44c84b09feb50ffd3100e60a8839540c53bff1a4004327284",
+          "archived_sha256": "43cab2ed32cb8fe44c84b09feb50ffd3100e60a8839540c53bff1a4004327284"
+        },
+        {
+          "path": "review/weather-field/indoor-rain.png",
+          "original_path": "review/weather-field/indoor-rain.png",
+          "sha256": "b85f8ec24813fdc2358bdd6ee4b6b29af84a84241d7244977ffb3a6233a36d53",
+          "archived_sha256": "b85f8ec24813fdc2358bdd6ee4b6b29af84a84241d7244977ffb3a6233a36d53"
+        },
+        {
+          "path": "review/weather-field/indoor-sand.png",
+          "original_path": "review/weather-field/indoor-sand.png",
+          "sha256": "413a63dcc3d905dc15950c7bfbbd70c3f60069aae828f6647599c81ca4225a12",
+          "archived_sha256": "413a63dcc3d905dc15950c7bfbbd70c3f60069aae828f6647599c81ca4225a12"
+        },
+        {
+          "path": "review/weather-field/indoor-snow.png",
+          "original_path": "review/weather-field/indoor-snow.png",
+          "sha256": "ea27191a80cadc357aa543ef4bd37527a0b0f6288101b5412d7bffe469a47493",
+          "archived_sha256": "ea27191a80cadc357aa543ef4bd37527a0b0f6288101b5412d7bffe469a47493"
+        },
+        {
+          "path": "review/weather-field/indoor-sun.png",
+          "original_path": "review/weather-field/indoor-sun.png",
+          "sha256": "419cffba1285e59bbc9281ce10019f81be1b19930ae7b7aaef717bbe11f96a3b",
+          "archived_sha256": "419cffba1285e59bbc9281ce10019f81be1b19930ae7b7aaef717bbe11f96a3b"
+        },
+        {
+          "path": "review/weather-field/weather-field.zip",
+          "original_path": "review/weather-field/weather-field.zip",
+          "sha256": "9b3a01a209d86321a3a08b48cc5348d8a0d875aee7ddc8298bb157c8a7acf343",
+          "archived_sha256": "9b3a01a209d86321a3a08b48cc5348d8a0d875aee7ddc8298bb157c8a7acf343"
+        }
+      ]
+    }
+  ]
+}

@@ -35,4 +35,4 @@ python3 tools/fetch_trainer_sprites.py --fetch  # 고정 URL과 SHA가 같은 �
 
 ## 검토
 
-[실제 1920×1080 화면·전체 적용/미적용 목록·CSV·ZIP](https://github.com/agree-git/pokemon-deckbuilder/blob/trainer-dialogue-review-2026-10-17/review/trainer-presentation/README.md). 웅·목호·난천은 원본 도트, 모야모·청목은 공용 도트로 남은 인물을 보여준다. 마지막 출전/승리 화면은 해당 시점을 확인하기 위한 HP 1 검토 fixture이며 정상 난도 자료가 아니다.
+[실제 1920×1080 화면·전체 적용/미적용 목록·CSV·ZIP](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/review/trainer-presentation/README.md). 웅·목호·난천은 원본 도트, 모야모·청목은 공용 도트로 남은 인물을 보여준다. 마지막 출전/승리 화면은 해당 시점을 확인하기 위한 HP 1 검토 fixture이며 정상 난도 자료가 아니다.

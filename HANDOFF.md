@@ -2,6 +2,14 @@
 
 다른 채팅에서 이 저장소의 개발을 이어가기 위한 현재 상태다. **새 작업을 시작할 때 이 파일과 `AGENTS.md`, `docs/progress.md`를 먼저 읽고, 작업을 마치거나 중단할 때 이 파일을 갱신한다.** 최신 사용자 지시가 이 문서보다 우선한다. 지난 대화 전체를 다시 추측하거나 이미 끝난 기능을 재개발하지 않는다.
 
+## 저장소 정리 — 2026-10-17
+
+최신 사용자 지시는 **main에는 실제 사용하는 게임 파일을 남기고 나머지를 새 브랜치에 모은 뒤 다른 브랜치를 삭제**하는 것이다. 자료 브랜치는 `development-materials`다. 이 브랜치에는 기존 개발 자료와 정리 전 전체 프로젝트 사본, 기존 검토 브랜치 네 개의 고유 갤러리/ZIP/CSV/편집기를 보존했다. 원본 commit은 부모 이력에 연결하고 [파일 지문/경로 목록](docs/branch-archive.json)에 기록했다. root README는 자료 탐색용이고 이전 README는 `PROJECT_README.md`다.
+
+이 브랜치의 코드가 최신 main이라고 가정하지 않는다. 앞으로 실제 게임 코드는 main에서, 개발 문서/테스트/도구/검토 자료는 여기에서 갱신한다. 다른 영구 원격 브랜치를 만들지 않는다. 구형 프리뷰/실험실에 의존하는 테스트는 자료 사본에 남기며 최신 main의 필수 검증으로 오인하지 않는다.
+
+진행 상태: 기존 브랜치의 자료와 commit 보존을 완료했다. main 파일 정리·Godot 검증·원격 갱신과 옛 브랜치 삭제는 아직 진행 중이며 완료 후 이 절을 갱신한다.
+
 ## 시작할 때
 
 1. `git status --short`, `git branch --show-current`, `git log -5 --oneline`으로 실제 변경과 최근 커밋을 확인한다. 다른 사람이 남긴 변경을 초기화하거나 덮어쓰지 않는다.
@@ -14,7 +22,7 @@
 - 사용자와의 설명·진행 보고는 한국어로 간결하게 한다. “계속”, “다음 진행”은 작은 플레이 가능한 개선을 실제로 완료하라는 뜻으로 이어간다.
 - 이 프로젝트는 검증한 변경을 커밋하고 **GitHub `agree-git/pokemon-deckbuilder`의 `main`에 직접 반영**해 왔다. 사용자의 별도 브랜치/PR/배포 지시가 있으면 그 지시를 우선한다. 강제 push나 사용자 변경 초기화는 하지 않는다.
 - push 후 로컬 HEAD와 원격 `refs/heads/main` 일치 여부, 작업 트리 상태를 확인한다. 원격과 갈라졌다면 먼저 차이를 확인하고 다른 작업을 보존한다. 로컬 커밋·push·실제 배포는 구분해서 보고한다.
-- 사용자는 모바일로 검토하므로 요청한 갤러리·ZIP·CSV는 GitHub에도 올리고 HTTPS 링크로 제공한다. 큰 검토 산출물은 `main`과 분리한 검토 브랜치에 보관한다. 수정 후 배경 자료는 [background-review-2026-10-16](https://github.com/agree-git/pokemon-deckbuilder/tree/background-review-2026-10-16)의 README 갤러리·`review/index.html`·ZIP·`review/floor_coordinates.csv`·적용 JSON에 둔다. 최신 자료는 사용자가 HTML로 수정해 업로드한 좌표다. Pages 설정 API는 이 환경에서 Forbidden이므로 실제 Pages 사이트가 아닌 GitHub Markdown 갤러리다.
+- 사용자는 모바일로 검토하므로 요청한 갤러리·ZIP·CSV는 GitHub에도 올리고 HTTPS 링크로 제공한다. 큰 검토 산출물은 `main`과 분리한 검토 브랜치에 보관한다. 수정 후 배경 자료는 [background-review-2026-10-16](https://github.com/agree-git/pokemon-deckbuilder/tree/development-materials/review/background)의 README 갤러리·`review/index.html`·ZIP·`review/floor_coordinates.csv`·적용 JSON에 둔다. 최신 자료는 사용자가 HTML로 수정해 업로드한 좌표다. Pages 설정 API는 이 환경에서 Forbidden이므로 실제 Pages 사이트가 아닌 GitHub Markdown 갤러리다.
 - 전투 규칙·콘텐츠·인스턴스·UI/연출을 분리한다. UI 조회·취소·필터는 원정 상태, 실제 카드 UID, 자원, 저장, 난수를 바꾸면 안 된다.
 - 현재 동작을 확인하고 필요한 범위의 검사를 한다. 자동 전투 완주는 사람의 승률·재미·모든 파티의 균형을 입증하지 않는다.
 
@@ -59,7 +67,7 @@
 - 원작 도트 73장을 수정 없이 고정 Smogon 커밋에서 가져와 75대진에 적용했다. 불투명 발끝과 정수 배율로 배치하고 오른쪽 파티/대사 창을 피한다. 기존 포켓볼 투척·출전은 유지한다. 원본 도트는 정지 이미지이며 인물별 원작 투척 프레임은 아니다. 일반 상대와 아직 미적용인 후대 49대진은 자체 공용 도트다. 원본/SHA/대진 대응·갱신 도구는 `assets/sources/trainer_sprites.json`, `tools/fetch_trainer_sprites.py`다.
 - **최신 사용자 요청은 6세대 이후 도트 사이트 링크다.** [세대별·개별 링크](docs/trainer-sprite-links.md), `assets/sources/trainer_sprite_candidates.json`에 정리했다. 추가 조사에서 Showdown 갤러리의 구체적인 **제작자 표기·허락 없는 편집 금지** 조건을 찾았다. 48대진의 파일명/작가 등재는 확인했으며 시트론은 미확인이다. Showdown 이미지 호스트는 현재 클라우드에서 403 차단되어 이미지 자체를 열거나 내려받지 못했다. 후보를 적용 완료/실물 검토로 설명하지 않는다. 후속 작업은 사용자가 검토한 후보의 원본 확인과 적용이다. 기존 일반 README의 불명확한 조건만으로 팬 도트가 전부 사용 불가하다고 단정하지 않는다.
 - Godot 4.7.2/Linux: 콘텐츠·실제 글꼴/372대사·75도트 실제 알파 경계/정수 배율/전체 자세 간섭·조회 상태 불변 **3,561개**, 헤드리스 UI **138개**, 실제 X11 UI **156개/15클릭·10키**, 기존 등장 **64개**, 저장 회귀 **1,759개**를 통과했다. UI는 웅/목호/난천/모야모/청목과 연출 세 속도에서 실제 카드 공격→마지막 출전→승리, 재개, 입력 잠금, 실제 원작 도트의 공 궤적을 검사한다. 저장 회귀는 이번 작업의 앞선 대사 연결 단계에서 실행했다. 최종 로그의 스크립트 오류/리소스 잔여 없음과 원본 PNG 73장 오프라인 무결성, 사용자 배경 JSON SHA를 확인했다.
-- [검토 화면 18장·전체 적용 목록·CSV·ZIP](https://github.com/agree-git/pokemon-deckbuilder/blob/trainer-dialogue-review-2026-10-17/review/trainer-presentation/README.md). 1920×1080 실제 창이며 마지막 출전/결과는 HP 1 fixture다. 정상 원정 난도·Windows 실행 검증 자료는 아니다. 전투 규칙·저장 버전·배경 좌표·밸런스는 유지한다.
+- [검토 화면 18장·전체 적용 목록·CSV·ZIP](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/review/trainer-presentation/README.md). 1920×1080 실제 창이며 마지막 출전/결과는 HP 1 fixture다. 정상 원정 난도·Windows 실행 검증 자료는 아니다. 전투 규칙·저장 버전·배경 좌표·밸런스는 유지한다.
 
 ## 직전 완료 — 선명한 전장 날씨와 왼쪽 위 햇살 · 2026-10-17
 
@@ -67,7 +75,7 @@
 
 - 새 `BattleWeatherVisual`은 3px 도형 격자와 0.55초 전환/종료를 사용한다. 반복 HUD 갱신은 전환을 재시작하지 않는다. 기술/포켓볼 연출과 HUD는 위에 표시하고 상단 바·손패 경계를 제외한다. 필드 하단은 점차 옅게 처리한다.
 - 실제 렌더러 97개·헤드리스 전장 31개·실제 X11 날씨 카드 33개/12클릭, 기존 날씨 규칙/저장/획득 121개·전투 연출 28개를 확인했다. 야외/리그 실내 두 배경, 세 창 비율, 실제 픽셀의 상단/손패/파티 글자 보호, 왼쪽 위 광원, 움직임/결정적 재현, 전투 상태/난수/사용자 좌표 보존을 검사한다. 기존 연출 테스트의 종료 시 장면/오디오 정리 절차도 보완했다. 최종 로그의 오류/리소스 잔여 경고가 없음을 확인했다.
-- [최신 날씨 화면 8장·ZIP](https://github.com/agree-git/pokemon-deckbuilder/blob/weather-field-review-2026-10-17/review/weather-field/README.md)은 같은 파티로 배경과 날씨를 바꾼 1920×1080 검토 장면이다. 정상 챔피언 대진/난도 자료가 아니다. Godot 4.7.2/Linux 기준이며 Windows 검증·밸런스 조정은 별도다. 기존 날씨의 5턴/피해/저장 규칙은 유지한다.
+- [최신 날씨 화면 8장·ZIP](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/review/weather-field/README.md)은 같은 파티로 배경과 날씨를 바꾼 1920×1080 검토 장면이다. 정상 챔피언 대진/난도 자료가 아니다. Godot 4.7.2/Linux 기준이며 Windows 검증·밸런스 조정은 별도다. 기존 날씨의 5턴/피해/저장 규칙은 유지한다.
 
 ## 직전 완료 — 여섯 콘셉트 확장과 전투 날씨 · 2026-10-17
 
@@ -78,7 +86,7 @@
 - 새 지속 효과·비축·날씨는 기존 v3 `powers`, 턴당/멤버별 발동은 `turn_flags`로 저장한다. 날씨는 한 종류/1~5턴으로 검증한다. `BattleFrame`의 `powers` 사본으로 날씨/비축 HUD를 단계에 맞춰 표시한다. 모래 피해 양쪽 처리 후 기절/승패를 판정하며 강제 교대가 추가 tick을 만들지 않는다.
 - 상단 날씨 아이콘·잔여 턴·툴팁·입자/색조, 카드 사용 예고·실제 피해/적 공격 예고를 연결했다. 일반 유물 26개+핵심 1개 메뉴를 스크롤하고 상단 유물 툴팁은 최근 3개로 요약한다. 직접 교대 할인 비용을 파티/도움말에 실제 현재값으로 표시한다. 사용자 배경 JSON SHA와 승인 타입 배지를 유지했다.
 - Godot 4.7.2/Linux: 콘셉트 규칙/사본별 디스크 복원/획득 452개, 날씨 규칙/저장/획득 121개, 능력치 55개, 카드 설명 3,136개/876얼굴·미리보기 8,601개 통과. 기존 공유 덱 632개·앞선 확장 120개·조합 610개·핵심 357개·상점 1,199개도 통과했다. 원정/저장 회귀는 194개(세 시드 각 69승)/1,759개다.
-- 실제 X11 포인터: 콘셉트 49개/32클릭, 27유물 메뉴/세 창 비율/할인 표시 43개/8클릭, 날씨 33개/12클릭. 헤드리스 UI는 각각 콘셉트 43개·날씨 32개다. 전체 import와 최종 로그의 오류/리소스 잔여 여부를 확인했다. 1920×1080 카드 갤러리 7장과 날씨 전투 예시 4장은 [검토 브랜치](https://github.com/agree-git/pokemon-deckbuilder/blob/concept-review-2026-10-17/review/build-concepts/README.md)에 둔다. 자동 완주는 사람의 승률·재미 보장이 아니며 Windows 실행과 수동 밸런스는 미완료다.
+- 실제 X11 포인터: 콘셉트 49개/32클릭, 27유물 메뉴/세 창 비율/할인 표시 43개/8클릭, 날씨 33개/12클릭. 헤드리스 UI는 각각 콘셉트 43개·날씨 32개다. 전체 import와 최종 로그의 오류/리소스 잔여 여부를 확인했다. 1920×1080 카드 갤러리 7장과 날씨 전투 예시 4장은 [검토 브랜치](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/review/build-concepts/README.md)에 둔다. 자동 완주는 사람의 승률·재미 보장이 아니며 Windows 실행과 수동 밸런스는 미완료다.
 
 ## 직전 완료 — 네 빌드의 카드·유물 확장 · 2026-10-17
 
@@ -185,7 +193,7 @@
 - **저장 호환:** 새 스냅샷은 `route_version: 2`, 이전 v3 필드 부재는 1번 경로를 사용한다. `data/gyms.json` 18개 기준 파일과 콘텐츠 지문은 그대로이며, 기존 저장의 미래 대진/서명을 유지한다. `CampaignRoute(seed,1)`을 없애거나 기존 기준 JSON을 전체 후보로 덮어쓰지 않는다. `TacticalJourney`의 새 도전/재시작은 2번을 사용한다. 변경 전 커밋의 실제 저장 검체·서명을 `tests/fixtures/gym-candidates`에 보관했다. 측정 지문은 새 후보 JSON/선정 코드도 포함한다. 기존 160개/40개 난도 측정은 이전 대진 자료다.
 - **확인된 검증:** Linux/Godot 4.7.2 import, 후보/512개 시드 16,310개·보스 12,864개·저장 1,759개·파일 23개·옛 능력치 저장 390개·비주얼 6,805개·진단 47개, 별도 프로세스 저장/복구 5단계 28개를 통과했다. 실제 렌더러에서 8지방·그린·타임의 10개 독립 장면 62개 검사를 통과하고 모야모의 1920×1080 화면을 [후보 문서](docs/gyms.md)에 보관했다. 전체 69전투·엔딩 UI 입력 2,487개 검사(포인터 1,971·키 336, headless 주입)를 통과했다. 타임 추가 전후 그 검사의 시드 2026 대진 서명은 완전히 같다. Windows 실행·사람 난도 검증은 미완료다.
 - 최종 82팀 데이터로 모델 30개 시드 23,769개 검사를 통과했다. 자동 정책 29완주·1실제 전멸이며 사람의 승률이나 전체 편성 밸런스 측정이 아니다. 전체 UI 첫 실행은 시간 제한으로 사천왕 구간에서 중단되어 결과에 포함하지 않았고, 제한 시간을 늘린 최종 실행에서 69전투·엔딩을 완료했다.
-- **GitHub 검토 자료 게시 완료:** [모바일용 갤러리](https://github.com/agree-git/pokemon-deckbuilder/tree/background-review-2026-10-16)·[ZIP](https://github.com/agree-git/pokemon-deckbuilder/raw/refs/heads/background-review-2026-10-16/pokemon-background-aligned-final-2026-10-16.zip)·[좌표 CSV](https://github.com/agree-git/pokemon-deckbuilder/blob/background-review-2026-10-16/review/floor_coordinates.csv). 별도 검토 브랜치 `c82139b`는 전투 65장·접지 가이드 48장을 담고 있으며 관장 확장 이전 배경 검토본이다. Pages/API 게시가 아닌 GitHub README 갤러리다.
+- **GitHub 검토 자료 게시 완료:** [모바일용 갤러리](https://github.com/agree-git/pokemon-deckbuilder/tree/development-materials/review/background)·[ZIP](https://github.com/agree-git/pokemon-deckbuilder/raw/refs/heads/background-review-2026-10-16/pokemon-background-aligned-final-2026-10-16.zip)·[좌표 CSV](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/review/background/review/floor_coordinates.csv). 별도 검토 브랜치 `c82139b`는 전투 65장·접지 가이드 48장을 담고 있으며 관장 확장 이전 배경 검토본이다. Pages/API 게시가 아닌 GitHub README 갤러리다.
 
 ### 직전 배경 접지
 

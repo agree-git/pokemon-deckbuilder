@@ -1,5 +1,12 @@
 # Codex development instructions
 
+## Repository layout after cleanup
+
+- User request: keep only the runnable game, essential credits/licenses and a short usage README on `main`. Keep development material on `development-materials`; do not create additional persistent remote branches.
+- This branch retains the pre-cleanup project for reference. Implement runtime changes against current `main`, and keep documents, tests, tooling and review artifacts here. Main no longer contains legacy battle preview/art lab; older tests may require their archived code.
+- Read the latest `main` README and this branch HANDOFF before continuing. Preserve both remote branches; never reintroduce the deleted review branch names in new links.
+
+
 ## Project
 
 - Build a 2D Pokemon roguelite deck-building game.
@@ -39,4 +46,4 @@
 - Inspect UI in an actual running game when possible. Headless checks do not prove visual quality.
 - Never claim a test or visual inspection occurred without running it.
 - Explain progress concisely in Korean and work in small playable increments.
-- The user reviews on mobile: publish requested review galleries, ZIPs and CSVs to GitHub and provide HTTPS links, not only workspace paths. Keep large review artifacts on a separate review branch. The existing `background-review-2026-10-16` branch contains the aligned background review.
+- The user reviews on mobile: publish requested review galleries, ZIPs and CSVs to GitHub and provide HTTPS links, not only workspace paths. Keep large review artifacts on a separate review branch. The consolidated `review/background/` directory on `development-materials` contains the aligned background review.

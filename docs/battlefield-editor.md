@@ -1,6 +1,6 @@
 # 배경 위치를 직접 수정하는 HTML
 
-[HTML 파일 다운로드 · 약 28MB](https://github.com/agree-git/pokemon-deckbuilder/raw/refs/heads/background-review-2026-10-16/pokemon-background-editor.html?download=1) · [ZIP 다운로드](https://github.com/agree-git/pokemon-deckbuilder/raw/refs/heads/background-review-2026-10-16/pokemon-background-editor.zip) · [미리보기](https://github.com/agree-git/pokemon-deckbuilder/blob/background-review-2026-10-16/editor-preview.png)
+[HTML 파일 다운로드 · 약 28MB](https://github.com/agree-git/pokemon-deckbuilder/raw/refs/heads/background-review-2026-10-16/pokemon-background-editor.html?download=1) · [ZIP 다운로드](https://github.com/agree-git/pokemon-deckbuilder/raw/refs/heads/background-review-2026-10-16/pokemon-background-editor.zip) · [미리보기](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/review/background/editor-preview.png)
 
 사용자가 배경을 보며 직접 위치를 옮기기 위해 요청한 **독립 HTML 파일**이다. ZIP에도 같은 HTML이 들어 있다. 다운로드한 HTML을 JavaScript를 지원하는 브라우저로 열면 된다. GitHub 파일 보기 화면 자체에서 실행되는 사이트는 아니다.
 

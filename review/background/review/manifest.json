@@ -1,0 +1,3523 @@
+{
+  "captures": [
+    {
+      "active": true,
+      "background": "res://assets/biomes/atlas_1.png",
+      "category": "biomes",
+      "cell": 3.0,
+      "file": "screens/biomes/normal.png",
+      "floor_guide": "guides/biomes_normal.png",
+      "floor_layout": {
+        "ally": [
+          223.4,
+          287.1
+        ],
+        "enemy": [
+          563.5,
+          237.6
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "6be7640d1dd9289d5dc2a39f40155156010d7d63391f2a2048ecae6f63111b63",
+      "key": "normal",
+      "opponents": [
+        16
+      ],
+      "party": [
+        2,
+        5,
+        8
+      ],
+      "region": "",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          558.5,
+          564.75
+        ],
+        "enemy": [
+          1408.75,
+          441.0
+        ]
+      },
+      "sha256": "a2f2a51ae466a473820426bd19f1656543ef630095254e2fe305fe26ed971196",
+      "sprite_scales": [
+        4.0,
+        4.0
+      ],
+      "title": "노말 · 바람결 초원",
+      "type": "normal"
+    },
+    {
+      "active": true,
+      "background": "res://assets/biomes/atlas_1.png",
+      "category": "biomes",
+      "cell": 0.0,
+      "file": "screens/biomes/fire.png",
+      "floor_guide": "guides/biomes_fire.png",
+      "floor_layout": {
+        "ally": [
+          231.2,
+          294.0
+        ],
+        "enemy": [
+          526.5,
+          248.5
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "d7ee4a383d4f335bdc202ac15c44df4842d6e86c07122e427ec5568f088501af",
+      "key": "fire",
+      "opponents": [
+        4
+      ],
+      "party": [
+        2,
+        5,
+        8
+      ],
+      "region": "",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          578.0,
+          565.0
+        ],
+        "enemy": [
+          1316.25,
+          451.25
+        ]
+      },
+      "sha256": "e407f05567067534b85bd7a02cbfc8cea16a782a234f9acf9932ada5603f3fe7",
+      "sprite_scales": [
+        4.0,
+        4.0
+      ],
+      "title": "불꽃 · 잿불 칼데라",
+      "type": "fire"
+    },
+    {
+      "active": true,
+      "background": "res://assets/biomes/atlas_1.png",
+      "category": "biomes",
+      "cell": 1.0,
+      "file": "screens/biomes/water.png",
+      "floor_guide": "guides/biomes_water.png",
+      "floor_layout": {
+        "ally": [
+          230.2,
+          299.8
+        ],
+        "enemy": [
+          565.6,
+          262.9
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "b454423b40d5c3c4330ec916e791ff24f7031dedc5b143b35e12bd3e4c259aa1",
+      "key": "water",
+      "opponents": [
+        7
+      ],
+      "party": [
+        2,
+        5,
+        8
+      ],
+      "region": "",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          575.5,
+          564.5
+        ],
+        "enemy": [
+          1414.0,
+          472.25
+        ]
+      },
+      "sha256": "c21beec1607ff68fd89c145a71f5b0835d463daf5671621997ee64a352b4486f",
+      "sprite_scales": [
+        4.0,
+        4.0
+      ],
+      "title": "물 · 해오름 물가",
+      "type": "water"
+    },
+    {
+      "active": true,
+      "background": "res://assets/biomes/atlas_1.png",
+      "category": "biomes",
+      "cell": 2.0,
+      "file": "screens/biomes/grass.png",
+      "floor_guide": "guides/biomes_grass.png",
+      "floor_layout": {
+        "ally": [
+          228.4,
+          278.4
+        ],
+        "enemy": [
+          535.9,
+          221.2
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "47e29b786badb3dfab81becb56168fab8fbc87a0bc7cd3737f192ab36e14c960",
+      "key": "grass",
+      "opponents": [
+        1
+      ],
+      "party": [
+        2,
+        5,
+        8
+      ],
+      "region": "",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          571.0,
+          565.0
+        ],
+        "enemy": [
+          1339.75,
+          422.0
+        ]
+      },
+      "sha256": "48e4577e6869d6280375dd1edba516b75ca54d9d3a3bf0acf49a5979a84099e3",
+      "sprite_scales": [
+        4.0,
+        4.0
+      ],
+      "title": "풀 · 햇살숲 정원",
+      "type": "grass"
+    },
+    {
+      "active": true,
+      "background": "res://assets/biomes/atlas_1.png",
+      "category": "biomes",
+      "cell": 4.0,
+      "file": "screens/biomes/electric.png",
+      "floor_guide": "guides/biomes_electric.png",
+      "floor_layout": {
+        "ally": [
+          230.1,
+          272.8
+        ],
+        "enemy": [
+          545.5,
+          227.8
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "91c4f2a97f8f5ade5d474c553d7dca5f12dccfb53b7b24c6eb5af8a7e87de8ca",
+      "key": "electric",
+      "opponents": [
+        25
+      ],
+      "party": [
+        2,
+        5,
+        8
+      ],
+      "region": "",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          575.25,
+          565.0
+        ],
+        "enemy": [
+          1363.75,
+          452.5
+        ]
+      },
+      "sha256": "029081e18048429e4678c5435c60640c8e663e27d14fa87248abe1c1b7fee416",
+      "sprite_scales": [
+        4.0,
+        4.0
+      ],
+      "title": "전기 · 번개 수정 고원",
+      "type": "electric"
+    },
+    {
+      "active": true,
+      "background": "res://assets/biomes/atlas_1.png",
+      "category": "biomes",
+      "cell": 5.0,
+      "file": "screens/biomes/ice.png",
+      "floor_guide": "guides/biomes_ice.png",
+      "floor_layout": {
+        "ally": [
+          236.5,
+          278.9
+        ],
+        "enemy": [
+          553.9,
+          229.5
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "912fa748634606e0714d070cfed875f301657e0fdb222ea15e72d4c91d6b0f7d",
+      "key": "ice",
+      "opponents": [
+        87
+      ],
+      "party": [
+        2,
+        5,
+        8
+      ],
+      "region": "",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          591.25,
+          564.25
+        ],
+        "enemy": [
+          1384.75,
+          440.75
+        ]
+      },
+      "sha256": "8788aaa219c1c08313ef511d613258af96bd6e0de79672e59d74d3aff5e1e64c",
+      "sprite_scales": [
+        4.0,
+        4.0
+      ],
+      "title": "얼음 · 서리빛 빙하",
+      "type": "ice"
+    },
+    {
+      "active": true,
+      "background": "res://assets/biomes/atlas_2.png",
+      "category": "biomes",
+      "cell": 0.0,
+      "file": "screens/biomes/fighting.png",
+      "floor_guide": "guides/biomes_fighting.png",
+      "floor_layout": {
+        "ally": [
+          178.0,
+          295.0
+        ],
+        "enemy": [
+          610.0,
+          263.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "860e7cd78b1d89a43e0c142fd317f6627102548ff627080d570c1163875a40ad",
+      "key": "fighting",
+      "opponents": [
+        56
+      ],
+      "party": [
+        2,
+        5,
+        8
+      ],
+      "region": "",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          445.0,
+          564.5
+        ],
+        "enemy": [
+          1525.0,
+          484.5
+        ]
+      },
+      "sha256": "f4d52138594a649e2119c9637f3e816b63c2278601f09035c0a7f346a7ef2fbc",
+      "sprite_scales": [
+        4.0,
+        3.0
+      ],
+      "title": "격투 · 수련 협곡",
+      "type": "fighting"
+    },
+    {
+      "active": true,
+      "background": "res://assets/biomes/atlas_2.png",
+      "category": "biomes",
+      "cell": 1.0,
+      "file": "screens/biomes/poison.png",
+      "floor_guide": "guides/biomes_poison.png",
+      "floor_layout": {
+        "ally": [
+          195.9,
+          299.5
+        ],
+        "enemy": [
+          607.9,
+          277.1
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "53f14bd5a29a1ba52548a46326179a633a4ce825018a26151af0ea8b1dd0eea0",
+      "key": "poison",
+      "opponents": [
+        1
+      ],
+      "party": [
+        2,
+        5,
+        8
+      ],
+      "region": "",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          489.75,
+          564.75
+        ],
+        "enemy": [
+          1519.75,
+          508.75
+        ]
+      },
+      "sha256": "639b15a987b55eef6f2a5ea5fa9ad4b4007607010bf1ae03c94192bd646134ea",
+      "sprite_scales": [
+        4.0,
+        4.0
+      ],
+      "title": "독 · 독안개 늪",
+      "type": "poison"
+    },
+    {
+      "active": true,
+      "background": "res://assets/biomes/atlas_2.png",
+      "category": "biomes",
+      "cell": 2.0,
+      "file": "screens/biomes/ground.png",
+      "floor_guide": "guides/biomes_ground.png",
+      "floor_layout": {
+        "ally": [
+          183.2,
+          298.5
+        ],
+        "enemy": [
+          610.0,
+          271.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "f390b26c89d07f09980cef6a19faa45bf997c31f0720ff3ba98decf2ae7fbd92",
+      "key": "ground",
+      "opponents": [
+        27
+      ],
+      "party": [
+        2,
+        5,
+        8
+      ],
+      "region": "",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          458.0,
+          564.25
+        ],
+        "enemy": [
+          1525.0,
+          495.5
+        ]
+      },
+      "sha256": "1799dc8a9864f286931103c1d1161a5b71b16b0f1a4fad424e4a13f098ed3468",
+      "sprite_scales": [
+        4.0,
+        4.0
+      ],
+      "title": "땅 · 모래바람 사막",
+      "type": "ground"
+    },
+    {
+      "active": true,
+      "background": "res://assets/biomes/atlas_2.png",
+      "category": "biomes",
+      "cell": 3.0,
+      "file": "screens/biomes/flying.png",
+      "floor_guide": "guides/biomes_flying.png",
+      "floor_layout": {
+        "ally": [
+          193.5,
+          299.0
+        ],
+        "enemy": [
+          601.6,
+          273.2
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "95208e7354e66d8de4b5f3151d9b5e51ef0a6118d8996368609fe0b5ce0d17c1",
+      "key": "flying",
+      "opponents": [
+        16
+      ],
+      "party": [
+        2,
+        5,
+        8
+      ],
+      "region": "",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          483.75,
+          564.5
+        ],
+        "enemy": [
+          1504.0,
+          500.0
+        ]
+      },
+      "sha256": "b333752d55c659f954a2b6bffd5f3db1f06595284af17aa247ccdebde2a8761a",
+      "sprite_scales": [
+        4.0,
+        4.0
+      ],
+      "title": "비행 · 구름마루 절벽",
+      "type": "flying"
+    },
+    {
+      "active": true,
+      "background": "res://assets/biomes/atlas_2.png",
+      "category": "biomes",
+      "cell": 4.0,
+      "file": "screens/biomes/psychic.png",
+      "floor_guide": "guides/biomes_psychic.png",
+      "floor_layout": {
+        "ally": [
+          176.1,
+          285.7
+        ],
+        "enemy": [
+          608.3,
+          250.5
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "407ef589c2b0788cc139c4ad0b9e9ebc19a00301a7453a4f99fc851d6f8df4fb",
+      "key": "psychic",
+      "opponents": [
+        63
+      ],
+      "party": [
+        2,
+        5,
+        8
+      ],
+      "region": "",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          440.25,
+          564.25
+        ],
+        "enemy": [
+          1520.75,
+          476.25
+        ]
+      },
+      "sha256": "3cc8d0ea1dbcd0fa192702b9888fe115a96b43e8eabf58c1f29193c5a663243e",
+      "sprite_scales": [
+        4.0,
+        4.0
+      ],
+      "title": "에스퍼 · 별무리 유적",
+      "type": "psychic"
+    },
+    {
+      "active": true,
+      "background": "res://assets/biomes/atlas_2.png",
+      "category": "biomes",
+      "cell": 5.0,
+      "file": "screens/biomes/bug.png",
+      "floor_guide": "guides/biomes_bug.png",
+      "floor_layout": {
+        "ally": [
+          177.3,
+          285.1
+        ],
+        "enemy": [
+          605.3,
+          249.5
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "4afc04399d5f1ffea30628cd8ca9d7ed0867d0ee0405b6e89eec52ee9580dd88",
+      "key": "bug",
+      "opponents": [
+        10
+      ],
+      "party": [
+        2,
+        5,
+        8
+      ],
+      "region": "",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          443.25,
+          564.75
+        ],
+        "enemy": [
+          1513.25,
+          475.75
+        ]
+      },
+      "sha256": "537a78fbcc1108b08fe0f9c5ff71272f6ec22e87b8bc1d8bff49a4571e0e1dff",
+      "sprite_scales": [
+        4.0,
+        4.0
+      ],
+      "title": "벌레 · 이슬잎 수풀",
+      "type": "bug"
+    },
+    {
+      "active": true,
+      "background": "res://assets/biomes/atlas_3.png",
+      "category": "biomes",
+      "cell": 0.0,
+      "file": "screens/biomes/rock.png",
+      "floor_guide": "guides/biomes_rock.png",
+      "floor_layout": {
+        "ally": [
+          181.8,
+          302.0
+        ],
+        "enemy": [
+          597.1,
+          249.1
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "c7d84dbc06a51369248d66f381267baf8ff4cf5a9657a04a8fcfc9c0fc6aab5e",
+      "key": "rock",
+      "opponents": [
+        74
+      ],
+      "party": [
+        2,
+        5,
+        8
+      ],
+      "region": "",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          454.5,
+          565.0
+        ],
+        "enemy": [
+          1492.75,
+          432.75
+        ]
+      },
+      "sha256": "b918c048ded1653f7e0993b59aca6c64d5c005e001b3a1f48fde15e210be1b7c",
+      "sprite_scales": [
+        4.0,
+        4.0
+      ],
+      "title": "바위 · 화석바위 산지",
+      "type": "rock"
+    },
+    {
+      "active": true,
+      "background": "res://assets/biomes/atlas_3.png",
+      "category": "biomes",
+      "cell": 1.0,
+      "file": "screens/biomes/ghost.png",
+      "floor_guide": "guides/biomes_ghost.png",
+      "floor_layout": {
+        "ally": [
+          181.5,
+          300.2
+        ],
+        "enemy": [
+          583.4,
+          252.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "2eb9992a04c537da0747cb875003276b103493ab93e98fc763ec1abbf6cc8c43",
+      "key": "ghost",
+      "opponents": [
+        92
+      ],
+      "party": [
+        2,
+        5,
+        8
+      ],
+      "region": "",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          453.75,
+          564.5
+        ],
+        "enemy": [
+          1458.5,
+          444.0
+        ]
+      },
+      "sha256": "490181e06bb27ab5080a8f7dcabf445e2039eb309e572071efc251da53e0026d",
+      "sprite_scales": [
+        4.0,
+        4.0
+      ],
+      "title": "고스트 · 달그림 묘원",
+      "type": "ghost"
+    },
+    {
+      "active": true,
+      "background": "res://assets/biomes/atlas_3.png",
+      "category": "biomes",
+      "cell": 2.0,
+      "file": "screens/biomes/dragon.png",
+      "floor_guide": "guides/biomes_dragon.png",
+      "floor_layout": {
+        "ally": [
+          170.1,
+          306.9
+        ],
+        "enemy": [
+          600.9,
+          263.8
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "f62009026c2bc729cc8e18853dfe0f74dc79c11f63b72b8e05290408f8303d51",
+      "key": "dragon",
+      "opponents": [
+        147
+      ],
+      "party": [
+        2,
+        5,
+        8
+      ],
+      "region": "",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          425.25,
+          564.25
+        ],
+        "enemy": [
+          1502.25,
+          456.5
+        ]
+      },
+      "sha256": "74a5afcecff7ee4ca842c447be23ef698fcb78a09237537805f5a511e6ee5b30",
+      "sprite_scales": [
+        4.0,
+        4.0
+      ],
+      "title": "드래곤 · 용마루 성역",
+      "type": "dragon"
+    },
+    {
+      "active": true,
+      "background": "res://assets/biomes/atlas_3.png",
+      "category": "biomes",
+      "cell": 3.0,
+      "file": "screens/biomes/dark.png",
+      "floor_guide": "guides/biomes_dark.png",
+      "floor_layout": {
+        "ally": [
+          192.9,
+          306.2
+        ],
+        "enemy": [
+          594.0,
+          264.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "9ff97636a832a955d7d41280da93dd175b0e0771e4a10a295c8f57e35b47a5d0",
+      "key": "dark",
+      "opponents": [
+        198
+      ],
+      "party": [
+        2,
+        5,
+        8
+      ],
+      "region": "",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          482.25,
+          564.5
+        ],
+        "enemy": [
+          1485.0,
+          459.0
+        ]
+      },
+      "sha256": "8c6039b0f1e03c526c61f0c9e657b9cc1634a1334ad952777f876b69782d957d",
+      "sprite_scales": [
+        4.0,
+        4.0
+      ],
+      "title": "악 · 그믐밤 숲",
+      "type": "dark"
+    },
+    {
+      "active": true,
+      "background": "res://assets/biomes/atlas_3.png",
+      "category": "biomes",
+      "cell": 4.0,
+      "file": "screens/biomes/steel.png",
+      "floor_guide": "guides/biomes_steel.png",
+      "floor_layout": {
+        "ally": [
+          180.0,
+          296.7
+        ],
+        "enemy": [
+          605.3,
+          242.8
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "36daa902dc4f9e8f982036ce2f316260b0c322ab10048c3109185d630d257a65",
+      "key": "steel",
+      "opponents": [
+        81
+      ],
+      "party": [
+        2,
+        5,
+        8
+      ],
+      "region": "",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          450.0,
+          564.75
+        ],
+        "enemy": [
+          1513.25,
+          430.0
+        ]
+      },
+      "sha256": "4e70b07074576d72a021081b753864f81282f0d3e68b4f9e10d395fedb8fb16b",
+      "sprite_scales": [
+        4.0,
+        4.0
+      ],
+      "title": "강철 · 녹슨 발전소",
+      "type": "steel"
+    },
+    {
+      "active": true,
+      "background": "res://assets/biomes/atlas_3.png",
+      "category": "biomes",
+      "cell": 5.0,
+      "file": "screens/biomes/fairy.png",
+      "floor_guide": "guides/biomes_fairy.png",
+      "floor_layout": {
+        "ally": [
+          201.6,
+          297.6
+        ],
+        "enemy": [
+          598.6,
+          246.1
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "00ea5c4641812fb1ffcb60f7bed4449a58dcd14676189742d884b86f778317d7",
+      "key": "fairy",
+      "opponents": [
+        35
+      ],
+      "party": [
+        2,
+        5,
+        8
+      ],
+      "region": "",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          504.0,
+          565.0
+        ],
+        "enemy": [
+          1496.5,
+          436.25
+        ]
+      },
+      "sha256": "dab9f0466c61843eebc91fc4770696d978aaa4d68fcb390645fea95ec9b9d6aa",
+      "sprite_scales": [
+        4.0,
+        4.0
+      ],
+      "title": "페어리 · 별꽃 요정숲",
+      "type": "fairy"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_1.png",
+      "category": "elite",
+      "cell": 5.0,
+      "file": "screens/elite/lorelei.png",
+      "floor_guide": "guides/elite_lorelei.png",
+      "floor_layout": {
+        "ally": [
+          173.0,
+          283.0
+        ],
+        "enemy": [
+          592.0,
+          218.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "03be531ee5ef43485ac51489defaaa145872bb028f6399a77ad2ba559d5844dc",
+      "key": "lorelei",
+      "opponents": [
+        87,
+        91,
+        124,
+        131,
+        221
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "관동",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          432.5,
+          564.5
+        ],
+        "enemy": [
+          1480.0,
+          402.0
+        ]
+      },
+      "sha256": "ff3dc1a6f73aba365f0e93f12d58e90a80f2899edd75303efb229f3615ef028e",
+      "sprite_scales": [
+        3.0,
+        3.0
+      ],
+      "title": "관동 · 칸나 / 얼음",
+      "type": "ice"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_2.png",
+      "category": "elite",
+      "cell": 0.0,
+      "file": "screens/elite/bruno.png",
+      "floor_guide": "guides/elite_bruno.png",
+      "floor_layout": {
+        "ally": [
+          147.0,
+          268.0
+        ],
+        "enemy": [
+          596.0,
+          218.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "a112ee900101f1b4e81895fdd0a44f5566462f9200564a35621e443312071488",
+      "key": "bruno",
+      "opponents": [
+        57,
+        62,
+        68,
+        106,
+        107
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "관동",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          367.5,
+          565.0
+        ],
+        "enemy": [
+          1490.0,
+          440.0
+        ]
+      },
+      "sha256": "847d15b12283eb6b17ff9295a5efb17de60cbc74e279ce92d4dc4ffef631d4b7",
+      "sprite_scales": [
+        3.0,
+        4.0
+      ],
+      "title": "관동 · 시바 / 격투",
+      "type": "fighting"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_3.png",
+      "category": "elite",
+      "cell": 1.0,
+      "file": "screens/elite/agatha.png",
+      "floor_guide": "guides/elite_agatha.png",
+      "floor_layout": {
+        "ally": [
+          172.0,
+          274.0
+        ],
+        "enemy": [
+          599.0,
+          216.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "988bde278de22ea3c786b91427663b813a8acb74735506cb76515e54b6058744",
+      "key": "agatha",
+      "opponents": [
+        93,
+        94,
+        200,
+        302,
+        354
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "관동",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          430.0,
+          565.0
+        ],
+        "enemy": [
+          1497.5,
+          420.0
+        ]
+      },
+      "sha256": "418cdd07b481b712e52b6f4d32a6944e11e6f168aa1cfe9a01db24208b74964d",
+      "sprite_scales": [
+        3.0,
+        4.0
+      ],
+      "title": "관동 · 국화 / 고스트",
+      "type": "ghost"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_3.png",
+      "category": "elite",
+      "cell": 2.0,
+      "file": "screens/elite/lance.png",
+      "floor_guide": "guides/elite_lance.png",
+      "floor_layout": {
+        "ally": [
+          174.0,
+          287.0
+        ],
+        "enemy": [
+          599.0,
+          224.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "1e227af631c3b15fc6ca025e1997cf8c0cf7234f721ce2a0b4bf65e9c219f207",
+      "key": "lance",
+      "opponents": [
+        148,
+        149,
+        230,
+        330,
+        373
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "관동·성도",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          435.0,
+          564.5
+        ],
+        "enemy": [
+          1497.5,
+          407.0
+        ]
+      },
+      "sha256": "6af5051f12ac4c7110497028057b531366e473e772488c1b11cbc61ad6073064",
+      "sprite_scales": [
+        3.0,
+        3.0
+      ],
+      "title": "관동·성도 · 목호 / 드래곤",
+      "type": "dragon"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_2.png",
+      "category": "elite",
+      "cell": 4.0,
+      "file": "screens/elite/will.png",
+      "floor_guide": "guides/elite_will.png",
+      "floor_layout": {
+        "ally": [
+          146.0,
+          265.0
+        ],
+        "enemy": [
+          610.0,
+          213.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "1b1ca3cad2f40d370a6555ea202813fd2c56397a09bbb106976c441640f274af",
+      "key": "will",
+      "opponents": [
+        97,
+        103,
+        124,
+        178,
+        196
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "성도",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          365.0,
+          564.5
+        ],
+        "enemy": [
+          1525.0,
+          434.5
+        ]
+      },
+      "sha256": "f1c086a060f7ca027feef1e40db66666fa5fb29014e8c5ac1cadf5bda65ab814",
+      "sprite_scales": [
+        3.0,
+        3.0
+      ],
+      "title": "성도 · 일목 / 에스퍼",
+      "type": "psychic"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_2.png",
+      "category": "elite",
+      "cell": 1.0,
+      "file": "screens/elite/koga.png",
+      "floor_guide": "guides/elite_koga.png",
+      "floor_layout": {
+        "ally": [
+          147.9,
+          266.5
+        ],
+        "enemy": [
+          596.0,
+          218.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "4a2e219b40adf373e916fd24f62f517ef5290b0e6a58f18653486424ea53b328",
+      "key": "koga",
+      "opponents": [
+        49,
+        89,
+        169,
+        168,
+        317
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "성도",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          369.75,
+          564.25
+        ],
+        "enemy": [
+          1490.0,
+          443.0
+        ]
+      },
+      "sha256": "6ed438058463f067b771a49dd49958ea2975be4584a8a942387798d5002bcae4",
+      "sprite_scales": [
+        3.0,
+        4.0
+      ],
+      "title": "성도 · 독수 / 독",
+      "type": "poison"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_3.png",
+      "category": "elite",
+      "cell": 3.0,
+      "file": "screens/elite/karen.png",
+      "floor_guide": "guides/elite_karen.png",
+      "floor_layout": {
+        "ally": [
+          173.0,
+          286.0
+        ],
+        "enemy": [
+          599.0,
+          224.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "4fafd263f819f1b9f66a179764404120ba501262893d7b8c2773a5b285459686",
+      "key": "karen",
+      "opponents": [
+        197,
+        198,
+        215,
+        229,
+        359
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "성도",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          432.5,
+          565.0
+        ],
+        "enemy": [
+          1497.5,
+          410.0
+        ]
+      },
+      "sha256": "f74a6dd6c94a1bc873a8a9d4ec951cf2189d40e5c62835faf62b3c11278ccc46",
+      "sprite_scales": [
+        3.0,
+        4.0
+      ],
+      "title": "성도 · 카렌 / 악",
+      "type": "dark"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_3.png",
+      "category": "elite",
+      "cell": 3.0,
+      "file": "screens/elite/sidney.png",
+      "floor_guide": "guides/elite_karen.png",
+      "floor_layout": {
+        "ally": [
+          173.0,
+          286.0
+        ],
+        "enemy": [
+          599.0,
+          224.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "4fafd263f819f1b9f66a179764404120ba501262893d7b8c2773a5b285459686",
+      "key": "sidney",
+      "opponents": [
+        262,
+        274,
+        275,
+        319,
+        359
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "호연",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          432.5,
+          565.0
+        ],
+        "enemy": [
+          1497.5,
+          410.0
+        ]
+      },
+      "sha256": "c2fb061c9e5b72d99d3de2f488ad84230a8ca828a1841fac44323949df96e3a9",
+      "sprite_scales": [
+        3.0,
+        4.0
+      ],
+      "title": "호연 · 혁진 / 악",
+      "type": "dark"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_3.png",
+      "category": "elite",
+      "cell": 1.0,
+      "file": "screens/elite/phoebe.png",
+      "floor_guide": "guides/elite_agatha.png",
+      "floor_layout": {
+        "ally": [
+          172.0,
+          274.0
+        ],
+        "enemy": [
+          599.0,
+          216.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "988bde278de22ea3c786b91427663b813a8acb74735506cb76515e54b6058744",
+      "key": "phoebe",
+      "opponents": [
+        94,
+        200,
+        302,
+        354,
+        356
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "호연",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          430.0,
+          565.0
+        ],
+        "enemy": [
+          1497.5,
+          420.0
+        ]
+      },
+      "sha256": "da0fcd4feeb06cbff637bee95643b8f263a0eeb2cf8914c99963ab7109e054f3",
+      "sprite_scales": [
+        3.0,
+        4.0
+      ],
+      "title": "호연 · 회연 / 고스트",
+      "type": "ghost"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_1.png",
+      "category": "elite",
+      "cell": 5.0,
+      "file": "screens/elite/glacia.png",
+      "floor_guide": "guides/elite_lorelei.png",
+      "floor_layout": {
+        "ally": [
+          173.0,
+          283.0
+        ],
+        "enemy": [
+          592.0,
+          218.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "03be531ee5ef43485ac51489defaaa145872bb028f6399a77ad2ba559d5844dc",
+      "key": "glacia",
+      "opponents": [
+        87,
+        91,
+        124,
+        362,
+        365
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "호연",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          432.5,
+          564.5
+        ],
+        "enemy": [
+          1480.0,
+          402.0
+        ]
+      },
+      "sha256": "2e91c7a829f5614836a5fc5ffae0283d7a624c9654fa16e75a9c48c3a98d3abe",
+      "sprite_scales": [
+        3.0,
+        3.0
+      ],
+      "title": "호연 · 미혜 / 얼음",
+      "type": "ice"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_3.png",
+      "category": "elite",
+      "cell": 2.0,
+      "file": "screens/elite/drake.png",
+      "floor_guide": "guides/elite_lance.png",
+      "floor_layout": {
+        "ally": [
+          174.0,
+          287.0
+        ],
+        "enemy": [
+          599.0,
+          224.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "1e227af631c3b15fc6ca025e1997cf8c0cf7234f721ce2a0b4bf65e9c219f207",
+      "key": "drake",
+      "opponents": [
+        148,
+        149,
+        230,
+        330,
+        373
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "호연",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          435.0,
+          564.5
+        ],
+        "enemy": [
+          1497.5,
+          407.0
+        ]
+      },
+      "sha256": "88500e5dd7c4e0fb984bab229519a23943d45ab36a0a3dfcf88241aa515a3ece",
+      "sprite_scales": [
+        3.0,
+        3.0
+      ],
+      "title": "호연 · 권수 / 드래곤",
+      "type": "dragon"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_2.png",
+      "category": "elite",
+      "cell": 5.0,
+      "file": "screens/elite/aaron.png",
+      "floor_guide": "guides/elite_aaron.png",
+      "floor_layout": {
+        "ally": [
+          143.7,
+          271.7
+        ],
+        "enemy": [
+          602.0,
+          216.3
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "9d52be1ceed0f6c43e8186920747b95498970cc2d6430f29adaa5b4697436e19",
+      "key": "aaron",
+      "opponents": [
+        123,
+        127,
+        212,
+        214,
+        348
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "신오",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          359.25,
+          564.25
+        ],
+        "enemy": [
+          1505.0,
+          425.75
+        ]
+      },
+      "sha256": "6b5e52a42dcfdad6ee2626b7e797ecd1b6527a66f9b218a6ae4c3571f58719de",
+      "sprite_scales": [
+        3.0,
+        4.0
+      ],
+      "title": "신오 · 충호 / 벌레",
+      "type": "bug"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_2.png",
+      "category": "elite",
+      "cell": 2.0,
+      "file": "screens/elite/bertha.png",
+      "floor_guide": "guides/elite_bertha.png",
+      "floor_layout": {
+        "ally": [
+          150.0,
+          276.0
+        ],
+        "enemy": [
+          595.0,
+          224.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "05b5a0ce01a72548bc88b6589061e626cf2477c4583a5eb240f0e365296b8986",
+      "key": "bertha",
+      "opponents": [
+        28,
+        76,
+        112,
+        195,
+        344
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "신오",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          375.0,
+          565.0
+        ],
+        "enemy": [
+          1487.5,
+          435.0
+        ]
+      },
+      "sha256": "21f556c677039a450e2b9c9ecb0b1869e9972ea9ba63e4aa84eb13d359547f39",
+      "sprite_scales": [
+        3.0,
+        4.0
+      ],
+      "title": "신오 · 들국화 / 땅",
+      "type": "ground"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_1.png",
+      "category": "elite",
+      "cell": 1.0,
+      "file": "screens/elite/flint.png",
+      "floor_guide": "guides/elite_flint.png",
+      "floor_layout": {
+        "ally": [
+          169.1,
+          274.6
+        ],
+        "enemy": [
+          590.0,
+          211.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "d8c45d93f297bde73cc0464df83b1cfcc538ecd6a1202adbbc0a0ff8c24b48f2",
+      "key": "flint",
+      "opponents": [
+        38,
+        59,
+        78,
+        126,
+        324
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "신오",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          422.75,
+          564.5
+        ],
+        "enemy": [
+          1475.0,
+          405.5
+        ]
+      },
+      "sha256": "b3b9fa3ed93034f20703603ee434f279ba8ba915bcbd681163f0fc6bf91096bf",
+      "sprite_scales": [
+        3.0,
+        3.0
+      ],
+      "title": "신오 · 대엽 / 불꽃",
+      "type": "fire"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_2.png",
+      "category": "elite",
+      "cell": 4.0,
+      "file": "screens/elite/lucian.png",
+      "floor_guide": "guides/elite_will.png",
+      "floor_layout": {
+        "ally": [
+          146.0,
+          265.0
+        ],
+        "enemy": [
+          610.0,
+          213.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "1b1ca3cad2f40d370a6555ea202813fd2c56397a09bbb106976c441640f274af",
+      "key": "lucian",
+      "opponents": [
+        65,
+        97,
+        122,
+        196,
+        282
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "신오",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          365.0,
+          564.5
+        ],
+        "enemy": [
+          1525.0,
+          434.5
+        ]
+      },
+      "sha256": "009e5b34bf0051801561be75b0e8fcaa77472cf7048612347e081de7adeea916",
+      "sprite_scales": [
+        3.0,
+        3.0
+      ],
+      "title": "신오 · 오엽 / 에스퍼",
+      "type": "psychic"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_3.png",
+      "category": "elite",
+      "cell": 1.0,
+      "file": "screens/elite/shauntal.png",
+      "floor_guide": "guides/elite_agatha.png",
+      "floor_layout": {
+        "ally": [
+          172.0,
+          274.0
+        ],
+        "enemy": [
+          599.0,
+          216.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "988bde278de22ea3c786b91427663b813a8acb74735506cb76515e54b6058744",
+      "key": "shauntal",
+      "opponents": [
+        94,
+        200,
+        302,
+        354,
+        356
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "하나",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          430.0,
+          565.0
+        ],
+        "enemy": [
+          1497.5,
+          420.0
+        ]
+      },
+      "sha256": "d453133f3ce8bfff5a8f5a682ad85247f50fe5dc0edf223de6c8b220ccf22ce9",
+      "sprite_scales": [
+        3.0,
+        4.0
+      ],
+      "title": "하나 · 망초 / 고스트",
+      "type": "ghost"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_3.png",
+      "category": "elite",
+      "cell": 3.0,
+      "file": "screens/elite/grimsley.png",
+      "floor_guide": "guides/elite_karen.png",
+      "floor_layout": {
+        "ally": [
+          173.0,
+          286.0
+        ],
+        "enemy": [
+          599.0,
+          224.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "4fafd263f819f1b9f66a179764404120ba501262893d7b8c2773a5b285459686",
+      "key": "grimsley",
+      "opponents": [
+        197,
+        229,
+        248,
+        319,
+        359
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "하나",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          432.5,
+          565.0
+        ],
+        "enemy": [
+          1497.5,
+          410.0
+        ]
+      },
+      "sha256": "8c29782706e9f1159a96fa1d67df036fd2e690b155864682f43d10c51b91f641",
+      "sprite_scales": [
+        3.0,
+        4.0
+      ],
+      "title": "하나 · 블래리 / 악",
+      "type": "dark"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_2.png",
+      "category": "elite",
+      "cell": 4.0,
+      "file": "screens/elite/caitlin.png",
+      "floor_guide": "guides/elite_will.png",
+      "floor_layout": {
+        "ally": [
+          146.0,
+          265.0
+        ],
+        "enemy": [
+          610.0,
+          213.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "1b1ca3cad2f40d370a6555ea202813fd2c56397a09bbb106976c441640f274af",
+      "key": "caitlin",
+      "opponents": [
+        65,
+        103,
+        196,
+        282,
+        326
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "하나",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          365.0,
+          564.5
+        ],
+        "enemy": [
+          1525.0,
+          434.5
+        ]
+      },
+      "sha256": "1cc99cd801ad2a7f38183ac2be57a83a4e5972f0fbac339f66be1a291062482a",
+      "sprite_scales": [
+        3.0,
+        3.0
+      ],
+      "title": "하나 · 카틀레야 / 에스퍼",
+      "type": "psychic"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_2.png",
+      "category": "elite",
+      "cell": 0.0,
+      "file": "screens/elite/marshal.png",
+      "floor_guide": "guides/elite_bruno.png",
+      "floor_layout": {
+        "ally": [
+          147.0,
+          268.0
+        ],
+        "enemy": [
+          596.0,
+          218.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "a112ee900101f1b4e81895fdd0a44f5566462f9200564a35621e443312071488",
+      "key": "marshal",
+      "opponents": [
+        57,
+        68,
+        214,
+        237,
+        297
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "하나",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          367.5,
+          565.0
+        ],
+        "enemy": [
+          1490.0,
+          440.0
+        ]
+      },
+      "sha256": "845d122460efd046517036cfdb42ab1a1c2b9b5685429b23b58f99301efba299",
+      "sprite_scales": [
+        3.0,
+        4.0
+      ],
+      "title": "하나 · 연무 / 격투",
+      "type": "fighting"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_1.png",
+      "category": "elite",
+      "cell": 1.0,
+      "file": "screens/elite/malva.png",
+      "floor_guide": "guides/elite_flint.png",
+      "floor_layout": {
+        "ally": [
+          169.1,
+          274.6
+        ],
+        "enemy": [
+          590.0,
+          211.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "d8c45d93f297bde73cc0464df83b1cfcc538ecd6a1202adbbc0a0ff8c24b48f2",
+      "key": "malva",
+      "opponents": [
+        38,
+        59,
+        126,
+        229,
+        324
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "칼로스",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          422.75,
+          564.5
+        ],
+        "enemy": [
+          1475.0,
+          405.5
+        ]
+      },
+      "sha256": "a150cdd24dd667d7220d19e989034dc8bd7b7d4765bee796f13aec79b01c4658",
+      "sprite_scales": [
+        3.0,
+        3.0
+      ],
+      "title": "칼로스 · 파키라 / 불꽃",
+      "type": "fire"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_1.png",
+      "category": "elite",
+      "cell": 2.0,
+      "file": "screens/elite/siebold.png",
+      "floor_guide": "guides/elite_siebold.png",
+      "floor_layout": {
+        "ally": [
+          174.0,
+          275.0
+        ],
+        "enemy": [
+          592.0,
+          213.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "c3e2ccb45b156023ecf5bd637ec8bfa9db5081e717c6f6e3f869b167d592e322",
+      "key": "siebold",
+      "opponents": [
+        121,
+        130,
+        230,
+        340,
+        350
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "칼로스",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          435.0,
+          564.5
+        ],
+        "enemy": [
+          1480.0,
+          409.5
+        ]
+      },
+      "sha256": "127fef8fbf79296ef75aa19ec12b0d69cd1e40684e5349db05daf7b47e71d084",
+      "sprite_scales": [
+        3.0,
+        4.0
+      ],
+      "title": "칼로스 · 즈미 / 물",
+      "type": "water"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_3.png",
+      "category": "elite",
+      "cell": 4.0,
+      "file": "screens/elite/wikstrom.png",
+      "floor_guide": "guides/elite_wikstrom.png",
+      "floor_layout": {
+        "ally": [
+          174.0,
+          268.0
+        ],
+        "enemy": [
+          599.0,
+          208.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "47f9a5126395a0e0fcb4e5175e8c4a42f718165ae314a5a73e4fbe78ac434d63",
+      "key": "wikstrom",
+      "opponents": [
+        82,
+        205,
+        208,
+        227,
+        306
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "칼로스",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          435.0,
+          565.0
+        ],
+        "enemy": [
+          1497.5,
+          415.0
+        ]
+      },
+      "sha256": "66ae117141b8e2e3a061a6e04b734c37041f006953b2cb0da9bacba8c1c39764",
+      "sprite_scales": [
+        3.0,
+        4.0
+      ],
+      "title": "칼로스 · 간피 / 강철",
+      "type": "steel"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_3.png",
+      "category": "elite",
+      "cell": 2.0,
+      "file": "screens/elite/drasna.png",
+      "floor_guide": "guides/elite_lance.png",
+      "floor_layout": {
+        "ally": [
+          174.0,
+          287.0
+        ],
+        "enemy": [
+          599.0,
+          224.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "1e227af631c3b15fc6ca025e1997cf8c0cf7234f721ce2a0b4bf65e9c219f207",
+      "key": "drasna",
+      "opponents": [
+        149,
+        230,
+        330,
+        334,
+        373
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "칼로스",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          435.0,
+          564.5
+        ],
+        "enemy": [
+          1497.5,
+          407.0
+        ]
+      },
+      "sha256": "8fb0c72e4cd3d42733dd190bb978a1da0b30de98bd7df80938d38d2c65db4ad8",
+      "sprite_scales": [
+        3.0,
+        3.0
+      ],
+      "title": "칼로스 · 드라세나 / 드래곤",
+      "type": "dragon"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_2.png",
+      "category": "elite",
+      "cell": 0.0,
+      "file": "screens/elite/hala.png",
+      "floor_guide": "guides/elite_bruno.png",
+      "floor_layout": {
+        "ally": [
+          147.0,
+          268.0
+        ],
+        "enemy": [
+          596.0,
+          218.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "a112ee900101f1b4e81895fdd0a44f5566462f9200564a35621e443312071488",
+      "key": "hala",
+      "opponents": [
+        57,
+        68,
+        237,
+        286,
+        297
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "알로라",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          367.5,
+          565.0
+        ],
+        "enemy": [
+          1490.0,
+          440.0
+        ]
+      },
+      "sha256": "52ecf1a86a6604d3f7905c94b7d409dc6a8f840904b0049f080dc11e3ae66d3c",
+      "sprite_scales": [
+        3.0,
+        4.0
+      ],
+      "title": "알로라 · 할라 / 격투",
+      "type": "fighting"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_3.png",
+      "category": "elite",
+      "cell": 0.0,
+      "file": "screens/elite/olivia.png",
+      "floor_guide": "guides/elite_olivia.png",
+      "floor_layout": {
+        "ally": [
+          172.0,
+          274.0
+        ],
+        "enemy": [
+          599.0,
+          216.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "de6abc7715e79b19bab40e06b9d50e1afae6e04aff2a0801a1db10ac8cc57b21",
+      "key": "olivia",
+      "opponents": [
+        76,
+        112,
+        142,
+        248,
+        348
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "알로라",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          430.0,
+          565.0
+        ],
+        "enemy": [
+          1497.5,
+          420.0
+        ]
+      },
+      "sha256": "3807afdb31933a9819f0e0a667431110afcee629f6bba76fb415c8d8b3b51297",
+      "sprite_scales": [
+        3.0,
+        4.0
+      ],
+      "title": "알로라 · 라이치 / 바위",
+      "type": "rock"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_3.png",
+      "category": "elite",
+      "cell": 1.0,
+      "file": "screens/elite/acerola.png",
+      "floor_guide": "guides/elite_agatha.png",
+      "floor_layout": {
+        "ally": [
+          172.0,
+          274.0
+        ],
+        "enemy": [
+          599.0,
+          216.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "988bde278de22ea3c786b91427663b813a8acb74735506cb76515e54b6058744",
+      "key": "acerola",
+      "opponents": [
+        94,
+        200,
+        302,
+        354,
+        356
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "알로라",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          430.0,
+          565.0
+        ],
+        "enemy": [
+          1497.5,
+          420.0
+        ]
+      },
+      "sha256": "6228154566a08f4db5eacc5f74183d01e3371c899a3538401aa2ff1b164accda",
+      "sprite_scales": [
+        3.0,
+        4.0
+      ],
+      "title": "알로라 · 아세로라 / 고스트",
+      "type": "ghost"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_2.png",
+      "category": "elite",
+      "cell": 3.0,
+      "file": "screens/elite/kahili.png",
+      "floor_guide": "guides/elite_kahili.png",
+      "floor_layout": {
+        "ally": [
+          150.0,
+          276.0
+        ],
+        "enemy": [
+          595.0,
+          224.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "175c2ccd412c8db35aebf0e22dbbd02034e0684a764ebf9bc8b8c85253ba7b62",
+      "key": "kahili",
+      "opponents": [
+        85,
+        130,
+        169,
+        227,
+        277
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "알로라",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          375.0,
+          565.0
+        ],
+        "enemy": [
+          1487.5,
+          435.0
+        ]
+      },
+      "sha256": "b07aafbdf15cb4bb21806ed45cd5a13cb1f15fb9b219948e7b3f00a2ae5df92d",
+      "sprite_scales": [
+        3.0,
+        3.0
+      ],
+      "title": "알로라 · 카일리 / 비행",
+      "type": "flying"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_2.png",
+      "category": "elite",
+      "cell": 2.0,
+      "file": "screens/elite/rika.png",
+      "floor_guide": "guides/elite_bertha.png",
+      "floor_layout": {
+        "ally": [
+          150.0,
+          276.0
+        ],
+        "enemy": [
+          595.0,
+          224.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "05b5a0ce01a72548bc88b6589061e626cf2477c4583a5eb240f0e365296b8986",
+      "key": "rika",
+      "opponents": [
+        28,
+        112,
+        195,
+        260,
+        330
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "팔데아",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          375.0,
+          565.0
+        ],
+        "enemy": [
+          1487.5,
+          435.0
+        ]
+      },
+      "sha256": "d0b1d174f67a2637c481a310bc37e921c7de05684e3e723223dd4e1be9d557fd",
+      "sprite_scales": [
+        3.0,
+        4.0
+      ],
+      "title": "팔데아 · 칠리 / 땅",
+      "type": "ground"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_3.png",
+      "category": "elite",
+      "cell": 4.0,
+      "file": "screens/elite/poppy.png",
+      "floor_guide": "guides/elite_wikstrom.png",
+      "floor_layout": {
+        "ally": [
+          174.0,
+          268.0
+        ],
+        "enemy": [
+          599.0,
+          208.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "47f9a5126395a0e0fcb4e5175e8c4a42f718165ae314a5a73e4fbe78ac434d63",
+      "key": "poppy",
+      "opponents": [
+        82,
+        205,
+        208,
+        303,
+        376
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "팔데아",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          435.0,
+          565.0
+        ],
+        "enemy": [
+          1497.5,
+          415.0
+        ]
+      },
+      "sha256": "a8545a25bd197857cf7c060461d2db31035af6263aad204f02fe2c6e3c8a380a",
+      "sprite_scales": [
+        3.0,
+        4.0
+      ],
+      "title": "팔데아 · 뽀삐 / 강철",
+      "type": "steel"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_2.png",
+      "category": "elite",
+      "cell": 3.0,
+      "file": "screens/elite/larry.png",
+      "floor_guide": "guides/elite_kahili.png",
+      "floor_layout": {
+        "ally": [
+          150.0,
+          276.0
+        ],
+        "enemy": [
+          595.0,
+          224.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "175c2ccd412c8db35aebf0e22dbbd02034e0684a764ebf9bc8b8c85253ba7b62",
+      "key": "larry",
+      "opponents": [
+        85,
+        130,
+        169,
+        227,
+        334
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "팔데아",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          375.0,
+          565.0
+        ],
+        "enemy": [
+          1487.5,
+          435.0
+        ]
+      },
+      "sha256": "b4fcfac62660305584acfc5f85935d3a741cb37501b8637aadb66bf7cce6080f",
+      "sprite_scales": [
+        3.0,
+        3.0
+      ],
+      "title": "팔데아 · 청목 / 비행",
+      "type": "flying"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/elite_3.png",
+      "category": "elite",
+      "cell": 2.0,
+      "file": "screens/elite/hassel.png",
+      "floor_guide": "guides/elite_lance.png",
+      "floor_layout": {
+        "ally": [
+          174.0,
+          287.0
+        ],
+        "enemy": [
+          599.0,
+          224.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "1e227af631c3b15fc6ca025e1997cf8c0cf7234f721ce2a0b4bf65e9c219f207",
+      "key": "hassel",
+      "opponents": [
+        149,
+        230,
+        330,
+        334,
+        373
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "팔데아",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          435.0,
+          564.5
+        ],
+        "enemy": [
+          1497.5,
+          407.0
+        ]
+      },
+      "sha256": "02e081fa2b0441b66e29d0b03b8b72905dc0f46c82f6674ae1ff78e0a35906ef",
+      "sprite_scales": [
+        3.0,
+        3.0
+      ],
+      "title": "팔데아 · 팔자크 / 드래곤",
+      "type": "dragon"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/champion_1.png",
+      "category": "champions",
+      "cell": 0.0,
+      "file": "screens/champions/blue.png",
+      "floor_guide": "guides/champions_blue.png",
+      "floor_layout": {
+        "ally": [
+          169.0,
+          292.0
+        ],
+        "enemy": [
+          575.0,
+          214.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "b7793f360fb218360497df20f3f03b3dfda0ce6c4884e3e9bcdc3d628a224170",
+      "key": "blue",
+      "opponents": [
+        18,
+        59,
+        65,
+        103,
+        112,
+        130
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "관동",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          422.5,
+          565.0
+        ],
+        "enemy": [
+          1437.5,
+          370.0
+        ]
+      },
+      "sha256": "748a85f3abbdbc4049bea0f2d8e063db9da6531d9403fe7ed2e4c98c11002280",
+      "sprite_scales": [
+        3.0,
+        3.0
+      ],
+      "title": "관동 · 그린",
+      "type": "normal"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/champion_1.png",
+      "category": "champions",
+      "cell": 1.0,
+      "file": "screens/champions/lance.png",
+      "floor_guide": "guides/champions_lance.png",
+      "floor_layout": {
+        "ally": [
+          158.0,
+          295.0
+        ],
+        "enemy": [
+          570.0,
+          217.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "e53bbe9ac4dcf23da4fb430ad46a73006d179a948822590fe4973aac7a9502a2",
+      "key": "lance",
+      "opponents": [
+        6,
+        130,
+        142,
+        149,
+        230,
+        373
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "성도",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          395.0,
+          564.5
+        ],
+        "enemy": [
+          1425.0,
+          369.5
+        ]
+      },
+      "sha256": "587a39d069dd9d79b50b25971f516c19312cd3576b097da89d8594afab334b9f",
+      "sprite_scales": [
+        3.0,
+        2.0
+      ],
+      "title": "성도 · 목호",
+      "type": "dragon"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/champion_1.png",
+      "category": "champions",
+      "cell": 2.0,
+      "file": "screens/champions/steven.png",
+      "floor_guide": "guides/champions_steven.png",
+      "floor_layout": {
+        "ally": [
+          169.0,
+          290.0
+        ],
+        "enemy": [
+          572.0,
+          216.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "611f85e6c1817a02f733ef5799bd6165881effb831ffb5f2d0901b05057785d7",
+      "key": "steven",
+      "opponents": [
+        227,
+        306,
+        344,
+        346,
+        348,
+        376
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "호연",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          422.5,
+          565.0
+        ],
+        "enemy": [
+          1430.0,
+          380.0
+        ]
+      },
+      "sha256": "ace5e1a8813ac1b53daa80f1a5c1d646c1335eeb463f4e9bbc85b1cdcbac5bff",
+      "sprite_scales": [
+        3.0,
+        3.0
+      ],
+      "title": "호연 · 성호",
+      "type": "steel"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/champion_1.png",
+      "category": "champions",
+      "cell": 3.0,
+      "file": "screens/champions/wallace.png",
+      "floor_guide": "guides/champions_wallace.png",
+      "floor_layout": {
+        "ally": [
+          168.0,
+          290.0
+        ],
+        "enemy": [
+          570.0,
+          216.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "cd36a0cc5f6733f59b9b8a9589208440eef6565b6ec806420141d9be9c429490",
+      "key": "wallace",
+      "opponents": [
+        73,
+        121,
+        130,
+        272,
+        340,
+        350
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "호연",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          420.0,
+          565.0
+        ],
+        "enemy": [
+          1425.0,
+          380.0
+        ]
+      },
+      "sha256": "89013fb848ae24fb7d7873049a60540a38dc174dcb508fa39c9d563e2ddbe819",
+      "sprite_scales": [
+        3.0,
+        3.0
+      ],
+      "title": "호연 · 윤진",
+      "type": "water"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/champion_1.png",
+      "category": "champions",
+      "cell": 4.0,
+      "file": "screens/champions/cynthia.png",
+      "floor_guide": "guides/champions_cynthia.png",
+      "floor_layout": {
+        "ally": [
+          159.0,
+          290.0
+        ],
+        "enemy": [
+          574.0,
+          209.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "65aaf90f0dbfb14e70e351406595cdaaa5308fb40a986348adf31964b44ac741",
+      "key": "cynthia",
+      "opponents": [
+        94,
+        131,
+        197,
+        212,
+        282,
+        350
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "신오",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          397.5,
+          565.0
+        ],
+        "enemy": [
+          1435.0,
+          362.5
+        ]
+      },
+      "sha256": "398a345a640c26911ac9526dccb75d44a1a4f0bebdd8a19768dc73d7d5b687e3",
+      "sprite_scales": [
+        3.0,
+        3.0
+      ],
+      "title": "신오 · 난천",
+      "type": "normal"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/champion_1.png",
+      "category": "champions",
+      "cell": 5.0,
+      "file": "screens/champions/alder.png",
+      "floor_guide": "guides/champions_alder.png",
+      "floor_layout": {
+        "ally": [
+          166.0,
+          290.0
+        ],
+        "enemy": [
+          574.0,
+          209.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "1964b9fe89a60b8d0054940fae55f10b1e42f5e94d9266e9010f6d723040da80",
+      "key": "alder",
+      "opponents": [
+        59,
+        103,
+        127,
+        214,
+        289,
+        373
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "하나",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          415.0,
+          565.0
+        ],
+        "enemy": [
+          1435.0,
+          362.5
+        ]
+      },
+      "sha256": "c346954d17407ab00ba0483eb393bb14998a76fb62a9c2070a5b649665157e96",
+      "sprite_scales": [
+        3.0,
+        3.0
+      ],
+      "title": "하나 · 노간주",
+      "type": "bug"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/champion_2.png",
+      "category": "champions",
+      "cell": 0.0,
+      "file": "screens/champions/iris.png",
+      "floor_guide": "guides/champions_iris.png",
+      "floor_layout": {
+        "ally": [
+          182.3,
+          293.8
+        ],
+        "enemy": [
+          564.6,
+          249.4
+        ],
+        "surface": "open_floor"
+      },
+      "guide_sha256": "995e7d5ba7ce02369ba5f41060c1cb00d5bed8b4214545ea2c6f360f9c65e505",
+      "key": "iris",
+      "opponents": [
+        149,
+        230,
+        248,
+        330,
+        334,
+        373
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "하나",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          455.75,
+          564.5
+        ],
+        "enemy": [
+          1411.5,
+          453.5
+        ]
+      },
+      "sha256": "018e44469d06c9ed5645c187235b44dfd1f6c998766c629b86d55ab98300e19f",
+      "sprite_scales": [
+        4.0,
+        3.0
+      ],
+      "title": "하나 · 아이리스",
+      "type": "dragon"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/champion_2.png",
+      "category": "champions",
+      "cell": 1.0,
+      "file": "screens/champions/diantha.png",
+      "floor_guide": "guides/champions_diantha.png",
+      "floor_layout": {
+        "ally": [
+          184.0,
+          294.0
+        ],
+        "enemy": [
+          563.1,
+          245.4
+        ],
+        "surface": "open_floor"
+      },
+      "guide_sha256": "60b8bc0ea8cd7ee9b3312bce3a0557434ab9f229391ea35de147491ea8c3c89b",
+      "key": "diantha",
+      "opponents": [
+        38,
+        65,
+        131,
+        142,
+        282,
+        334
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "칼로스",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          460.0,
+          565.0
+        ],
+        "enemy": [
+          1407.75,
+          443.5
+        ]
+      },
+      "sha256": "6f674dc724d3f473dbcbd8c68e85b608a1db7aee8e7fae77884f068789e1db66",
+      "sprite_scales": [
+        4.0,
+        4.0
+      ],
+      "title": "칼로스 · 카르네",
+      "type": "fairy"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/champion_2.png",
+      "category": "champions",
+      "cell": 2.0,
+      "file": "screens/champions/leon.png",
+      "floor_guide": "guides/champions_leon.png",
+      "floor_layout": {
+        "ally": [
+          176.6,
+          294.9
+        ],
+        "enemy": [
+          567.5,
+          244.8
+        ],
+        "surface": "open_floor"
+      },
+      "guide_sha256": "caab1c3ee265c47bb25b03067700629eda43f88a5a5893edb927f78f40114be5",
+      "key": "leon",
+      "opponents": [
+        6,
+        59,
+        94,
+        143,
+        248,
+        350
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "가라르",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          441.5,
+          564.25
+        ],
+        "enemy": [
+          1418.75,
+          439.0
+        ]
+      },
+      "sha256": "19c9b120c912e4279cf7edc68887b4fbac0faad1b232ab3712b1835f522f8fa5",
+      "sprite_scales": [
+        3.0,
+        3.0
+      ],
+      "title": "가라르 · 단델",
+      "type": "fire"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/champion_2.png",
+      "category": "champions",
+      "cell": 3.0,
+      "file": "screens/champions/geeta.png",
+      "floor_guide": "guides/champions_geeta.png",
+      "floor_layout": {
+        "ally": [
+          172.7,
+          287.2
+        ],
+        "enemy": [
+          558.7,
+          240.2
+        ],
+        "surface": "open_floor"
+      },
+      "guide_sha256": "7d7460f32e3e86ff30d2e7b550846a495849d76e82ecfdcb95279ac18d2455af",
+      "key": "geeta",
+      "opponents": [
+        103,
+        121,
+        197,
+        227,
+        289,
+        376
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "팔데아",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          431.75,
+          565.0
+        ],
+        "enemy": [
+          1396.75,
+          447.5
+        ]
+      },
+      "sha256": "1ffca78bb6bcf716fe6d552278aca41dde5cacf18e3cadd77b02843c18f50522",
+      "sprite_scales": [
+        3.0,
+        4.0
+      ],
+      "title": "팔데아 · 테사",
+      "type": "normal"
+    },
+    {
+      "active": true,
+      "background": "res://assets/league/champion_2.png",
+      "category": "champions",
+      "cell": 4.0,
+      "file": "screens/champions/nemona.png",
+      "floor_guide": "guides/champions_nemona.png",
+      "floor_layout": {
+        "ally": [
+          168.6,
+          275.5
+        ],
+        "enemy": [
+          570.6,
+          223.9
+        ],
+        "surface": "open_floor"
+      },
+      "guide_sha256": "de0655a40684a76981fe435bd489598921cb6de92f39264513aceb9ace7eb1a6",
+      "key": "nemona",
+      "opponents": [
+        26,
+        65,
+        128,
+        197,
+        212,
+        282
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "팔데아",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          421.5,
+          564.75
+        ],
+        "enemy": [
+          1426.5,
+          435.75
+        ]
+      },
+      "sha256": "d9272eaf0e8173896251fc839790250316ba1023fad96c320a39799d264c24a1",
+      "sprite_scales": [
+        3.0,
+        4.0
+      ],
+      "title": "팔데아 · 네모",
+      "type": "normal"
+    },
+    {
+      "active": false,
+      "background": "res://assets/league/elite_1.png",
+      "category": "reserve",
+      "cell": 0.0,
+      "file": "screens/reserve/elite_normal.png",
+      "floor_guide": "guides/reserve_elite_normal.png",
+      "floor_layout": {
+        "ally": [
+          175.0,
+          269.0
+        ],
+        "enemy": [
+          592.0,
+          215.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "8ea28704e8a43628ea0dbbccf20a8d8bf7a5bb35d71862b09edb4862f41c3eb2",
+      "key": "elite_normal",
+      "opponents": [
+        40,
+        53,
+        115,
+        128,
+        241
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "예비",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          437.5,
+          564.5
+        ],
+        "enemy": [
+          1480.0,
+          429.5
+        ]
+      },
+      "sha256": "9113ab4ac07320d5a1bbeb80e7b2d0b6986bebad2dc10d29d578afb619728bfd",
+      "sprite_scales": [
+        3.0,
+        4.0
+      ],
+      "title": "예비 노말 룸",
+      "type": "normal"
+    },
+    {
+      "active": false,
+      "background": "res://assets/league/elite_1.png",
+      "category": "reserve",
+      "cell": 3.0,
+      "file": "screens/reserve/elite_electric.png",
+      "floor_guide": "guides/reserve_elite_electric.png",
+      "floor_layout": {
+        "ally": [
+          171.0,
+          275.0
+        ],
+        "enemy": [
+          592.0,
+          213.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "0acd5425373afbfc8b5071a1b391669662cffefaea8500f7d92e15fa9bd4e46c",
+      "key": "elite_electric",
+      "opponents": [
+        26,
+        82,
+        101,
+        125,
+        181
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "예비",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          427.5,
+          564.5
+        ],
+        "enemy": [
+          1480.0,
+          409.5
+        ]
+      },
+      "sha256": "de491667ac32219b4dde17fe6c399c3bf9a33e798f64b7dd0548ace4ffa152fb",
+      "sprite_scales": [
+        3.0,
+        4.0
+      ],
+      "title": "예비 전기 룸",
+      "type": "electric"
+    },
+    {
+      "active": false,
+      "background": "res://assets/league/elite_1.png",
+      "category": "reserve",
+      "cell": 4.0,
+      "file": "screens/reserve/elite_grass.png",
+      "floor_guide": "guides/reserve_elite_grass.png",
+      "floor_layout": {
+        "ally": [
+          173.0,
+          280.0
+        ],
+        "enemy": [
+          592.0,
+          220.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "b979fb77153d132c3485b5fd13352236a9cd1fb42a272fdaf7df322f64d9fd33",
+      "key": "elite_grass",
+      "opponents": [
+        182,
+        189,
+        315,
+        114,
+        45
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "예비",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          432.5,
+          565.0
+        ],
+        "enemy": [
+          1480.0,
+          415.0
+        ]
+      },
+      "sha256": "a67ec2cff5b4630c9ab32d893695768e36607a89cfea57fba27c10dd42123d58",
+      "sprite_scales": [
+        3.0,
+        4.0
+      ],
+      "title": "예비 풀 룸",
+      "type": "grass"
+    },
+    {
+      "active": false,
+      "background": "res://assets/league/elite_3.png",
+      "category": "reserve",
+      "cell": 5.0,
+      "file": "screens/reserve/elite_fairy.png",
+      "floor_guide": "guides/reserve_elite_fairy.png",
+      "floor_layout": {
+        "ally": [
+          171.0,
+          266.0
+        ],
+        "enemy": [
+          599.0,
+          209.0
+        ],
+        "surface": "marked_floor"
+      },
+      "guide_sha256": "ee738e3a40da01f269e105ba5137fa3eb85a8eef82c7def1e4f83056cbcbdd7c",
+      "key": "elite_fairy",
+      "opponents": [
+        36,
+        40,
+        122,
+        184,
+        210
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "예비",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          427.5,
+          565.0
+        ],
+        "enemy": [
+          1497.5,
+          422.5
+        ]
+      },
+      "sha256": "1f881bdef6b598ad1f906c4455c29766812901b7fda1846e85a4e7a15d4483b6",
+      "sprite_scales": [
+        3.0,
+        4.0
+      ],
+      "title": "예비 페어리 룸",
+      "type": "fairy"
+    },
+    {
+      "active": false,
+      "background": "res://assets/league/champion_2.png",
+      "category": "reserve",
+      "cell": 5.0,
+      "file": "screens/reserve/champion_fallback.png",
+      "floor_guide": "guides/reserve_champion_fallback.png",
+      "floor_layout": {
+        "ally": [
+          172.0,
+          290.8
+        ],
+        "enemy": [
+          574.6,
+          221.1
+        ],
+        "surface": "open_floor"
+      },
+      "guide_sha256": "1e7ca6710c00c06076a6dbbc63427d40ead89b0fabdb17365010856fb4f649da",
+      "key": "champion_fallback",
+      "opponents": [
+        18,
+        59,
+        65,
+        103,
+        112,
+        130
+      ],
+      "party": [
+        3,
+        6,
+        9
+      ],
+      "region": "공용",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "screen_feet": {
+        "ally": [
+          430.0,
+          565.0
+        ],
+        "enemy": [
+          1436.5,
+          390.75
+        ]
+      },
+      "sha256": "43f970416e4e9a9ee76103020ffc9390c929569ab99855b41793220b40eb7f7d",
+      "sprite_scales": [
+        3.0,
+        3.0
+      ],
+      "title": "공용 리그 홀",
+      "type": "normal"
+    }
+  ],
+  "engine": "4.7.2-stable (official)",
+  "failures": 0,
+  "floor_layout_sha256": "b0f2e796afbb02eb04bef728ae28cfd113b1b8a8d6939911d5d0371ba89724f3",
+  "scene_mode": "isolated deterministic review fixtures, not campaign playthroughs"
+}
