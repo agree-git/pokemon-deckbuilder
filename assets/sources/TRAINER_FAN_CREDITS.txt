@@ -68,3 +68,9 @@ Brumirage — 카르네 (champion:diantha) — assets/trainers/diantha-showdown-
 Brumirage — 단델 (champion:leon) — assets/trainers/leon-showdown-fan.png
 kyledove — 테사 (champion:geeta) — assets/trainers/geeta-showdown-fan.png
 kyledove — 네모 (champion:nemona) — assets/trainers/nemona-v-showdown-fan.png
+
+Gnomowladny — 시트론 (gym:clemont) — assets/trainers/clemont-x-y-fan.png
+Artist source supplied by user: https://www.deviantart.com/gnomowladny/art/Clemont-Sprite-430844892
+PNG: https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Clemont.png
+This pinned variant includes cyan electric accents; no byte equality with the uploaded reference or DeviantArt download is claimed.
+The artist page could not be accessed in this environment. No additional art license is asserted. Preserve artist credit and existing collection notices; PNG bytes are unmodified.

@@ -12,9 +12,11 @@
 
 ## 트레이너
 
-[Smogon / Pokémon Showdown](https://github.com/smogon/sprites), 커밋 `a9214714f00974a8c28586829e6315d9ca5a6348`의 `src/_uncategorized/canonical/trainers/`에서 원작 도트 73장을 수정 없이 가져와 75대진에 대응합니다. 후대 인물 48대진에는 제작자 목록과 대응한 팬 도트 47장을 사용합니다. 총 123대진/120 PNG이며 시트론 1대진은 제작자 확인까지 자체 공용 도트를 사용합니다. [인물별 URL·SHA·경계](assets/sources/trainer_sprites.json), [출처 원문의 License 절](assets/sources/SMOGON_SPRITES_LICENSE.txt)을 포함합니다. 이미지 권리는 Nintendo / Game Freak / The Pokémon Company에 있으며 코드의 MIT 허가와 구분합니다.
+[Smogon / Pokémon Showdown](https://github.com/smogon/sprites), 커밋 `a9214714f00974a8c28586829e6315d9ca5a6348`의 `src/_uncategorized/canonical/trainers/`에서 원작 도트 73장을 수정 없이 가져와 75대진에 대응합니다. 후대 인물 49대진에는 팬 도트 48장을 사용합니다. 총 **124대진/121 PNG**로 모든 보스 대진에 개별 외형이 연결돼 있습니다. [인물별 URL·SHA·경계](assets/sources/trainer_sprites.json), [출처 원문의 License 절](assets/sources/SMOGON_SPRITES_LICENSE.txt)을 포함합니다. 이미지 권리는 Nintendo / Game Freak / The Pokémon Company에 있으며 코드의 MIT 허가와 구분합니다.
 
-팬 도트 제작자는 **Gnomowladny**, **Beliot419**, **Brumirage**, **kyledove**, **ZacWeavile**입니다. 칼로스·알로라 14장은 위 Smogon 고정 원본, 추가 33장은 공개 Showdown 스프라이트 컬렉션 [SDM0/sprites](https://github.com/SDM0/sprites/tree/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers)의 고정 원본입니다. 파일명과 작가를 공식 Showdown 갤러리의 크레딧 목록에 대응했으며 이미지 호스트의 바이트까지 비교한 것은 아닙니다. [제작자별 고지](assets/sources/TRAINER_FAN_CREDITS.txt)와 각 파일의 명세에 출처를 기록합니다. 구체적인 트레이너 갤러리 안내는 외부 사용 시 제작자 표기·허락 없는 편집 금지를 요구합니다. 다운로드한 PNG를 수정 없이 사용하며 일반 저장소 고지와 함께 유지합니다.
+팬 도트 제작자는 **Gnomowladny**, **Beliot419**, **Brumirage**, **kyledove**, **ZacWeavile**입니다. 칼로스·알로라 및 시트론 15장은 위 Smogon 고정 원본, 추가 33장은 공개 Showdown 스프라이트 컬렉션 [SDM0/sprites](https://github.com/SDM0/sprites/tree/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers)의 고정 원본입니다. 파일명과 작가를 공식 Showdown 갤러리의 크레딧 목록에 대응했으며 이미지 호스트의 바이트까지 비교한 것은 아닙니다. [제작자별 고지](assets/sources/TRAINER_FAN_CREDITS.txt)와 각 파일의 명세에 출처를 기록합니다. 구체적인 트레이너 갤러리 안내는 외부 사용 시 제작자 표기·허락 없는 편집 금지를 요구합니다. 다운로드한 PNG를 수정 없이 사용하며 일반 저장소 고지와 함께 유지합니다.
+
+시트론은 사용자가 제공한 [Gnomowladny의 원작 링크](https://www.deviantart.com/gnomowladny/art/Clemont-Sprite-430844892)를 제작자 근거로 기록합니다. 적용한 GitHub 보관본은 제공 이미지와 같은 포즈에 푸른 전기 효과가 있는 버전입니다. 원작 페이지는 이 환경에서 열리지 않아 별도 사용 허가를 확인했다고 주장하지 않으며, 원본 픽셀과 기존 고지를 보존합니다.
 
 ## 아이콘·배경·연출
 

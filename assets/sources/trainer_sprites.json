@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/smogon/sprites",
   "commit": "a9214714f00974a8c28586829e6315d9ca5a6348",
-  "scope": "75 roster identities use canonical original-game sprites; 48 use credited community trainer sprites (47 PNGs). Downloaded PNG bytes are preserved. Clemont retains an explicit generic fallback pending attribution.",
+  "scope": "All 124 boss rosters have individual sprites: 75 use canonical original-game sprites (73 PNGs), 49 use credited community sprites (48 PNGs). Total 121 unmodified PNGs; no boss roster uses the generic fallback.",
   "rights": "Original Pokemon imagery belongs to Nintendo / Game Freak / The Pokemon Company. Fan trainer artists and the specific gallery usage notice are recorded per file; code MIT is not a blanket art license.",
   "entries": {
     "gym:brock": {
@@ -271,8 +271,8 @@
     },
     "gym:clemont": {
       "name": "시트론",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/clemont-x-y-fan.png"
     },
     "gym:valerie": {
       "name": "마슈",
@@ -2820,6 +2820,29 @@
       "gallery_file": "nemona-v.png",
       "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
       "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/clemont-x-y-fan.png": {
+      "source_repository": "https://github.com/smogon/sprites",
+      "source_commit": "a9214714f00974a8c28586829e6315d9ca5a6348",
+      "upstream_path": "src/_uncategorized/noncanonical/trainers/gen6/x-y/Clemont.png",
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Clemont.png",
+      "sha256": "d1a4aa1e9787fd28bea9533bae486e97d27a99ca688f19b932ed0ce0d1f17f29",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        0,
+        0,
+        75,
+        80
+      ],
+      "kind": "fan",
+      "artist": "Gnomowladny",
+      "credit_basis": "user_provided_artist_link",
+      "credit_source": "https://www.deviantart.com/gnomowladny/art/Clemont-Sprite-430844892",
+      "usage_notice": "Preserve artist credit. Downloaded PNG bytes are unmodified; retain existing collection notices. The supplied artist page was not accessible in this environment, so no additional reuse license is asserted.",
+      "integrity_note": "User supplied the artist URL and a matching pose reference. Pinned GitHub variant includes cyan electric accents; it is not asserted to be byte-identical to the uploaded reference or DeviantArt download."
     }
   }
 }
