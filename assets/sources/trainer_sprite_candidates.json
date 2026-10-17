@@ -43,9 +43,14 @@
     "gym:clemont": {
       "name": "시트론",
       "url": "https://play.pokemonshowdown.com/sprites/trainers/clemont.png",
-      "artist": null,
-      "status": "unverified_candidate",
-      "note": "A GitHub Clemont.png path was found in the pinned noncanonical x-y tree; author attribution remains unresolved. No image applied."
+      "artist": "Gnomowladny",
+      "status": "applied_on_main",
+      "note": "User supplied the artist URL and a matching pose reference. Pinned GitHub variant includes cyan electric accents; it is not asserted to be byte-identical to the uploaded reference or DeviantArt download.",
+      "applied_asset": "assets/trainers/clemont-x-y-fan.png",
+      "download_source": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Clemont.png",
+      "sha256": "d1a4aa1e9787fd28bea9533bae486e97d27a99ca688f19b932ed0ce0d1f17f29",
+      "credit_source": "https://www.deviantart.com/gnomowladny/art/Clemont-Sprite-430844892",
+      "credit_basis": "user_provided_artist_link"
     },
     "gym:valerie": {
       "name": "마슈",
@@ -478,5 +483,5 @@
       "note": "Applied nemona-v.png (Violet uniform); prior candidate nemona-s.png retained as an alternate link."
     }
   },
-  "scope": "Historical list of 49 originally missing identities: 48 applied on current main, only Clemont remains generic pending attribution. Read the main runtime manifest for current coverage."
+  "scope": "All 49 originally missing roster identities are now applied on main. Together with the canonical 75, all 124 boss rosters have dedicated portraits (121 PNGs)."
 }

@@ -1,6 +1,6 @@
 # 보스 대사와 트레이너 도트
 
-관장 82팀·사천왕 31팀·챔피언 11팀, 총 124개 대진에 등장/마지막 포켓몬 출전/패배 대사 372개를 연결했다. 원작 대사를 인용하지 않은 짧은 자체 한국어 문장이다. 원작 도트 75대진/73 PNG에 팬 제작 48대진/47 PNG를 더했다. 현재 **123대진/120 PNG**가 개별 외형을 사용하며 시트론 1대진은 작가 확인까지 공용 자체 도트다. [최신 34대진 추가](trainer-sprite-expansion.md)와 [이전 14대진](trainer-fan-sprites.md)을 따른다.
+관장 82팀·사천왕 31팀·챔피언 11팀, 총 124개 대진에 등장/마지막 포켓몬 출전/패배 대사 372개를 연결했다. 원작 대사를 인용하지 않은 짧은 자체 한국어 문장이다. 원작 도트 75대진/73 PNG에 팬 제작 49대진/48 PNG를 더했다. 현재 **124대진/121 PNG**가 모두 개별 외형을 사용한다. [시트론 적용과 출처](clemont-sprite.md)를 따른다. [최신 34대진 추가](trainer-sprite-expansion.md)와 [이전 14대진](trainer-fan-sprites.md)을 따른다.
 
 ## 등장과 표시
 
@@ -16,13 +16,13 @@
 - 1~5세대 게임에서 가져온 인물별 정면 도트다. 포켓몬 종의 1~3세대 제한과 별개로 관장·리그 인물은 전 지방을 허용한다.
 - 원본 PNG는 수정하지 않는다. 원본 투명 영역의 실제 경계를 기록하고, 발끝을 기존 전장 바닥 좌표에 놓는다. 최근접 보간·정수 배율로 최대 높이 260/폭 260 안에 그린다. 풍·란은 두 사람이 있는 원작 도트 한 장을 사용한다.
 - 그린 관장/챔피언, 아이리스 관장/챔피언, 윤진 관장/챔피언은 역할에 맞는 원작 버전을 대응한다. 원본은 정지 이미지다. 준비·투척 시 작은 몸 이동과 별도 포켓볼 궤적을 합성하며, 인물별 원작 투척 프레임을 새로 확보한 것은 아니다.
-- **시트론 1대진만 미적용이다.** 파일 경로는 확인했지만 제작자 근거가 남았다. [후대 적용 목록](trainer-sprite-links.md)과 [최신 추가 출처](trainer-sprite-expansion.md)를 따른다. Showdown 갤러리의 제작자 표기·허락 없는 편집 금지 안내와 일반 저장소 고지를 함께 유지한다.
+- **모든 124대진을 적용했다.** 시트론은 사용자가 제공한 Gnomowladny 원작 링크를 기록했다. [후대 적용 목록](trainer-sprite-links.md)과 [최신 추가 출처](trainer-sprite-expansion.md)를 따른다. Showdown 갤러리의 제작자 표기·허락 없는 편집 금지 안내와 일반 저장소 고지를 함께 유지한다.
 - 포켓몬 이미지 권리는 Nintendo / Game Freak / The Pokémon Company에 있다. 출처 저장소 공개가 상업 배포 허가를 뜻하지 않는다. 고정 원문은 `assets/sources/SMOGON_SPRITES_README.md`, 대진별 적용/미적용·원본 URL·SHA-256·크기·투명 경계는 `assets/sources/trainer_sprites.json`에 있다.
 
 검증과 원본 재다운로드:
 
 ```bash
-python3 /tmp/check_trainer_sprites.py --game-root . --credits-index /tmp/trainer_gallery_credits.txt --expected-included 123
+python3 /tmp/check_trainer_sprites.py --game-root . --credits-index /tmp/trainer_gallery_credits.txt --expected-included 124
 # 최신 main에서 외부 검증 파일을 추출하는 절차는 trainer-sprite-expansion.md를 따른다.
 ```
 
@@ -35,6 +35,6 @@ python3 /tmp/check_trainer_sprites.py --game-root . --credits-index /tmp/trainer
 
 ## 검토
 
-[현재 123대진 적용 상태·최신 화면 39장·ZIP·CSV](../review/trainer-sprite-expansion/README.md). 아래는 최초 적용 때의 역사 자료로, 당시 공용이던 모야모/청목도 현재는 개별 도트를 사용한다.
+[전체 124대진 적용 상태·시트론 화면·ZIP·CSV](../review/clemont/README.md). [직전 추가 34대진 화면 39장](../review/trainer-sprite-expansion/README.md). 아래는 최초 적용 때의 역사 자료로, 당시 공용이던 모야모/청목도 현재는 개별 도트를 사용한다.
 
 [실제 1920×1080 화면·전체 적용/미적용 목록·CSV·ZIP](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/review/trainer-presentation/README.md). 웅·목호·난천은 원본 도트, 모야모·청목은 공용 도트로 남은 인물을 보여준다. 마지막 출전/승리 화면은 해당 시점을 확인하기 위한 HP 1 검토 fixture이며 정상 난도 자료가 아니다.

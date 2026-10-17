@@ -1,6 +1,6 @@
 # 칼로스·알로라 팬 트레이너 도트
 
-이 문서는 최초 14대진 추가 시점의 기록이다. 현재는 [추가 34대진 적용](trainer-sprite-expansion.md)으로 123대진/120 PNG·공용 시트론 1대진이다. 아래 실행 예시는 최신 main을 대상으로 한다.
+이 문서는 최초 14대진 추가 시점의 기록이다. 현재는 [시트론 적용](clemont-sprite.md)까지 124대진/121 PNG·공용 0대진이다. 아래 실행 예시는 최신 main을 대상으로 한다.
 
 게임 반영 commit: `fbe4834af190f7a7ce697572a8011bc0f268c6ff`. **팬 도트 14장**을 추가했다. 현재 개별 도트는 **89대진 / PNG 87장**, 공용 도트는 **35대진**이다. 기존 원작 75대진의 에셋 73장과 게임 데이터/규칙/배경 좌표는 유지한다.
 
@@ -43,7 +43,7 @@ Godot 4.7.2/Linux: 콘텐츠·실제 글꼴·89도트 알파 경계/모든 자�
 ```bash
 git show development-materials:tools/fetch_trainer_sprites.py > /tmp/check_trainer_sprites.py
 git show development-materials:assets/sources/trainer_gallery_credits.php.txt > /tmp/trainer_gallery_credits.txt
-python3 /tmp/check_trainer_sprites.py --game-root . --credits-index /tmp/trainer_gallery_credits.txt --expected-included 123
+python3 /tmp/check_trainer_sprites.py --game-root . --credits-index /tmp/trainer_gallery_credits.txt --expected-included 124
 git show development-materials:tests/test_trainer_dialogue.gd > /tmp/test_trainer_dialogue.gd
 godot --headless --path . --script /tmp/test_trainer_dialogue.gd
 # 실제 화면이 있는 환경에서만 실행:

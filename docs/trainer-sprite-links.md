@@ -1,6 +1,6 @@
 # 6세대 이후 트레이너 도트 적용 목록
 
-**현재 main은 원작 75대진 + 팬 제작 48대진 = 123대진 / PNG 120장**이다. 공용은 시트론 1대진이다. [최신 화면 39장·CSV·ZIP](../review/trainer-sprite-expansion/README.md) · [추가 34대진 출처/검증](trainer-sprite-expansion.md) · [이전 14대진](trainer-fan-sprites.md).
+**현재 main은 원작 75대진 + 팬 제작 49대진 = 124대진 / PNG 121장**이다. 모든 보스 대진이 개별 도트를 사용한다. [시트론 적용·출처](clemont-sprite.md) · [최신 화면/ZIP/CSV](../review/clemont/README.md). [최신 화면 39장·CSV·ZIP](../review/trainer-sprite-expansion/README.md) · [추가 34대진 출처/검증](trainer-sprite-expansion.md) · [이전 14대진](trainer-fan-sprites.md).
 
 Showdown 갤러리의 제작자 목록을 사용하고 PNG는 고정된 공개 GitHub 컬렉션에서 확보했다. 이미지 호스트 바이트와 직접 비교한 것은 아니다.
 
@@ -10,7 +10,7 @@ Showdown 갤러리의 제작자 목록을 사용하고 PNG는 고정된 공개 G
 | gym:grant | 자크로 | main 적용 | [파일](https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/grant.png) · kyledove |
 | gym:korrina | 코르니 | main 적용 | [파일](https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Korrina.png) · Gnomowladny |
 | gym:ramos | 후쿠지 | main 적용 | [파일](https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Ramos.png) · Gnomowladny |
-| gym:clemont | 시트론 | 공용 · 작가 확인 대기 | [파일](https://play.pokemonshowdown.com/sprites/trainers/clemont.png) · None |
+| gym:clemont | 시트론 | main 적용 | [파일](https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Clemont.png) · [Gnomowladny](https://www.deviantart.com/gnomowladny/art/Clemont-Sprite-430844892) |
 | gym:valerie | 마슈 | main 적용 | [파일](https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Valerie.png) · Gnomowladny |
 | gym:olympia | 고지카 | main 적용 | [파일](https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Olympia.png) · Gnomowladny |
 | gym:wulfric | 우르프 | main 적용 | [파일](https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Wulfric.png) · Gnomowladny |
@@ -56,4 +56,4 @@ Showdown 갤러리의 제작자 목록을 사용하고 PNG는 고정된 공개 G
 | champion:geeta | 테사 | main 적용 | [파일](https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/geeta.png) · kyledove |
 | champion:nemona | 네모 | main 적용 | [파일](https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/nemona-v.png) · kyledove |
 
-네모는 바이올렛 복장의 `nemona-v.png`를 사용한다. 시트론은 파일 경로만 확인했고 작가 근거가 남았다.
+네모는 바이올렛 복장의 `nemona-v.png`를 사용한다. 시트론은 사용자가 제공한 Gnomowladny 원작 링크를 근거로 연결했다.

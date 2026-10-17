@@ -43,13 +43,21 @@ def main():
                 assert '/noncanonical/trainers/' in source['upstream_path']
             else:
                 assert source['upstream_path'] == 'sprites/trainers/' + source['gallery_file']
-            proof = args.credits_index.read_bytes()
-            assert hashlib.sha256(proof).hexdigest() == source['credit_source_sha256']
-            credits = dict(re.findall(r'"([^"]+\.png)"\s*=>\s*"([^"]+)"', proof.decode()))
-            assert credits[source['gallery_file']] == source['artist'], local
-            assert 'Credit must be given' in source['usage_notice']
-            assert 'DO NOT EDIT without permission.' in source['usage_notice']
-            assert source['credit_source'] == 'https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php'
+            if source.get('credit_basis') == 'user_provided_artist_link':
+                assert local == 'assets/trainers/clemont-x-y-fan.png'
+                assert source['artist'] == 'Gnomowladny'
+                assert source['credit_source'] == 'https://www.deviantart.com/gnomowladny/art/Clemont-Sprite-430844892'
+                assert source['upstream_path'] == 'src/_uncategorized/noncanonical/trainers/gen6/x-y/Clemont.png'
+                assert source['sha256'] == 'd1a4aa1e9787fd28bea9533bae486e97d27a99ca688f19b932ed0ce0d1f17f29'
+                assert 'unmodified' in source['usage_notice']
+            else:
+                proof = args.credits_index.read_bytes()
+                assert hashlib.sha256(proof).hexdigest() == source['credit_source_sha256']
+                credits = dict(re.findall(r'"([^"]+\.png)"\s*=>\s*"([^"]+)"', proof.decode()))
+                assert credits[source['gallery_file']] == source['artist'], local
+                assert 'Credit must be given' in source['usage_notice']
+                assert 'DO NOT EDIT without permission.' in source['usage_notice']
+                assert source['credit_source'] == 'https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php'
         else:
             assert '/canonical/trainers/' in source['upstream_path']
         if args.fetch:

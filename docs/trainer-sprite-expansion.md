@@ -1,5 +1,7 @@
 # 가라르·팔데아와 칼로스 트레이너 도트 확장
 
+이 문서는 34대진 추가 시점의 기록이다. 이후 [시트론 적용](clemont-sprite.md)으로 124대진/121 PNG·공용 0대진이 됐다. 아래 실행 예시는 최신 main을 대상으로 한다.
+
 게임 반영 commit: `49c967aaf96ea25889dfabd7bf8135d1bfbf2b17`. **34대진 / 원본 PNG 33장**을 추가했다. 가라르 17·팔데아 15·칼로스 자크로/카르네 2대진이다. 청목은 관장/사천왕이 같은 파일을 공유한다. **전체 123/124대진 / PNG 120장**이며 시트론만 제작자 확인까지 공용 도트를 쓴다.
 
 [실제 화면 39장·전체 대진 CSV·ZIP](../review/trainer-sprite-expansion/README.md). 기존 원작 도트 75대진과 앞서 추가한 칼로스/알로라 14대진을 그대로 보존했다.
@@ -65,7 +67,7 @@
 ```bash
 git show development-materials:tools/fetch_trainer_sprites.py > /tmp/check_trainer_sprites.py
 git show development-materials:assets/sources/trainer_gallery_credits.php.txt > /tmp/trainer_gallery_credits.txt
-python3 /tmp/check_trainer_sprites.py --game-root . --credits-index /tmp/trainer_gallery_credits.txt --expected-included 123
+python3 /tmp/check_trainer_sprites.py --game-root . --credits-index /tmp/trainer_gallery_credits.txt --expected-included 124
 git show development-materials:tests/test_trainer_dialogue.gd > /tmp/test_trainer_dialogue.gd
 godot --headless --path . --script /tmp/test_trainer_dialogue.gd
 # 실제 화면이 있는 환경에서만 실행:
