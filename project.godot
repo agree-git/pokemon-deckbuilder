@@ -10,6 +10,7 @@ config/features=PackedStringArray("4.7", "GL Compatibility")
 Preferences="*res://scripts/preferences.gd"
 GameAudio="*res://scripts/audio/game_audio.gd"
 GameMusic="*res://scripts/audio/game_music.gd"
+GameAmbience="*res://scripts/audio/game_ambience.gd"
 GameCries="*res://scripts/audio/game_cries.gd"
 BattleSession="*res://scripts/battle/battle_session.gd"
 

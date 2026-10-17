@@ -1,0 +1,565 @@
+{
+  "source": "Original project synthesis; no recordings or upstream melodies",
+  "generator": "development-materials:tools/generate_biome_audio.py",
+  "generator_sha256": "ad6fbd9f5eba16e38168f67b46992aa837231501096d324a5e32a62afd92de51",
+  "biomes": {
+    "normal": {
+      "bpm": 96,
+      "bars": 16,
+      "tonic_midi": 60,
+      "mode": "major",
+      "lead": "flute",
+      "ambience_description": "풀잎을 스치는 바람과 멀리서 지저귀는 새",
+      "music": {
+        "file": "normal_music.ogg",
+        "duration": 40.0,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -8.69,
+        "rms_db": -20.45,
+        "seam_delta": 0.0012480132715432472,
+        "pcm_sha256": "1387ec818292cf937f21becbd96c033763baeb54be28427c7f4dbdebc9a1b012",
+        "sha256": "fb895bf6308d8e1b012a6195d2c78d8dd3759c4bfa2b681f9a49f6642b08e399"
+      },
+      "ambience": {
+        "file": "normal_ambience.ogg",
+        "duration": 32.0,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -9.76,
+        "rms_db": -25.19,
+        "seam_delta": 0.013437441659174348,
+        "pcm_sha256": "6fcc677d95c30c673ee913ccfa830d20ff8c50e3724946bf4db03c815bb6bd0e",
+        "sha256": "61b33caf91672e5d07de3c74cd3be7243e2e077ebe2ce879e2f6189d4c04ff4f"
+      },
+      "seed": 2300
+    },
+    "fire": {
+      "bpm": 100,
+      "bars": 16,
+      "tonic_midi": 50,
+      "mode": "minor",
+      "lead": "pluck",
+      "ambience_description": "낮은 화산 울림과 흩어지는 불씨",
+      "music": {
+        "file": "fire_music.ogg",
+        "duration": 38.4,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -6.54,
+        "rms_db": -20.45,
+        "seam_delta": 0.006864391754709199,
+        "pcm_sha256": "c40fd6ffa5260d8d35f67eee41a34a86a0d9d516f66d9ec4881dd9724b4c8349",
+        "sha256": "5bbaeac80467afefb7cf657eeb1c128381e50d4d99ff2ec44ed5742bd9fbdd6d"
+      },
+      "ambience": {
+        "file": "fire_ambience.ogg",
+        "duration": 32.0,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -8.89,
+        "rms_db": -25.19,
+        "seam_delta": 0.009328115060713993,
+        "pcm_sha256": "25b62e93618371c4c4e734d6e0edd1d316d698e0b018d1b867128dcde0b07868",
+        "sha256": "27e587afa74e9016b0a67f50a6e497d667a43558ec3628c64d54f689c9f98470"
+      },
+      "seed": 2301
+    },
+    "water": {
+      "bpm": 84,
+      "bars": 16,
+      "tonic_midi": 62,
+      "mode": "major",
+      "lead": "bell",
+      "ambience_description": "밀려왔다 물러나는 물결과 물방울",
+      "music": {
+        "file": "water_music.ogg",
+        "duration": 45.71429166666667,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -5.9,
+        "rms_db": -20.45,
+        "seam_delta": 0.0010339117063999418,
+        "pcm_sha256": "d9a9b99e2ad79633ba1f40c476bbd3c03e3168f52014bc73927165873bd8fa21",
+        "sha256": "95f737664ea4d8ab5c93cf374baf281283fd8e970f242e48bc46460bfc39020d"
+      },
+      "ambience": {
+        "file": "water_ambience.ogg",
+        "duration": 32.0,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -8.4,
+        "rms_db": -26.3,
+        "seam_delta": 0.007105014860792611,
+        "pcm_sha256": "e9c698d7bfc0ae06946b97d3fa00f6171f7a28427fdf1f627cc71e67ea5a4075",
+        "sha256": "71daf71f81dfeb682a44c43d4857f345cf99f9ee3acd86cbc7979209105e0d88"
+      },
+      "seed": 2302
+    },
+    "grass": {
+      "bpm": 92,
+      "bars": 16,
+      "tonic_midi": 65,
+      "mode": "major",
+      "lead": "flute",
+      "ambience_description": "나뭇잎 바스락거림과 숲새",
+      "music": {
+        "file": "grass_music.ogg",
+        "duration": 41.739125,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -7.58,
+        "rms_db": -20.45,
+        "seam_delta": 0.005184147165137185,
+        "pcm_sha256": "871dac251a2405fafcedf5759f8558516ff7f826b030e91e5c76cc374c30d5a6",
+        "sha256": "5385733d2871acd99590448af645a923eb8d162b5aa598994f24bcb413c7bfc5"
+      },
+      "ambience": {
+        "file": "grass_ambience.ogg",
+        "duration": 32.0,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -8.4,
+        "rms_db": -25.31,
+        "seam_delta": 0.018822286587791257,
+        "pcm_sha256": "ccc7562aaed0d0b35b0ee41befc1e1fcdc9252dc6d3b548118e296115cfaa46c",
+        "sha256": "a1e37efa641388efe8454e60f368b61561a8e095b8db59ce02cc25abae4ec429"
+      },
+      "seed": 2303
+    },
+    "electric": {
+      "bpm": 112,
+      "bars": 16,
+      "tonic_midi": 57,
+      "mode": "dorian",
+      "lead": "pulse",
+      "ambience_description": "수정의 공명과 작은 전기 스파크",
+      "music": {
+        "file": "electric_music.ogg",
+        "duration": 34.28570833333333,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -6.41,
+        "rms_db": -20.45,
+        "seam_delta": 0.0019647772111586886,
+        "pcm_sha256": "cdec1b9b7aaaf83970a627692bd1f195a3be78ab4f4b49edc142b15ebed46a3e",
+        "sha256": "76590fc46d7082e2e52bc5827dfbfc16362e80203dd7251788553b7f45fafbad"
+      },
+      "ambience": {
+        "file": "electric_ambience.ogg",
+        "duration": 32.0,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -8.64,
+        "rms_db": -25.19,
+        "seam_delta": 0.013311161439614208,
+        "pcm_sha256": "16908bc9b2ea705501c9c5f3eccc68c7e38547756d4a331597eb27cdeb1e33f6",
+        "sha256": "4ca890118129e75c619e0d27b7d17bdc38c60c0497984eafc50bb2bd78d9eac9"
+      },
+      "seed": 2304
+    },
+    "ice": {
+      "bpm": 72,
+      "bars": 16,
+      "tonic_midi": 69,
+      "mode": "major",
+      "lead": "bell",
+      "ambience_description": "차가운 바람과 얼음 결정의 울림",
+      "music": {
+        "file": "ice_music.ogg",
+        "duration": 53.333333333333336,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -5.46,
+        "rms_db": -20.45,
+        "seam_delta": 0.009156695843455413,
+        "pcm_sha256": "930c5fb04a1845e354fb3215a7511b66c25e8c56d7df115570d3dfa02f22461e",
+        "sha256": "d4a3767fa2a7799c2b141dd25c27e0b2d4b01b24979c40995498cb575dbccd83"
+      },
+      "ambience": {
+        "file": "ice_ambience.ogg",
+        "duration": 32.0,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -8.4,
+        "rms_db": -26.27,
+        "seam_delta": 0.016185726761813728,
+        "pcm_sha256": "12b962e7f872785622450fe7b1013ee35bc3326df263edd361996a18f9603ab5",
+        "sha256": "cc9ba4c779b379da67381e30aae3c869aa21327c3e4aeadb87163bc43c49a6b4"
+      },
+      "seed": 2305
+    },
+    "fighting": {
+      "bpm": 108,
+      "bars": 16,
+      "tonic_midi": 50,
+      "mode": "dorian",
+      "lead": "wood",
+      "ambience_description": "협곡 바람과 멀리 울리는 나무 타격",
+      "music": {
+        "file": "fighting_music.ogg",
+        "duration": 35.55554166666667,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -6.01,
+        "rms_db": -20.45,
+        "seam_delta": 0.0032757484901106103,
+        "pcm_sha256": "02af5aa06dae3ea5209201c6492feed62be3d40645e52efce82424205fcdcf96",
+        "sha256": "cb7e95858c55a7f66c9561a65444cb9271c904b7fc2225340e9ea1acd5235934"
+      },
+      "ambience": {
+        "file": "fighting_ambience.ogg",
+        "duration": 32.0,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -9.06,
+        "rms_db": -25.19,
+        "seam_delta": 0.016192183244673815,
+        "pcm_sha256": "872557948fbec52643958fc20038650f9cda37aa906bdaeeb234893e66003a4c",
+        "sha256": "42524c8744c0f8718fc77fae1d584092eda92a432e2721bedffc1aa418117cf8"
+      },
+      "seed": 2306
+    },
+    "poison": {
+      "bpm": 82,
+      "bars": 16,
+      "tonic_midi": 55,
+      "mode": "minor",
+      "lead": "pluck",
+      "ambience_description": "늪의 기포와 낮게 우는 벌레",
+      "music": {
+        "file": "poison_music.ogg",
+        "duration": 46.82925,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -5.61,
+        "rms_db": -20.45,
+        "seam_delta": 0.0021701208330004423,
+        "pcm_sha256": "ae4a804a6db80973998111e039b0e34b9e1e60836d71d92d58cd74308b5592fa",
+        "sha256": "1de132bb9cb05055eac0e67fe273550b80f86d0b22dde2af17759ca4fc785ea1"
+      },
+      "ambience": {
+        "file": "poison_ambience.ogg",
+        "duration": 32.0,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -8.4,
+        "rms_db": -25.92,
+        "seam_delta": 0.005028594567731866,
+        "pcm_sha256": "a9fad4bc2e40312e225e3ad21fe4f977580478e256020014a44014e30c0e5f24",
+        "sha256": "c4394e04e8804db0775f72e9902404cef4e9ccc3d74800a34392699e100d484a"
+      },
+      "seed": 2307
+    },
+    "ground": {
+      "bpm": 90,
+      "bars": 16,
+      "tonic_midi": 52,
+      "mode": "minor",
+      "lead": "wood",
+      "ambience_description": "모래를 실은 마른 바람과 모래알",
+      "music": {
+        "file": "ground_music.ogg",
+        "duration": 42.666666666666664,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -4.73,
+        "rms_db": -20.52,
+        "seam_delta": 0.001860635149496949,
+        "pcm_sha256": "c04c6ffaa38f8525a7334f2cb3d64af028acefe40ad4f319b33229e3165cbd20",
+        "sha256": "832f26e16455b442538335f6f1c4c0d690e8cba2cb88782076fd62b1725982ba"
+      },
+      "ambience": {
+        "file": "ground_ambience.ogg",
+        "duration": 32.0,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -8.86,
+        "rms_db": -25.19,
+        "seam_delta": 0.006759416918953871,
+        "pcm_sha256": "b2ca5bf388fbccc4b49a746095e33f42edaee4e8c93050c1391fcc6e11fc73b4",
+        "sha256": "0274bd9b4bdbe57c06f6c6b807ad86b3ee12f8c95e75bcb31d72601b4dd14ad1"
+      },
+      "seed": 2308
+    },
+    "flying": {
+      "bpm": 88,
+      "bars": 16,
+      "tonic_midi": 67,
+      "mode": "major",
+      "lead": "flute",
+      "ambience_description": "탁 트인 절벽의 바람과 먼 새소리",
+      "music": {
+        "file": "flying_music.ogg",
+        "duration": 43.636375,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -7.58,
+        "rms_db": -20.45,
+        "seam_delta": 0.00025832009554070234,
+        "pcm_sha256": "6714a2712296520b0eabf8f36254ca45c7360c9ab495a805ffd8fd5bad5ff56d",
+        "sha256": "733163e61daf870e2dac00e65154da4fd869026bd648b9ae463d85d3879b185f"
+      },
+      "ambience": {
+        "file": "flying_ambience.ogg",
+        "duration": 32.0,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -9.43,
+        "rms_db": -25.19,
+        "seam_delta": 0.014983820639164466,
+        "pcm_sha256": "b85a9b502db49c81c408154e9e6a58e489c5bd3dd1306b852bc2a170ecab69a4",
+        "sha256": "9b271e65810503c6420c05774d713a6ea68ceb3d81becb7697313e6a28b57552"
+      },
+      "seed": 2309
+    },
+    "psychic": {
+      "bpm": 78,
+      "bars": 16,
+      "tonic_midi": 61,
+      "mode": "dorian",
+      "lead": "bell",
+      "ambience_description": "유적의 잔향과 천천히 번지는 공명",
+      "music": {
+        "file": "psychic_music.ogg",
+        "duration": 49.23075,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -5.37,
+        "rms_db": -20.45,
+        "seam_delta": 0.003460191276725375,
+        "pcm_sha256": "f73f2d897526c08178a7de4f738b559b1dd837d73d7950ee36311dc2ad30ba12",
+        "sha256": "320928c1e3dd68dc284dc0dbf446f193cc7eb0655afa15841ee809a68b382860"
+      },
+      "ambience": {
+        "file": "psychic_ambience.ogg",
+        "duration": 32.0,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -9.36,
+        "rms_db": -25.19,
+        "seam_delta": 0.018584361672281186,
+        "pcm_sha256": "5666a10aada5277befdb7a8be784177ae1d32f818a16d56b5c5775acd7bd3c74",
+        "sha256": "13e350dda15d5374980d29b646f4cd8bb4c27a8c8f88d6c284c6381c95774b5b"
+      },
+      "seed": 2310
+    },
+    "bug": {
+      "bpm": 104,
+      "bars": 16,
+      "tonic_midi": 64,
+      "mode": "major",
+      "lead": "wood",
+      "ambience_description": "풀숲의 귀뚜라미와 가벼운 잎 마찰",
+      "music": {
+        "file": "bug_music.ogg",
+        "duration": 36.92308333333333,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -5.99,
+        "rms_db": -20.45,
+        "seam_delta": 0.0036158558721964794,
+        "pcm_sha256": "941347426541728c092447177acf4a22d0557b3dc9b0fb5d18b2f90eae573326",
+        "sha256": "0eff1157f6e453efcf31219a9a162cb854f4fe0382c2d5cbca36d1b5de30b67a"
+      },
+      "ambience": {
+        "file": "bug_ambience.ogg",
+        "duration": 32.0,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -9.73,
+        "rms_db": -25.19,
+        "seam_delta": 0.026533138388278154,
+        "pcm_sha256": "5c3708ac055b6334c779ff17a0c95df27b351a847ef069eb25ff9685e4a4b075",
+        "sha256": "2cacef7227d01e6daf4060b2267a6081397fd9cce128149af03d985a6845681a"
+      },
+      "seed": 2311
+    },
+    "rock": {
+      "bpm": 86,
+      "bars": 16,
+      "tonic_midi": 48,
+      "mode": "dorian",
+      "lead": "wood",
+      "ambience_description": "바위틈 바람과 드문 작은 돌 구름",
+      "music": {
+        "file": "rock_music.ogg",
+        "duration": 44.65116666666667,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -4.99,
+        "rms_db": -20.45,
+        "seam_delta": 0.002954490439472225,
+        "pcm_sha256": "b300ad6c095d1c6ad884a74eace5685404f5cbfcffceb9c716db52d17f8729b1",
+        "sha256": "3f69549b9386aeb7ddc74b9dd54ec746eda1cfdfc474d29716f4fd5fd770117f"
+      },
+      "ambience": {
+        "file": "rock_ambience.ogg",
+        "duration": 32.0,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -8.4,
+        "rms_db": -25.47,
+        "seam_delta": 0.00331944990891532,
+        "pcm_sha256": "d1592b5fae556def4a0ccdde4b5cd507932c1d1c3a07bbb58e2e15239a477965",
+        "sha256": "c6d4c943fe354f764e92c5c374c19aabba67e5cdad76f3ff1d9ac1752d2b2b98"
+      },
+      "seed": 2312
+    },
+    "ghost": {
+      "bpm": 70,
+      "bars": 16,
+      "tonic_midi": 57,
+      "mode": "minor",
+      "lead": "bell",
+      "ambience_description": "묘원을 감싸는 바람과 먼 종 잔향",
+      "music": {
+        "file": "ghost_music.ogg",
+        "duration": 54.857125,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -5.17,
+        "rms_db": -20.45,
+        "seam_delta": 0.0038230426439522843,
+        "pcm_sha256": "930eb8912201cd78e8c02e29dcde74b6631268922dc4770d93a26d5a77202079",
+        "sha256": "076103487cea45e40ec6fb6566ca72f4892fece16f5d94e2212f6e4431f9fcba"
+      },
+      "ambience": {
+        "file": "ghost_ambience.ogg",
+        "duration": 32.0,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -9.4,
+        "rms_db": -25.19,
+        "seam_delta": 0.005123872851679825,
+        "pcm_sha256": "82ecf179e170ee8972eb8ebee01d4f88a97ef1198eeaca56e53acde69262a064",
+        "sha256": "1170c85a83cda64379014705d8ebabea324558354fbda4586f3526b1e951de9c"
+      },
+      "seed": 2313
+    },
+    "dragon": {
+      "bpm": 94,
+      "bars": 16,
+      "tonic_midi": 55,
+      "mode": "dorian",
+      "lead": "flute",
+      "ambience_description": "성역 깊은 곳의 울림과 산바람",
+      "music": {
+        "file": "dragon_music.ogg",
+        "duration": 40.851083333333335,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -8.69,
+        "rms_db": -20.45,
+        "seam_delta": 0.0014674649064245135,
+        "pcm_sha256": "b96ffe7ebfc1eed5003c8d8d12eff4e1e112c7bab40eb7a01d5d7e7da029afed",
+        "sha256": "621e5cfb3e0057263368fdfb3dafde74b789d8c6afe45d67543d39ce5b92d33c"
+      },
+      "ambience": {
+        "file": "dragon_ambience.ogg",
+        "duration": 32.0,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -8.4,
+        "rms_db": -25.59,
+        "seam_delta": 0.004197117884441947,
+        "pcm_sha256": "91ac58dbdb971e3268175814df12cfb8674576357ea14099533e6d7629d97aea",
+        "sha256": "17d4fc84000f8d20c82854ef1af94e5892f6fc7444248dbf45ff4d0347fd0e83"
+      },
+      "seed": 2314
+    },
+    "dark": {
+      "bpm": 76,
+      "bars": 16,
+      "tonic_midi": 52,
+      "mode": "minor",
+      "lead": "pluck",
+      "ambience_description": "밤숲의 벌레와 낮은 부엉이 울음",
+      "music": {
+        "file": "dark_music.ogg",
+        "duration": 50.52633333333333,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -5.64,
+        "rms_db": -20.45,
+        "seam_delta": 0.0011591159183044625,
+        "pcm_sha256": "78ca9d34736c645cb54c2e459aa5c470a7f2fa715ddd62fc2ba6b845cdeebfbc",
+        "sha256": "e1d103740fd81420a62a907bf954ebd5ba749748f4872c3add3635035f4ac4d4"
+      },
+      "ambience": {
+        "file": "dark_ambience.ogg",
+        "duration": 32.0,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -8.52,
+        "rms_db": -25.19,
+        "seam_delta": 0.01815916590794145,
+        "pcm_sha256": "a1a41a0fe963cabb9f7f09c0f102e8e2dd865d3ae815e8c3e0565efe2563e0e8",
+        "sha256": "59f7971eb354d6c64d6cd0a10d70cf2be4b1a07e4ab8f9017271d8c2a32794a9"
+      },
+      "seed": 2315
+    },
+    "steel": {
+      "bpm": 106,
+      "bars": 16,
+      "tonic_midi": 54,
+      "mode": "dorian",
+      "lead": "pulse",
+      "ambience_description": "발전소의 낮은 진동과 금속 잔향",
+      "music": {
+        "file": "steel_music.ogg",
+        "duration": 36.226416666666665,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -6.68,
+        "rms_db": -20.45,
+        "seam_delta": 0.01575118864154678,
+        "pcm_sha256": "1759b49e9d0c79fa715967446ba78e89e773229d4072788bed45720e0f139b4b",
+        "sha256": "405b11341c10ac6697923786ff0a9a4cb18228ea034a95105db45dc9a2f15111"
+      },
+      "ambience": {
+        "file": "steel_ambience.ogg",
+        "duration": 32.0,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -8.95,
+        "rms_db": -25.19,
+        "seam_delta": 0.02733137460080997,
+        "pcm_sha256": "31d0aa45b7d2a321a8e2f50c5466bd372bcc2e25df6ce984c76827320758d007",
+        "sha256": "4423cebf9d1a760513dc9187181eab4f5fd2045e33f4d2e5ee6706ab8ad68396"
+      },
+      "seed": 2316
+    },
+    "fairy": {
+      "bpm": 90,
+      "bars": 16,
+      "tonic_midi": 72,
+      "mode": "major",
+      "lead": "bell",
+      "ambience_description": "나뭇잎 사이로 번지는 반짝이는 종소리",
+      "music": {
+        "file": "fairy_music.ogg",
+        "duration": 42.666666666666664,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -5.33,
+        "rms_db": -20.45,
+        "seam_delta": 0.004934100448262378,
+        "pcm_sha256": "48c5f969b7ddc450f014435993f2ae22a2477becda2efdc356db09215304efa1",
+        "sha256": "5c2eeede60f9d080fae435a14a702d841bda7d480d97b024a8c6b1c92e7918d6"
+      },
+      "ambience": {
+        "file": "fairy_ambience.ogg",
+        "duration": 32.0,
+        "sample_rate": 24000,
+        "channels": 2,
+        "peak_db": -8.82,
+        "rms_db": -25.19,
+        "seam_delta": 0.02141359772686415,
+        "pcm_sha256": "0666219bc4a3c5512037822b752201d023c5a8a9221ddb22cadbfa9620097994",
+        "sha256": "120d01e255dec5d5eedf4e7529fe7f96d072b3953de421ef06b242b2f0d6e3b5"
+      },
+      "seed": 2317
+    }
+  }
+}

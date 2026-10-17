@@ -85,7 +85,12 @@ func refresh() -> void:
         battle_ui.run_restart_requested.connect(_restart)
         page.add_child(battle_ui)
         return
-    get_node("/root/GameMusic").play_theme("title" if journey.phase == TacticalJourney.CLEARED else "camp")
+    if journey.phase in [TacticalJourney.CLEARED, TacticalJourney.FAILED]:
+        get_node("/root/GameMusic").play_theme("title" if journey.phase == TacticalJourney.CLEARED else "camp")
+        get_node("/root/GameAmbience").clear()
+    else:
+        get_node("/root/GameMusic").play_camp(journey.biome())
+        get_node("/root/GameAmbience").play_biome(journey.biome())
     var background := TextureRect.new()
     background.texture = VisualCatalog.biome_texture(journey.biome())
     background.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
@@ -972,6 +977,8 @@ func _enter() -> void:
     var destination := str(journey.current()["name"])
     var heading := "다음 장소로 이동 중"
     var scenery := journey.biome()
+    get_node("/root/GameMusic").play_camp(scenery)
+    get_node("/root/GameAmbience").play_biome(scenery)
     if journey.current().get("rare",false):
         destination = "희귀 조우 · ???"
         heading = "정체를 알 수 없는 기척을 따라갑니다."

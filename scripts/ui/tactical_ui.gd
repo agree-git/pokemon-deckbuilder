@@ -117,8 +117,7 @@ var _opening_cry: Tween
 func _ready() -> void:
     set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     if battle == null: battle = TacticalBattle.new(2026)
-    var music := get_node("/root/GameMusic")
-    music.play_theme("camp" if battle.phase in [TacticalBattle.WON,TacticalBattle.LOST] else music.for_battle(str(opponent_trainer.get("kind","wild"))))
+    _play_soundscape()
     _theme()
     stage.source_ratio = Vector2(0.25,0.442)
     stage.target_ratio = Vector2(0.73,0.37)
@@ -145,6 +144,20 @@ func _ready() -> void:
         _start_trainer_intro()
     elif run_journey != null and run_journey.current().get("rare",false) and battle.turn == 1 and battle.phase == TacticalBattle.PLAYER and int(battle.statistics["counts"]["cards_played"]) == 0 and int(battle.statistics["counts"]["manual_switches"]) == 0 and not battle.get_meta("rare_intro_seen",false):
         _start_rare_intro()
+
+func _play_soundscape() -> void:
+    var music := get_node("/root/GameMusic")
+    var ambience := get_node("/root/GameAmbience")
+    # A rare encounter's visual backdrop may reveal its type. Sound follows the route.
+    var biome := run_journey.biome() if run_journey != null else run_biome
+    var kind := str(opponent_trainer.get("kind", "wild"))
+    var ended := battle.phase in [TacticalBattle.WON, TacticalBattle.LOST]
+    if ended: music.play_camp(biome)
+    else: music.play_theme(music.for_battle(kind))
+    if battle.phase == TacticalBattle.LOST or kind in ["gym", "elite", "champion"]:
+        ambience.clear()
+    else:
+        ambience.play_biome(biome, not ended)
 
 func _opening_cries() -> void:
     # SceneTree emits scene_changed after _ready, stopping previous-scene audio.
@@ -1091,7 +1104,7 @@ func _finished() -> void:
     if is_instance_valid(rare_entrance):
         rare_entrance.queue_free()
         rare_entrance = null
-    if battle.phase in [TacticalBattle.WON,TacticalBattle.LOST]: get_node("/root/GameMusic").play_theme("camp")
+    if battle.phase in [TacticalBattle.WON,TacticalBattle.LOST]: _play_soundscape()
     if battle.phase == TacticalBattle.WON and "capture" not in playback_kinds: BattleSoundCues.play(self,"victory")
     elif battle.phase == TacticalBattle.LOST: BattleSoundCues.play(self,"defeat")
     stage.canvas.effect.stop()

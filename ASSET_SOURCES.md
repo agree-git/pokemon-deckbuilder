@@ -28,6 +28,8 @@
 
 장면별 음악 5곡과 효과음 15종은 프로젝트에서 합성했습니다. [음악 명세](assets/audio/music/manifest.json)를 포함합니다.
 
+바이옴 18곳의 탐험/야영 음악 18곡과 환경음 18종도 프로젝트에서 직접 합성했습니다. 원작 선율이나 외부 녹음을 사용하지 않습니다. 곡은 16마디(약34~55초), 환경음은 32초의 스테레오 Ogg 루프입니다. [바이옴 오디오 명세](assets/audio/biomes/manifest.json)에 템포·음색·환경음 설명·PCM/Ogg 지문을 기록했습니다. 재생성 소스는 [자료 브랜치의 도구](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/generate_biome_audio.py)에 있습니다.
+
 울음소리는 [PokéAPI/cries](https://github.com/PokeAPI/cries)에서 가져왔습니다. [커밋·지문·변환 명세](assets/audio/cries/manifest.json), [원문](assets/audio/cries/UPSTREAM_README.md), [라이선스](assets/audio/cries/UPSTREAM_LICENSE)를 포함합니다. #025는 MP3 비트스트림을 Ogg로 변환했으며 나머지 385개는 원본을 유지합니다. 소리의 권리는 The Pokémon Company에 있습니다.
 
 [Noto Sans KR](assets/fonts/NotoSansKR.ttf)의 [SIL Open Font License](assets/fonts/OFL.txt)를 포함합니다.
