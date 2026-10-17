@@ -13,6 +13,7 @@ import uuid
 ROOT = Path(__file__).resolve().parents[1]
 SUITES = {
     'smoke': ['test_start.gd','test_battle.gd','test_stats.gd','test_weather.gd'],
+    'soundscape': ['test_soundscape.gd'],
     'campaign': ['test_deck_run.gd','test_save.gd'],
     'rare': ['test_rare.gd','test_rare_capture.gd','test_rare_stories.gd',
              'test_visibility.gd','test_compatibility.gd','test_growth.gd','test_audio.gd'],

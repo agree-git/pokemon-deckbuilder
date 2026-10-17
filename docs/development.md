@@ -20,6 +20,7 @@ Linux 자동 검증은 수행했지만 Windows 내보내기/실행 완료로 설
 | 배경·접지·날씨 | `scripts/ui/battle_canvas.gd`, `scripts/content/battlefield_layout.gd`, `scripts/ui/battle_weather_visual.gd` |
 | 저장 | `scripts/persistence/journey_snapshot.gd`, `journey_save.gd`, `legacy_stats_snapshot.gd` |
 | 콘텐츠 | `data/catalog.json`, `base_stats.json`, `progression.json`, `evolutions.json`, `biomes.json`, `gym_leaders.json`, `league.json` |
+| 바이옴 음악·환경음 | `scripts/audio/biome_audio.gd`, `audio_loop_layer.gd`, `game_music.gd`, `game_ambience.gd`, `assets/audio/biomes/manifest.json` |
 | 출처·도트·소리 | main `ASSET_SOURCES.md`, `assets/sources/`, `assets/audio/*/manifest.json` |
 
 표에서 폴더를 생략한 같은 행의 파일은 앞 파일과 같은 폴더다. 코드에 실제 파일이 없는 경우 추측해서 새 파일을 만들지 말고 `rg --files scripts`로 확인한다. 런타임 출처 고지는 main에서 유지한다.
@@ -30,6 +31,7 @@ Linux 자동 검증은 수행했지만 Windows 내보내기/실행 완료로 설
 
 ```bash
 python3 tools/check.py --game-dir /path/to/main --suite smoke
+python3 tools/check.py --game-dir /path/to/main --suite soundscape
 python3 tools/check.py --game-dir /path/to/main --suite campaign
 python3 tools/check.py --game-dir /path/to/main --suite rare
 # 모두 필요할 때만:
@@ -37,6 +39,7 @@ python3 tools/check.py --game-dir /path/to/main --suite all
 ```
 
 - `smoke`: 시작/해금, 카드 전투, 6능력치/상성, 날씨.
+- `soundscape`: 바이옴36음원 Godot 디코딩/루프 경계, 실시간 전환·중단·음량·구설정 호환, 원정/희귀UI·난수 불변.
 - `campaign`: 덱/보상/캠페인과 원정 저장/복구.
 - `rare`: 103종 데이터/포획/스타팅, 대표20종 정산/합류, 종별이야기/UI, 정체 숨김, 이전 풀/지문 호환, 진화, 울음소리 디코딩.
 
@@ -46,6 +49,18 @@ python3 tools/check.py --game-dir /path/to/main --suite all
 
 검사에서 구성한 중간 단계 fixture는 정상 플레이로 그 단계까지 이겼다는 뜻이 아니다. 고정 정책의 자동 완주도 사람의 승률/재미 검증이 아니다. 변경 영역의 검사가 통과하면 이유 없이 전체 측정을 반복하지 않는다.
 
+## 바이옴 음원 재생성 (선택)
+
+음원 제작에만 Python의 **numpy·scipy**, `ffmpeg`(libvorbis)가 필요하다. 기본 게임과 Godot 검사기는 이 의존성을 요구하지 않는다.
+
+```bash
+python3 tools/generate_biome_audio.py --game-dir /path/to/main --verify
+# 원본을 바꿀 때만 재생성:
+python3 tools/generate_biome_audio.py --game-dir /path/to/main
+```
+
+18개 16마디 곡과18개32초 환경음을 고정 시드로 합성한다. PCM은 루프 경계를 넘어 꼬리/잔향을 겹치고, Ogg importer의 loop를 켠다. 기존 `.import`의 UID를 보존한다. 재생성하면 Ogg 컨테이너 바이트는 달라질 수 있으므로 명세의 PCM/Ogg 지문을 함께 확인한다. `--verify`는 현재 파일의 hash·디코딩·음량/클리핑·길이·루프 경계의 비정상 불연속을 검사한다. 자동 수치 검증은 사람의 청취 평가를 대신하지 않는다.
+
 ## 실제 화면·포인터 (선택)
 
 별도의 Linux X11/1920×1080 화면과 `libX11`/`libXtst`가 있어야 한다. 동시에 여러 검사를 실행하지 않는다. 실제 창 검사는 기본 headless runner에 포함되지 않는다.
@@ -53,6 +68,12 @@ python3 tools/check.py --game-dir /path/to/main --suite all
 ```bash
 RARE_REVIEW_DIR=/path/to/output python3 tools/native_pointer.py \
   --project-dir /path/to/main --script tests/native_presentation.gd
+```
+
+설정의 환경음 슬라이더는 같은 조건에서 다음 선택 검사를 실행한다. 테스트용 사용자 데이터 환경변수를 지정하며, `SOUNDSCAPE_REVIEW_DIR`을 지정하면1920×1080 설정 화면을 한 장 저장한다.
+
+```bash
+python3 tools/native_pointer.py --project-dir /path/to/main --script tests/native_soundscape.gd
 ```
 
 실제 OS 클릭으로 조사→예약→준비→이동→등장을 확인하고25종 keyframe/공용 희귀 도입을 촬영한다. 이 검사는 직접 지정한 게임/사용자 데이터 폴더를 사용하므로 별도 테스트용 사용자 프로필을 준비한다. Windows/macOS의 실제 포인터 자동화는 아직 제공하지 않는다. 사람의 F5 실행/수동 입력으로도 확인할 수 있다.
