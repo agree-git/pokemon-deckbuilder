@@ -116,3 +116,12 @@ static func fade(button_node: Button) -> void:
     for child: Node in button_node.get_children():
         if child is CanvasItem:
             child.modulate.a = 0.43 if button_node.disabled else 1.0
+
+static func fit_label(node: Label,minimum := 12) -> Label:
+    var size := node.get_theme_font_size("font_size")
+    var font := node.get_theme_font("font")
+    while size > minimum and font.get_string_size(node.text,HORIZONTAL_ALIGNMENT_LEFT,-1,size).x > node.size.x:
+        size -= 1
+    node.add_theme_font_size_override("font_size",size)
+    node.tooltip_text = node.text
+    return node

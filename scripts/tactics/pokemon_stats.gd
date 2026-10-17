@@ -8,7 +8,9 @@ const STAT_IDS := {2:"attack",3:"defense",4:"special_attack",5:"special_defense"
 const DAMAGE_SCALE := 0.6
 static var _data: Dictionary = {}
 static func data() -> Dictionary:
-    if _data.is_empty(): _data = JSON.parse_string(FileAccess.get_file_as_string("res://data/base_stats.json"))
+    if _data.is_empty():
+        _data = JSON.parse_string(FileAccess.get_file_as_string("res://data/base_stats.json"))
+        _data["species"].merge(PokedexExpansion.data()["stats"],false)
     return _data
 static func base(species: int) -> Dictionary: return data()["species"][str(species)]
 static func value(species: int, level: int, stat: String) -> int:

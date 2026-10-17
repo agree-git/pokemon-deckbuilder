@@ -33,6 +33,8 @@ var friendship := -1
 var beauty := -1
 var evolution_personality := -1
 var evolution_choice := 0
+var content_version := 1
+var evolution_prepared := 0
 var _experience_tenths := 0
 var experience: float:
     get:
@@ -68,4 +70,6 @@ func snapshot() -> Dictionary:
     if beauty >= 0: result["beauty"] = beauty
     if evolution_personality >= 0: result["evolution_personality"] = evolution_personality
     if evolution_choice > 0: result["evolution_choice"] = evolution_choice
+    if content_version > 1: result["content_version"] = content_version
+    if evolution_prepared > 0: result["evolution_prepared"] = evolution_prepared
     return result

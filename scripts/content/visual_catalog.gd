@@ -28,17 +28,32 @@ var moves: Array = []
 var biomes: Array = []
 var types: Array = []
 var gyms: Array = []
+static var _legacy_content: Dictionary = {}
+static var _expanded_content: Dictionary = {}
+static var _legacy_biomes: Array = []
+static var _legacy_gyms: Array = []
 var _pokemon_by_id: Dictionary = {}
 var _moves_by_id: Dictionary = {}
 var _type_names: Dictionary = {}
 
-func _init() -> void:
-    var content: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/catalog.json"))
+func _init(expanded := true) -> void:
+    if _legacy_content.is_empty():
+        _legacy_content = JSON.parse_string(FileAccess.get_file_as_string("res://data/catalog.json"))
+        _legacy_biomes = JSON.parse_string(FileAccess.get_file_as_string("res://data/biomes.json"))
+        _legacy_gyms = JSON.parse_string(FileAccess.get_file_as_string("res://data/gyms.json"))
+    if expanded and _expanded_content.is_empty():
+        _expanded_content = _legacy_content.duplicate()
+        _expanded_content["pokemon"] = PokedexExpansion.data()["pokemon"]
+        var by_id := {}
+        for entry: Dictionary in PokedexExpansion.data()["moves"]: by_id[int(entry["id"])] = entry
+        for entry: Dictionary in _legacy_content["moves"]: by_id[int(entry["id"])] = entry
+        _expanded_content["moves"] = by_id.values()
+    var content := _expanded_content if expanded else _legacy_content
     pokemon = content["pokemon"]
     moves = content["moves"]
     types = content["types"]
-    biomes = JSON.parse_string(FileAccess.get_file_as_string("res://data/biomes.json"))
-    gyms = JSON.parse_string(FileAccess.get_file_as_string("res://data/gyms.json"))
+    biomes = PokedexExpansion.data()["biomes"] if expanded else _legacy_biomes
+    gyms = _legacy_gyms
     for entry: Dictionary in pokemon:
         _pokemon_by_id[int(entry["id"])] = entry
     for entry: Dictionary in moves:
@@ -93,4 +108,4 @@ static func biome_texture(biome: Dictionary) -> AtlasTexture:
     return atlas
 
 static func supports(id: int) -> bool:
-    return (id >= 1 and id <= 386) or id in RareEncounter.IDS
+    return PokedexExpansion.supports(id)

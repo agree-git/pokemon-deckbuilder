@@ -33,6 +33,9 @@ func unlocked_starters(catalog: VisualCatalog) -> Array[int]:
     for id: int in captured_ids:
         var basic := catalog.starter_species_id(id)
         if basic > 0 and basic not in result: result.append(basic)
+    for entry: Dictionary in catalog.pokemon:
+        var id := int(entry["id"])
+        if id not in result and catalog.starter_species_id(id) == id and PokedexExpansion.form_known(id,captured_ids): result.append(id)
     result.sort()
     return result
 func record_capture(id: int,catalog: VisualCatalog) -> String:

@@ -145,6 +145,7 @@ func _filter() -> void:
     W.clear(grid)
     species_buttons.clear()
     var unlocked := profile.unlocked_starters(catalog)
+    var collection_known := known_collection()
     var seen: Array[int] = []
     var query := search.text.strip_edges().to_lower()
     for entry: Dictionary in catalog.pokemon:
@@ -152,14 +153,15 @@ func _filter() -> void:
         if mode == "starters": id = catalog.starter_species_id(id)
         if id in seen: continue
         seen.append(id)
-        var allowed := id in (unlocked if mode == "starters" else profile.captured_ids)
+        var allowed := id in (unlocked if mode == "starters" else collection_known)
         var species := catalog.species(id)
         var active_run: TacticalJourney = session.get("journey")
         var encountered: bool = active_run != null and not active_run.rare_hunt.is_empty() and RareEncounter.identity_known(active_run) and active_run.rare_hunt["target"] == id
-        var unknown: bool = id in RareEncounter.IDS and not allowed and id not in profile.captured_ids and not encountered
+        var rare_id := id if id in RareEncounter.IDS else int(species.get("dex_id",id))
+        var unknown: bool = rare_id in RareEncounter.IDS and not allowed and id not in profile.captured_ids and not encountered
         if unknown and not query.is_empty() and query not in "???": continue
         if not allowed and not show_locked.button_pressed: continue
-        if not unknown and not query.is_empty() and query not in str(species["name"]).to_lower() and query not in "%03d" % id: continue
+        if not unknown and not query.is_empty() and query not in str(species["name"]).to_lower() and query not in "%03d" % int(species.get("dex_id",id)): continue
         var button := W.button(grid,Rect2(0,0,310,184),_select.bind(id))
         button.custom_minimum_size = Vector2(310,184)
         if unknown:
@@ -169,7 +171,7 @@ func _filter() -> void:
         else:
             var sprite := W.sprite(button,id,Rect2(18,34,88,104))
             if not allowed and not encountered: sprite.modulate = Color(0,0,0,0.55)
-            W.label(button,str(species["name"]) if allowed or encountered else "미해금",Rect2(112,35,184,38),22,W.TEXT if allowed else W.MUTED)
+            W.fit_label(W.label(button,str(species["name"]) if allowed or encountered else "미해금",Rect2(112,35,184,38),22,W.TEXT if allowed else W.MUTED))
             W.label(button,"#%03d" % int(species.get("dex_id",id)),Rect2(112,76,184,28),15,W.MUTED)
             var types: Array = species["types"].map(func(key: String): return catalog.type_name(key))
             W.label(button," / ".join(types),Rect2(112,111,184,28),15,VisualCatalog.type_color(species["types"][0]))
@@ -185,8 +187,10 @@ func _select(id: int) -> void:
         var species := catalog.species(id)
         var basic := catalog.species(catalog.starter_species_id(id))
         W.sprite(slots,id,Rect2(204,48,200,200))
-        W.label(slots,str(species["name"]),Rect2(28,275,552,60),34,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+        W.fit_label(W.label(slots,str(species["name"]),Rect2(28,275,552,60),34,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER),18)
         W.label(slots,"스타팅 해금 · "+str(basic["name"]),Rect2(28,356,552,48),23,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
+        var info := W.label(slots,"특성 정보 · "+PokedexExpansion.ability_text(id),Rect2(28,420,552,100),18,W.MUTED)
+        info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
         return
     if id in selection: selection.erase(id)
     elif selection.size() < session.MAX_STARTERS: selection.append(id)
@@ -257,3 +261,10 @@ func _unhandled_key_input(event: InputEvent) -> void:
         get_viewport().set_input_as_handled()
         return
     if event.keycode == KEY_ESCAPE and mode != "title": _back()
+
+func known_collection() -> Array[int]:
+    var result: Array[int] = []
+    for entry: Dictionary in catalog.pokemon:
+        var id := int(entry["id"])
+        if PokedexExpansion.form_known(id,profile.captured_ids): result.append(id)
+    return result

@@ -15,7 +15,7 @@ func _init(selected: Array[int], catalog: VisualCatalog) -> void:
     for id: int in selected:
         var p := BattlePokemon.new(TacticalContent.member_definition(id,catalog),id)
         p.types.assign(catalog.species(id)["types"])
-        TacticalGrowth.initialize(p)
+        TacticalGrowth.initialize(p,true)
         members.append(p)
         if not p.learned_skills.any(func(key: String): return TacticalMoves.definition(key).has("damage")):
             fallback_names.append(p.display_name)

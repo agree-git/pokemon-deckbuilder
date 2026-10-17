@@ -22,11 +22,11 @@ static func _score(id: int, species: int, types: Array) -> float:
     var stats := PokemonStats.base(species)
     var offense := int(stats["special_attack" if move.get("damage_class") == "special" else "attack"])
     return int(move.get("move_power",40))*offense*(1.5 if move["type"] in types else 1.0)
-static func moves(species: int, level: int, types: Array) -> Dictionary:
-    var key := "%d:%d" % [species,level]
+static func moves(species: int, level: int, types: Array,modern := false) -> Dictionary:
+    var key := "%d:%d:%s" % [species,level,str(modern)]
     if _moves.has(key): return _moves[key]
     var known: Array[int] = []
-    for entry: Dictionary in TacticalGrowth.species_data(species)["learnset"]:
+    for entry: Dictionary in TacticalGrowth.species_data(species,modern)["learnset"]:
         var id := int(entry["move"])
         if int(entry["level"]) <= level and TacticalMoves.definition(TacticalMoves.key_for(id)).has("damage") and id not in known: known.append(id)
     if known.is_empty(): known.append(165)
@@ -48,9 +48,9 @@ static func moves(species: int, level: int, types: Array) -> Dictionary:
             break
     _moves[key] = {"normal":normal,"heavy":known[0],"coverage":coverage}
     return _moves[key]
-static func build(species: int, level: int, types: Array, kind: String, slot: int, size: int) -> Dictionary:
+static func build(species: int, level: int, types: Array, kind: String, slot: int, size: int,modern := false) -> Dictionary:
     var tactic := role(species,kind,slot,size)
-    var selected := moves(species,level,types)
+    var selected := moves(species,level,types,modern)
     var pattern: Array = []
     for action: String in PROFILES[tactic]["cycle"]:
         if action == "block": pattern.append({"kind":"block","value":10 if tactic == "guardian" else 6,"move_id":115})

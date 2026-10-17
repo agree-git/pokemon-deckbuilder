@@ -149,6 +149,8 @@ func card_view(card: BattleCardInstance) -> Dictionary:
     view["switches"] = card.owner_uid != 0 and actor != active()
     view["retained"] = card.uid in retained
     if actor != null:
+        if actor.content_version >= 2 and card.owner_uid != 0 and view.has("move_id"):
+            view["type"] = PokedexExpansion.move_type(actor.species_id,int(view["move_id"]),str(view.get("type","normal")))
         if card.owner_uid == turn_speed_owner_uid and has_relic("ace_core") and not turn_flags.has("ace_core"):
             view["core_discount"] = mini(1,int(view["cost"]))
             view["cost"] = maxi(0,int(view["cost"])-1)

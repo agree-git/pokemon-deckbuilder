@@ -95,8 +95,10 @@ func restart(run_seed: int = 2026, selected_relic: String = "field_kit", selecte
         for id: int in starter_ids:
             party.append(BattlePokemon.new(TacticalContent.member_definition(id,catalog),id))
     if full_campaign and _capture_catalog == null: _capture_catalog = VisualCatalog.new()
+    if full_campaign and route.generation >= 4:
+        for pokemon: BattlePokemon in party: _next_pokemon_uid = maxi(_next_pokemon_uid,pokemon.uid+1)
     for pokemon: BattlePokemon in party:
-        TacticalGrowth.initialize(pokemon)
+        TacticalGrowth.initialize(pokemon,full_campaign and route.generation >= 4)
         SpecialEvolution.assign_personality(pokemon,seed_value)
         if full_campaign: pokemon.types.assign(_capture_catalog.species(pokemon.species_id)["types"])
     deck.assign(TacticalContent.starting_deck(party))
@@ -173,7 +175,7 @@ func _join_shedinja(parent: BattlePokemon, report: Dictionary) -> void:
     definition["types"] = catalog.species(292)["types"]
     var pokemon := BattlePokemon.new(definition,_allocate_pokemon_uid())
     pokemon.level = parent.level
-    TacticalGrowth.initialize(pokemon)
+    TacticalGrowth.initialize(pokemon,full_campaign and route.generation >= 4)
     pokemon.experience = parent.experience
     pokemon.learned_skills.assign(parent.learned_skills)
     if not parent.alive():
@@ -298,7 +300,7 @@ func capture() -> String:
     balls -= int(rule["balls"]) if rare else 1
     if rare: rare_hunt["captured"] = true
     var caught := BattlePokemon.new(definition,_allocate_pokemon_uid())
-    TacticalGrowth.initialize(caught)
+    TacticalGrowth.initialize(caught,full_campaign and route.generation >= 4)
     SpecialEvolution.assign_personality(caught,seed_value)
     pending_captures.append(caught)
     if target.species_id not in captured_ids: captured_ids.append(target.species_id)
@@ -507,9 +509,13 @@ func item_reason(key: String,index: int) -> String:
         if pokemon.level >= 100: return "진화하려면 다음 레벨업이 필요합니다."
         if SpecialEvolution.beauty(pokemon) >= SpecialEvolution.BEAUTY_THRESHOLD: return "아름다움 조건을 만족했습니다. 다음 레벨업을 준비하세요."
         return ""
-    if EvolutionItems.ITEMS.has(key):
+    if EvolutionItems.all_items().has(key):
         if not pokemon.alive(): return "기절한 동료를 먼저 회복하세요."
-        if EvolutionItems.target(key,pokemon.species_id) == 0: return "이 재료로 진화할 수 없는 동료입니다."
+        if EvolutionItems.target_for(key,pokemon) == 0: return "이 재료로 진화할 수 없는 동료입니다."
+        if pokemon.content_version >= 2:
+            var rule := NationalEvolution.item_rule(key,pokemon)
+            var condition := NationalEvolution.reason(pokemon,rule,current_time())
+            if not condition.is_empty(): return condition
         return ""
     if key == "revive":
         if pokemon.alive(): return "기절한 동료에게 사용하세요."
@@ -526,9 +532,9 @@ func use_item(key: String,index: int) -> String:
         _stat("items_used")
         _decision("빈티나 아름다움 · %d/170" % pokemon.beauty)
         return notify_changed()
-    if EvolutionItems.ITEMS.has(key):
+    if EvolutionItems.all_items().has(key):
         var previous := pokemon.display_name
-        TacticalGrowth.evolve(pokemon,EvolutionItems.target(key,pokemon.species_id),VisualCatalog.new())
+        TacticalGrowth.evolve(pokemon,EvolutionItems.target_for(key,pokemon),VisualCatalog.new())
         inventory[key] = int(inventory[key])-1
         _stat("items_used")
         var choice := "%s → %s · %s" % [previous,pokemon.display_name,items()[key]["name"]]
@@ -550,7 +556,7 @@ func is_wild() -> bool:
 func items() -> Dictionary:
     var result := TacticalJourneyContent.ITEMS.duplicate(true)
     if full_campaign: result["ball"] = {"name":"몬스터볼","price":35,"stock":4}
-    if full_campaign: result.merge(EvolutionItems.ITEMS,true)
+    if full_campaign: result.merge(EvolutionItems.all_items(),true)
     if full_campaign: result.merge(SpecialEvolution.ITEMS,true)
     return result
 func quantity(key: String) -> int:
@@ -708,3 +714,72 @@ func _allocate_pokemon_uid() -> int:
     var allocated := _next_pokemon_uid
     _next_pokemon_uid += 1
     return allocated
+
+func prepare_evolution(uid: int,target: int) -> String:
+    if phase != REST: return "진화 준비는 야영지에서 진행하세요."
+    for pokemon: BattlePokemon in party:
+        if pokemon.uid != uid: continue
+        if not pokemon.alive(): return "기절한 동료를 먼저 회복하세요."
+        for rule: Dictionary in NationalEvolution.rules_for(pokemon.species_id):
+            if int(rule["to"]) != target: continue
+            if pokemon.evolution_prepared == target: return "이미 선택한 진화입니다."
+            if rule["conditions"].has("gender_id") and NationalEvolution.gender(pokemon) != int(rule["conditions"]["gender_id"]): return "해당 성별의 진화 분기가 아닙니다."
+            if rule["method"] == "level" and pokemon.level >= 100: return "다음 레벨업이 필요합니다. 최대 레벨에서는 준비할 수 없습니다."
+            if rule["prepare"]:
+                if step in rested_steps: return "이번 야영 행동을 이미 사용했습니다. 다음 야영지에서 준비하세요."
+                rested_steps.append(step)
+            pokemon.content_version = 2
+            pokemon.evolution_prepared = target
+            var choice := "진화 준비 · "+str(PokedexExpansion.species(target)["name"])
+            history.append(choice)
+            _decision(choice)
+            return notify_changed()
+        return "해당 동료의 진화 분기가 아닙니다."
+    return "파티의 동료를 선택하세요."
+func change_form(uid: int,target: int,collection: Array = []) -> String:
+    if phase != REST: return "폼은 야영지에서 준비하세요."
+    for pokemon: BattlePokemon in party:
+        if pokemon.uid != uid: continue
+        if not pokemon.alive(): return "기절한 동료를 먼저 회복하세요."
+        if target == pokemon.species_id: return "현재 모습입니다."
+        if target not in PokedexExpansion.forms(pokemon.species_id): return "지역폼은 각 지역의 개체를 포획하거나 진화시켜야 합니다."
+        var known := collection.duplicate()
+        known.append(pokemon.species_id)
+        for member: BattlePokemon in party: known.append(member.species_id)
+        if not PokedexExpansion.form_known(target,known): return "합체에 필요한 포켓몬을 먼저 포획하세요."
+        var hp_before := pokemon.hp
+        pokemon.content_version = 2
+        TacticalGrowth.evolve(pokemon,target,VisualCatalog.new())
+        pokemon.hp = mini(hp_before,pokemon.max_hp)
+        var choice := "폼 준비 · "+pokemon.display_name
+        history.append(choice)
+        _decision(choice)
+        return notify_changed()
+    return "파티의 동료를 선택하세요."
+func train_move(uid: int,move_id: int,slot: int) -> String:
+    if phase != REST: return "기술 훈련은 야영지에서 진행하세요."
+    if step in rested_steps: return "이번 야영 행동을 이미 사용했습니다."
+    for pokemon: BattlePokemon in party:
+        if pokemon.uid != uid: continue
+        if not pokemon.alive(): return "기절한 동료를 먼저 회복하세요."
+        var key := TacticalMoves.key_for(move_id)
+        if move_id not in NationalEvolution.teachable_moves(pokemon): return "현재 레벨과 해당 포켓몬의 습득 경로에 없는 기술입니다."
+        if key in pokemon.learned_skills: return "이미 배운 기술입니다."
+        if slot < 0 or slot > pokemon.learned_skills.size() or slot >= 4: return "교체할 기술을 선택하세요."
+        pokemon.content_version = 2
+        var copies := 0
+        if slot < pokemon.learned_skills.size():
+            var previous := pokemon.learned_skills[slot]
+            pokemon.learned_skills[slot] = key
+            for card: BattleCardInstance in deck:
+                if card.owner_uid == pokemon.uid and card.key == previous:
+                    card.key = key
+                    copies += 1
+        else: pokemon.learned_skills.append(key)
+        if copies == 0: deck.append(_allocate_card(key,pokemon.uid))
+        rested_steps.append(step)
+        var choice := "기술 훈련 · %s · %s" % [pokemon.display_name,TacticalMoves.definition(key)["name"]]
+        history.append(choice)
+        _decision(choice)
+        return notify_changed()
+    return "파티의 동료를 선택하세요."

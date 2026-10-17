@@ -61,3 +61,15 @@ Windows 시험 빌드는 공식 Godot **4.7.2** 엔진을 포함합니다. Godot
 추가 트레이너 PNG11개는 원본 바이트를 보존합니다. 나누·하푸우·멀레인·쿠쿠이·하우는 SDM0 미러의 Beliot419 작품, 블루베리5인은 PokeRogue assets 미러의 kyledove 작품입니다. 레드는 Smogon 미러의 HGSS 원작 도트입니다. 기존 할라(Gnomowladny)·라이치(Beliot419)는 관장 역할에도 연결했습니다. [파일별 고정 출처/지문/작가/고지](assets/sources/trainer_sprites.json) 및 [크레딧](assets/sources/TRAINER_FAN_CREDITS.txt)을 포함합니다. PokeRogue 미러의 적용 가능한 CC BY-NC-SA4.0 고지와 [라이선스 원문](assets/sources/POKEROGUE_ASSETS_CC_BY_NC_SA_4.txt)을 유지하며 원작 Pokémon 권리는 별개입니다.
 
 추가 배경12곳은 프로젝트용 이미지 생성 도구로 제작했고 [리그 지문](assets/league/manifest.json)에 기록했습니다. 보스13대진의 대사39문구와 전술은 자체 작성했으며 파티는 현재 일반1~3세대 도감에 맞춘 게임용 구성입니다.
+
+## 전국도감·지역/상시폼 확장
+
+전국도감1,025종과 지역/상시/무늬/코스튬 폼을 합친1,412항목을 지원합니다. 원본 데이터가 정의한 상시 폼을 대상으로 하며 메가진화·거다이맥스 등 전투 전용 변신, 이동 자세, 폐기된 불명 타입 아르세우스는 제외합니다. 기존468항목의 PNG/울음소리와 역사적 이름·타입·종족값 데이터는 보존했습니다.
+
+추가 앞/뒤 PNG **1,888장**, 울음소리 **944개**, 진화 재료 PNG **37장**을 고정 출처에서 가져왔습니다. PNG는 원본 바이트를 유지하며, 울음소리의 일부가 잘못된 확장자의 MP3이면 실제 Vorbis로 변환하고 원본/변환 지문을 기록합니다. 도롱마담 계통에서 갈라진 나메일과 분이벌레/분떠도리의 문양 계통은 원래 같은 외형이므로 실제 기본 외형을 공유합니다. 폼별 울음소리가 같은 경우도 출처와 공유 ID를 기록하며 별도 합성음으로 바꾸지 않습니다.
+
+- 이미지: [PokeAPI/sprites 고정 커밋](https://github.com/PokeAPI/sprites/tree/289e842364648ec0495ae4ba12f48d5cbfbf670b), `sprites/pokemon`, `sprites/pokemon/back`, `sprites/items`. 650번 이후는 Smogon 커뮤니티의 Gen5 스타일 도트를 포함합니다. [업스트림 README](assets/sources/POKEAPI_SPRITES_README.md.txt)·[출처/정비 안내](assets/sources/POKEAPI_SPRITES_CONTRIBUTING.md.txt)·기존 PokéAPI/Smogon 고지를 유지합니다.
+- 울음소리: [PokeAPI/cries 고정 커밋](https://github.com/PokeAPI/cries/tree/b3a9044bb839b5e3152aaa536c7b463a0fcf0140), `cries/pokemon/latest`. [전체1,412항목의 파일/디코딩 지문](assets/audio/cries/manifest.json)을 기록합니다.
+- 데이터: [PokeAPI/pokeapi 고정 커밋](https://github.com/PokeAPI/pokeapi/tree/5ee47a9a9c1229632ec4b473a9c1c53026e005dd/data/v2/csv)의26개 CSV. 한국어 이름·폼·타입·능력치·특성 정보·레벨업/가르침 습득 경로·919기술·644진화분기를 사용합니다. [확장 출처](assets/sources/pokedex_expansion.json)와 [실행 데이터](data/pokedex_expansion.json)에 입력 파일 SHA256과 종별 습득 버전을 기록합니다.
+
+기술의 위력/보조 효과는 기존 카드 전투 규칙에 맞춘 표현이며 원작의 모든 전용 기믹을 그대로 재현한 시뮬레이터가 아닙니다. 특성은 도감 정보로 포함하며 별도 전투 특성 시스템을 추가하지 않습니다. 위치·통신·특수 조작 조건은 야영 준비로 명시적으로 대체하고 기본 레벨/시간/친밀도/기술 조건을 적용합니다. 원작의 캐릭터/음악 권리는 원래 권리자에게 있으며 데이터·코드 라이선스가 이를 대신하지 않습니다.

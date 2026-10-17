@@ -1,19 +1,20 @@
 class_name CampaignRoute
 extends RefCounted
 ## Route RNG is independent from battle draws and card rewards.
-const VERSION := 3
+const VERSION := 4
 var generation := VERSION
 var signature := ""
 var stops: Array[Dictionary] = []
 var biomes: Array[Dictionary] = []
 var elite: Array[Dictionary] = []
 var champion: Dictionary = {}
-var _catalog := VisualCatalog.new()
+var _catalog: VisualCatalog
 var _rng := RandomNumberGenerator.new()
 var _battle_index := 0
 var _run_seed: int
 func _init(run_seed: int,route_version: int = VERSION) -> void:
     generation = route_version
+    _catalog = VisualCatalog.new(generation >= 4)
     _run_seed = run_seed
     _rng.seed = run_seed ^ 7046029254386353131
     var candidates := _catalog.biomes.duplicate()
@@ -107,10 +108,10 @@ func opponents(step: int) -> Array:
         var level := int(node["level"])
         var hp := PokemonStats.value(id,level,"hp")
         var definition := {"id":id,"name":species["name"],"type":species["types"][0],"types":species["types"],"max_hp":hp,"level":level}
-        definition.merge(EnemyTactics.build(id,level,species["types"],node["kind"],i,node["party"].size()))
+        definition.merge(EnemyTactics.build(id,level,species["types"],node["kind"],i,node["party"].size(),generation >= 4))
         if node["kind"] in ["gym","elite","champion"]:
             var trainer_id: String = node["trainer"]["leader_id"] if node["kind"] == "gym" else node["trainer"]["id"]
-            definition.merge(BossTactics.build(str(node["kind"])+":"+trainer_id,i,id,level,species["types"]),true)
+            definition.merge(BossTactics.build(str(node["kind"])+":"+trainer_id,i,id,level,species["types"],generation >= 4),true)
         result.append(definition)
     return result
 func experience_reward(step: int,species_id := 1) -> float:

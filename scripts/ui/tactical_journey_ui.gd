@@ -24,6 +24,7 @@ var camp_tabs: Dictionary = {}
 var camp_notice := ""
 var bag_item := ""
 var evolution_result: Dictionary = {}
+var workshop: PokedexWorkshop
 var special_open := false
 var rare_open := false
 var preparation_open := false
@@ -181,7 +182,8 @@ func _party() -> void:
         title.tooltip_text += "\n"+TacticalGrowth.progress_text(pokemon)+"\n"+FriendshipEvolution.summary(pokemon,journey.current_time(),_evolution_catalog)
         if SpecialEvolution.eligible(pokemon.species_id): title.tooltip_text += "\n"+SpecialEvolution.summary(pokemon,journey.party.size(),journey.balls,_evolution_catalog)
         for key: String in EvolutionItems.options(pokemon.species_id):
-            title.tooltip_text += "\n%s → %s · 야영지 가방" % [EvolutionItems.ITEMS[key]["name"],_evolution_catalog.species(EvolutionItems.target(key,pokemon.species_id))["name"]]
+            var target := EvolutionItems.target_for(key,pokemon)
+            if target > 0: title.tooltip_text += "\n%s → %s · 야영지 가방" % [EvolutionItems.all_items()[key]["name"],_evolution_catalog.species(target)["name"]]
         var growth := "친밀 %d/220" % FriendshipEvolution.value(pokemon) if FriendshipEvolution.eligible(pokemon.species_id) else TacticalGrowth.progress_text(pokemon)
         if pokemon.species_id == 349: growth = "아름다움 %d/170" % SpecialEvolution.beauty(pokemon)
         var detail := W.label(panel,("%d / %d HP" % [pokemon.hp,pokemon.max_hp] if pokemon.alive() else "기절")+" · "+growth,Rect2(102,111+i*82,218,28),12,W.MUTED)
@@ -364,6 +366,7 @@ func _rest() -> void:
         var button := W.button(page,Rect2(550+i*300,266,284,64),_camp_tab.bind(key),labels[i])
         if key == camp_tab: button.add_theme_stylebox_override("normal",W.box(Color("29443f"),W.GOLD))
         camp_tabs[key] = button
+    W.button(page,Rect2(1110,354,150,44),_open_workshop,"포켓몬 연구").name = "PokedexWorkshopButton"
     _action("준비 완료 · 출발",Rect2(1260,930,480,72),_leave_camp,"next")
     W.button(page,Rect2(550,930,650,72),_open_preparation,"다음 전투 준비").name = "EncounterPreparation"
     match camp_tab:
@@ -414,7 +417,7 @@ func _bag() -> void:
     var i := 0
     for key: String in journey.items():
         # Materials appear when owned; keep an empty bag compact.
-        if (EvolutionItems.ITEMS.has(key) or SpecialEvolution.ITEMS.has(key)) and journey.quantity(key) == 0: continue
+        if (EvolutionItems.all_items().has(key) or SpecialEvolution.ITEMS.has(key)) and journey.quantity(key) == 0: continue
         var item: Dictionary = journey.items()[key]
         var button := W.button(body,Rect2((i%3)*400,floori(i/3.0)*210,376,184),_open_item.bind(key))
         button.name = "Bag_"+key
@@ -427,7 +430,7 @@ func _bag() -> void:
     body.custom_minimum_size = Vector2(1176,ceilf(i/3.0)*210-26)
 func _item_description(key: String) -> String:
     if key == "blue_pokeblock": return "빈티나 아름다움 +60 · 170 이상으로 다음 레벨업 시 진화"
-    if EvolutionItems.ITEMS.has(key): return EvolutionItems.description(key)
+    if EvolutionItems.all_items().has(key): return EvolutionItems.description(key)
     if key == "ball": return "야생 전투에서 C로 포획"
     return "기절한 동료 HP 50% 회복" if key == "revive" else "최대 HP의 %s 회복" % PokemonStats.percent(int(journey.items()[key]["heal"]))
 func _shop() -> void:
@@ -509,7 +512,7 @@ func _item_picker() -> void:
     body.mouse_filter = Control.MOUSE_FILTER_STOP
     _item_sprite(body,bag_item,Rect2(30,28,60,60))
     W.label(body,journey.items()[bag_item]["name"]+" · 사용할 동료",Rect2(112,24,550,64),26,W.GOLD)
-    if EvolutionItems.ITEMS.has(bag_item):
+    if EvolutionItems.all_items().has(bag_item):
         W.label(body,"현재 기술은 유지 · 이후에는 진화형의 레벨업 기술을 배웁니다.",Rect2(32,88,716,28),16,W.MUTED)
     W.icon_button(body,"close",Rect2(700,28,48,48),_close_item,"닫기 · Esc").name = "Close"
     for i in journey.party.size():
@@ -523,20 +526,20 @@ func _item_picker() -> void:
         W.label(button,"%s · Lv.%d" % [p.display_name,p.level],Rect2(152,18,520,38),24)
         var preview := reason
         if reason.is_empty():
-            if EvolutionItems.ITEMS.has(bag_item):
-                var target := EvolutionItems.target(bag_item,p.species_id)
+            if EvolutionItems.all_items().has(bag_item):
+                var target := EvolutionItems.target_for(bag_item,p)
                 preview = "→ %s · 진화하기" % _evolution_catalog.species(target)["name"]
                 W.sprite(button,target,Rect2(572,22,96,96))
             elif bag_item == "blue_pokeblock": preview = "아름다움 %d → %d / 170" % [SpecialEvolution.beauty(p),mini(255,SpecialEvolution.beauty(p)+60)]
             else:
                 var healing := ceili(p.max_hp*0.5) if bag_item == "revive" else PokemonStats.scale(p,int(journey.items()[bag_item]["heal"]))
                 preview = "HP %d / %d  →  %d / %d" % [p.hp,p.max_hp,mini(p.max_hp,p.hp+healing),p.max_hp]
-        W.label(button,preview,Rect2(152,64,416 if EvolutionItems.ITEMS.has(bag_item) else 520,35),19,W.MUTED)
+        W.label(button,preview,Rect2(152,64,416 if EvolutionItems.all_items().has(bag_item) else 520,35),19,W.MUTED)
         W.fill_bar(W.bar(button,Rect2(152,117,510,7)),p.hp,p.max_hp)
         button.tooltip_text = reason
-        if reason.is_empty() and EvolutionItems.ITEMS.has(bag_item):
+        if reason.is_empty() and EvolutionItems.all_items().has(bag_item):
             var next_moves: Array[String] = []
-            for entry: Dictionary in TacticalGrowth.species_data(EvolutionItems.target(bag_item,p.species_id))["learnset"]:
+            for entry: Dictionary in TacticalGrowth.species_data(EvolutionItems.target_for(bag_item,p),p.content_version >= 2)["learnset"]:
                 if int(entry["level"]) > p.level:
                     next_moves.append("Lv.%d · %s" % [entry["level"],TacticalMoves.definition(TacticalMoves.key_for(int(entry["move"])))["name"]])
             button.tooltip_text = "진화 후 레벨업 기술\n"+("새로 배울 기술이 없습니다. 필요한 기술을 먼저 배운 뒤 진화할 수 있습니다." if next_moves.is_empty() else "\n".join(next_moves))
@@ -1080,3 +1083,11 @@ func _save_status() -> void:
 func _retry_save() -> void:
     if travelling: return
     _save_session.checkpoint()
+
+func _open_workshop() -> void:
+    if is_instance_valid(workshop): return
+    workshop = PokedexWorkshop.new()
+    workshop.journey = journey
+    workshop.collection.assign(get_node("/root/BattleSession").profile.captured_ids)
+    workshop.closed.connect(func(): workshop = null; refresh())
+    add_child(workshop)

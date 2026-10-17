@@ -83,11 +83,11 @@ static func trainers() -> Dictionary:
         for leader: Dictionary in GymLeaders.all():
             _trainers["gym:"+leader["leader_id"]] = {"name":leader["leader"],"plan":leader["plan"],"styles":leader["styles"].duplicate()}
     return _trainers
-static func build(boss: String, slot: int, species: int, level: int, types: Array) -> Dictionary:
+static func build(boss: String, slot: int, species: int, level: int, types: Array,modern := false) -> Dictionary:
     var commands := trainers()
     if not commands.has(boss): return {}
     var style: String = commands[boss]["styles"][slot]
-    var selected := EnemyTactics.moves(species,level,types)
+    var selected := EnemyTactics.moves(species,level,types,modern)
     var pattern: Array = []
     for kind: String in STYLES[style]["cycle"]:
         var action := {"kind":kind,"value":6,"move_id":115}
