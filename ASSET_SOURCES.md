@@ -12,9 +12,9 @@
 
 ## 트레이너
 
-[Smogon / Pokémon Showdown](https://github.com/smogon/sprites), 커밋 `a9214714f00974a8c28586829e6315d9ca5a6348`의 `src/_uncategorized/canonical/trainers/`에서 원작 도트 73장을 수정 없이 가져와 75대진에 대응합니다. 추가로 후대 인물 14대진에 제작자가 확인된 팬 도트를 적용했습니다. 총 89대진/87 PNG이며 나머지 35대진은 자체 공용 도트를 사용합니다. [인물별 URL·SHA·경계](assets/sources/trainer_sprites.json), [출처 원문의 License 절](assets/sources/SMOGON_SPRITES_LICENSE.txt)을 포함합니다. 이미지 권리는 Nintendo / Game Freak / The Pokémon Company에 있으며 코드의 MIT 허가와 구분합니다.
+[Smogon / Pokémon Showdown](https://github.com/smogon/sprites), 커밋 `a9214714f00974a8c28586829e6315d9ca5a6348`의 `src/_uncategorized/canonical/trainers/`에서 원작 도트 73장을 수정 없이 가져와 75대진에 대응합니다. 후대 인물 48대진에는 제작자 목록과 대응한 팬 도트 47장을 사용합니다. 총 123대진/120 PNG이며 시트론 1대진은 제작자 확인까지 자체 공용 도트를 사용합니다. [인물별 URL·SHA·경계](assets/sources/trainer_sprites.json), [출처 원문의 License 절](assets/sources/SMOGON_SPRITES_LICENSE.txt)을 포함합니다. 이미지 권리는 Nintendo / Game Freak / The Pokémon Company에 있으며 코드의 MIT 허가와 구분합니다.
 
-팬 도트는 **Gnomowladny**(칼로스 10명·할라)와 **Beliot419**(라이치·아세로라·카일리) 작품입니다. [제작자별 고지](assets/sources/TRAINER_FAN_CREDITS.txt)와 각 파일의 명세에 출처를 기록합니다. 구체적인 트레이너 갤러리 안내는 외부 사용 시 제작자 표기·허락 없는 편집 금지를 요구합니다. 다운로드한 PNG를 수정 없이 사용하며 일반 저장소 고지와 함께 유지합니다.
+팬 도트 제작자는 **Gnomowladny**, **Beliot419**, **Brumirage**, **kyledove**, **ZacWeavile**입니다. 칼로스·알로라 14장은 위 Smogon 고정 원본, 추가 33장은 공개 Showdown 스프라이트 컬렉션 [SDM0/sprites](https://github.com/SDM0/sprites/tree/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers)의 고정 원본입니다. 파일명과 작가를 공식 Showdown 갤러리의 크레딧 목록에 대응했으며 이미지 호스트의 바이트까지 비교한 것은 아닙니다. [제작자별 고지](assets/sources/TRAINER_FAN_CREDITS.txt)와 각 파일의 명세에 출처를 기록합니다. 구체적인 트레이너 갤러리 안내는 외부 사용 시 제작자 표기·허락 없는 편집 금지를 요구합니다. 다운로드한 PNG를 수정 없이 사용하며 일반 저장소 고지와 함께 유지합니다.
 
 ## 아이콘·배경·연출
 

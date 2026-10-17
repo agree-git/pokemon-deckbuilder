@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/smogon/sprites",
   "commit": "a9214714f00974a8c28586829e6315d9ca5a6348",
-  "scope": "75 roster identities use canonical original-game sprites; 14 additional identities use credited community trainer sprites. PNG bytes are imported unmodified. Remaining identities explicitly use the generic fallback.",
+  "scope": "75 roster identities use canonical original-game sprites; 48 use credited community trainer sprites (47 PNGs). Downloaded PNG bytes are preserved. Clemont retains an explicit generic fallback pending attribution.",
   "rights": "Original Pokemon imagery belongs to Nintendo / Game Freak / The Pokemon Company. Fan trainer artists and the specific gallery usage notice are recorded per file; code MIT is not a blanket art license.",
   "entries": {
     "gym:brock": {
@@ -256,8 +256,8 @@
     },
     "gym:grant": {
       "name": "자크로",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/grant-showdown-fan.png"
     },
     "gym:korrina": {
       "name": "코르니",
@@ -291,128 +291,128 @@
     },
     "gym:milo": {
       "name": "아킬",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/milo-showdown-fan.png"
     },
     "gym:nessa": {
       "name": "야청",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/nessa-showdown-fan.png"
     },
     "gym:kabu": {
       "name": "순무",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/kabu-showdown-fan.png"
     },
     "gym:bea": {
       "name": "채두",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/bea-showdown-fan.png"
     },
     "gym:allister": {
       "name": "어니언",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/allister-showdown-fan.png"
     },
     "gym:opal": {
       "name": "포플러",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/opal-showdown-fan.png"
     },
     "gym:gordie": {
       "name": "마쿠와",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/gordie-showdown-fan.png"
     },
     "gym:melony": {
       "name": "멜론",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/melony-showdown-fan.png"
     },
     "gym:piers": {
       "name": "두송",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/piers-showdown-fan.png"
     },
     "gym:raihan": {
       "name": "금랑",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/raihan-showdown-fan.png"
     },
     "gym:bede": {
       "name": "비트",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/bede-leader-showdown-fan.png"
     },
     "gym:marnie": {
       "name": "마리",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/marnie-showdown-fan.png"
     },
     "gym:klara": {
       "name": "도정",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/klara-showdown-fan.png"
     },
     "gym:avery": {
       "name": "세이버리",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/avery-showdown-fan.png"
     },
     "gym:mustard": {
       "name": "마스터드",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/mustard-showdown-fan.png"
     },
     "gym:peony": {
       "name": "피오니",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/peony-showdown-fan.png"
     },
     "gym:tyme": {
       "name": "타임",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/tyme-showdown-fan.png"
     },
     "gym:katy": {
       "name": "단풍",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/katy-showdown-fan.png"
     },
     "gym:brassius": {
       "name": "콜사",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/brassius-showdown-fan.png"
     },
     "gym:iono": {
       "name": "모야모",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/iono-showdown-fan.png"
     },
     "gym:kofu": {
       "name": "곤포",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/kofu-showdown-fan.png"
     },
     "gym:larry": {
       "name": "청목",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/larry-showdown-fan.png"
     },
     "gym:ryme": {
       "name": "라임",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/ryme-showdown-fan.png"
     },
     "gym:tulip": {
       "name": "리파",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/tulip-showdown-fan.png"
     },
     "gym:grusha": {
       "name": "그루샤",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/grusha-showdown-fan.png"
     },
     "elite:lorelei": {
       "name": "칸나",
@@ -551,23 +551,23 @@
     },
     "elite:rika": {
       "name": "칠리",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/rika-showdown-fan.png"
     },
     "elite:poppy": {
       "name": "뽀삐",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/poppy-showdown-fan.png"
     },
     "elite:larry": {
       "name": "청목",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/larry-showdown-fan.png"
     },
     "elite:hassel": {
       "name": "팔자크",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/hassel-showdown-fan.png"
     },
     "champion:blue": {
       "name": "그린",
@@ -606,23 +606,23 @@
     },
     "champion:diantha": {
       "name": "카르네",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/diantha-showdown-fan.png"
     },
     "champion:leon": {
       "name": "단델",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/leon-showdown-fan.png"
     },
     "champion:geeta": {
       "name": "테사",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/geeta-showdown-fan.png"
     },
     "champion:nemona": {
       "name": "네모",
-      "status": "fallback",
-      "reason": "Fan sprite candidate tracked separately; image retrieval and integration pending"
+      "status": "included",
+      "path": "assets/trainers/nemona-v-showdown-fan.png"
     }
   },
   "assets": {
@@ -2028,6 +2028,798 @@
       "gallery_file": "kahili.png",
       "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
       "integrity_note": "PNG bytes preserved. Trainer identity/artist matched to gallery credits index; image-host bytes not compared."
+    },
+    "assets/trainers/grant-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/grant.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/grant.png",
+      "sha256": "498d43dd90b8738bbf025e9ac2e203430896257bedac5f88fb2bde3552a82215",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        23,
+        1,
+        34,
+        78
+      ],
+      "kind": "fan",
+      "artist": "kyledove",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "grant.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/milo-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/milo.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/milo.png",
+      "sha256": "a08babedbd4ae4cbed0afa23e7e1884fa9bd551cb6518df2769f567d001aa66f",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        21,
+        3,
+        42,
+        76
+      ],
+      "kind": "fan",
+      "artist": "Brumirage",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "milo.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/nessa-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/nessa.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/nessa.png",
+      "sha256": "2a36e54c12236732eb1a0fb3c46a8c29dff462b57eb1b9e35a3db7b9954d4173",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        17,
+        1,
+        41,
+        79
+      ],
+      "kind": "fan",
+      "artist": "Brumirage",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "nessa.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/kabu-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/kabu.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/kabu.png",
+      "sha256": "a054ab877e80ee41109b204526f8959ea5354dc61a564a2933846955a2011fc1",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        25,
+        1,
+        28,
+        78
+      ],
+      "kind": "fan",
+      "artist": "Brumirage",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "kabu.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/bea-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/bea.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/bea.png",
+      "sha256": "418d96c9270033a322b294cf9527f36c9e06fe8bed22a74f00b8662d6460d647",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        19,
+        3,
+        44,
+        75
+      ],
+      "kind": "fan",
+      "artist": "Brumirage",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "bea.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/allister-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/allister.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/allister.png",
+      "sha256": "22f522fdfb8b1553fd8b2f863cb80b46ead754e87d49b8014226e1215ecc9dc0",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        18,
+        1,
+        39,
+        78
+      ],
+      "kind": "fan",
+      "artist": "Brumirage",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "allister.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/opal-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/opal.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/opal.png",
+      "sha256": "9bac9e9abe179e5a62a48c529a03ea7703f6fbc9fa8b70a26035abf05203dc78",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        18,
+        4,
+        44,
+        76
+      ],
+      "kind": "fan",
+      "artist": "Brumirage",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "opal.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/gordie-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/gordie.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/gordie.png",
+      "sha256": "c039098fe17abb90053228aa1fc99699ec925c20e0f83ce577d29621e90e3a2d",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        16,
+        0,
+        44,
+        80
+      ],
+      "kind": "fan",
+      "artist": "Brumirage",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "gordie.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/melony-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/melony.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/melony.png",
+      "sha256": "f8ba32b37945b0dc9ac803ff59c1ac68517f001f3a8269210487fb2e07d2f7df",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        20,
+        1,
+        39,
+        79
+      ],
+      "kind": "fan",
+      "artist": "Brumirage",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "melony.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/piers-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/piers.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/piers.png",
+      "sha256": "aca00ae5eda0f8926fbcbb10aad57e7f8c30a89d841c7a1765bd126dc2655d66",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        9,
+        1,
+        52,
+        79
+      ],
+      "kind": "fan",
+      "artist": "Brumirage",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "piers.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/raihan-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/raihan.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/raihan.png",
+      "sha256": "6b4c599565a0bece45c03183eda2242a0a0aba65246cb856c7268a87b0ee26cf",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        3,
+        0,
+        75,
+        80
+      ],
+      "kind": "fan",
+      "artist": "Brumirage",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "raihan.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/bede-leader-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/bede-leader.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/bede-leader.png",
+      "sha256": "bd9e1bfaaa5b4189b750486310a0de9c2c6902d8144084cfe50ebee981714a6b",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        25,
+        1,
+        29,
+        78
+      ],
+      "kind": "fan",
+      "artist": "Brumirage",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "bede-leader.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/marnie-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/marnie.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/marnie.png",
+      "sha256": "2733d6a01e4066a02ad1890e92bdc441ac6b0d335cd547110efd505313aa99a5",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        28,
+        3,
+        29,
+        76
+      ],
+      "kind": "fan",
+      "artist": "Brumirage",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "marnie.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/klara-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/klara.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/klara.png",
+      "sha256": "54d3eee8ee17469edb94e665942bab5d752e0ec224fca8f4ba626164b3105283",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        25,
+        2,
+        34,
+        76
+      ],
+      "kind": "fan",
+      "artist": "Brumirage",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "klara.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/avery-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/avery.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/avery.png",
+      "sha256": "bcffc6bc3c5ee7bfea10edb2b4b23aeecd8847f264958b2991ce85840941015e",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        22,
+        1,
+        34,
+        79
+      ],
+      "kind": "fan",
+      "artist": "Brumirage",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "avery.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/mustard-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/mustard.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/mustard.png",
+      "sha256": "0da6226c81c646e6f7dad6da77862e74771d964ba3b98829148ee3fbb0dd8a69",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        26,
+        4,
+        33,
+        75
+      ],
+      "kind": "fan",
+      "artist": "Brumirage",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "mustard.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/peony-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/peony.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/peony.png",
+      "sha256": "7c246c926aebbab02477c72b27b8577b02837b0dce6b8d551c522098cb2e34b2",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        21,
+        1,
+        39,
+        79
+      ],
+      "kind": "fan",
+      "artist": "Brumirage",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "peony.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/tyme-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/tyme.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/tyme.png",
+      "sha256": "adf06814773428d4958da92d8503c6fb10c9e879a157a63c98195ce1785f16a6",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        28,
+        6,
+        26,
+        73
+      ],
+      "kind": "fan",
+      "artist": "kyledove",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "tyme.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/katy-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/katy.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/katy.png",
+      "sha256": "959d36a46306c69082ec7e06d8f6bb1940321ae27b216c501b2abac58e70743e",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        20,
+        1,
+        39,
+        78
+      ],
+      "kind": "fan",
+      "artist": "kyledove",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "katy.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/brassius-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/brassius.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/brassius.png",
+      "sha256": "9c9055aea0ad1c64508af0fbc60078641d3d6d9918d4d792b855144b9ebca97e",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        29,
+        1,
+        25,
+        79
+      ],
+      "kind": "fan",
+      "artist": "kyledove",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "brassius.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/iono-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/iono.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/iono.png",
+      "sha256": "2569d29c482cdb3d487f4351d5fdfe2810b8a19a7242d29d0a63ddbb93110de6",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        1,
+        1,
+        78,
+        78
+      ],
+      "kind": "fan",
+      "artist": "kyledove",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "iono.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/kofu-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/kofu.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/kofu.png",
+      "sha256": "aa0e9b8110bd97f2aa984f164480490e420481365a7a962188b8ce7d531b2f9b",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        18,
+        1,
+        44,
+        79
+      ],
+      "kind": "fan",
+      "artist": "kyledove",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "kofu.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/larry-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/larry.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/larry.png",
+      "sha256": "39d0471e3ed50916b9878cb46b985463fc2f537344af27d76ee39561ea1d4d7e",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        26,
+        0,
+        28,
+        80
+      ],
+      "kind": "fan",
+      "artist": "kyledove",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "larry.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/ryme-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/ryme.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/ryme.png",
+      "sha256": "0d1da017f033d56340cdd387e353dad74f59a14dd60ec6996c6e44d9c951f54a",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        18,
+        3,
+        44,
+        76
+      ],
+      "kind": "fan",
+      "artist": "kyledove",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "ryme.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/tulip-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/tulip.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/tulip.png",
+      "sha256": "b6e4553ffd1310729adbed5a1cc2f6f5cfc336ab5e1884637b5198d4761077da",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        23,
+        1,
+        33,
+        78
+      ],
+      "kind": "fan",
+      "artist": "kyledove",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "tulip.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/grusha-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/grusha.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/grusha.png",
+      "sha256": "85c22d610c425aa04255b2c43a64c6ef3d2d2849e4d24f1e433d185f495b8ae8",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        25,
+        7,
+        27,
+        72
+      ],
+      "kind": "fan",
+      "artist": "ZacWeavile",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "grusha.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/rika-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/rika.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/rika.png",
+      "sha256": "430224e4d5266ad942b70f7fddcb33f87868b02748048ad846a753f721407f9f",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        22,
+        1,
+        35,
+        78
+      ],
+      "kind": "fan",
+      "artist": "kyledove",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "rika.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/poppy-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/poppy.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/poppy.png",
+      "sha256": "cb60ae50fcf5c11401d8bad10041b76f7249305d5d71de05dcf5a1e00b3fd7ee",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        26,
+        28,
+        28,
+        51
+      ],
+      "kind": "fan",
+      "artist": "kyledove",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "poppy.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/hassel-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/hassel.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/hassel.png",
+      "sha256": "c86783b67d9c5de710ac5a0399b3124737cf5f63f74803338994fcec02f40e4c",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        24,
+        0,
+        31,
+        79
+      ],
+      "kind": "fan",
+      "artist": "kyledove",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "hassel.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/diantha-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/diantha.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/diantha.png",
+      "sha256": "ca8ba22e6f07a442dabb54596f7b29f8d79d1600dd8fe471c4526b561af027f7",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        16,
+        1,
+        48,
+        79
+      ],
+      "kind": "fan",
+      "artist": "Brumirage",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "diantha.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/leon-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/leon.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/leon.png",
+      "sha256": "4f3b136f533d6876820cfd50591defb41c2fb95ce2bd39c95f394aa8c7e99090",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        3,
+        0,
+        76,
+        80
+      ],
+      "kind": "fan",
+      "artist": "Brumirage",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "leon.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/geeta-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/geeta.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/geeta.png",
+      "sha256": "088ad7a069e01f1b3fb4ce3423494ca976b2a73edc3131e5875d20552cf80248",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        16,
+        1,
+        53,
+        79
+      ],
+      "kind": "fan",
+      "artist": "kyledove",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "geeta.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
+    },
+    "assets/trainers/nemona-v-showdown-fan.png": {
+      "source_repository": "https://github.com/SDM0/sprites",
+      "source_commit": "b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f",
+      "upstream_path": "sprites/trainers/nemona-v.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/nemona-v.png",
+      "sha256": "d15d9d037748c3606c812fcc4505ae7a80b99cc2f217ea89ce7edc35acff613b",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        20,
+        7,
+        38,
+        72
+      ],
+      "kind": "fan",
+      "artist": "kyledove",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "nemona-v.png",
+      "usage_notice": "Many of these sprites are not from the games. Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Unmodified PNG from pinned public Showdown sprite collection. Identity and artist matched by gallery filename; Showdown image-host bytes not compared."
     }
   }
 }

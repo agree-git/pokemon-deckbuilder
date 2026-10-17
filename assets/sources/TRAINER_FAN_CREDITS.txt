@@ -28,3 +28,43 @@ Gnomowladny — 비올라 (gym:viola) — assets/trainers/viola-x-y-fan.png
 Gnomowladny — 우르프 (gym:wulfric) — assets/trainers/wulfric-x-y-fan.png
 
 This gallery-specific notice and per-file credits supplement the upstream repository general notice retained in SMOGON_SPRITES_LICENSE.txt.
+
+Additional community sprites: SDM0/sprites, pinned commit b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f
+https://github.com/SDM0/sprites/tree/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers
+This public collection mirrors Showdown artwork; filenames/artists are matched to the credited gallery above.
+Showdown image-host bytes were not compared. Nemona uses the violet-uniform nemona-v.png.
+
+kyledove — 자크로 (gym:grant) — assets/trainers/grant-showdown-fan.png
+Brumirage — 아킬 (gym:milo) — assets/trainers/milo-showdown-fan.png
+Brumirage — 야청 (gym:nessa) — assets/trainers/nessa-showdown-fan.png
+Brumirage — 순무 (gym:kabu) — assets/trainers/kabu-showdown-fan.png
+Brumirage — 채두 (gym:bea) — assets/trainers/bea-showdown-fan.png
+Brumirage — 어니언 (gym:allister) — assets/trainers/allister-showdown-fan.png
+Brumirage — 포플러 (gym:opal) — assets/trainers/opal-showdown-fan.png
+Brumirage — 마쿠와 (gym:gordie) — assets/trainers/gordie-showdown-fan.png
+Brumirage — 멜론 (gym:melony) — assets/trainers/melony-showdown-fan.png
+Brumirage — 두송 (gym:piers) — assets/trainers/piers-showdown-fan.png
+Brumirage — 금랑 (gym:raihan) — assets/trainers/raihan-showdown-fan.png
+Brumirage — 비트 (gym:bede) — assets/trainers/bede-leader-showdown-fan.png
+Brumirage — 마리 (gym:marnie) — assets/trainers/marnie-showdown-fan.png
+Brumirage — 도정 (gym:klara) — assets/trainers/klara-showdown-fan.png
+Brumirage — 세이버리 (gym:avery) — assets/trainers/avery-showdown-fan.png
+Brumirage — 마스터드 (gym:mustard) — assets/trainers/mustard-showdown-fan.png
+Brumirage — 피오니 (gym:peony) — assets/trainers/peony-showdown-fan.png
+kyledove — 타임 (gym:tyme) — assets/trainers/tyme-showdown-fan.png
+kyledove — 단풍 (gym:katy) — assets/trainers/katy-showdown-fan.png
+kyledove — 콜사 (gym:brassius) — assets/trainers/brassius-showdown-fan.png
+kyledove — 모야모 (gym:iono) — assets/trainers/iono-showdown-fan.png
+kyledove — 곤포 (gym:kofu) — assets/trainers/kofu-showdown-fan.png
+kyledove — 청목 (gym:larry) — assets/trainers/larry-showdown-fan.png
+kyledove — 라임 (gym:ryme) — assets/trainers/ryme-showdown-fan.png
+kyledove — 리파 (gym:tulip) — assets/trainers/tulip-showdown-fan.png
+ZacWeavile — 그루샤 (gym:grusha) — assets/trainers/grusha-showdown-fan.png
+kyledove — 칠리 (elite:rika) — assets/trainers/rika-showdown-fan.png
+kyledove — 뽀삐 (elite:poppy) — assets/trainers/poppy-showdown-fan.png
+kyledove — 청목 (elite:larry) — assets/trainers/larry-showdown-fan.png
+kyledove — 팔자크 (elite:hassel) — assets/trainers/hassel-showdown-fan.png
+Brumirage — 카르네 (champion:diantha) — assets/trainers/diantha-showdown-fan.png
+Brumirage — 단델 (champion:leon) — assets/trainers/leon-showdown-fan.png
+kyledove — 테사 (champion:geeta) — assets/trainers/geeta-showdown-fan.png
+kyledove — 네모 (champion:nemona) — assets/trainers/nemona-v-showdown-fan.png
