@@ -13,6 +13,7 @@ import struct
 import subprocess
 import tempfile
 import uuid
+from windows_resources import verify_icon
 
 ERROR=re.compile(r'SCRIPT ERROR:|(?:^|\n)ERROR:|leaked at exit',re.I)
 
@@ -82,6 +83,8 @@ def main():
         if not path.is_file() or path.stat().st_size!=info['bytes'] or sha256(path)!=info['sha256']:
             raise RuntimeError('Distribution checksum mismatch: '+name)
         checked+=1
+    for executable in [bundle/'PokemonExpedition.exe',validation/'ExportCheck.exe']:
+        verify_icon(executable,metadata['branding']['icon_frames_sha256'])
     shipped=inventory(bundle/'PokemonExpedition.pck')
     tested=inventory(validation/'ExportCheck.pck')
     matched=0
@@ -140,6 +143,7 @@ def main():
             report={'mode':args.mode,'actual_os':expected_os,'engine':metadata['engine'],
                     'source_revision':metadata['source_revision'],'source_sha256':metadata['source_sha256'],
                     'distribution_files_verified':checked,'packed_game_entries_matched':matched,
+                    'windows_icon_sizes_verified':[16,32,48,64,128,256],
                     'shipped_title_launch':True,'title_shutdown_diagnostic':title_diagnostic,'title_exit_clean':title_diagnostic is None,'runtime_checks':int(summary[1]),'failures':0,
                     'profile_isolated':True,'profile_removed':True,
                     'limitations':['Headless launch; no physical GPU/audio or full playthrough',

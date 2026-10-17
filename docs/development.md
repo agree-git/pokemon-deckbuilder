@@ -30,6 +30,10 @@ Linux 검사와 Windows 네이티브 검사는 실제 보고서로 구분한다.
 
 main의 `export_presets.cfg`는 Windows Desktop/x86_64/GL Compatibility/외부PCK/서명 없는 초기 알파 설정이다. Godot4.7.2와 같은 버전의 공식 템플릿을 설치하면 에디터에서도 사용할 수 있다. EXE와 PCK를 같은 폴더에 둔다.
 
+`assets/branding`의 자체 제작 카드·나침반·포획 볼 문양을 시작 로고(1920×1080 PNG), 창 아이콘(512 PNG), Windows EXE 아이콘(16/32/48/64/128/256 ICO)에 공통 적용한다. `application/modify_resources=true`로 Godot4.7.2 내장 PE 편집기가 아이콘을 삽입하며 외부 rcedit은 필요 없다. 제작/실행 검사기는 PE 아이콘 그룹의 여섯 크기와 참조된 실제 payload를 원본 ICO와 비교한다. 원본 ICO/시작 PNG hash도 빌드 명세에 남긴다. 깊은 export 검사에서는 packed 설정과 raw 시작 PNG·창 아이콘 읽기를 확인한다.
+
+에셋을 다시 그릴 때만 선택 의존성 Pillow가 필요하다. `python3 tools/generate_branding.py --game-dir /path/to/main`으로 재생성한다. 실행/내보내기/검사에는 Pillow가 필요 없다. 기존 바이옴/포켓몬 그림을 편집하지 않고 코드로 도형과 지형을 그리며 포함된 Noto Sans KR로 글자를 렌더링한다. 시작 로고에 강제 대기 시간을 추가하지 않는다.
+
 자료의 다음 도구는 Python3.10+ 표준 라이브러리만 쓴다. 네트워크는 준비 단계의 공식 엔진/템플릿/라이선스 다운로드에만 필요하다. 공식 `SHA512-SUMS.txt`에서 고정한 hash로 아카이브를 검사한다. 전체 템플릿 다운로드는 약1.28GB이며 캐시에 재사용한다.
 
 ```bash

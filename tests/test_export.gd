@@ -22,6 +22,12 @@ func run() -> void:
     check(Engine.get_version_info()["string"].begins_with("4.7.2"),"Pinned engine version")
     check(FileAccess.file_exists("res://project.binary"),"Project loaded from packed binary settings")
     check(not FileAccess.file_exists("res://AGENTS.md") and not FileAccess.file_exists("res://.dev-materials/HANDOFF.md"),"Developer files excluded from package")
+    var splash_path := str(ProjectSettings.get_setting("application/boot_splash/image", ""))
+    check(splash_path == "res://assets/branding/boot_splash.png", "Game boot splash configured")
+    var splash := Image.load_from_file(splash_path)
+    check(splash != null and splash.get_size() == Vector2i(1920,1080), "Raw boot PNG readable from shipped PCK")
+    var icon: Texture2D = load(str(ProjectSettings.get_setting("application/config/icon", "")))
+    check(icon != null and icon.get_size() == Vector2(512,512), "Packed game window icon")
     for path: String in JourneySave.CONTENT:
         check(FileAccess.file_exists(path) and JSON.parse_string(FileAccess.get_file_as_string(path)) != null,"Packed data readable: "+path)
     var catalog := VisualCatalog.new()

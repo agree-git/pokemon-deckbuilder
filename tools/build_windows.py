@@ -12,6 +12,7 @@ import subprocess
 import tempfile
 import zipfile
 import uuid
+from windows_resources import ico_frames, verify_icon
 
 ROOT = Path(__file__).resolve().parents[1]
 VERSION = '4.7.2'
@@ -99,6 +100,10 @@ def main():
         raise RuntimeError('Expected a Windows x86_64 PE executable')
     with pack.open('rb') as source:
         if source.read(4)!=b'GDPC':raise RuntimeError('Missing/invalid standalone PCK')
+    icon_frames=ico_frames(game/'assets/branding/expedition.ico')
+    for executable in [exe,validation/'ExportCheck.exe']:
+        verify_icon(executable,icon_frames)
+    print('PASS embedded Windows game icon: 16/32/48/64/128/256px',flush=True)
     # Keep attribution files outside the executable so players can read them.
     notice_files=[game/'ASSET_SOURCES.md',game/'assets/fonts/OFL.txt',game/'assets/audio/cries/UPSTREAM_LICENSE',game/'assets/audio/cries/UPSTREAM_README.md']
     notice_files += [path for path in (game/'assets/sources').rglob('*') if path.is_file()]
@@ -111,7 +116,8 @@ def main():
     (bundle/'README-Windows.txt').write_text(readme,encoding='utf-8-sig')
     metadata={'engine':version,'target':'Windows x86_64','source_revision':revision,'source_dirty':dirty,
               'source_sha256':source_hash.hexdigest(),'materials_revision':subprocess.check_output(['git','-C',str(ROOT if (ROOT/'.git').exists() else game),'rev-parse','HEAD' if (ROOT/'.git').exists() else 'origin/development-materials'],text=True).strip(),
-              'materials_files_sha256':{name:digest(ROOT/name) for name in ['tools/build_windows.py','tools/prepare_godot.py','tools/verify_export.py','tests/test_export.gd']},
+              'materials_files_sha256':{name:digest(ROOT/name) for name in ['tools/build_windows.py','tools/prepare_godot.py','tools/verify_export.py','tools/windows_resources.py','tests/test_export.gd']},
+              'branding':{'icon_frames_sha256':icon_frames,'icon_sha256':digest(game/'assets/branding/expedition.ico'),'splash_sha256':digest(game/'assets/branding/boot_splash.png')},
               'layout_sha256':digest(game/'data/battlefield_layouts.json'),
               'files':{path.relative_to(bundle).as_posix():{'bytes':path.stat().st_size,'sha256':digest(path)} for path in sorted(bundle.rglob('*')) if path.is_file()}}
     (bundle/'build-info.json').write_text(json.dumps(metadata,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
