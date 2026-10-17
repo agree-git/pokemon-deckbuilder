@@ -27,3 +27,6 @@ Desktop.ini
 *.jks
 
 # Keep Godot source files, export_presets.cfg and *.uid files tracked.
+
+# Local snapshot of development-materials, kept outside game history.
+.dev-materials/

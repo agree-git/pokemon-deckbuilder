@@ -24,6 +24,8 @@
 
 `main`에는 사용하는 게임 코드·씬·데이터·에셋과 필수 출처/라이선스가 있습니다. Linux/Godot 4.7.2에서 실행을 검증하며 Windows 배포 파일은 아직 제공하지 않습니다.
 
-개발 문서·테스트·도구·자료 조사·전체 검토 갤러리·ZIP·CSV는 [development-materials](https://github.com/agree-git/pokemon-deckbuilder/tree/development-materials)에 있습니다. 다른 채팅에서 개발을 이어갈 때에는 해당 브랜치의 [AGENTS.md](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/AGENTS.md)와 [HANDOFF.md](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/HANDOFF.md)를 먼저 읽습니다. 최신 게임 코드는 이 `main`을 기준으로 합니다.
+개발을 이어갈 때는 **[START_HERE.md](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/START_HERE.md)**부터 읽으세요. 이어서 [현재 상태](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/HANDOFF.md) → [작업 지침](AGENTS.md) → [확정 규칙](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/rules.md) → [개발·검사 방법](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/development.md) 순서로 확인합니다.
+
+`development-materials`는 문서·현재 검사만 둡니다. 과거 갤러리·ZIP·CSV·수집 도구는 [보관 링크](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/history.md)로 열 수 있습니다. 최신 게임 코드는 이 `main`이 기준입니다.
 
 에셋의 권리와 출처는 [ASSET_SOURCES.md](ASSET_SOURCES.md)를 확인하세요.
