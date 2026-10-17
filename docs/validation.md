@@ -1,5 +1,9 @@
 # 검증 현황
 
+## main 소스 반영 · 2026-10-18
+
+사용자 승인으로 main `6aea96d54511060c7107e84b6179b221cf03b9d1`에 기존 검증된 수정본을 반영했다. Windows preview의 push 트리거를 제거하고 수동 실행만 유지했다. 단일 워크플로/수동 트리거,fast-forward 가능 여부,원격 main=로컬 HEAD,차이 공백 검사와 GitHub Actions의 해당 커밋 실행0건을 확인했다. 게임 로직은 직전 검증본과 같아 게임 검사를 반복하지 않았고 빌드/export/Windows CI는 실행하지 않았다. EXE 생성 보류는 계속 유지한다.
+
 ## 야영 기술머신 검증 · 2026-10-18
 
 로컬 `961b160dc17d2533eb93038efdadc7a584419109`. 빌드/export/Windows CI/main push 보류를 유지했다.
