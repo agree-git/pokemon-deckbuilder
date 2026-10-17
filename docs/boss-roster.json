@@ -1,0 +1,1461 @@
+{
+  "checked_on": "2026-10-18",
+  "source_main_revision": "65bf3c3601f1b77d7feeda6107b803bf2dd8e6a2",
+  "source_files_sha256": {
+    "data/gym_leaders.json": "84fe5d96656f0d35defff41be8f181e7207c14f29a370ed6f06b02a0e26fd144",
+    "data/league.json": "3ea8a135b88ba786067c3969db7355adf5e0e3886a19421f9361749c11bfda77"
+  },
+  "counts": {
+    "gym": 82,
+    "elite": 31,
+    "champion": 11,
+    "total": 124
+  },
+  "entries": [
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "brock",
+      "name": "웅",
+      "region": "관동",
+      "type": "rock",
+      "suggested_filename": "gym_brock.mp3",
+      "status": "active",
+      "person_ids": [
+        "brock"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "misty",
+      "name": "이슬",
+      "region": "관동",
+      "type": "water",
+      "suggested_filename": "gym_misty.mp3",
+      "status": "active",
+      "person_ids": [
+        "misty"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "lt_surge",
+      "name": "마티스",
+      "region": "관동",
+      "type": "electric",
+      "suggested_filename": "gym_lt_surge.mp3",
+      "status": "active",
+      "person_ids": [
+        "lt_surge"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "erika",
+      "name": "민화",
+      "region": "관동",
+      "type": "grass",
+      "suggested_filename": "gym_erika.mp3",
+      "status": "active",
+      "person_ids": [
+        "erika"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "koga",
+      "name": "독수",
+      "region": "관동",
+      "type": "poison",
+      "suggested_filename": "gym_koga.mp3",
+      "status": "former",
+      "person_ids": [
+        "koga"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "sabrina",
+      "name": "초련",
+      "region": "관동",
+      "type": "psychic",
+      "suggested_filename": "gym_sabrina.mp3",
+      "status": "active",
+      "person_ids": [
+        "sabrina"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "blaine",
+      "name": "강연",
+      "region": "관동",
+      "type": "fire",
+      "suggested_filename": "gym_blaine.mp3",
+      "status": "active",
+      "person_ids": [
+        "blaine"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "giovanni",
+      "name": "비주기",
+      "region": "관동",
+      "type": "ground",
+      "suggested_filename": "gym_giovanni.mp3",
+      "status": "former",
+      "person_ids": [
+        "giovanni"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "janine",
+      "name": "도희",
+      "region": "관동",
+      "type": "poison",
+      "suggested_filename": "gym_janine.mp3",
+      "status": "successor",
+      "person_ids": [
+        "janine"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "blue",
+      "name": "그린",
+      "region": "관동",
+      "type": "mixed",
+      "suggested_filename": "gym_blue.mp3",
+      "status": "successor",
+      "person_ids": [
+        "blue"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "falkner",
+      "name": "비상",
+      "region": "성도",
+      "type": "flying",
+      "suggested_filename": "gym_falkner.mp3",
+      "status": "active",
+      "person_ids": [
+        "falkner"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "bugsy",
+      "name": "호일",
+      "region": "성도",
+      "type": "bug",
+      "suggested_filename": "gym_bugsy.mp3",
+      "status": "active",
+      "person_ids": [
+        "bugsy"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "whitney",
+      "name": "꼭두",
+      "region": "성도",
+      "type": "normal",
+      "suggested_filename": "gym_whitney.mp3",
+      "status": "active",
+      "person_ids": [
+        "whitney"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "morty",
+      "name": "유빈",
+      "region": "성도",
+      "type": "ghost",
+      "suggested_filename": "gym_morty.mp3",
+      "status": "active",
+      "person_ids": [
+        "morty"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "chuck",
+      "name": "사도",
+      "region": "성도",
+      "type": "fighting",
+      "suggested_filename": "gym_chuck.mp3",
+      "status": "active",
+      "person_ids": [
+        "chuck"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "jasmine",
+      "name": "규리",
+      "region": "성도",
+      "type": "steel",
+      "suggested_filename": "gym_jasmine.mp3",
+      "status": "active",
+      "person_ids": [
+        "jasmine"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "pryce",
+      "name": "류옹",
+      "region": "성도",
+      "type": "ice",
+      "suggested_filename": "gym_pryce.mp3",
+      "status": "active",
+      "person_ids": [
+        "pryce"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "clair",
+      "name": "이향",
+      "region": "성도",
+      "type": "dragon",
+      "suggested_filename": "gym_clair.mp3",
+      "status": "active",
+      "person_ids": [
+        "clair"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "roxanne",
+      "name": "원규",
+      "region": "호연",
+      "type": "rock",
+      "suggested_filename": "gym_roxanne.mp3",
+      "status": "active",
+      "person_ids": [
+        "roxanne"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "brawly",
+      "name": "철구",
+      "region": "호연",
+      "type": "fighting",
+      "suggested_filename": "gym_brawly.mp3",
+      "status": "active",
+      "person_ids": [
+        "brawly"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "wattson",
+      "name": "암페어",
+      "region": "호연",
+      "type": "electric",
+      "suggested_filename": "gym_wattson.mp3",
+      "status": "active",
+      "person_ids": [
+        "wattson"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "flannery",
+      "name": "민지",
+      "region": "호연",
+      "type": "fire",
+      "suggested_filename": "gym_flannery.mp3",
+      "status": "active",
+      "person_ids": [
+        "flannery"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "norman",
+      "name": "종길",
+      "region": "호연",
+      "type": "normal",
+      "suggested_filename": "gym_norman.mp3",
+      "status": "active",
+      "person_ids": [
+        "norman"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "winona",
+      "name": "은송",
+      "region": "호연",
+      "type": "flying",
+      "suggested_filename": "gym_winona.mp3",
+      "status": "active",
+      "person_ids": [
+        "winona"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "tate_liza",
+      "name": "풍·란",
+      "region": "호연",
+      "type": "psychic",
+      "suggested_filename": "gym_tate_liza.mp3",
+      "status": "active",
+      "person_ids": [
+        "tate",
+        "liza"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "wallace",
+      "name": "윤진",
+      "region": "호연",
+      "type": "water",
+      "suggested_filename": "gym_wallace.mp3",
+      "status": "former",
+      "person_ids": [
+        "wallace"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "juan",
+      "name": "아단",
+      "region": "호연",
+      "type": "water",
+      "suggested_filename": "gym_juan.mp3",
+      "status": "successor",
+      "person_ids": [
+        "juan"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "roark",
+      "name": "강석",
+      "region": "신오",
+      "type": "rock",
+      "suggested_filename": "gym_roark.mp3",
+      "status": "active",
+      "person_ids": [
+        "roark"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "gardenia",
+      "name": "유채",
+      "region": "신오",
+      "type": "grass",
+      "suggested_filename": "gym_gardenia.mp3",
+      "status": "active",
+      "person_ids": [
+        "gardenia"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "maylene",
+      "name": "자두",
+      "region": "신오",
+      "type": "fighting",
+      "suggested_filename": "gym_maylene.mp3",
+      "status": "active",
+      "person_ids": [
+        "maylene"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "crasher_wake",
+      "name": "맥실러",
+      "region": "신오",
+      "type": "water",
+      "suggested_filename": "gym_crasher_wake.mp3",
+      "status": "active",
+      "person_ids": [
+        "crasher_wake"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "fantina",
+      "name": "멜리사",
+      "region": "신오",
+      "type": "ghost",
+      "suggested_filename": "gym_fantina.mp3",
+      "status": "active",
+      "person_ids": [
+        "fantina"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "byron",
+      "name": "동관",
+      "region": "신오",
+      "type": "steel",
+      "suggested_filename": "gym_byron.mp3",
+      "status": "active",
+      "person_ids": [
+        "byron"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "candice",
+      "name": "무청",
+      "region": "신오",
+      "type": "ice",
+      "suggested_filename": "gym_candice.mp3",
+      "status": "active",
+      "person_ids": [
+        "candice"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "volkner",
+      "name": "전진",
+      "region": "신오",
+      "type": "electric",
+      "suggested_filename": "gym_volkner.mp3",
+      "status": "active",
+      "person_ids": [
+        "volkner"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "cilan",
+      "name": "덴트",
+      "region": "하나",
+      "type": "grass",
+      "suggested_filename": "gym_cilan.mp3",
+      "status": "former",
+      "person_ids": [
+        "cilan"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "chili",
+      "name": "팟",
+      "region": "하나",
+      "type": "fire",
+      "suggested_filename": "gym_chili.mp3",
+      "status": "former",
+      "person_ids": [
+        "chili"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "cress",
+      "name": "콘",
+      "region": "하나",
+      "type": "water",
+      "suggested_filename": "gym_cress.mp3",
+      "status": "former",
+      "person_ids": [
+        "cress"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "lenora",
+      "name": "알로에",
+      "region": "하나",
+      "type": "normal",
+      "suggested_filename": "gym_lenora.mp3",
+      "status": "former",
+      "person_ids": [
+        "lenora"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "burgh",
+      "name": "아티",
+      "region": "하나",
+      "type": "bug",
+      "suggested_filename": "gym_burgh.mp3",
+      "status": "active",
+      "person_ids": [
+        "burgh"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "elesa",
+      "name": "카밀레",
+      "region": "하나",
+      "type": "electric",
+      "suggested_filename": "gym_elesa.mp3",
+      "status": "active",
+      "person_ids": [
+        "elesa"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "clay",
+      "name": "야콘",
+      "region": "하나",
+      "type": "ground",
+      "suggested_filename": "gym_clay.mp3",
+      "status": "active",
+      "person_ids": [
+        "clay"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "skyla",
+      "name": "풍란",
+      "region": "하나",
+      "type": "flying",
+      "suggested_filename": "gym_skyla.mp3",
+      "status": "active",
+      "person_ids": [
+        "skyla"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "brycen",
+      "name": "담죽",
+      "region": "하나",
+      "type": "ice",
+      "suggested_filename": "gym_brycen.mp3",
+      "status": "former",
+      "person_ids": [
+        "brycen"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "drayden",
+      "name": "사간",
+      "region": "하나",
+      "type": "dragon",
+      "suggested_filename": "gym_drayden.mp3",
+      "status": "active",
+      "person_ids": [
+        "drayden"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "iris",
+      "name": "아이리스",
+      "region": "하나",
+      "type": "dragon",
+      "suggested_filename": "gym_iris.mp3",
+      "status": "former",
+      "person_ids": [
+        "iris"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "cheren",
+      "name": "체렌",
+      "region": "하나",
+      "type": "normal",
+      "suggested_filename": "gym_cheren.mp3",
+      "status": "successor",
+      "person_ids": [
+        "cheren"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "roxie",
+      "name": "보미",
+      "region": "하나",
+      "type": "poison",
+      "suggested_filename": "gym_roxie.mp3",
+      "status": "active",
+      "person_ids": [
+        "roxie"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "marlon",
+      "name": "시즈",
+      "region": "하나",
+      "type": "water",
+      "suggested_filename": "gym_marlon.mp3",
+      "status": "successor",
+      "person_ids": [
+        "marlon"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "viola",
+      "name": "비올라",
+      "region": "칼로스",
+      "type": "bug",
+      "suggested_filename": "gym_viola.mp3",
+      "status": "active",
+      "person_ids": [
+        "viola"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "grant",
+      "name": "자크로",
+      "region": "칼로스",
+      "type": "rock",
+      "suggested_filename": "gym_grant.mp3",
+      "status": "active",
+      "person_ids": [
+        "grant"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "korrina",
+      "name": "코르니",
+      "region": "칼로스",
+      "type": "fighting",
+      "suggested_filename": "gym_korrina.mp3",
+      "status": "active",
+      "person_ids": [
+        "korrina"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "ramos",
+      "name": "후쿠지",
+      "region": "칼로스",
+      "type": "grass",
+      "suggested_filename": "gym_ramos.mp3",
+      "status": "active",
+      "person_ids": [
+        "ramos"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "clemont",
+      "name": "시트론",
+      "region": "칼로스",
+      "type": "electric",
+      "suggested_filename": "gym_clemont.mp3",
+      "status": "active",
+      "person_ids": [
+        "clemont"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "valerie",
+      "name": "마슈",
+      "region": "칼로스",
+      "type": "fairy",
+      "suggested_filename": "gym_valerie.mp3",
+      "status": "active",
+      "person_ids": [
+        "valerie"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "olympia",
+      "name": "고지카",
+      "region": "칼로스",
+      "type": "psychic",
+      "suggested_filename": "gym_olympia.mp3",
+      "status": "active",
+      "person_ids": [
+        "olympia"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "wulfric",
+      "name": "우르프",
+      "region": "칼로스",
+      "type": "ice",
+      "suggested_filename": "gym_wulfric.mp3",
+      "status": "active",
+      "person_ids": [
+        "wulfric"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "milo",
+      "name": "아킬",
+      "region": "가라르",
+      "type": "grass",
+      "suggested_filename": "gym_milo.mp3",
+      "status": "active",
+      "person_ids": [
+        "milo"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "nessa",
+      "name": "야청",
+      "region": "가라르",
+      "type": "water",
+      "suggested_filename": "gym_nessa.mp3",
+      "status": "active",
+      "person_ids": [
+        "nessa"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "kabu",
+      "name": "순무",
+      "region": "가라르",
+      "type": "fire",
+      "suggested_filename": "gym_kabu.mp3",
+      "status": "active",
+      "person_ids": [
+        "kabu"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "bea",
+      "name": "채두",
+      "region": "가라르",
+      "type": "fighting",
+      "suggested_filename": "gym_bea.mp3",
+      "status": "version",
+      "person_ids": [
+        "bea"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "allister",
+      "name": "어니언",
+      "region": "가라르",
+      "type": "ghost",
+      "suggested_filename": "gym_allister.mp3",
+      "status": "version",
+      "person_ids": [
+        "allister"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "opal",
+      "name": "포플러",
+      "region": "가라르",
+      "type": "fairy",
+      "suggested_filename": "gym_opal.mp3",
+      "status": "former",
+      "person_ids": [
+        "opal"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "gordie",
+      "name": "마쿠와",
+      "region": "가라르",
+      "type": "rock",
+      "suggested_filename": "gym_gordie.mp3",
+      "status": "version",
+      "person_ids": [
+        "gordie"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "melony",
+      "name": "멜론",
+      "region": "가라르",
+      "type": "ice",
+      "suggested_filename": "gym_melony.mp3",
+      "status": "version",
+      "person_ids": [
+        "melony"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "piers",
+      "name": "두송",
+      "region": "가라르",
+      "type": "dark",
+      "suggested_filename": "gym_piers.mp3",
+      "status": "former",
+      "person_ids": [
+        "piers"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "raihan",
+      "name": "금랑",
+      "region": "가라르",
+      "type": "dragon",
+      "suggested_filename": "gym_raihan.mp3",
+      "status": "active",
+      "person_ids": [
+        "raihan"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "bede",
+      "name": "비트",
+      "region": "가라르",
+      "type": "fairy",
+      "suggested_filename": "gym_bede.mp3",
+      "status": "successor",
+      "person_ids": [
+        "bede"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "marnie",
+      "name": "마리",
+      "region": "가라르",
+      "type": "dark",
+      "suggested_filename": "gym_marnie.mp3",
+      "status": "successor",
+      "person_ids": [
+        "marnie"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "klara",
+      "name": "도정",
+      "region": "가라르",
+      "type": "poison",
+      "suggested_filename": "gym_klara.mp3",
+      "status": "minor_league",
+      "person_ids": [
+        "klara"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "avery",
+      "name": "세이버리",
+      "region": "가라르",
+      "type": "psychic",
+      "suggested_filename": "gym_avery.mp3",
+      "status": "minor_league",
+      "person_ids": [
+        "avery"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "mustard",
+      "name": "마스터드",
+      "region": "가라르",
+      "type": "fighting",
+      "suggested_filename": "gym_mustard.mp3",
+      "status": "former",
+      "person_ids": [
+        "mustard"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "peony",
+      "name": "피오니",
+      "region": "가라르",
+      "type": "steel",
+      "suggested_filename": "gym_peony.mp3",
+      "status": "former",
+      "person_ids": [
+        "peony"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "tyme",
+      "name": "타임",
+      "region": "팔데아",
+      "type": "rock",
+      "suggested_filename": "gym_tyme.mp3",
+      "status": "former",
+      "person_ids": [
+        "tyme"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "katy",
+      "name": "단풍",
+      "region": "팔데아",
+      "type": "bug",
+      "suggested_filename": "gym_katy.mp3",
+      "status": "active",
+      "person_ids": [
+        "katy"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "brassius",
+      "name": "콜사",
+      "region": "팔데아",
+      "type": "grass",
+      "suggested_filename": "gym_brassius.mp3",
+      "status": "active",
+      "person_ids": [
+        "brassius"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "iono",
+      "name": "모야모",
+      "region": "팔데아",
+      "type": "electric",
+      "suggested_filename": "gym_iono.mp3",
+      "status": "active",
+      "person_ids": [
+        "iono"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "kofu",
+      "name": "곤포",
+      "region": "팔데아",
+      "type": "water",
+      "suggested_filename": "gym_kofu.mp3",
+      "status": "active",
+      "person_ids": [
+        "kofu"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "larry",
+      "name": "청목",
+      "region": "팔데아",
+      "type": "normal",
+      "suggested_filename": "gym_larry.mp3",
+      "status": "active",
+      "person_ids": [
+        "larry"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "ryme",
+      "name": "라임",
+      "region": "팔데아",
+      "type": "ghost",
+      "suggested_filename": "gym_ryme.mp3",
+      "status": "active",
+      "person_ids": [
+        "ryme"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "tulip",
+      "name": "리파",
+      "region": "팔데아",
+      "type": "psychic",
+      "suggested_filename": "gym_tulip.mp3",
+      "status": "active",
+      "person_ids": [
+        "tulip"
+      ]
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "grusha",
+      "name": "그루샤",
+      "region": "팔데아",
+      "type": "ice",
+      "suggested_filename": "gym_grusha.mp3",
+      "status": "active",
+      "person_ids": [
+        "grusha"
+      ]
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "lorelei",
+      "name": "칸나",
+      "region": "관동",
+      "type": "ice",
+      "suggested_filename": "elite_lorelei.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "bruno",
+      "name": "시바",
+      "region": "관동",
+      "type": "fighting",
+      "suggested_filename": "elite_bruno.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "agatha",
+      "name": "국화",
+      "region": "관동",
+      "type": "ghost",
+      "suggested_filename": "elite_agatha.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "lance",
+      "name": "목호",
+      "region": "관동·성도",
+      "type": "dragon",
+      "suggested_filename": "elite_lance.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "will",
+      "name": "일목",
+      "region": "성도",
+      "type": "psychic",
+      "suggested_filename": "elite_will.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "koga",
+      "name": "독수",
+      "region": "성도",
+      "type": "poison",
+      "suggested_filename": "elite_koga.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "karen",
+      "name": "카렌",
+      "region": "성도",
+      "type": "dark",
+      "suggested_filename": "elite_karen.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "sidney",
+      "name": "혁진",
+      "region": "호연",
+      "type": "dark",
+      "suggested_filename": "elite_sidney.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "phoebe",
+      "name": "회연",
+      "region": "호연",
+      "type": "ghost",
+      "suggested_filename": "elite_phoebe.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "glacia",
+      "name": "미혜",
+      "region": "호연",
+      "type": "ice",
+      "suggested_filename": "elite_glacia.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "drake",
+      "name": "권수",
+      "region": "호연",
+      "type": "dragon",
+      "suggested_filename": "elite_drake.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "aaron",
+      "name": "충호",
+      "region": "신오",
+      "type": "bug",
+      "suggested_filename": "elite_aaron.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "bertha",
+      "name": "들국화",
+      "region": "신오",
+      "type": "ground",
+      "suggested_filename": "elite_bertha.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "flint",
+      "name": "대엽",
+      "region": "신오",
+      "type": "fire",
+      "suggested_filename": "elite_flint.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "lucian",
+      "name": "오엽",
+      "region": "신오",
+      "type": "psychic",
+      "suggested_filename": "elite_lucian.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "shauntal",
+      "name": "망초",
+      "region": "하나",
+      "type": "ghost",
+      "suggested_filename": "elite_shauntal.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "grimsley",
+      "name": "블래리",
+      "region": "하나",
+      "type": "dark",
+      "suggested_filename": "elite_grimsley.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "caitlin",
+      "name": "카틀레야",
+      "region": "하나",
+      "type": "psychic",
+      "suggested_filename": "elite_caitlin.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "marshal",
+      "name": "연무",
+      "region": "하나",
+      "type": "fighting",
+      "suggested_filename": "elite_marshal.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "malva",
+      "name": "파키라",
+      "region": "칼로스",
+      "type": "fire",
+      "suggested_filename": "elite_malva.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "siebold",
+      "name": "즈미",
+      "region": "칼로스",
+      "type": "water",
+      "suggested_filename": "elite_siebold.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "wikstrom",
+      "name": "간피",
+      "region": "칼로스",
+      "type": "steel",
+      "suggested_filename": "elite_wikstrom.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "drasna",
+      "name": "드라세나",
+      "region": "칼로스",
+      "type": "dragon",
+      "suggested_filename": "elite_drasna.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "hala",
+      "name": "할라",
+      "region": "알로라",
+      "type": "fighting",
+      "suggested_filename": "elite_hala.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "olivia",
+      "name": "라이치",
+      "region": "알로라",
+      "type": "rock",
+      "suggested_filename": "elite_olivia.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "acerola",
+      "name": "아세로라",
+      "region": "알로라",
+      "type": "ghost",
+      "suggested_filename": "elite_acerola.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "kahili",
+      "name": "카일리",
+      "region": "알로라",
+      "type": "flying",
+      "suggested_filename": "elite_kahili.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "rika",
+      "name": "칠리",
+      "region": "팔데아",
+      "type": "ground",
+      "suggested_filename": "elite_rika.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "poppy",
+      "name": "뽀삐",
+      "region": "팔데아",
+      "type": "steel",
+      "suggested_filename": "elite_poppy.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "larry",
+      "name": "청목",
+      "region": "팔데아",
+      "type": "flying",
+      "suggested_filename": "elite_larry.mp3"
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "hassel",
+      "name": "팔자크",
+      "region": "팔데아",
+      "type": "dragon",
+      "suggested_filename": "elite_hassel.mp3"
+    },
+    {
+      "role": "champion",
+      "role_ko": "챔피언",
+      "id": "blue",
+      "name": "그린",
+      "region": "관동",
+      "type": "normal",
+      "suggested_filename": "champion_blue.mp3"
+    },
+    {
+      "role": "champion",
+      "role_ko": "챔피언",
+      "id": "lance",
+      "name": "목호",
+      "region": "성도",
+      "type": "dragon",
+      "suggested_filename": "champion_lance.mp3"
+    },
+    {
+      "role": "champion",
+      "role_ko": "챔피언",
+      "id": "steven",
+      "name": "성호",
+      "region": "호연",
+      "type": "steel",
+      "suggested_filename": "champion_steven.mp3"
+    },
+    {
+      "role": "champion",
+      "role_ko": "챔피언",
+      "id": "wallace",
+      "name": "윤진",
+      "region": "호연",
+      "type": "water",
+      "suggested_filename": "champion_wallace.mp3"
+    },
+    {
+      "role": "champion",
+      "role_ko": "챔피언",
+      "id": "cynthia",
+      "name": "난천",
+      "region": "신오",
+      "type": "normal",
+      "suggested_filename": "champion_cynthia.mp3"
+    },
+    {
+      "role": "champion",
+      "role_ko": "챔피언",
+      "id": "alder",
+      "name": "노간주",
+      "region": "하나",
+      "type": "bug",
+      "suggested_filename": "champion_alder.mp3"
+    },
+    {
+      "role": "champion",
+      "role_ko": "챔피언",
+      "id": "iris",
+      "name": "아이리스",
+      "region": "하나",
+      "type": "dragon",
+      "suggested_filename": "champion_iris.mp3"
+    },
+    {
+      "role": "champion",
+      "role_ko": "챔피언",
+      "id": "diantha",
+      "name": "카르네",
+      "region": "칼로스",
+      "type": "fairy",
+      "suggested_filename": "champion_diantha.mp3"
+    },
+    {
+      "role": "champion",
+      "role_ko": "챔피언",
+      "id": "leon",
+      "name": "단델",
+      "region": "가라르",
+      "type": "fire",
+      "suggested_filename": "champion_leon.mp3"
+    },
+    {
+      "role": "champion",
+      "role_ko": "챔피언",
+      "id": "geeta",
+      "name": "테사",
+      "region": "팔데아",
+      "type": "normal",
+      "suggested_filename": "champion_geeta.mp3"
+    },
+    {
+      "role": "champion",
+      "role_ko": "챔피언",
+      "id": "nemona",
+      "name": "네모",
+      "region": "팔데아",
+      "type": "normal",
+      "suggested_filename": "champion_nemona.mp3"
+    }
+  ]
+}
