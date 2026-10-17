@@ -20,6 +20,8 @@
 
 ## 아이콘·배경·연출
 
+시작 화면의 원정대 문양과 게임 아이콘(`assets/branding`)은 프로젝트에서 직접 그린 픽셀 도형입니다. 카드·나침반·포획 볼을 조합했으며 시작 화면의 글자는 아래 Noto Sans KR을 사용합니다. 재생성 소스는 [자료 브랜치의 도구](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/generate_branding.py)에 있습니다. 포켓몬 상표와 포획 볼의 원작 권리는 원래 권리자에게 있습니다.
+
 타입 배지는 [duiker101/pokemon-type-svg-icons](https://github.com/duiker101/pokemon-type-svg-icons), 커밋 `5781623f147f1bf850f426cfe1874ba56a9b75ee`를 바탕으로 합니다. [원 디자인](https://dribbble.com/shots/4862612-Pokedex-iOS-app), [업스트림 안내](assets/sources/type-icons/README.md.txt), [명세](assets/sources/type_icons.json)를 유지합니다. “Very simple set of SVG icons for Pokemon types for any use.”라는 안내가 있으며 별도 LICENSE는 없습니다.
 
 바이옴/리그 배경은 프로젝트용으로 이미지 생성 도구에서 제작했습니다. [바이옴 지문](assets/biomes/manifest.json)·[리그 지문](assets/league/manifest.json)과 `data/battlefield_layouts.json` 좌표를 사용합니다. 그 밖의 UI 기호·카드 그림·공용 트레이너·기술/날씨 연출은 코드로 직접 작성했습니다. 보스 대사와 희귀 포켓몬의 조우·포획·합류·방출 문구는 자체 작성입니다.
