@@ -12,7 +12,7 @@ main 정리 commit은 `8d0d2196f4ad1d6ae31b207ed1a455ece36dd2c2`이며 원격 �
 
 Godot 4.7.2/Linux 새 import·저장 1,759개·트레이너 3,561개·실제 X11 16개/31클릭을 통과했다. 시작→선택→첫 전투→보상→야영지→저장/이어하기를 확인했다. 모델/에셋 1,338개·데이터 12개와 사용자 배경 SHA, 경로 891개를 대조했다. [보고서·화면·로그](review/repository-cleanup/README.md)에 보관한다. 이번 검증은 main 외부의 테스트 사본으로 수행했으며 main에 개발 파일을 다시 추가하지 않았다.
 
-옛 원격 브랜치 네 개의 삭제는 보존/원격 일치 재확인 후 진행하며 완료 후 상태를 갱신한다.
+기존 검토 브랜치 네 개는 원본 tip/파일 SHA와 두 목적지 push를 확인한 뒤 원자적 삭제를 완료했다. 최종 원격 브랜치는 main과 development-materials 두 개뿐이다. 옛 tip 이력은 development-materials의 부모 이력에 남아 있다. main의 root README가 이 브랜치의 AGENTS/HANDOFF를 안내하므로 다른 채팅에서도 먼저 확인한다.
 
 ## 시작할 때
 

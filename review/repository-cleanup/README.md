@@ -18,3 +18,7 @@
 ![첫 전투](main-battle.png)
 
 ![전투 후 야영지](main-camp.png)
+
+## 최종 브랜치 상태
+
+원격은 **main / development-materials 두 개**다. 기존 background-review·concept-review·trainer-dialogue-review·weather-field-review 브랜치는 삭제했다. 삭제 전 네 tip 이력과 177개 자료 파일 지문을 검증했으며 자료와 원본 commit 링크는 [보존 목록](../../docs/branch-archive.json)에 남아 있다. 과거 commit에 남은 개발 파일은 이력 보존을 위한 것이며 main 최신 파일 목록에는 포함되지 않는다.

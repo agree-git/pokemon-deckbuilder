@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-17",
+  "game_branch": "main",
+  "game_commit": "8d0d2196f4ad1d6ae31b207ed1a455ece36dd2c2",
+  "materials_branch": "development-materials",
+  "deleted_branches": {
+    "background-review-2026-10-16": "e6a1ef7c12d1bc492da7f92585f2ce02388dffad",
+    "concept-review-2026-10-17": "12d7a36908dcd424926a7e2f02345850fb4cd357",
+    "trainer-dialogue-review-2026-10-17": "9b78b9cd77d1c8cf5bd8c15dc69dec4cb7a4f444",
+    "weather-field-review-2026-10-17": "d7464996516c54454cf9bc897f77a86ef384c9a3"
+  },
+  "preservation": "Old branch tips are ancestors of development-materials. Material file paths and hashes are recorded in docs/branch-archive.json.",
+  "main_layout": [
+    "project.godot",
+    "scenes/",
+    "scripts/",
+    "data/",
+    "assets/",
+    "README.md",
+    "ASSET_SOURCES.md",
+    ".gitignore",
+    ".gitattributes"
+  ]
+}
