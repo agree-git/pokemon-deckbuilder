@@ -16,6 +16,7 @@ var cries_volume := 0.75
 var audio_muted := false
 var last_error := ""
 var panel: Control
+var _background_menus: Dictionary = {}
 
 func _ready() -> void:
     load_preferences()
@@ -133,6 +134,26 @@ func show_panel(host: Control) -> void:
     panel.closed.connect(func():
         panel = null
         layer.queue_free())
+
+func watch_pause_menu(menu: Control) -> void:
+    menu.visibility_changed.connect(_sync_background_menu.bind(menu))
+    menu.tree_exiting.connect(_remove_background_menu.bind(menu.get_instance_id()))
+    _sync_background_menu(menu)
+
+func _sync_background_menu(menu: Control) -> void:
+    var key := menu.get_instance_id()
+    if menu.is_visible_in_tree(): _background_menus[key] = true
+    else: _background_menus.erase(key)
+    _refresh_background_audio()
+
+func _remove_background_menu(key: int) -> void:
+    _background_menus.erase(key)
+    _refresh_background_audio()
+
+func _refresh_background_audio() -> void:
+    for name: String in ["GameMusic","GameAmbience"]:
+        var audio := get_node_or_null("/root/"+name)
+        if audio != null: audio.set_muffled(not _background_menus.is_empty())
 
 func _input(event: InputEvent) -> void:
     if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F11:

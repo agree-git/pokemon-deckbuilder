@@ -61,6 +61,7 @@ func _ready() -> void:
     get_tree().root.size_changed.connect(_sync)
     _sync()
     UiMotion.open(self)
+    preferences.watch_pause_menu(self)
 
 func _option(title: String, rect: Rect2, action: Callable) -> Button:
     var button := W.button(body, rect, action, title)

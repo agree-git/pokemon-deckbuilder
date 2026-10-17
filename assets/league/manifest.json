@@ -38,5 +38,21 @@
     "grid_rows": 3,
     "generated_on": "2026-10-16",
     "style": "Gen 3 inspired indoor pixel battle room"
+  },
+  "boss_expansion_1.png": {
+    "sha256": "2472cddf0db39804fc0d259070314a2a12a725227cc9ee589d71732b1760efa4",
+    "source": "image_gen",
+    "grid_columns": 2,
+    "grid_rows": 3,
+    "generated_on": "2026-10-18",
+    "style": "Detailed pixel battle rooms matching existing league atlases"
+  },
+  "boss_expansion_2.png": {
+    "sha256": "85b69567b55bd31ca4c3520612841658dc153f4c9b4bee62cb32848e0bb64e3f",
+    "source": "image_gen",
+    "grid_columns": 2,
+    "grid_rows": 3,
+    "generated_on": "2026-10-18",
+    "style": "Detailed pixel battle rooms matching existing league atlases"
   }
 }

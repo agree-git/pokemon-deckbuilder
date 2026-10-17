@@ -12,7 +12,7 @@
 
 ## 트레이너
 
-[Smogon / Pokémon Showdown](https://github.com/smogon/sprites), 커밋 `a9214714f00974a8c28586829e6315d9ca5a6348`의 `src/_uncategorized/canonical/trainers/`에서 원작 도트 73장을 수정 없이 가져와 75대진에 대응합니다. 후대 인물 49대진에는 팬 도트 48장을 사용합니다. 총 **124대진/121 PNG**로 모든 보스 대진에 개별 외형이 연결돼 있습니다. [인물별 URL·SHA·경계](assets/sources/trainer_sprites.json), [출처 원문의 License 절](assets/sources/SMOGON_SPRITES_LICENSE.txt)을 포함합니다. 이미지 권리는 Nintendo / Game Freak / The Pokémon Company에 있으며 코드의 MIT 허가와 구분합니다.
+[Smogon / Pokémon Showdown](https://github.com/smogon/sprites), 커밋 `a9214714f00974a8c28586829e6315d9ca5a6348`의 `src/_uncategorized/canonical/trainers/`에서 원작 도트 74장을 수정 없이 가져와 76대진에 대응합니다. 후대 인물 61대진에는 팬 도트 58장을 사용합니다. 총 **137대진/132 PNG**로 모든 보스 대진에 개별 외형이 연결돼 있습니다. [인물별 URL·SHA·경계](assets/sources/trainer_sprites.json), [출처 원문의 License 절](assets/sources/SMOGON_SPRITES_LICENSE.txt)을 포함합니다. 이미지 권리는 Nintendo / Game Freak / The Pokémon Company에 있으며 코드의 MIT 허가와 구분합니다.
 
 팬 도트 제작자는 **Gnomowladny**, **Beliot419**, **Brumirage**, **kyledove**, **ZacWeavile**입니다. 칼로스·알로라 및 시트론 15장은 위 Smogon 고정 원본, 추가 33장은 공개 Showdown 스프라이트 컬렉션 [SDM0/sprites](https://github.com/SDM0/sprites/tree/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers)의 고정 원본입니다. 파일명과 작가를 공식 Showdown 갤러리의 크레딧 목록에 대응했으며 이미지 호스트의 바이트까지 비교한 것은 아닙니다. [제작자별 고지](assets/sources/TRAINER_FAN_CREDITS.txt)와 각 파일의 명세에 출처를 기록합니다. 구체적인 트레이너 갤러리 안내는 외부 사용 시 제작자 표기·허락 없는 편집 금지를 요구합니다. 다운로드한 PNG를 수정 없이 사용하며 일반 저장소 고지와 함께 유지합니다.
 
@@ -27,6 +27,8 @@
 바이옴/리그 배경은 프로젝트용으로 이미지 생성 도구에서 제작했습니다. [바이옴 지문](assets/biomes/manifest.json)·[리그 지문](assets/league/manifest.json)과 `data/battlefield_layouts.json` 좌표를 사용합니다. 그 밖의 UI 기호·카드 그림·공용 트레이너·기술/날씨 연출은 코드로 직접 작성했습니다. 보스 대사와 희귀 포켓몬의 조우·포획·합류·방출 문구는 자체 작성입니다.
 
 ## 오디오·글꼴
+
+지역 BGM 35곡은 사용자가 `bgm_1.zip`~`bgm_4.zip`으로 제공한 MP3를 사용합니다. DP/HGSS/BW/XY/ORAS/SM과 불가사의던전 탐험대의 음악이며 원래 권리는 Pokémon/Nintendo/Creatures/GAME FREAK 및 해당 권리자에게 있습니다. 원본 음원을 자체 합성곡·MIT·CC0로 표시하지 않습니다. 사용자 지시에 따라 전체 길이를 보존한 스테레오 48kHz Ogg Vorbis(q5)로 변환하고 두 단계 loudnorm(-18LUFS, true peak -2dB)으로 음량을 정리했습니다. 타이틀은 ORAS 미로마을, 종료/예비 야영곡은 HGSS 태초마을이며 지역은 35곡 전체에서 선곡합니다. [파일별 출처·원본 MP3/ZIP SHA256·변환 Ogg SHA256·길이](assets/audio/region_music/manifest.json)를 포함합니다. 원본 ZIP/MP3는 중복으로 커밋하지 않습니다. [변환 도구](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/import_region_music.py)는 사용자 첨부 파일만 읽으며 외부 음원을 다운로드하지 않습니다.
 
 장면별 음악 5곡과 효과음 15종은 프로젝트에서 합성했습니다. [음악 명세](assets/audio/music/manifest.json)를 포함합니다.
 
@@ -51,3 +53,11 @@
 ## Windows 실행 파일의 엔진 고지
 
 Windows 시험 빌드는 공식 Godot **4.7.2** 엔진을 포함합니다. Godot은 MIT 라이선스이며, 배포 폴더의 `licenses/Godot-LICENSE.txt`와 `licenses/Godot-COPYRIGHT.txt`에 엔진 및 포함된 라이브러리 고지를 함께 보관합니다. 에셋·폰트의 고지는 이 문서와 `assets` 아래에 유지합니다.
+
+## 추가 보스 음악·캐릭터
+
+사용자 제공 `bgm1.zip`~`bgm8.zip`의39MP3에서 동일 녹음을 중복 제거한36곡을 사용합니다. 지역곡과 동일하게 전체 길이를 유지한48kHz 스테레오 Vorbis q5/두 단계 loudnorm으로 변환했습니다. [보스 음악 명세](assets/audio/boss_music/manifest.json)에8ZIP·39원본 파일·36Ogg의 SHA256과137역할별 매핑·별칭·지역 공용 대체3건을 기록합니다. 원곡의 권리는 원래 권리자에게 있으며 MIT/CC0로 표시하지 않습니다.
+
+추가 트레이너 PNG11개는 원본 바이트를 보존합니다. 나누·하푸우·멀레인·쿠쿠이·하우는 SDM0 미러의 Beliot419 작품, 블루베리5인은 PokeRogue assets 미러의 kyledove 작품입니다. 레드는 Smogon 미러의 HGSS 원작 도트입니다. 기존 할라(Gnomowladny)·라이치(Beliot419)는 관장 역할에도 연결했습니다. [파일별 고정 출처/지문/작가/고지](assets/sources/trainer_sprites.json) 및 [크레딧](assets/sources/TRAINER_FAN_CREDITS.txt)을 포함합니다. PokeRogue 미러의 적용 가능한 CC BY-NC-SA4.0 고지와 [라이선스 원문](assets/sources/POKEROGUE_ASSETS_CC_BY_NC_SA_4.txt)을 유지하며 원작 Pokémon 권리는 별개입니다.
+
+추가 배경12곳은 프로젝트용 이미지 생성 도구로 제작했고 [리그 지문](assets/league/manifest.json)에 기록했습니다. 보스13대진의 대사39문구와 전술은 자체 작성했으며 파티는 현재 일반1~3세대 도감에 맞춘 게임용 구성입니다.

@@ -1,7 +1,7 @@
 class_name CampaignRoute
 extends RefCounted
 ## Route RNG is independent from battle draws and card rewards.
-const VERSION := 2
+const VERSION := 3
 var generation := VERSION
 var signature := ""
 var stops: Array[Dictionary] = []
@@ -27,8 +27,12 @@ func _init(run_seed: int,route_version: int = VERSION) -> void:
             biomes[i] = first
             break
     var league: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/league.json"))
+    if generation >= 3:
+        league["elite"].append_array(BossExpansion.data()["elite"])
+        league["champions"].append_array(BossExpansion.data()["champions"])
     champion = league["champions"][_rng.randi_range(0,league["champions"].size()-1)].duplicate(true)
-    var excluded: Array[String] = [champion["id"]]
+    var excluded: Array[String] = []
+    if generation < 3: excluded.append(champion["id"])
     var gym_rng := RandomNumberGenerator.new()
     gym_rng.seed = run_seed ^ 3202036534602676391
     for chapter in 8:
@@ -39,7 +43,7 @@ func _init(run_seed: int,route_version: int = VERSION) -> void:
             gym = _catalog.gym_for_type(biome["type"])
             excluded.append(gym["leader_id"])
         else:
-            gym = GymLeaders.choose(biome["type"],gym_rng,excluded)
+            gym = GymLeaders.choose(biome["type"],gym_rng,excluded,generation >= 3)
             gym["biome_id"] = biome["id"]
             gym["name"] = _catalog.type_name(biome["type"])+" 체육관"
             for id: String in gym["person_ids"]: excluded.append(id)
@@ -58,7 +62,7 @@ func _init(run_seed: int,route_version: int = VERSION) -> void:
                 for i in (3 if kind == "veteran" else 2): trainer.append(int(pool[i]["pokemon_id"]))
                 _append("엘리트 트레이너" if kind == "veteran" else "지역 트레이너",kind,chapter,biome,trainer)
             _append("리그 출발 야영지" if chapter == 7 and encounter == 7 else "야영지 %d" % (encounter+1),"rest",chapter,biome)
-    var pool: Array = league["elite"].filter(func(entry: Dictionary): return entry["id"] not in excluded)
+    var pool: Array = league["elite"].filter(func(entry: Dictionary): return generation >= 3 or entry["id"] not in excluded)
     _shuffle(pool)
     elite.assign(pool.slice(0,4))
     for i in 4:

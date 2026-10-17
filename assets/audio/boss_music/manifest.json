@@ -1,0 +1,1700 @@
+{
+  "schema_version": 1,
+  "source": "39 MP3 files supplied by the user in bgm1.zip through bgm8.zip;36 distinct recordings",
+  "rights": "Original Pokemon music; original rights remain with their owners. Not CC0/MIT.",
+  "archives": [
+    {
+      "filename": "bgm1.zip",
+      "sha256": "6dafe1985968cda72c88329f369633c9f5c1840c113ba390c414fa30f159e927"
+    },
+    {
+      "filename": "bgm2.zip",
+      "sha256": "10dc7428d5552f068886bd5b3f41b983e0712a9d0177571645eddb24a0429b8b"
+    },
+    {
+      "filename": "bgm3.zip",
+      "sha256": "b380d191bf7ae4337c29adeb84cc35bce128fb0765443b44bde95de4adad2fcf"
+    },
+    {
+      "filename": "bgm4.zip",
+      "sha256": "4ffb984d0fdcaa7e8cbe292d654a6b3654a224e9a85934ebf851ba110d727e81"
+    },
+    {
+      "filename": "bgm5.zip",
+      "sha256": "94be0c3938f86a243597d7020c359075ec2e22d5a6ffd0078c135e8a0337d528"
+    },
+    {
+      "filename": "bgm6.zip",
+      "sha256": "c5fbbd1b6cfbd8a40f947345a7ec03dff14de573681286261e6a736044fe68d8"
+    },
+    {
+      "filename": "bgm7.zip",
+      "sha256": "0f279dfac15c6f19a8a2be8c9595885c3740720b0365969600a8b800c3519881"
+    },
+    {
+      "filename": "bgm8.zip",
+      "sha256": "84266c4fd237febb44377c692adf02cbfa105210672f92dee43a85dd262cf6dd"
+    }
+  ],
+  "sources": [
+    {
+      "archive": "bgm1.zip",
+      "filename": "관동지방 관장 - 도희, 그린.mp3",
+      "mp3_sha256": "45af00ce43f797bc3b93418c18116b1fe2c2d1eb10a3b1086f36c51edda71e48",
+      "track_id": "boss_01",
+      "trainer_keys": [
+        "gym:janine",
+        "gym:blue"
+      ]
+    },
+    {
+      "archive": "bgm1.zip",
+      "filename": "관동지방 관장 - 웅, 이슬, 마티스, 민화, 독수, 초련, 강연, 비주기.mp3",
+      "mp3_sha256": "2ceb4c6b6f4f4ad3344b3d251db8e09b45bf3d14b02ac51b332c9f10a723f8bf",
+      "track_id": "boss_02",
+      "trainer_keys": [
+        "gym:brock",
+        "gym:misty",
+        "gym:lt_surge",
+        "gym:erika",
+        "gym:koga",
+        "gym:sabrina",
+        "gym:blaine",
+        "gym:giovanni"
+      ]
+    },
+    {
+      "archive": "bgm1.zip",
+      "filename": "관동지방 사천왕 - 칸나, 시바, 국화, 목호.mp3",
+      "mp3_sha256": "2ceb4c6b6f4f4ad3344b3d251db8e09b45bf3d14b02ac51b332c9f10a723f8bf",
+      "track_id": "boss_02",
+      "trainer_keys": [
+        "elite:lorelei",
+        "elite:bruno",
+        "elite:agatha",
+        "elite:lance"
+      ]
+    },
+    {
+      "archive": "bgm1.zip",
+      "filename": "관동지방 챔피언 - 그린.mp3",
+      "mp3_sha256": "803cb1ccd932f67498eecc396930bee2a9cf76c93fe05e1bd89c59fbdf848963",
+      "track_id": "boss_03",
+      "trainer_keys": [
+        "champion:blue"
+      ]
+    },
+    {
+      "archive": "bgm1.zip",
+      "filename": "성도지방 관장 - 비상, 호일, 꼭두, 유빈, 사도, 규리, 류옹, 이향.mp3",
+      "mp3_sha256": "85b7ed8e1c3eb8144c25784e71777f35115f7b527c2f06b1a72a901be15dd1c5",
+      "track_id": "boss_04",
+      "trainer_keys": [
+        "gym:falkner",
+        "gym:bugsy",
+        "gym:whitney",
+        "gym:morty",
+        "gym:chuck",
+        "gym:jasmine",
+        "gym:pryce",
+        "gym:clair"
+      ]
+    },
+    {
+      "archive": "bgm1.zip",
+      "filename": "성도지방 사천왕 - 일목, 독수, 시바, 카렌.mp3",
+      "mp3_sha256": "85b7ed8e1c3eb8144c25784e71777f35115f7b527c2f06b1a72a901be15dd1c5",
+      "track_id": "boss_04",
+      "trainer_keys": [
+        "elite:will",
+        "elite:koga",
+        "elite:bruno",
+        "elite:karen"
+      ]
+    },
+    {
+      "archive": "bgm1.zip",
+      "filename": "성도지방 챔피언 - 목호.mp3",
+      "mp3_sha256": "538294f9aa364afe18c1624ced267724d4848995f9b8870af3739e72018274c8",
+      "track_id": "boss_05",
+      "trainer_keys": [
+        "champion:lance"
+      ]
+    },
+    {
+      "archive": "bgm1.zip",
+      "filename": "특별보스 - 은빛산의 레드.mp3",
+      "mp3_sha256": "538294f9aa364afe18c1624ced267724d4848995f9b8870af3739e72018274c8",
+      "track_id": "boss_05",
+      "trainer_keys": [
+        "champion:red"
+      ]
+    },
+    {
+      "archive": "bgm1.zip",
+      "filename": "호연지방 관장 - 원규, 철구, 암페어, 민지, 종길, 은송, 풍&란, 윤진, 아단.mp3",
+      "mp3_sha256": "3ccea2e4f9d6fe4580f90ed8cb571d67c0593e5a86b9c90f4a995f1c0487871d",
+      "track_id": "boss_06",
+      "trainer_keys": [
+        "gym:roxanne",
+        "gym:brawly",
+        "gym:wattson",
+        "gym:flannery",
+        "gym:norman",
+        "gym:winona",
+        "gym:tate_liza",
+        "gym:wallace",
+        "gym:juan"
+      ]
+    },
+    {
+      "archive": "bgm1.zip",
+      "filename": "호연지방 사천왕 - 혁진, 희연, 미혜, 권수.mp3",
+      "mp3_sha256": "7e1b6b646154b7fd36c700d8c7617aff90730a0e577328022f764374db62b1ac",
+      "track_id": "boss_07",
+      "trainer_keys": [
+        "elite:sidney",
+        "elite:phoebe",
+        "elite:glacia",
+        "elite:drake"
+      ]
+    },
+    {
+      "archive": "bgm2.zip",
+      "filename": "신오지방 관장 - 강석, 유채, 자두, 맥실러, 멜리사, 동관, 무청, 전진.mp3",
+      "mp3_sha256": "d66f95ae7bc516c060adb3587f2ff7a430832dbe0431aa74d6bc45dd3cd2f47b",
+      "track_id": "boss_08",
+      "trainer_keys": [
+        "gym:roark",
+        "gym:gardenia",
+        "gym:maylene",
+        "gym:crasher_wake",
+        "gym:fantina",
+        "gym:byron",
+        "gym:candice",
+        "gym:volkner"
+      ]
+    },
+    {
+      "archive": "bgm2.zip",
+      "filename": "신오지방 사천왕 - 충호, 들국화, 대엽, 오엽.mp3",
+      "mp3_sha256": "26fc6ad14d0285dbf36f839a28338a357f7f31e8a3f6eafe20761da24c876ef4",
+      "track_id": "boss_09",
+      "trainer_keys": [
+        "elite:aaron",
+        "elite:bertha",
+        "elite:flint",
+        "elite:lucian"
+      ]
+    },
+    {
+      "archive": "bgm2.zip",
+      "filename": "신오지방 챔피언 - 난천.mp3",
+      "mp3_sha256": "16a010fc379d2d93eadc1598f74f4ef7bb4bdd40a728e52e2e07417edacd541e",
+      "track_id": "boss_10",
+      "trainer_keys": [
+        "champion:cynthia"
+      ]
+    },
+    {
+      "archive": "bgm2.zip",
+      "filename": "하나지방 관장 - 덴트, 팟, 콘, 알로에, 아티, 카밀레, 야콘, 풍란, 담죽, 사간, 아이리스.mp3",
+      "mp3_sha256": "6425d3d23d265528566368453fd371970dac0508394c8c5700336f99148208cb",
+      "track_id": "boss_11",
+      "trainer_keys": [
+        "gym:cilan",
+        "gym:chili",
+        "gym:cress",
+        "gym:lenora",
+        "gym:burgh",
+        "gym:elesa",
+        "gym:clay",
+        "gym:skyla",
+        "gym:brycen",
+        "gym:drayden",
+        "gym:iris"
+      ]
+    },
+    {
+      "archive": "bgm2.zip",
+      "filename": "하나지방 관장 - 체렌, 보미카, 아티, 카밀레, 야콘, 풍란, 사간, 시즈.mp3",
+      "mp3_sha256": "524abb928c8bbb258b9fd467190f1b5a1fa00c959bd76728f4cd7e3be170d945",
+      "track_id": "boss_12",
+      "trainer_keys": [
+        "gym:cheren",
+        "gym:roxie",
+        "gym:burgh",
+        "gym:elesa",
+        "gym:clay",
+        "gym:skyla",
+        "gym:drayden",
+        "gym:marlon"
+      ]
+    },
+    {
+      "archive": "bgm2.zip",
+      "filename": "하나지방 사천왕 - 망초, 블래리, 카틀레야, 연무.mp3",
+      "mp3_sha256": "161ef958839ef9697bc9b55e63d0c0cf9131dab3ab07d8b19435638358b15e3a",
+      "track_id": "boss_13",
+      "trainer_keys": [
+        "elite:shauntal",
+        "elite:grimsley",
+        "elite:caitlin",
+        "elite:marshal"
+      ]
+    },
+    {
+      "archive": "bgm2.zip",
+      "filename": "호연지방 챔피언 - 성호, 윤진.mp3",
+      "mp3_sha256": "d138b6fc288bea88b5ef93a5f767fce6d86bb9e992adf250b6621a5c7c6a3226",
+      "track_id": "boss_14",
+      "trainer_keys": [
+        "champion:steven",
+        "champion:wallace"
+      ]
+    },
+    {
+      "archive": "bgm3.zip",
+      "filename": "칼로스지방 관장 - 비올라, 자크로, 코르니, 후쿠지, 싵론, 마슈, 고지카, 우르프.mp3",
+      "mp3_sha256": "c1fbaddf1eddb123610e5a848f0c782af74f95e2b99251f4bd32dde97a0c1a23",
+      "track_id": "boss_15",
+      "trainer_keys": [
+        "gym:viola",
+        "gym:grant",
+        "gym:korrina",
+        "gym:ramos",
+        "gym:clemont",
+        "gym:valerie",
+        "gym:olympia",
+        "gym:wulfric"
+      ]
+    },
+    {
+      "archive": "bgm3.zip",
+      "filename": "칼로스지방 사천왕 - 파키라, 즈미, 간피, 드라세나.mp3",
+      "mp3_sha256": "0be463c7ed7b30eab4ccdd11f8921afb4ed4f70f333be475361f5768f1545e34",
+      "track_id": "boss_16",
+      "trainer_keys": [
+        "elite:malva",
+        "elite:siebold",
+        "elite:wikstrom",
+        "elite:drasna"
+      ]
+    },
+    {
+      "archive": "bgm3.zip",
+      "filename": "하나지방 챔피언 - 노간주.mp3",
+      "mp3_sha256": "2444ef7c6af891b5e7af6f77a9a1e1d5c6f4226ce93348258031fcf6d29fc3b3",
+      "track_id": "boss_17",
+      "trainer_keys": [
+        "champion:alder"
+      ]
+    },
+    {
+      "archive": "bgm3.zip",
+      "filename": "하나지방 챔피언 - 아이리스.mp3",
+      "mp3_sha256": "64db6874ad51569785d2ad820489512f3cf364d04456ce4cb9d1f83935eeb1ff",
+      "track_id": "boss_18",
+      "trainer_keys": [
+        "champion:iris"
+      ]
+    },
+    {
+      "archive": "bgm4.zip",
+      "filename": "알로라지방 관장 - 할라, 라이치, 나누, 하푸우.mp3",
+      "mp3_sha256": "2c2ffb9767c6fbf36a56fff13f29d08520a4003298d0dd12ec5307175cb6622a",
+      "track_id": "boss_19",
+      "trainer_keys": [
+        "gym:hala",
+        "gym:olivia",
+        "gym:nanu",
+        "gym:hapu"
+      ]
+    },
+    {
+      "archive": "bgm4.zip",
+      "filename": "알로라지방 사천왕 - 할라, 라이치, 아세로라, 카일리, 멀레인.mp3",
+      "mp3_sha256": "b6f827f9f2874744486a8d3d097665c07b0fdcdc758886cfe9b123a8961f8059",
+      "track_id": "boss_20",
+      "trainer_keys": [
+        "elite:hala",
+        "elite:olivia",
+        "elite:acerola",
+        "elite:kahili",
+        "elite:molayne"
+      ]
+    },
+    {
+      "archive": "bgm4.zip",
+      "filename": "알로라지방 챔피언 - 쿠쿠이박사.mp3",
+      "mp3_sha256": "8ae4d320ef10ebf70d39187ad6a61fb634ea19f9fc73973022c2ec511916c047",
+      "track_id": "boss_21",
+      "trainer_keys": [
+        "champion:kukui"
+      ]
+    },
+    {
+      "archive": "bgm4.zip",
+      "filename": "알로라지방 챔피언 - 하우.mp3",
+      "mp3_sha256": "fd5f536c4654cf0a54b525ea18a00a8d577548707db92c6ac2af38d23bee7039",
+      "track_id": "boss_22",
+      "trainer_keys": [
+        "champion:hau"
+      ]
+    },
+    {
+      "archive": "bgm4.zip",
+      "filename": "칼로스지방 챔피언 - 카르네.mp3",
+      "mp3_sha256": "43e35104d1b4066a004ebe086bde5e46527b9f58076d6345ca9bd57ebd5735d5",
+      "track_id": "boss_23",
+      "trainer_keys": [
+        "champion:diantha"
+      ]
+    },
+    {
+      "archive": "bgm5.zip",
+      "filename": "가라르지방 관장 - 두송.mp3",
+      "mp3_sha256": "0b6a12f7a17ccb66e84da11486aa493a77ae0d1dda2c40beab5fce7b14ace49a",
+      "track_id": "boss_24",
+      "trainer_keys": [
+        "gym:piers"
+      ]
+    },
+    {
+      "archive": "bgm5.zip",
+      "filename": "가라르지방 관장 - 아킬, 야청, 순무, 채두, 어니언, 포플러, 마쿠와, 멜론, 금랑.mp3",
+      "mp3_sha256": "f5443af556688de93a1fa79fb274e4a31e6374e77aa10ff01de04fc51b99ce52",
+      "track_id": "boss_25",
+      "trainer_keys": [
+        "gym:milo",
+        "gym:nessa",
+        "gym:kabu",
+        "gym:bea",
+        "gym:allister",
+        "gym:opal",
+        "gym:gordie",
+        "gym:melony",
+        "gym:raihan"
+      ]
+    },
+    {
+      "archive": "bgm5.zip",
+      "filename": "가라르지방 챔피언 - 단델.mp3",
+      "mp3_sha256": "b15bf058a3ac1a86fc45bb3f5436be42faa50e3109037669e65e1571e859c30b",
+      "track_id": "boss_26",
+      "trainer_keys": [
+        "champion:leon"
+      ]
+    },
+    {
+      "archive": "bgm6.zip",
+      "filename": "가라르지방 관장 - 도정.mp3",
+      "mp3_sha256": "b6d9911d8c2dbc4f2b39619ee84ae8693c077d57219818c8b955dc1f1aa61d55",
+      "track_id": "boss_27",
+      "trainer_keys": [
+        "gym:klara"
+      ]
+    },
+    {
+      "archive": "bgm6.zip",
+      "filename": "가라르지방 관장 - 마스터드.mp3",
+      "mp3_sha256": "22874dd620e947b34f2c3245d2cfa698d956e53635dd550edc25f4dd43512c40",
+      "track_id": "boss_28",
+      "trainer_keys": [
+        "gym:mustard"
+      ]
+    },
+    {
+      "archive": "bgm6.zip",
+      "filename": "가라르지방 관장 - 피오니.mp3",
+      "mp3_sha256": "e0652e43ced8119c02bafa50a6c055bfcd503289305718a4b79ce80977aa25b4",
+      "track_id": "boss_29",
+      "trainer_keys": [
+        "gym:peony"
+      ]
+    },
+    {
+      "archive": "bgm7.zip",
+      "filename": "가라르지방 관장 - 세이버리.mp3",
+      "mp3_sha256": "9b2ca8b984edb812e5890944b0fe432d92db1ceb8e5e44c631f8d45ab808d713",
+      "track_id": "boss_30",
+      "trainer_keys": [
+        "gym:avery"
+      ]
+    },
+    {
+      "archive": "bgm7.zip",
+      "filename": "팔데아지방 관장 - 단풍, 콜사, 모야모, 곤포, 청목, 라임, 리파, 그루샤.mp3",
+      "mp3_sha256": "804a344d94e99883c8ff578e22f572a584ead2d79fe6ab10c35bd203fb32f7a1",
+      "track_id": "boss_31",
+      "trainer_keys": [
+        "gym:katy",
+        "gym:brassius",
+        "gym:iono",
+        "gym:kofu",
+        "gym:larry",
+        "gym:ryme",
+        "gym:tulip",
+        "gym:grusha"
+      ]
+    },
+    {
+      "archive": "bgm7.zip",
+      "filename": "팔데아지방 사천왕 - 칠리, 뽀삐, 청목, 팔자크.mp3",
+      "mp3_sha256": "40ce336d6da2bf655358fb4467e5cc996d1120559b2d45494312a4b7ddc5c652",
+      "track_id": "boss_32",
+      "trainer_keys": [
+        "elite:rika",
+        "elite:poppy",
+        "elite:larry",
+        "elite:hassel"
+      ]
+    },
+    {
+      "archive": "bgm7.zip",
+      "filename": "팔데아지방 챔피언 - 테사.mp3",
+      "mp3_sha256": "04ac4453f2a46a1f904730b05f186bb2a81fa07d468bfdc55764ec9d5ed63b85",
+      "track_id": "boss_33",
+      "trainer_keys": [
+        "champion:geeta"
+      ]
+    },
+    {
+      "archive": "bgm8.zip",
+      "filename": "팔데아지방 사천왕 - 하솔, 네리네, 타로, 제빈.mp3",
+      "mp3_sha256": "38e2902b8d0bc27f1771a2258cf2a5d0cb865a1c2af826d14bf58d2683429ba9",
+      "track_id": "boss_34",
+      "trainer_keys": [
+        "elite:crispin",
+        "elite:amarys",
+        "elite:lacey",
+        "elite:drayton"
+      ]
+    },
+    {
+      "archive": "bgm8.zip",
+      "filename": "팔데아지방 챔피언 - 네모.mp3",
+      "mp3_sha256": "a74386c6836660965a167349d0dc3829e58db26aa53be74ab1761014080b5aa5",
+      "track_id": "boss_35",
+      "trainer_keys": [
+        "champion:nemona"
+      ]
+    },
+    {
+      "archive": "bgm8.zip",
+      "filename": "팔데아지방 챔피언 - 카지.mp3",
+      "mp3_sha256": "0b6ad418e68de15044003bcabf5b207db5242e8339dec2a8e77a16e51b5dab47",
+      "track_id": "boss_36",
+      "trainer_keys": [
+        "champion:kieran"
+      ]
+    }
+  ],
+  "aliases": {
+    "희연": "회연",
+    "싵론": "시트론",
+    "보미카": "보미",
+    "풍&란": "풍·란",
+    "쿠쿠이박사": "쿠쿠이",
+    "은빛산의 레드": "레드"
+  },
+  "conversion": {
+    "codec": "Vorbis q5",
+    "sample_rate": 48000,
+    "channels": 2,
+    "target_lufs": -18,
+    "true_peak_db": -2,
+    "method": "two-pass loudnorm; full original duration retained; metadata removed"
+  },
+  "tracks": [
+    {
+      "id": "boss_01",
+      "path": "res://assets/audio/boss_music/boss_01.ogg",
+      "duration_seconds": 91.266667,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "45af00ce43f797bc3b93418c18116b1fe2c2d1eb10a3b1086f36c51edda71e48",
+      "ogg_sha256": "7d38247c48d4caeedcb5bd13b4f4a05de15536090a89bb35ffead71e0c35511f",
+      "input_loudness": {
+        "input_i": "-10.71",
+        "input_tp": "0.70",
+        "input_lra": "4.60",
+        "input_thresh": "-21.03",
+        "output_i": "-18.00",
+        "output_tp": "-6.13",
+        "output_lra": "4.60",
+        "output_thresh": "-28.15",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.00"
+      }
+    },
+    {
+      "id": "boss_02",
+      "path": "res://assets/audio/boss_music/boss_02.ogg",
+      "duration_seconds": 119.973333,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "2ceb4c6b6f4f4ad3344b3d251db8e09b45bf3d14b02ac51b332c9f10a723f8bf",
+      "ogg_sha256": "974351e455bdebe0f38ff0e4c1abdc752550df947e893fcf24804d823fa29848",
+      "input_loudness": {
+        "input_i": "-10.31",
+        "input_tp": "-0.08",
+        "input_lra": "4.90",
+        "input_thresh": "-20.63",
+        "output_i": "-17.62",
+        "output_tp": "-5.83",
+        "output_lra": "3.40",
+        "output_thresh": "-27.88",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.38"
+      }
+    },
+    {
+      "id": "boss_03",
+      "path": "res://assets/audio/boss_music/boss_03.ogg",
+      "duration_seconds": 150.04,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "803cb1ccd932f67498eecc396930bee2a9cf76c93fe05e1bd89c59fbdf848963",
+      "ogg_sha256": "9593e7e5acb0279bb21e47519fc705bfcac256905302fc4bffc55c22f357ed2c",
+      "input_loudness": {
+        "input_i": "-12.63",
+        "input_tp": "-1.17",
+        "input_lra": "1.60",
+        "input_thresh": "-22.85",
+        "output_i": "-17.91",
+        "output_tp": "-6.29",
+        "output_lra": "1.80",
+        "output_thresh": "-28.10",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.09"
+      }
+    },
+    {
+      "id": "boss_04",
+      "path": "res://assets/audio/boss_music/boss_04.ogg",
+      "duration_seconds": 82.266667,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "85b7ed8e1c3eb8144c25784e71777f35115f7b527c2f06b1a72a901be15dd1c5",
+      "ogg_sha256": "6d2818de335dff7732599e5c28c8eae013edb8d66f1637ea926db5e20f2bff2e",
+      "input_loudness": {
+        "input_i": "-10.03",
+        "input_tp": "0.68",
+        "input_lra": "3.70",
+        "input_thresh": "-20.39",
+        "output_i": "-17.92",
+        "output_tp": "-6.50",
+        "output_lra": "4.30",
+        "output_thresh": "-28.11",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.08"
+      }
+    },
+    {
+      "id": "boss_05",
+      "path": "res://assets/audio/boss_music/boss_05.ogg",
+      "duration_seconds": 78.266667,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "538294f9aa364afe18c1624ced267724d4848995f9b8870af3739e72018274c8",
+      "ogg_sha256": "28a263bd74ddcf2336c085fc4ac4e10bc81e215fe8b4e2929c48bcfac711ce5c",
+      "input_loudness": {
+        "input_i": "-8.86",
+        "input_tp": "1.15",
+        "input_lra": "9.20",
+        "input_thresh": "-19.53",
+        "output_i": "-16.88",
+        "output_tp": "-2.00",
+        "output_lra": "4.80",
+        "output_thresh": "-27.09",
+        "normalization_type": "dynamic",
+        "target_offset": "-1.12"
+      }
+    },
+    {
+      "id": "boss_06",
+      "path": "res://assets/audio/boss_music/boss_06.ogg",
+      "duration_seconds": 106.293333,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "3ccea2e4f9d6fe4580f90ed8cb571d67c0593e5a86b9c90f4a995f1c0487871d",
+      "ogg_sha256": "8b7e9b6c00b566472a42123ba9384a76d610153dd4cf5c8f1c71c341f5045aeb",
+      "input_loudness": {
+        "input_i": "-9.23",
+        "input_tp": "0.21",
+        "input_lra": "3.60",
+        "input_thresh": "-19.51",
+        "output_i": "-17.80",
+        "output_tp": "-7.45",
+        "output_lra": "3.30",
+        "output_thresh": "-27.99",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.20"
+      }
+    },
+    {
+      "id": "boss_07",
+      "path": "res://assets/audio/boss_music/boss_07.ogg",
+      "duration_seconds": 107.0,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "7e1b6b646154b7fd36c700d8c7617aff90730a0e577328022f764374db62b1ac",
+      "ogg_sha256": "73b4b37f9c48c0835dbf394d5ea167b8f7dec1c9c9f97b4c5a27d88edcc4ca42",
+      "input_loudness": {
+        "input_i": "-9.69",
+        "input_tp": "0.11",
+        "input_lra": "2.90",
+        "input_thresh": "-19.92",
+        "output_i": "-17.75",
+        "output_tp": "-7.42",
+        "output_lra": "2.60",
+        "output_thresh": "-27.92",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.25"
+      }
+    },
+    {
+      "id": "boss_08",
+      "path": "res://assets/audio/boss_music/boss_08.ogg",
+      "duration_seconds": 97.893333,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "d66f95ae7bc516c060adb3587f2ff7a430832dbe0431aa74d6bc45dd3cd2f47b",
+      "ogg_sha256": "e4fea8bb08e79b4576b8691371f0bd58f6dd6571fe78a4ae22925ddecd401142",
+      "input_loudness": {
+        "input_i": "-12.05",
+        "input_tp": "-0.32",
+        "input_lra": "1.80",
+        "input_thresh": "-22.27",
+        "output_i": "-17.70",
+        "output_tp": "-5.78",
+        "output_lra": "1.30",
+        "output_thresh": "-27.80",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.30"
+      }
+    },
+    {
+      "id": "boss_09",
+      "path": "res://assets/audio/boss_music/boss_09.ogg",
+      "duration_seconds": 98.066667,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "26fc6ad14d0285dbf36f839a28338a357f7f31e8a3f6eafe20761da24c876ef4",
+      "ogg_sha256": "08e63bfb70c06df019140da0e5f58c237c9c9cf879b8c1804fa20504c5a0f03a",
+      "input_loudness": {
+        "input_i": "-12.03",
+        "input_tp": "0.38",
+        "input_lra": "3.00",
+        "input_thresh": "-22.25",
+        "output_i": "-17.73",
+        "output_tp": "-4.29",
+        "output_lra": "2.70",
+        "output_thresh": "-27.83",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.27"
+      }
+    },
+    {
+      "id": "boss_10",
+      "path": "res://assets/audio/boss_music/boss_10.ogg",
+      "duration_seconds": 91.386667,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "16a010fc379d2d93eadc1598f74f4ef7bb4bdd40a728e52e2e07417edacd541e",
+      "ogg_sha256": "deb374b761c411bd8e1b1490e97e0a884c5aa585be7e20c5bd8f6dbea5d0d249",
+      "input_loudness": {
+        "input_i": "-11.05",
+        "input_tp": "0.45",
+        "input_lra": "2.90",
+        "input_thresh": "-21.29",
+        "output_i": "-17.84",
+        "output_tp": "-5.60",
+        "output_lra": "2.80",
+        "output_thresh": "-27.95",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.16"
+      }
+    },
+    {
+      "id": "boss_11",
+      "path": "res://assets/audio/boss_music/boss_11.ogg",
+      "duration_seconds": 172.513729,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "6425d3d23d265528566368453fd371970dac0508394c8c5700336f99148208cb",
+      "ogg_sha256": "92374d79536a90d71a49e40bf4575b2661cea8b37c724bf867befa5b50d1b24c",
+      "input_loudness": {
+        "input_i": "-7.49",
+        "input_tp": "0.78",
+        "input_lra": "2.30",
+        "input_thresh": "-17.65",
+        "output_i": "-18.25",
+        "output_tp": "-9.87",
+        "output_lra": "2.20",
+        "output_thresh": "-28.32",
+        "normalization_type": "dynamic",
+        "target_offset": "0.25"
+      }
+    },
+    {
+      "id": "boss_12",
+      "path": "res://assets/audio/boss_music/boss_12.ogg",
+      "duration_seconds": 173.245167,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "524abb928c8bbb258b9fd467190f1b5a1fa00c959bd76728f4cd7e3be170d945",
+      "ogg_sha256": "dcfffd57cf52dbb934fe4d3781a5341198100e8f455f45641667a7914494b423",
+      "input_loudness": {
+        "input_i": "-8.14",
+        "input_tp": "0.79",
+        "input_lra": "2.90",
+        "input_thresh": "-18.27",
+        "output_i": "-18.35",
+        "output_tp": "-9.30",
+        "output_lra": "2.80",
+        "output_thresh": "-28.40",
+        "normalization_type": "dynamic",
+        "target_offset": "0.35"
+      }
+    },
+    {
+      "id": "boss_13",
+      "path": "res://assets/audio/boss_music/boss_13.ogg",
+      "duration_seconds": 171.02475,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "161ef958839ef9697bc9b55e63d0c0cf9131dab3ab07d8b19435638358b15e3a",
+      "ogg_sha256": "598fce4449803b2ae177ff54a752367cebb8ec6f0e7cfcce45125d385a6fdabb",
+      "input_loudness": {
+        "input_i": "-7.91",
+        "input_tp": "1.03",
+        "input_lra": "2.50",
+        "input_thresh": "-18.07",
+        "output_i": "-17.33",
+        "output_tp": "-5.53",
+        "output_lra": "1.90",
+        "output_thresh": "-27.41",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.67"
+      }
+    },
+    {
+      "id": "boss_14",
+      "path": "res://assets/audio/boss_music/boss_14.ogg",
+      "duration_seconds": 111.626667,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "d138b6fc288bea88b5ef93a5f767fce6d86bb9e992adf250b6621a5c7c6a3226",
+      "ogg_sha256": "66ded145ab96ef2430f6d124c080c3e88a98994d9964496bb42f25faec71e47f",
+      "input_loudness": {
+        "input_i": "-9.20",
+        "input_tp": "0.47",
+        "input_lra": "2.30",
+        "input_thresh": "-19.42",
+        "output_i": "-17.99",
+        "output_tp": "-8.39",
+        "output_lra": "2.10",
+        "output_thresh": "-28.14",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.01"
+      }
+    },
+    {
+      "id": "boss_15",
+      "path": "res://assets/audio/boss_music/boss_15.ogg",
+      "duration_seconds": 259.579854,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "c1fbaddf1eddb123610e5a848f0c782af74f95e2b99251f4bd32dde97a0c1a23",
+      "ogg_sha256": "3e7e2bfa7654123f4bf1c67e7a6c3e3a798d7a0165ca2241e76ac6aaffb7b28a",
+      "input_loudness": {
+        "input_i": "-9.18",
+        "input_tp": "0.88",
+        "input_lra": "5.80",
+        "input_thresh": "-19.29",
+        "output_i": "-17.53",
+        "output_tp": "-2.00",
+        "output_lra": "5.60",
+        "output_thresh": "-27.58",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.47"
+      }
+    },
+    {
+      "id": "boss_16",
+      "path": "res://assets/audio/boss_music/boss_16.ogg",
+      "duration_seconds": 276.141479,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "0be463c7ed7b30eab4ccdd11f8921afb4ed4f70f333be475361f5768f1545e34",
+      "ogg_sha256": "f8694503c8926227948594447a5f4f47486cb7cd4c1f6bc7741ac42340fc3390",
+      "input_loudness": {
+        "input_i": "-7.76",
+        "input_tp": "1.05",
+        "input_lra": "4.80",
+        "input_thresh": "-17.85",
+        "output_i": "-17.16",
+        "output_tp": "-3.38",
+        "output_lra": "5.30",
+        "output_thresh": "-27.20",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.84"
+      }
+    },
+    {
+      "id": "boss_17",
+      "path": "res://assets/audio/boss_music/boss_17.ogg",
+      "duration_seconds": 135.524333,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "2444ef7c6af891b5e7af6f77a9a1e1d5c6f4226ce93348258031fcf6d29fc3b3",
+      "ogg_sha256": "ce910a123a73b6e6e4533723dda6117a61d66db23d2a6fc1efc6c34d8eac50f4",
+      "input_loudness": {
+        "input_i": "-7.75",
+        "input_tp": "0.72",
+        "input_lra": "1.30",
+        "input_thresh": "-17.96",
+        "output_i": "-17.81",
+        "output_tp": "-7.81",
+        "output_lra": "1.20",
+        "output_thresh": "-27.92",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.19"
+      }
+    },
+    {
+      "id": "boss_18",
+      "path": "res://assets/audio/boss_music/boss_18.ogg",
+      "duration_seconds": 208.850063,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "64db6874ad51569785d2ad820489512f3cf364d04456ce4cb9d1f83935eeb1ff",
+      "ogg_sha256": "d87bf0588b0f68f4731c510cb4fc5717e8ba3d7fe354d76a147bc4a2e0c21599",
+      "input_loudness": {
+        "input_i": "-8.41",
+        "input_tp": "0.68",
+        "input_lra": "2.20",
+        "input_thresh": "-18.48",
+        "output_i": "-17.92",
+        "output_tp": "-7.26",
+        "output_lra": "2.10",
+        "output_thresh": "-27.96",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.08"
+      }
+    },
+    {
+      "id": "boss_19",
+      "path": "res://assets/audio/boss_music/boss_19.ogg",
+      "duration_seconds": 220.986667,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "2c2ffb9767c6fbf36a56fff13f29d08520a4003298d0dd12ec5307175cb6622a",
+      "ogg_sha256": "c43bc413323d80be5925f31123fd7446207f32b104e718771475b736bc15d1d9",
+      "input_loudness": {
+        "input_i": "-7.59",
+        "input_tp": "0.60",
+        "input_lra": "3.00",
+        "input_thresh": "-17.71",
+        "output_i": "-17.47",
+        "output_tp": "-7.47",
+        "output_lra": "2.50",
+        "output_thresh": "-27.53",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.53"
+      }
+    },
+    {
+      "id": "boss_20",
+      "path": "res://assets/audio/boss_music/boss_20.ogg",
+      "duration_seconds": 123.986667,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "b6f827f9f2874744486a8d3d097665c07b0fdcdc758886cfe9b123a8961f8059",
+      "ogg_sha256": "af8848f01fd7033be8ca1159317ad0e357dfa73f8cd71f746e52a675d7bbb251",
+      "input_loudness": {
+        "input_i": "-7.37",
+        "input_tp": "0.43",
+        "input_lra": "4.50",
+        "input_thresh": "-17.62",
+        "output_i": "-17.25",
+        "output_tp": "-7.04",
+        "output_lra": "2.60",
+        "output_thresh": "-27.40",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.75"
+      }
+    },
+    {
+      "id": "boss_21",
+      "path": "res://assets/audio/boss_music/boss_21.ogg",
+      "duration_seconds": 224.466667,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "8ae4d320ef10ebf70d39187ad6a61fb634ea19f9fc73973022c2ec511916c047",
+      "ogg_sha256": "a888bd1a3892d2fb38a536df81dd33de76fc89958303dc2eddff24d8987cbff8",
+      "input_loudness": {
+        "input_i": "-7.87",
+        "input_tp": "0.26",
+        "input_lra": "5.70",
+        "input_thresh": "-18.13",
+        "output_i": "-18.17",
+        "output_tp": "-9.91",
+        "output_lra": "5.50",
+        "output_thresh": "-28.33",
+        "normalization_type": "dynamic",
+        "target_offset": "0.17"
+      }
+    },
+    {
+      "id": "boss_22",
+      "path": "res://assets/audio/boss_music/boss_22.ogg",
+      "duration_seconds": 201.074563,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "fd5f536c4654cf0a54b525ea18a00a8d577548707db92c6ac2af38d23bee7039",
+      "ogg_sha256": "c7db86862893c72bfcad68642e4a23d87e5f3d6101385c922e84e8fd634318b4",
+      "input_loudness": {
+        "input_i": "-8.95",
+        "input_tp": "2.27",
+        "input_lra": "3.70",
+        "input_thresh": "-19.05",
+        "output_i": "-18.04",
+        "output_tp": "-6.92",
+        "output_lra": "3.70",
+        "output_thresh": "-28.09",
+        "normalization_type": "dynamic",
+        "target_offset": "0.04"
+      }
+    },
+    {
+      "id": "boss_23",
+      "path": "res://assets/audio/boss_music/boss_23.ogg",
+      "duration_seconds": 185.130875,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "43e35104d1b4066a004ebe086bde5e46527b9f58076d6345ca9bd57ebd5735d5",
+      "ogg_sha256": "76115f8ddd5ce7ac73080e86e7ceb08fa5934387c3730c946ad2d53f225bab21",
+      "input_loudness": {
+        "input_i": "-7.17",
+        "input_tp": "0.96",
+        "input_lra": "2.50",
+        "input_thresh": "-17.30",
+        "output_i": "-17.35",
+        "output_tp": "-5.37",
+        "output_lra": "3.10",
+        "output_thresh": "-27.41",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.65"
+      }
+    },
+    {
+      "id": "boss_24",
+      "path": "res://assets/audio/boss_music/boss_24.ogg",
+      "duration_seconds": 190.198625,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "0b6a12f7a17ccb66e84da11486aa493a77ae0d1dda2c40beab5fce7b14ace49a",
+      "ogg_sha256": "c72b80b58c1f8d6f007437805ccb1ec70d2776765ade7d5bde869e6a41129000",
+      "input_loudness": {
+        "input_i": "-11.67",
+        "input_tp": "-0.98",
+        "input_lra": "2.20",
+        "input_thresh": "-21.76",
+        "output_i": "-17.99",
+        "output_tp": "-7.29",
+        "output_lra": "2.10",
+        "output_thresh": "-28.03",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.01"
+      }
+    },
+    {
+      "id": "boss_25",
+      "path": "res://assets/audio/boss_music/boss_25.ogg",
+      "duration_seconds": 368.771688,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "f5443af556688de93a1fa79fb274e4a31e6374e77aa10ff01de04fc51b99ce52",
+      "ogg_sha256": "417f711c08d8bf3ae14c20d04bba183933f90c3697707d29b53245115b349b24",
+      "input_loudness": {
+        "input_i": "-15.39",
+        "input_tp": "-1.12",
+        "input_lra": "2.00",
+        "input_thresh": "-25.45",
+        "output_i": "-18.14",
+        "output_tp": "-3.77",
+        "output_lra": "1.80",
+        "output_thresh": "-28.18",
+        "normalization_type": "dynamic",
+        "target_offset": "0.14"
+      }
+    },
+    {
+      "id": "boss_26",
+      "path": "res://assets/audio/boss_music/boss_26.ogg",
+      "duration_seconds": 304.954542,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "b15bf058a3ac1a86fc45bb3f5436be42faa50e3109037669e65e1571e859c30b",
+      "ogg_sha256": "882a2f4d38dd3daf0651c1f1999b0604c4b67c2b9cde27f9aa98c58f7baccc1e",
+      "input_loudness": {
+        "input_i": "-12.46",
+        "input_tp": "-0.78",
+        "input_lra": "2.90",
+        "input_thresh": "-22.52",
+        "output_i": "-18.36",
+        "output_tp": "-6.60",
+        "output_lra": "2.50",
+        "output_thresh": "-28.39",
+        "normalization_type": "dynamic",
+        "target_offset": "0.36"
+      }
+    },
+    {
+      "id": "boss_27",
+      "path": "res://assets/audio/boss_music/boss_27.ogg",
+      "duration_seconds": 238.104979,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "b6d9911d8c2dbc4f2b39619ee84ae8693c077d57219818c8b955dc1f1aa61d55",
+      "ogg_sha256": "d43f521bd4bd9f2abe2682154bb96f3c6da1b783255ca6ec450202c27db18f27",
+      "input_loudness": {
+        "input_i": "-14.63",
+        "input_tp": "-0.64",
+        "input_lra": "3.40",
+        "input_thresh": "-24.72",
+        "output_i": "-17.75",
+        "output_tp": "-3.67",
+        "output_lra": "3.30",
+        "output_thresh": "-27.78",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.25"
+      }
+    },
+    {
+      "id": "boss_28",
+      "path": "res://assets/audio/boss_music/boss_28.ogg",
+      "duration_seconds": 322.272979,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "22874dd620e947b34f2c3245d2cfa698d956e53635dd550edc25f4dd43512c40",
+      "ogg_sha256": "5a91f30b7569745ed6c21a4b5c6aabf0825be8394ec23a751154122749ab558a",
+      "input_loudness": {
+        "input_i": "-14.87",
+        "input_tp": "0.38",
+        "input_lra": "4.40",
+        "input_thresh": "-24.97",
+        "output_i": "-18.01",
+        "output_tp": "-3.00",
+        "output_lra": "4.10",
+        "output_thresh": "-28.05",
+        "normalization_type": "dynamic",
+        "target_offset": "0.01"
+      }
+    },
+    {
+      "id": "boss_29",
+      "path": "res://assets/audio/boss_music/boss_29.ogg",
+      "duration_seconds": 178.008979,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "e0652e43ced8119c02bafa50a6c055bfcd503289305718a4b79ce80977aa25b4",
+      "ogg_sha256": "48de2f81a8d03b8fd13cb43e3b85cd808a9e875428de209afceae62ee10dd991",
+      "input_loudness": {
+        "input_i": "-13.28",
+        "input_tp": "-0.29",
+        "input_lra": "3.40",
+        "input_thresh": "-23.41",
+        "output_i": "-18.03",
+        "output_tp": "-4.97",
+        "output_lra": "3.40",
+        "output_thresh": "-28.09",
+        "normalization_type": "dynamic",
+        "target_offset": "0.03"
+      }
+    },
+    {
+      "id": "boss_30",
+      "path": "res://assets/audio/boss_music/boss_30.ogg",
+      "duration_seconds": 188.808979,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "9b2ca8b984edb812e5890944b0fe432d92db1ceb8e5e44c631f8d45ab808d713",
+      "ogg_sha256": "6f0442e5cf95c99ac6128259d1db1f7f654851fd1d9fac9c25c34fcf7d98c3a9",
+      "input_loudness": {
+        "input_i": "-15.25",
+        "input_tp": "0.14",
+        "input_lra": "2.20",
+        "input_thresh": "-25.37",
+        "output_i": "-18.20",
+        "output_tp": "-3.07",
+        "output_lra": "2.20",
+        "output_thresh": "-28.24",
+        "normalization_type": "dynamic",
+        "target_offset": "0.20"
+      }
+    },
+    {
+      "id": "boss_31",
+      "path": "res://assets/audio/boss_music/boss_31.ogg",
+      "duration_seconds": 268.946667,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "804a344d94e99883c8ff578e22f572a584ead2d79fe6ab10c35bd203fb32f7a1",
+      "ogg_sha256": "eb006102486c26f530f9707f8ddd000b11211599773d40a45c8171603d451cfe",
+      "input_loudness": {
+        "input_i": "-10.23",
+        "input_tp": "0.65",
+        "input_lra": "9.10",
+        "input_thresh": "-20.41",
+        "output_i": "-17.31",
+        "output_tp": "-5.64",
+        "output_lra": "9.20",
+        "output_thresh": "-27.46",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.69"
+      }
+    },
+    {
+      "id": "boss_32",
+      "path": "res://assets/audio/boss_music/boss_32.ogg",
+      "duration_seconds": 203.213333,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "40ce336d6da2bf655358fb4467e5cc996d1120559b2d45494312a4b7ddc5c652",
+      "ogg_sha256": "8171c87f6cf373de71b49802ced1a539efd13fa7b3cc2e426d21e01ac8b1b68b",
+      "input_loudness": {
+        "input_i": "-8.44",
+        "input_tp": "0.08",
+        "input_lra": "5.20",
+        "input_thresh": "-18.60",
+        "output_i": "-17.47",
+        "output_tp": "-5.00",
+        "output_lra": "4.50",
+        "output_thresh": "-27.55",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.53"
+      }
+    },
+    {
+      "id": "boss_33",
+      "path": "res://assets/audio/boss_music/boss_33.ogg",
+      "duration_seconds": 198.266667,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "04ac4453f2a46a1f904730b05f186bb2a81fa07d468bfdc55764ec9d5ed63b85",
+      "ogg_sha256": "7176a551ec46dfef52774e277ec8a26f0bcef18c9bb5e3531cc405f4715faaca",
+      "input_loudness": {
+        "input_i": "-8.78",
+        "input_tp": "0.73",
+        "input_lra": "6.70",
+        "input_thresh": "-18.89",
+        "output_i": "-17.76",
+        "output_tp": "-6.81",
+        "output_lra": "6.30",
+        "output_thresh": "-27.82",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.24"
+      }
+    },
+    {
+      "id": "boss_34",
+      "path": "res://assets/audio/boss_music/boss_34.ogg",
+      "duration_seconds": 174.213333,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "38e2902b8d0bc27f1771a2258cf2a5d0cb865a1c2af826d14bf58d2683429ba9",
+      "ogg_sha256": "e01b006bb86c87f797e8ce063a718085636ef4273fe234d47874660e0e169b30",
+      "input_loudness": {
+        "input_i": "-8.99",
+        "input_tp": "-0.11",
+        "input_lra": "4.20",
+        "input_thresh": "-19.16",
+        "output_i": "-17.75",
+        "output_tp": "-4.47",
+        "output_lra": "4.20",
+        "output_thresh": "-27.83",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.25"
+      }
+    },
+    {
+      "id": "boss_35",
+      "path": "res://assets/audio/boss_music/boss_35.ogg",
+      "duration_seconds": 187.226667,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "a74386c6836660965a167349d0dc3829e58db26aa53be74ab1761014080b5aa5",
+      "ogg_sha256": "024e5e6142e59a8392f6bfea2bf9626d4044565969f9444e3b8bb87210970b25",
+      "input_loudness": {
+        "input_i": "-7.54",
+        "input_tp": "0.10",
+        "input_lra": "3.20",
+        "input_thresh": "-17.67",
+        "output_i": "-17.80",
+        "output_tp": "-7.81",
+        "output_lra": "3.00",
+        "output_thresh": "-27.86",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.20"
+      }
+    },
+    {
+      "id": "boss_36",
+      "path": "res://assets/audio/boss_music/boss_36.ogg",
+      "duration_seconds": 210.28,
+      "channels": 2,
+      "sample_rate": 48000,
+      "source_mp3_sha256": "0b6ad418e68de15044003bcabf5b207db5242e8339dec2a8e77a16e51b5dab47",
+      "ogg_sha256": "58970734db85ff0ce20d8b487a3581c3ad0e843d7707671c1c823ce51cb7afd0",
+      "input_loudness": {
+        "input_i": "-8.66",
+        "input_tp": "0.47",
+        "input_lra": "5.60",
+        "input_thresh": "-18.83",
+        "output_i": "-17.77",
+        "output_tp": "-5.09",
+        "output_lra": "5.10",
+        "output_thresh": "-27.86",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.23"
+      }
+    }
+  ],
+  "trainers": {
+    "gym:janine": [
+      "boss_01"
+    ],
+    "gym:blue": [
+      "boss_01"
+    ],
+    "gym:brock": [
+      "boss_02"
+    ],
+    "gym:misty": [
+      "boss_02"
+    ],
+    "gym:lt_surge": [
+      "boss_02"
+    ],
+    "gym:erika": [
+      "boss_02"
+    ],
+    "gym:koga": [
+      "boss_02"
+    ],
+    "gym:sabrina": [
+      "boss_02"
+    ],
+    "gym:blaine": [
+      "boss_02"
+    ],
+    "gym:giovanni": [
+      "boss_02"
+    ],
+    "elite:lorelei": [
+      "boss_02"
+    ],
+    "elite:bruno": [
+      "boss_02",
+      "boss_04"
+    ],
+    "elite:agatha": [
+      "boss_02"
+    ],
+    "elite:lance": [
+      "boss_02"
+    ],
+    "champion:blue": [
+      "boss_03"
+    ],
+    "gym:falkner": [
+      "boss_04"
+    ],
+    "gym:bugsy": [
+      "boss_04"
+    ],
+    "gym:whitney": [
+      "boss_04"
+    ],
+    "gym:morty": [
+      "boss_04"
+    ],
+    "gym:chuck": [
+      "boss_04"
+    ],
+    "gym:jasmine": [
+      "boss_04"
+    ],
+    "gym:pryce": [
+      "boss_04"
+    ],
+    "gym:clair": [
+      "boss_04"
+    ],
+    "elite:will": [
+      "boss_04"
+    ],
+    "elite:koga": [
+      "boss_04"
+    ],
+    "elite:karen": [
+      "boss_04"
+    ],
+    "champion:lance": [
+      "boss_05"
+    ],
+    "champion:red": [
+      "boss_05"
+    ],
+    "gym:roxanne": [
+      "boss_06"
+    ],
+    "gym:brawly": [
+      "boss_06"
+    ],
+    "gym:wattson": [
+      "boss_06"
+    ],
+    "gym:flannery": [
+      "boss_06"
+    ],
+    "gym:norman": [
+      "boss_06"
+    ],
+    "gym:winona": [
+      "boss_06"
+    ],
+    "gym:tate_liza": [
+      "boss_06"
+    ],
+    "gym:wallace": [
+      "boss_06"
+    ],
+    "gym:juan": [
+      "boss_06"
+    ],
+    "elite:sidney": [
+      "boss_07"
+    ],
+    "elite:phoebe": [
+      "boss_07"
+    ],
+    "elite:glacia": [
+      "boss_07"
+    ],
+    "elite:drake": [
+      "boss_07"
+    ],
+    "gym:roark": [
+      "boss_08"
+    ],
+    "gym:gardenia": [
+      "boss_08"
+    ],
+    "gym:maylene": [
+      "boss_08"
+    ],
+    "gym:crasher_wake": [
+      "boss_08"
+    ],
+    "gym:fantina": [
+      "boss_08"
+    ],
+    "gym:byron": [
+      "boss_08"
+    ],
+    "gym:candice": [
+      "boss_08"
+    ],
+    "gym:volkner": [
+      "boss_08"
+    ],
+    "elite:aaron": [
+      "boss_09"
+    ],
+    "elite:bertha": [
+      "boss_09"
+    ],
+    "elite:flint": [
+      "boss_09"
+    ],
+    "elite:lucian": [
+      "boss_09"
+    ],
+    "champion:cynthia": [
+      "boss_10"
+    ],
+    "gym:cilan": [
+      "boss_11"
+    ],
+    "gym:chili": [
+      "boss_11"
+    ],
+    "gym:cress": [
+      "boss_11"
+    ],
+    "gym:lenora": [
+      "boss_11"
+    ],
+    "gym:burgh": [
+      "boss_11",
+      "boss_12"
+    ],
+    "gym:elesa": [
+      "boss_11",
+      "boss_12"
+    ],
+    "gym:clay": [
+      "boss_11",
+      "boss_12"
+    ],
+    "gym:skyla": [
+      "boss_11",
+      "boss_12"
+    ],
+    "gym:brycen": [
+      "boss_11"
+    ],
+    "gym:drayden": [
+      "boss_11",
+      "boss_12"
+    ],
+    "gym:iris": [
+      "boss_11"
+    ],
+    "gym:cheren": [
+      "boss_12"
+    ],
+    "gym:roxie": [
+      "boss_12"
+    ],
+    "gym:marlon": [
+      "boss_12"
+    ],
+    "elite:shauntal": [
+      "boss_13"
+    ],
+    "elite:grimsley": [
+      "boss_13"
+    ],
+    "elite:caitlin": [
+      "boss_13"
+    ],
+    "elite:marshal": [
+      "boss_13"
+    ],
+    "champion:steven": [
+      "boss_14"
+    ],
+    "champion:wallace": [
+      "boss_14"
+    ],
+    "gym:viola": [
+      "boss_15"
+    ],
+    "gym:grant": [
+      "boss_15"
+    ],
+    "gym:korrina": [
+      "boss_15"
+    ],
+    "gym:ramos": [
+      "boss_15"
+    ],
+    "gym:clemont": [
+      "boss_15"
+    ],
+    "gym:valerie": [
+      "boss_15"
+    ],
+    "gym:olympia": [
+      "boss_15"
+    ],
+    "gym:wulfric": [
+      "boss_15"
+    ],
+    "elite:malva": [
+      "boss_16"
+    ],
+    "elite:siebold": [
+      "boss_16"
+    ],
+    "elite:wikstrom": [
+      "boss_16"
+    ],
+    "elite:drasna": [
+      "boss_16"
+    ],
+    "champion:alder": [
+      "boss_17"
+    ],
+    "champion:iris": [
+      "boss_18"
+    ],
+    "gym:hala": [
+      "boss_19"
+    ],
+    "gym:olivia": [
+      "boss_19"
+    ],
+    "gym:nanu": [
+      "boss_19"
+    ],
+    "gym:hapu": [
+      "boss_19"
+    ],
+    "elite:hala": [
+      "boss_20"
+    ],
+    "elite:olivia": [
+      "boss_20"
+    ],
+    "elite:acerola": [
+      "boss_20"
+    ],
+    "elite:kahili": [
+      "boss_20"
+    ],
+    "elite:molayne": [
+      "boss_20"
+    ],
+    "champion:kukui": [
+      "boss_21"
+    ],
+    "champion:hau": [
+      "boss_22"
+    ],
+    "champion:diantha": [
+      "boss_23"
+    ],
+    "gym:piers": [
+      "boss_24"
+    ],
+    "gym:milo": [
+      "boss_25"
+    ],
+    "gym:nessa": [
+      "boss_25"
+    ],
+    "gym:kabu": [
+      "boss_25"
+    ],
+    "gym:bea": [
+      "boss_25"
+    ],
+    "gym:allister": [
+      "boss_25"
+    ],
+    "gym:opal": [
+      "boss_25"
+    ],
+    "gym:gordie": [
+      "boss_25"
+    ],
+    "gym:melony": [
+      "boss_25"
+    ],
+    "gym:raihan": [
+      "boss_25"
+    ],
+    "champion:leon": [
+      "boss_26"
+    ],
+    "gym:klara": [
+      "boss_27"
+    ],
+    "gym:mustard": [
+      "boss_28"
+    ],
+    "gym:peony": [
+      "boss_29"
+    ],
+    "gym:avery": [
+      "boss_30"
+    ],
+    "gym:katy": [
+      "boss_31"
+    ],
+    "gym:brassius": [
+      "boss_31"
+    ],
+    "gym:iono": [
+      "boss_31"
+    ],
+    "gym:kofu": [
+      "boss_31"
+    ],
+    "gym:larry": [
+      "boss_31"
+    ],
+    "gym:ryme": [
+      "boss_31"
+    ],
+    "gym:tulip": [
+      "boss_31"
+    ],
+    "gym:grusha": [
+      "boss_31"
+    ],
+    "elite:rika": [
+      "boss_32"
+    ],
+    "elite:poppy": [
+      "boss_32"
+    ],
+    "elite:larry": [
+      "boss_32"
+    ],
+    "elite:hassel": [
+      "boss_32"
+    ],
+    "champion:geeta": [
+      "boss_33"
+    ],
+    "elite:crispin": [
+      "boss_34"
+    ],
+    "elite:amarys": [
+      "boss_34"
+    ],
+    "elite:lacey": [
+      "boss_34"
+    ],
+    "elite:drayton": [
+      "boss_34"
+    ],
+    "champion:nemona": [
+      "boss_35"
+    ],
+    "champion:kieran": [
+      "boss_36"
+    ],
+    "gym:bede": [
+      "boss_25"
+    ],
+    "gym:marnie": [
+      "boss_25"
+    ],
+    "gym:tyme": [
+      "boss_31"
+    ]
+  },
+  "fallbacks": {
+    "gym:bede": {
+      "reference": "gym:milo",
+      "reason": "Not individually named in supplied recordings; regional general gym theme"
+    },
+    "gym:marnie": {
+      "reference": "gym:milo",
+      "reason": "Not individually named in supplied recordings; regional general gym theme"
+    },
+    "gym:tyme": {
+      "reference": "gym:brassius",
+      "reason": "Not individually named in supplied recordings; regional general gym theme"
+    }
+  }
+}

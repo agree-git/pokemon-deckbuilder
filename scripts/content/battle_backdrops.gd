@@ -7,6 +7,9 @@ static func data() -> Dictionary:
     return _data
 static func for_stop(stop: Dictionary,biome: Dictionary) -> Dictionary:
     var trainer: Dictionary = stop.get("trainer",{})
+    var key := str(stop["kind"])+":"+str(trainer.get("leader_id",trainer.get("id","")))
+    if BossExpansion.data()["backdrops"].has(key):
+        return BossExpansion.data()["backdrops"][key].duplicate(true)
     if stop["kind"] == "elite":
         var type: String = trainer.get("type",biome["type"])
         if data()["elite"].has(type): return data()["elite"][type].duplicate(true)

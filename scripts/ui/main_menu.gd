@@ -242,6 +242,7 @@ func _start() -> void:
     add_child(departure)
     departure.arrived.connect(func(): get_tree().change_scene_to_file("res://scenes/tactical_journey.tscn"))
     var j: TacticalJourney = session.get("journey")
+    get_node("/root/GameMusic").play_region(j)
     departure.start(j.current()["name"],j.biome(),j.party,"원정 출발 · 동료들과 길을 나서는 중")
 func _continue() -> void:
     get_tree().change_scene_to_file("res://scenes/tactical_journey.tscn")

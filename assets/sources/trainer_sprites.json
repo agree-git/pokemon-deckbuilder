@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/smogon/sprites",
   "commit": "a9214714f00974a8c28586829e6315d9ca5a6348",
-  "scope": "All 124 boss rosters have individual sprites: 75 use canonical original-game sprites (73 PNGs), 49 use credited community sprites (48 PNGs). Total 121 unmodified PNGs; no boss roster uses the generic fallback.",
+  "scope": "All 137 role-qualified boss matchups have individual sprites across 132 unmodified PNG files. No matchup uses the generic fallback.",
   "rights": "Original Pokemon imagery belongs to Nintendo / Game Freak / The Pokemon Company. Fan trainer artists and the specific gallery usage notice are recorded per file; code MIT is not a blanket art license.",
   "entries": {
     "gym:brock": {
@@ -623,6 +623,71 @@
       "name": "네모",
       "status": "included",
       "path": "assets/trainers/nemona-v-showdown-fan.png"
+    },
+    "gym:hala": {
+      "name": "할라",
+      "status": "included",
+      "path": "assets/trainers/hala-sun-moon-fan.png"
+    },
+    "gym:olivia": {
+      "name": "라이치",
+      "status": "included",
+      "path": "assets/trainers/olivia-sun-moon-fan.png"
+    },
+    "gym:nanu": {
+      "name": "나누",
+      "status": "included",
+      "path": "assets/trainers/nanu-fan.png"
+    },
+    "gym:hapu": {
+      "name": "하푸우",
+      "status": "included",
+      "path": "assets/trainers/hapu-fan.png"
+    },
+    "elite:molayne": {
+      "name": "멀레인",
+      "status": "included",
+      "path": "assets/trainers/molayne-fan.png"
+    },
+    "elite:crispin": {
+      "name": "하솔",
+      "status": "included",
+      "path": "assets/trainers/crispin-fan.png"
+    },
+    "elite:amarys": {
+      "name": "네리네",
+      "status": "included",
+      "path": "assets/trainers/amarys-fan.png"
+    },
+    "elite:lacey": {
+      "name": "타로",
+      "status": "included",
+      "path": "assets/trainers/lacey-fan.png"
+    },
+    "elite:drayton": {
+      "name": "제빈",
+      "status": "included",
+      "path": "assets/trainers/drayton-fan.png"
+    },
+    "champion:kukui": {
+      "name": "쿠쿠이",
+      "status": "included",
+      "path": "assets/trainers/kukui-fan.png"
+    },
+    "champion:hau": {
+      "name": "하우",
+      "status": "included",
+      "path": "assets/trainers/hau-fan.png"
+    },
+    "champion:kieran": {
+      "name": "카지",
+      "status": "included",
+      "path": "assets/trainers/kieran-fan.png"
+    },
+    "champion:red": {
+      "name": "레드",
+      "status": "included",
+      "path": "assets/trainers/red-heartgold-soulsilver.png"
     }
   },
   "assets": {
@@ -2843,6 +2908,253 @@
       "credit_source": "https://www.deviantart.com/gnomowladny/art/Clemont-Sprite-430844892",
       "usage_notice": "Preserve artist credit. Downloaded PNG bytes are unmodified; retain existing collection notices. The supplied artist page was not accessible in this environment, so no additional reuse license is asserted.",
       "integrity_note": "User supplied the artist URL and a matching pose reference. Pinned GitHub variant includes cyan electric accents; it is not asserted to be byte-identical to the uploaded reference or DeviantArt download."
+    },
+    "assets/trainers/nanu-fan.png": {
+      "sha256": "00f103ddb119030f17fde45f6497103b8cb07adf96b986e767644d7245be8f2e",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        16,
+        30,
+        49,
+        49
+      ],
+      "kind": "fan",
+      "upstream_path": "sprites/trainers/nanu.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/nanu.png",
+      "artist": "Beliot419",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "nanu.png",
+      "usage_notice": "Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Original mirror PNG bytes preserved; character and artist matched to gallery index. Image-host byte identity not asserted."
+    },
+    "assets/trainers/hapu-fan.png": {
+      "sha256": "607aabc0f3fc6e49f58b1be4c2a85466e3dc00c5298906a3c21bca7a96f83f54",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        24,
+        13,
+        38,
+        66
+      ],
+      "kind": "fan",
+      "upstream_path": "sprites/trainers/hapu.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/hapu.png",
+      "artist": "Beliot419",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "hapu.png",
+      "usage_notice": "Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Original mirror PNG bytes preserved; character and artist matched to gallery index. Image-host byte identity not asserted."
+    },
+    "assets/trainers/molayne-fan.png": {
+      "sha256": "161e58610d839d07a5a9741c038302a6a0b4c4b37c15023953fb146c6cd22053",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        26,
+        0,
+        32,
+        79
+      ],
+      "kind": "fan",
+      "upstream_path": "sprites/trainers/molayne.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/molayne.png",
+      "artist": "Beliot419",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "molayne.png",
+      "usage_notice": "Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Original mirror PNG bytes preserved; character and artist matched to gallery index. Image-host byte identity not asserted."
+    },
+    "assets/trainers/crispin-fan.png": {
+      "sha256": "9789d401c59b0374c9d1025d00414318f513083b8860547991d29ff1e7b5c818",
+      "size": [
+        68,
+        68
+      ],
+      "bounds": [
+        0,
+        0,
+        39,
+        68
+      ],
+      "kind": "fan",
+      "upstream_path": "images/trainer/crispin.png",
+      "url": "https://raw.githubusercontent.com/pagefaultgames/pokerogue-assets/009cac30c39d3615c7b2c320c3984af368871031/images/trainer/crispin.png",
+      "artist": "kyledove",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "crispin.png",
+      "usage_notice": "Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Original mirror PNG bytes preserved; character and artist matched to gallery index. Image-host byte identity not asserted.",
+      "mirror_license": "CC-BY-NC-SA-4.0 to extent licensable and applicable; underlying Pokemon rights retained",
+      "mirror_license_source": "https://github.com/pagefaultgames/pokerogue-assets/blob/009cac30c39d3615c7b2c320c3984af368871031/README.md"
+    },
+    "assets/trainers/amarys-fan.png": {
+      "sha256": "ce15ca462bb00ce283eab2326947f13b3d520afff3966a2cfd64289b73cebc3f",
+      "size": [
+        72,
+        72
+      ],
+      "bounds": [
+        0,
+        0,
+        32,
+        72
+      ],
+      "kind": "fan",
+      "upstream_path": "images/trainer/amarys.png",
+      "url": "https://raw.githubusercontent.com/pagefaultgames/pokerogue-assets/009cac30c39d3615c7b2c320c3984af368871031/images/trainer/amarys.png",
+      "artist": "kyledove",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "amarys.png",
+      "usage_notice": "Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Original mirror PNG bytes preserved; character and artist matched to gallery index. Image-host byte identity not asserted.",
+      "mirror_license": "CC-BY-NC-SA-4.0 to extent licensable and applicable; underlying Pokemon rights retained",
+      "mirror_license_source": "https://github.com/pagefaultgames/pokerogue-assets/blob/009cac30c39d3615c7b2c320c3984af368871031/README.md"
+    },
+    "assets/trainers/lacey-fan.png": {
+      "sha256": "fc8009ec30a6d94426ecbec5e47c82309776a2a853084f155af1bc612e08a534",
+      "size": [
+        68,
+        68
+      ],
+      "bounds": [
+        0,
+        0,
+        29,
+        68
+      ],
+      "kind": "fan",
+      "upstream_path": "images/trainer/lacey.png",
+      "url": "https://raw.githubusercontent.com/pagefaultgames/pokerogue-assets/009cac30c39d3615c7b2c320c3984af368871031/images/trainer/lacey.png",
+      "artist": "kyledove",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "lacey.png",
+      "usage_notice": "Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Original mirror PNG bytes preserved; character and artist matched to gallery index. Image-host byte identity not asserted.",
+      "mirror_license": "CC-BY-NC-SA-4.0 to extent licensable and applicable; underlying Pokemon rights retained",
+      "mirror_license_source": "https://github.com/pagefaultgames/pokerogue-assets/blob/009cac30c39d3615c7b2c320c3984af368871031/README.md"
+    },
+    "assets/trainers/drayton-fan.png": {
+      "sha256": "b9086524fe86ce9f45f174dde9e8defe2b81005fd1d76a5034fc3411987ad981",
+      "size": [
+        74,
+        74
+      ],
+      "bounds": [
+        0,
+        0,
+        43,
+        74
+      ],
+      "kind": "fan",
+      "upstream_path": "images/trainer/drayton.png",
+      "url": "https://raw.githubusercontent.com/pagefaultgames/pokerogue-assets/009cac30c39d3615c7b2c320c3984af368871031/images/trainer/drayton.png",
+      "artist": "kyledove",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "drayton.png",
+      "usage_notice": "Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Original mirror PNG bytes preserved; character and artist matched to gallery index. Image-host byte identity not asserted.",
+      "mirror_license": "CC-BY-NC-SA-4.0 to extent licensable and applicable; underlying Pokemon rights retained",
+      "mirror_license_source": "https://github.com/pagefaultgames/pokerogue-assets/blob/009cac30c39d3615c7b2c320c3984af368871031/README.md"
+    },
+    "assets/trainers/kukui-fan.png": {
+      "sha256": "31655f0a801077196d6bb370dc272c9328fec671ea1273c1bf1bf78a252dd1e4",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        18,
+        2,
+        37,
+        77
+      ],
+      "kind": "fan",
+      "upstream_path": "sprites/trainers/kukui.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/kukui.png",
+      "artist": "Beliot419",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "kukui.png",
+      "usage_notice": "Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Original mirror PNG bytes preserved; character and artist matched to gallery index. Image-host byte identity not asserted."
+    },
+    "assets/trainers/hau-fan.png": {
+      "sha256": "dc38258195869fe68b8d5fcd2dd97839ea72b6b17a84dd8cdc1b9b975cf1183d",
+      "size": [
+        80,
+        80
+      ],
+      "bounds": [
+        20,
+        8,
+        30,
+        71
+      ],
+      "kind": "fan",
+      "upstream_path": "sprites/trainers/hau.png",
+      "url": "https://raw.githubusercontent.com/SDM0/sprites/b22cba4e3b7bcb95e0259747952d0ddf4f8cfd6f/sprites/trainers/hau.png",
+      "artist": "Beliot419",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "hau.png",
+      "usage_notice": "Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Original mirror PNG bytes preserved; character and artist matched to gallery index. Image-host byte identity not asserted."
+    },
+    "assets/trainers/kieran-fan.png": {
+      "sha256": "0838e8802ed9de13cbc496dbfbfd2671ecaf05dcf5cc5ebb3e64fd61c40112a5",
+      "size": [
+        70,
+        70
+      ],
+      "bounds": [
+        0,
+        0,
+        28,
+        70
+      ],
+      "kind": "fan",
+      "upstream_path": "images/trainer/kieran.png",
+      "url": "https://raw.githubusercontent.com/pagefaultgames/pokerogue-assets/009cac30c39d3615c7b2c320c3984af368871031/images/trainer/kieran.png",
+      "artist": "kyledove",
+      "credit_source": "https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php",
+      "credit_source_sha256": "a8ded83ddb43f3ccd9896c700613b1528ba3819d5e39dae100fe5e87d286152c",
+      "gallery_file": "kieran-champion.png",
+      "usage_notice": "Credit must be given to the appropriate artist if used elsewhere. DO NOT EDIT without permission.",
+      "integrity_note": "Original mirror PNG bytes preserved; character and artist matched to gallery index. Image-host byte identity not asserted.",
+      "mirror_license": "CC-BY-NC-SA-4.0 to extent licensable and applicable; underlying Pokemon rights retained",
+      "mirror_license_source": "https://github.com/pagefaultgames/pokerogue-assets/blob/009cac30c39d3615c7b2c320c3984af368871031/README.md"
+    },
+    "assets/trainers/red-heartgold-soulsilver.png": {
+      "sha256": "481b78565df4740a749298571c4a1dc11727945205cf80208bd90f49c34075d5",
+      "size": [
+        38,
+        74
+      ],
+      "bounds": [
+        1,
+        5,
+        37,
+        69
+      ],
+      "kind": "canonical",
+      "upstream_path": "src/_uncategorized/canonical/trainers/gen4/heartgold-soulsilver/Red.png",
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/canonical/trainers/gen4/heartgold-soulsilver/Red.png",
+      "artist": "Nintendo / Game Freak / The Pokemon Company"
     }
   }
 }

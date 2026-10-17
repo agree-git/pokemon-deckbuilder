@@ -61,6 +61,7 @@ func _ready() -> void:
         _save_status()
     refresh()
 func refresh() -> void:
+    get_node("/root/GameMusic").select_region(journey)
     W.clear(page)
     battle_ui = null
     learning_comparison = null
@@ -90,7 +91,7 @@ func refresh() -> void:
         get_node("/root/GameMusic").play_theme("title" if journey.phase == TacticalJourney.CLEARED else "camp")
         get_node("/root/GameAmbience").clear()
     else:
-        get_node("/root/GameMusic").play_camp(journey.biome())
+        get_node("/root/GameMusic").play_region(journey)
         get_node("/root/GameAmbience").play_biome(journey.biome())
     var background := TextureRect.new()
     background.texture = VisualCatalog.biome_texture(journey.biome())
@@ -996,7 +997,7 @@ func _enter() -> void:
     var destination := str(journey.current()["name"])
     var heading := "다음 장소로 이동 중"
     var scenery := journey.biome()
-    get_node("/root/GameMusic").play_camp(scenery)
+    get_node("/root/GameMusic").play_region(journey)
     get_node("/root/GameAmbience").play_biome(scenery)
     if journey.current().get("rare",false):
         destination = "희귀 조우 · ???"

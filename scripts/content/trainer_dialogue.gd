@@ -13,7 +13,7 @@ static func opponent(stop: Dictionary,biome: Dictionary) -> Dictionary:
     var type := str(trainer.get("type",biome.get("type","normal")))
     return {"id":str(trainer.get("leader_id",trainer.get("id",""))),
         "name":str(trainer.get("leader",trainer.get("name",stop.get("name","트레이너")))),
-        "kind":str(stop.get("kind","trainer")),"region":str(trainer.get("region","")),
+        "role_label":str(trainer.get("role_label","")),"kind":str(stop.get("kind","trainer")),"region":str(trainer.get("region","")),
         "mixed":type == "mixed","type":str(biome.get("type","normal")) if type == "mixed" else type}
 static func key(trainer: Dictionary) -> String:
     return str(trainer.get("kind",""))+":"+str(trainer.get("id",""))
@@ -23,6 +23,7 @@ static func line(trainer: Dictionary,phase: String) -> String:
 static func title(trainer: Dictionary) -> String:
     var parts: Array[String] = []
     if not str(trainer.get("region","")).is_empty(): parts.append(str(trainer["region"]))
-    if ROLES.has(trainer.get("kind","")): parts.append(ROLES[trainer["kind"]])
+    if not str(trainer.get("role_label","")).is_empty(): parts.append(trainer["role_label"])
+    elif ROLES.has(trainer.get("kind","")): parts.append(ROLES[trainer["kind"]])
     parts.append(str(trainer.get("name","트레이너")))
     return " ".join(parts)

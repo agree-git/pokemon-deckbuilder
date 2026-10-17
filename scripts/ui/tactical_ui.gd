@@ -153,8 +153,14 @@ func _play_soundscape() -> void:
     var biome := run_journey.biome() if run_journey != null else run_biome
     var kind := str(opponent_trainer.get("kind", "wild"))
     var ended := battle.phase in [TacticalBattle.WON, TacticalBattle.LOST]
-    if ended: music.play_camp(biome)
-    else: music.play_theme(music.for_battle(kind))
+    if run_journey != null and (ended or kind not in ["gym","elite","champion"]):
+        music.play_region(run_journey)
+    elif ended:
+        music.play_camp(biome)
+    elif kind in ["gym","elite","champion"]:
+        music.play_boss(opponent_trainer,run_journey)
+    else:
+        music.play_theme(music.for_battle(kind))
     if battle.phase == TacticalBattle.LOST or kind in ["gym", "elite", "champion"]:
         ambience.clear()
     else:
@@ -505,6 +511,7 @@ func _modal(title: String,rect: Rect2) -> Control:
 
 func _build_menu() -> Control:
     var overlay := _modal("메뉴",Rect2(1250,96,622,900))
+    get_node("/root/Preferences").watch_pause_menu(overlay)
     var body: Panel = overlay.get_node("Body")
     _label("파티 유물",Rect2(32,94,470,32),17,W.MUTED,HORIZONTAL_ALIGNMENT_LEFT,body)
     var relic_scroll := ScrollContainer.new()

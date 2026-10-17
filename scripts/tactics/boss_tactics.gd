@@ -79,6 +79,7 @@ static var _trainers: Dictionary = {}
 static func trainers() -> Dictionary:
     if _trainers.is_empty():
         _trainers = TRAINERS.duplicate(true)
+        _trainers.merge(BossExpansion.data()["tactics"],true)
         for leader: Dictionary in GymLeaders.all():
             _trainers["gym:"+leader["leader_id"]] = {"name":leader["leader"],"plan":leader["plan"],"styles":leader["styles"].duplicate()}
     return _trainers

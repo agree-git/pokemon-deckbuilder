@@ -1,0 +1,455 @@
+{
+  "version": 1,
+  "route_version": 3,
+  "party_note": "현재 일반 1~3세대 도감에 맞춘 게임용 파티. 원작 후대 파티를 그대로 재현한 목록이 아닙니다.",
+  "gyms": [
+    {
+      "leader_id": "hala",
+      "leader": "할라",
+      "region": "알로라",
+      "type": "fighting",
+      "status": "island_trial",
+      "person_ids": [
+        "hala"
+      ],
+      "party": [
+        57,
+        62,
+        68,
+        107,
+        286,
+        297
+      ],
+      "plan": "큰 시련의 기합",
+      "styles": [
+        "focus",
+        "sustain",
+        "assault",
+        "tempo",
+        "focus",
+        "bulwark"
+      ],
+      "role_label": "섬의왕"
+    },
+    {
+      "leader_id": "olivia",
+      "leader": "라이치",
+      "region": "알로라",
+      "type": "rock",
+      "status": "island_trial",
+      "person_ids": [
+        "olivia"
+      ],
+      "party": [
+        76,
+        112,
+        139,
+        141,
+        369,
+        248
+      ],
+      "plan": "빛나는 원석",
+      "styles": [
+        "bulwark",
+        "assault",
+        "precision",
+        "tempo",
+        "sustain",
+        "focus"
+      ],
+      "role_label": "섬의여왕"
+    },
+    {
+      "leader_id": "nanu",
+      "leader": "나누",
+      "region": "알로라",
+      "type": "dark",
+      "status": "island_trial",
+      "person_ids": [
+        "nanu"
+      ],
+      "party": [
+        197,
+        229,
+        248,
+        359,
+        302,
+        215
+      ],
+      "plan": "느긋한 포위",
+      "styles": [
+        "sustain",
+        "scorch",
+        "bulwark",
+        "focus",
+        "venom",
+        "tempo"
+      ],
+      "role_label": "섬의왕"
+    },
+    {
+      "leader_id": "hapu",
+      "leader": "하푸우",
+      "region": "알로라",
+      "type": "ground",
+      "status": "island_trial",
+      "person_ids": [
+        "hapu"
+      ],
+      "party": [
+        28,
+        51,
+        76,
+        112,
+        232,
+        260
+      ],
+      "plan": "대지의 걸음",
+      "styles": [
+        "bulwark",
+        "tempo",
+        "precision",
+        "assault",
+        "focus",
+        "sustain"
+      ],
+      "role_label": "섬의여왕"
+    }
+  ],
+  "elite": [
+    {
+      "id": "molayne",
+      "name": "멀레인",
+      "region": "알로라",
+      "type": "steel",
+      "party": [
+        227,
+        82,
+        212,
+        208,
+        376
+      ]
+    },
+    {
+      "id": "crispin",
+      "name": "하솔",
+      "region": "블루베리",
+      "type": "fire",
+      "party": [
+        324,
+        323,
+        59,
+        38,
+        126,
+        257
+      ]
+    },
+    {
+      "id": "amarys",
+      "name": "네리네",
+      "region": "블루베리",
+      "type": "steel",
+      "party": [
+        227,
+        212,
+        82,
+        208,
+        306,
+        376
+      ]
+    },
+    {
+      "id": "lacey",
+      "name": "타로",
+      "region": "블루베리",
+      "type": "fairy",
+      "party": [
+        210,
+        36,
+        40,
+        184,
+        303,
+        282
+      ]
+    },
+    {
+      "id": "drayton",
+      "name": "제빈",
+      "region": "블루베리",
+      "type": "dragon",
+      "party": [
+        330,
+        149,
+        230,
+        334,
+        254,
+        373
+      ]
+    }
+  ],
+  "champions": [
+    {
+      "id": "kukui",
+      "name": "쿠쿠이",
+      "region": "알로라",
+      "type": "mixed",
+      "party": [
+        82,
+        143,
+        38,
+        227,
+        257,
+        260
+      ]
+    },
+    {
+      "id": "hau",
+      "name": "하우",
+      "region": "알로라",
+      "type": "mixed",
+      "party": [
+        26,
+        136,
+        134,
+        103,
+        169,
+        260
+      ]
+    },
+    {
+      "id": "kieran",
+      "name": "카지",
+      "region": "블루베리",
+      "type": "mixed",
+      "party": [
+        186,
+        233,
+        257,
+        197,
+        149,
+        230
+      ]
+    },
+    {
+      "id": "red",
+      "name": "레드",
+      "region": "관동",
+      "type": "mixed",
+      "party": [
+        25,
+        131,
+        143,
+        3,
+        6,
+        9
+      ]
+    }
+  ],
+  "tactics": {
+    "gym:hala": {
+      "name": "할라",
+      "plan": "큰 시련의 기합",
+      "styles": [
+        "focus",
+        "sustain",
+        "assault",
+        "tempo",
+        "focus",
+        "bulwark"
+      ]
+    },
+    "gym:olivia": {
+      "name": "라이치",
+      "plan": "빛나는 원석",
+      "styles": [
+        "bulwark",
+        "assault",
+        "precision",
+        "tempo",
+        "sustain",
+        "focus"
+      ]
+    },
+    "gym:nanu": {
+      "name": "나누",
+      "plan": "느긋한 포위",
+      "styles": [
+        "sustain",
+        "scorch",
+        "bulwark",
+        "focus",
+        "venom",
+        "tempo"
+      ]
+    },
+    "gym:hapu": {
+      "name": "하푸우",
+      "plan": "대지의 걸음",
+      "styles": [
+        "bulwark",
+        "tempo",
+        "precision",
+        "assault",
+        "focus",
+        "sustain"
+      ]
+    },
+    "elite:molayne": {
+      "name": "멀레인",
+      "plan": "정밀한 강철 회로",
+      "styles": [
+        "bulwark",
+        "precision",
+        "tempo",
+        "assault",
+        "focus"
+      ]
+    },
+    "elite:crispin": {
+      "name": "하솔",
+      "plan": "불맛의 완급",
+      "styles": [
+        "bulwark",
+        "scorch",
+        "assault",
+        "precision",
+        "tempo",
+        "focus"
+      ]
+    },
+    "elite:amarys": {
+      "name": "네리네",
+      "plan": "오차 없는 방진",
+      "styles": [
+        "precision",
+        "tempo",
+        "focus",
+        "bulwark",
+        "assault",
+        "precision"
+      ]
+    },
+    "elite:lacey": {
+      "name": "타로",
+      "plan": "다정한 반격",
+      "styles": [
+        "tempo",
+        "precision",
+        "sustain",
+        "assault",
+        "bulwark",
+        "focus"
+      ]
+    },
+    "elite:drayton": {
+      "name": "제빈",
+      "plan": "느긋한 용의 도약",
+      "styles": [
+        "tempo",
+        "bulwark",
+        "precision",
+        "sustain",
+        "focus",
+        "assault"
+      ]
+    },
+    "champion:kukui": {
+      "name": "쿠쿠이",
+      "plan": "기술 연구의 결실",
+      "styles": [
+        "precision",
+        "sustain",
+        "scorch",
+        "bulwark",
+        "focus",
+        "assault"
+      ]
+    },
+    "champion:hau": {
+      "name": "하우",
+      "plan": "웃음의 전력승부",
+      "styles": [
+        "tempo",
+        "scorch",
+        "sustain",
+        "roots",
+        "precision",
+        "assault"
+      ]
+    },
+    "champion:kieran": {
+      "name": "카지",
+      "plan": "정상을 향한 집념",
+      "styles": [
+        "sustain",
+        "precision",
+        "scorch",
+        "bulwark",
+        "focus",
+        "assault"
+      ]
+    },
+    "champion:red": {
+      "name": "레드",
+      "plan": "정상의 침묵",
+      "styles": [
+        "tempo",
+        "precision",
+        "bulwark",
+        "roots",
+        "scorch",
+        "assault"
+      ]
+    }
+  },
+  "backdrops": {
+    "gym:hala": {
+      "background": "res://assets/league/boss_expansion_1.png",
+      "cell": 0
+    },
+    "gym:olivia": {
+      "background": "res://assets/league/boss_expansion_1.png",
+      "cell": 1
+    },
+    "gym:nanu": {
+      "background": "res://assets/league/boss_expansion_1.png",
+      "cell": 2
+    },
+    "gym:hapu": {
+      "background": "res://assets/league/boss_expansion_1.png",
+      "cell": 3
+    },
+    "elite:crispin": {
+      "background": "res://assets/league/boss_expansion_1.png",
+      "cell": 4
+    },
+    "elite:amarys": {
+      "background": "res://assets/league/boss_expansion_2.png",
+      "cell": 4
+    },
+    "elite:lacey": {
+      "background": "res://assets/league/boss_expansion_1.png",
+      "cell": 5
+    },
+    "elite:drayton": {
+      "background": "res://assets/league/boss_expansion_2.png",
+      "cell": 5
+    },
+    "champion:kukui": {
+      "background": "res://assets/league/boss_expansion_2.png",
+      "cell": 0
+    },
+    "champion:hau": {
+      "background": "res://assets/league/boss_expansion_2.png",
+      "cell": 1
+    },
+    "champion:kieran": {
+      "background": "res://assets/league/boss_expansion_2.png",
+      "cell": 2
+    },
+    "champion:red": {
+      "background": "res://assets/league/boss_expansion_2.png",
+      "cell": 3
+    }
+  }
+}
