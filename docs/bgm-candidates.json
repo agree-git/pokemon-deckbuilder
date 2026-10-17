@@ -1,0 +1,716 @@
+{
+  "schema_version": 1,
+  "checked_on": "2026-10-18",
+  "timezone": "Asia/Seoul",
+  "scope": "사용자 추천 35개 BGM 후보의 버전과 다운로드 제공 페이지 조사. 게임 적용과 원곡 파일 재업로드는 하지 않음.",
+  "requested_count": 35,
+  "track_page_count": 36,
+  "audio_files_downloaded": 0,
+  "audio_files_uploaded": 0,
+  "verification": {
+    "method": "공개 카탈로그의 곡명/버전 및 개별 HTML 페이지의 MP3/FLAC 다운로드 버튼 확인",
+    "audio_playback": false,
+    "audio_decode": false,
+    "audio_download": false,
+    "network_download_success": false,
+    "upload_permission_established": false
+  },
+  "rights": {
+    "official_library_guidelines": "https://soundlibrary.pokemon.co.jp/en/download",
+    "official_library_rules_summary": "해당 라이브러리에서 직접 받은 데이터만 대상이며, 제3자 재배포 및 게임·앱·소프트웨어·프로그램 사용을 제한한다.",
+    "third_party_catalog_status": "비공식 제공 페이지의 존재는 권리자의 재업로드·게임 이용 허가가 아니다. 이 조사에서 해당 허가는 확인하지 못했다.",
+    "restriction": "음원 파일, 샘플, 자동 다운로드 도구를 포함하지 않는다."
+  },
+  "sources": {
+    "dp": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-diamond-and-pearl-super-music-collection",
+    "hgss": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-heartgold-and-soulsilver-music-super-complete",
+    "bw": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-black-and-white-super-music-collection",
+    "oras": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-omega-ruby-and-alpha-sapphire-super-music-complete-nintendo-3ds",
+    "xy": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-x-y",
+    "pmd": "https://downloads.khinsider.com/game-soundtracks/album/pok-mon-mystery-dungeon-explorers-of-time-darkness-sky-ds-gamerip-2009",
+    "sm": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-sun-moon-super-music-collection"
+  },
+  "candidates": [
+    {
+      "id": 1,
+      "requested": "DPPT 201번도로",
+      "album": "dp",
+      "title": "Route 201 (Day)",
+      "catalog_duration": "0:36",
+      "notes": "낮 버전 우선 후보; 밤 버전은 별도 편곡.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-diamond-and-pearl-super-music-collection",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-diamond-and-pearl-super-music-collection/1-06.%2520Route%2520201%2520%2528Day%2529.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 2,
+      "requested": "HGSS 26번도로",
+      "album": "hgss",
+      "title": "Route 26",
+      "catalog_duration": "0:45",
+      "notes": "DS 리메이크 음원. CD3 GB Sounds 제외.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-heartgold-and-soulsilver-music-super-complete",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-heartgold-and-soulsilver-music-super-complete/2-01.%2520Route%252026.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 3,
+      "requested": "BW 1번도로",
+      "album": "bw",
+      "title": "Route 1",
+      "catalog_duration": "1:22",
+      "notes": "BW 원작 버전. BW2/팬 리메이크 제외.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-black-and-white-super-music-collection",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-black-and-white-super-music-collection/1-13.%2520Route%25201.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 4,
+      "requested": "DPPT 209번도로",
+      "album": "dp",
+      "title": "Route 209 (Day)",
+      "catalog_duration": "1:22",
+      "notes": "낮 버전 우선 후보; 밤 버전은 별도 편곡.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-diamond-and-pearl-super-music-collection",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-diamond-and-pearl-super-music-collection/1-54.%2520Route%2520209%2520%2528Day%2529.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 5,
+      "requested": "ORAS 파도타기",
+      "album": "oras",
+      "title": "Surf",
+      "catalog_duration": "2:32",
+      "notes": "3DS 리메이크 음원. 같은 앨범 CD5의 RS Surf 제외.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-omega-ruby-and-alpha-sapphire-super-music-complete-nintendo-3ds",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-omega-ruby-and-alpha-sapphire-super-music-complete-nintendo-3ds/2-11.%2520Surf.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 6,
+      "requested": "ORAS 104번도로",
+      "album": "oras",
+      "title": "Route 104",
+      "catalog_duration": "1:29",
+      "notes": "3DS 리메이크 음원. 동봉 RS 원곡 제외.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-omega-ruby-and-alpha-sapphire-super-music-complete-nintendo-3ds",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-omega-ruby-and-alpha-sapphire-super-music-complete-nintendo-3ds/1-26.%2520Route%2520104.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 7,
+      "requested": "신오지방 축복시티(XY 이설시티 연주 버전)",
+      "album": "xy",
+      "title": "How About a Song? \"Jubilife City\"",
+      "catalog_duration": "1:43",
+      "notes": "XY 이설시티 집의 연주 버전. DP 축복시티·XY 이설시티 자체 테마와 구분.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-x-y",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-x-y/3-19.%2520How%2520About%2520a%2520Song%253F%2520%2522Jubilife%2520City%2522.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 8,
+      "requested": "BW 물풍경시티",
+      "album": "bw",
+      "title": "Driftveil City",
+      "catalog_duration": "1:31",
+      "notes": "BW 원작 버전.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-black-and-white-super-music-collection",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-black-and-white-super-music-collection/2-02.%2520Driftveil%2520City.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 9,
+      "requested": "HGSS 블루시티",
+      "album": "hgss",
+      "title": "Cerulean City",
+      "catalog_duration": "0:42",
+      "notes": "DS 리메이크 음원. CD3 GB Sounds 제외.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-heartgold-and-soulsilver-music-super-complete",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-heartgold-and-soulsilver-music-super-complete/2-09.%2520Cerulean%2520City.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 10,
+      "requested": "HGSS 무지개시티",
+      "album": "hgss",
+      "title": "Celadon City",
+      "catalog_duration": "0:43",
+      "notes": "DS 리메이크 음원. CD3 GB Sounds 제외.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-heartgold-and-soulsilver-music-super-complete",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-heartgold-and-soulsilver-music-super-complete/2-14.%2520Celadon%2520City.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 11,
+      "requested": "DPPT 영원시티",
+      "album": "dp",
+      "title": "Eterna City (Day)",
+      "catalog_duration": "1:42",
+      "notes": "낮 버전 우선 후보; 밤 버전은 별도 편곡.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-diamond-and-pearl-super-music-collection",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-diamond-and-pearl-super-music-collection/1-44.%2520Eterna%2520City%2520%2528Day%2529.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 12,
+      "requested": "XY 고목내마을",
+      "album": "xy",
+      "title": "Camphrier Town",
+      "catalog_duration": "1:23",
+      "notes": "XY 원작.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-x-y",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-x-y/1-43.%2520Camphrier%2520Town.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 13,
+      "requested": "ORAS 검방울시티",
+      "album": "oras",
+      "title": "Fortree City",
+      "catalog_duration": "1:29",
+      "notes": "3DS 리메이크 음원. 같은 앨범 CD6 RS판 제외.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-omega-ruby-and-alpha-sapphire-super-music-complete-nintendo-3ds",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-omega-ruby-and-alpha-sapphire-super-music-complete-nintendo-3ds/2-17.%2520Fortree%2520City.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 14,
+      "requested": "XY 버들비마을",
+      "album": "xy",
+      "title": "Dendemille Town",
+      "catalog_duration": "1:23",
+      "notes": "XY 원작.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-x-y",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-x-y/2-39.%2520Dendemille%2520Town.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 15,
+      "requested": "DPPT 운하시티",
+      "album": "dp",
+      "title": "Canalave City",
+      "catalog_duration": "1:20",
+      "notes": "앨범 CD1 기본 버전 우선. CD2 Night와 구분.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-diamond-and-pearl-super-music-collection",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-diamond-and-pearl-super-music-collection/1-61.%2520Canalave%2520City.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 16,
+      "requested": "XY 미르시티",
+      "album": "xy",
+      "title": "Lumiose City",
+      "catalog_duration": "1:47",
+      "notes": "XY 원작. Legends Z-A 편곡 제외.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-x-y",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-x-y/1-37.%2520Lumiose%2520City.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 17,
+      "requested": "BW 스카이애로 브리지",
+      "album": "bw",
+      "title": "Skyarrow Bridge",
+      "catalog_duration": "1:21",
+      "notes": "BW 원작.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-black-and-white-super-music-collection",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-black-and-white-super-music-collection/1-50.%2520Skyarrow%2520Bridge.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 18,
+      "requested": "SM 시련 개시",
+      "album": "sm",
+      "title": "A Captain's Trial Begins!",
+      "catalog_duration": "3:04",
+      "notes": "SM 원작의 시련 BGM. 짧은 완료 팡파르/USUM 곡과 구분.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-sun-moon-super-music-collection",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-sun-moon-super-music-collection/2-07.%2520A%2520Captain%2527s%2520Trial%2520Begins%2521.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 19,
+      "requested": "DPPT 물가시티",
+      "album": "dp",
+      "title": "Sunyshore City (Day)",
+      "catalog_duration": "1:29",
+      "notes": "낮 버전 우선 후보; 밤 버전은 별도 편곡.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-diamond-and-pearl-super-music-collection",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-diamond-and-pearl-super-music-collection/1-72.%2520Sunyshore%2520City%2520%2528Day%2529.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 20,
+      "requested": "ORAS 미로마을",
+      "album": "oras",
+      "title": "Littleroot Town",
+      "catalog_duration": "1:59",
+      "notes": "3DS 시작 마을 테마. Pacifidlog Town(황금마을)과 구분.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-omega-ruby-and-alpha-sapphire-super-music-complete-nintendo-3ds",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-omega-ruby-and-alpha-sapphire-super-music-complete-nintendo-3ds/1-05.%2520Littleroot%2520Town.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 21,
+      "requested": "BW 마름꽃마을",
+      "album": "bw",
+      "title": "Nuvema Town",
+      "catalog_duration": "1:40",
+      "notes": "BW 원작 시작 마을.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-black-and-white-super-music-collection",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-black-and-white-super-music-collection/1-06.%2520Nuvema%2520Town.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 22,
+      "requested": "DPPT 마박사 연구소",
+      "album": "dp",
+      "title": "The Pokémon Lab",
+      "catalog_duration": "1:13",
+      "notes": "DP 마박사 연구소. ORAS 털보박사/XY 플라타느 연구소와 구분.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-diamond-and-pearl-super-music-collection",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-diamond-and-pearl-super-music-collection/1-14.%2520The%2520Pok%25C3%25A9mon%2520Lab.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 23,
+      "requested": "DPPT 떡잎마을",
+      "album": "dp",
+      "title": "Twinleaf Town (Day)",
+      "catalog_duration": "1:21",
+      "notes": "낮 버전 우선 후보; 밤 버전은 별도 편곡.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-diamond-and-pearl-super-music-collection",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-diamond-and-pearl-super-music-collection/1-04.%2520Twinleaf%2520Town%2520%2528Day%2529.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 24,
+      "requested": "XY 조아마을",
+      "album": "xy",
+      "title": "Vaniville Town",
+      "catalog_duration": "1:49",
+      "notes": "XY 원작 시작 마을.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-x-y",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-x-y/1-05.%2520Vaniville%2520Town.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 25,
+      "requested": "HGSS 1번도로",
+      "album": "hgss",
+      "title": "Route 1",
+      "catalog_duration": "0:47",
+      "notes": "DS 리메이크 음원. CD3 GB Sounds 제외.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-heartgold-and-soulsilver-music-super-complete",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-heartgold-and-soulsilver-music-super-complete/2-24.%2520Route%25201.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 26,
+      "requested": "SM 환대시티",
+      "album": "sm",
+      "title": "Hau'oli City (Day)",
+      "catalog_duration": "1:42",
+      "notes": "낮 버전 우선 후보. Night 별도 편곡.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-sun-moon-super-music-collection",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-sun-moon-super-music-collection/1-45.%2520Hau%2527oli%2520City%2520%2528Day%2529.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 27,
+      "requested": "HGSS 30번도로",
+      "album": "hgss",
+      "title": "Route 30",
+      "catalog_duration": "0:48",
+      "notes": "DS 리메이크 음원. CD3 GB Sounds 제외.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-heartgold-and-soulsilver-music-super-complete",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-heartgold-and-soulsilver-music-super-complete/1-20.%2520Route%252030.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 28,
+      "requested": "HGSS 태초마을",
+      "album": "hgss",
+      "title": "Pallet Town",
+      "catalog_duration": "1:00",
+      "notes": "DS 리메이크 음원. CD3 GB Sounds 제외.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-heartgold-and-soulsilver-music-super-complete",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-heartgold-and-soulsilver-music-super-complete/2-25.%2520Pallet%2520Town.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 29,
+      "requested": "DPPT 잔모래마을",
+      "album": "dp",
+      "title": "Sandgem Town (Day)",
+      "catalog_duration": "1:00",
+      "notes": "낮 버전 우선 후보; 밤 버전은 별도 편곡.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-diamond-and-pearl-super-music-collection",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-diamond-and-pearl-super-music-collection/1-13.%2520Sandgem%2520Town%2520%2528Day%2529.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 30,
+      "requested": "ORAS 잿빛도시",
+      "album": "oras",
+      "title": "Slateport City",
+      "catalog_duration": "2:54",
+      "notes": "3DS 리메이크 음원. 동봉 RS 원곡 제외.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-omega-ruby-and-alpha-sapphire-super-music-complete-nintendo-3ds",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-omega-ruby-and-alpha-sapphire-super-music-complete-nintendo-3ds/1-38.%2520Slateport%2520City.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 31,
+      "requested": "ORAS 창공날기",
+      "album": "oras",
+      "title": "Soaring Dreams",
+      "catalog_duration": "2:37",
+      "notes": "창공날기 낮/밤 두 곡을 함께 후보로 기록. 아직 하나로 확정하지 않음.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-omega-ruby-and-alpha-sapphire-super-music-complete-nintendo-3ds",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-omega-ruby-and-alpha-sapphire-super-music-complete-nintendo-3ds/3-17.%2520Soaring%2520Dreams.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false,
+      "alternatives": [
+        {
+          "title": "Soaring Illusions",
+          "duration": "3:09",
+          "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-omega-ruby-and-alpha-sapphire-super-music-complete-nintendo-3ds/3-18.%2520Soaring%2520Illusions.mp3",
+          "note": "창공날기 밤 테마 후보",
+          "download_controls": {
+            "mp3_button": true,
+            "flac_button": true,
+            "page_loaded": true
+          },
+          "reupload_permission": "not_established",
+          "downloaded": false,
+          "uploaded": false
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "requested": "BW 뇌문시티",
+      "album": "bw",
+      "title": "Nimbasa City",
+      "catalog_duration": "1:59",
+      "notes": "BW 원작.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-black-and-white-super-music-collection",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-black-and-white-super-music-collection/1-55.%2520Nimbasa%2520City.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 33,
+      "requested": "HGSS 도라지시티",
+      "album": "hgss",
+      "title": "Violet City",
+      "catalog_duration": "1:15",
+      "notes": "DS 리메이크 음원. CD3 GB Sounds 제외.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-heartgold-and-soulsilver-music-super-complete",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-heartgold-and-soulsilver-music-super-complete/1-22.%2520Violet%2520City.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 34,
+      "requested": "XY 4번도로",
+      "album": "xy",
+      "title": "Route 4",
+      "catalog_duration": "2:26",
+      "notes": "XY 원작.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-x-y",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pokemon-x-y/1-33.%2520Route%25204.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    },
+    {
+      "id": 35,
+      "requested": "불가사의던전 탐험대 시리즈 \"시간의 톱니바퀴\"",
+      "album": "pmd",
+      "title": "Time Gear",
+      "catalog_duration": "3:31",
+      "notes": "탐험대 DS gamerip의 기본 Time Gear. Remix/Reprise/팬 리마스터 제외.",
+      "album_url": "https://downloads.khinsider.com/game-soundtracks/album/pok-mon-mystery-dungeon-explorers-of-time-darkness-sky-ds-gamerip-2009",
+      "download_page_url": "https://downloads.khinsider.com/game-soundtracks/album/pok-mon-mystery-dungeon-explorers-of-time-darkness-sky-ds-gamerip-2009/59.%2520Time%2520Gear.mp3",
+      "download_controls": {
+        "mp3_button": true,
+        "flac_button": true,
+        "page_loaded": true
+      },
+      "source_type": "unofficial_download_catalog",
+      "reupload_permission": "not_established",
+      "downloaded": false,
+      "uploaded": false
+    }
+  ]
+}
