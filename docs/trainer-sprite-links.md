@@ -1,5 +1,7 @@
 # 6세대 이후 트레이너 도트 링크
 
+[추가 조사: 업로드 XLSX의 277개 항목·11개 팩과 전투용 컬렉션 선별](trainer-resource-research.md). 원본 이미지/인물별 수록/적용은 아직 미확인이다.
+
 [전체 갤러리·제작자 표시](https://play.pokemonshowdown.com/sprites/trainers/?filter=credited)
 
 [6세대 GitHub 파일 모음](https://github.com/smogon/sprites/tree/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6) · [7세대 GitHub 파일 모음](https://github.com/smogon/sprites/tree/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen7)
