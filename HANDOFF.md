@@ -33,17 +33,17 @@
 
 사용자의 “다음 진행”을 Windows 내보내기 준비로 이어 진행했다. main에 Windows Desktop/x86_64/외부PCK export preset과 Windows preview workflow를 추가했다. 자료에는 공식 Godot4.7.2 엔진/템플릿 SHA512 검증·준비, 독립 스냅샷 빌드, 배포본/검증용 export 비교·실행 도구를 둔다. ZIP·한글 안내·출처/폰트/엔진 라이선스·파일별SHA256을 포함하고 빌드/캐시는 Git에 넣지 않는다.
 
-Linux에서 Windows PE/PCK 생성과 배포17개 파일·PCK게임항목3,544개의 일치를 확인했다. 공식 Linux release template에서 배포PCK 타이틀 시작과 별도 byte-matched 검증 export **1,899검사·실패0**. 시작/카드/포획/합류/저장 복구/컬렉션/설정·전468종 앞뒤 도트/울음소리·18바이옴 루프/103종 문구를 포함한다. Windows 네이티브 CI는 반영 뒤 결과를 확인한다. 이 Linux 결과를 Windows 네이티브 성공으로 설명하지 않는다.
+Linux에서 Windows PE/PCK 생성과 배포17개 파일·PCK게임항목3,544개의 일치를 확인했다. 공식 Linux release template에서 배포PCK 타이틀 시작과 별도 byte-matched 검증 export **1,899검사·실패0**. 시작/카드/포획/합류/저장 복구/컬렉션/설정·전468종 앞뒤 도트/울음소리·18바이옴 루프/103종 문구를 포함한다. [Windows native 실행](https://github.com/agree-git/pokemon-deckbuilder/actions/runs/39036579912)도 **동일1,899검사·실패0**으로 완료했다. 공식 Windows editor/release EXE를 사용했고 게임코드/에셋/저장 규칙을 변경하지 않았다. [시험 빌드 다운로드](https://github.com/agree-git/pokemon-deckbuilder/actions/runs/39036579912/artifacts/12101384829)는 GitHub 로그인 필요·14일 보관이다. 압축을 풀고 `PokemonExpedition/PokemonExpedition.exe`를 실행한다. 바이너리를 Git 이력에 넣거나 정식 Release로 게시하지 않았다.
 
 알려진 진단: Godot4.7.2에서 타이틀을 headless `--quit-after`로 강제 종료하면 title.wav의 WAV/PlaybackWAV 객체가 남는 메시지가 관측된다. 이를 보고서에 명시하고 `title_exit_clean:false`로 구분한다. 다른 오류와 깊은 검사의 누수는 실패다. 실제 Windows GPU/소리/사람의 긴 플레이와 깨끗한 종료는 추가 검증이 필요하다.
 
-직전 희귀103종 포획/합류/방출 반응309문구와 바이옴 음악18곡/환경음18종은 완료된 상태다. 다음 한 단계는 Windows 자동 검증 결과를 확인하고 실제 PC 플레이 피드백을 받는 것이다. 보류한 밸런스는 재개하지 않는다.
+직전 희귀103종 포획/합류/방출 반응309문구와 바이옴 음악18곡/환경음18종은 완료된 상태다. 다음 한 단계는 실제 Windows PC에서 화면/소리·원정 저장 이어하기를 직접 확인하고 플레이 피드백을 받는 것이다. 보류한 밸런스는 재개하지 않는다.
 
 ## 다음 작업 후보
 
 1. 사용자의 실제 플레이 피드백에 따른 오류/조작/연출 개선.
 2. 완료한 바이옴 오디오/희귀 포획 반응의 실제 플레이·청취 피드백에 따른 조정.
-3. Windows 내보내기·실제 실행·사람의 긴 플레이 검증.
+3. Windows headless 빌드/실행은 완료. 실제 PC GPU/소리·깨끗한 종료·사람의 긴 플레이 검증.
 
 **밸런스는 사용자가 추후 진행하기로 했다.** 요청 없이 적 하향·성장/보상/회복 경제 조정이나 추가 난도 계측을 재개하지 않는다. 일반 4~9세대와 합체/기타 전투폼의 확장도 미승인 범위다.
 

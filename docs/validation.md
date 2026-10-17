@@ -1,12 +1,14 @@
 # 검증 현황
 
-## Windows 내보내기 준비 · 2026-10-17
+## Windows 내보내기·네이티브 실행 · 2026-10-17
 
 - 공식 Godot4.7.2 export_templates 약1.28GB의 고정SHA512를 검증했다. Windows x86_64 release PE와 외부PCK를 생성하고 실행 안내·출처/라이선스·파일별SHA256을 묶은 약77MB ZIP을 만들었다. 최종 산출물은 Git에 커밋하지 않는다.
 - Linux release template 검사: 배포17개 파일 hash, 배포/검증PCK의 게임항목 **3,544개 동일**, 실제 배포PCK 타이틀 시작, 별도 검증 export **1,899검사·실패0**. 원본 소스/에디터를 읽지 않는 실행 파일에서468종 앞/뒤 도트와 울음소리,18바이옴 음악/환경음,103종 이야기/반응, 시작·카드 사용·포획·합류·저장 roundtrip·컬렉션·설정을 확인했다.
 - 배포용 공식 템플릿의 외부 경로/스크립트 차단을 유지한다. 검증 전용 main scene/script와 UUID 사용자 폴더는 별도 export에만 있고 배포PCK에는 없다. 프로젝트 설정/UID cache를 제외한 모든 게임 pack 항목의 실제 payload를 비교했다. 테스트 사용자 폴더는 제거했다.
 - 알려진 진단: `--quit-after`로 headless 타이틀을 강제 종료하면 title.wav AudioStreamWAV/PlaybackWAV가 남았다는 Godot 종료 진단(프로세스exit0)이 발생했다. 보고서의 `title_shutdown_diagnostic`, `title_exit_clean:false`에 남겼으며 깨끗한 종료로 통과 처리하지 않는다. 깊은 검사는 오류/누수 없이 끝났다. 게임 규칙·저장/지문·사용자 배경 좌표는 바꾸지 않았다.
-- main Windows preview workflow는 Windows 실제 EXE의 headless 검증 후 시험 아티팩트를14일 보관하도록 구성했다. Windows 네이티브 CI의 실제 결과는 실행 뒤 기록한다. 물리GPU/화면·음향/긴 플레이 검증과 구분한다.
+- [Windows CI #1](https://github.com/agree-git/pokemon-deckbuilder/actions/runs/39036579912): **실제 Windows x86_64 release EXE**, 배포17개 파일·PCK게임항목3,544개 동일·타이틀 시작·**1,899검사·실패0**. main `d18ecf1ab2963f2254db063e2612b5738bdf9a49`, 제작/검사도구 `6a1c5bdd679e6b1c00bcfd301683362811fd0bcf`. Windows에서도 위 타이틀 강제 종료 오디오 진단은 남아 있다. 따라서 깨끗한 종료/실제 GPU·음향/사람의 긴 플레이까지 완료했다고 설명하지 않는다.
+- [Windows 시험 아티팩트](https://github.com/agree-git/pokemon-deckbuilder/actions/runs/39036579912/artifacts/12101384829): 약80.9MB, 배포 폴더와 `windows-native-report.json`. GitHub 로그인 필요·14일 보관. 아티팩트 SHA256 `293f0e9a1170b56d95a2f5755678986e3ed544f966ea5b66c5906ce1b81ec0ea`. 내부 제작 ZIP의 SHA256은 `8f5f3542bbbadbfc7f3dc1a911d3fe086b355231d9210be73e45e6434282a440`이며 GitHub 다운로드 ZIP과 별개다. 진단 로그는7일 보관하며 바이너리/로그를 Git에 커밋하지 않았다.
+- 사용자 데이터 경로의 올바른 Godot 키(`custom_user_dir_name`)로 검사기를 갱신한 뒤 Linux smoke **4스크립트·842검사 통과**, 고유 사용자 경로 확인·제거도 통과했다. 게임 코드/씬/데이터/에셋은 직전 main `daba259`와 동일하다.
 
 ## 희귀 포획 반응 · 2026-10-17
 
@@ -15,7 +17,7 @@
 - 실제 LinuxX11/llvmpipe1920×1080: **29검사·16 OS클릭·실패0**. 뮤 합류/레시라무 방출/가라르 프리져 합류를 C키 포획→계속/기술 넘기기→미리보기 취소·확정 또는 방출→반응창의 클릭/Esc/Enter 닫기로 확인했다. 배경 클릭은 반응창을 넘기거나 기존 보상을 선택하지 않는다. 최종 스크립트 오류/종료 누수 없음. 화면9장은 임시 검토 폴더에서 확인하고 커밋하지 않았다.
 - 기존 규칙·저장·지문에 쓰는 콘텐츠·사용자 배경 배치12개 입력은 직전 main과 바이트가 같다. 새 문구는 표현용 독립 JSON이어서 content fingerprint/저장 형식을 바꾸지 않는다. 출처 고지에 자체 작성임을 명시했다.
 
-자동 검사는 임시 게임/고유 사용자 데이터 경로, 실제 창 검사는 별도 테스트 사용자 프로필·Dummy 오디오를 사용했다. 중간 원정 fixture에서 시작했으므로 처음부터 전투를 이겨 진행한 검증은 아니다. Windows 실행·사람의 긴 플레이는 미완료다.
+자동 검사는 임시 게임/고유 사용자 데이터 경로, 실제 창 검사는 별도 테스트 사용자 프로필·Dummy 오디오를 사용했다. 중간 원정 fixture에서 시작했으므로 처음부터 전투를 이겨 진행한 검증은 아니다. 당시 Windows 실행은 하지 않았으며 이후 headless 검증은 위 Windows 절을 따른다. 사람의 긴 플레이는 미완료다.
 
 ## 바이옴 오디오 · 2026-10-17
 
@@ -65,4 +67,4 @@ Linux/Godot **4.7.2** 기준입니다. [당시 화면/로그](history.md)는 고
 
 ## 남은 검증
 
-Windows 내보내기/실행, 새 희귀 범위의 사람 전체 원정 플레이, 재미/승률/경제 밸런스는 별도입니다. 사용자는 밸런스 조정을 보류했습니다. 다른 머신에서 설치/디스플레이/성능이 동일하다고 가정하지 않습니다.
+Windows 실제 PC의 GPU/소리·깨끗한 종료, 새 희귀 범위의 사람 전체 원정 플레이, 재미/승률/경제 밸런스는 별도입니다. Windows 내보내기와 headless 네이티브 실행은 위 결과로 확인했습니다. 사용자는 밸런스 조정을 보류했습니다. 다른 머신에서 설치/디스플레이/성능이 동일하다고 가정하지 않습니다.
