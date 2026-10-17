@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 import struct
 import urllib.request
+import re
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -13,10 +14,14 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--fetch', action='store_true')
+    parser.add_argument('--game-root', type=Path, default=ROOT, help='Current main checkout to validate')
+    parser.add_argument('--credits-index', type=Path, default=ROOT / 'assets/sources/trainer_gallery_credits.php.txt')
+    parser.add_argument('--expected-included', type=int)
     args = parser.parse_args()
-    manifest = json.loads((ROOT / 'assets/sources/trainer_sprites.json').read_text())
-    gyms = json.loads((ROOT / 'data/gym_leaders.json').read_text())['leaders']
-    league = json.loads((ROOT / 'data/league.json').read_text())
+    root = args.game_root.resolve()
+    manifest = json.loads((root / 'assets/sources/trainer_sprites.json').read_text())
+    gyms = json.loads((root / 'data/gym_leaders.json').read_text())['leaders']
+    league = json.loads((root / 'data/league.json').read_text())
     expected = {f'{role}:{p.get("leader_id", p.get("id"))}'
                 for role, pool in [('gym', gyms), ('elite', league['elite']), ('champion', league['champions'])]
                 for p in pool}
@@ -24,9 +29,19 @@ def main():
     referenced = {e['path'] for e in manifest['entries'].values() if e['status'] == 'included'}
     assert referenced == set(manifest['assets']), 'Orphan or missing sprite'
     for local, source in manifest['assets'].items():
-        target = ROOT / local
+        target = root / local
         assert source['url'] == f'https://raw.githubusercontent.com/smogon/sprites/{manifest["commit"]}/{source["upstream_path"]}'
-        assert '/canonical/trainers/' in source['upstream_path']
+        if source.get('kind', 'canonical') == 'fan':
+            assert '/noncanonical/trainers/' in source['upstream_path']
+            proof = args.credits_index.read_bytes()
+            assert hashlib.sha256(proof).hexdigest() == source['credit_source_sha256']
+            credits = dict(re.findall(r'"([^"]+\.png)"\s*=>\s*"([^"]+)"', proof.decode()))
+            assert credits[source['gallery_file']] == source['artist'], local
+            assert 'Credit must be given' in source['usage_notice']
+            assert 'DO NOT EDIT without permission.' in source['usage_notice']
+            assert source['credit_source'] == 'https://github.com/smogon/pokemon-showdown-client/blob/74056bbbb55d6ce15f9dd254186b94a51fe94b14/play.pokemonshowdown.com/sprites/trainers/index.php'
+        else:
+            assert '/canonical/trainers/' in source['upstream_path']
         if args.fetch:
             data = urllib.request.urlopen(source['url'], timeout=30).read()
             assert hashlib.sha256(data).hexdigest() == source['sha256'], local
@@ -40,6 +55,8 @@ def main():
         x, y, w, h = source['bounds']
         assert w > 0 and h > 0 and x >= 0 and y >= 0 and x+w <= width and y+h <= height, local
     count = sum(e['status'] == 'included' for e in manifest['entries'].values())
+    if args.expected_included is not None:
+        assert count == args.expected_included, (count, args.expected_included)
     print(f'TRAINER_SPRITES: {len(expected)} rosters; {count} included, {len(expected)-count} explicit fallbacks; {len(referenced)} pinned PNGs verified')
 
 

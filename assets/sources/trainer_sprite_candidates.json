@@ -7,7 +7,10 @@
       "name": "비올라",
       "url": "https://play.pokemonshowdown.com/sprites/trainers/viola.png",
       "artist": "Gnomowladny",
-      "status": "credits_index_confirmed"
+      "status": "applied_on_main",
+      "applied_asset": "assets/trainers/viola-x-y-fan.png",
+      "download_source": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Viola.png",
+      "sha256": "ff2fb0c7cb9b2caba32499f2876f9b83a43bddc226aa94f83b6c95ae4f35a238"
     },
     "gym:grant": {
       "name": "자크로",
@@ -19,37 +22,53 @@
       "name": "코르니",
       "url": "https://play.pokemonshowdown.com/sprites/trainers/korrina.png",
       "artist": "Gnomowladny",
-      "status": "credits_index_confirmed"
+      "status": "applied_on_main",
+      "applied_asset": "assets/trainers/korrina-x-y-fan.png",
+      "download_source": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Korrina.png",
+      "sha256": "3d062fc661a72ffc2186496d70171814e4e0d9ac5220adae437893732f0ce7d0"
     },
     "gym:ramos": {
       "name": "후쿠지",
       "url": "https://play.pokemonshowdown.com/sprites/trainers/ramos.png",
       "artist": "Gnomowladny",
-      "status": "credits_index_confirmed"
+      "status": "applied_on_main",
+      "applied_asset": "assets/trainers/ramos-x-y-fan.png",
+      "download_source": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Ramos.png",
+      "sha256": "51f24b3e67bb418ce2a766b49b7ac75ce52e62ac361cac472a282da692762ddc"
     },
     "gym:clemont": {
       "name": "시트론",
       "url": "https://play.pokemonshowdown.com/sprites/trainers/clemont.png",
       "artist": null,
-      "status": "unverified_candidate"
+      "status": "unverified_candidate",
+      "note": "A GitHub Clemont.png path was found in the pinned noncanonical x-y tree; author attribution remains unresolved. No image applied."
     },
     "gym:valerie": {
       "name": "마슈",
       "url": "https://play.pokemonshowdown.com/sprites/trainers/valerie.png",
       "artist": "Gnomowladny",
-      "status": "credits_index_confirmed"
+      "status": "applied_on_main",
+      "applied_asset": "assets/trainers/valerie-x-y-fan.png",
+      "download_source": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Valerie.png",
+      "sha256": "aa4a8c840c8c2051296daee0d4bfd62f6287bd003969aa28159632a531c7f419"
     },
     "gym:olympia": {
       "name": "고지카",
       "url": "https://play.pokemonshowdown.com/sprites/trainers/olympia.png",
       "artist": "Gnomowladny",
-      "status": "credits_index_confirmed"
+      "status": "applied_on_main",
+      "applied_asset": "assets/trainers/olympia-x-y-fan.png",
+      "download_source": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Olympia.png",
+      "sha256": "4a5aa668452dc066d090cf7641d90dbca6b47c4368e36aa900b509c8c3305a41"
     },
     "gym:wulfric": {
       "name": "우르프",
       "url": "https://play.pokemonshowdown.com/sprites/trainers/wulfric.png",
       "artist": "Gnomowladny",
-      "status": "credits_index_confirmed"
+      "status": "applied_on_main",
+      "applied_asset": "assets/trainers/wulfric-x-y-fan.png",
+      "download_source": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Wulfric.png",
+      "sha256": "d61dc5e7dea7787c93c4a5015dae1bbce1133b6e5369f6c01b9bc9da03471808"
     },
     "gym:milo": {
       "name": "아킬",
@@ -205,49 +224,73 @@
       "name": "파키라",
       "url": "https://play.pokemonshowdown.com/sprites/trainers/malva.png",
       "artist": "Gnomowladny",
-      "status": "credits_index_confirmed"
+      "status": "applied_on_main",
+      "applied_asset": "assets/trainers/malva-x-y-fan.png",
+      "download_source": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Malva.png",
+      "sha256": "59859afd00e0b1b3e09de6abfe5fcd729f46e4cf5dc5abd475ccfd2d5cf613cf"
     },
     "elite:siebold": {
       "name": "즈미",
       "url": "https://play.pokemonshowdown.com/sprites/trainers/siebold.png",
       "artist": "Gnomowladny",
-      "status": "credits_index_confirmed"
+      "status": "applied_on_main",
+      "applied_asset": "assets/trainers/siebold-x-y-fan.png",
+      "download_source": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Siebold.png",
+      "sha256": "bdc165eedb31f6ead194dd2a0f17083ef1cc7cb9e71b59c1545aa969e36320e9"
     },
     "elite:wikstrom": {
       "name": "간피",
       "url": "https://play.pokemonshowdown.com/sprites/trainers/wikstrom.png",
       "artist": "Gnomowladny",
-      "status": "credits_index_confirmed"
+      "status": "applied_on_main",
+      "applied_asset": "assets/trainers/wikstrom-x-y-fan.png",
+      "download_source": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Wikstrom.png",
+      "sha256": "b4b14c523133f15f5fee1db2b3d925aebd6c74bdecf0cf56d09c2cd84ff932f5"
     },
     "elite:drasna": {
       "name": "드라세나",
       "url": "https://play.pokemonshowdown.com/sprites/trainers/drasna.png",
       "artist": "Gnomowladny",
-      "status": "credits_index_confirmed"
+      "status": "applied_on_main",
+      "applied_asset": "assets/trainers/drasna-x-y-fan.png",
+      "download_source": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen6/x-y/Drasna.png",
+      "sha256": "252fcf06714d014aa598a56ab8765a20e8373acb6cdd58dbc9b52756b3ca7065"
     },
     "elite:hala": {
       "name": "할라",
       "url": "https://play.pokemonshowdown.com/sprites/trainers/hala.png",
       "artist": "Gnomowladny",
-      "status": "credits_index_confirmed"
+      "status": "applied_on_main",
+      "applied_asset": "assets/trainers/hala-sun-moon-fan.png",
+      "download_source": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen7/sun-moon/Hala.png",
+      "sha256": "a9a9697cfc9b575babb80185c0045a5895ba0680b65dbc4cfd043b15c8ed5e6f"
     },
     "elite:olivia": {
       "name": "라이치",
       "url": "https://play.pokemonshowdown.com/sprites/trainers/olivia.png",
       "artist": "Beliot419",
-      "status": "credits_index_confirmed"
+      "status": "applied_on_main",
+      "applied_asset": "assets/trainers/olivia-sun-moon-fan.png",
+      "download_source": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen7/sun-moon/Olivia.png",
+      "sha256": "44fe663febaf6bbccb10eea559b62c3e47d2a021263c87c65ee7f5fc64acdff6"
     },
     "elite:acerola": {
       "name": "아세로라",
       "url": "https://play.pokemonshowdown.com/sprites/trainers/acerola.png",
       "artist": "Beliot419",
-      "status": "credits_index_confirmed"
+      "status": "applied_on_main",
+      "applied_asset": "assets/trainers/acerola-sun-moon-fan.png",
+      "download_source": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen7/sun-moon/Acerola.png",
+      "sha256": "491b65128efe304ec434b2ace05fee34da44f4ef730b1a7d0a4763c9a2b25422"
     },
     "elite:kahili": {
       "name": "카일리",
       "url": "https://play.pokemonshowdown.com/sprites/trainers/kahili.png",
       "artist": "Beliot419",
-      "status": "credits_index_confirmed"
+      "status": "applied_on_main",
+      "applied_asset": "assets/trainers/kahili-sun-moon-fan.png",
+      "download_source": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/noncanonical/trainers/gen7/sun-moon/Kahili.png",
+      "sha256": "4e755ebf1b8a8a009896bbd1847b09d20a1e6021f3e8303f001282714ee4f12c"
     },
     "elite:rika": {
       "name": "칠리",
@@ -297,5 +340,6 @@
       "artist": "kyledove",
       "status": "credits_index_confirmed"
     }
-  }
+  },
+  "scope": "Historical list of 49 originally missing identities: 14 applied on current main, 35 remain generic. Check the main runtime manifest for current coverage."
 }
