@@ -4,6 +4,8 @@
 
 ## Windows 시험 빌드
 
+현재 EXE 생성은 보류 중이며 main 반영으로 자동 빌드되지 않습니다. Windows preview는 수동 실행 전용입니다.
+
 [Windows preview](https://github.com/agree-git/pokemon-deckbuilder/actions/workflows/windows-preview.yml)의 성공한 실행에서 `PokemonExpedition-Windows-x86_64-…` 아티팩트를 받습니다(GitHub 로그인 필요, 보관14일). 압축을 풀고 `PokemonExpedition` 폴더의 `PokemonExpedition.exe`를 실행합니다. Godot 설치는 필요하지 않으며 옆의 `.pck` 파일을 함께 둡니다.
 
 저장·설정은 `%APPDATA%\Godot\app_userdata\포켓몬 원정대`에 보관합니다. 새 빌드는 별도 폴더에 풀어도 기존 저장을 이어서 읽습니다. 초기 알파의 자동 검사 빌드이며 실제 PC의 화면·소리·긴 플레이 검증은 별도입니다. 빌드의 검증 결과는 함께 제공하는 `windows-native-report.json`에 있습니다.

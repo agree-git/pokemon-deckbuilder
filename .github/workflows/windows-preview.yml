@@ -1,17 +1,8 @@
 name: Windows preview
 
 on:
+  # Build only after the user explicitly resumes EXE creation.
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'export_presets.cfg'
-      - 'project.godot'
-      - 'scripts/**'
-      - 'scenes/**'
-      - 'data/**'
-      - 'assets/**'
-      - '.github/workflows/windows-preview.yml'
 
 permissions:
   contents: read
