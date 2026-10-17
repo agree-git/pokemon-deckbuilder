@@ -13,6 +13,7 @@ Linux 검사와 Windows 네이티브 검사는 실제 보고서로 구분한다.
 | 시작·스타팅·도감 | `scripts/ui/main_menu.gd`, `scripts/battle/battle_session.gd`, `scripts/content/player_profile.gd` |
 | 전투 규칙·카드 행동 | `scripts/tactics/tactical_battle.gd`, `tactical_content.gd`, `tactical_moves.gd` |
 | 원정·보상·야영·포획 | `scripts/tactics/tactical_journey.gd`, `campaign_route.gd`, `campaign_balance.gd` |
+| 야영 기술머신 | `scripts/tactics/technical_machines.gd`, `scripts/ui/pokedex_workshop.gd`, `data/technical_machines.json` |
 | 능력치·성장·진화 | `scripts/tactics/pokemon_stats.gd`, `tactical_growth.gd`, `evolution_items.gd`, `friendship_evolution.gd`, `special_evolution.gd` |
 | 희귀 | `scripts/tactics/rare_encounter.gd`, `scripts/content/rare_encounter_story.gd`, `rare_capture_reaction.gd`, `data/rare_stories.json`, `rare_reactions.json` |
 | 포획 후 반응창 | `scripts/ui/rare_reaction_panel.gd`, `tactical_ui.gd`, `tactical_journey_ui.gd` |
@@ -153,3 +154,5 @@ Headless 씬 검사는 종료 전에 GameAudio/GameMusic/GameCries뿐 아니라 
 `tools/pokedex/import_assets.py --game-dir /path/game --cache-dir /path/cache`가 실제 앞뒤 PNG/울음소리/진화 재료를 설치하고 출처 지문을 갱신한다. 이 도구만 Pillow·ffmpeg/ffprobe를 필요로 한다. 기존 파일을 보존하며 원본 CSV/asset checkout/검토 PNG는 Git에 넣지 않는다. 새 울음소리 전체의 Vorbis/PCM/길이를 검사하고, 게임 검사는1,412개체의 앞뒤 투명 경계·울음소리 실제 디코딩·Lv.5 습득표/성장·전국번호/조우/희귀 문턱을 대조한다.
 
 `test_national_progression.gd`는 역사적v3서명·정확한 저장 roundtrip,9세대 진화·지역폼/합체 보호·기술 소유자별 교체·진화 준비/아이템·높은 폼ID의 포획UID·재료 재고 정수 직렬화를 검사한다. `native_pokedex.gd`는 실제 X11 포인터/키로 전투→연구→폼 준비→검색/훈련→도감 화면을 촬영한다. 스크린샷은 로컬 검토용이다. 빌드/export는 사용자가 보류했으므로 실행하지 않는다.
+
+기술머신 데이터는 `python3 tools/pokedex/build_machines.py --game-dir /path/to/main --cache-dir /path/to/source-cache`로 재생성한다. 기존 고정 CSV의 SHA256을 검사하며 자료/원본 CSV는 게임에 넣지 않는다. `--suite camp`는 기술머신·성장·덱/야영·저장·경로 회귀를 실행한다. `tests/native_machines.gd`는 `tools/native_pointer.py`로 실제 X11 클릭을 사용하며 `TM_REVIEW_DIR`에 로컬 검토 PNG만 저장한다.
