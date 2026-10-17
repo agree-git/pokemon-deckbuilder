@@ -1,49 +1,14 @@
-# Codex development instructions
+# 개발 작업 지침
 
-## Repository layout after cleanup
-
-- User request: keep only the runnable game, essential credits/licenses and a short usage README on `main`. Keep development material on `development-materials`; do not create additional persistent remote branches.
-- This branch retains the pre-cleanup project for reference. Implement runtime changes against current `main`, and keep documents, tests, tooling and review artifacts here. Main no longer contains legacy battle preview/art lab; older tests may require their archived code.
-- Read the latest `main` README and this branch HANDOFF before continuing. Preserve both remote branches; never reintroduce the deleted review branch names in new links.
-
-
-## Project
-
-- Build a 2D Pokemon roguelite deck-building game.
-- Target Godot **4.7.2**, GDScript, and Windows desktop.
-- Read `README.md` and `docs/game-design.md` before implementation.
-- The design document contains provisional mechanics and tuning values. Identify any inconsistencies before implementing affected rules.
-
-## Continue work across chats
-
-- At the start of every new or resumed task, read `HANDOFF.md`, then `docs/progress.md`. Check `git status --short` and recent commits before choosing work; never assume a previous chat's uncommitted changes are absent.
-- Treat `HANDOFF.md` as the current project handoff, not a transcript. Follow the latest user request first, then the confirmed rules and next steps recorded there. Read the linked rule documents before changing affected systems.
-- Update `HANDOFF.md` whenever a meaningful milestone completes, work is interrupted, or the turn ends. Record completed work, unfinished files/steps, actual validation outcomes, blockers and the concrete next task. Keep pending work distinct from completed work.
-- Keep `docs/progress.md` for the broader implementation/validation history. Avoid copying that entire history into the handoff; remove stale pending items as they complete.
-- Never store credentials, private environment identifiers, user saves or secrets in the handoff. Keep cloud-specific setup commands clearly distinguished from general project instructions.
-
-## Scope
-
-- The original first-battle milestone is complete. The current game starts at the main menu and supports the full 69-battle campaign, camps, capture, evolution, shops and autosave. Do not treat these implemented systems as future work.
-- Preserve the confirmed scope: Generation 1-3 ordinary originals plus Generation 1-9 rare species/regional birds (see docs/rare-gen9.md), up to three starters, eight biome badges followed by the league, and the unified technique/tool/trainer deck. Consult `HANDOFF.md` and current rule documents for details.
-- Continue in small playable increments. Prioritize the user's requested work and the recorded remaining work; do not silently add ordinary Generation 4+ species, restore break/fixed-skill combat, or replace the native 1920x1080 UI with a low-resolution viewport.
-
-## Implementation
-
-- Separate battle state and rules from UI nodes and animations.
-- Separate immutable content definitions from mutable Pokemon, card, and run instances.
-- Prefer small typed GDScript modules and clear names.
-- Keep random outcomes seedable when adding randomness.
-- Track source assets and required Godot UID sidecar files; exclude `.godot/` and exported builds.
-- Avoid unnecessary plugins and external dependencies.
-
-## Validation and communication
-
-- Check the installed Godot version before running engine checks.
-- If the specified version is unavailable, report the actual version and validation limits; do not claim compatibility was verified.
-- Validate script parsing and project import with Godot when available.
-- Add meaningful rule tests for draw/discard, energy consumption, switching, and battle outcome.
-- Inspect UI in an actual running game when possible. Headless checks do not prove visual quality.
-- Never claim a test or visual inspection occurred without running it.
-- Explain progress concisely in Korean and work in small playable increments.
-- The user reviews on mobile: publish requested review galleries, ZIPs and CSVs to GitHub and provide HTTPS links, not only workspace paths. Keep large review artifacts on a separate review branch. The consolidated `review/background/` directory on `development-materials` contains the aligned background review.
+- 먼저 [START_HERE.md](START_HERE.md) → [HANDOFF.md](HANDOFF.md)를 읽고 Git 상태를 확인한다. 최신 사용자 지시가 우선이다.
+- 게임은 `main`에서 구현한다. 이 브랜치는 문서·검사만 보유한다. 다른 영구 원격 브랜치를 만들거나 이력을 강제로 다시 쓰지 않는다.
+- 변경 중인 checkout을 자료 열람 때문에 전환하지 않는다. 사용자 변경을 보존하고, 필요하면 자료를 별도 폴더로 추출한다.
+- [확정 규칙](docs/rules.md)을 따른다. 일반 1~3세대 + 지정 희귀 1~9세대, 최대 3마리, 69전투, 통합 카드 덱, 개체값/노력치 없음, 1920×1080 UI를 유지한다.
+- 사용자가 보류한 밸런스·경험치·경제 튜닝을 자동 재개하지 않는다. 새 요청 없이 일반 후대 도감·브레이크·고정 기술 버튼을 추가하지 않는다.
+- 모델/불변 콘텐츠와 UI/연출을 분리한다. 게임 난수·저장·UID·사용자 배경 보정 좌표를 보존한다. 변경이 필요하면 명시적으로 호환을 설계한다.
+- 실제 Godot 버전을 확인하고 변경 범위에 맞는 검사를 실행한다. 통과·실패·미실행을 구분한다. UI는 가능하면 실제 창에서도 확인한다.
+- 검사기는 자료 폴더 밖의 최신 main을 대상으로 한다. 폐기된 프리뷰/실험실을 현재 게임의 필수 검증으로 되살리지 않는다.
+- 작업을 끝내거나 중단할 때 HANDOFF를 짧게 갱신한다. 상세 규칙은 rules, 실행 방법은 development에 둬 같은 설명을 반복하지 않는다.
+- 재생성 가능한 PNG 모음·ZIP·원본 CSV·장시간 로그·게임 사본은 자료 브랜치에 다시 누적하지 않는다. 사용자가 검토 자료를 요청하면 모바일에서 열 수 있는 링크를 제공하고 보관 범위를 정한다.
+- main의 에셋 출처·라이선스와 필요한 `.uid`/`.import`는 보존한다. 비밀 값·개인 저장·캐시·빌드를 커밋하지 않는다.
+- 한국어로 간결하게 진행을 설명하고, 이미 승인된 작업은 실제 구현·검증·GitHub 반영까지 마친다.

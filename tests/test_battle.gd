@@ -1,251 +1,140 @@
 extends SceneTree
-
+const TacticalPolicy = preload("support/tactical_policy.gd")
 var checks := 0
-var failures: Array[String] = []
-
-func _initialize() -> void:
-    call_deferred("_run")
-
-func check(value: bool, message: String) -> void:
+var failures := 0
+func _initialize() -> void: call_deferred("run")
+func check(ok: bool, message: String) -> void:
     checks += 1
-    if not value:
-        failures.append(message)
+    if not ok:
+        failures += 1
         push_error(message)
-
-func give(state: BattleState, key: String) -> BattleCardInstance:
-    for pile: Array in [state.hand, state.draw_pile, state.discard]:
-        for card: BattleCardInstance in pile:
-            if card.key == key:
-                pile.erase(card)
-                state.hand.append(card)
-                return card
-    push_error("Test fixture card missing: " + key)
-    return null
-
-func invariant(state: BattleState) -> void:
-    var ids: Dictionary = {}
-    var total := 0
-    for pile: Array in [state.hand, state.draw_pile, state.discard, state.removed]:
-        for card: BattleCardInstance in pile:
-            check(not ids.has(card.uid), "Card instance exists in multiple piles")
-            ids[card.uid] = true
-            total += 1
-            if pile != state.removed and card.owner_uid != 0:
-                check(state._ally(card.owner_uid).alive(), "Fainted owner's card remained playable")
-    check(total == 14 + state.injuries.size(), "Card conservation failed")
-    check(state.energy >= 0, "Negative energy")
-    for pokemon: BattlePokemon in state.party + [state.enemy]:
-        check(pokemon.hp >= 0 and pokemon.hp <= pokemon.max_hp and pokemon.block >= 0, "HP/block bounds failed")
-
-func _run() -> void:
-    var state := BattleState.new(2026)
-    check(state.hand.size() == 5 and state.draw_pile.size() == 9 and state.energy == 3, "Initial draw and energy")
-    check(state.snapshot() == BattleState.new(2026).snapshot(), "Same seed must reproduce complete initial state")
-    check(state.snapshot()["piles"] != BattleState.new(2027).snapshot()["piles"], "Different seeds should shuffle differently")
-    var ember := give(state, "ember")
-    var health := state.enemy.hp
-    check(state.play_card(ember.uid).is_empty(), "Ember should play")
-    check(state.energy == 2 and state.enemy.hp == health - 6, "Spend 1 and apply fire weakness with floor")
-    check(not state.hand.has(ember) and state.discard.has(ember), "Used card goes to discard")
-    check(int(state.enemy.statuses["burn"]["turns"]) == 3, "Apply burn")
-    var snapshot := state.snapshot()
-    check(not state.play_card(ember.uid).is_empty() and state.snapshot() == snapshot, "Reusing discarded card must be atomic rejection")
-    var vine := give(state, "vine")
-    snapshot = state.snapshot()
-    check(not state.play_card(vine.uid).is_empty() and state.snapshot() == snapshot, "Wrong owner rejection must not mutate state/RNG")
-    state.energy = 0
-    var tackle := give(state, "tackle")
-    snapshot = state.snapshot()
-    check(not state.play_card(tackle.uid).is_empty() and state.snapshot() == snapshot, "Insufficient energy must be atomic rejection")
-    check(state.switch_to(1).is_empty() and state.energy == 0, "First switch is free at zero energy")
-    snapshot = state.snapshot()
-    check(not state.switch_to(4).is_empty() and state.snapshot() == snapshot, "Additional switch needs energy")
-    state.energy = 2
-    var hand_ids := state.hand.duplicate()
-    check(state.switch_to(4).is_empty() and state.energy == 1 and state.hand == hand_ids, "Paid switch preserves hand and spends 1")
-    snapshot = state.snapshot()
-    check(not state.switch_to(4).is_empty() and not state.switch_to(999).is_empty() and state.snapshot() == snapshot, "Invalid switches must not spend energy")
-    check(BattleContent.multiplier("normal", "grass") == 1 and BattleContent.multiplier("water", "fire") == 1.5, "Neutral and weakness")
-    check(BattleContent.multiplier("grass", "fire") == 0.75 and BattleContent.multiplier("grass", "grass") == 0.75, "Resistance and same type")
-    state = BattleState.new()
-    ember = give(state, "ember")
-    var view := state.card_view(ember)
-    view["cost"] = 0
-    view["damage"] = 999
-    health = state.enemy.hp
-    state.play_card(ember.uid)
-    check(state.energy == 2 and state.enemy.hp == health - 6, "Editing a view must not mutate immutable content")
-
-    state = BattleState.new()
-    state.enemy.block = 4
-    tackle = give(state, "tackle")
-    health = state.enemy.hp
-    state.play_card(tackle.uid)
-    check(state.enemy.hp == health - 2 and state.enemy.block == 0, "Direct attack consumes shield before HP")
-    state = BattleState.new()
-    var guard := give(state, "guard")
-    state.play_card(guard.uid)
-    var before := state.active().hp
-    check(int(state.intent()["value"]) == 8, "Intent must reveal exact next damage")
-    state.end_turn()
-    check(state.party[0].hp == before - 3, "Enemy damage must respect shield")
-    check(state.phase == BattleState.PLAYER and state.turn == 2 and state.energy == 3 and not state.switched, "Next player turn reset")
-    check(state.party[0].block == 0 and state.hand.size() == 5, "Clear player shields and draw five")
-    check(state.intent()["kind"] == "block", "Intent pattern must advance")
-    state.end_turn()
-    check(state.enemy.block == 7, "Enemy defense persists into the player turn")
-    state.end_turn()
-    check(state.enemy.block == 0, "Enemy defense expires on its next action")
-    state.end_turn()
-    check(int(state.intent()["value"]) == 10, "Visible attack includes enemy strength")
-
-    state = BattleState.new()
-    state.active().block = 9
-    state.switch_to(1)
-    state.end_turn()
-    check(state.party[0].block == 0 and state.party[0].hp == 45 and state.party[1].hp == 40, "Shield belongs to user; attack hits current ally")
-    state = BattleState.new()
-    state.discard.append_array(state.draw_pile)
-    state.draw_pile.clear()
-    var focus := give(state, "focus")
-    var size_before := state.hand.size()
-    state.play_card(focus.uid)
-    check(state.hand.size() == size_before + 1 and state.discard.has(focus), "Draw two and reshuffle, keeping resolving card out of draw")
-    invariant(state)
-    state = BattleState.new()
-    state.hand.clear()
-    state.draw_pile.clear()
-    state.discard.clear()
-    state._draw(5)
-    check(state.hand.is_empty(), "An exhausted deck must stop drawing cleanly")
-
-    state = BattleState.new()
-    ember = give(state, "ember")
-    state.play_card(ember.uid)
-    state.enemy.block = 20
-    health = state.enemy.hp
-    state._tick_statuses(state.enemy)
-    check(state.enemy.hp == health - 2 and state.enemy.block == 20, "Burn bypasses shield and type")
-    check(int(state.enemy.statuses["burn"]["turns"]) == 2, "Burn duration counts down")
-    state.enemy.statuses["burn"]["turns"] = 1
-    var another := give(state, "ember")
-    state.play_card(another.uid)
-    check(int(state.enemy.statuses["burn"]["turns"]) == 3 and state.enemy.statuses.size() == 1, "Reapply refreshes instead of stacking")
-    for i in 3:
-        state._tick_statuses(state.enemy)
-    check(not state.enemy.statuses.has("burn"), "Burn expires after three ticks")
-    state = BattleState.new()
-    state.switch_to(1)
-    state.party[1].hp = 40
-    var seed_card := give(state, "seed")
-    state.play_card(seed_card.uid)
-    state.energy = 3
-    state.switch_to(4)
-    state._tick_statuses(state.enemy)
-    check(state.party[1].hp == 42 and state.party[0].hp == 45, "Seed heals its original user, including bench")
-    state.party[1].hp = 48
-    state._tick_statuses(state.enemy)
-    check(state.party[1].hp == 48, "Healing cannot exceed max HP")
-    state.party[1].statuses["burn"] = {"turns": 3, "source_uid": -1}
-    state.end_turn()
-    check(state.party[1].hp == 48, "Bench burn ticks, then seed heals its living source")
-    state._damage(state.party[1], 999, true)
-    health = state.enemy.hp
-    state.enemy.statuses["seed"] = {"turns": 2, "source_uid": 1}
-    state._tick_statuses(state.enemy)
-    check(state.party[1].hp == 0 and state.enemy.hp == health - 2, "Seed persists after source KO but cannot revive its owner")
-    check(state.party[1].statuses.is_empty(), "Fainting clears statuses on that combatant")
-    state = BattleState.new()
-    state.switch_to(1)
-    var growth := give(state, "growth")
-    state.play_card(growth.uid)
-    vine = give(state, "vine")
-    health = state.enemy.hp
-    state.play_card(vine.uid)
-    check(state.party[1].strength == 2 and state.enemy.hp == health - 7, "Strength is per Pokemon; damage floors after resistance")
-
-    state = BattleState.new()
-    state.party[0].hp = 1
-    state.switched = true
-    state.energy = 0
-    state.end_turn()
-    check(state.phase == BattleState.REPLACE and state.hand.is_empty(), "KO must pause before new hand for a replacement")
-    check(state.injuries == [4] and state.removed.size() == 4, "KO removes owner cards from every pile and adds one injury")
-    check(not state.play_card(1).is_empty() and not state.end_turn().is_empty(), "Forced replacement blocks other actions")
-    check(state.switch_to(1).is_empty() and state.phase == BattleState.PLAYER and not state.switched and state.energy == 3, "Forced switch free; new turn's free switch remains")
-    invariant(state)
-    state = BattleState.new()
-    state.party[0].hp = 1
-    state.party[0].statuses["burn"] = {"turns": 1, "source_uid": -1}
-    before = state.party[1].hp
-    state.end_turn()
-    check(state.phase == BattleState.REPLACE and state.party[1].hp == before, "Player-end KO pauses before enemy targets a replacement")
-    state.switch_to(1)
-    check(state.phase == BattleState.PLAYER and state.party[1].hp == before - 8, "Enemy then attacks chosen replacement exactly once")
-    state = BattleState.new()
-    state.party[0].hp = 1
-    state.party[1].hp = 1
-    state.end_turn()
-    state.switch_to(1)
-    state.end_turn()
-    state.end_turn()
-    check(state.phase == BattleState.LOST, "Full party KO loses")
-    snapshot = state.snapshot()
-    check(not state.end_turn().is_empty() and not state.switch_to(4).is_empty() and state.snapshot() == snapshot, "Terminal state cannot continue")
-    state = BattleState.new()
-    state.enemy.hp = 1
-    tackle = give(state, "tackle")
-    state.play_card(tackle.uid)
-    check(state.phase == BattleState.WON and state.enemy.hp == 0 and state.enemy.statuses.is_empty(), "Direct kill wins and clears status")
-    state.restart(2026)
-    check(state.snapshot() == BattleState.new(2026).snapshot(), "Restart resets all piles, health, RNG, buffs, and outcome")
-    state.enemy.hp = 1
-    state.enemy.statuses["burn"] = {"turns": 1, "source_uid": 4}
-    state.party[0].hp = 1
-    state.end_turn()
-    check(state.phase == BattleState.WON and state.party[1].alive(), "Enemy status death wins before asking unnecessary replacement")
-    state = BattleState.new()
-    state.party[0].hp = 1
-    state.party[1].hp = 0
-    state.party[1].knocked_out = true
-    state.enemy.hp = 1
-    state.enemy.statuses["burn"] = {"turns": 1, "source_uid": 4}
-    state.end_turn()
-    check(state.phase == BattleState.LOST and state.enemy.hp == 1, "Last ally death ends battle before enemy-end status")
-
-    var wins := 0
-    for battle_seed in range(30):
-        state = BattleState.new(battle_seed)
-        for step in range(180):
-            invariant(state)
-            if state.phase in [BattleState.WON, BattleState.LOST]:
-                break
-            if state.phase == BattleState.REPLACE:
-                for pokemon: BattlePokemon in state.party:
-                    if pokemon.alive():
-                        state.switch_to(pokemon.uid)
-                        break
-                continue
-            var played := false
-            for card: BattleCardInstance in state.hand.duplicate():
-                if state.card_reason(card.uid).is_empty():
-                    state.play_card(card.uid)
-                    played = true
-                    break
-            if not played:
-                if not state.switched:
-                    var other := state.party[1 - state.active_index]
-                    if other.alive():
-                        state.switch_to(other.uid)
-                        continue
-                state.end_turn()
-        check(state.phase in [BattleState.WON, BattleState.LOST], "Seed %d did not reach a result" % battle_seed)
-        if state.phase == BattleState.WON:
-            wins += 1
-    check(wins > 0, "A full playable winning route must exist")
-    if failures.is_empty():
-        print("BATTLE_TESTS_OK: %d checks; 30 seeded battles (%d wins); draw/energy/switch/status/KO/outcomes" % [checks, wins])
-        quit(0)
-    else:
-        print("BATTLE_TESTS_FAILED: %d / %d" % [failures.size(), checks])
-        quit(1)
+func fixture(specs: Array, relics: Array[String] = []) -> TacticalBattle:
+    var members: Array[BattlePokemon] = []
+    for definition: Dictionary in TacticalContent.PARTY: members.append(BattlePokemon.new(definition,definition["uid"]))
+    var cards: Array[BattleCardInstance] = []
+    for spec: Array in specs: cards.append(BattleCardInstance.new(cards.size()+1,spec[0],spec[1]))
+    var enemy := {"id":43,"name":"뚜벅쵸","type":"grass","max_hp":200,"intents":[{"kind":"attack","value":8,"type":"normal","move_id":33}]}
+    var b := TacticalBattle.new()
+    b.start_with(members,cards,[enemy],71,"field_kit",true,relics)
+    b.energy = 3 # Fixed budget isolates shared-deck rules; speed grants have dedicated tests.
+    b.enemy().max_hp = 200
+    b.enemy().hp = 200
+    b.hand.assign(cards)
+    b.draw_pile.clear()
+    return b
+func by_key(b: TacticalBattle,key: String) -> int:
+    for card: BattleCardInstance in b.hand:
+        if card.key == key: return card.uid
+    return -1
+func run() -> void:
+    var b := fixture([["ember",4],["water_gun",7],["guard",0]])
+    var before := b.snapshot()
+    check(not b.play_card(999).is_empty() and b.snapshot() == before,"Invalid card is an atomic no-op")
+    check(not b.use_skill("flame").is_empty() and b.snapshot() == before,"Fixed skills cannot bypass drawn cards")
+    check(b.play_card(by_key(b,"water_gun")).is_empty() and b.active().uid == 7 and b.energy == 2,"Inactive owner switches immediately for only card cost")
+    check(b.play_card(by_key(b,"ember")).is_empty() and b.active().uid == 4 and b.energy == 1,"Multiple automatic switches stay free")
+    var uid := by_key(b,"guard")
+    check(b.play_card(uid).is_empty() and b.energy == 0,"Trainer shares the same energy")
+    before = b.snapshot()
+    check(not b.switch_to(7).is_empty() and b.snapshot() == before,"Manual switch cannot spend unavailable energy")
+    check(b.enemy_states[0].keys() == ["intent"],"Enemy state has no opening or break system")
+    b = fixture([["guard",0],["water_gun",7]])
+    b.play_card(by_key(b,"guard"))
+    var protected := b.active().block
+    b.play_card(by_key(b,"water_gun"))
+    check(b.member(4).block == protected and b.member(7).block == PokemonStats.scale(b.member(7),5),"Protection stays on its owner through auto-switch")
+    var hp := b.member(7).hp
+    var incoming := int(b.intent()["value"])
+    var blocked := b.member(7).block
+    b.end_turn()
+    check(b.member(7).hp == hp-maxi(0,incoming-blocked) and b.member(4).hp == b.member(4).max_hp,"Last active member receives the telegraphed attack")
+    check(b.member(4).block == 0 and b.member(7).block == 0,"Old protection expires at next player turn")
+    b = fixture([["flame",4],["guard",0]])
+    var expensive := b.hand[0].uid
+    b.energy = 1
+    before = b.snapshot()
+    check(not b.play_card(expensive).is_empty() and b.snapshot() == before,"Unaffordable technique cannot switch or mutate RNG/piles")
+    b.energy = 3
+    b.play_card(expensive)
+    check(b.energy == 1,"Technique charges its displayed cost")
+    b = fixture([["focus",0],["ember",4],["hold",0],["flame",4],["potion_card",0],["water_gun",7]])
+    b.hand.resize(5)
+    b.draw_pile.assign([BattleCardInstance.new(6,"water_gun",7)])
+    b.member(4).hp = 2
+    b.play_card(by_key(b,"potion_card"))
+    check(b.member(4).hp == mini(b.member(4).max_hp,2+PokemonStats.scale(b.member(4),16)) and b.exhausted.size() == 1,"Healing tool heals once and exhausts")
+    b.play_card(by_key(b,"hold"))
+    var retained := b.retained.duplicate()
+    check(retained.size() == 1 and b._hand(retained[0]).key == "flame","Retain selects highest-cost remaining card")
+    b.end_turn()
+    check(b.hand.any(func(card: BattleCardInstance): return card.uid in retained),"Retained instance survives turn discard")
+    for i in 8: b.end_turn()
+    check(not b.hand.any(func(card: BattleCardInstance): return card.key == "potion_card"),"Exhausted healing never reshuffles into the fight")
+    b = fixture([["relay_plan",0],["water_gun",7],["boost_card",0],["ember",4]], ["switch_power","tool_belt"])
+    b.play_card(by_key(b,"relay_plan"))
+    check(b.powers.get("relay",0) == 1 and b.exhausted[0].key == "relay_plan","Persistent plan installs and leaves draw cycle")
+    b.play_card(by_key(b,"water_gun"))
+    check(b.member(7).block == PokemonStats.scale(b.member(7),5)+PokemonStats.scale(b.member(7),3) and not b.switch_bonus.has(7),"Relay power grants protection and baton is consumed by the attack")
+    var strength := b.member(7).strength
+    b.play_card(by_key(b,"boost_card"))
+    check(b.member(7).strength == strength+4 and b.turn_flags.has("tool_belt"),"Tool boost and party relic both trigger")
+    b.play_card(by_key(b,"ember"))
+    check(b.member(7).strength == strength,"Temporary boost ends when its owner switches out")
+    b = fixture([["ace_plan",0],["guard",0]], ["ace_focus"])
+    b.active().held_item = "ace_band"
+    b.play_card(by_key(b,"ace_plan"))
+    b.play_card(by_key(b,"guard"))
+    b.end_turn()
+    check(b.active().strength == 4,"Persistent plan, relic and held item compose on a retained ace")
+    b = fixture([["ember",4],["seed",1],["status_cash",0]], ["status_lens"])
+    b.play_card(by_key(b,"ember"))
+    check(b.energy == 3,"First new ailment refunds energy via its own relic")
+    b.play_card(by_key(b,"seed"))
+    check(b.energy == 2,"Status relic triggers once per turn, across party members")
+    hp = b.enemy().hp
+    b.play_card(by_key(b,"status_cash"))
+    check(b.enemy().hp == hp-PokemonStats.scale(b.enemy(),24) and b.enemy().statuses.is_empty(),"Status cash-out trades remaining ticks for damage without break")
+    b = fixture([["ember",4],["water_gun",7],["vine",1]], ["relay_draw"])
+    b.draw_pile.append(BattleCardInstance.new(10,"guard",0))
+    b.draw_pile.append(BattleCardInstance.new(11,"counter",0))
+    for key: String in ["ember","water_gun","vine"]: b.play_card(by_key(b,key))
+    check(b.turn_flags.has("relay_draw") and b.hand.size() == 2,"Three different actors activate relay draw once")
+    b = fixture([["ember",4],["water_gun",7]])
+    b.active().held_item = "power_band"
+    var view := b.card_view(b.hand[0])
+    hp = b.enemy().hp
+    b.play_card(b.hand[0].uid)
+    check(b.enemy().hp == hp-int(view["preview_damage"]),"Damage preview includes held item and matchup")
+    b._damage(b.member(7),999,true)
+    check(not b.hand.any(func(card: BattleCardInstance): return card.owner_uid == 7) and b.exhausted.any(func(card: BattleCardInstance): return card.owner_uid == 7),"KO suspends owner cards without permanently removing them")
+    check(b.discard.filter(func(card: BattleCardInstance): return card.key == "injury").size() == 1,"KO creates exactly one injury")
+    b = fixture([["water_gun",7],["guard",0]])
+    b.hand[0].upgraded = true
+    view = b.card_view(b.hand[0])
+    check(int(view["move_power"]) == int(TacticalMoves.definition("water_gun")["move_power"])+15 and view["name"].ends_with(" +"),"Upgrade changes real card effects and display")
+    b = fixture([["hold",0],["flame",4],["water_gun",7],["redraw",0],["guard",0]])
+    b.hand[0].upgraded = true
+    b.play_card(by_key(b,"hold"))
+    check(b.retained.size() == 2,"Upgraded retain preserves two different cards")
+    var splash := BattleCardInstance.new(100,"move_150",4)
+    check(not TacticalContent.can_upgrade(splash),"Do not offer a no-op upgrade for Splash")
+    var redraw := b._hand(by_key(b,"redraw"))
+    redraw.upgraded = true
+    b.play_card(redraw.uid)
+    check(b.hand.size() == 4 and b.exhausted.has(redraw),"Upgraded redraw draws one extra card through a reshuffle and exhausts")
+    var catalog := VisualCatalog.new()
+    for id in range(1,387):
+        var pokemon := BattlePokemon.new(TacticalContent.member_definition(id,catalog),id)
+        TacticalGrowth.initialize(pokemon)
+        var members: Array[BattlePokemon] = [pokemon]
+        var deck := TacticalContent.starting_deck(members)
+        check(deck.size() >= 15 and deck.any(func(card: BattleCardInstance): return card.owner_uid == id and TacticalMoves.definition(card.key).has("damage")),"Every species can start with a usable technique deck: %d" % id)
+    for seed_value in 12:
+        b = TacticalBattle.new(seed_value)
+        for limit in 400:
+            if b.phase in [TacticalBattle.WON,TacticalBattle.LOST]: break
+            var action := TacticalPolicy.action(b)
+            check(TacticalPolicy.apply(b,action).is_empty(),"Policy uses only legal card actions")
+        check(b.phase == TacticalBattle.WON,"Starter battle is winnable across draws: %d" % seed_value)
+    print("DECK_COMBAT: ",checks," checks, ",failures," failures")
+    quit(0 if failures == 0 else 1)

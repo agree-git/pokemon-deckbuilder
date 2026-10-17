@@ -1,4 +1,4 @@
-extends "res://tests/test_build_synergies.gd"
+extends "support/build_fixture.gd"
 func calm(b: TacticalBattle) -> void:
     b.enemy_definitions[b.enemy_index]["intents"] = [{"kind":"block","value":0,"move_id":115}]
     reserve(b)

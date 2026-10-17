@@ -1,0 +1,68 @@
+# 개발·실행 방법
+
+## 환경과 실행
+
+Godot **4.7.2**, GDScript, 목표 플랫폼 Windows 데스크톱. 기본 검사는 Python3.10+ 표준 라이브러리만 쓴다. 게임은 main의 `project.godot`을 에디터에서 열어 F5로 실행한다. 시작 씬은 `scenes/main_menu.tscn`이다. 데이터/이미지/소리는 저장소에 포함돼 런타임 다운로드가 없다.
+
+Linux 자동 검증은 수행했지만 Windows 내보내기/실행 완료로 설명하지 않는다. 임의의 예전 클라우드 PATH·DISPLAY·설정 파일을 새 환경의 전제 조건으로 삼지 않는다. 설치된 버전과 현재 작업 디렉터리를 직접 확인한다.
+
+## 코드 찾기 (main 기준)
+
+| 바꿀 영역 | 시작 위치 |
+|---|---|
+| 시작·스타팅·도감 | `scripts/ui/main_menu.gd`, `scripts/battle/battle_session.gd`, `scripts/content/player_profile.gd` |
+| 전투 규칙·카드 행동 | `scripts/tactics/tactical_battle.gd`, `tactical_content.gd`, `tactical_moves.gd` |
+| 원정·보상·야영·포획 | `scripts/tactics/tactical_journey.gd`, `campaign_route.gd`, `campaign_balance.gd` |
+| 능력치·성장·진화 | `scripts/tactics/pokemon_stats.gd`, `tactical_growth.gd`, `evolution_items.gd`, `friendship_evolution.gd`, `special_evolution.gd` |
+| 희귀 | `scripts/tactics/rare_encounter.gd`, `scripts/content/rare_encounter_story.gd`, `data/rare_stories.json` |
+| 전투/원정UI | `scripts/ui/tactical_ui.gd`, `tactical_journey_ui.gd` |
+| 손패·단계 연출 | `scripts/ui/battle_hand_layout.gd`, `combat_motion.gd`, `ui_motion.gd`, `rare_entrance.gd` |
+| 배경·접지·날씨 | `scripts/ui/battle_canvas.gd`, `scripts/content/battlefield_layout.gd`, `scripts/ui/battle_weather_visual.gd` |
+| 저장 | `scripts/persistence/journey_snapshot.gd`, `journey_save.gd`, `legacy_stats_snapshot.gd` |
+| 콘텐츠 | `data/catalog.json`, `base_stats.json`, `progression.json`, `evolutions.json`, `biomes.json`, `gym_leaders.json`, `league.json` |
+| 출처·도트·소리 | main `ASSET_SOURCES.md`, `assets/sources/`, `assets/audio/*/manifest.json` |
+
+표에서 폴더를 생략한 같은 행의 파일은 앞 파일과 같은 폴더다. 코드에 실제 파일이 없는 경우 추측해서 새 파일을 만들지 말고 `rg --files scripts`로 확인한다. 런타임 출처 고지는 main에서 유지한다.
+
+## 자동 검사
+
+자료 폴더의 검사기는 **최신 main의 경로를 명시**해서 실행한다.
+
+```bash
+python3 tools/check.py --game-dir /path/to/main --suite smoke
+python3 tools/check.py --game-dir /path/to/main --suite campaign
+python3 tools/check.py --game-dir /path/to/main --suite rare
+# 모두 필요할 때만:
+python3 tools/check.py --game-dir /path/to/main --suite all
+```
+
+- `smoke`: 시작/해금, 카드 전투, 6능력치/상성, 날씨.
+- `campaign`: 덱/보상/캠페인과 원정 저장/복구.
+- `rare`: 103종 데이터/포획/스타팅, 대표20종 정산/합류, 종별이야기/UI, 정체 숨김, 이전 풀/지문 호환, 진화, 울음소리 디코딩.
+
+`--godot /path/to/godot`으로 실행 파일을 지정할 수 있다. 프로세스별 기본 제한은300초이며 `--timeout`으로 바꾼다. 다른 엔진 버전, 오류 로그, 실패한 검사, 완료 요약이 없는 실행은 통과로 처리하지 않는다. 자세한 통과 로그가 필요하면 `--verbose`를 쓴다.
+
+검사기는 게임의 `assets/data/scripts/scenes/project.godot`을 임시 폴더에 복사해 실행한다. 프로젝트 이름과 사용자 데이터 경로를 고유하게 분리하고 끝나면 지운다. 실제 플레이어의 저장/설정을 사용하지 않으며 원본 checkout을 고치지 않는다. 이 임시 사본은 Git에 보관하는 중복 게임 사본이 아니다.
+
+검사에서 구성한 중간 단계 fixture는 정상 플레이로 그 단계까지 이겼다는 뜻이 아니다. 고정 정책의 자동 완주도 사람의 승률/재미 검증이 아니다. 변경 영역의 검사가 통과하면 이유 없이 전체 측정을 반복하지 않는다.
+
+## 실제 화면·포인터 (선택)
+
+별도의 Linux X11/1920×1080 화면과 `libX11`/`libXtst`가 있어야 한다. 동시에 여러 검사를 실행하지 않는다. 실제 창 검사는 기본 headless runner에 포함되지 않는다.
+
+```bash
+RARE_REVIEW_DIR=/path/to/output python3 tools/native_pointer.py \
+  --project-dir /path/to/main --script tests/native_presentation.gd
+```
+
+실제 OS 클릭으로 조사→예약→준비→이동→등장을 확인하고25종 keyframe/공용 희귀 도입을 촬영한다. 이 검사는 직접 지정한 게임/사용자 데이터 폴더를 사용하므로 별도 테스트용 사용자 프로필을 준비한다. Windows/macOS의 실제 포인터 자동화는 아직 제공하지 않는다. 사람의 F5 실행/수동 입력으로도 확인할 수 있다.
+
+## 변경·GitHub 반영
+
+1. 실제 Git 상태와 최신 사용자 요청을 확인한다. 모델 규칙/콘텐츠와 UI/연출을 분리해 작은 변경을 만든다.
+2. 기존 저장·UID·난수·배경 좌표와 출처를 보존하고 관련 검사만 실행한다.
+3. 게임 변경은 main, 문서/검사 변경은 development-materials에 따로 커밋/push한다. 자료 사본을 main에 통째로 merge하거나 main을 자료 브랜치에 통째로 merge하지 않는다.
+4. HANDOFF에는 결과·실제 검증·미완료·다음 단계만 기록한다. 규칙이 바뀌면 rules, 실행 절차가 바뀌면 이 문서를 고친다.
+5. push 뒤 `git ls-remote --heads origin`으로 확인한다. 원격은 main/development-materials 두 개만 유지한다. 사용자 요청 없이 force push/이력 삭제/추가 영구 브랜치를 만들지 않는다.
+
+큰 캡처·ZIP·원본 CSV·빌드와 긴 로그를 정기적으로 커밋하지 않는다. 이전 수집/배경 편집/측정 도구가 실제로 필요하면 [과거 자료](history.md)에서 필요한 것만 가져와 현재 경로/범위에 맞춰 검증한다.

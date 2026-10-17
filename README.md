@@ -1,24 +1,19 @@
-# 개발·검토 자료
+# 포켓몬 원정대 · 개발 자료
 
-현재 게임 파일은 [main](https://github.com/agree-git/pokemon-deckbuilder/tree/main)에 있다. 이 브랜치는 개발 문서·테스트·도구·자료 조사·검토 갤러리와 정리 전 프로젝트 사본을 보관한다. 실행 게임과 구분해 자료를 찾는 용도다.
+최신 게임은 [main](https://github.com/agree-git/pokemon-deckbuilder/tree/main)에 있습니다. 이 브랜치에는 **이어가기 문서와 현재 사용하는 검증 도구만** 둡니다. 게임 사본·화면 모음·ZIP·원본 자료를 중복 보관하지 않습니다.
 
-| 자료 | 위치 |
+**처음에는 [START_HERE.md](START_HERE.md)를 읽으세요.**
+
+| 문서 | 용도 |
 |---|---|
-| 다른 채팅에서 개발 이어가기 | [AGENTS.md](AGENTS.md) → [HANDOFF.md](HANDOFF.md) |
-| 개발 진행/기획 | [진행 현황](docs/progress.md) · [게임 기획](docs/game-design.md) |
-| 저장소 정리·main 실행 검증 | [결과·화면·로그](review/repository-cleanup/README.md) |
-| 모든 검토 갤러리·ZIP·CSV | [검토 자료 모음](review/README.md) |
-| 최신 희귀 조우 콘텐츠 | [화면 12장·ZIP·CSV](review/rare-stories/README.md) · [구현/검증](docs/rare-stories.md) |
-| 전체 보스 도트 적용 완료 | [시트론 화면·전체 CSV·ZIP](review/clemont/README.md) · [출처와 검증](docs/clemont-sprite.md) |
-| 직전 후대 트레이너 도트 확장 | [추가 34대진 화면 39장·CSV·ZIP](review/trainer-sprite-expansion/README.md) · [출처와 검증](docs/trainer-sprite-expansion.md) |
-| 이전 칼로스·알로라 도트 | [14인물 화면·CSV·ZIP](review/trainer-fan-sprites/README.md) |
-| 트레이너 도트 출처 조사 | [업로드 XLSX 조사](docs/trainer-resource-research.md) · [후대 후보](docs/trainer-sprite-links.md) |
-| 테스트와 개발 도구 | [tests](tests) · [tools](tools) |
-| 이전 프로젝트 사용법 | [PROJECT_README.md](PROJECT_README.md) |
-| 삭제 대상 브랜치의 원본 commit·파일 지문 | [보존 목록](docs/branch-archive.json) |
+| [START_HERE.md](START_HERE.md) | 읽는 순서, 새 환경 준비, 브랜치를 바꾸지 않고 자료 가져오기 |
+| [HANDOFF.md](HANDOFF.md) | 현재 구현, 마지막 작업, 남은 일 |
+| [AGENTS.md](AGENTS.md) | 개발 에이전트의 작업 지침 |
+| [확정 규칙](docs/rules.md) | 원정·카드 전투·성장·희귀·표시·저장 |
+| [개발 방법](docs/development.md) | 코드 위치, 실행·검사·변경 반영 방법 |
+| [검증 현황](docs/validation.md) | 실제 확인한 범위와 미검증 항목 |
+| [과거 자료](docs/history.md) | 이전 갤러리·ZIP·CSV·상세 문서·수집 도구의 고정 링크 |
 
-기존 검토 브랜치의 commit은 이 브랜치의 부모 이력으로도 보존한다. 갤러리를 옮긴 경로와 원본 commit 링크를 보존 목록에서 확인할 수 있다. 큰 산출물은 이후에도 이 브랜치에 두고 `main`에 다시 추가하지 않는다.
+검사: `python3 tools/check.py --game-dir /path/to/main --suite smoke`
 
-실제 게임 개선은 최신 `main`을 기준으로 진행한다. 이 브랜치의 프로젝트 코드는 정리 전 검증/개발 자료이므로 최신 게임 코드라고 가정하지 않는다. 옛 테스트/실험실은 옛 코드에 의존할 수 있다. 검증 자료를 가져올 때 대상 `main`의 실제 코드·파일 구조를 먼저 확인한다.
-
-저장소 정리의 최종 검증과 브랜치 상태는 [작업 인계](HANDOFF.md)에 기록한다.
+파일 정리는 일반 커밋으로 수행했습니다. 과거 자료는 Git 이력에 남고 고정 링크로 열 수 있습니다. 따라서 현재 파일 목록은 작아지지만 전체 Git 이력을 포함한 기존 clone의 용량이 즉시 줄어드는 것은 아닙니다.

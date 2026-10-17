@@ -1,4 +1,5 @@
 extends SceneTree
+const CampaignPolicy = preload("support/campaign_policy.gd")
 var checks := 0
 var failures := 0
 func _initialize() -> void: call_deferred("run")

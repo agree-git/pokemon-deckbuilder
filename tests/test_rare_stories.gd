@@ -1,5 +1,5 @@
 extends SceneTree
-const Support = preload("rare_test_support.gd")
+const Support = preload("support/rare_fixture.gd")
 var checks := 0
 var failures := 0
 func _initialize() -> void: call_deferred("run")
@@ -21,7 +21,7 @@ func text_fits(label: Label) -> bool:
 func run() -> void:
     root.size = Vector2i(1920,1080)
     var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/rare_stories.json"))
-    check(data.size() == RareEncounter.IDS.size() and RareEncounter.IDS.all(func(id: int): return data.has(str(id))),"Story IDs exactly cover the 21 supported rare species")
+    check(data.size() == RareEncounter.IDS.size() and RareEncounter.IDS.all(func(id: int): return data.has(str(id))),"Story IDs exactly cover the 103 supported rare species")
     var seen := {}
     for id: int in RareEncounter.IDS:
         var story := RareEncounterStory.entry(id)
@@ -48,7 +48,7 @@ func run() -> void:
         root.add_child(ui)
         UiMotion.finish_tree(ui)
         await process_frame
-        check(ui.page.find_child("RareSite",true,false).text == data[str(id)]["site"],"Camp shows the actual target's site")
+        check(ui.page.find_child("RareSite",true,false).text == "발견 전까지 정체를 알 수 없습니다.","Camp hides the actual target site")
         check(ui.page.find_child("RareClue",true,false).text == RareEncounterStory.clue(id,j.rare_info()["clues"].size()),"Camp clue follows saved progress")
         for name_text in ["RareSite","RareClue","RareTarget","RareProgress","RareConditions"]:
             var label: Label = ui.page.find_child(name_text,true,false)
@@ -72,7 +72,7 @@ func run() -> void:
         var view := ui.battle_ui
         check(view.run_background["type"] == data[str(id)]["backdrop_type"] and view.stage.canvas.battlefield_layout == BattlefieldLayout.for_backdrop(view.run_background),"Battle uses the story scenery and its calibrated floor")
         check(text_fits(view.get_node("StageTitle")),"Rare site name fits the compact battle header")
-        check(view.busy and view.end_button.disabled and view.rare_speech.visible,"Rare introduction locks battle input")
+        check(view.busy and view.end_button.disabled and view._rare_hidden and not view.enemy_roster.visible and view.stage.canvas.target_factor == 0,"Rare introduction locks battle input")
         var arrival: Label = view.rare_speech.find_child("RareArrival",true,false)
         await process_frame
         check(arrival.text == data[str(id)]["arrival"] and text_fits(arrival),"Own arrival line fits the battle panel")

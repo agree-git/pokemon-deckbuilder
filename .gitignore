@@ -1,29 +1,9 @@
-# Godot generated cache
-.godot/
-
-# Python tooling cache
 __pycache__/
 *.py[cod]
-
-# Export outputs
+.godot/
+*.log
+captures/
+outputs/
 build/
-builds/
-dist/
-
-# Local editor settings
-.vscode/
-.idea/
-
-# OS files
-.DS_Store
-Thumbs.db
-Desktop.ini
-
-# Local secrets
 .env
 .env.*
-!.env.example
-*.keystore
-*.jks
-
-# Keep Godot source files, export_presets.cfg and *.uid files tracked.
