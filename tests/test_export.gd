@@ -31,7 +31,7 @@ func run() -> void:
     for path: String in JourneySave.CONTENT:
         check(FileAccess.file_exists(path) and JSON.parse_string(FileAccess.get_file_as_string(path)) != null,"Packed data readable: "+path)
     var catalog := VisualCatalog.new()
-    check(catalog.pokemon.size() == 468 and catalog.biomes.size() == 18,"Complete shipped catalog")
+    check(catalog.pokemon.size() == 1412 and catalog.biomes.size() == 18,"Complete shipped catalog")
     var regional := RegionMusic.tracks()
     check(regional.size() == 35,"All supplied regional recordings are packed")
     for entry: Dictionary in regional:

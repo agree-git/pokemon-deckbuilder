@@ -12,10 +12,10 @@ func check(ok: bool,message: String) -> void:
 func run() -> void:
     root.size = Vector2i(1920,1080)
     var catalog := VisualCatalog.new()
-    check(catalog.pokemon.size() == 468 and RareEncounter.IDS.size() == 103,"Exact catalog and encounter scope")
+    check(catalog.pokemon.size() == 1412 and RareEncounter.IDS.size() == 103,"Exact catalog and encounter scope")
     for value in range(1,1026):
-        check(VisualCatalog.supports(value) == (value <= 386 or value in RareEncounter.IDS),"Strict supported species membership")
-    for id: int in [793,794,795,796,797,798,799,803,804,805,806,984,985,986,987,988,989,990,991,992,993,994,995,1005,1006,1011,1012,1013,1018,1019,10168,10172]: check(not VisualCatalog.supports(id),"Excluded ordinary, UB, paradox and forms "+str(id))
+        check(VisualCatalog.supports(value),"Strict supported species membership")
+    for id: int in [793,794,795,796,797,798,799,803,804,805,806,984,985,986,987,988,989,990,991,992,993,994,995,1005,1006,1011,1012,1013,1018,1019,10168,10172]: check(VisualCatalog.supports(id),"Expanded ordinary, UB, paradox and regional forms "+str(id))
     for seed_value in 5000:
         var id := RareEncounter.target(seed_value)
         if not seeds.has(id): seeds[id] = seed_value
@@ -79,7 +79,9 @@ func run() -> void:
         var old := JourneySnapshot.encode(j)
         check(JourneySnapshot.validate(old) and JourneySnapshot.encode(JourneySnapshot.restore(old)) == old,"Legacy hunt pool restored "+str(seed_value))
     var collision := TacticalJourney.new(1,"field_kit",[1001,1002,10169],true)
-    check(collision._allocate_pokemon_uid() == 1000 and collision._allocate_pokemon_uid() == 1003,"Recruit UID skips starter IDs")
+    var first_uid := collision._allocate_pokemon_uid()
+    var next_uid := collision._allocate_pokemon_uid()
+    check(first_uid != next_uid and [first_uid,next_uid].all(func(uid: int): return not collision.party.any(func(p: BattlePokemon): return p.uid == uid)),"Recruit UIDs are distinct and never collide with high-ID starters")
     check(catalog.starter_species_id(791) == 789 and catalog.starter_species_id(792) == 789 and catalog.starter_species_id(773) == 772 and catalog.starter_species_id(892) == 891 and catalog.starter_species_id(809) == 808,"Rare evolutionary starter ancestry")
     for time_of_day: String in ["day","night"]:
         var p := BattlePokemon.new(TacticalContent.member_definition(790,catalog),790)

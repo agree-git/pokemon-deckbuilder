@@ -28,7 +28,7 @@ func play(b: TacticalBattle, key: String, owner := 1) -> Dictionary:
     check(b.play_card(card.uid).is_empty(),"Drawn test card resolves: "+key)
     return view
 func run() -> void:
-    check(PokemonStats.data()["species"].size() == 468,"All ordinary and supported rare species have six original base stats")
+    check(PokemonStats.data()["species"].size() == 1412,"All ordinary and supported rare species have six original base stats")
     check(PokemonStats.base(25)["defense"] == 30 and PokemonStats.base(26)["speed"] == 100,"Historical Gen III base stats precede later buffs")
     var p := pokemon(6)
     check([p.max_hp,p.attack,p.defense,p.special_attack,p.special_defense,p.speed] == [266,173,161,223,175,205],"Independent Lv.100 Charizard species-and-level-only reference")

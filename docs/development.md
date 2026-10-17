@@ -145,3 +145,11 @@ python3 tools/native_pointer.py --project-dir /path/to/main --script tests/nativ
 `tools/import_boss_music.py --game-dir /path/game --archive /path/bgm1.zip ... --archive /path/bgm8.zip`은 사용자 첨부39MP3를 읽어36녹음으로 중복 제거한다. 지역 importer와 같은 변환을 사용하며137역할 매핑·별칭·파일명 미포함3인의 지역 공용곡 근거를 기록한다. Godot import에서 `loop=true`를 지정한다. `tools/boss_roster.py --game-dir /path/game --output-dir docs`로 목록을 갱신한다. `native_boss_music.gd`는 신규13대진의 실제 전투 씬·도트 입장·대사·전용곡·배경을 촬영하며 입장 연출이 끝난 뒤 실제 Esc로 보스곡 필터를 확인한다. 촬영 PNG는 로컬 검토용이며 커밋하지 않는다.
 
 Headless 씬 검사는 종료 전에 GameAudio/GameMusic/GameCries뿐 아니라 GameAmbience도 즉시 정지한다. 지역 음악 도입 뒤 희귀 이야기 검사에서 이 정리가 누락돼 행위3609개는 통과했지만 종료 시 Ogg 자원 진단이 발생했다. test_rare_stories의 정리 대상에 환경음을 추가했으며 진단을 필터링해 통과 처리하지 않는다.
+
+## 전국도감 확장 재현
+
+`tools/pokedex/fetch_sources.py --game-dir /path/game --cache-dir /path/outside-game-cache`로 실행 데이터에 기록한26개 CSV의 SHA256을 대조하고 고정 PokéAPI 이미지/울음소리 저장소를 선택 sparse checkout한다. 게임 밖 캐시만 허용하며 원격/작업 내용이 다른 캐시를 덮어쓰지 않는다. `build_content.py`가 입력을 스트리밍해1,412항목·919기술·644진화분기와 최신 정규 레벨업 습득표, 기술 훈련 경로를 생성하고 메가/전투 전용 폼을 명시적으로 제외한다. 형식상 상시로 잘못 표시된 무한다이맥스와 이동 자세도 제외한다. 폼 ID는 Pokemon ID와 충돌하지 않게 별도 영역을 쓰며 데이터에 원본 Pokemon/Form ID를 함께 둔다.
+
+`tools/pokedex/import_assets.py --game-dir /path/game --cache-dir /path/cache`가 실제 앞뒤 PNG/울음소리/진화 재료를 설치하고 출처 지문을 갱신한다. 이 도구만 Pillow·ffmpeg/ffprobe를 필요로 한다. 기존 파일을 보존하며 원본 CSV/asset checkout/검토 PNG는 Git에 넣지 않는다. 새 울음소리 전체의 Vorbis/PCM/길이를 검사하고, 게임 검사는1,412개체의 앞뒤 투명 경계·울음소리 실제 디코딩·Lv.5 습득표/성장·전국번호/조우/희귀 문턱을 대조한다.
+
+`test_national_progression.gd`는 역사적v3서명·정확한 저장 roundtrip,9세대 진화·지역폼/합체 보호·기술 소유자별 교체·진화 준비/아이템·높은 폼ID의 포획UID·재료 재고 정수 직렬화를 검사한다. `native_pokedex.gd`는 실제 X11 포인터/키로 전투→연구→폼 준비→검색/훈련→도감 화면을 촬영한다. 스크린샷은 로컬 검토용이다. 빌드/export는 사용자가 보류했으므로 실행하지 않는다.

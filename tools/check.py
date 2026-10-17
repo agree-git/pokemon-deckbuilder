@@ -17,6 +17,7 @@ SUITES = {
     'soundscape': ['test_soundscape.gd','test_region_music.gd','test_pause_audio.gd'],
     'campaign': ['test_deck_run.gd','test_save.gd','test_boss_routes.gd'],
     'boss': ['test_boss_music.gd','test_boss_routes.gd'],
+    'pokedex': ['test_pokedex.gd','test_national_progression.gd'],
     'rare': ['test_rare.gd','test_rare_capture.gd','test_rare_stories.gd',
              'test_visibility.gd','test_compatibility.gd','test_growth.gd','test_audio.gd'],
 }

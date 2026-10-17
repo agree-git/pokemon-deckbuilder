@@ -23,6 +23,7 @@ func run() -> void:
     var rare_ids := []
     for species: Dictionary in catalog.pokemon:
         if int(species["id"]) in RareEncounter.IDS: rare_ids.append(int(species["id"]))
+    rare_ids.sort()
     check(rare_ids == RareEncounter.IDS,"All 103 supported rare species are candidates")
     var seeds := {}
     for seed_value in 5000:

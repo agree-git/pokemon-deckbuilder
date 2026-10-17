@@ -38,8 +38,8 @@ func run() -> void:
         var loaded := save.load_journey()
         check(loaded != null and JourneySnapshot.encode(loaded) == JourneySnapshot.encode(j),"Disk roundtrip rare starter "+str(id))
         var bad := JourneySnapshot.encode(j)
-        bad["run"]["starter_ids"] = [387]
-        check(not JourneySnapshot.validate(bad),"Added rare scope does not accept unrelated ordinary species")
+        bad["run"]["starter_ids"] = [10034]
+        check(not JourneySnapshot.validate(bad),"Expanded scope still rejects battle-only Mega forms")
     print("RARE_COMPATIBILITY ",checks," checks / ",failures," failures")
     await process_frame
     quit(0 if failures == 0 else 1)
