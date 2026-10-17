@@ -1,7 +1,20 @@
 class_name TrainerEntrance
 extends Node2D
-## Original pixel trainer, with distinct roles and a timed throwing arm.
+## Original-game trainer art where available; generic pixel trainer otherwise.
 ## Presentation only: no battle state, random calls, cards or save changes.
+var portrait: Texture2D
+var portrait_bounds := Rect2()
+func set_trainer(trainer: Dictionary) -> void:
+    portrait = TrainerSprites.texture(trainer)
+    portrait_bounds = TrainerSprites.bounds(trainer)
+    texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+func portrait_extent() -> Vector2:
+    var zoom := maxf(1,floor(minf(260/portrait_bounds.size.y,260/portrait_bounds.size.x)))
+    return portrait_bounds.size*zoom
+func portrait_rect() -> Rect2:
+    var extent := portrait_extent()
+    var offset := Vector2(8,-6) if pose == "windup" else (Vector2(-10,0) if pose == "throw" else Vector2.ZERO)
+    return Rect2((trainer_foot()+offset-Vector2(extent.x/2,extent.y)).round(),extent)
 var canvas: BattleCanvas
 var role := "trainer"
 var accent := Color("73a6ba")
@@ -13,11 +26,23 @@ var ball: Texture2D = preload("res://assets/items/ball.png")
 func _process(_delta: float) -> void: queue_redraw()
 func trainer_foot() -> Vector2:
     var foot := canvas.foot_anchor(false)
-    return Vector2(minf(foot.x+160,canvas.canvas_size.x-360)+slide,foot.y)
+    var right_limit := canvas.canvas_size.x-360
+    if portrait != null:
+        right_limit = minf(right_limit,canvas.canvas_size.x-300-portrait_extent().x/2)
+    return Vector2(minf(foot.x+160,right_limit)+slide,foot.y)
 func _pixel(rect: Rect2,color: Color) -> void:
     draw_rect(Rect2((trainer_foot()+Vector2(-72,-204)+rect.position*4).round(),rect.size*4),color)
 func _draw() -> void:
     if canvas == null: return
+    if portrait != null:
+        var area := portrait_rect()
+        draw_rect(Rect2(trainer_foot()+Vector2(-48,-4),Vector2(96,8)),Color(0.02,0.04,0.06,0.45))
+        draw_texture_rect_region(portrait,area,portrait_bounds)
+        if pose == "windup":
+            var at := area.position+Vector2(area.size.x*0.15,area.size.y*0.4)
+            draw_texture_rect(ball,Rect2(at.round(),Vector2(24,24)),false)
+        _draw_projectile()
+        return
     var ink := Color("182331")
     var skin := Color("e9bc91")
     var shade := Color("be896f")
@@ -73,8 +98,13 @@ func _draw() -> void:
         draw_texture_rect(ball,Rect2((trainer_foot()+Vector2(-68,-104)).round(),Vector2(24,24)),false)
     if pose == "windup":
         draw_texture_rect(ball,Rect2((trainer_foot()+Vector2(-44,-172)).round(),Vector2(24,24)),false)
+    _draw_projectile()
+func _draw_projectile() -> void:
     if projectile:
         var start := trainer_foot()+Vector2(-84,-128)
+        if portrait != null:
+            var area := portrait_rect()
+            start = area.position+Vector2(area.size.x*0.15,area.size.y*0.4)
         var end := canvas.target_anchor
         var at := start.lerp(end,throw_progress)
         at.y -= sin(throw_progress*PI)*90

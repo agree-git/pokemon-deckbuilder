@@ -28,7 +28,7 @@
 - `assets/biomes/atlas_3.png`: 바위 / 고스트 / 드래곤 / 악 / 강철 / 페어리 순서.
 - 리그 실내 배경: 2026-10-16에 `image_gen`으로 생성한 `assets/league/elite_{1..3}.png`, `champion_{1..2}.png` 5장이다. 타입 룸 18개(현재 사천왕 후보는 14타입 사용), 현재 챔피언 11명의 지방별 변형과 공용 홀 1개를 포함한다. 원작 룸을 추출하지 않고 타입·지방 건축과 분위기를 참고해 생성했다. 셀 순서와 현재 후보 연결은 [리그 스테이지](docs/league-stages.md), `data/battle_backdrops.json`에 기록한다.
 - 바이옴·리그 원본은 각각 1536×1024의 2열×3행 PNG다. 셀 하나는 약 768×341이며 개별 1920×1080 또는 정확한 16:9 원본이 아니다. 게임에서는 최근접 필터로 확대하고 손패 위 전투 지형과 발밑을 기준으로 프레이밍한다. 아틀라스별 SHA-256은 `assets/biomes/manifest.json`, `assets/league/manifest.json`에 기록했다. 생성 원본은 `/workspace/generated_images`에 보존하고 복사본을 프로젝트에 사용했다.
-- 상대 등장 도입의 사람 그림은 `scripts/ui/trainer_entrance.gd`에서 도형으로 직접 작성한 공용 도트 캐릭터다. 역할별 모자·안경·망토와 타입 색, 팔 자세로 등장·준비·투척을 표현한다. 개별 원작 관장/사천왕/챔피언 스프라이트를 가져온 것으로 설명하지 않는다. 포켓볼 그림은 아래 PokéAPI 아이템 원본을 공유한다.
+- 관장·사천왕·챔피언 대진 75개에 Smogon / Pokémon Showdown의 원작 정면 도트 73장을 적용했다. 고정 커밋 `a9214714f00974a8c28586829e6315d9ca5a6348`, `src/_uncategorized/canonical/trainers/`에서 원본 PNG를 수정 없이 가져왔다. 대진/URL/SHA/투명 경계는 `assets/sources/trainer_sprites.json`, 출처 원문은 `assets/sources/SMOGON_SPRITES_README.md`다. 그림은 Nintendo / Game Freak / The Pokémon Company 소유이며 저장소 코드의 MIT 허가와 구분한다. 후대 인물 49대진과 일반 상대는 기존 자체 공용 도트를 유지한다. [6~9세대 후보](docs/trainer-sprite-links.md)는 별도로 찾았고 갤러리의 제작자 표기·무단 편집 금지 조건을 확인했지만 아직 다운로드/적용하지 않았다. [적용 범위·재검증](docs/trainer-presentation.md)을 참고한다. 포켓볼은 아래 PokéAPI 아이템 원본이다.
 - 모두 왼쪽 위부터 행 우선 순서다. `data/biomes.json`의 `background`, `cell`로 연결한다. `VisualCatalog.biome_texture()`가 `AtlasTexture`를 반환한다.
 - 기술 연출은 외부 애니메이션을 복제하지 않고 `scripts/vfx/move_effect.gd`에 도형으로 작성했다. 이펙트 데이터, 씬 표현과 향후 전투 규칙을 분리했다.
 - 그래픽 에셋은 도트 스타일로 사용하되 화면과 UI는 **1920×1080**에서 그린다. 전체 화면을 축소하는 SubViewport는 사용하지 않는다. 스프라이트의 최근접 필터·정수 배율을 유지하고 도형의 안티앨리어싱과 텍스처 흐림은 끈다.

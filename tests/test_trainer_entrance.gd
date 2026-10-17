@@ -98,5 +98,9 @@ func run() -> void:
     await process_frame
     check(ui.battle_ui.trainer_intro == null and not ui.battle_ui.busy,"Wild encounters skip the trainer entrance")
     ui.free()
+    root.get_node("GameAudio").stop_all()
+    root.get_node("GameMusic").stop_music()
+    root.get_node("GameCries").stop_all()
+    await create_timer(0.2).timeout
     print("TRAINER_ENTRANCE native=",native,": ",checks," checks, ",failures," failures")
     quit(1 if failures else 0)

@@ -14,6 +14,10 @@ var run_biome: Dictionary = {}
 var run_background: Dictionary = {}
 var opponent_trainer: Dictionary = {}
 var trainer_intro: TrainerEntrance
+var trainer_speech: TrainerSpeech
+var result_speech: TrainerSpeech
+var dialogue_history: Array[Dictionary] = []
+var _dialogue_seen: Dictionary = {}
 signal run_continue_requested
 signal run_restart_requested(selected_relic: String)
 var result_next: Button
@@ -163,6 +167,7 @@ func _start_trainer_intro() -> void:
     trainer_intro = TrainerEntrance.new()
     trainer_intro.canvas = stage.canvas
     trainer_intro.role = opponent_trainer["kind"]
+    trainer_intro.set_trainer(opponent_trainer)
     trainer_intro.accent = VisualCatalog.type_color(opponent_trainer["type"])
     stage.canvas.add_child(trainer_intro)
     get_node("Intent").hide()
@@ -171,6 +176,7 @@ func _start_trainer_intro() -> void:
     _sequence = UiMotion.combat(self,"battle_sequence")
     _sequence.tween_property(trainer_intro,"slide",0.0,0.24).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
     _sequence.tween_interval(0.28)
+    _queue_trainer_line("intro")
     _sequence.tween_callback(func():
         trainer_intro.pose = "windup"
         playback_kinds.append("trainer_windup"))
@@ -268,6 +274,12 @@ func _build() -> void:
     damage_layer.mouse_filter = Control.MOUSE_FILTER_IGNORE
     damage_layer.z_index = 25
     add_child(damage_layer)
+    trainer_speech = TrainerSpeech.new()
+    trainer_speech.name = "TrainerSpeech"
+    trainer_speech.position = Vector2(576,150)
+    trainer_speech.size = Vector2(768,132)
+    trainer_speech.z_index = 40
+    add_child(trainer_speech)
 
 func _build_combat_hud() -> void:
     var first_child := get_child_count()
@@ -496,6 +508,12 @@ func _build_result() -> void:
     result_title = W.label(body,"",Rect2(36,50,688,80),46,GOLD,HORIZONTAL_ALIGNMENT_CENTER)
     for i in battle.party.size(): W.sprite(body,battle.party[i].species_id,Rect2(380-battle.party.size()*52+i*104,165,96,96))
     result_detail = W.label(body,"",Rect2(36,290,688,50),20,CREAM,HORIZONTAL_ALIGNMENT_CENTER)
+    result_speech = TrainerSpeech.new()
+    result_speech.name = "TrainerQuote"
+    result_speech.position = Vector2(36,312)
+    result_speech.size = Vector2(688,90)
+    result_speech.compact = true
+    body.add_child(result_speech)
     result_restart = W.button(body,Rect2(200,395,360,68),restart,"원정 다시 하기" if run_mode else "다시 하기")
     result_next = W.button(body,Rect2(200,483,360,56),func():
         if run_mode: run_continue_requested.emit()
@@ -609,7 +627,7 @@ func _refresh() -> void:
     stage.canvas.set_species(ally.species_id,foe.species_id,catalog,false)
     _position_combat_hud()
     _position_intent()
-    get_node("Intent").visible = trainer_intro == null or not trainer_intro.visible
+    get_node("Intent").visible = (trainer_intro == null or not trainer_intro.visible) and (trainer_speech == null or not trainer_speech.visible)
     stage.canvas.ally_statuses.assign(ally.statuses.keys())
     stage.canvas.enemy_statuses.assign(foe.statuses.keys())
     UiMotion.text(status_label,"턴 %d" % int(_visual_frame.get("turn",battle.turn)))
@@ -743,6 +761,11 @@ func _refresh() -> void:
         if not result.visible:
             result.move_to_front()
             UiMotion.open(result)
+        if battle.phase == TacticalBattle.WON: result_speech.present(opponent_trainer,"defeat")
+        else: result_speech.hide()
+        result_detail.position.y = 260 if result_speech.visible else 290
+        result_restart.position.y = 425 if result_speech.visible else 395
+        result_next.position.y = 513 if result_speech.visible else 483
         result_title.text = "승리!" if battle.phase == TacticalBattle.WON else "파티가 쓰러졌습니다"
         var captures := battle.enemy_states.filter(func(s: Dictionary): return s.get("captured",false)).size()
         result_detail.text = "%d턴  ·  격파 %d  ·  포획 %d" % [int(_visual_frame.get("turn",battle.turn)),battle.enemies.filter(func(p: BattlePokemon): return not p.alive()).size()-captures,captures]
@@ -919,11 +942,27 @@ func _present(reason: String) -> void:
                 _apply_frame(event.get("frame",{}))
                 motion.release(on_ally))
             _sequence.tween_interval(0.42)
+            if kind == "enemy_switch" and battle.enemies.size() > 1 and int(event.get("frame",{}).get("enemy_index",-1)) == battle.enemies.size()-1:
+                _queue_trainer_line("last")
         else:
             _sequence.tween_callback(_play_event.bind(event))
             var duration := 0.40 if kind in ["skill","card","enemy_action","enemy_hit"] else (0.28 if kind in ["damage","shield","heal","knockout","turn"] else 0.22)
             _sequence.tween_interval(duration)
     _sequence.tween_callback(_finished)
+func _queue_trainer_line(phase: String) -> void:
+    if _dialogue_seen.has(phase) or TrainerDialogue.line(opponent_trainer,phase).is_empty(): return
+    _sequence.tween_callback(_show_trainer_line.bind(phase))
+    _sequence.tween_interval(2.2)
+    _sequence.tween_callback(trainer_speech.hide)
+func _show_trainer_line(phase: String) -> void:
+    if _dialogue_seen.has(phase): return
+    _dialogue_seen[phase] = true
+    banner.modulate.a = 0
+    get_node("Intent").hide()
+    trainer_speech.present(opponent_trainer,phase)
+    UiMotion.appear(trainer_speech)
+    playback_kinds.append("trainer_dialogue_"+phase)
+    dialogue_history.append({"key":TrainerDialogue.key(opponent_trainer),"phase":phase,"text":TrainerDialogue.line(opponent_trainer,phase)})
 func _announce(text: String) -> void:
     banner.text = text
     banner.modulate.a = 1.0
@@ -979,6 +1018,7 @@ func _float_value(text: String,on_ally: bool,color: Color,icon_key := "") -> voi
     tween.tween_property(number,"modulate:a",0.0,0.35).set_delay(0.35)
     tween.chain().tween_callback(number.queue_free)
 func _finished() -> void:
+    trainer_speech.hide()
     if battle.phase in [TacticalBattle.WON,TacticalBattle.LOST]: get_node("/root/GameMusic").play_theme("camp")
     if battle.phase == TacticalBattle.WON and "capture" not in playback_kinds: BattleSoundCues.play(self,"victory")
     elif battle.phase == TacticalBattle.LOST: BattleSoundCues.play(self,"defeat")
@@ -1006,6 +1046,9 @@ func restart(selected_relic: String = "") -> void:
     stage.canvas.position = Vector2.ZERO
     banner.text = ""
     banner.modulate.a = 0.0
+    trainer_speech.hide()
+    dialogue_history.clear()
+    _dialogue_seen.clear()
     _damage_events.clear()
     for number: Node in damage_layer.get_children():
         number.queue_free()

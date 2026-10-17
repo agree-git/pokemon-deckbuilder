@@ -1,5 +1,7 @@
 # Pokemon Deckbuilder
 
+[보스 대사·트레이너 도트](docs/trainer-presentation.md): 124대진의 고유 대사와 75대진의 원작 도트, 등장·마지막 출전·결과 연출을 연결했다. [검토 화면·전체 적용 목록](https://github.com/agree-git/pokemon-deckbuilder/blob/trainer-dialogue-review-2026-10-17/review/trainer-presentation/README.md).
+
 포켓몬의 포획·육성과 카드 전투를 연결하는 2D 로그라이트 덱빌딩 게임.
 
 ## 개발 기준
