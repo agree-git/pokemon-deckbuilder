@@ -358,12 +358,17 @@ func _rest() -> void:
     var encounter := journey.camp()
     W.label(page,encounter.get("description","필요한 만큼 준비한 뒤 출발하세요."),Rect2(550,204,1190,40),20,W.MUTED)
     var encounter_tab := "shop" if encounter.get("kind","") == "merchant" else "encounter"
-    var keys := ["rest",encounter_tab,"bag","gear"]
-    var labels := ["휴식·강화",encounter.get("title","아이템 구매"),"가방","장비·유물"]
+    var keys := ["rest",encounter_tab,"machines","bag","gear"]
+    var machine_count := 0
+    for offer: Dictionary in encounter.get("machine_offers",[]):
+        if not offer["taken"]: machine_count += 1
+    var labels := ["휴식·강화",encounter.get("title","아이템 구매"),"기술머신"+(" · 새 물품 %d" % machine_count if machine_count else ""),"가방","장비·유물"]
     if camp_tab not in keys: camp_tab = "rest"
     for i in keys.size():
         var key: String = keys[i]
-        var button := W.button(page,Rect2(550+i*300,266,284,64),_camp_tab.bind(key),labels[i])
+        var action := _open_machines if key == "machines" else _camp_tab.bind(key)
+        var button := W.button(page,Rect2(550+i*240,266,224,64),action,labels[i])
+        if key == "machines": button.name = "CampMachinesButton"
         if key == camp_tab: button.add_theme_stylebox_override("normal",W.box(Color("29443f"),W.GOLD))
         camp_tabs[key] = button
     W.button(page,Rect2(1110,354,150,44),_open_workshop,"포켓몬 연구").name = "PokedexWorkshopButton"
@@ -1084,10 +1089,13 @@ func _retry_save() -> void:
     if travelling: return
     _save_session.checkpoint()
 
-func _open_workshop() -> void:
+func _open_machines() -> void:
+    _open_workshop("machines")
+func _open_workshop(initial_mode := "evolution") -> void:
     if is_instance_valid(workshop): return
     workshop = PokedexWorkshop.new()
     workshop.journey = journey
+    workshop.mode = initial_mode
     workshop.collection.assign(get_node("/root/BattleSession").profile.captured_ids)
     workshop.closed.connect(func(): workshop = null; refresh())
     add_child(workshop)

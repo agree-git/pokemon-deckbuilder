@@ -43,6 +43,7 @@ var growth_reports: Array[Dictionary] = []
 var pending_learning: Array[Dictionary] = []
 var gold := 100
 var inventory: Dictionary = {"potion":1,"super_potion":0,"revive":0}
+var machines: Dictionary = {}
 var loot: Array[Dictionary] = []
 var rested_steps: Array[int] = []
 var shop_stock: Dictionary = {}
@@ -75,6 +76,7 @@ func restart(run_seed: int = 2026, selected_relic: String = "field_kit", selecte
     gold = 100
     statistics = RunStatistics.expedition()
     inventory = {"potion":1,"super_potion":0,"revive":0}
+    machines.clear()
     loot.clear()
     rested_steps.clear()
     shop_stock = {}
@@ -582,6 +584,7 @@ func _prepare_camp() -> void:
                 state["evolution_offer"] = EvolutionItems.merchant_offer(seed_value,step,party)
                 if party.any(func(p: BattlePokemon): return p.species_id == 349 and p.level < 100 and SpecialEvolution.beauty(p) < SpecialEvolution.BEAUTY_THRESHOLD): state["evolution_offer"] = "blue_pokeblock"
                 state["stock"][state["evolution_offer"]] = items()[state["evolution_offer"]]["stock"]
+        if full_campaign: state["machine_offers"] = TechnicalMachines.generate(seed_value,step,party,state["kind"] == "merchant")
         camp_states[step] = state
     shop_stock = camp_states[step]["stock"]
 func camp() -> Dictionary:
@@ -756,13 +759,38 @@ func change_form(uid: int,target: int,collection: Array = []) -> String:
         _decision(choice)
         return notify_changed()
     return "파티의 동료를 선택하세요."
-func train_move(uid: int,move_id: int,slot: int) -> String:
+func machine_offer_reason(index: int) -> String:
+    if phase != REST: return "기술머신은 야영지에서 획득하세요."
+    var offers: Array = camp().get("machine_offers",[])
+    if index < 0 or index >= offers.size(): return "진열된 기술머신을 선택하세요."
+    if offers[index]["taken"]: return "이미 획득한 기술머신입니다."
+    if camp().get("kind","") == "merchant" and gold < TechnicalMachines.PRICE: return "골드가 부족합니다."
+    return ""
+func take_machine(index: int) -> String:
+    var reason := machine_offer_reason(index)
+    if not reason.is_empty(): return reason
+    var offer: Dictionary = camp()["machine_offers"][index]
+    if camp()["kind"] == "merchant":
+        gold -= TechnicalMachines.PRICE
+        _stat("gold_supplies",TechnicalMachines.PRICE)
+        _stat("supplies_bought")
+    var move := int(offer["move"])
+    machines[move] = int(machines.get(move,0))+1
+    offer["taken"] = true
+    var choice := "기술머신 획득 · "+str(TacticalMoves.definition(TacticalMoves.key_for(move))["name"])
+    history.append(choice)
+    _decision(choice)
+    return notify_changed()
+func train_move(uid: int,move_id: int,slot: int,use_machine := false) -> String:
     if phase != REST: return "기술 훈련은 야영지에서 진행하세요."
-    if step in rested_steps: return "이번 야영 행동을 이미 사용했습니다."
+    if use_machine:
+        if not TechnicalMachines.valid(move_id) or int(machines.get(move_id,0)) <= 0: return "보유한 기술머신이 없습니다."
+    elif step in rested_steps: return "이번 야영 행동을 이미 사용했습니다."
     for pokemon: BattlePokemon in party:
         if pokemon.uid != uid: continue
         if not pokemon.alive(): return "기절한 동료를 먼저 회복하세요."
         var key := TacticalMoves.key_for(move_id)
+        if use_machine and move_id not in TechnicalMachines.moves(pokemon.species_id): return "이 포켓몬은 해당 기술머신을 사용할 수 없습니다."
         if move_id not in NationalEvolution.teachable_moves(pokemon): return "현재 레벨과 해당 포켓몬의 습득 경로에 없는 기술입니다."
         if key in pokemon.learned_skills: return "이미 배운 기술입니다."
         if slot < 0 or slot > pokemon.learned_skills.size() or slot >= 4: return "교체할 기술을 선택하세요."
@@ -777,8 +805,9 @@ func train_move(uid: int,move_id: int,slot: int) -> String:
                     copies += 1
         else: pokemon.learned_skills.append(key)
         if copies == 0: deck.append(_allocate_card(key,pokemon.uid))
-        rested_steps.append(step)
-        var choice := "기술 훈련 · %s · %s" % [pokemon.display_name,TacticalMoves.definition(key)["name"]]
+        if use_machine: machines[move_id] = int(machines[move_id])-1
+        else: rested_steps.append(step)
+        var choice := "%s · %s · %s" % ["기술머신 사용" if use_machine else "기술 훈련",pokemon.display_name,TacticalMoves.definition(key)["name"]]
         history.append(choice)
         _decision(choice)
         return notify_changed()

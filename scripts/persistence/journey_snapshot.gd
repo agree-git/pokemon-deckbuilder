@@ -27,6 +27,7 @@ static func encode(j: TacticalJourney) -> Dictionary:
         if p.evolution_choice > 0: pokemon[p.uid]["evolution_choice"] = p.evolution_choice
     for c: BattleCardInstance in j.deck+b.hand+b.draw_pile+b.discard+b.exhausted: cards[c.uid] = fields(c,CARD_FIELDS)
     var state := fields(j,RUN_FIELDS)
+    if not j.machines.is_empty(): state["machines"] = j.machines.duplicate()
     if not j.time_of_day.is_empty(): state["time_of_day"] = j.time_of_day
     if not j.rare_hunt.is_empty(): state["rare_hunt"] = j.rare_hunt.duplicate(true)
     state["party"] = ids(j.party)
@@ -68,6 +69,7 @@ static func restore(data: Dictionary) -> TacticalJourney:
         cards[uid] = c
     for key: String in RUN_FIELDS: j.set(key,state[key])
     j.time_of_day = state.get("time_of_day","")
+    j.machines = state.get("machines",{}).duplicate()
     j.rare_hunt = state.get("rare_hunt",{}).duplicate(true)
     j.statistics = state.get("statistics",{}).duplicate(true)
     j.party.assign(state["party"].map(func(uid: int): return pokemon[uid]))
@@ -116,6 +118,10 @@ static func validate(data: Variant) -> bool:
     var b: Dictionary = data["battle"]
     var ps: Dictionary = data["pokemon"]
     var cs: Dictionary = data["cards"]
+    if r.has("machines"):
+        if not r["machines"] is Dictionary or r["machines"].size() > TechnicalMachines.pool().size(): return false
+        for move: Variant in r["machines"]:
+            if not TechnicalMachines.valid(move) or not integer(r["machines"][move],0,100000): return false
     if ps.size() < 2 or ps.size() > 16 or cs.size() < 1 or cs.size() > 512: return false
     if not same_shape(r,fields(TacticalJourney.new(),RUN_FIELDS)) or not r.get("settled") is bool: return false
     if not same_shape(b,fields(TacticalBattle.new(),BATTLE_FIELDS)) or not b.get("rng") is int: return false
@@ -266,6 +272,7 @@ static func validate(data: Variant) -> bool:
             if not integer(camp["stock"][key],0,3 if SpecialEvolution.ITEMS.has(key) else (1 if EvolutionItems.all_items().has(key) else 4)): return false
         if camp.has("card_offers"):
             if camp["kind"] != "merchant" or not MerchantContent.valid_offers(camp["card_offers"],int(route.stops[step]["chapter"])): return false
+        if camp.has("machine_offers") and not TechnicalMachines.valid_offers(camp["machine_offers"],camp["kind"] == "merchant"): return false
         if camp.has("removed") and not camp["removed"] is bool: return false
     for step: Variant in r["rested_steps"]:
         if not integer(step,0,136) or route.stops[step]["kind"] != "rest": return false
