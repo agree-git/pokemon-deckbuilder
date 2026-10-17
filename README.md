@@ -8,6 +8,7 @@
 | 개발 진행/기획 | [진행 현황](docs/progress.md) · [게임 기획](docs/game-design.md) |
 | 저장소 정리·main 실행 검증 | [결과·화면·로그](review/repository-cleanup/README.md) |
 | 모든 검토 갤러리·ZIP·CSV | [검토 자료 모음](review/README.md) |
+| 최신 희귀 조우 콘텐츠 | [화면 12장·ZIP·CSV](review/rare-stories/README.md) · [구현/검증](docs/rare-stories.md) |
 | 전체 보스 도트 적용 완료 | [시트론 화면·전체 CSV·ZIP](review/clemont/README.md) · [출처와 검증](docs/clemont-sprite.md) |
 | 직전 후대 트레이너 도트 확장 | [추가 34대진 화면 39장·CSV·ZIP](review/trainer-sprite-expansion/README.md) · [출처와 검증](docs/trainer-sprite-expansion.md) |
 | 이전 칼로스·알로라 도트 | [14인물 화면·CSV·ZIP](review/trainer-fan-sprites/README.md) |
