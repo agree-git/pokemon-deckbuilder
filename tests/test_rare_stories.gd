@@ -97,7 +97,7 @@ func run() -> void:
     ui._rare_action(false)
     check(JourneySnapshot.encode(j) == before,"Repeated investigation still cannot spend twice")
     ui.free()
-    for name_text in ["GameAudio","GameMusic","GameCries"]: root.get_node(name_text).call("stop_all" if name_text != "GameMusic" else "stop_music")
+    for name_text in ["GameAudio","GameMusic","GameCries","GameAmbience"]: root.get_node(name_text).call("stop_all" if name_text != "GameMusic" else "stop_music")
     await process_frame
     await create_timer(0.2).timeout
     print("RARE_STORIES: ",checks," checks, ",failures," failures")

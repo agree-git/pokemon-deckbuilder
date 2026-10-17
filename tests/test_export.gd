@@ -32,6 +32,23 @@ func run() -> void:
         check(FileAccess.file_exists(path) and JSON.parse_string(FileAccess.get_file_as_string(path)) != null,"Packed data readable: "+path)
     var catalog := VisualCatalog.new()
     check(catalog.pokemon.size() == 468 and catalog.biomes.size() == 18,"Complete shipped catalog")
+    var regional := RegionMusic.tracks()
+    check(regional.size() == 35,"All supplied regional recordings are packed")
+    for entry: Dictionary in regional:
+        var stream: AudioStreamOggVorbis = load(entry["path"])
+        check(stream != null and stream.loop and absf(stream.get_length()-float(entry["duration_seconds"])) < .1,"Packed regional music: "+entry["title"])
+    check(BossMusic.data()["tracks"].size() == 36 and BossMusic.data()["trainers"].size() == 137,"All boss recordings and role mappings are packed")
+    for track: Dictionary in BossMusic.data()["tracks"]:
+        var stream: AudioStreamOggVorbis = load(track["path"])
+        check(stream != null and stream.loop and absf(stream.get_length()-float(track["duration_seconds"])) < .1,"Packed boss music "+track["id"])
+    var base_league: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/league.json"))
+    var rosters := {"gym":GymLeaders.all(),"elite":base_league["elite"]+BossExpansion.data()["elite"],"champion":base_league["champions"]+BossExpansion.data()["champions"]}
+    for role: String in rosters:
+        for entry: Dictionary in rosters[role]:
+            var trainer := TrainerDialogue.opponent({"kind":role,"trainer":entry},catalog.biomes[0])
+            check(TrainerSprites.texture(trainer) != null and not TrainerDialogue.line(trainer,"intro").is_empty() and not BossMusic.variants(trainer).is_empty(),"Packed complete boss "+TrainerDialogue.key(trainer))
+    for key: String in BossExpansion.data()["backdrops"]:
+        check(VisualCatalog.biome_texture(BossExpansion.data()["backdrops"][key]) != null,"Packed new boss room "+key)
     for pokemon: Dictionary in catalog.pokemon:
         var id := int(pokemon["id"])
         for back: bool in [false,true]:
@@ -63,6 +80,17 @@ func run() -> void:
     root.add_child(view)
     await get_tree().process_frame
     check(view.battle_ui != null and view.battle_ui.hand_row.get_child_count() > 0,"Exported battle scene constructs hand and stage")
+    var music := root.get_node("GameMusic")
+    var region_key: String = music.current_key
+    check(region_key.begins_with("region_"),"Exported ordinary battle uses supplied regional music")
+    view.refresh()
+    check(music.current_key == region_key,"Exported refresh preserves regional selection")
+    view.battle_ui._open_overlay(view.battle_ui.menu_panel)
+    await get_tree().create_timer(.3).timeout
+    check(music.muffled and is_equal_approx(music._muffle_filter.cutoff_hz,1200),"Exported pause menu activates low-pass")
+    view.battle_ui._close_overlays(true)
+    await get_tree().create_timer(.3).timeout
+    check(not music.muffled and not AudioServer.is_bus_effect_enabled(music._bus_index,music._muffle_index),"Exported pause close restores original audio")
     var acted := false
     for card: BattleCardInstance in journey.battle.hand:
         if journey.battle.card_reason(card.uid).is_empty():

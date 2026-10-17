@@ -21,7 +21,7 @@ Linux 검사와 Windows 네이티브 검사는 실제 보고서로 구분한다.
 | 배경·접지·날씨 | `scripts/ui/battle_canvas.gd`, `scripts/content/battlefield_layout.gd`, `scripts/ui/battle_weather_visual.gd` |
 | 저장 | `scripts/persistence/journey_snapshot.gd`, `journey_save.gd`, `legacy_stats_snapshot.gd` |
 | 콘텐츠 | `data/catalog.json`, `base_stats.json`, `progression.json`, `evolutions.json`, `biomes.json`, `gym_leaders.json`, `league.json` |
-| 바이옴 음악·환경음 | `scripts/audio/biome_audio.gd`, `audio_loop_layer.gd`, `game_music.gd`, `game_ambience.gd`, `assets/audio/biomes/manifest.json` |
+| 지역 음악·환경음 | `scripts/audio/region_music.gd`, `biome_audio.gd`, `audio_loop_layer.gd`, `game_music.gd`, `game_ambience.gd`, `assets/audio/region_music/manifest.json` |
 | 출처·도트·소리 | main `ASSET_SOURCES.md`, `assets/sources/`, `assets/audio/*/manifest.json` |
 
 표에서 폴더를 생략한 같은 행의 파일은 앞 파일과 같은 폴더다. 코드에 실제 파일이 없는 경우 추측해서 새 파일을 만들지 말고 `rg --files scripts`로 확인한다. 런타임 출처 고지는 main에서 유지한다.
@@ -79,7 +79,7 @@ python3 tools/check.py --game-dir /path/to/main --suite all
 
 - `smoke`: 시작/해금, 카드 전투, 6능력치/상성, 날씨.
 - `reactions`: 희귀103종 반응309문구·전 종 실제 포획/합류/방출/UI·빈자리/교체·구저장/정체 숨김·기존 포획 회귀.
-- `soundscape`: 바이옴36음원 Godot 디코딩/루프 경계, 실시간 전환·중단·음량·구설정 호환, 원정/희귀UI·난수 불변.
+- `soundscape`: 기존 바이옴36음원과 사용자 제공35곡의 Godot 디코딩/루프, 지역 캐시·직전곡 제외·독립 난수·실시간 전환, 메뉴/중첩 설정의 저역 통과 필터·제거 복구·음량 보존, 원정/희귀UI·저장/RNG 불변.
 - `campaign`: 덱/보상/캠페인과 원정 저장/복구.
 - `rare`: 103종 데이터/포획/스타팅, 대표20종 정산/합류, 종별이야기/UI, 정체 숨김, 이전 풀/지문 호환, 진화, 울음소리 디코딩.
 
@@ -90,6 +90,12 @@ python3 tools/check.py --game-dir /path/to/main --suite all
 검사에서 구성한 중간 단계 fixture는 정상 플레이로 그 단계까지 이겼다는 뜻이 아니다. 고정 정책의 자동 완주도 사람의 승률/재미 검증이 아니다. 변경 영역의 검사가 통과하면 이유 없이 전체 측정을 반복하지 않는다.
 
 ## 바이옴 음원 재생성 (선택)
+
+사용자가 제공한 지역 BGM35곡은 `assets/audio/region_music/manifest.json`에 ZIP/MP3/Ogg 지문과 전체 길이를 기록했다. `tools/import_region_music.py --archive /path/bgm_1.zip --archive /path/bgm_2.zip --archive /path/bgm_3.zip --archive /path/bgm_4.zip --catalog docs/bgm-candidates.json --output-dir /path/to/new-output`으로 재생성한다. 이 선택 도구만 ffmpeg/ffprobe가 필요하며 네트워크 다운로드를 하지 않는다. 후보 파일명은 악센트/구두점 차이를 정규화해 대조하고35곡 누락·중복·예상 밖 엔트리를 거부한다. 파일 경로를 ZIP 밖으로 추출하거나 첨부 문서를 실행하지 않는다. 음량은 두 단계 loudnorm(-18LUFS/true peak -2dB), Vorbis q5·48kHz·스테레오로 정리하며 전체 길이를 보존하고 메타데이터를 제거한다. 각 Ogg의 Godot import는 `loop=true`로 보관한다. 원본 ZIP/MP3는 사용자 첨부 자료로만 두고 Git에 중복 보관하지 않는다.
+
+`RegionMusic.context()`와 GameMusic의 임시 캐시는 원정run_id별 지역 선곡을 유지한다. 같은 앱 실행 중 원정 복원/타이틀 재진입에도 같은 지역 곡을 쓰지만 앱 재시작 후에는 다시 고른다. 관장/사천왕/챔피언만 기존 전용곡이며 해당 원곡 ZIP을 추후 받으면 별도 작업으로 연결한다.
+
+메뉴 음향은 `Preferences.watch_pause_menu()`가 메뉴의 실제 표시/제거를 추적하고 Music/Ambience만 필터링한다. 중첩 메뉴가 하나라도 남으면 먹먹함을 유지하며, 마지막 메뉴가 닫히면 완전히 우회한다. `native_region_music.gd`는 실제 X11 Esc/설정 클릭/지역 이동과 엔진 믹서의 자체 생성500Hz+6kHz 신호 캡처로 저역 통과 동작을 확인한다. 기존 `native_pointer.py`와 별도 사용자 프로필·Dummy 오디오·Godot4.7.2를 사용한다. 물리 스피커/헤드폰 청취 검사는 아니다.
 
 음원 제작에만 Python의 **numpy·scipy**, `ffmpeg`(libvorbis)가 필요하다. 기본 게임과 Godot 검사기는 이 의존성을 요구하지 않는다.
 
@@ -133,3 +139,9 @@ python3 tools/native_pointer.py --project-dir /path/to/main --script tests/nativ
 5. push 뒤 `git ls-remote --heads origin`으로 확인한다. 원격은 main/development-materials 두 개만 유지한다. 사용자 요청 없이 force push/이력 삭제/추가 영구 브랜치를 만들지 않는다.
 
 큰 캡처·ZIP·원본 CSV·빌드와 긴 로그를 정기적으로 커밋하지 않는다. 이전 수집/배경 편집/측정 도구가 실제로 필요하면 [과거 자료](history.md)에서 필요한 것만 가져와 현재 경로/범위에 맞춰 검증한다.
+
+보스 확장은 `boss_expansion.json`과 `BossExpansion`으로 분리했다. CampaignRoute v3만 합치며 v1/v2의 원본 gym/league JSON, RNG 호출과 서명을 그대로 유지한다. `test_boss_routes.gd`는 변경 전 기록한6개 서명·저장 복원·600개 새 경로의8/4/1구조·신규13대진 도달·역할 간 동일 인물 출현을 검사한다. `test_boss_music.gd`는137대진의 음악/개별 도트/대사3단계/방/전술·파티를 대조하고36곡 전체 디코딩·루프·독립 RNG·전투 중 선곡 고정을 확인한다.
+
+`tools/import_boss_music.py --game-dir /path/game --archive /path/bgm1.zip ... --archive /path/bgm8.zip`은 사용자 첨부39MP3를 읽어36녹음으로 중복 제거한다. 지역 importer와 같은 변환을 사용하며137역할 매핑·별칭·파일명 미포함3인의 지역 공용곡 근거를 기록한다. Godot import에서 `loop=true`를 지정한다. `tools/boss_roster.py --game-dir /path/game --output-dir docs`로 목록을 갱신한다. `native_boss_music.gd`는 신규13대진의 실제 전투 씬·도트 입장·대사·전용곡·배경을 촬영하며 입장 연출이 끝난 뒤 실제 Esc로 보스곡 필터를 확인한다. 촬영 PNG는 로컬 검토용이며 커밋하지 않는다.
+
+Headless 씬 검사는 종료 전에 GameAudio/GameMusic/GameCries뿐 아니라 GameAmbience도 즉시 정지한다. 지역 음악 도입 뒤 희귀 이야기 검사에서 이 정리가 누락돼 행위3609개는 통과했지만 종료 시 Ogg 자원 진단이 발생했다. test_rare_stories의 정리 대상에 환경음을 추가했으며 진단을 필터링해 통과 처리하지 않는다.

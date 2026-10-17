@@ -1,1461 +1,3152 @@
 {
   "checked_on": "2026-10-18",
-  "source_main_revision": "65bf3c3601f1b77d7feeda6107b803bf2dd8e6a2",
+  "route_version": 3,
   "source_files_sha256": {
     "data/gym_leaders.json": "84fe5d96656f0d35defff41be8f181e7207c14f29a370ed6f06b02a0e26fd144",
-    "data/league.json": "3ea8a135b88ba786067c3969db7355adf5e0e3886a19421f9361749c11bfda77"
+    "data/league.json": "3ea8a135b88ba786067c3969db7355adf5e0e3886a19421f9361749c11bfda77",
+    "data/boss_expansion.json": "a51c981a6e7ff2d96a6f4ed3fba2dc9b4f36e2ab2b72b9f77aa7bbf5e6149ddf",
+    "assets/audio/boss_music/manifest.json": "8f411af7e3c6b9365c8c173df1325a16d28f695258e5bb28fe6bf36fc893c792"
   },
   "counts": {
-    "gym": 82,
-    "elite": 31,
-    "champion": 11,
-    "total": 124
+    "gym": 86,
+    "elite": 36,
+    "champion": 15,
+    "total": 137
   },
   "entries": [
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "brock",
+      "key": "gym:brock",
       "name": "웅",
       "region": "관동",
       "type": "rock",
-      "suggested_filename": "gym_brock.mp3",
-      "status": "active",
-      "person_ids": [
-        "brock"
-      ]
+      "party": [
+        95,
+        139,
+        141,
+        76,
+        142,
+        112
+      ],
+      "music": [
+        "boss_02"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/brock-heartgold-soulsilver.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "misty",
+      "key": "gym:misty",
       "name": "이슬",
       "region": "관동",
       "type": "water",
-      "suggested_filename": "gym_misty.mp3",
-      "status": "active",
-      "person_ids": [
-        "misty"
-      ]
+      "party": [
+        55,
+        62,
+        121,
+        184,
+        230,
+        350
+      ],
+      "music": [
+        "boss_02"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/misty-heartgold-soulsilver.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "lt_surge",
+      "key": "gym:lt_surge",
       "name": "마티스",
       "region": "관동",
       "type": "electric",
-      "suggested_filename": "gym_lt_surge.mp3",
-      "status": "active",
-      "person_ids": [
-        "lt_surge"
-      ]
+      "party": [
+        26,
+        82,
+        101,
+        125,
+        181,
+        310
+      ],
+      "music": [
+        "boss_02"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/ltsurge-heartgold-soulsilver.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "erika",
+      "key": "gym:erika",
       "name": "민화",
       "region": "관동",
       "type": "grass",
-      "suggested_filename": "gym_erika.mp3",
-      "status": "active",
-      "person_ids": [
-        "erika"
-      ]
+      "party": [
+        182,
+        189,
+        315,
+        114,
+        45,
+        71
+      ],
+      "music": [
+        "boss_02"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/erika-heartgold-soulsilver.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "koga",
+      "key": "gym:koga",
       "name": "독수",
       "region": "관동",
       "type": "poison",
-      "suggested_filename": "gym_koga.mp3",
-      "status": "former",
-      "person_ids": [
-        "koga"
-      ]
+      "party": [
+        31,
+        34,
+        89,
+        110,
+        169,
+        336
+      ],
+      "music": [
+        "boss_02"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/koga-heartgold-soulsilver.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "sabrina",
+      "key": "gym:sabrina",
       "name": "초련",
       "region": "관동",
       "type": "psychic",
-      "suggested_filename": "gym_sabrina.mp3",
-      "status": "active",
-      "person_ids": [
-        "sabrina"
-      ]
+      "party": [
+        65,
+        97,
+        122,
+        196,
+        282,
+        326
+      ],
+      "music": [
+        "boss_02"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/sabrina-heartgold-soulsilver.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "blaine",
+      "key": "gym:blaine",
       "name": "강연",
       "region": "관동",
       "type": "fire",
-      "suggested_filename": "gym_blaine.mp3",
-      "status": "active",
-      "person_ids": [
-        "blaine"
-      ]
+      "party": [
+        38,
+        59,
+        78,
+        126,
+        219,
+        324
+      ],
+      "music": [
+        "boss_02"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/blaine-heartgold-soulsilver.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "giovanni",
+      "key": "gym:giovanni",
       "name": "비주기",
       "region": "관동",
       "type": "ground",
-      "suggested_filename": "gym_giovanni.mp3",
-      "status": "former",
-      "person_ids": [
-        "giovanni"
-      ]
+      "party": [
+        28,
+        51,
+        105,
+        112,
+        232,
+        330
+      ],
+      "music": [
+        "boss_02"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/giovanni-heartgold-soulsilver.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "janine",
+      "key": "gym:janine",
       "name": "도희",
       "region": "관동",
       "type": "poison",
-      "suggested_filename": "gym_janine.mp3",
-      "status": "successor",
-      "person_ids": [
-        "janine"
-      ]
+      "party": [
+        168,
+        49,
+        169,
+        110,
+        73,
+        89
+      ],
+      "music": [
+        "boss_01"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/janine-heartgold-soulsilver.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "blue",
+      "key": "gym:blue",
       "name": "그린",
       "region": "관동",
       "type": "mixed",
-      "suggested_filename": "gym_blue.mp3",
-      "status": "successor",
-      "person_ids": [
-        "blue"
-      ]
+      "party": [
+        18,
+        65,
+        112,
+        103,
+        130,
+        59
+      ],
+      "music": [
+        "boss_01"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/blue-heartgold-soulsilver.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "falkner",
+      "key": "gym:falkner",
       "name": "비상",
       "region": "성도",
       "type": "flying",
-      "suggested_filename": "gym_falkner.mp3",
-      "status": "active",
-      "person_ids": [
-        "falkner"
-      ]
+      "party": [
+        164,
+        22,
+        85,
+        227,
+        277,
+        18
+      ],
+      "music": [
+        "boss_04"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/falkner-heartgold-soulsilver.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "bugsy",
+      "key": "gym:bugsy",
       "name": "호일",
       "region": "성도",
       "type": "bug",
-      "suggested_filename": "gym_bugsy.mp3",
-      "status": "active",
-      "person_ids": [
-        "bugsy"
-      ]
+      "party": [
+        12,
+        15,
+        127,
+        205,
+        212,
+        214
+      ],
+      "music": [
+        "boss_04"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/bugsy-heartgold-soulsilver.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "whitney",
+      "key": "gym:whitney",
       "name": "꼭두",
       "region": "성도",
       "type": "normal",
-      "suggested_filename": "gym_whitney.mp3",
-      "status": "active",
-      "person_ids": [
-        "whitney"
-      ]
+      "party": [
+        40,
+        53,
+        115,
+        128,
+        241,
+        289
+      ],
+      "music": [
+        "boss_04"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/whitney-heartgold-soulsilver.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "morty",
+      "key": "gym:morty",
       "name": "유빈",
       "region": "성도",
       "type": "ghost",
-      "suggested_filename": "gym_morty.mp3",
-      "status": "active",
-      "person_ids": [
-        "morty"
-      ]
+      "party": [
+        94,
+        200,
+        292,
+        302,
+        354,
+        356
+      ],
+      "music": [
+        "boss_04"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/morty-heartgold-soulsilver.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "chuck",
+      "key": "gym:chuck",
       "name": "사도",
       "region": "성도",
       "type": "fighting",
-      "suggested_filename": "gym_chuck.mp3",
-      "status": "active",
-      "person_ids": [
-        "chuck"
-      ]
+      "party": [
+        107,
+        57,
+        106,
+        237,
+        297,
+        62
+      ],
+      "music": [
+        "boss_04"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/chuck-heartgold-soulsilver.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "jasmine",
+      "key": "gym:jasmine",
       "name": "규리",
       "region": "성도",
       "type": "steel",
-      "suggested_filename": "gym_jasmine.mp3",
-      "status": "active",
-      "person_ids": [
-        "jasmine"
-      ]
+      "party": [
+        82,
+        205,
+        208,
+        212,
+        227,
+        376
+      ],
+      "music": [
+        "boss_04"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/jasmine-heartgold-soulsilver.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "pryce",
+      "key": "gym:pryce",
       "name": "류옹",
       "region": "성도",
       "type": "ice",
-      "suggested_filename": "gym_pryce.mp3",
-      "status": "active",
-      "person_ids": [
-        "pryce"
-      ]
+      "party": [
+        87,
+        91,
+        124,
+        221,
+        362,
+        365
+      ],
+      "music": [
+        "boss_04"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/pryce-heartgold-soulsilver.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "clair",
+      "key": "gym:clair",
       "name": "이향",
       "region": "성도",
       "type": "dragon",
-      "suggested_filename": "gym_clair.mp3",
-      "status": "active",
-      "person_ids": [
-        "clair"
-      ]
+      "party": [
+        148,
+        149,
+        230,
+        330,
+        334,
+        373
+      ],
+      "music": [
+        "boss_04"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/clair-heartgold-soulsilver.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "roxanne",
+      "key": "gym:roxanne",
       "name": "원규",
       "region": "호연",
       "type": "rock",
-      "suggested_filename": "gym_roxanne.mp3",
-      "status": "active",
-      "person_ids": [
-        "roxanne"
-      ]
+      "party": [
+        76,
+        141,
+        142,
+        248,
+        306,
+        348
+      ],
+      "music": [
+        "boss_06"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/roxanne-black2-white2.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "brawly",
+      "key": "gym:brawly",
       "name": "철구",
       "region": "호연",
       "type": "fighting",
-      "suggested_filename": "gym_brawly.mp3",
-      "status": "active",
-      "person_ids": [
-        "brawly"
-      ]
+      "party": [
+        57,
+        62,
+        68,
+        214,
+        286,
+        297
+      ],
+      "music": [
+        "boss_06"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/brawly-black2-white2.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "wattson",
+      "key": "gym:wattson",
       "name": "암페어",
       "region": "호연",
       "type": "electric",
-      "suggested_filename": "gym_wattson.mp3",
-      "status": "active",
-      "person_ids": [
-        "wattson"
-      ]
+      "party": [
+        100,
+        26,
+        101,
+        181,
+        310,
+        82
+      ],
+      "music": [
+        "boss_06"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/wattson-black2-white2.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "flannery",
+      "key": "gym:flannery",
       "name": "민지",
       "region": "호연",
       "type": "fire",
-      "suggested_filename": "gym_flannery.mp3",
-      "status": "active",
-      "person_ids": [
-        "flannery"
-      ]
+      "party": [
+        218,
+        219,
+        38,
+        78,
+        257,
+        324
+      ],
+      "music": [
+        "boss_06"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/flannery-black2-white2.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "norman",
+      "key": "gym:norman",
       "name": "종길",
       "region": "호연",
       "type": "normal",
-      "suggested_filename": "gym_norman.mp3",
-      "status": "active",
-      "person_ids": [
-        "norman"
-      ]
+      "party": [
+        327,
+        264,
+        335,
+        241,
+        288,
+        289
+      ],
+      "music": [
+        "boss_06"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/norman-black2-white2.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "winona",
+      "key": "gym:winona",
       "name": "은송",
       "region": "호연",
       "type": "flying",
-      "suggested_filename": "gym_winona.mp3",
-      "status": "active",
-      "person_ids": [
-        "winona"
-      ]
+      "party": [
+        18,
+        85,
+        164,
+        227,
+        277,
+        334
+      ],
+      "music": [
+        "boss_06"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/winona-black2-white2.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "tate_liza",
+      "key": "gym:tate_liza",
       "name": "풍·란",
       "region": "호연",
       "type": "psychic",
-      "suggested_filename": "gym_tate_liza.mp3",
-      "status": "active",
-      "person_ids": [
-        "tate",
-        "liza"
-      ]
+      "party": [
+        178,
+        282,
+        344,
+        326,
+        337,
+        338
+      ],
+      "music": [
+        "boss_06"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/tateandliza-ruby-sapphire.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "wallace",
+      "key": "gym:wallace",
       "name": "윤진",
       "region": "호연",
       "type": "water",
-      "suggested_filename": "gym_wallace.mp3",
-      "status": "former",
-      "person_ids": [
-        "wallace"
-      ]
+      "party": [
+        370,
+        340,
+        73,
+        119,
+        272,
+        350
+      ],
+      "music": [
+        "boss_06"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/wallace-black2-white2.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "juan",
+      "key": "gym:juan",
       "name": "아단",
       "region": "호연",
       "type": "water",
-      "suggested_filename": "gym_juan.mp3",
-      "status": "successor",
-      "person_ids": [
-        "juan"
-      ]
+      "party": [
+        370,
+        364,
+        119,
+        342,
+        230,
+        350
+      ],
+      "music": [
+        "boss_06"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/juan-black2-white2.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "roark",
+      "key": "gym:roark",
       "name": "강석",
       "region": "신오",
       "type": "rock",
-      "suggested_filename": "gym_roark.mp3",
-      "status": "active",
-      "person_ids": [
-        "roark"
-      ]
+      "party": [
+        95,
+        75,
+        139,
+        141,
+        299,
+        76
+      ],
+      "music": [
+        "boss_08"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/roark-diamond-pearl.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "gardenia",
+      "key": "gym:gardenia",
       "name": "유채",
       "region": "신오",
       "type": "grass",
-      "suggested_filename": "gym_gardenia.mp3",
-      "status": "active",
-      "person_ids": [
-        "gardenia"
-      ]
+      "party": [
+        189,
+        71,
+        182,
+        154,
+        286,
+        315
+      ],
+      "music": [
+        "boss_08"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/gardenia-diamond-pearl.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "maylene",
+      "key": "gym:maylene",
       "name": "자두",
       "region": "신오",
       "type": "fighting",
-      "suggested_filename": "gym_maylene.mp3",
-      "status": "active",
-      "person_ids": [
-        "maylene"
-      ]
+      "party": [
+        67,
+        107,
+        106,
+        214,
+        297,
+        68
+      ],
+      "music": [
+        "boss_08"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/maylene-diamond-pearl.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "crasher_wake",
+      "key": "gym:crasher_wake",
       "name": "맥실러",
       "region": "신오",
       "type": "water",
-      "suggested_filename": "gym_crasher_wake.mp3",
-      "status": "active",
-      "person_ids": [
-        "crasher_wake"
-      ]
+      "party": [
+        195,
+        211,
+        319,
+        365,
+        260,
+        130
+      ],
+      "music": [
+        "boss_08"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/crasherwake-diamond-pearl.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "fantina",
+      "key": "gym:fantina",
       "name": "멜리사",
       "region": "신오",
       "type": "ghost",
-      "suggested_filename": "gym_fantina.mp3",
-      "status": "active",
-      "person_ids": [
-        "fantina"
-      ]
+      "party": [
+        200,
+        302,
+        93,
+        354,
+        356,
+        94
+      ],
+      "music": [
+        "boss_08"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/fantina-diamond-pearl.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "byron",
+      "key": "gym:byron",
       "name": "동관",
       "region": "신오",
       "type": "steel",
-      "suggested_filename": "gym_byron.mp3",
-      "status": "active",
-      "person_ids": [
-        "byron"
-      ]
+      "party": [
+        205,
+        303,
+        227,
+        212,
+        306,
+        208
+      ],
+      "music": [
+        "boss_08"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/byron-diamond-pearl.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "candice",
+      "key": "gym:candice",
       "name": "무청",
       "region": "신오",
       "type": "ice",
-      "suggested_filename": "gym_candice.mp3",
-      "status": "active",
-      "person_ids": [
-        "candice"
-      ]
+      "party": [
+        215,
+        221,
+        91,
+        87,
+        362,
+        131
+      ],
+      "music": [
+        "boss_08"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/candice-diamond-pearl.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "volkner",
+      "key": "gym:volkner",
       "name": "전진",
       "region": "신오",
       "type": "electric",
-      "suggested_filename": "gym_volkner.mp3",
-      "status": "active",
-      "person_ids": [
-        "volkner"
-      ]
+      "party": [
+        171,
+        181,
+        82,
+        310,
+        26,
+        125
+      ],
+      "music": [
+        "boss_08"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/volkner-diamond-pearl.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "cilan",
+      "key": "gym:cilan",
       "name": "덴트",
       "region": "하나",
       "type": "grass",
-      "suggested_filename": "gym_cilan.mp3",
-      "status": "former",
-      "person_ids": [
-        "cilan"
-      ]
+      "party": [
+        114,
+        189,
+        71,
+        103,
+        286,
+        254
+      ],
+      "music": [
+        "boss_11"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/cilan-black-white.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "chili",
+      "key": "gym:chili",
       "name": "팟",
       "region": "하나",
       "type": "fire",
-      "suggested_filename": "gym_chili.mp3",
-      "status": "former",
-      "person_ids": [
-        "chili"
-      ]
+      "party": [
+        136,
+        219,
+        78,
+        324,
+        257,
+        59
+      ],
+      "music": [
+        "boss_11"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/chili-black-white.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "cress",
+      "key": "gym:cress",
       "name": "콘",
       "region": "하나",
       "type": "water",
-      "suggested_filename": "gym_cress.mp3",
-      "status": "former",
-      "person_ids": [
-        "cress"
-      ]
+      "party": [
+        55,
+        121,
+        342,
+        319,
+        350,
+        134
+      ],
+      "music": [
+        "boss_11"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/cress-black-white.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "lenora",
+      "key": "gym:lenora",
       "name": "알로에",
       "region": "하나",
       "type": "normal",
-      "suggested_filename": "gym_lenora.mp3",
-      "status": "former",
-      "person_ids": [
-        "lenora"
-      ]
+      "party": [
+        162,
+        234,
+        203,
+        217,
+        115,
+        128
+      ],
+      "music": [
+        "boss_11"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/lenora-black-white.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "burgh",
+      "key": "gym:burgh",
       "name": "아티",
       "region": "하나",
       "type": "bug",
-      "suggested_filename": "gym_burgh.mp3",
-      "status": "active",
-      "person_ids": [
-        "burgh"
-      ]
+      "party": [
+        267,
+        269,
+        284,
+        12,
+        123,
+        212
+      ],
+      "music": [
+        "boss_11",
+        "boss_12"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/burgh-black-white.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "elesa",
+      "key": "gym:elesa",
       "name": "카밀레",
       "region": "하나",
       "type": "electric",
-      "suggested_filename": "gym_elesa.mp3",
-      "status": "active",
-      "person_ids": [
-        "elesa"
-      ]
+      "party": [
+        101,
+        171,
+        125,
+        26,
+        181,
+        310
+      ],
+      "music": [
+        "boss_11",
+        "boss_12"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/elesa-black2-white2.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "clay",
+      "key": "gym:clay",
       "name": "야콘",
       "region": "하나",
       "type": "ground",
-      "suggested_filename": "gym_clay.mp3",
-      "status": "active",
-      "person_ids": [
-        "clay"
-      ]
+      "party": [
+        28,
+        51,
+        105,
+        232,
+        323,
+        112
+      ],
+      "music": [
+        "boss_11",
+        "boss_12"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/clay-black-white.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "skyla",
+      "key": "gym:skyla",
       "name": "풍란",
       "region": "하나",
       "type": "flying",
-      "suggested_filename": "gym_skyla.mp3",
-      "status": "active",
-      "person_ids": [
-        "skyla"
-      ]
+      "party": [
+        164,
+        279,
+        189,
+        227,
+        85,
+        277
+      ],
+      "music": [
+        "boss_11",
+        "boss_12"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/skyla-black-white.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "brycen",
+      "key": "gym:brycen",
       "name": "담죽",
       "region": "하나",
       "type": "ice",
-      "suggested_filename": "gym_brycen.mp3",
-      "status": "former",
-      "person_ids": [
-        "brycen"
-      ]
+      "party": [
+        215,
+        225,
+        87,
+        91,
+        362,
+        365
+      ],
+      "music": [
+        "boss_11"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/brycen-black-white.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "drayden",
+      "key": "gym:drayden",
       "name": "사간",
       "region": "하나",
       "type": "dragon",
-      "suggested_filename": "gym_drayden.mp3",
-      "status": "active",
-      "person_ids": [
-        "drayden"
-      ]
+      "party": [
+        148,
+        334,
+        230,
+        149,
+        373,
+        330
+      ],
+      "music": [
+        "boss_11",
+        "boss_12"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/drayden-black-white.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "iris",
+      "key": "gym:iris",
       "name": "아이리스",
       "region": "하나",
       "type": "dragon",
-      "suggested_filename": "gym_iris.mp3",
-      "status": "former",
-      "person_ids": [
-        "iris"
-      ]
+      "party": [
+        148,
+        230,
+        334,
+        330,
+        373,
+        149
+      ],
+      "music": [
+        "boss_11"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/iris-black-white.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "cheren",
+      "key": "gym:cheren",
       "name": "체렌",
       "region": "하나",
       "type": "normal",
-      "suggested_filename": "gym_cheren.mp3",
-      "status": "successor",
-      "person_ids": [
-        "cheren"
-      ]
+      "party": [
+        264,
+        277,
+        352,
+        335,
+        217,
+        289
+      ],
+      "music": [
+        "boss_12"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/cheren-black2-white2.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "roxie",
+      "key": "gym:roxie",
       "name": "보미",
       "region": "하나",
       "type": "poison",
-      "suggested_filename": "gym_roxie.mp3",
-      "status": "active",
-      "person_ids": [
-        "roxie"
-      ]
+      "party": [
+        109,
+        168,
+        269,
+        317,
+        89,
+        110
+      ],
+      "music": [
+        "boss_12"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/roxie-black2-white2.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "marlon",
+      "key": "gym:marlon",
       "name": "시즈",
       "region": "하나",
       "type": "water",
-      "suggested_filename": "gym_marlon.mp3",
-      "status": "successor",
-      "person_ids": [
-        "marlon"
-      ]
+      "party": [
+        211,
+        226,
+        340,
+        73,
+        320,
+        321
+      ],
+      "music": [
+        "boss_12"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/marlon-black2-white2.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "viola",
+      "key": "gym:viola",
       "name": "비올라",
       "region": "칼로스",
       "type": "bug",
-      "suggested_filename": "gym_viola.mp3",
-      "status": "active",
-      "person_ids": [
-        "viola"
-      ]
+      "party": [
+        283,
+        284,
+        267,
+        269,
+        166,
+        12
+      ],
+      "music": [
+        "boss_15"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/viola-x-y-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "grant",
+      "key": "gym:grant",
       "name": "자크로",
       "region": "칼로스",
       "type": "rock",
-      "suggested_filename": "gym_grant.mp3",
-      "status": "active",
-      "person_ids": [
-        "grant"
-      ]
+      "party": [
+        185,
+        95,
+        139,
+        141,
+        142,
+        348
+      ],
+      "music": [
+        "boss_15"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/grant-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "korrina",
+      "key": "gym:korrina",
       "name": "코르니",
       "region": "칼로스",
       "type": "fighting",
-      "suggested_filename": "gym_korrina.mp3",
-      "status": "active",
-      "person_ids": [
-        "korrina"
-      ]
+      "party": [
+        237,
+        106,
+        107,
+        214,
+        68,
+        257
+      ],
+      "music": [
+        "boss_15"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/korrina-x-y-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "ramos",
+      "key": "gym:ramos",
       "name": "후쿠지",
       "region": "칼로스",
       "type": "grass",
-      "suggested_filename": "gym_ramos.mp3",
-      "status": "active",
-      "person_ids": [
-        "ramos"
-      ]
+      "party": [
+        114,
+        189,
+        71,
+        275,
+        332,
+        103
+      ],
+      "music": [
+        "boss_15"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/ramos-x-y-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "clemont",
+      "key": "gym:clemont",
       "name": "시트론",
       "region": "칼로스",
       "type": "electric",
-      "suggested_filename": "gym_clemont.mp3",
-      "status": "active",
-      "person_ids": [
-        "clemont"
-      ]
+      "party": [
+        100,
+        101,
+        171,
+        26,
+        181,
+        82
+      ],
+      "music": [
+        "boss_15"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/clemont-x-y-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "valerie",
+      "key": "gym:valerie",
       "name": "마슈",
       "region": "칼로스",
       "type": "fairy",
-      "suggested_filename": "gym_valerie.mp3",
-      "status": "active",
-      "person_ids": [
-        "valerie"
-      ]
+      "party": [
+        36,
+        40,
+        122,
+        184,
+        210,
+        303
+      ],
+      "music": [
+        "boss_15"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/valerie-x-y-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "olympia",
+      "key": "gym:olympia",
       "name": "고지카",
       "region": "칼로스",
       "type": "psychic",
-      "suggested_filename": "gym_olympia.mp3",
-      "status": "active",
-      "person_ids": [
-        "olympia"
-      ]
+      "party": [
+        178,
+        203,
+        196,
+        282,
+        65,
+        326
+      ],
+      "music": [
+        "boss_15"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/olympia-x-y-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "wulfric",
+      "key": "gym:wulfric",
       "name": "우르프",
       "region": "칼로스",
       "type": "ice",
-      "suggested_filename": "gym_wulfric.mp3",
-      "status": "active",
-      "person_ids": [
-        "wulfric"
-      ]
+      "party": [
+        221,
+        91,
+        124,
+        362,
+        365,
+        131
+      ],
+      "music": [
+        "boss_15"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/wulfric-x-y-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "milo",
+      "key": "gym:milo",
       "name": "아킬",
       "region": "가라르",
       "type": "grass",
-      "suggested_filename": "gym_milo.mp3",
-      "status": "active",
-      "person_ids": [
-        "milo"
-      ]
+      "party": [
+        192,
+        189,
+        182,
+        286,
+        254,
+        154
+      ],
+      "music": [
+        "boss_25"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/milo-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "nessa",
+      "key": "gym:nessa",
       "name": "야청",
       "region": "가라르",
       "type": "water",
-      "suggested_filename": "gym_nessa.mp3",
-      "status": "active",
-      "person_ids": [
-        "nessa"
-      ]
+      "party": [
+        119,
+        195,
+        319,
+        342,
+        260,
+        230
+      ],
+      "music": [
+        "boss_25"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/nessa-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "kabu",
+      "key": "gym:kabu",
       "name": "순무",
       "region": "가라르",
       "type": "fire",
-      "suggested_filename": "gym_kabu.mp3",
-      "status": "active",
-      "person_ids": [
-        "kabu"
-      ]
+      "party": [
+        219,
+        324,
+        136,
+        38,
+        126,
+        59
+      ],
+      "music": [
+        "boss_25"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/kabu-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "bea",
+      "key": "gym:bea",
       "name": "채두",
       "region": "가라르",
       "type": "fighting",
-      "suggested_filename": "gym_bea.mp3",
-      "status": "version",
-      "person_ids": [
-        "bea"
-      ]
+      "party": [
+        237,
+        107,
+        106,
+        214,
+        297,
+        68
+      ],
+      "music": [
+        "boss_25"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/bea-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "allister",
+      "key": "gym:allister",
       "name": "어니언",
       "region": "가라르",
       "type": "ghost",
-      "suggested_filename": "gym_allister.mp3",
-      "status": "version",
-      "person_ids": [
-        "allister"
-      ]
+      "party": [
+        200,
+        292,
+        302,
+        354,
+        356,
+        94
+      ],
+      "music": [
+        "boss_25"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/allister-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "opal",
+      "key": "gym:opal",
       "name": "포플러",
       "region": "가라르",
       "type": "fairy",
-      "suggested_filename": "gym_opal.mp3",
-      "status": "former",
-      "person_ids": [
-        "opal"
-      ]
+      "party": [
+        303,
+        184,
+        40,
+        36,
+        210,
+        122
+      ],
+      "music": [
+        "boss_25"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/opal-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "gordie",
+      "key": "gym:gordie",
       "name": "마쿠와",
       "region": "가라르",
       "type": "rock",
-      "suggested_filename": "gym_gordie.mp3",
-      "status": "version",
-      "person_ids": [
-        "gordie"
-      ]
+      "party": [
+        213,
+        219,
+        185,
+        141,
+        348,
+        76
+      ],
+      "music": [
+        "boss_25"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/gordie-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "melony",
+      "key": "gym:melony",
       "name": "멜론",
       "region": "가라르",
       "type": "ice",
-      "suggested_filename": "gym_melony.mp3",
-      "status": "version",
-      "person_ids": [
-        "melony"
-      ]
+      "party": [
+        225,
+        87,
+        91,
+        221,
+        362,
+        131
+      ],
+      "music": [
+        "boss_25"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/melony-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "piers",
+      "key": "gym:piers",
       "name": "두송",
       "region": "가라르",
       "type": "dark",
-      "suggested_filename": "gym_piers.mp3",
-      "status": "former",
-      "person_ids": [
-        "piers"
-      ]
+      "party": [
+        197,
+        198,
+        215,
+        229,
+        248,
+        359
+      ],
+      "music": [
+        "boss_24"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/piers-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "raihan",
+      "key": "gym:raihan",
       "name": "금랑",
       "region": "가라르",
       "type": "dragon",
-      "suggested_filename": "gym_raihan.mp3",
-      "status": "active",
-      "person_ids": [
-        "raihan"
-      ]
+      "party": [
+        148,
+        149,
+        230,
+        334,
+        373,
+        330
+      ],
+      "music": [
+        "boss_25"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/raihan-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "bede",
+      "key": "gym:bede",
       "name": "비트",
       "region": "가라르",
       "type": "fairy",
-      "suggested_filename": "gym_bede.mp3",
-      "status": "successor",
-      "person_ids": [
-        "bede"
-      ]
+      "party": [
+        122,
+        210,
+        40,
+        184,
+        36,
+        303
+      ],
+      "music": [
+        "boss_25"
+      ],
+      "music_fallback": {
+        "reference": "gym:milo",
+        "reason": "Not individually named in supplied recordings; regional general gym theme"
+      },
+      "sprite": "assets/trainers/bede-leader-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "marnie",
+      "key": "gym:marnie",
       "name": "마리",
       "region": "가라르",
       "type": "dark",
-      "suggested_filename": "gym_marnie.mp3",
-      "status": "successor",
-      "person_ids": [
-        "marnie"
-      ]
+      "party": [
+        215,
+        198,
+        302,
+        275,
+        229,
+        359
+      ],
+      "music": [
+        "boss_25"
+      ],
+      "music_fallback": {
+        "reference": "gym:milo",
+        "reason": "Not individually named in supplied recordings; regional general gym theme"
+      },
+      "sprite": "assets/trainers/marnie-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "klara",
+      "key": "gym:klara",
       "name": "도정",
       "region": "가라르",
       "type": "poison",
-      "suggested_filename": "gym_klara.mp3",
-      "status": "minor_league",
-      "person_ids": [
-        "klara"
-      ]
+      "party": [
+        49,
+        73,
+        169,
+        317,
+        110,
+        89
+      ],
+      "music": [
+        "boss_27"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/klara-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "avery",
+      "key": "gym:avery",
       "name": "세이버리",
       "region": "가라르",
       "type": "psychic",
-      "suggested_filename": "gym_avery.mp3",
-      "status": "minor_league",
-      "person_ids": [
-        "avery"
-      ]
+      "party": [
+        97,
+        203,
+        326,
+        178,
+        65,
+        199
+      ],
+      "music": [
+        "boss_30"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/avery-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "mustard",
+      "key": "gym:mustard",
       "name": "마스터드",
       "region": "가라르",
       "type": "fighting",
-      "suggested_filename": "gym_mustard.mp3",
-      "status": "former",
-      "person_ids": [
-        "mustard"
-      ]
+      "party": [
+        106,
+        107,
+        237,
+        68,
+        214,
+        257
+      ],
+      "music": [
+        "boss_28"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/mustard-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "peony",
+      "key": "gym:peony",
       "name": "피오니",
       "region": "가라르",
       "type": "steel",
-      "suggested_filename": "gym_peony.mp3",
-      "status": "former",
-      "person_ids": [
-        "peony"
-      ]
+      "party": [
+        227,
+        82,
+        212,
+        205,
+        303,
+        306
+      ],
+      "music": [
+        "boss_29"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/peony-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "tyme",
+      "key": "gym:tyme",
       "name": "타임",
       "region": "팔데아",
       "type": "rock",
-      "suggested_filename": "gym_tyme.mp3",
-      "status": "former",
-      "person_ids": [
-        "tyme"
-      ]
+      "party": [
+        185,
+        76,
+        299,
+        112,
+        142,
+        306
+      ],
+      "music": [
+        "boss_31"
+      ],
+      "music_fallback": {
+        "reference": "gym:brassius",
+        "reason": "Not individually named in supplied recordings; regional general gym theme"
+      },
+      "sprite": "assets/trainers/tyme-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "katy",
+      "key": "gym:katy",
       "name": "단풍",
       "region": "팔데아",
       "type": "bug",
-      "suggested_filename": "gym_katy.mp3",
-      "status": "active",
-      "person_ids": [
-        "katy"
-      ]
+      "party": [
+        166,
+        168,
+        284,
+        205,
+        127,
+        214
+      ],
+      "music": [
+        "boss_31"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/katy-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "brassius",
+      "key": "gym:brassius",
       "name": "콜사",
       "region": "팔데아",
       "type": "grass",
-      "suggested_filename": "gym_brassius.mp3",
-      "status": "active",
-      "person_ids": [
-        "brassius"
-      ]
+      "party": [
+        192,
+        71,
+        332,
+        275,
+        286,
+        254
+      ],
+      "music": [
+        "boss_31"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/brassius-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "iono",
+      "key": "gym:iono",
       "name": "모야모",
       "region": "팔데아",
       "type": "electric",
-      "suggested_filename": "gym_iono.mp3",
-      "status": "active",
-      "person_ids": [
-        "iono"
-      ]
+      "party": [
+        181,
+        171,
+        101,
+        310,
+        125,
+        26
+      ],
+      "music": [
+        "boss_31"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/iono-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "kofu",
+      "key": "gym:kofu",
       "name": "곤포",
       "region": "팔데아",
       "type": "water",
-      "suggested_filename": "gym_kofu.mp3",
-      "status": "active",
-      "person_ids": [
-        "kofu"
-      ]
+      "party": [
+        55,
+        224,
+        342,
+        119,
+        260,
+        99
+      ],
+      "music": [
+        "boss_31"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/kofu-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "larry",
+      "key": "gym:larry",
       "name": "청목",
       "region": "팔데아",
       "type": "normal",
-      "suggested_filename": "gym_larry.mp3",
-      "status": "active",
-      "person_ids": [
-        "larry"
-      ]
+      "party": [
+        203,
+        234,
+        206,
+        335,
+        128,
+        277
+      ],
+      "music": [
+        "boss_31"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/larry-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "ryme",
+      "key": "gym:ryme",
       "name": "라임",
       "region": "팔데아",
       "type": "ghost",
-      "suggested_filename": "gym_ryme.mp3",
-      "status": "active",
-      "person_ids": [
-        "ryme"
-      ]
+      "party": [
+        200,
+        302,
+        356,
+        292,
+        94,
+        354
+      ],
+      "music": [
+        "boss_31"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/ryme-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "tulip",
+      "key": "gym:tulip",
       "name": "리파",
       "region": "팔데아",
       "type": "psychic",
-      "suggested_filename": "gym_tulip.mp3",
-      "status": "active",
-      "person_ids": [
-        "tulip"
-      ]
+      "party": [
+        203,
+        122,
+        196,
+        124,
+        326,
+        282
+      ],
+      "music": [
+        "boss_31"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/tulip-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "gym",
       "role_ko": "관장",
       "id": "grusha",
+      "key": "gym:grusha",
       "name": "그루샤",
       "region": "팔데아",
       "type": "ice",
-      "suggested_filename": "gym_grusha.mp3",
-      "status": "active",
-      "person_ids": [
-        "grusha"
-      ]
+      "party": [
+        215,
+        225,
+        87,
+        91,
+        362,
+        365
+      ],
+      "music": [
+        "boss_31"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/grusha-showdown-fan.png",
+      "new_matchup": false
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "hala",
+      "key": "gym:hala",
+      "name": "할라",
+      "region": "알로라",
+      "type": "fighting",
+      "party": [
+        57,
+        62,
+        68,
+        107,
+        286,
+        297
+      ],
+      "music": [
+        "boss_19"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/hala-sun-moon-fan.png",
+      "new_matchup": true
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "olivia",
+      "key": "gym:olivia",
+      "name": "라이치",
+      "region": "알로라",
+      "type": "rock",
+      "party": [
+        76,
+        112,
+        139,
+        141,
+        369,
+        248
+      ],
+      "music": [
+        "boss_19"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/olivia-sun-moon-fan.png",
+      "new_matchup": true
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "nanu",
+      "key": "gym:nanu",
+      "name": "나누",
+      "region": "알로라",
+      "type": "dark",
+      "party": [
+        197,
+        229,
+        248,
+        359,
+        302,
+        215
+      ],
+      "music": [
+        "boss_19"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/nanu-fan.png",
+      "new_matchup": true
+    },
+    {
+      "role": "gym",
+      "role_ko": "관장",
+      "id": "hapu",
+      "key": "gym:hapu",
+      "name": "하푸우",
+      "region": "알로라",
+      "type": "ground",
+      "party": [
+        28,
+        51,
+        76,
+        112,
+        232,
+        260
+      ],
+      "music": [
+        "boss_19"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/hapu-fan.png",
+      "new_matchup": true
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "lorelei",
+      "key": "elite:lorelei",
       "name": "칸나",
       "region": "관동",
       "type": "ice",
-      "suggested_filename": "elite_lorelei.mp3"
+      "party": [
+        87,
+        91,
+        124,
+        131,
+        221
+      ],
+      "music": [
+        "boss_02"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/lorelei-firered-leafgreen.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "bruno",
+      "key": "elite:bruno",
       "name": "시바",
       "region": "관동",
       "type": "fighting",
-      "suggested_filename": "elite_bruno.mp3"
+      "party": [
+        57,
+        62,
+        68,
+        106,
+        107
+      ],
+      "music": [
+        "boss_02",
+        "boss_04"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/bruno-heartgold-soulsilver.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "agatha",
+      "key": "elite:agatha",
       "name": "국화",
       "region": "관동",
       "type": "ghost",
-      "suggested_filename": "elite_agatha.mp3"
+      "party": [
+        93,
+        94,
+        200,
+        302,
+        354
+      ],
+      "music": [
+        "boss_02"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/agatha-firered-leafgreen.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "lance",
+      "key": "elite:lance",
       "name": "목호",
       "region": "관동·성도",
       "type": "dragon",
-      "suggested_filename": "elite_lance.mp3"
+      "party": [
+        148,
+        149,
+        230,
+        330,
+        373
+      ],
+      "music": [
+        "boss_02"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/lance-heartgold-soulsilver.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "will",
+      "key": "elite:will",
       "name": "일목",
       "region": "성도",
       "type": "psychic",
-      "suggested_filename": "elite_will.mp3"
+      "party": [
+        97,
+        103,
+        124,
+        178,
+        196
+      ],
+      "music": [
+        "boss_04"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/will-heartgold-soulsilver.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "koga",
+      "key": "elite:koga",
       "name": "독수",
       "region": "성도",
       "type": "poison",
-      "suggested_filename": "elite_koga.mp3"
+      "party": [
+        49,
+        89,
+        169,
+        168,
+        317
+      ],
+      "music": [
+        "boss_04"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/koga-heartgold-soulsilver.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "karen",
+      "key": "elite:karen",
       "name": "카렌",
       "region": "성도",
       "type": "dark",
-      "suggested_filename": "elite_karen.mp3"
+      "party": [
+        197,
+        198,
+        215,
+        229,
+        359
+      ],
+      "music": [
+        "boss_04"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/karen-heartgold-soulsilver.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "sidney",
+      "key": "elite:sidney",
       "name": "혁진",
       "region": "호연",
       "type": "dark",
-      "suggested_filename": "elite_sidney.mp3"
+      "party": [
+        262,
+        274,
+        275,
+        319,
+        359
+      ],
+      "music": [
+        "boss_07"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/sidney-ruby-sapphire.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "phoebe",
+      "key": "elite:phoebe",
       "name": "회연",
       "region": "호연",
       "type": "ghost",
-      "suggested_filename": "elite_phoebe.mp3"
+      "party": [
+        94,
+        200,
+        302,
+        354,
+        356
+      ],
+      "music": [
+        "boss_07"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/phoebe-ruby-sapphire.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "glacia",
+      "key": "elite:glacia",
       "name": "미혜",
       "region": "호연",
       "type": "ice",
-      "suggested_filename": "elite_glacia.mp3"
+      "party": [
+        87,
+        91,
+        124,
+        362,
+        365
+      ],
+      "music": [
+        "boss_07"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/glacia-ruby-sapphire.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "drake",
+      "key": "elite:drake",
       "name": "권수",
       "region": "호연",
       "type": "dragon",
-      "suggested_filename": "elite_drake.mp3"
+      "party": [
+        148,
+        149,
+        230,
+        330,
+        373
+      ],
+      "music": [
+        "boss_07"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/drake-ruby-sapphire.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "aaron",
+      "key": "elite:aaron",
       "name": "충호",
       "region": "신오",
       "type": "bug",
-      "suggested_filename": "elite_aaron.mp3"
+      "party": [
+        123,
+        127,
+        212,
+        214,
+        348
+      ],
+      "music": [
+        "boss_09"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/aaron-diamond-pearl.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "bertha",
+      "key": "elite:bertha",
       "name": "들국화",
       "region": "신오",
       "type": "ground",
-      "suggested_filename": "elite_bertha.mp3"
+      "party": [
+        28,
+        76,
+        112,
+        195,
+        344
+      ],
+      "music": [
+        "boss_09"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/bertha-diamond-pearl.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "flint",
+      "key": "elite:flint",
       "name": "대엽",
       "region": "신오",
       "type": "fire",
-      "suggested_filename": "elite_flint.mp3"
+      "party": [
+        38,
+        59,
+        78,
+        126,
+        324
+      ],
+      "music": [
+        "boss_09"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/flint-diamond-pearl.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "lucian",
+      "key": "elite:lucian",
       "name": "오엽",
       "region": "신오",
       "type": "psychic",
-      "suggested_filename": "elite_lucian.mp3"
+      "party": [
+        65,
+        97,
+        122,
+        196,
+        282
+      ],
+      "music": [
+        "boss_09"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/lucian-diamond-pearl.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "shauntal",
+      "key": "elite:shauntal",
       "name": "망초",
       "region": "하나",
       "type": "ghost",
-      "suggested_filename": "elite_shauntal.mp3"
+      "party": [
+        94,
+        200,
+        302,
+        354,
+        356
+      ],
+      "music": [
+        "boss_13"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/shauntal-black-white.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "grimsley",
+      "key": "elite:grimsley",
       "name": "블래리",
       "region": "하나",
       "type": "dark",
-      "suggested_filename": "elite_grimsley.mp3"
+      "party": [
+        197,
+        229,
+        248,
+        319,
+        359
+      ],
+      "music": [
+        "boss_13"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/grimsley-black-white.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "caitlin",
+      "key": "elite:caitlin",
       "name": "카틀레야",
       "region": "하나",
       "type": "psychic",
-      "suggested_filename": "elite_caitlin.mp3"
+      "party": [
+        65,
+        103,
+        196,
+        282,
+        326
+      ],
+      "music": [
+        "boss_13"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/caitlin-black-white.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "marshal",
+      "key": "elite:marshal",
       "name": "연무",
       "region": "하나",
       "type": "fighting",
-      "suggested_filename": "elite_marshal.mp3"
+      "party": [
+        57,
+        68,
+        214,
+        237,
+        297
+      ],
+      "music": [
+        "boss_13"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/marshal-black-white.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "malva",
+      "key": "elite:malva",
       "name": "파키라",
       "region": "칼로스",
       "type": "fire",
-      "suggested_filename": "elite_malva.mp3"
+      "party": [
+        38,
+        59,
+        126,
+        229,
+        324
+      ],
+      "music": [
+        "boss_16"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/malva-x-y-fan.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "siebold",
+      "key": "elite:siebold",
       "name": "즈미",
       "region": "칼로스",
       "type": "water",
-      "suggested_filename": "elite_siebold.mp3"
+      "party": [
+        121,
+        130,
+        230,
+        340,
+        350
+      ],
+      "music": [
+        "boss_16"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/siebold-x-y-fan.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "wikstrom",
+      "key": "elite:wikstrom",
       "name": "간피",
       "region": "칼로스",
       "type": "steel",
-      "suggested_filename": "elite_wikstrom.mp3"
+      "party": [
+        82,
+        205,
+        208,
+        227,
+        306
+      ],
+      "music": [
+        "boss_16"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/wikstrom-x-y-fan.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "drasna",
+      "key": "elite:drasna",
       "name": "드라세나",
       "region": "칼로스",
       "type": "dragon",
-      "suggested_filename": "elite_drasna.mp3"
+      "party": [
+        149,
+        230,
+        330,
+        334,
+        373
+      ],
+      "music": [
+        "boss_16"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/drasna-x-y-fan.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "hala",
+      "key": "elite:hala",
       "name": "할라",
       "region": "알로라",
       "type": "fighting",
-      "suggested_filename": "elite_hala.mp3"
+      "party": [
+        57,
+        68,
+        237,
+        286,
+        297
+      ],
+      "music": [
+        "boss_20"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/hala-sun-moon-fan.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "olivia",
+      "key": "elite:olivia",
       "name": "라이치",
       "region": "알로라",
       "type": "rock",
-      "suggested_filename": "elite_olivia.mp3"
+      "party": [
+        76,
+        112,
+        142,
+        248,
+        348
+      ],
+      "music": [
+        "boss_20"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/olivia-sun-moon-fan.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "acerola",
+      "key": "elite:acerola",
       "name": "아세로라",
       "region": "알로라",
       "type": "ghost",
-      "suggested_filename": "elite_acerola.mp3"
+      "party": [
+        94,
+        200,
+        302,
+        354,
+        356
+      ],
+      "music": [
+        "boss_20"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/acerola-sun-moon-fan.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "kahili",
+      "key": "elite:kahili",
       "name": "카일리",
       "region": "알로라",
       "type": "flying",
-      "suggested_filename": "elite_kahili.mp3"
+      "party": [
+        85,
+        130,
+        169,
+        227,
+        277
+      ],
+      "music": [
+        "boss_20"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/kahili-sun-moon-fan.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "rika",
+      "key": "elite:rika",
       "name": "칠리",
       "region": "팔데아",
       "type": "ground",
-      "suggested_filename": "elite_rika.mp3"
+      "party": [
+        28,
+        112,
+        195,
+        260,
+        330
+      ],
+      "music": [
+        "boss_32"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/rika-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "poppy",
+      "key": "elite:poppy",
       "name": "뽀삐",
       "region": "팔데아",
       "type": "steel",
-      "suggested_filename": "elite_poppy.mp3"
+      "party": [
+        82,
+        205,
+        208,
+        303,
+        376
+      ],
+      "music": [
+        "boss_32"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/poppy-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "larry",
+      "key": "elite:larry",
       "name": "청목",
       "region": "팔데아",
       "type": "flying",
-      "suggested_filename": "elite_larry.mp3"
+      "party": [
+        85,
+        130,
+        169,
+        227,
+        334
+      ],
+      "music": [
+        "boss_32"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/larry-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "elite",
       "role_ko": "사천왕",
       "id": "hassel",
+      "key": "elite:hassel",
       "name": "팔자크",
       "region": "팔데아",
       "type": "dragon",
-      "suggested_filename": "elite_hassel.mp3"
+      "party": [
+        149,
+        230,
+        330,
+        334,
+        373
+      ],
+      "music": [
+        "boss_32"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/hassel-showdown-fan.png",
+      "new_matchup": false
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "molayne",
+      "key": "elite:molayne",
+      "name": "멀레인",
+      "region": "알로라",
+      "type": "steel",
+      "party": [
+        227,
+        82,
+        212,
+        208,
+        376
+      ],
+      "music": [
+        "boss_20"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/molayne-fan.png",
+      "new_matchup": true
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "crispin",
+      "key": "elite:crispin",
+      "name": "하솔",
+      "region": "블루베리",
+      "type": "fire",
+      "party": [
+        324,
+        323,
+        59,
+        38,
+        126,
+        257
+      ],
+      "music": [
+        "boss_34"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/crispin-fan.png",
+      "new_matchup": true
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "amarys",
+      "key": "elite:amarys",
+      "name": "네리네",
+      "region": "블루베리",
+      "type": "steel",
+      "party": [
+        227,
+        212,
+        82,
+        208,
+        306,
+        376
+      ],
+      "music": [
+        "boss_34"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/amarys-fan.png",
+      "new_matchup": true
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "lacey",
+      "key": "elite:lacey",
+      "name": "타로",
+      "region": "블루베리",
+      "type": "fairy",
+      "party": [
+        210,
+        36,
+        40,
+        184,
+        303,
+        282
+      ],
+      "music": [
+        "boss_34"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/lacey-fan.png",
+      "new_matchup": true
+    },
+    {
+      "role": "elite",
+      "role_ko": "사천왕",
+      "id": "drayton",
+      "key": "elite:drayton",
+      "name": "제빈",
+      "region": "블루베리",
+      "type": "dragon",
+      "party": [
+        330,
+        149,
+        230,
+        334,
+        254,
+        373
+      ],
+      "music": [
+        "boss_34"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/drayton-fan.png",
+      "new_matchup": true
     },
     {
       "role": "champion",
       "role_ko": "챔피언",
       "id": "blue",
+      "key": "champion:blue",
       "name": "그린",
       "region": "관동",
       "type": "normal",
-      "suggested_filename": "champion_blue.mp3"
+      "party": [
+        18,
+        59,
+        65,
+        103,
+        112,
+        130
+      ],
+      "music": [
+        "boss_03"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/bluechampion-firered-leafgreen.png",
+      "new_matchup": false
     },
     {
       "role": "champion",
       "role_ko": "챔피언",
       "id": "lance",
+      "key": "champion:lance",
       "name": "목호",
       "region": "성도",
       "type": "dragon",
-      "suggested_filename": "champion_lance.mp3"
+      "party": [
+        6,
+        130,
+        142,
+        149,
+        230,
+        373
+      ],
+      "music": [
+        "boss_05"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/lance-heartgold-soulsilver.png",
+      "new_matchup": false
     },
     {
       "role": "champion",
       "role_ko": "챔피언",
       "id": "steven",
+      "key": "champion:steven",
       "name": "성호",
       "region": "호연",
       "type": "steel",
-      "suggested_filename": "champion_steven.mp3"
+      "party": [
+        227,
+        306,
+        344,
+        346,
+        348,
+        376
+      ],
+      "music": [
+        "boss_14"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/steven-black2-white2.png",
+      "new_matchup": false
     },
     {
       "role": "champion",
       "role_ko": "챔피언",
       "id": "wallace",
+      "key": "champion:wallace",
       "name": "윤진",
       "region": "호연",
       "type": "water",
-      "suggested_filename": "champion_wallace.mp3"
+      "party": [
+        73,
+        121,
+        130,
+        272,
+        340,
+        350
+      ],
+      "music": [
+        "boss_14"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/wallace-emerald.png",
+      "new_matchup": false
     },
     {
       "role": "champion",
       "role_ko": "챔피언",
       "id": "cynthia",
+      "key": "champion:cynthia",
       "name": "난천",
       "region": "신오",
       "type": "normal",
-      "suggested_filename": "champion_cynthia.mp3"
+      "party": [
+        94,
+        131,
+        197,
+        212,
+        282,
+        350
+      ],
+      "music": [
+        "boss_10"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/cynthia-black-white.png",
+      "new_matchup": false
     },
     {
       "role": "champion",
       "role_ko": "챔피언",
       "id": "alder",
+      "key": "champion:alder",
       "name": "노간주",
       "region": "하나",
       "type": "bug",
-      "suggested_filename": "champion_alder.mp3"
+      "party": [
+        59,
+        103,
+        127,
+        214,
+        289,
+        373
+      ],
+      "music": [
+        "boss_17"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/alder-black-white.png",
+      "new_matchup": false
     },
     {
       "role": "champion",
       "role_ko": "챔피언",
       "id": "iris",
+      "key": "champion:iris",
       "name": "아이리스",
       "region": "하나",
       "type": "dragon",
-      "suggested_filename": "champion_iris.mp3"
+      "party": [
+        149,
+        230,
+        248,
+        330,
+        334,
+        373
+      ],
+      "music": [
+        "boss_18"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/iris-black2-white2.png",
+      "new_matchup": false
     },
     {
       "role": "champion",
       "role_ko": "챔피언",
       "id": "diantha",
+      "key": "champion:diantha",
       "name": "카르네",
       "region": "칼로스",
       "type": "fairy",
-      "suggested_filename": "champion_diantha.mp3"
+      "party": [
+        38,
+        65,
+        131,
+        142,
+        282,
+        334
+      ],
+      "music": [
+        "boss_23"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/diantha-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "champion",
       "role_ko": "챔피언",
       "id": "leon",
+      "key": "champion:leon",
       "name": "단델",
       "region": "가라르",
       "type": "fire",
-      "suggested_filename": "champion_leon.mp3"
+      "party": [
+        6,
+        59,
+        94,
+        143,
+        248,
+        350
+      ],
+      "music": [
+        "boss_26"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/leon-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "champion",
       "role_ko": "챔피언",
       "id": "geeta",
+      "key": "champion:geeta",
       "name": "테사",
       "region": "팔데아",
       "type": "normal",
-      "suggested_filename": "champion_geeta.mp3"
+      "party": [
+        103,
+        121,
+        197,
+        227,
+        289,
+        376
+      ],
+      "music": [
+        "boss_33"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/geeta-showdown-fan.png",
+      "new_matchup": false
     },
     {
       "role": "champion",
       "role_ko": "챔피언",
       "id": "nemona",
+      "key": "champion:nemona",
       "name": "네모",
       "region": "팔데아",
       "type": "normal",
-      "suggested_filename": "champion_nemona.mp3"
+      "party": [
+        26,
+        65,
+        128,
+        197,
+        212,
+        282
+      ],
+      "music": [
+        "boss_35"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/nemona-v-showdown-fan.png",
+      "new_matchup": false
+    },
+    {
+      "role": "champion",
+      "role_ko": "챔피언",
+      "id": "kukui",
+      "key": "champion:kukui",
+      "name": "쿠쿠이",
+      "region": "알로라",
+      "type": "mixed",
+      "party": [
+        82,
+        143,
+        38,
+        227,
+        257,
+        260
+      ],
+      "music": [
+        "boss_21"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/kukui-fan.png",
+      "new_matchup": true
+    },
+    {
+      "role": "champion",
+      "role_ko": "챔피언",
+      "id": "hau",
+      "key": "champion:hau",
+      "name": "하우",
+      "region": "알로라",
+      "type": "mixed",
+      "party": [
+        26,
+        136,
+        134,
+        103,
+        169,
+        260
+      ],
+      "music": [
+        "boss_22"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/hau-fan.png",
+      "new_matchup": true
+    },
+    {
+      "role": "champion",
+      "role_ko": "챔피언",
+      "id": "kieran",
+      "key": "champion:kieran",
+      "name": "카지",
+      "region": "블루베리",
+      "type": "mixed",
+      "party": [
+        186,
+        233,
+        257,
+        197,
+        149,
+        230
+      ],
+      "music": [
+        "boss_36"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/kieran-fan.png",
+      "new_matchup": true
+    },
+    {
+      "role": "champion",
+      "role_ko": "챔피언",
+      "id": "red",
+      "key": "champion:red",
+      "name": "레드",
+      "region": "관동",
+      "type": "mixed",
+      "party": [
+        25,
+        131,
+        143,
+        3,
+        6,
+        9
+      ],
+      "music": [
+        "boss_05"
+      ],
+      "music_fallback": null,
+      "sprite": "assets/trainers/red-heartgold-soulsilver.png",
+      "new_matchup": true
     }
   ]
 }

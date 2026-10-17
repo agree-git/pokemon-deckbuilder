@@ -97,7 +97,8 @@ func run() -> void:
     ui.journey = j
     var before := JourneySnapshot.encode(j)
     root.add_child(ui)
-    check(music.current_key == "battle" and ambient.current_key == j.biome()["type"],"Wild battle uses route ambience and combat theme")
+    var region_key: String = music.selected_region_key
+    check(music.current_key == region_key and ambient.current_key == j.biome()["type"],"Wild battle uses regional music and route ambience")
     check(JourneySnapshot.encode(j) == before,"Soundscape leaves battle/save/RNG unchanged")
     var view := ui.battle_ui
     for kind: String in ["gym","elite","champion"]:
@@ -107,7 +108,7 @@ func run() -> void:
     view.opponent_trainer = {}
     j.battle.phase = TacticalBattle.WON
     view._play_soundscape()
-    check(music.current_key == "camp_"+str(j.biome()["type"]) and is_equal_approx(ambient._target_gain,.65),"Victory restores biome camp soundscape")
+    check(music.current_key == region_key and is_equal_approx(ambient._target_gain,.65),"Victory restores selected regional soundscape")
     j.phase = TacticalJourney.MAP
     ui.refresh()
     var fade_before: Tween = ambient._fade
@@ -118,9 +119,9 @@ func run() -> void:
     j.phase = TacticalJourney.MAP
     ui._enter()
     var travelling_state := JourneySnapshot.encode(j)
-    check(ui.travelling and music.current_key == "camp_"+str(j.biome()["type"]) and ambient.current_key == j.biome()["type"],"Travel adopts destination biome immediately")
+    check(ui.travelling and music.current_key == music.selected_region_key and music.current_key != region_key and ambient.current_key == j.biome()["type"],"Travel adopts a new destination track immediately")
     await create_timer(1.05).timeout
-    check(not ui.travelling and music.current_key == "battle" and is_equal_approx(ambient._target_gain,.28),"Arrival switches exploration music to battle and ducks ambience")
+    check(not ui.travelling and music.current_key == music.selected_region_key and is_equal_approx(ambient._target_gain,.28),"Arrival keeps regional music and ducks ambience")
     check(JourneySnapshot.encode(j) == travelling_state,"Travel soundscape leaves newly entered battle/RNG unchanged")
     j.phase = TacticalJourney.FAILED
     ui.refresh()
