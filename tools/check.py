@@ -69,8 +69,8 @@ def main():
             shutil.copytree(game/folder,snapshot/folder)
         app_name='pokemon-checks-'+uuid.uuid4().hex
         settings=(game/'project.godot').read_text(encoding='utf-8')
-        settings=re.sub(r'^config/(?:use_custom_user_dir|custom_user_dir)=.*\n?','',settings,flags=re.M)
-        settings,count=re.subn(r'^config/name=.*$',f'config/name="{app_name}"\nconfig/use_custom_user_dir=true\nconfig/custom_user_dir="{app_name}"',settings,count=1,flags=re.M)
+        settings=re.sub(r'^config/(?:use_custom_user_dir|custom_user_dir(?:_name)?)=.*\n?','',settings,flags=re.M)
+        settings,count=re.subn(r'^config/name=.*$',f'config/name="{app_name}"\nconfig/use_custom_user_dir=true\nconfig/custom_user_dir_name="{app_name}"',settings,count=1,flags=re.M)
         if count != 1:raise RuntimeError('Expected one application config/name in project.godot')
         (snapshot/'project.godot').write_text(settings,encoding='utf-8')
         common=[binary,'--headless','--path',str(snapshot)]

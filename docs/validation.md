@@ -1,5 +1,13 @@
 # 검증 현황
 
+## Windows 내보내기 준비 · 2026-10-17
+
+- 공식 Godot4.7.2 export_templates 약1.28GB의 고정SHA512를 검증했다. Windows x86_64 release PE와 외부PCK를 생성하고 실행 안내·출처/라이선스·파일별SHA256을 묶은 약77MB ZIP을 만들었다. 최종 산출물은 Git에 커밋하지 않는다.
+- Linux release template 검사: 배포17개 파일 hash, 배포/검증PCK의 게임항목 **3,544개 동일**, 실제 배포PCK 타이틀 시작, 별도 검증 export **1,899검사·실패0**. 원본 소스/에디터를 읽지 않는 실행 파일에서468종 앞/뒤 도트와 울음소리,18바이옴 음악/환경음,103종 이야기/반응, 시작·카드 사용·포획·합류·저장 roundtrip·컬렉션·설정을 확인했다.
+- 배포용 공식 템플릿의 외부 경로/스크립트 차단을 유지한다. 검증 전용 main scene/script와 UUID 사용자 폴더는 별도 export에만 있고 배포PCK에는 없다. 프로젝트 설정/UID cache를 제외한 모든 게임 pack 항목의 실제 payload를 비교했다. 테스트 사용자 폴더는 제거했다.
+- 알려진 진단: `--quit-after`로 headless 타이틀을 강제 종료하면 title.wav AudioStreamWAV/PlaybackWAV가 남았다는 Godot 종료 진단(프로세스exit0)이 발생했다. 보고서의 `title_shutdown_diagnostic`, `title_exit_clean:false`에 남겼으며 깨끗한 종료로 통과 처리하지 않는다. 깊은 검사는 오류/누수 없이 끝났다. 게임 규칙·저장/지문·사용자 배경 좌표는 바꾸지 않았다.
+- main Windows preview workflow는 Windows 실제 EXE의 headless 검증 후 시험 아티팩트를14일 보관하도록 구성했다. Windows 네이티브 CI의 실제 결과는 실행 뒤 기록한다. 물리GPU/화면·음향/긴 플레이 검증과 구분한다.
+
 ## 희귀 포획 반응 · 2026-10-17
 
 - Linux/Godot **4.7.2** import 및 reactions **4스크립트·9,492검사·실패0**: 신규 반응3,303 / 정체 숨김210 / 지문·이전 풀 호환93 / 기존 희귀 포획5,886.

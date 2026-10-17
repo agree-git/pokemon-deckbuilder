@@ -4,7 +4,7 @@
 
 Godot **4.7.2**, GDScript, 목표 플랫폼 Windows 데스크톱. 기본 검사는 Python3.10+ 표준 라이브러리만 쓴다. 게임은 main의 `project.godot`을 에디터에서 열어 F5로 실행한다. 시작 씬은 `scenes/main_menu.tscn`이다. 데이터/이미지/소리는 저장소에 포함돼 런타임 다운로드가 없다.
 
-Linux 자동 검증은 수행했지만 Windows 내보내기/실행 완료로 설명하지 않는다. 임의의 예전 클라우드 PATH·DISPLAY·설정 파일을 새 환경의 전제 조건으로 삼지 않는다. 설치된 버전과 현재 작업 디렉터리를 직접 확인한다.
+Linux 검사와 Windows 네이티브 검사는 실제 보고서로 구분한다. Windows headless 성공을 실제 GPU/오디오·사람의 긴 플레이 검증으로 설명하지 않는다. 임의의 예전 클라우드 PATH·DISPLAY·설정 파일을 새 환경의 전제 조건으로 삼지 않는다. 설치된 버전과 현재 작업 디렉터리를 직접 확인한다.
 
 ## 코드 찾기 (main 기준)
 
@@ -25,6 +25,39 @@ Linux 자동 검증은 수행했지만 Windows 내보내기/실행 완료로 설
 | 출처·도트·소리 | main `ASSET_SOURCES.md`, `assets/sources/`, `assets/audio/*/manifest.json` |
 
 표에서 폴더를 생략한 같은 행의 파일은 앞 파일과 같은 폴더다. 코드에 실제 파일이 없는 경우 추측해서 새 파일을 만들지 말고 `rg --files scripts`로 확인한다. 런타임 출처 고지는 main에서 유지한다.
+
+## Windows 내보내기
+
+main의 `export_presets.cfg`는 Windows Desktop/x86_64/GL Compatibility/외부PCK/서명 없는 초기 알파 설정이다. Godot4.7.2와 같은 버전의 공식 템플릿을 설치하면 에디터에서도 사용할 수 있다. EXE와 PCK를 같은 폴더에 둔다.
+
+자료의 다음 도구는 Python3.10+ 표준 라이브러리만 쓴다. 네트워크는 준비 단계의 공식 엔진/템플릿/라이선스 다운로드에만 필요하다. 공식 `SHA512-SUMS.txt`에서 고정한 hash로 아카이브를 검사한다. 전체 템플릿 다운로드는 약1.28GB이며 캐시에 재사용한다.
+
+```bash
+python3 tools/prepare_godot.py --cache-dir /path/to/cache
+python3 tools/build_windows.py --game-dir /path/to/main --godot /path/to/godot \
+  --toolchain-dir /path/to/cache --output-dir /path/to/new-output
+# Windows의 새 테스트 계정/CI runner에서:
+python3 tools/verify_export.py --bundle-dir /path/to/new-output/PokemonExpedition \
+  --validation-dir /path/to/new-output/validation --mode windows-native \
+  --report /path/to/new-output/windows-native-report.json
+```
+
+`--output-dir`은 새 폴더여야 한다. 기존 빌드를 덮어쓰지 않는다. 제작기는 임시 게임 스냅샷에서 import/export하고 원본 checkout을 바꾸지 않는다. 배포 폴더에는 EXE/PCK, 한글 실행 안내, 에셋/폰트/엔진 출처·라이선스, 파일별SHA256·원본 코드/도구 지문을 넣는다. ZIP과 외부SHA256도 만든다. 로그·검증용 실행 파일·캐시는 배포 ZIP이나 Git에 넣지 않는다.
+
+공식4.7.2 배포 템플릿은 외부 `--script`/`--main-pack`을 금지한다. 그 설정을 유지하고, 배포 EXE의 타이틀 시작 검사와 별도 검증 export의 깊은 검사를 나눠 실행한다. 두 PCK의 모든 게임 항목은 실제 payload hash를 비교하며 프로젝트 설정과 UID 캐시만 제외한다. 검증 전용 scene/script는 배포 PCK에 없다. 검증 export는 UUID 사용자 폴더를 사용하고 끝나면 지운다. 실제 사용자 데이터가 있는 Windows 계정에서는 시작 검사를 거부하며, 기존 에디터 로그만 있는 폴더는 로그를 보존한다.
+
+Linux에서는 같은 배포 PCK와 공식 Linux release template을 복사해 다음처럼 검사할 수 있다. 이 결과를 Windows 네이티브 실행으로 설명하지 않는다.
+
+```bash
+python3 tools/verify_export.py --bundle-dir /path/to/new-output/PokemonExpedition \
+  --validation-dir /path/to/new-output/validation --mode linux-pack \
+  --runtime /path/to/cache/templates/linux_release.x86_64 \
+  --report /path/to/new-output/linux-pack-report.json
+```
+
+`--quit-after`로 타이틀을 강제 종료할 때 Godot4.7.2의 title.wav 정리 진단이 관측되었다. 검사기는 정확히 해당 WAV/PlaybackWAV와 타이틀 리소스만 해당할 때 이를 보고서의 `title_shutdown_diagnostic`과 `title_exit_clean:false`로 남긴다. 다른 시작 오류와 깊은 검사의 오류/누수는 실패다. 보고서에 진단이 있으면 깨끗한 종료로 보고하지 않는다.
+
+main의 [Windows preview workflow](https://github.com/agree-git/pokemon-deckbuilder/actions/workflows/windows-preview.yml)는 main 게임과 자료 브랜치의 도구를 별도로 checkout해 공식 Windows 에디터로 빌드하고 Windows release EXE를 headless 실행한다. 성공한 시험 빌드는14일, 진단 로그는7일 보관하며 정식 Release를 자동 게시하지 않는다. 다운로드 아티팩트의 `PokemonExpedition` 폴더를 그대로 사용한다.
 
 ## 자동 검사
 
