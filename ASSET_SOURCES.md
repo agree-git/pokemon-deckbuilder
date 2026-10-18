@@ -125,3 +125,7 @@ Windows 시험 빌드는 공식 Godot **4.7.2** 엔진을 포함합니다. Godot
 ## 플레이어 기술 카드 v15
 
 `data/player_move_altitude_v15.json`은 동결v10~v14 정의와 같은 PokéAPI 고정CSV4종을 대조한3카드 추가 정의입니다. 기반/원본 SHA256은 JSON에 기록했습니다. 중력·전자부유·텔레키네시스는 카드 전투 각색이며 새 에셋은 없습니다. [적용/각색/남은 범위](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-altitude.md), [정의 생성기](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/import_player_move_altitude.py), [접지 필드 파생기](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/derive_player_air_fields.py).
+
+## 플레이어 기술 카드 v16
+
+`data/player_move_traps_v16.json`은 동결v10~v15 정의와 같은 PokéAPI 고정CSV4종을 대조한7카드 추가 정의입니다. 지속 구속·문어굳히기·배수의진은 카드 전투 각색이며 새 에셋은 없습니다. 기반/원본 SHA256은 JSON에 기록했습니다. [효과/각색](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-traps.md), [결정적 생성기](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/import_player_move_traps.py).

@@ -1,9 +1,9 @@
 class_name PlayerTechniques
 extends RefCounted
 ## Version dispatch keeps published v10 engines and definitions unchanged.
-static func version(route:int) -> int:return 7 if route>=15 else 6 if route>=14 else 5 if route>=13 else (4 if route>=12 else (3 if route>=11 else (2 if route>=10 else 1)))
+static func version(route:int) -> int:return 8 if route>=16 else 7 if route>=15 else 6 if route>=14 else 5 if route>=13 else (4 if route>=12 else (3 if route>=11 else (2 if route>=10 else 1)))
 static func active(b:TacticalBattle) -> bool:return b.player_moves_version>=2
-static func definition(key:String,v:int) -> Dictionary:return PlayerMoveAltitude.definition(key) if v==7 else PlayerMoveSeals.definition(key) if v==6 else PlayerMoveFields.definition(key) if v==5 else (PlayerMoveExchange.definition(key) if v==4 else (PlayerMoveTactics.definition(key) if v==3 else PlayerMoveCards.definition(key)))
+static func definition(key:String,v:int) -> Dictionary:return PlayerMoveTraps.definition(key) if v==8 else PlayerMoveAltitude.definition(key) if v==7 else PlayerMoveSeals.definition(key) if v==6 else PlayerMoveFields.definition(key) if v==5 else (PlayerMoveExchange.definition(key) if v==4 else (PlayerMoveTactics.definition(key) if v==3 else PlayerMoveCards.definition(key)))
 static func prepare(b:TacticalBattle,p:BattlePokemon,v:Dictionary) -> Dictionary:
     if b.player_moves_version>=5:v=PlayerMoveFields.expand(b,p,v)
     elif b.player_moves_version==4:v=PlayerMoveExchange.expand(b,p,v)
@@ -24,7 +24,8 @@ static func prepare(b:TacticalBattle,p:BattlePokemon,v:Dictionary) -> Dictionary
     if b.player_moves_version>=7:result=PlayerMoveAirFields.prepare(b,p,result)
     elif b.player_moves_version>=5:result=PlayerMoveFields.prepare(b,p,result)
     if b.player_moves_version>=6:result=PlayerMoveSeals.prepare(b,result)
-    return PlayerMoveAltitude.prepare(b,p,result) if b.player_moves_version>=7 else result
+    if b.player_moves_version>=7:result=PlayerMoveAltitude.prepare(b,p,result)
+    return PlayerMoveTraps.prepare(b,p,result) if b.player_moves_version>=8 else result
 static func reason(b:TacticalBattle,p:BattlePokemon,v:Dictionary) -> String:
     var why:=PlayerMoveRules.reason(b,p,v)
     if why.is_empty() and b.player_moves_version>=3:why=PlayerMoveTactics.reason(b,p,v)
@@ -32,6 +33,7 @@ static func reason(b:TacticalBattle,p:BattlePokemon,v:Dictionary) -> String:
     if why.is_empty() and b.player_moves_version>=7:why=PlayerMoveAltitude.reason(b,p,v)
     elif why.is_empty() and b.player_moves_version>=5:why=PlayerMoveFields.reason(b,p,v)
     if why.is_empty() and b.player_moves_version>=6 and p!=b.active() and PlayerMoveSeals.locked(b,b.active()):why="페어리록 중에는 기술 카드로 자동 교대할 수 없습니다."
+    if why.is_empty() and b.player_moves_version>=8:why=PlayerMoveTraps.reason(b,p,v)
     return why
 static func enemy_preview(b:TacticalBattle,p:BattlePokemon,a:Dictionary) -> Dictionary:
     if b.player_moves_version>=4:a=PlayerMoveExchange.enemy_math(b,p,a)
@@ -43,7 +45,8 @@ static func enemy_preview(b:TacticalBattle,p:BattlePokemon,a:Dictionary) -> Dict
         if b.player_moves_version>=5:a=PlayerMoveFields.enemy_math(b,p,a)
         if b.player_moves_version>=6:a=PlayerMoveSeals.enemy_math(b,p,a)
     var result:=PlayerMoveRules.enemy_preview(b,p,a)
-    return PlayerMoveTactics.enemy_preview(b,result) if b.player_moves_version>=3 else result
+    if b.player_moves_version>=3:result=PlayerMoveTactics.enemy_preview(b,result)
+    return PlayerMoveTraps.enemy_preview(b,p,result) if b.player_moves_version>=8 else result
 static func on_card(b:TacticalBattle,v:Dictionary,p:BattlePokemon,target:BattlePokemon) -> void:
     PlayerMoveRules.on_card(b,v,p,target)
     if b.player_moves_version>=3:PlayerMoveTactics.on_card(b,v,p,target)
@@ -58,7 +61,9 @@ static func after_card(b:TacticalBattle,v:Dictionary,p:BattlePokemon,target:Batt
     if b.player_moves_version>=5:PlayerMoveFields.after_card(b,v,p,target)
     if b.player_moves_version>=6:PlayerMoveSeals.after_card(b,v)
     if b.player_moves_version>=7:PlayerMoveAltitude.after_card(b,v,p,target)
+    if b.player_moves_version>=8:PlayerMoveTraps.after_card(b,v,p,target)
 static func on_switch(b:TacticalBattle,old:int) -> void:
+    if b.player_moves_version>=8:PlayerMoveTraps.on_switch(b,old)
     if b.player_moves_version>=7:PlayerMoveAltitude.on_switch(b,old)
     PlayerMoveRules.on_switch(b,old)
     if b.player_moves_version>=3:PlayerMoveTactics.on_switch(b,old)
@@ -70,6 +75,7 @@ static func raw_damage(b:TacticalBattle,p:BattlePokemon,target:BattlePokemon,v:D
     if b.player_moves_version>=5:return PlayerMoveFields.raw_damage(b,p,target,v,bonus)
     return PlayerMoveExchange.raw_damage(b,p,target,v,bonus) if b.player_moves_version>=4 else PlayerMoveCards.raw_damage(b,p,target,v,bonus)
 static func lines(v:Dictionary) -> Array[String]:
+    if v.get("player_rules")==8:return PlayerMoveTraps.lines(v)
     if v.get("player_rules")==7:return PlayerMoveAltitude.lines(v)
     if v.get("player_rules")==6:return PlayerMoveSeals.lines(v)
     if v.get("player_rules")==5:return PlayerMoveFields.lines(v)

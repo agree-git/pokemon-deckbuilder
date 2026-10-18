@@ -16,6 +16,7 @@ var exchange_context:Dictionary={}
 var field_context:Dictionary={}
 var seal_context:Dictionary={}
 var altitude_context:Dictionary={}
+var trap_context:Dictionary={}
 var turn_speed_inverted:=false # Cached at energy grant; a room may change later this turn.
 var party: Array[BattlePokemon] = []
 var enemies: Array[BattlePokemon] = []
@@ -73,6 +74,7 @@ func start_with(members: Array[BattlePokemon], cards: Array[BattleCardInstance],
     field_context.clear()
     seal_context.clear()
     altitude_context.clear()
+    trap_context.clear()
     statistics = RunStatistics.battle()
     seed_value = battle_seed
     relic = selected_relic if TacticalContent.RELICS.has(selected_relic) else "field_kit"
@@ -506,6 +508,7 @@ func switch_reason(uid: int) -> String:
     if pokemon == null or not pokemon.alive() or pokemon == active(): return "살아 있는 대기 포켓몬을 선택하세요."
     if phase==PLAYER and PlayerTechniques.active(self) and PlayerMoveRules.rooted(self):return "뿌리박기 중에는 교대할 수 없습니다."
     if phase == PLAYER and BossBattleRules.active_in(self) and BossBattleRules.trapped(self):return "구속 중에는 교대할 수 없습니다. 상대의 기절/구속 해제를 기다리세요."
+    if phase==PLAYER and player_moves_version>=8 and PlayerMoveTraps.blocked(self,active()):return "구속 중에는 교대할 수 없습니다. 시전자 이탈/기절 또는 강제 교대를 기다리세요."
     if phase==PLAYER and player_moves_version>=6 and PlayerMoveSeals.locked(self,active()):return "페어리록 중에는 교대할 수 없습니다."
     if phase == PLAYER and energy < manual_switch_cost(): return "수동 교대에는 에너지 %d이 필요합니다. 기술 카드는 무료로 교대합니다." % manual_switch_cost()
     return ""
@@ -654,7 +657,10 @@ func _enemy_action() -> void:
     if player_moves_version>=3:PlayerMoveTactics.limit_healing(self,weather_foe,end_hp_before)
     var contact_foe_stages:=weather_foe.stat_stages.duplicate() if player_moves_version>=5 else {}
     if player_moves_version>=7:PlayerMoveAltitude.synchronize(self,player_actor,action)
+    var saved_air:Dictionary=PlayerMoveTraps.air_charge(self,player_actor,action) if player_moves_version>=8 else {}
     if PlayerTechniques.active(self):PlayerMoveRules.after_enemy(self,weather_foe,player_actor,action,player_status,player_sub,player_stages,player_marks)
+    if not saved_air.is_empty() and player_actor.alive() and player_actor==active():PlayerMoveRules.write(self)["charges"][player_actor.uid]=saved_air
+    if player_moves_version>=8:PlayerMoveTraps.after_enemy(self,weather_foe,player_actor,action,player_sub)
     if player_moves_version>=3:PlayerMoveTactics.after_enemy(self,weather_foe,action,end_hp_before)
     if player_moves_version>=4:PlayerMoveExchange.after_enemy(self,weather_foe,action)
     if player_moves_version>=5:
@@ -813,6 +819,7 @@ func _clear_statuses() -> void:
     field_context.clear()
     seal_context.clear()
     altitude_context.clear()
+    trap_context.clear()
     BattleWeather.clear(powers)
     _relay.clear()
     for pokemon: BattlePokemon in party+enemies:
@@ -875,6 +882,7 @@ func snapshot() -> Dictionary:
     if not field_context.is_empty():state["field_context"]=field_context.duplicate(true)
     if not seal_context.is_empty():state["seal_context"]=seal_context.duplicate(true)
     if not altitude_context.is_empty():state["altitude_context"]=altitude_context.duplicate(true)
+    if not trap_context.is_empty():state["trap_context"]=trap_context.duplicate(true)
     if not exchange_context.is_empty():state["exchange_context"]=exchange_context.duplicate(true)
     return state
 func multiplier(attack: String, target: BattlePokemon) -> float:

@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "route_version": 16,
+  "player_moves_version": 8,
+  "base_sha256": "596e9b74d5cb953481ffbec6abf8f1a7f10870681abc42bcfd4d7980354851aa",
+  "source": {
+    "pokeapi_commit": "5ee47a9a9c1229632ec4b473a9c1c53026e005dd",
+    "csv_sha256": {
+      "moves.csv": "8aafd37bf78f19471495c05b201545180f50f0a08a2a2a844d69f9837dd39ac9",
+      "move_meta.csv": "93b92d5bddf4fc1536ca0a647c20453bf92e6389010f33ca6fc4c5e9c54363be",
+      "move_flag_map.csv": "399cf005933418f406b94729903bd1528e9088bddc3bc1966be6c442a625da1b",
+      "move_effect_prose.csv": "f6d9bf0d28433a010a8b8b6a0a14d1ef72fbfcb997717f71b0e34483b7ee9697"
+    }
+  },
+  "moves": {
+    "212": {
+      "move_id": 212,
+      "name": "검은눈빛",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대 자발 교대 봉쇄 · 시전자/대상 이탈·기절 시 해제 · 고스트 교대 허용 · 방어 우회/대타에는 차단"
+      ],
+      "trap_rule": "lock",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "169": {
+      "move_id": 169,
+      "name": "거미집",
+      "type": "bug",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대 자발 교대 봉쇄 · 시전자/대상 이탈·기절 시 해제 · 고스트 교대 허용 · 방어/대타에 차단"
+      ],
+      "trap_rule": "lock",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "335": {
+      "move_id": 335,
+      "name": "블록",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대 자발 교대 봉쇄 · 시전자/대상 이탈·기절 시 해제 · 고스트 교대 허용 · 방어 우회/대타에는 차단"
+      ],
+      "trap_rule": "lock",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "753": {
+      "move_id": 753,
+      "name": "문어굳히기",
+      "type": "fighting",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대 자발 교대 봉쇄 · 매 상대 행동 뒤 방어/특방-1 · 시전자 이탈·기절 시 종료 · 고스트는 교대 가능하며 능력 감소는 적용 · 흰안개는 감소 차단"
+      ],
+      "trap_rule": "octo",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "746": {
+      "move_id": 746,
+      "name": "물고버티기",
+      "type": "dark",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 80,
+      "upgrade": {
+        "move_power": 95
+      },
+      "card_notes": [
+        "명중 후 양쪽 자발 교대 봉쇄 · 어느 쪽이든 이탈·기절 시 해제 · 고스트는 개별 교대 가능 · 이미 구속된 쪽이 있으면 새 연결 없이 공격만 적용"
+      ],
+      "trap_rule": "jaw"
+    },
+    "748": {
+      "move_id": 748,
+      "name": "배수의진",
+      "type": "fighting",
+      "cost": 1,
+      "damage_class": "status",
+      "stat_changes": {
+        "attack": 1,
+        "defense": 1,
+        "special_attack": 1,
+        "special_defense": 1,
+        "speed": 1
+      },
+      "stat_target": "self",
+      "card_notes": [
+        "모든 전투 능력 단계+1 · 교대 전까지 개체당1회 · 자신 자발 교대 봉쇄 · 고스트 교대 허용 · 기절 필수/강제 교대 허용"
+      ],
+      "trap_rule": "stand",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "615": {
+      "move_id": 615,
+      "name": "사우전드웨이브",
+      "type": "ground",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 90,
+      "upgrade": {
+        "move_power": 105
+      },
+      "card_notes": [
+        "명중 후 상대 자발 교대 봉쇄 · 시전자/대상 이탈·기절 시 해제 · 고스트 교대 허용 · 착지 효과 없음(사우전드애로와 별개)"
+      ],
+      "trap_rule": "lock"
+    }
+  },
+  "total_enhanced": 403
+}

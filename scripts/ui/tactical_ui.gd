@@ -966,6 +966,10 @@ func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
             var count:int=int(tactics.get("hazards",{}).get(key,0))
             if count>0:items.append(["ground",str(count),{"rocks":"상대 필드 스텔스록","spikes":"상대 필드 압정","toxic":"상대 필드 독압정","web":"상대 필드 끈적끈적네트"}[key]+" · 다음 상대 입장 시 적용"])
     elif tactics.get("pass",{}).get("source",0)==pokemon.uid:items.append(["counter","인계","이번 턴 다음 교대에 능력 단계/대타 인계"])
+    var traps:Dictionary=_visual_frame.get("trap_context",battle.trap_context if _visual_frame.is_empty() else {})
+    if traps.get("stand",{}).get(pokemon.uid,false):items.append(["counter","배수","배수의진 · 재사용/자발 교대 제한 · 고스트 교대 허용"])
+    for link:Dictionary in traps.get("links",[]):
+        if link["target"]==pokemon.uid:items.append(["counter","구속",str(TacticalMoves.visual(int(link["move"]))["name"])+" · 시전자 이탈/기절 시 해제 · 고스트 교대 허용"])
     var altitude:Dictionary=_visual_frame.get("altitude_context",battle.altitude_context if _visual_frame.is_empty() else {})
     if int(altitude.get("gravity",0))>0:items.append(["ground",str(altitude["gravity"]),"중력 · 양쪽 강제 접지/공중 기술 금지"])
     for key:String in ["rise","lift"]:
