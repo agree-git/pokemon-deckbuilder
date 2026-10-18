@@ -1,7 +1,7 @@
 class_name CampaignRoute
 extends RefCounted
 ## Route RNG is independent from battle draws and card rewards.
-const VERSION := 4
+const VERSION := 5
 var generation := VERSION
 var signature := ""
 var stops: Array[Dictionary] = []
@@ -31,6 +31,9 @@ func _init(run_seed: int,route_version: int = VERSION) -> void:
     if generation >= 3:
         league["elite"].append_array(BossExpansion.data()["elite"])
         league["champions"].append_array(BossExpansion.data()["champions"])
+    if generation >= 5:
+        league["elite"] = league["elite"].map(func(trainer: Dictionary): return BossParties.apply("elite",trainer))
+        league["champions"] = league["champions"].map(func(trainer: Dictionary): return BossParties.apply("champion",trainer))
     champion = league["champions"][_rng.randi_range(0,league["champions"].size()-1)].duplicate(true)
     var excluded: Array[String] = []
     if generation < 3: excluded.append(champion["id"])
@@ -45,6 +48,7 @@ func _init(run_seed: int,route_version: int = VERSION) -> void:
             excluded.append(gym["leader_id"])
         else:
             gym = GymLeaders.choose(biome["type"],gym_rng,excluded,generation >= 3)
+            if generation >= 5: gym = BossParties.apply("gym",gym)
             gym["biome_id"] = biome["id"]
             gym["name"] = _catalog.type_name(biome["type"])+" 체육관"
             for id: String in gym["person_ids"]: excluded.append(id)

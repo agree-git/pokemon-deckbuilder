@@ -4,9 +4,9 @@ extends RefCounted
 const VERSION := 1
 const SAVE_PATH := "user://journey.json"
 const MAX_FILE_BYTES := 4*1024*1024
-const RULESET := "campaign-69-national-dex-v4"
-const COMPATIBLE_CONTENT := ["7ce6e0d58dab102bb60728714b36d36cc417cedeb0ed92811261c6339ad15b89","cb812fd10b00f224a7c50255448f2d5643ed440af7daa4429d41ae26bfc6e952","1f49586798419ec8b34b5e1698a3d7b470905520caed012674308eec391001c2"]
-const CONTENT := ["res://data/base_stats.json","res://data/catalog.json","res://data/biomes.json","res://data/gyms.json","res://data/league.json","res://data/progression.json","res://data/evolutions.json","res://data/type_chart.json",PokedexExpansion.PATH,TechnicalMachines.PATH]
+const RULESET := "campaign-69-boss-parties-v5"
+const COMPATIBLE_CONTENT := ["f1cf5bc91b4f53123011c7a2ec0049862d425f11127d63782b19971ab44411a5","7ce6e0d58dab102bb60728714b36d36cc417cedeb0ed92811261c6339ad15b89","cb812fd10b00f224a7c50255448f2d5643ed440af7daa4429d41ae26bfc6e952","1f49586798419ec8b34b5e1698a3d7b470905520caed012674308eec391001c2"]
+const CONTENT := ["res://data/base_stats.json","res://data/catalog.json","res://data/biomes.json","res://data/gyms.json","res://data/league.json","res://data/progression.json","res://data/evolutions.json","res://data/type_chart.json",PokedexExpansion.PATH,TechnicalMachines.PATH,BossParties.PATH]
 static var _fingerprint := ""
 var path: String
 var last_error := ""
