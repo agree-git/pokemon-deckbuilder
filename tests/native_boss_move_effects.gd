@@ -27,7 +27,7 @@ func run() -> void:
     var targets:={"elite:caitlin":347,"gym:misty":58,"gym:winona":355}
     var found:Dictionary={}
     for seed_value in 300:
-        var route:=CampaignRoute.new(seed_value)
+        var route:=CampaignRoute.new(seed_value,6)
         for step in route.stops.size():
             var stop:Dictionary=route.stops[step]
             if stop["kind"] not in ["gym","elite","champion"]:continue
@@ -36,7 +36,7 @@ func run() -> void:
         if found.size()==targets.size():break
     check(found.size()==3,"All real seeded demo cases reachable")
     for boss:String in targets:
-        var j:=TacticalJourney.new(found[boss][0],"field_kit",[3,6,9],true)
+        var j:=TacticalJourney.new(found[boss][0],"field_kit",[3,6,9],true,6)
         for p:BattlePokemon in j.party:p.level=100;PokemonStats.apply(p,true)
         j.step=found[boss][1];j.phase=TacticalJourney.MAP
         if j.current()["kind"]=="elite":j.badges=8;j.elite_wins=int(j.current()["league_index"])

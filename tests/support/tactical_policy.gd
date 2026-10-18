@@ -1,5 +1,8 @@
 extends RefCounted
 ## Public card actions only, shared by model and real-input regression probes.
+static func incoming(a: Dictionary) -> int:
+    if a.get("asleep",false): return 0
+    return int(a.get("value",0)) if a["kind"] in ["attack","charge","barrage"] or (a["kind"] == "move" and a.get("damage_class") != "status") else 0
 static func action(b: TacticalBattle) -> Array:
     if b.phase == TacticalBattle.REPLACE:
         var best: BattlePokemon
@@ -15,22 +18,22 @@ static func action(b: TacticalBattle) -> Array:
         var cost := maxi(1,int(view["cost"]))
         var value := 0.0
         var damage := int(view.get("preview_damage",0))
-        var incoming := int(b.intent().get("value",0)) if b.intent()["kind"] in ["attack","charge","barrage"] else 0
+        var pressure := incoming(b.intent())
         if actor != b.active():
             var action := b.intent_for(actor)
-            incoming = int(action["value"]) if action["kind"] in ["attack","charge","barrage"] else 0
+            pressure = incoming(action)
         if view.has("damage"):
             value += mini(damage,b.enemy().hp+b.enemy().block)*1.3
             if damage >= b.enemy().hp+b.enemy().block: value += 40
-            if actor.hp+actor.block <= incoming and damage < b.enemy().hp+b.enemy().block: value -= 2.0*incoming
+            if actor.hp+actor.block <= pressure and damage < b.enemy().hp+b.enemy().block: value -= 2.0*pressure
         if view.has("block"):
-            value += mini(int(view.get("preview_block",view["block"])),maxi(0,incoming-actor.block))*1.1
-            if incoming >= actor.hp+actor.block: value += 12
+            value += mini(int(view.get("preview_block",view["block"])),maxi(0,pressure-actor.block))*1.1
+            if pressure >= actor.hp+actor.block: value += 12
         if view.has("weaken"): value += mini(int(view["weaken"]),maxi(0,b.enemy().strength+6))*2.5
         if view.has("expose") and not b.enemy().statuses.has("exposed"): value += 6
         for status: String in ["burn","seed","poison","sleep","paralysis"]:
             if view.has(status) and not b.enemy().statuses.has(status):
-                value += mini(b.enemy().hp,PokemonStats.scale(b.enemy(),2)*int(view[status])) if status in ["seed","burn","poison"] else (incoming*0.9 if status == "sleep" else 6)
+                value += mini(b.enemy().hp,PokemonStats.scale(b.enemy(),2)*int(view[status])) if status in ["seed","burn","poison"] else (pressure*0.9 if status == "sleep" else 6)
         if view.has("stat_changes"):
             var recipient := actor if view["stat_target"] == "self" else b.enemy()
             for stat: String in view["stat_changes"]:
@@ -38,7 +41,7 @@ static func action(b: TacticalBattle) -> Array:
                 var change := int(view["stat_changes"][stat])
                 if abs(stage) < 4:
                     if view["stat_target"] == "enemy" and change < 0:
-                        value += incoming*0.25 if stat == ("special_attack" if b.intent().get("damage_class") == "special" else "attack") else 3
+                        value += pressure*0.25 if stat == ("special_attack" if b.intent().get("damage_class") == "special" else "attack") else 3
                     elif view["stat_target"] == "self" and change > 0: value += 5*change
         if view.has("heal"): value += mini(int(view.get("preview_heal",view["heal"])),actor.max_hp-actor.hp)*0.9
         if view.has("strength") and actor.strength < 8: value += int(view["strength"])*3
@@ -58,7 +61,7 @@ static func action(b: TacticalBattle) -> Array:
     if uid != 0: return ["card",uid]
     # End with a safe defender when the drawn hand cannot finish the enemy.
     var current := b.intent()
-    if current["kind"] in ["attack","charge","barrage"] and not current.get("asleep",false):
+    if incoming(current) > 0:
         var risk := maxf(0,int(current["value"])-b.active().block)/maxf(1,b.active().hp)
         var defender := 0
         for candidate: BattlePokemon in b.party:

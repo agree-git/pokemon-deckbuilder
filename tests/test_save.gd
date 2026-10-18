@@ -76,7 +76,9 @@ func run() -> void:
                 var xp := r.party[0].experience
                 r.settle()
                 check(r.gold == coins and r.party[0].experience == xp,"Loaded reward cannot be settled twice")
-                j.choose_reward(-1)
+                # Use the same real reward choices as the public-action campaign policy.
+                # Skipping all69 rewards is not a neutral save fixture once bosses have effects.
+                j.choose_reward(CampaignPolicy.reward(j))
             TacticalJourney.MAP: j.enter_next()
             TacticalJourney.REST:
                 j.rest()

@@ -16,6 +16,7 @@ SUITES = {
     'reactions': ['test_rare_reactions.gd','test_visibility.gd','test_compatibility.gd','test_rare_capture.gd'],
     'soundscape': ['test_soundscape.gd','test_region_music.gd','test_pause_audio.gd'],
     'campaign': ['test_deck_run.gd','test_save.gd','test_boss_routes.gd'],
+    'boss-effects-p1': ['test_boss_move_effects_p1.gd','test_boss_effects_parity.gd','test_boss_move_effects.gd','test_boss_routes.gd','test_battle.gd','test_stats.gd','test_weather.gd','test_save.gd','test_national_progression.gd','test_deck_run.gd'],
     'boss-effects': ['test_boss_move_effects.gd','test_boss_routes.gd','test_battle.gd','test_stats.gd','test_save.gd','test_national_progression.gd'],
     'boss': ['test_boss_parties.gd','test_boss_music.gd','test_boss_routes.gd'],
     'boss-party-regression': ['test_boss_music.gd','test_boss_routes.gd','test_deck_run.gd','test_save.gd','test_national_progression.gd','test_machines.gd'],

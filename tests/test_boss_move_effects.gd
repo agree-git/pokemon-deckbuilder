@@ -35,7 +35,7 @@ func checkpoint(j: TacticalJourney) -> TacticalJourney:
     check(JourneySnapshot.encode(restored) == data,"P0 HP, stages, ailments, intent and draw RNG roundtrip")
     return restored
 func run() -> void:
-    check(CampaignRoute.VERSION == 6 and BossMoveEffects.data()["profiles"].size() == 19 and BossMoveEffects.data()["deferred"].size() == 119,"Explicit P0 rollout; no placeholder effects for119 representatives")
+    check(CampaignRoute.VERSION >= 6 and BossMoveEffects.data()["profiles"].size() == 19 and BossMoveEffects.data()["deferred"].size() == 119,"Explicit P0 rollout; no placeholder effects for119 representatives")
     var pristine := var_to_bytes(BossMoveEffects.data())
     for profile_key: String in BossMoveEffects.data()["profiles"]:
         var profile: Dictionary = BossMoveEffects.data()["profiles"][profile_key]
@@ -131,7 +131,7 @@ func run() -> void:
     b.end_turn()
     check(b.enemy().block==0 and not b.enemy().statuses.has("sleep"),"Sleeping enemy skips generic guard and expires sleep normally")
     # All current trainer parties are unchanged; only final representative definitions opt in.
-    var route := CampaignRoute.new(712)
+    var route := CampaignRoute.new(712,6)
     var league: Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://data/league.json"))
     var roster: Dictionary={"gym":GymLeaders.all(),"elite":league["elite"]+BossExpansion.data()["elite"],"champion":league["champions"]+BossExpansion.data()["champions"]}
     var authored_count:=0
@@ -161,7 +161,7 @@ func run() -> void:
     # Reach every rollout through a real seeded route, then save at each actual ace action.
     var found:Dictionary={}
     for seed_value in 350:
-        var candidate:=CampaignRoute.new(seed_value)
+        var candidate:=CampaignRoute.new(seed_value,6)
         for step in candidate.stops.size():
             var stop:Dictionary=candidate.stops[step]
             if stop["kind"] not in ["gym","elite","champion"]:continue
@@ -171,7 +171,7 @@ func run() -> void:
         if found.size()==19:break
     check(found.size()==19,"All19 representatives are reachable without altering route selection")
     for key: String in found:
-        var j:=TacticalJourney.new(found[key][0],"field_kit",[3,6,9],true)
+        var j:=TacticalJourney.new(found[key][0],"field_kit",[3,6,9],true,6)
         j.step=found[key][1];j.phase=TacticalJourney.MAP
         if j.current()["kind"] in ["elite","champion"]:
             j.badges=8;j.elite_wins=int(j.current()["league_index"])

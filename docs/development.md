@@ -195,3 +195,18 @@ godot --headless --path . --script .dev-materials/tests/test_boss_parties.gd
 `tools/import_boss_move_effects.py --game-dir /path/to/main`은 고정 명세+원본 메타에서 v6 데이터를 결정적으로 생성한다. 이 v6 입력은 이미 사용한 저장의 미래 재생성을 위해 동결한다. 기존 P0를 수정하거나 P1/P2를 확장할 때 새 버전과 별도 입력을 만들고 호환을 설계한다. 전체 목표 JSON은 당시의 기준 자료로 유지하며,리뷰 Markdown/엑셀에는 실제 부분 적용 현황을 함께 표시한다.
 
 실제 창 검사는 `native_boss_move_effects.gd`와 `native_pointer.py`로 카틀레야·이슬·은송의 명상/수면/날개쉬기를 확인한다. `BOSS_EFFECT_REVIEW_DIR`과 격리 프로필을 지정한다. 무작위 손패에 특정 소유 카드가 있다고 가정하지 않고,수면 카드 검사 시 실제 소유 카드를 더미에서 손패로 옮긴 fixture를 사용한다. 해당 촬영/검사는 전체 전투를 사람이 공략한 검사가 아니다.
+
+## 대표 기술 효과 P1 구현
+
+현재는 새 원정v7의41대표/실전95기술과 별도 잠꼬대 엔진 fixture다. `BossEffects`가 기존 v6 `BossMoveEffects`와 새 v7 `BossMoveEffectsP1`을 분기한다. 생성기 `tools/import_boss_move_effects_p1.py --game-dir /path/to/main`은 기존 v6 파일을 읽기만 하고 별도 `boss_move_effects_v7.json`을 생성한다. 이 파일도 저장 후속 재생성용 동결 입력이며 후속 확장은 새 버전이 필요하다. 원정 전술 선택은 `BossTactics.build`의 추가 `effects_version` 인자(기존 기본값1)로 분리했다.
+
+```bash
+python3 .dev-materials/tools/check.py --game-dir . --suite boss-effects-p1 --godot /path/to/godot-4.7.2
+# 격리 프로필·X11 환경에서 실제 창 검사:
+BOSS_P1_REVIEW_DIR=/tmp/boss-p1-review python3 .dev-materials/tools/native_pointer.py \
+  --project-dir . --script .dev-materials/tests/native_boss_move_effects_p1.gd
+```
+
+전용 `test_boss_move_effects_p1.gd`는 모든41대표, 충전/날씨/재충전, 연타/보호막/기절, 반동/흡수/동시기절, 잠자기/잠꼬대 fixture, 잠긴 연속기의 중간 저장/복원과 v6 후속 정의 지문을 검사한다. `/tmp/boss-effects-v6-snapshot.bin`이 있는 개발 환경에서는 실제 수정 전 캡처도 추가 검증하며,없어도 기본 회귀는 가능하다. P0 검사는 명시적 v6,기존 파티 검사는 명시적 v5로 고정했다. 새 기본 경로 회귀는 v7이다. 실제 창 검사는6대진/10 OS Enter키이며 파티/앞 적 기절/대표 HP·행동 위치는 fixture다. EXE/export/Windows workflow는 계속 보류한다.
+
+P1 후속 회귀에서 공용 `support/tactical_policy.gd`는 새 `move` 공격 예고와 수면 취소를 읽도록 보강했다. `test_save.gd`의69전투는 모든 보상을 건너뛰는 대신 이미 사용 중인 `CampaignPolicy.reward`로 실제 보상을 고른다. 기존 무보상 봇은 독수 구간7승 뒤 패배했으며 저장 형식 오류는 아니었다. 이 변경은 검사 플레이어에만 적용하고 게임 수치/경제/성장/난수는 바꾸지 않는다. 새 v7의69전투 저장 회귀와 혼합 보상/상점 원정을 따로 검증한다. `test_boss_effects_parity.gd`는 v6의19대표를 두 엔진에서 직접 실행해 예고/실제 HP·상태·단계·보호막이 같은지 비교한다.
