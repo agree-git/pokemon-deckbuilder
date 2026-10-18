@@ -36,7 +36,7 @@ func checkpoint(j:TacticalJourney) -> TacticalJourney:
     check(JourneySnapshot.encode(r)==d,"HP, field, trap, substitute, guard and RNG roundtrip")
     return r
 func run() -> void:
-    check(CampaignRoute.VERSION==8 and BossMoveEffectsP2.data()["profiles"].size()==105,"Explicit P2 rollout105, no unsupported placeholder moves")
+    check(CampaignRoute.VERSION>=8 and BossMoveEffectsP2.data()["profiles"].size()==105,"Explicit P2 rollout105, no unsupported placeholder moves")
     var b:=fixture("gym:crasher_wake",419);select_move(b,362)
     b.active().hp=b.active().max_hp
     var a:=b.intent();b.active().hp=b.active().max_hp/2

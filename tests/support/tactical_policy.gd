@@ -1,7 +1,7 @@
 extends RefCounted
 ## Public card actions only, shared by model and real-input regression probes.
 static func incoming(a: Dictionary) -> int:
-    if a.get("asleep",false): return 0
+    if a.get("asleep",false) or a.get("failed_move",false) or a.get("failed_charge",false): return 0
     return int(a.get("value",0)) if a["kind"] in ["attack","charge","barrage"] or (a["kind"] == "move" and a.get("damage_class") != "status") else 0
 static func action(b: TacticalBattle) -> Array:
     if b.phase == TacticalBattle.REPLACE:
@@ -14,11 +14,11 @@ static func action(b: TacticalBattle) -> Array:
     for card: BattleCardInstance in b.hand:
         if not b.card_reason(card.uid).is_empty(): continue
         var view := b.card_view(card)
-        if BossBattleEffects.active_in(b):view=BossBattleEffects.filter_view(b,view)
+        if BossBattleRules.active_in(b):view=BossBattleRules.filter_view(b,view)
         var actor := b.member(card.owner_uid) if card.owner_uid != 0 else b.active()
         var cost := maxi(1,int(view["cost"]))
         var value := 0.0
-        if actor!=b.active() and BossBattleEffects.active_in(b):value-=BossBattleEffects.entry_damage(b,actor)*1.5
+        if actor!=b.active() and BossBattleRules.active_in(b):value-=BossBattleRules.entry_damage(b,actor)*1.5
         var damage := int(view.get("preview_damage",0))
         var pressure := incoming(b.intent())
         if actor != b.active():
@@ -68,7 +68,7 @@ static func action(b: TacticalBattle) -> Array:
         var defender := 0
         for candidate: BattlePokemon in b.party:
             if not b.switch_reason(candidate.uid).is_empty(): continue
-            var entry:=BossBattleEffects.entry_damage(b,candidate) if BossBattleEffects.active_in(b) else 0
+            var entry:=BossBattleRules.entry_damage(b,candidate) if BossBattleRules.active_in(b) else 0
             if entry>=candidate.hp:continue
             var candidate_risk := (entry+maxf(0,int(b.intent_for(candidate)["value"])-candidate.block))/maxf(1,candidate.hp-entry)
             if candidate_risk < risk*0.6:

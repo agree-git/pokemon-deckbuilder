@@ -226,3 +226,18 @@ BOSS_P2_REVIEW_DIR=/tmp/boss-p2-review python3 .dev-materials/tools/native_point
 생성기는 기존 고정CSV에 `move_flag_map.csv`를 추가로 읽고 접촉/음성/중력 제한 플래그와 기존 도감 체중을 동결 입력에 기록한다. JSON 플래그 숫자는 Godot 로드 시 정수로 변환한다. `boss_ace_review.py`는 v8을 우선 선택해 리뷰/엑셀에105/33을 표시하며 원래 전체 목표 JSON은 바꾸지 않는다.
 
 `test_boss_move_effects_p2.gd`는105대표의 실제 시드 원정과 중간 장막/대타/구속·반격/설치 기절 저장을 검사한다. `/tmp/boss-effects-v7-snapshot.bin`이 있으면 실제 수정 전 저장도 추가 대조하고,없으면 결정적 지문/호환 회귀는 그대로 실행한다. `test_boss_effects_p2_parity.gd`는 이전41대표를 두 엔진에서 비교한다. 기존 P1/P0 검사는 각각v7/v6 경로로 고정했으며 새 기본 경로 검사만v8이다. 공용 검사 정책은 공개된 실제 입장 피해/방어 상태를 읽어 자살 교대와 막힌 공격을 피하도록 보강했으며 게임 수치나 승리 상태를 조작하지 않는다. native는8대진/15 OS키·fixture 상태를 사용한다. EXE/export/Windows workflow는 실행하지 않는다.
+
+
+## P3 전체 대표 기술/원정 v9
+
+`BossMoveEffectsP3`/`BossBattleEffectsP3`와 별도 v9 JSON으로138대표/233기술을 연결한다. `BossBattleRules` 공용 훅은 기존 v8 문맥 함수를 그대로 호출하거나 v9 함수를 선택한다. v6/v7/v8 JSON·엔진은 수정하지 않는다. `effects_v4`와 선택 문맥은 새 저장 검증에만 추가하며 이전 v8 지문/실제 저장/미래 정의를 검사한다.
+
+```bash
+python3 .dev-materials/tools/import_boss_move_effects_p3.py --game-dir . --csv-dir /path/to/pinned-csv
+python3 .dev-materials/tools/check.py --game-dir . --suite boss-effects-p3 --godot /path/to/godot-4.7.2 --timeout 600
+python3 .dev-materials/tools/boss_ace_review.py --game-dir . --csv-dir /path/to/pinned-csv --workbook .dev-materials/docs/boss-ace-tactics.xlsx
+```
+
+P3 core는138대표의3레벨 실제 예고/실행·정수 상태·실제 경로의 각 행동 저장 재개를 검사한다. 추가 unique_edges는 공중 예외/착지 중단/카드 도중 동반 기절의 같은 턴 교체를,unique_saves는12실제 대진의 지연/봉인/장비/복사/공중/타입 상태의 저장을 검사한다. v8 compatibility와 기존 P2/P1/P0·경로·전투·날씨·저장·혼합 원정을 함께 실행한다. 원본CSV/개인 저장/긴 로그/임시 PNG는 Git에 넣지 않는다.
+
+사용자 지시로 **이번 단계는 기술 구현과 소스/모델 검사**다. 기술별 실제 창 실행은 중단하고 구현 완료 후 일괄 UI 검사를 다음 단계로 둔다. 과거 v6~v8의 native 결과를 v9 검증으로 합산하지 않는다. EXE/export/Windows CI는 계속 미실행이다.

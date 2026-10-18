@@ -16,6 +16,7 @@ SUITES = {
     'reactions': ['test_rare_reactions.gd','test_visibility.gd','test_compatibility.gd','test_rare_capture.gd'],
     'soundscape': ['test_soundscape.gd','test_region_music.gd','test_pause_audio.gd'],
     'campaign': ['test_deck_run.gd','test_save.gd','test_boss_routes.gd'],
+    'boss-effects-p3': ['test_boss_move_effects_p3.gd','test_boss_unique_edges.gd','test_boss_unique_saves.gd','test_boss_v8_compatibility.gd','test_boss_move_effects_p2.gd','test_boss_protection_resources.gd','test_boss_effects_p2_parity.gd','test_boss_move_effects_p1.gd','test_boss_effects_parity.gd','test_boss_move_effects.gd','test_boss_routes.gd','test_battle.gd','test_stats.gd','test_weather.gd','test_save.gd','test_national_progression.gd','test_deck_run.gd'],
     'boss-effects-p2': ['test_boss_move_effects_p2.gd','test_boss_protection_resources.gd','test_boss_effects_p2_parity.gd','test_boss_move_effects_p1.gd','test_boss_effects_parity.gd','test_boss_move_effects.gd','test_boss_routes.gd','test_battle.gd','test_stats.gd','test_weather.gd','test_save.gd','test_national_progression.gd','test_deck_run.gd'],
     'boss-effects-p1': ['test_boss_move_effects_p1.gd','test_boss_effects_parity.gd','test_boss_move_effects.gd','test_boss_routes.gd','test_battle.gd','test_stats.gd','test_weather.gd','test_save.gd','test_national_progression.gd','test_deck_run.gd'],
     'boss-effects': ['test_boss_move_effects.gd','test_boss_routes.gd','test_battle.gd','test_stats.gd','test_save.gd','test_national_progression.gd'],

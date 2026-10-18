@@ -116,7 +116,8 @@ def render(game, materials, csv_dir=None, workbook=None):
         v = a['current_v5_at_level100']
         return STYLE_NAMES[v['style']]+' · '+' → '.join(KINDS[p['kind']]+'('+moves[str(p['move_id'])]['name']+')' for p in v['intents'])
     entries = spec['entries']
-    rollout_path = game/'data/boss_move_effects_v8.json'
+    rollout_path = game/'data/boss_move_effects_v9.json'
+    if not rollout_path.exists(): rollout_path = game/'data/boss_move_effects_v8.json'
     if not rollout_path.exists(): rollout_path = game/'data/boss_move_effects_v7.json'
     if not rollout_path.exists(): rollout_path = game/'data/boss_move_effects_v6.json'
     route_version = read(rollout_path)['route_version'] if rollout_path.exists() else 0
@@ -168,7 +169,7 @@ def render(game, materials, csv_dir=None, workbook=None):
                     lines.append('| '+' | '.join([e['name']+' · **'+pokemon[a['species']]['name']+'**',ref,cycle(a),note])+' |')
             lines.append('')
     if deployed:
-        lines[2] = f'**상태: 전체 목표 명세이며 일부 적용.** 현재 새 원정 v{route_version}에 대표{len(deployed)}마리의 단계별 기술 효과를 적용했습니다. [실제 적용 현황](boss-move-effects.md)을 확인하세요. 원작 참조와 전체 제안은 아래에 보존합니다. 나머지{138-len(deployed)}대표 전술은 이전 방식입니다.'
+        lines[2] = f'**상태: 검토한 대표 {len(deployed)}/138마리 적용.** 새 원정 v{route_version}의 카드 전투용 구현/각색/검증 범위는 [실제 적용 현황](boss-move-effects.md)을 확인하세요. 아래 원작 참조와 v5 시점의 목표 명세는 보존합니다. 플레이어919기술의 원작 효과 전체 완료를 뜻하지 않습니다.'
     lines += ['## 명세 작성 당시 검증과 한계', '',
               '- 137역할/138대표가 main 승인 파티의 고정 대표와 정확히 일치합니다. 제안 기술은1~4개, 행동 순서는 해당 대표의 제안 기술만 참조합니다.',
               f'- Godot4.7.2에서 현재 대표138마리의 Lv.18/50/100 전술414개가 기존 저장 검증 규칙에 유효함을 확인했습니다. 제안 기술{len(used)}종도 실제 카드 정의로 읽었습니다. 이는 새 전술을 게임에서 실행한 검사가 아닙니다.',
@@ -180,7 +181,7 @@ def render(game, materials, csv_dir=None, workbook=None):
         from openpyxl.styles import Alignment, Font, PatternFill
         from openpyxl.utils import get_column_letter
         wb=Workbook();ws=wb.active;ws.title='대표 전술안'
-        ws.append(['지방','역할','트레이너','대표','원작 기준','원작 기술','제안 기술','제안 행동 순서','전술','각색 이유','현재 Lv100 전술(미변경)','필요한 효과','출처','적용 현황'])
+        ws.append(['지방','역할','트레이너','대표','원작 기준','원작 기술','제안 기술','제안 행동 순서','전술','각색 이유','v5 명세 당시 Lv100 전술','필요한 효과','출처','적용 현황'])
         for e in entries:
             for a in e['aces']:
                 r=references[a['reference']]
