@@ -27,3 +27,5 @@
 새 원정v11의 플레이어 효과3은32카드를 추가 보완해 누적342기술이다. 별도 `PlayerMoveTactics`/`player_move_tactics_v11.json`/선택 `technique_context`와 `PlayerTechniques` 분기를 사용한다. 게시된v10 데이터/엔진·기존v1~v10 저장·경로/RNG·승인 파티/마지막 대표를 유지하며 v11도 게시 후 동결한다. 설치는 다음 상대 입장, 울부짖기 계열은 전술 밀어내기, 앙코르는 기존 예고 순서에서 직전 기술만 허용하는 명시 각색이다. [v11 기술 현황](docs/player-move-tactics.md)을 따른다. 실제 창/빌드/EXE 보류 지시는 계속 적용한다.
 
 새 원정v12의 플레이어 효과4는 능력 단계/기본 능력치 교환·전투 타입 변경·공격 복사30카드를 추가 보완해 누적371기술이다. 별도 `PlayerMoveExchange`/`player_move_exchange_v12.json`/선택 `exchange_context`를 사용한다. 저장에는 원래 타입을 남기고 복원 후 현재 전투 타입/능력치를 재적용한다. 복사는 적격 공격만 원래 카드 비용/UID로 실행하며 새 카드나 영구 기술 슬롯을 추가하지 않는다. 게시한v10/v11 입력·엔진과 기존v1~v11 원정 규칙은 유지하고v12도 게시 후 동결한다. [v12 범위/각색/남은 항목](docs/player-move-exchange.md)을 따른다.
+
+새 원정v13의 플레이어 효과5는 필드·룸·진영 교환20카드를 추가 보완해 누적390기술이다. 별도 `PlayerMoveFields`/`player_move_fields_v13.json`과 선택 `field_context`를 사용한다. 트릭룸은 느린 쪽의 턴 시작 추가 에너지로 각색하며 지급 시 비교 방향을 선택 `turn_speed_inverted`에 저장한다. 코트체인지는 설치4종/진영 효과의 남은 기간을 교환하고 다음 입장부터 적용한다. 기존v1~v12 규칙과 동결v10~v12 입력/엔진을 유지하며v13도 게시 후 동결한다. [전체 범위/각색/남은 항목](docs/player-move-fields.md)을 따른다. 실제 창/빌드/EXE 보류 지시는 계속 적용한다.
