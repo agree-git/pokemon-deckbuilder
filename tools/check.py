@@ -12,6 +12,7 @@ import uuid
 
 ROOT = Path(__file__).resolve().parents[1]
 SUITES = {
+    'player-reactions': ['test_player_move_reactions.gd'],
     'player-fate': ['test_player_move_fate.gd'],
     'player-assist': ['test_player_move_assist.gd'],
     'player-items': ['test_player_move_items.gd'],
