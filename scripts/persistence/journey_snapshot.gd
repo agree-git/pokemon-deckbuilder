@@ -44,6 +44,7 @@ static func encode(j: TacticalJourney) -> Dictionary:
     if not b.technique_context.is_empty():combat["technique_context"]=b.technique_context.duplicate(true)
     if not b.field_context.is_empty():combat["field_context"]=b.field_context.duplicate(true)
     if not b.seal_context.is_empty():combat["seal_context"]=b.seal_context.duplicate(true)
+    if not b.altitude_context.is_empty():combat["altitude_context"]=b.altitude_context.duplicate(true)
     if not b.exchange_context.is_empty():combat["exchange_context"]=b.exchange_context.duplicate(true)
     combat["party"] = ids(b.party)
     combat["enemies"] = ids(b.enemies)
@@ -94,6 +95,7 @@ static func restore(data: Dictionary) -> TacticalJourney:
     b.technique_context=combat.get("technique_context",{}).duplicate(true)
     b.field_context=combat.get("field_context",{}).duplicate(true)
     b.seal_context=combat.get("seal_context",{}).duplicate(true)
+    b.altitude_context=combat.get("altitude_context",{}).duplicate(true)
     b.turn_speed_inverted=combat.get("turn_speed_inverted",false)
     b.exchange_context=combat.get("exchange_context",{}).duplicate(true)
     b.party.assign(combat["party"].map(func(uid: int): return pokemon[uid]))
@@ -220,19 +222,20 @@ static func validate(data: Variant) -> bool:
     if not integer(b["energy"],0,10000) or not integer(b["turn"],1,1000000): return false
     if not integer(b["turn_energy_bonus"],0,1) or not integer(b["turn_speed_actor"],1,100000) or not integer(b["turn_speed_enemy"],1,100000): return false
     if b["turn_speed_owner_uid"] not in b["party"] or b["turn_speed_target_uid"] not in b["enemies"]: return false
-    if b.has("turn_speed_inverted") and (b.get("player_moves_version",1) not in [5,6] or not b["turn_speed_inverted"] is bool or not b["turn_speed_inverted"]):return false
+    if b.has("turn_speed_inverted") and (b.get("player_moves_version",1) not in [5,6,7] or not b["turn_speed_inverted"] is bool or not b["turn_speed_inverted"]):return false
     var quicker:bool=b["turn_speed_actor"]<b["turn_speed_enemy"] if b.get("turn_speed_inverted",false) else b["turn_speed_actor"]>b["turn_speed_enemy"]
     if b["turn_energy_bonus"] != (1 if quicker else 0): return false
     if b["enemy_states"].size() != b["enemies"].size() or b["enemy_definitions"].size() != b["enemies"].size(): return false
     if b["_pending"] not in ["","player","enemy","hazard","card"]: return false
     if b.get("player_moves_version",1)!=PlayerTechniques.version(int(data.get("route_version",1))):return false
     if b.has("player_moves_version") and not b["player_moves_version"] is int:return false
-    if b.has("seal_context") and (b.get("player_moves_version",1)!=6 or not PlayerMoveSeals.valid_context(b["seal_context"])):return false
-    if b.has("field_context") and (b.get("player_moves_version",1) not in [5,6] or not PlayerMoveFields.valid_context(b["field_context"])):return false
-    if b.has("exchange_context") and (b.get("player_moves_version",1) not in [4,5,6] or not PlayerMoveExchange.valid_context(b["exchange_context"],b,ps)):return false
-    if b.has("technique_context") and (b.get("player_moves_version",1) not in [3,4,5,6] or not PlayerMoveTactics.valid_context(b["technique_context"],b)):return false
-    if b.has("move_context") and (b.get("player_moves_version",1) not in [2,3,4,5,6] or not PlayerMoveRules.valid_context(b["move_context"],b,cs)):return false
-    if b["_pending"]=="card" and (int(data.get("route_version",1))<9 or b["phase"]!=TacticalBattle.REPLACE or (not b.has("boss_context") and b.get("player_moves_version",1) not in [2,3,4,5,6])):return false
+    if b.has("altitude_context") and (b.get("player_moves_version",1)!=7 or not PlayerMoveAltitude.valid_context(b["altitude_context"],b)):return false
+    if b.has("seal_context") and (b.get("player_moves_version",1) not in [6,7] or not PlayerMoveSeals.valid_context(b["seal_context"])):return false
+    if b.has("field_context") and (b.get("player_moves_version",1) not in [5,6,7] or not PlayerMoveFields.valid_context(b["field_context"])):return false
+    if b.has("exchange_context") and (b.get("player_moves_version",1) not in [4,5,6,7] or not PlayerMoveExchange.valid_context(b["exchange_context"],b,ps)):return false
+    if b.has("technique_context") and (b.get("player_moves_version",1) not in [3,4,5,6,7] or not PlayerMoveTactics.valid_context(b["technique_context"],b)):return false
+    if b.has("move_context") and (b.get("player_moves_version",1) not in [2,3,4,5,6,7] or not PlayerMoveRules.valid_context(b["move_context"],b,cs)):return false
+    if b["_pending"]=="card" and (int(data.get("route_version",1))<9 or b["phase"]!=TacticalBattle.REPLACE or (not b.has("boss_context") and b.get("player_moves_version",1) not in [2,3,4,5,6,7])):return false
     if b["_pending"]=="hazard" and (int(data.get("route_version",1))<8 or b["phase"]!=TacticalBattle.REPLACE or not b.has("boss_context")):return false
     if b.has("boss_context") and (int(data.get("route_version",1))<(9 if b["enemy_definitions"].any(func(d:Variant):return d is Dictionary and d.get("boss_moves_version")==4) else 8) or not BossBattleRules.valid_context(b["boss_context"],b)):return false
     if b["phase"] == TacticalBattle.REPLACE and b["_pending"].is_empty(): return false

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "route_version": 15,
+  "player_moves_version": 7,
+  "base_sha256": "b9e3a818e2f359c9aa2582ca988c36f2b1c2251419dd18c65867e6451c408543",
+  "source": {
+    "pokeapi_commit": "5ee47a9a9c1229632ec4b473a9c1c53026e005dd",
+    "csv_sha256": {
+      "moves.csv": "8aafd37bf78f19471495c05b201545180f50f0a08a2a2a844d69f9837dd39ac9",
+      "move_meta.csv": "93b92d5bddf4fc1536ca0a647c20453bf92e6389010f33ca6fc4c5e9c54363be",
+      "move_flag_map.csv": "399cf005933418f406b94729903bd1528e9088bddc3bc1966be6c442a625da1b",
+      "move_effect_prose.csv": "f6d9bf0d28433a010a8b8b6a0a14d1ef72fbfcb997717f71b0e34483b7ee9697"
+    }
+  },
+  "moves": {
+    "356": {
+      "move_id": 356,
+      "name": "중력",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "5턴 동안 양쪽 강제 접지 · 비행의 땅 무효 해제 · 전자부유/텔레키네시스와 공중 충전 취소 · 공중/점프 기술 금지 · 명중 추첨 없음"
+      ],
+      "air_rule": "gravity",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "393": {
+      "move_id": 393,
+      "name": "전자부유",
+      "type": "electric",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "사용자5턴 부유 · 땅 공격 무효 · 접지 필드의 강화/회복/상태 방어 대상에서 제외 · 교대/중력/뿌리박기/떨어뜨리기에 해제"
+      ],
+      "air_rule": "rise",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "477": {
+      "move_id": 477,
+      "name": "텔레키네시스",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대3턴 부유 · 땅 공격 무효 · 접지 필드 대상에서 제외 · 보호/대타/공중 회피에 막힘 · 명중률/체중/종별 예외는 각색상 생략 · 교대/중력/뿌리박기/떨어뜨리기에 해제"
+      ],
+      "air_rule": "lift",
+      "upgrade": {
+        "cost": 0
+      }
+    }
+  },
+  "total_enhanced": 396
+}

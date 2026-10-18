@@ -15,6 +15,7 @@ var technique_context:Dictionary={}
 var exchange_context:Dictionary={}
 var field_context:Dictionary={}
 var seal_context:Dictionary={}
+var altitude_context:Dictionary={}
 var turn_speed_inverted:=false # Cached at energy grant; a room may change later this turn.
 var party: Array[BattlePokemon] = []
 var enemies: Array[BattlePokemon] = []
@@ -71,6 +72,7 @@ func start_with(members: Array[BattlePokemon], cards: Array[BattleCardInstance],
     technique_context.clear()
     field_context.clear()
     seal_context.clear()
+    altitude_context.clear()
     statistics = RunStatistics.battle()
     seed_value = battle_seed
     relic = selected_relic if TacticalContent.RELICS.has(selected_relic) else "field_kit"
@@ -651,12 +653,16 @@ func _enemy_action() -> void:
     if BossBattleRules.active_in(self):BossBattleRules.end_enemy(self,weather_foe)
     if player_moves_version>=3:PlayerMoveTactics.limit_healing(self,weather_foe,end_hp_before)
     var contact_foe_stages:=weather_foe.stat_stages.duplicate() if player_moves_version>=5 else {}
+    if player_moves_version>=7:PlayerMoveAltitude.synchronize(self,player_actor,action)
     if PlayerTechniques.active(self):PlayerMoveRules.after_enemy(self,weather_foe,player_actor,action,player_status,player_sub,player_stages,player_marks)
     if player_moves_version>=3:PlayerMoveTactics.after_enemy(self,weather_foe,action,end_hp_before)
     if player_moves_version>=4:PlayerMoveExchange.after_enemy(self,weather_foe,action)
     if player_moves_version>=5:
         PlayerMoveFields.prevent_drops(self,weather_foe,contact_foe_stages)
-        PlayerMoveFields.after_enemy(self,weather_foe,player_actor,action,player_status,foe_status,player_stages)
+        if player_moves_version>=7:
+            PlayerMoveAirFields.after_enemy(self,weather_foe,player_actor,action,player_status,foe_status,player_stages)
+            PlayerMoveAltitude.after_enemy(self)
+        else:PlayerMoveFields.after_enemy(self,weather_foe,player_actor,action,player_status,foe_status,player_stages)
     if player_moves_version>=6:PlayerMoveSeals.after_enemy(self)
     BattleWeather.end_round(self,weather_foe)
     if _outcome(): return
@@ -713,7 +719,8 @@ func _tick(pokemon: BattlePokemon) -> void:
             pokemon.statuses[key]["turns"] = int(pokemon.statuses[key]["turns"])-1
             if int(pokemon.statuses[key]["turns"]) <= 0: pokemon.statuses.erase(key)
     if BossBattleRules.active_in(self):BossBattleRules.tick_trap(self,pokemon)
-    if player_moves_version>=5:PlayerMoveFields.prevent_status(self,pokemon,field_status_before)
+    if player_moves_version>=7:PlayerMoveAirFields.prevent_status(self,pokemon,field_status_before)
+    elif player_moves_version>=5:PlayerMoveFields.prevent_status(self,pokemon,field_status_before)
     if PlayerTechniques.active(self) and pokemon.uid>0:PlayerMoveRules.end_player(self,pokemon)
 func _status_hit(pokemon: BattlePokemon,key: String,status: Dictionary) -> void:
     var health_before := pokemon.hp
@@ -785,8 +792,10 @@ func _outcome() -> bool:
             if player_moves_version>=3:
                 _record("enemy_switch",enemy().display_name+" 출전 · 턴과 남은 자원 유지")
                 var entry_status:=enemy().statuses.duplicate(true) if player_moves_version>=5 else {}
-                PlayerMoveTactics.enter_enemy(self)
-                if player_moves_version>=5:PlayerMoveFields.prevent_status(self,enemy(),entry_status)
+                if player_moves_version>=7:PlayerMoveAltitude.enter_enemy(self)
+                else:PlayerMoveTactics.enter_enemy(self)
+                if player_moves_version>=7:PlayerMoveAirFields.prevent_status(self,enemy(),entry_status)
+                elif player_moves_version>=5:PlayerMoveFields.prevent_status(self,enemy(),entry_status)
                 if not enemy().alive():return _outcome()
             else:_record("enemy_switch",enemy().display_name+" 출전 · 턴과 남은 자원 유지")
         else:
@@ -803,6 +812,7 @@ func _clear_statuses() -> void:
     technique_context.clear()
     field_context.clear()
     seal_context.clear()
+    altitude_context.clear()
     BattleWeather.clear(powers)
     _relay.clear()
     for pokemon: BattlePokemon in party+enemies:
@@ -864,11 +874,13 @@ func snapshot() -> Dictionary:
     if turn_speed_inverted:state["turn_speed_inverted"]=true
     if not field_context.is_empty():state["field_context"]=field_context.duplicate(true)
     if not seal_context.is_empty():state["seal_context"]=seal_context.duplicate(true)
+    if not altitude_context.is_empty():state["altitude_context"]=altitude_context.duplicate(true)
     if not exchange_context.is_empty():state["exchange_context"]=exchange_context.duplicate(true)
     return state
 func multiplier(attack: String, target: BattlePokemon) -> float:
     var affinity:=BossBattleRules.affinity(self,attack,target) if full_type_chart and BossBattleRules.active_in(self) else (TypeMatchup.multiplier(attack,target.types) if full_type_chart else BattleContent.multiplier(attack,target.type))
-    return PlayerMoveRules.affinity(self,attack,target,affinity) if PlayerTechniques.active(self) else affinity
+    if PlayerTechniques.active(self):affinity=PlayerMoveRules.affinity(self,attack,target,affinity)
+    return PlayerMoveAltitude.affinity(self,attack,target,affinity) if player_moves_version>=7 else affinity
 func notify_changed() -> String:
     changed.emit()
     return ""
