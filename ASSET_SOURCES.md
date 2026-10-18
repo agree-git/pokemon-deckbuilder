@@ -77,3 +77,8 @@ Windows 시험 빌드는 공식 Godot **4.7.2** 엔진을 포함합니다. Godot
 기술머신 호환표 [technical_machines.json](data/technical_machines.json)은 같은 고정 `pokemon_moves.csv`의 습득 방법4(기술머신)만 추출한 데이터입니다. 각 포켓몬은 확장 데이터에 기록된 습득 버전을 따르며 1,412항목/303개 기술을 포함합니다. 입력 SHA256·고정 URL을 파일에 기록했고, 교배/가르침 전용 기술은 기술머신으로 분류하지 않습니다. 버전별 번호가 다르므로 게임에서는 기술명으로 표시합니다.
 
 새 원정 v5의 보스 파티는 사용자 제공 대표 포켓몬 엑셀과 승인된 원작 기반 검토안을 [boss_parties.json](data/boss_parties.json)에 반영했습니다. 각 역할의 기준 작품·전투·원작 파티·Pokémon Database/Serebii 출처 URL 및 원작 외 정원 보충을 구분하고, 승인 파티 SHA256과 입력 엑셀 SHA256을 기록합니다. 기존1~3세대 범위에 맞춰 작성했던 역사적 파티 파일은 v1~v4 원정 저장 호환에 보존합니다. 새 이미지·음원은 추가하지 않았으며 이미 포함된 전종/상시 폼 에셋을 사용합니다. 원작 레벨·기술·도구·특성 및 전용 기믹 전체를 그대로 이식한 것은 아닙니다.
+
+
+## 보스 대표 기술 효과 v6
+
+[boss_move_effects_v6.json](data/boss_move_effects_v6.json)은 [대표 기술·전술 명세](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/boss-ace-tactics.md)의 P0 적용본입니다. 기존 확장 데이터의 고정 PokeAPI `5ee47a9a9c1229632ec4b473a9c1c53026e005dd` 기술 위력/분류/능력 변화/상태/회복 정보를 카드 전투 규칙으로 변환했습니다. 19대표의 원작 참조는 [고정 출처 목록](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/boss-ace-references.json)에 작품/전투/기술 ID와 pret 고정 커밋·Serebii 출처를 기록했습니다. 효과 규칙·한국어 설명·고정 행동 순서는 자체 작성입니다. 새 그림/음원/특성 시스템은 추가하지 않았습니다.

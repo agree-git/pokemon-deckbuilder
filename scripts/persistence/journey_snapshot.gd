@@ -210,6 +210,9 @@ static func validate(data: Variant) -> bool:
         if not definition is Dictionary or not definition.get("intents") is Array or definition["intents"].is_empty(): return false
         if definition.has("tactic") and (not definition["tactic"] is String or not EnemyTactics.PROFILES.has(definition["tactic"])): return false
         if (definition.has("boss") or definition.has("boss_style")) and not BossTactics.valid(definition): return false
+        if definition.has("boss_moves_version"):
+            if int(data.get("route_version",1)) < 6 or not BossMoveEffects.valid(definition): return false
+            continue
         for intent: Variant in definition["intents"]:
             if not intent is Dictionary or not intent.get("kind") is String or intent["kind"] not in ["attack","charge","block","boost","barrage","fortify","recover","status"]: return false
             if intent["kind"] in ["barrage","fortify","recover","status"] and not definition.has("boss"): return false

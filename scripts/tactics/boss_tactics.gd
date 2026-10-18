@@ -83,7 +83,12 @@ static func trainers() -> Dictionary:
         for leader: Dictionary in GymLeaders.all():
             _trainers["gym:"+leader["leader_id"]] = {"name":leader["leader"],"plan":leader["plan"],"styles":leader["styles"].duplicate()}
     return _trainers
-static func build(boss: String, slot: int, species: int, level: int, types: Array,modern := false) -> Dictionary:
+static func build(boss: String, slot: int, species: int, level: int, types: Array,modern := false,authored := false) -> Dictionary:
+    if authored:
+        var party := BossParties.party(boss)
+        if slot >= party.size()-BossParties.aces(boss).size() and slot < party.size() and party[slot] == species:
+            var selected := BossMoveEffects.build(boss,species)
+            if not selected.is_empty(): return selected
     var commands := trainers()
     if not commands.has(boss): return {}
     var style: String = commands[boss]["styles"][slot]
@@ -103,11 +108,16 @@ static func build(boss: String, slot: int, species: int, level: int, types: Arra
         pattern.append(action)
     return {"boss":boss,"boss_style":style,"intents":pattern}
 static func title(style: String) -> String:
+    if style == "authored": return "대표 전술"
     return str(STYLES.get(style,{"name":"기본형"})["name"])
 static func heading(definition: Dictionary) -> String:
+    if definition.has("boss_moves_version"):
+        var authored := BossMoveEffects.profile(definition["boss"],definition["id"])
+        return "%s · 대표 전술" % authored["name"] if not authored.is_empty() else ""
     var trainer: Dictionary = trainers().get(definition.get("boss",""),{})
     return "%s · %s" % [trainer["name"],trainer["plan"]] if not trainer.is_empty() else ""
 static func valid(definition: Dictionary) -> bool:
+    if definition.has("boss_moves_version"): return BossMoveEffects.valid(definition)
     if not definition.get("boss") is String or not trainers().has(definition["boss"]): return false
     if not definition.get("boss_style") is String or definition["boss_style"] not in trainers()[definition["boss"]]["styles"]: return false
     return STYLES.has(definition["boss_style"])
