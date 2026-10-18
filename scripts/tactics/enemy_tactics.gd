@@ -67,14 +67,17 @@ static func role_title(definition: Dictionary) -> String:
 static func pattern_text(definition: Dictionary) -> String:
     var actions: Array[String] = []
     for action: Dictionary in definition["intents"]:
+        if definition.get("boss_moves_version") == 2 and action["kind"] in ["prepare","recharge","wait"]:
+            actions.append({"prepare":"충전","recharge":"재충전","wait":"휴식"}[action["kind"]])
+            continue
         if action["kind"] in ["move","guard"]:
-            actions.append("전술 방어" if action["kind"] == "guard" else str(BossMoveEffects.view(int(action["move_id"]))["name"]))
+            actions.append("전술 방어" if action["kind"] == "guard" else str(BossEffects.view(int(action["move_id"]),int(definition.get("boss_moves_version",1)))["name"]))
             continue
         actions.append({"attack":"공격","charge":"강공격","block":"방어","boost":"강화","barrage":"연타","fortify":"방벽","recover":"회복","status":"상태 부여"}[action["kind"]])
     return " → ".join(actions)
 static func description(definition: Dictionary) -> String:
     if definition.has("boss_moves_version"):
-        var authored := BossMoveEffects.profile(definition["boss"],int(definition["id"]))
+        var authored := BossEffects.profile(definition)
         return "%s\n%s\n순서: %s" % [BossTactics.heading(definition),authored["plan"],pattern_text(definition)]
     if definition.has("boss"):
         var style: Dictionary = BossTactics.STYLES[definition["boss_style"]]
@@ -83,7 +86,7 @@ static func description(definition: Dictionary) -> String:
     var profile: Dictionary = PROFILES.get(key,{"name":"기본형","description":"예고된 순서대로 행동합니다."})
     return "%s · %s\n순서: %s" % [profile["name"],profile["description"],pattern_text(definition)]
 static func intent_text(action: Dictionary) -> String:
-    if action.has("boss_moves_version"): return BossMoveEffects.tooltip(action)
+    if action.has("boss_moves_version"): return BossEffects.tooltip(action)
     if action.get("asleep",false): return "수면으로 다음 행동을 취소합니다."
     if action["kind"] == "status": return "%s %d회 · 현재 출전 동료에게 부여 · 대기 중에도 지속" % [{"burn":"화상","poison":"독","seed":"씨뿌리기"}[action["status"]],action["value"]]
     if action["kind"] == "fortify": return "%s +%d단계 · 보호막 %d · 단계는 해당 적에게만 유지" % [PokemonStats.TITLES[action["stat"]],action["stat_delta"],action["value"]]

@@ -211,7 +211,7 @@ static func validate(data: Variant) -> bool:
         if definition.has("tactic") and (not definition["tactic"] is String or not EnemyTactics.PROFILES.has(definition["tactic"])): return false
         if (definition.has("boss") or definition.has("boss_style")) and not BossTactics.valid(definition): return false
         if definition.has("boss_moves_version"):
-            if int(data.get("route_version",1)) < 6 or not BossMoveEffects.valid(definition): return false
+            if int(data.get("route_version",1)) < (7 if definition["boss_moves_version"] == 2 else 6) or not BossEffects.valid(definition): return false
             continue
         for intent: Variant in definition["intents"]:
             if not intent is Dictionary or not intent.get("kind") is String or intent["kind"] not in ["attack","charge","block","boost","barrage","fortify","recover","status"]: return false
@@ -238,7 +238,10 @@ static func validate(data: Variant) -> bool:
         if not uid is int or uid not in b["piles"][0]: return false
     for event: Variant in b["events"]:
         if not event is Dictionary or not event.get("kind") is String or not event.get("text") is String: return false
-    for state: Variant in b["enemy_states"]:
+    for i in b["enemy_states"].size():
+        var state: Variant = b["enemy_states"][i]
+        if state is Dictionary and state.has("effects_v2"):
+            if b["enemy_definitions"][i].get("boss_moves_version") != 2 or not BossMoveEffectsP1.valid_state(state,b["enemy_definitions"][i]): return false
         if not state is Dictionary or not same_shape(state,{"intent":0}): return false
         if not integer(state["intent"],0,1000000): return false
     for mapping: Dictionary in [b["switch_bonus"],b["temporary_strength"]]:

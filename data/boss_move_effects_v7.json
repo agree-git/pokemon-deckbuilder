@@ -1,0 +1,2579 @@
+{
+  "schema_version": 1,
+  "route_version": 7,
+  "effects_version": 2,
+  "scope": "P0 + P1 충전/재충전·연타·반동/흡수·고정2턴 연속기·잠자기. 잠꼬대 엔진은 지원, 꼭두는 헤롱헤롱 구현 대기",
+  "specification_sha256": "f88b3292b984ca252d663eb481fa8e89eb1e60c8813caa24ec2c8a6c5c167f95",
+  "rules": {
+    "secondary_effects": "기존 카드처럼 표시된 효과를 확정 적용; 확률 RNG 추가 없음",
+    "freeze": "기존 카드처럼 수면1턴으로 각색",
+    "toxic": "기존 카드처럼 독3회; 누적 맹독 아님",
+    "roost": "회복만 적용; 타입 변경 없음",
+    "life_dew": "출전한 자신만 회복",
+    "multi_hit": "가변 연타는3회, 고정 연타는 원래 횟수. 기절 시 중단",
+    "recoil": "보호막/과잉 피해를 뺀 실제 HP 피해 기준; 33은1/3",
+    "rampage": "2턴 고정 공격 후 자신 혼란3회",
+    "rest": "최대 HP 회복·화상/독/마비 해제 후 다음2행동 수면; HP가 가득 차면 실패",
+    "sleep_talk": "수면 중 충전기/잠자기/잠꼬대 제외 기술을 순서 기반 선택, 추첨 없음",
+    "double_team": "회피 추첨 대신 HP 비례 보호막6",
+    "order": "우선도/풀죽음은 고정 턴 순서를 바꾸지 않음"
+  },
+  "moves": {
+    "7": {
+      "move_id": 7,
+      "name": "불꽃펀치",
+      "type": "fire",
+      "damage_class": "physical",
+      "move_power": 75,
+      "burn": 3
+    },
+    "14": {
+      "move_id": 14,
+      "name": "칼춤",
+      "type": "normal",
+      "damage_class": "status",
+      "stat_changes": {
+        "attack": 2
+      },
+      "stat_target": "self"
+    },
+    "15": {
+      "move_id": 15,
+      "name": "풀베기",
+      "type": "normal",
+      "damage_class": "physical",
+      "move_power": 50
+    },
+    "53": {
+      "move_id": 53,
+      "name": "화염방사",
+      "type": "fire",
+      "damage_class": "special",
+      "move_power": 90,
+      "burn": 3
+    },
+    "56": {
+      "move_id": 56,
+      "name": "하이드로펌프",
+      "type": "water",
+      "damage_class": "special",
+      "move_power": 110
+    },
+    "57": {
+      "move_id": 57,
+      "name": "파도타기",
+      "type": "water",
+      "damage_class": "special",
+      "move_power": 90
+    },
+    "58": {
+      "move_id": 58,
+      "name": "냉동빔",
+      "type": "ice",
+      "damage_class": "special",
+      "move_power": 90,
+      "sleep": 1
+    },
+    "59": {
+      "move_id": 59,
+      "name": "눈보라",
+      "type": "ice",
+      "damage_class": "special",
+      "move_power": 110,
+      "sleep": 1
+    },
+    "61": {
+      "move_id": 61,
+      "name": "거품광선",
+      "type": "water",
+      "damage_class": "special",
+      "move_power": 65,
+      "stat_changes": {
+        "speed": -1
+      },
+      "stat_target": "enemy"
+    },
+    "63": {
+      "move_id": 63,
+      "name": "파괴광선",
+      "type": "normal",
+      "damage_class": "special",
+      "move_power": 150,
+      "recharge": true
+    },
+    "72": {
+      "move_id": 72,
+      "name": "메가드레인",
+      "type": "grass",
+      "damage_class": "special",
+      "move_power": 40,
+      "drain_percent": 50
+    },
+    "75": {
+      "move_id": 75,
+      "name": "잎날가르기",
+      "type": "grass",
+      "damage_class": "physical",
+      "move_power": 55
+    },
+    "76": {
+      "move_id": 76,
+      "name": "솔라빔",
+      "type": "grass",
+      "damage_class": "special",
+      "move_power": 120,
+      "charge_weather": "sun"
+    },
+    "78": {
+      "move_id": 78,
+      "name": "저리가루",
+      "type": "grass",
+      "damage_class": "status",
+      "paralysis": 3
+    },
+    "79": {
+      "move_id": 79,
+      "name": "수면가루",
+      "type": "grass",
+      "damage_class": "status",
+      "sleep": 1
+    },
+    "80": {
+      "move_id": 80,
+      "name": "꽃잎댄스",
+      "type": "grass",
+      "damage_class": "special",
+      "move_power": 120,
+      "lock_turns": 2
+    },
+    "81": {
+      "move_id": 81,
+      "name": "실뿜기",
+      "type": "bug",
+      "damage_class": "status",
+      "stat_changes": {
+        "speed": -2
+      },
+      "stat_target": "enemy"
+    },
+    "85": {
+      "move_id": 85,
+      "name": "10만볼트",
+      "type": "electric",
+      "damage_class": "special",
+      "move_power": 90,
+      "paralysis": 3
+    },
+    "87": {
+      "move_id": 87,
+      "name": "번개",
+      "type": "electric",
+      "damage_class": "special",
+      "move_power": 110,
+      "paralysis": 3
+    },
+    "89": {
+      "move_id": 89,
+      "name": "지진",
+      "type": "ground",
+      "damage_class": "physical",
+      "move_power": 100
+    },
+    "92": {
+      "move_id": 92,
+      "name": "맹독",
+      "type": "poison",
+      "damage_class": "status",
+      "poison": 3
+    },
+    "94": {
+      "move_id": 94,
+      "name": "사이코키네시스",
+      "type": "psychic",
+      "damage_class": "special",
+      "move_power": 90,
+      "stat_changes": {
+        "special_defense": -1
+      },
+      "stat_target": "enemy"
+    },
+    "104": {
+      "move_id": 104,
+      "name": "그림자분신",
+      "type": "normal",
+      "damage_class": "status",
+      "shield": 6
+    },
+    "105": {
+      "move_id": 105,
+      "name": "HP회복",
+      "type": "normal",
+      "damage_class": "status",
+      "heal": 8
+    },
+    "109": {
+      "move_id": 109,
+      "name": "이상한빛",
+      "type": "ghost",
+      "damage_class": "status",
+      "confusion": 3
+    },
+    "122": {
+      "move_id": 122,
+      "name": "핥기",
+      "type": "ghost",
+      "damage_class": "physical",
+      "move_power": 30,
+      "paralysis": 3
+    },
+    "126": {
+      "move_id": 126,
+      "name": "불대문자",
+      "type": "fire",
+      "damage_class": "special",
+      "move_power": 110,
+      "burn": 3
+    },
+    "151": {
+      "move_id": 151,
+      "name": "녹기",
+      "type": "poison",
+      "damage_class": "status",
+      "stat_changes": {
+        "defense": 2
+      },
+      "stat_target": "self"
+    },
+    "152": {
+      "move_id": 152,
+      "name": "집게해머",
+      "type": "water",
+      "damage_class": "physical",
+      "move_power": 100
+    },
+    "154": {
+      "move_id": 154,
+      "name": "마구할퀴기",
+      "type": "normal",
+      "damage_class": "physical",
+      "move_power": 18,
+      "hits": 3
+    },
+    "156": {
+      "move_id": 156,
+      "name": "잠자기",
+      "type": "psychic",
+      "damage_class": "status",
+      "rest": true
+    },
+    "186": {
+      "move_id": 186,
+      "name": "천사의키스",
+      "type": "fairy",
+      "damage_class": "status",
+      "confusion": 3
+    },
+    "188": {
+      "move_id": 188,
+      "name": "오물폭탄",
+      "type": "poison",
+      "damage_class": "special",
+      "move_power": 90,
+      "poison": 3
+    },
+    "198": {
+      "move_id": 198,
+      "name": "본러시",
+      "type": "ground",
+      "damage_class": "physical",
+      "move_power": 25,
+      "hits": 3
+    },
+    "200": {
+      "move_id": 200,
+      "name": "역린",
+      "type": "dragon",
+      "damage_class": "physical",
+      "move_power": 120,
+      "lock_turns": 2
+    },
+    "202": {
+      "move_id": 202,
+      "name": "기가드레인",
+      "type": "grass",
+      "damage_class": "special",
+      "move_power": 75,
+      "drain_percent": 50
+    },
+    "204": {
+      "move_id": 204,
+      "name": "애교부리기",
+      "type": "fairy",
+      "damage_class": "status",
+      "stat_changes": {
+        "attack": -2
+      },
+      "stat_target": "enemy"
+    },
+    "214": {
+      "move_id": 214,
+      "name": "잠꼬대",
+      "type": "normal",
+      "damage_class": "status",
+      "sleep_talk": true
+    },
+    "225": {
+      "move_id": 225,
+      "name": "용의숨결",
+      "type": "dragon",
+      "damage_class": "special",
+      "move_power": 60,
+      "paralysis": 3
+    },
+    "242": {
+      "move_id": 242,
+      "name": "깨물어부수기",
+      "type": "dark",
+      "damage_class": "physical",
+      "move_power": 80,
+      "stat_changes": {
+        "defense": -1
+      },
+      "stat_target": "enemy"
+    },
+    "246": {
+      "move_id": 246,
+      "name": "원시의힘",
+      "type": "rock",
+      "damage_class": "special",
+      "move_power": 60,
+      "stat_changes": {
+        "attack": 1,
+        "defense": 1,
+        "special_attack": 1,
+        "special_defense": 1,
+        "speed": 1
+      },
+      "stat_target": "self"
+    },
+    "247": {
+      "move_id": 247,
+      "name": "섀도볼",
+      "type": "ghost",
+      "damage_class": "special",
+      "move_power": 80,
+      "stat_changes": {
+        "special_defense": -1
+      },
+      "stat_target": "enemy"
+    },
+    "276": {
+      "move_id": 276,
+      "name": "엄청난힘",
+      "type": "fighting",
+      "damage_class": "physical",
+      "move_power": 120,
+      "stat_changes": {
+        "attack": -1,
+        "defense": -1
+      },
+      "stat_target": "self"
+    },
+    "297": {
+      "move_id": 297,
+      "name": "깃털댄스",
+      "type": "flying",
+      "damage_class": "status",
+      "stat_changes": {
+        "attack": -2
+      },
+      "stat_target": "enemy"
+    },
+    "309": {
+      "move_id": 309,
+      "name": "코멧펀치",
+      "type": "steel",
+      "damage_class": "physical",
+      "move_power": 90,
+      "stat_changes": {
+        "attack": 1
+      },
+      "stat_target": "self"
+    },
+    "315": {
+      "move_id": 315,
+      "name": "오버히트",
+      "type": "fire",
+      "damage_class": "special",
+      "move_power": 130,
+      "stat_changes": {
+        "special_attack": -2
+      },
+      "stat_target": "self"
+    },
+    "317": {
+      "move_id": 317,
+      "name": "암석봉인",
+      "type": "rock",
+      "damage_class": "physical",
+      "move_power": 60,
+      "stat_changes": {
+        "speed": -1
+      },
+      "stat_target": "enemy"
+    },
+    "319": {
+      "move_id": 319,
+      "name": "금속음",
+      "type": "steel",
+      "damage_class": "status",
+      "stat_changes": {
+        "special_defense": -2
+      },
+      "stat_target": "enemy"
+    },
+    "332": {
+      "move_id": 332,
+      "name": "제비반환",
+      "type": "flying",
+      "damage_class": "physical",
+      "move_power": 60
+    },
+    "334": {
+      "move_id": 334,
+      "name": "철벽",
+      "type": "steel",
+      "damage_class": "status",
+      "stat_changes": {
+        "defense": 2
+      },
+      "stat_target": "self"
+    },
+    "345": {
+      "move_id": 345,
+      "name": "매지컬리프",
+      "type": "grass",
+      "damage_class": "special",
+      "move_power": 60
+    },
+    "347": {
+      "move_id": 347,
+      "name": "명상",
+      "type": "psychic",
+      "damage_class": "status",
+      "stat_changes": {
+        "special_attack": 1,
+        "special_defense": 1
+      },
+      "stat_target": "self"
+    },
+    "349": {
+      "move_id": 349,
+      "name": "용의춤",
+      "type": "dragon",
+      "damage_class": "status",
+      "stat_changes": {
+        "attack": 1,
+        "speed": 1
+      },
+      "stat_target": "self"
+    },
+    "352": {
+      "move_id": 352,
+      "name": "물의파동",
+      "type": "water",
+      "damage_class": "special",
+      "move_power": 60,
+      "confusion": 3
+    },
+    "355": {
+      "move_id": 355,
+      "name": "날개쉬기",
+      "type": "flying",
+      "damage_class": "status",
+      "heal": 8
+    },
+    "370": {
+      "move_id": 370,
+      "name": "인파이트",
+      "type": "fighting",
+      "damage_class": "physical",
+      "move_power": 120,
+      "stat_changes": {
+        "defense": -1,
+        "special_defense": -1
+      },
+      "stat_target": "self"
+    },
+    "394": {
+      "move_id": 394,
+      "name": "플레어드라이브",
+      "type": "fire",
+      "damage_class": "physical",
+      "move_power": 120,
+      "burn": 3,
+      "drain_percent": -33
+    },
+    "402": {
+      "move_id": 402,
+      "name": "씨폭탄",
+      "type": "grass",
+      "damage_class": "physical",
+      "move_power": 80
+    },
+    "403": {
+      "move_id": 403,
+      "name": "에어슬래시",
+      "type": "flying",
+      "damage_class": "special",
+      "move_power": 75,
+      "order_note": "고정된 턴 순서 유지 · 우선도/풀죽음 추가 판정 없음"
+    },
+    "404": {
+      "move_id": 404,
+      "name": "시저크로스",
+      "type": "bug",
+      "damage_class": "physical",
+      "move_power": 80
+    },
+    "405": {
+      "move_id": 405,
+      "name": "벌레의야단법석",
+      "type": "bug",
+      "damage_class": "special",
+      "move_power": 90,
+      "stat_changes": {
+        "special_defense": -1
+      },
+      "stat_target": "enemy"
+    },
+    "406": {
+      "move_id": 406,
+      "name": "용의파동",
+      "type": "dragon",
+      "damage_class": "special",
+      "move_power": 85
+    },
+    "407": {
+      "move_id": 407,
+      "name": "드래곤다이브",
+      "type": "dragon",
+      "damage_class": "physical",
+      "move_power": 100,
+      "order_note": "고정된 턴 순서 유지 · 우선도/풀죽음 추가 판정 없음"
+    },
+    "408": {
+      "move_id": 408,
+      "name": "파워젬",
+      "type": "rock",
+      "damage_class": "special",
+      "move_power": 80
+    },
+    "412": {
+      "move_id": 412,
+      "name": "에너지볼",
+      "type": "grass",
+      "damage_class": "special",
+      "move_power": 90,
+      "stat_changes": {
+        "special_defense": -1
+      },
+      "stat_target": "enemy"
+    },
+    "414": {
+      "move_id": 414,
+      "name": "대지의힘",
+      "type": "ground",
+      "damage_class": "special",
+      "move_power": 90,
+      "stat_changes": {
+        "special_defense": -1
+      },
+      "stat_target": "enemy"
+    },
+    "416": {
+      "move_id": 416,
+      "name": "기가임팩트",
+      "type": "normal",
+      "damage_class": "physical",
+      "move_power": 150,
+      "recharge": true
+    },
+    "418": {
+      "move_id": 418,
+      "name": "불릿펀치",
+      "type": "steel",
+      "damage_class": "physical",
+      "move_power": 40,
+      "order_note": "고정된 턴 순서 유지 · 우선도/풀죽음 추가 판정 없음"
+    },
+    "428": {
+      "move_id": 428,
+      "name": "사념의박치기",
+      "type": "psychic",
+      "damage_class": "physical",
+      "move_power": 80,
+      "order_note": "고정된 턴 순서 유지 · 우선도/풀죽음 추가 판정 없음"
+    },
+    "430": {
+      "move_id": 430,
+      "name": "러스터캐논",
+      "type": "steel",
+      "damage_class": "special",
+      "move_power": 80,
+      "stat_changes": {
+        "special_defense": -1
+      },
+      "stat_target": "enemy"
+    },
+    "437": {
+      "move_id": 437,
+      "name": "리프스톰",
+      "type": "grass",
+      "damage_class": "special",
+      "move_power": 130,
+      "stat_changes": {
+        "special_attack": -2
+      },
+      "stat_target": "enemy"
+    },
+    "438": {
+      "move_id": 438,
+      "name": "파워휩",
+      "type": "grass",
+      "damage_class": "physical",
+      "move_power": 120
+    },
+    "451": {
+      "move_id": 451,
+      "name": "차지빔",
+      "type": "electric",
+      "damage_class": "special",
+      "move_power": 50,
+      "stat_changes": {
+        "special_attack": 1
+      },
+      "stat_target": "self"
+    },
+    "466": {
+      "move_id": 466,
+      "name": "괴상한바람",
+      "type": "ghost",
+      "damage_class": "special",
+      "move_power": 60,
+      "stat_changes": {
+        "attack": 1,
+        "defense": 1,
+        "special_attack": 1,
+        "special_defense": 1,
+        "speed": 1
+      },
+      "stat_target": "self"
+    },
+    "483": {
+      "move_id": 483,
+      "name": "나비춤",
+      "type": "bug",
+      "damage_class": "status",
+      "stat_changes": {
+        "special_attack": 1,
+        "special_defense": 1,
+        "speed": 1
+      },
+      "stat_target": "self"
+    },
+    "503": {
+      "move_id": 503,
+      "name": "열탕",
+      "type": "water",
+      "damage_class": "special",
+      "move_power": 80,
+      "burn": 3
+    },
+    "522": {
+      "move_id": 522,
+      "name": "벌레의저항",
+      "type": "bug",
+      "damage_class": "special",
+      "move_power": 50,
+      "stat_changes": {
+        "special_attack": -1
+      },
+      "stat_target": "enemy"
+    },
+    "526": {
+      "move_id": 526,
+      "name": "분발",
+      "type": "normal",
+      "damage_class": "status",
+      "stat_changes": {
+        "attack": 1,
+        "special_attack": 1
+      },
+      "stat_target": "self"
+    },
+    "530": {
+      "move_id": 530,
+      "name": "더블촙",
+      "type": "dragon",
+      "damage_class": "physical",
+      "move_power": 40,
+      "hits": 2
+    },
+    "538": {
+      "move_id": 538,
+      "name": "코튼가드",
+      "type": "grass",
+      "damage_class": "status",
+      "stat_changes": {
+        "defense": 3
+      },
+      "stat_target": "self"
+    },
+    "542": {
+      "move_id": 542,
+      "name": "폭풍",
+      "type": "flying",
+      "damage_class": "special",
+      "move_power": 110,
+      "confusion": 3
+    },
+    "555": {
+      "move_id": 555,
+      "name": "바크아웃",
+      "type": "dark",
+      "damage_class": "special",
+      "move_power": 55,
+      "stat_changes": {
+        "special_attack": -1
+      },
+      "stat_target": "enemy"
+    },
+    "572": {
+      "move_id": 572,
+      "name": "꽃보라",
+      "type": "grass",
+      "damage_class": "physical",
+      "move_power": 90
+    },
+    "574": {
+      "move_id": 574,
+      "name": "차밍보이스",
+      "type": "fairy",
+      "damage_class": "special",
+      "move_power": 40
+    },
+    "577": {
+      "move_id": 577,
+      "name": "드레인키스",
+      "type": "fairy",
+      "damage_class": "special",
+      "move_power": 50,
+      "drain_percent": 75
+    },
+    "583": {
+      "move_id": 583,
+      "name": "치근거리기",
+      "type": "fairy",
+      "damage_class": "physical",
+      "move_power": 90,
+      "stat_changes": {
+        "attack": -1
+      },
+      "stat_target": "enemy"
+    },
+    "585": {
+      "move_id": 585,
+      "name": "문포스",
+      "type": "fairy",
+      "damage_class": "special",
+      "move_power": 95,
+      "stat_changes": {
+        "special_attack": -1
+      },
+      "stat_target": "enemy"
+    },
+    "586": {
+      "move_id": 586,
+      "name": "폭음파",
+      "type": "normal",
+      "damage_class": "special",
+      "move_power": 140
+    },
+    "595": {
+      "move_id": 595,
+      "name": "매지컬플레임",
+      "type": "fire",
+      "damage_class": "special",
+      "move_power": 75,
+      "stat_changes": {
+        "special_attack": -1
+      },
+      "stat_target": "enemy"
+    },
+    "605": {
+      "move_id": 605,
+      "name": "매지컬샤인",
+      "type": "fairy",
+      "damage_class": "special",
+      "move_power": 80
+    },
+    "612": {
+      "move_id": 612,
+      "name": "그로우펀치",
+      "type": "fighting",
+      "damage_class": "physical",
+      "move_power": 40,
+      "stat_changes": {
+        "attack": 1
+      },
+      "stat_target": "self"
+    },
+    "665": {
+      "move_id": 665,
+      "name": "아이스해머",
+      "type": "ice",
+      "damage_class": "physical",
+      "move_power": 100,
+      "stat_changes": {
+        "speed": -1
+      },
+      "stat_target": "self"
+    },
+    "679": {
+      "move_id": 679,
+      "name": "덤벼들기",
+      "type": "bug",
+      "damage_class": "physical",
+      "move_power": 80,
+      "stat_changes": {
+        "attack": -1
+      },
+      "stat_target": "enemy"
+    },
+    "680": {
+      "move_id": 680,
+      "name": "불꽃채찍",
+      "type": "fire",
+      "damage_class": "physical",
+      "move_power": 80,
+      "stat_changes": {
+        "defense": -1
+      },
+      "stat_target": "enemy"
+    },
+    "791": {
+      "move_id": 791,
+      "name": "생명의물방울",
+      "type": "water",
+      "damage_class": "status",
+      "heal": 8
+    },
+    "905": {
+      "move_id": 905,
+      "name": "일렉트로빔",
+      "type": "electric",
+      "damage_class": "special",
+      "move_power": 130,
+      "charge_weather": "rain"
+    }
+  },
+  "profiles": {
+    "gym:misty:121": {
+      "boss": "gym:misty",
+      "species": 121,
+      "name": "이슬",
+      "plan": "파도타기 중심에 냉동빔·10만볼트·에스퍼 견제 · 회복형 제거",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 85
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 58
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 57
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:erika:45": {
+      "boss": "gym:erika",
+      "species": 45,
+      "name": "민화",
+      "plan": "마비로 압박하고 풀·독 공격 · 쾌청/씨뿌리기를 근거 없이 강제하지 않음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 78
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 585
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 188
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 80
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:koga:49": {
+      "boss": "gym:koga",
+      "species": 49,
+      "name": "독수",
+      "plan": "관장은 메가드레인 회복과 벌레·독·에스퍼 특수 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 72
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 188
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 405
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:blaine:59": {
+      "boss": "gym:blaine",
+      "species": 59,
+      "name": "강연",
+      "plan": "반동 불꽃 공격과 역린의 빈틈 · 악·페어리 물리 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 394
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 200
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 242
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 583
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:janine:49": {
+      "boss": "gym:janine",
+      "species": 49,
+      "name": "도희",
+      "plan": "수면가루·회피 보조 뒤 벌레/에스퍼 공격 · 관장 독수와 차별화",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 79
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 104
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 405
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:bugsy:212": {
+      "boss": "gym:bugsy",
+      "species": 212,
+      "name": "호일",
+      "plan": "칼춤 후 불릿펀치·시저크로스 · 엄청난힘의 자기 약화",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 14
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 418
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 404
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 276
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:roxanne:476": {
+      "boss": "gym:roxanne",
+      "species": 476,
+      "name": "원규",
+      "plan": "암석봉인으로 속도 제어 후 철벽·특수 자속 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 334
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 317
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 408
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 430
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:winona:334": {
+      "boss": "gym:winona",
+      "species": 334,
+      "name": "은송",
+      "plan": "코튼가드·날개쉬기 후 땅/드래곤 견제 · 비행 공격 임의 추가 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 538
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 225
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 89
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 355
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:wallace:350": {
+      "boss": "gym:wallace",
+      "species": 350,
+      "name": "윤진",
+      "plan": "관장은 회복하며 물·얼음·페어리 견제 · 챔피언의 맹독형과 구분",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 56
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 574
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 58
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 105
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:juan:230": {
+      "boss": "gym:juan",
+      "species": 230,
+      "name": "아단",
+      "plan": "잠자기와 회피 보조 · 물의파동/냉동빔 · 이향의 하품형과 구분",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 104
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 352
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 58
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 156
+        },
+        {
+          "kind": "wait",
+          "value": 0,
+          "move_id": 0
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:gardenia:407": {
+      "boss": "gym:gardenia",
+      "species": 407,
+      "name": "유채",
+      "plan": "리프스톰 뒤 특공 하락 · 독/고스트 견제와 파괴광선 재충전",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 247
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 437
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 188
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 63
+        },
+        {
+          "kind": "recharge",
+          "value": 0,
+          "move_id": 0
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:fantina:429": {
+      "boss": "gym:fantina",
+      "species": 429,
+      "name": "멜리사",
+      "plan": "고스트·에스퍼·풀·전기 특수 공격 순환 · 독 상태 강제 제거",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 247
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 345
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 85
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:cilan:512": {
+      "boss": "gym:cilan",
+      "species": 512,
+      "name": "덴트",
+      "plan": "분발 후 풀 공격 · 진화 전 덩굴채찍을 최종형 씨폭탄으로 교체",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 526
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 402
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 122
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 154
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:cress:516": {
+      "boss": "gym:cress",
+      "species": 516,
+      "name": "콘",
+      "plan": "분발 후 물 공세와 열탕 · 바오키/야나키와 타입 분리",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 526
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 503
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 57
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 154
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:burgh:542": {
+      "boss": "gym:burgh",
+      "species": 542,
+      "name": "아티",
+      "plan": "실뿜기·벌레의저항으로 속도/특공 약화 후 풀/벌레 공격",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 81
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 522
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 75
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 15
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:skyla:581": {
+      "boss": "gym:skyla",
+      "species": 581,
+      "name": "풍란",
+      "plan": "깃털댄스와 날개쉬기로 물리 공세 완화 후 물/비행 공격",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 297
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 403
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 61
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 355
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:korrina:448": {
+      "boss": "gym:korrina",
+      "species": 448,
+      "name": "코르니",
+      "plan": "마스터타워의 칼춤·그로우펀치·본러시 · 메가진화 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 14
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 612
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 319
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 198
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:kabu:851": {
+      "boss": "gym:kabu",
+      "species": 851,
+      "name": "순무",
+      "plan": "불꽃채찍·덤벼들기로 방어/공격 약화 후 악/풀 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 680
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 679
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 242
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 438
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:opal:869": {
+      "boss": "gym:opal",
+      "species": 869,
+      "name": "포플러",
+      "plan": "녹기로 버티며 드레인키스 회복 · 천사의키스 혼란",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 151
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 186
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 577
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:melony:131": {
+      "boss": "gym:melony",
+      "species": 131,
+      "name": "멜론",
+      "plan": "생명의물방울 회복 뒤 얼음/물/전기 특수 견제 · 거다이맥스 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 791
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 59
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 56
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 87
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:iono:429": {
+      "boss": "gym:iono",
+      "species": 429,
+      "name": "모야모",
+      "plan": "차지빔 특공 강화와 고스트·불꽃·페어리 특수 견제 · 부유 특성 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 451
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 247
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 595
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 605
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:kofu:740": {
+      "boss": "gym:kofu",
+      "species": 740,
+      "name": "곤포",
+      "plan": "집게해머·아이스해머 후 인파이트 · 스피드/방어 하락 예고",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 152
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 665
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 428
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 370
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:tulip:671": {
+      "boss": "gym:tulip",
+      "species": 671,
+      "name": "리파",
+      "plan": "애교부리기 후 페어리·에스퍼 견제 · 꽃보라의 물리 분류 유지",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 204
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 585
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 572
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:grusha:334": {
+      "boss": "gym:grusha",
+      "species": 334,
+      "name": "그루샤",
+      "plan": "얼음·드래곤·페어리·비행 특수 견제 · 얼음 테라스탈 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 58
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 406
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 585
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 542
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:lorelei:131": {
+      "boss": "elite:lorelei",
+      "species": 131,
+      "name": "칸나",
+      "plan": "물·얼음·드래곤 특수 견제 · 회복기를 근거 없이 넣지 않음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 56
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 59
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 406
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:agatha:94": {
+      "boss": "elite:agatha",
+      "species": 94,
+      "name": "국화",
+      "plan": "고스트·독·페어리 특수 공세 · 원작에 없는 확정 독 부여 제거",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 605
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 247
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 188
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:lance:149": {
+      "boss": "elite:lance",
+      "species": 149,
+      "name": "목호",
+      "plan": "사천왕은 역린·불꽃펀치와 파괴광선 재충전",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 200
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 7
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 63
+        },
+        {
+          "kind": "recharge",
+          "value": 0,
+          "move_id": 0
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:will:178": {
+      "boss": "elite:will",
+      "species": 178,
+      "name": "일목",
+      "plan": "이상한빛 뒤 에스퍼·비행·고스트 견제 · 마지막 Lv.42 네이티오 기준",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 109
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 332
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 466
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:shauntal:609": {
+      "boss": "elite:shauntal",
+      "species": 609,
+      "name": "망초",
+      "plan": "고스트·불꽃·풀·에스퍼 특수 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 412
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 126
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 247
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:caitlin:576": {
+      "boss": "elite:caitlin",
+      "species": 576,
+      "name": "카틀레야",
+      "plan": "명상 뒤 에스퍼·고스트·전기 특수 공세",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 347
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 247
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 85
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:drasna:715": {
+      "boss": "elite:drasna",
+      "species": 715,
+      "name": "드라세나",
+      "plan": "드래곤·비행·불꽃·노말 특수 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 53
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 586
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 403
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 406
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:hala:740": {
+      "boss": "elite:hala",
+      "species": 740,
+      "name": "할라",
+      "plan": "사천왕은 아이스해머·인파이트의 큰 물리 공세와 자기 약화",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 665
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 370
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:acerola:770": {
+      "boss": "elite:acerola",
+      "species": 770,
+      "name": "아세로라",
+      "plan": "철벽 뒤 기가드레인 회복과 고스트·땅 특수 공격",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 334
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 247
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 414
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 202
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:drayton:1018": {
+      "boss": "elite:drayton",
+      "species": 1018,
+      "name": "제빈",
+      "plan": "일렉트로빔 충전·특공 강화와 비 시 충전 생략 · 용·강철·악 특수 견제",
+      "intents": [
+        {
+          "kind": "prepare",
+          "value": 0,
+          "move_id": 905
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 905
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 406
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 430
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 555
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "champion:steven:376": {
+      "boss": "champion:steven",
+      "species": 376,
+      "name": "성호",
+      "plan": "코멧펀치·불릿펀치와 기가임팩트 재충전 · 메가진화 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 418
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 428
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 309
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 416
+        },
+        {
+          "kind": "recharge",
+          "value": 0,
+          "move_id": 0
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "champion:wallace:350": {
+      "boss": "champion:wallace",
+      "species": 350,
+      "name": "윤진",
+      "plan": "챔피언은 맹독·HP회복 지구전과 물/얼음 특수 공격",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 92
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 57
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 58
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 105
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "champion:cynthia:445": {
+      "boss": "champion:cynthia",
+      "species": 445,
+      "name": "난천",
+      "plan": "회복형 제거 · 땅·드래곤 물리 공세와 화염방사 얼음 견제 · 기가임팩트 빈틈",
+      "intents": [
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 89
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 53
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 407
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 416
+        },
+        {
+          "kind": "recharge",
+          "value": 0,
+          "move_id": 0
+        }
+      ]
+    },
+    "champion:alder:637": {
+      "boss": "champion:alder",
+      "species": 637,
+      "name": "노간주",
+      "plan": "나비춤 뒤 벌레·불꽃 특수 공세 · 오버히트 약화와 파괴광선 빈틈",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 483
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 315
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 405
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 63
+        },
+        {
+          "kind": "recharge",
+          "value": 0,
+          "move_id": 0
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "champion:iris:612": {
+      "boss": "champion:iris",
+      "species": 612,
+      "name": "아이리스",
+      "plan": "챔피언은 용의춤 후 더블촙 2타와 땅/벌레 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 349
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 530
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 89
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 404
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "champion:diantha:282": {
+      "boss": "champion:diantha",
+      "species": 282,
+      "name": "카르네",
+      "plan": "에스퍼·페어리·고스트·전기 특수 견제 · 메가/페어리스킨 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 85
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 585
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 247
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "champion:leon:6": {
+      "boss": "champion:leon",
+      "species": 6,
+      "name": "단델",
+      "plan": "불꽃·비행·풀·바위 특수 견제 · 솔라빔 충전 예고와 거다이맥스 제외",
+      "intents": [
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 126
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 403
+        },
+        {
+          "kind": "prepare",
+          "value": 0,
+          "move_id": 76
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 76
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 246
+        }
+      ]
+    }
+  },
+  "deferred": {
+    "gym:brock:208": [
+      "hazards_switch",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:lt_surge:26": [
+      "variable_power",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:sabrina:65": [
+      "weather_field"
+    ],
+    "gym:giovanni:464": [
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:blue:18": [
+      "variable_power"
+    ],
+    "gym:falkner:18": [
+      "variable_power",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:whitney:241": [
+      "unique_move"
+    ],
+    "gym:morty:94": [
+      "guard_counter",
+      "unique_move"
+    ],
+    "gym:chuck:62": [
+      "guard_counter",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:jasmine:208": [
+      "hazards_switch",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:pryce:473": [
+      "variable_power",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:clair:230": [
+      "하품 지연 수면"
+    ],
+    "gym:brawly:297": [
+      "unique_move"
+    ],
+    "gym:wattson:462": [
+      "hazards_switch"
+    ],
+    "gym:flannery:324": [
+      "unique_move",
+      "weather_field"
+    ],
+    "gym:norman:289": [
+      "variable_power",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:tate_liza:338": [
+      "weather_field"
+    ],
+    "gym:tate_liza:337": [
+      "weather_field"
+    ],
+    "gym:roark:409": [
+      "variable_power"
+    ],
+    "gym:maylene:448": [
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:crasher_wake:419": [
+      "variable_power",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:byron:411": [
+      "guard_counter",
+      "variable_power"
+    ],
+    "gym:candice:460": [
+      "hazards_switch",
+      "variable_power",
+      "weather_field"
+    ],
+    "gym:volkner:405": [
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:chili:514": [
+      "unique_move"
+    ],
+    "gym:lenora:505": [
+      "variable_power"
+    ],
+    "gym:elesa:523": [
+      "hazards_switch",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:clay:530": [
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:brycen:614": [
+      "variable_power",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:drayden:612": [
+      "variable_power"
+    ],
+    "gym:iris:612": [
+      "variable_power"
+    ],
+    "gym:cheren:508": [
+      "variable_power"
+    ],
+    "gym:roxie:545": [
+      "guard_counter",
+      "variable_power"
+    ],
+    "gym:marlon:593": [
+      "variable_power"
+    ],
+    "gym:viola:666": [
+      "hazards_switch"
+    ],
+    "gym:grant:697": [
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:ramos:673": [
+      "variable_power"
+    ],
+    "gym:clemont:695": [
+      "variable_power",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:valerie:700": [
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:olympia:10025": [
+      "unique_move",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:wulfric:713": [
+      "unique_move",
+      "variable_power"
+    ],
+    "gym:milo:830": [
+      "guard_counter"
+    ],
+    "gym:nessa:834": [
+      "hazards_switch"
+    ],
+    "gym:bea:68": [
+      "unique_move",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:allister:94": [
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:gordie:839": [
+      "unique_move",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:piers:862": [
+      "guard_counter",
+      "unique_move",
+      "variable_power"
+    ],
+    "gym:raihan:1018": [
+      "variable_power",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:bede:858": [
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:marnie:861": [
+      "DD래리어트 방어 단계 무시"
+    ],
+    "gym:klara:10165": [
+      "variable_power"
+    ],
+    "gym:avery:10172": [
+      "섬뜩한주문 PP 차감"
+    ],
+    "gym:mustard:10191": [
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:peony:879": [
+      "variable_power"
+    ],
+    "gym:tyme:934": [
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:katy:901": [
+      "들이받기 자기 방어 약화 원본 보강"
+    ],
+    "gym:brassius:185": [
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:larry:398": [
+      "unique_move",
+      "variable_power"
+    ],
+    "gym:ryme:10184": [
+      "variable_power"
+    ],
+    "gym:hala:740": [
+      "hazards_switch"
+    ],
+    "gym:olivia:10126": [
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:nanu:10108": [
+      "unique_move",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "gym:hapu:750": [
+      "variable_power"
+    ],
+    "elite:bruno:68": [
+      "미구현 개별 순서/회피 효과"
+    ],
+    "elite:koga:169": [
+      "미구현 개별 순서/회피 효과"
+    ],
+    "elite:karen:229": [
+      "미구현 개별 순서/회피 효과"
+    ],
+    "elite:sidney:359": [
+      "미구현 개별 순서/회피 효과"
+    ],
+    "elite:phoebe:477": [
+      "variable_power"
+    ],
+    "elite:glacia:365": [
+      "ohko_adaptation"
+    ],
+    "elite:drake:373": [
+      "미구현 개별 순서/회피 효과"
+    ],
+    "elite:aaron:452": [
+      "미구현 개별 순서/회피 효과"
+    ],
+    "elite:bertha:450": [
+      "미구현 개별 순서/회피 효과",
+      "하품 지연 수면"
+    ],
+    "elite:flint:392": [
+      "미구현 개별 순서/회피 효과"
+    ],
+    "elite:lucian:437": [
+      "variable_power"
+    ],
+    "elite:grimsley:983": [
+      "미구현 개별 순서/회피 효과"
+    ],
+    "elite:marshal:620": [
+      "hazards_switch",
+      "variable_power"
+    ],
+    "elite:malva:663": [
+      "variable_power",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "elite:siebold:689": [
+      "미구현 개별 순서/회피 효과"
+    ],
+    "elite:wikstrom:681": [
+      "guard_counter",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "elite:olivia:10126": [
+      "guard_counter",
+      "variable_power",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "elite:kahili:733": [
+      "unique_move"
+    ],
+    "elite:rika:980": [
+      "guard_counter"
+    ],
+    "elite:poppy:959": [
+      "unique_move",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "elite:larry:973": [
+      "unique_move"
+    ],
+    "elite:hassel:998": [
+      "미구현 개별 순서/회피 효과"
+    ],
+    "elite:molayne:10106": [
+      "ohko_adaptation",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "elite:crispin:257": [
+      "미구현 개별 순서/회피 효과"
+    ],
+    "elite:amarys:376": [
+      "variable_power"
+    ],
+    "elite:lacey:530": [
+      "unique_move",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "champion:blue:18": [
+      "hazards_switch",
+      "unique_move",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "champion:lance:149": [
+      "weather_field"
+    ],
+    "champion:geeta:970": [
+      "unique_move"
+    ],
+    "champion:nemona:923": [
+      "unique_move",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "champion:kukui:745": [
+      "hazards_switch",
+      "미구현 개별 순서/회피 효과"
+    ],
+    "champion:hau:10100": [
+      "미구현 개별 순서/회피 효과"
+    ],
+    "champion:kieran:1019": [
+      "unique_move",
+      "variable_power"
+    ],
+    "champion:red:26": [
+      "미구현 개별 순서/회피 효과"
+    ]
+  }
+}

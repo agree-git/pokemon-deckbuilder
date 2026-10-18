@@ -82,3 +82,7 @@ Windows 시험 빌드는 공식 Godot **4.7.2** 엔진을 포함합니다. Godot
 ## 보스 대표 기술 효과 v6
 
 [boss_move_effects_v6.json](data/boss_move_effects_v6.json)은 [대표 기술·전술 명세](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/boss-ace-tactics.md)의 P0 적용본입니다. 기존 확장 데이터의 고정 PokeAPI `5ee47a9a9c1229632ec4b473a9c1c53026e005dd` 기술 위력/분류/능력 변화/상태/회복 정보를 카드 전투 규칙으로 변환했습니다. 19대표의 원작 참조는 [고정 출처 목록](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/boss-ace-references.json)에 작품/전투/기술 ID와 pret 고정 커밋·Serebii 출처를 기록했습니다. 효과 규칙·한국어 설명·고정 행동 순서는 자체 작성입니다. 새 그림/음원/특성 시스템은 추가하지 않았습니다.
+
+## 보스 대표 기술 효과 v7
+
+[boss_move_effects_v7.json](data/boss_move_effects_v7.json)은 같은 고정 PokeAPI 기술 메타와 검토 명세의41대표 적용본입니다. 원작 파티/기술 출처는 위 고정 목록을 유지합니다. 잠자기·잠꼬대/일렉트로빔/솔라빔의 충전 및 날씨 조건은 [Rest](https://pokemondb.net/move/rest), [Sleep Talk](https://pokemondb.net/move/sleep-talk), [Electro Shot](https://pokemondb.net/move/electro-shot), [Solar Beam](https://pokemondb.net/move/solar-beam)을 추가 확인했습니다(2026-10-18). 카드 전투용 고정 연타/연속기 횟수,공개된 잠꼬대 선택,그림자분신 보호막 대체,고정 턴 순서는 자체 각색이며 원작 전체 전투 규칙을 재현한 것은 아닙니다. v6 입력은 그대로 보존했고 새 이미지·음원은 추가하지 않았습니다.

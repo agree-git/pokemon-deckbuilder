@@ -125,7 +125,7 @@ func intent_for(defender: BattlePokemon) -> Dictionary:
     var definitions: Array = enemy_definitions[enemy_index]["intents"]
     var result: Dictionary = definitions[int(opening()["intent"]) % definitions.size()].duplicate(true)
     if enemy_definitions[enemy_index].has("boss_moves_version"):
-        return BossMoveEffects.preview(self,defender,result)
+        return BossEffects.preview(self,defender,result)
     result["tactic"] = str(enemy_definitions[enemy_index].get("tactic",""))
     result["boss_style"] = str(enemy_definitions[enemy_index].get("boss_style",""))
     if result["kind"] in ["attack","charge","barrage"]:
@@ -217,7 +217,7 @@ func card_reason(uid: int) -> String:
     if card.owner_uid != 0:
         var actor := member(card.owner_uid)
         if actor == null or not actor.alive(): return "기절했거나 파티를 떠난 포켓몬의 기술입니다."
-        if BossMoveEffects.active_in(self) and actor.statuses.has("sleep"): return "수면 중인 포켓몬은 이번 턴 기술을 쓸 수 없습니다. 다른 동료의 기술이나 도구를 사용하세요."
+        if BossEffects.active_in(self) and actor.statuses.has("sleep"): return "수면 중인 포켓몬은 이번 턴 기술을 쓸 수 없습니다. 다른 동료의 기술이나 도구를 사용하세요."
     if energy < int(card_view(card)["cost"]): return "에너지가 부족합니다."
     return ""
 func play_card(uid: int) -> String:
@@ -513,7 +513,10 @@ func _enemy_action() -> void:
     var weather_foe := enemy()
     var state := opening()
     var action := intent()
-    if enemy().statuses.has("sleep"):
+    var p1: bool = enemy_definitions[enemy_index].get("boss_moves_version") == 2
+    if p1:
+        BossMoveEffectsP1.execute(self,action)
+    elif enemy().statuses.has("sleep"):
         _record("cancel",enemy().display_name+"은 잠들어 행동할 수 없습니다.")
     elif enemy_definitions[enemy_index].has("boss_moves_version"):
         BossMoveEffects.execute(self,action)
@@ -541,9 +544,9 @@ func _enemy_action() -> void:
             "status":
                 active().statuses[action["status"]] = {"turns":int(action["value"]),"source_uid":enemy().uid}
                 _record("status",active().display_name+" · "+str({"burn":"화상","poison":"독","seed":"씨뿌리기"}[action["status"]]),{"target":active().uid})
-    state["intent"] = int(state["intent"])+1
+    state["intent"] = int(state["intent"])+(int(action.get("advance",1)) if p1 and not action.get("asleep",false) else 1)
     if _outcome(): return
-    _tick(enemy())
+    _tick(weather_foe if p1 else enemy())
     if _outcome(): return
     BattleWeather.end_round(self,weather_foe)
     if _outcome(): return

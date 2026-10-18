@@ -748,8 +748,8 @@ func _refresh() -> void:
     _refresh_statuses(ally_statuses,ally)
     _refresh_statuses(enemy_statuses,foe)
     var action: Dictionary = _visual_frame.get("intent",battle.intent())
-    var names := {"charge":"강공격","attack":"공격","block":"방어","boost":"강화","barrage":"연타","fortify":"방벽","recover":"회복","status":"상태 지시","move":"기술","guard":"전술 방어"}
-    var intent_icon := {"charge":"attack","attack":"attack","block":"shield","boost":"boost","barrage":"attack","fortify":"shield","recover":"heal","status":"counter","move":"attack","guard":"shield"}
+    var names := {"charge":"강공격","attack":"공격","block":"방어","boost":"강화","barrage":"연타","fortify":"방벽","recover":"회복","status":"상태 지시","move":"기술","guard":"전술 방어","prepare":"충전","recharge":"재충전","wait":"휴식"}
+    var intent_icon := {"charge":"attack","attack":"attack","block":"shield","boost":"boost","barrage":"attack","fortify":"shield","recover":"heal","status":"counter","move":"attack","guard":"shield","prepare":"boost","recharge":"counter","wait":"counter"}
     var cancelled: bool = action.get("asleep",false)
     var intent_signature := str([battle.enemy().uid,action,cancelled])
     if _shown_intent != intent_signature:
@@ -759,18 +759,22 @@ func _refresh() -> void:
     get_node("Intent/Title").text = "행동 취소" if cancelled else names[action["kind"]]
     intent_label.text = "—" if cancelled else ("+%d%%" % (int(action["value"])*10) if action["kind"] == "boost" else str(action["value"]))
     if not cancelled:
-        if action["kind"] == "move":
+        if action["kind"] in ["prepare","recharge","wait"]:
+            intent_label.text = "준비" if action["kind"] == "prepare" else "쉼"
+        elif action["kind"] == "move":
             get_node("Intent/Title").text = action["name"]
             if action["damage_class"] == "status":
                 intent_label.text = "+%d" % int(action["healing"]) if action.has("healing") else "효과"
                 get_node("Intent/Icon").texture = W.texture("heal" if action.has("healing") else "boost")
+            elif int(action.get("hits",1)) > 1:
+                intent_label.text = "%d×%d" % [action["per_hit"],action["hits"]]
         elif action["kind"] == "barrage": intent_label.text = "%d×%d" % [action["per_hit"],action["hits"]]
         elif action["kind"] == "recover": intent_label.text = "+%d" % action["value"]
         elif action["kind"] == "status":
             intent_label.text = "%d회" % action["value"]
             get_node("Intent/Title").text = {"burn":"화상","poison":"독","seed":"씨앗"}[action["status"]]
             get_node("Intent/Icon").texture = W.texture(CardEffectText.STATUS_ICONS[action["status"]])
-    intent_label.add_theme_font_size_override("font_size",22 if action["kind"] in ["boost","barrage","status"] else 29)
+    intent_label.add_theme_font_size_override("font_size",22 if action["kind"] in ["boost","barrage","status"] or int(action.get("hits",1)) > 1 else 29)
     get_node("Intent/Tactic").text = EnemyTactics.role_title(action)
     get_node("Intent").tooltip_text = EnemyTactics.intent_text(action)+"\n"+EnemyTactics.description(battle.enemy_definitions[int(_visual_frame.get("enemy_index",battle.enemy_index))])
     if (action["kind"] in ["attack","charge","barrage"] or (action["kind"] == "move" and action["damage_class"] != "status")) and not cancelled:
