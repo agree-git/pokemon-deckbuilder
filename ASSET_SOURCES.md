@@ -113,3 +113,7 @@ Windows 시험 빌드는 공식 Godot **4.7.2** 엔진을 포함합니다. Godot
 ## 플레이어 기술 카드 v12
 
 `data/player_move_exchange_v12.json`은 동결v10/v11 JSON과 같은 PokéAPI 고정CSV4종을 대조한30카드 추가 정의입니다. 기반/원본 SHA256은 JSON에 기록했습니다. 능력 단계/기본 능력치 교환·타입 변경·공격 복사는 자체 카드 전투 각색이며 새 이미지나 음원은 추가하지 않았습니다. [적용/각색/남은 범위](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-exchange.md), [결정적 생성기](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/import_player_move_exchange.py).
+
+## 플레이어 기술 카드 v13
+
+`data/player_move_fields_v13.json`은 동결v10~v12 JSON과 같은 PokéAPI 고정CSV4종을 대조한20카드 추가 정의입니다. 기술 데이터의 양수 공격 우선도도 고정했습니다. 원본/기반 SHA256은 JSON에 기록했습니다. 공통 필드·룸·진영 교환/방어·흙놀이/물놀이는 카드 전투 각색이며 새 에셋은 없습니다. [적용/각색/남은 범위](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-fields.md), [결정적 생성기](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/import_player_move_fields.py).

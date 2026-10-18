@@ -781,13 +781,14 @@ func _refresh() -> void:
         get_node("Intent").tooltip_text += "\n현재 보호막으로 %d 흡수 · 남은 피해 %d" % [mini(ally.block,int(action["value"])),maxi(0,int(action["value"])-ally.block)]
     UiMotion.text(energy_label,str(int(_visual_frame.get("energy",battle.energy))))
     var speed_bonus := int(_visual_frame.get("turn_energy_bonus",battle.turn_energy_bonus))
-    speed_label.text = "스피드 +1" if speed_bonus == 1 else "기본 에너지 3"
-    get_node("Energy").tooltip_text = "에너지 %d · 이번 턴 지급 %d\n턴 시작 스피드: 아군 %d / 상대 %d\n더 빠르면 +1, 동률은 기본 3. 교대 시 재지급하지 않습니다." % [int(_visual_frame.get("energy",battle.energy)),3+speed_bonus,int(_visual_frame.get("turn_speed_actor",battle.turn_speed_actor)),int(_visual_frame.get("turn_speed_enemy",battle.turn_speed_enemy))]
+    var inverted:bool=_visual_frame.get("turn_speed_inverted",battle.turn_speed_inverted if _visual_frame.is_empty() else false)
+    speed_label.text = ("트릭룸 +1" if inverted else "스피드 +1") if speed_bonus == 1 else "기본 에너지 3"
+    get_node("Energy").tooltip_text = "에너지 %d · 이번 턴 지급 %d\n턴 시작 스피드: 아군 %d / 상대 %d\n%s, 동률은 기본 3. 교대 시 재지급하지 않습니다." % [int(_visual_frame.get("energy",battle.energy)),3+speed_bonus,int(_visual_frame.get("turn_speed_actor",battle.turn_speed_actor)),int(_visual_frame.get("turn_speed_enemy",battle.turn_speed_enemy)),"트릭룸으로 더 느리면 +1" if inverted else "더 빠르면 +1"]
     ally_label.mouse_filter = Control.MOUSE_FILTER_PASS
     enemy_label.mouse_filter = Control.MOUSE_FILTER_PASS
     ally_label.tooltip_text = PokemonStats.summary(ally)
     enemy_label.tooltip_text = PokemonStats.summary(foe)
-    if battle.player_moves_version==4:
+    if battle.player_moves_version>=4:
         ally_label.tooltip_text = "타입: "+_combat_type_text(ally)+"\n"+ally_label.tooltip_text
         enemy_label.tooltip_text = "타입: "+_combat_type_text(foe)+"\n"+enemy_label.tooltip_text
     UiMotion.text(draw_count,str(_visual_frame.get("draw",battle.draw_pile.size())))
@@ -806,8 +807,9 @@ func _refresh() -> void:
         party_values[i].text = "기절" if not pokemon.alive() else "%d / %d" % [pokemon.hp,pokemon.max_hp]
         W.fill_bar(party_bars[i],pokemon.hp,pokemon.max_hp)
         button.disabled = busy or not battle.switch_reason(pokemon.uid).is_empty()
-        button.tooltip_text = "%d · %s · Lv.%d · %s\n%s XP\n%s\n%s" % [i+1,pokemon.display_name,pokemon.level,_combat_type_text(pokemon) if battle.player_moves_version==4 else catalog.type_name(pokemon.type),TacticalGrowth.progress_text(pokemon),PokemonStats.summary(pokemon),"출전 중" if pokemon.uid == ally.uid else (battle.switch_reason(pokemon.uid) if not battle.switch_reason(pokemon.uid).is_empty() else switch_label.text)]
+        button.tooltip_text = "%d · %s · Lv.%d · %s\n%s XP\n%s\n%s" % [i+1,pokemon.display_name,pokemon.level,_combat_type_text(pokemon) if battle.player_moves_version>=4 else catalog.type_name(pokemon.type),TacticalGrowth.progress_text(pokemon),PokemonStats.summary(pokemon),"출전 중" if pokemon.uid == ally.uid else (battle.switch_reason(pokemon.uid) if not battle.switch_reason(pokemon.uid).is_empty() else switch_label.text)]
         if BossBattleRules.active_in(battle) and pokemon.uid != ally.uid and BossBattleRules.entry_damage(battle,pokemon)>0:button.tooltip_text += "\n스텔스록 입장 피해 HP -%d" % BossBattleRules.entry_damage(battle,pokemon)
+        if battle.player_moves_version==5 and pokemon.uid!=ally.uid and PlayerMoveFields.entry_damage(battle,pokemon)>0:button.tooltip_text += "\n진영 설치 입장 피해 HP -%d" % PlayerMoveFields.entry_damage(battle,pokemon)
         if not pokemon.held_item.is_empty(): button.tooltip_text += "\n"+str(TacticalContent.HELD_ITEMS[pokemon.held_item]["name"])+" · "+str(TacticalContent.HELD_ITEMS[pokemon.held_item]["description"])
         var border := MINT if pokemon.uid == ally.uid else Color("3d555a")
         button.add_theme_stylebox_override("disabled",W.box(Color("203a3d") if pokemon.uid == ally.uid else Color("17262e"),border))
@@ -964,6 +966,17 @@ func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
             var count:int=int(tactics.get("hazards",{}).get(key,0))
             if count>0:items.append(["ground",str(count),{"rocks":"상대 필드 스텔스록","spikes":"상대 필드 압정","toxic":"상대 필드 독압정","web":"상대 필드 끈적끈적네트"}[key]+" · 다음 상대 입장 시 적용"])
     elif tactics.get("pass",{}).get("source",0)==pokemon.uid:items.append(["counter","인계","이번 턴 다음 교대에 능력 단계/대타 인계"])
+    var field:Dictionary=_visual_frame.get("field_context",battle.field_context if _visual_frame.is_empty() else {})
+    if not field.get("terrain","").is_empty():items.append(["counter",str(field["left"]),str(PlayerMoveFields.TITLES[field["terrain"]])+" · 양쪽 접지 대상 적용"])
+    for key:String in ["trick","wonder","mud","water"]:
+        if int(field.get(key,0))>0:items.append(["counter",str(field[key]),str(PlayerMoveFields.TITLES[key])+" · 양쪽 적용 · 남은 상대 행동"])
+    for key:String in PlayerMoveFields.SIDE:
+        var left:int=int(field.get("ally" if pokemon.uid>0 else "foe",{}).get(key,0))
+        if left>0:items.append(["shield",str(left),str(PlayerMoveFields.TITLES[key])+" · 진영 효과"])
+    if pokemon.uid>0:
+        for key:String in PlayerMoveFields.HAZARDS:
+            var count:int=int(field.get("hazards",{}).get(key,0))
+            if count>0:items.append(["ground",str(count),"아군 진영 "+str({"rocks":"스텔스록","spikes":"압정","toxic":"독압정","web":"끈적끈적네트"}[key])+" · 다음 교대 입장 시 적용"])
     var exchange:Dictionary=_visual_frame.get("exchange_context",battle.exchange_context if _visual_frame.is_empty() else {})
     if exchange.get("types",{}).has(pokemon.uid):items.append(["counter","타입","현재 전투 타입: "+_combat_type_text(pokemon)+" · 교대/전투 종료 시 복구"])
     if exchange.get("stats",{}).has(pokemon.uid):items.append(["boost","능력","기본 능력치 교환/공유 · 단계와 별개 · 교대/종료 시 복구"])

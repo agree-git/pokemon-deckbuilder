@@ -1,0 +1,338 @@
+{
+  "schema_version": 1,
+  "route_version": 13,
+  "player_moves_version": 5,
+  "base_sha256": "1586ae99131c89cac7a0d3c4e95f89261b2865e89a1c5be6b4191b50b3b0fc33",
+  "source": {
+    "pokeapi_commit": "5ee47a9a9c1229632ec4b473a9c1c53026e005dd",
+    "csv_sha256": {
+      "moves.csv": "8aafd37bf78f19471495c05b201545180f50f0a08a2a2a844d69f9837dd39ac9",
+      "move_meta.csv": "93b92d5bddf4fc1536ca0a647c20453bf92e6389010f33ca6fc4c5e9c54363be",
+      "move_flag_map.csv": "399cf005933418f406b94729903bd1528e9088bddc3bc1966be6c442a625da1b",
+      "move_effect_prose.csv": "f6d9bf0d28433a010a8b8b6a0a14d1ef72fbfcb997717f71b0e34483b7ee9697"
+    }
+  },
+  "moves": {
+    "756": {
+      "move_id": 756,
+      "name": "코트체인지",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "양쪽 설치4종과 빛의장막/리플렉터/신비의부적/순풍/오로라베일/흰안개의 남은 기간 교환 · 현재 출전자 입장 효과는 재적용하지 않음"
+      ],
+      "field_rule": "court",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "433": {
+      "move_id": 433,
+      "name": "트릭룸",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "5턴 동안 느린 쪽이 턴 시작 추가 에너지 획득 · 행동 순서는 유지 · 재사용 시 해제 · 현재 에너지 유지"
+      ],
+      "field_rule": "trick",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "472": {
+      "move_id": 472,
+      "name": "원더룸",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "5턴 동안 피해 계산의 방어/특방 기본 능력치를 양쪽 모두 교환 · 능력 단계/영구 능력치 유지 · 재사용 시 해제"
+      ],
+      "field_rule": "wonder",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "604": {
+      "move_id": 604,
+      "name": "일렉트릭필드",
+      "type": "electric",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "일렉트릭필드5턴 · 접지한 사용자의 전기 공격1.3배 · 접지 대상의 새 수면 차단"
+      ],
+      "field_rule": "electric",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "580": {
+      "move_id": 580,
+      "name": "그래스필드",
+      "type": "grass",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "그래스필드5턴 · 접지한 사용자의 풀 공격1.3배 · 매 상대 행동 뒤 양쪽 접지 출전자 HP1/16 회복 · 지진/땅고르기/매그니튜드 피해 절반"
+      ],
+      "field_rule": "grassy",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "581": {
+      "move_id": 581,
+      "name": "미스트필드",
+      "type": "fairy",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "미스트필드5턴 · 접지 대상의 새 주 상태이상/혼란 차단 · 받는 드래곤 공격 절반"
+      ],
+      "field_rule": "misty",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "678": {
+      "move_id": 678,
+      "name": "사이코필드",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "사이코필드5턴 · 접지한 사용자의 에스퍼 공격1.3배 · 접지 대상에게 선공 공격 차단"
+      ],
+      "field_rule": "psychic",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "805": {
+      "move_id": 805,
+      "name": "대지의파동",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 50,
+      "upgrade": {
+        "move_power": 65
+      },
+      "card_notes": [
+        "접지한 사용자는 필드 타입으로 바뀌고 위력2배 · 필드가 없으면 노말 공격"
+      ],
+      "field_rule": "pulse"
+    },
+    "797": {
+      "move_id": 797,
+      "name": "와이드포스",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 80,
+      "upgrade": {
+        "move_power": 95
+      },
+      "card_notes": [
+        "접지한 사용자 + 사이코필드면 위력1.5배 · 한 상대 전투 유지"
+      ],
+      "field_rule": "expanding"
+    },
+    "804": {
+      "move_id": 804,
+      "name": "라이징볼트",
+      "type": "electric",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 70,
+      "upgrade": {
+        "move_power": 85
+      },
+      "card_notes": [
+        "접지한 상대 + 일렉트릭필드면 위력2배"
+      ],
+      "field_rule": "voltage"
+    },
+    "803": {
+      "move_id": 803,
+      "name": "그래스슬라이더",
+      "type": "grass",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 55,
+      "upgrade": {
+        "move_power": 70
+      },
+      "card_notes": [
+        "접지한 사용자 + 그래스필드면 비용-1 · 원작 선공을 저비용 카드로 각색"
+      ],
+      "field_rule": "glide"
+    },
+    "798": {
+      "move_id": 798,
+      "name": "아이언롤러",
+      "type": "steel",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 130,
+      "upgrade": {
+        "move_power": 145
+      },
+      "card_notes": [
+        "필드가 있을 때만 사용 가능 · 명중하면 필드 제거"
+      ],
+      "field_rule": "roller"
+    },
+    "802": {
+      "move_id": 802,
+      "name": "미스트버스트",
+      "type": "fairy",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 100,
+      "upgrade": {
+        "move_power": 115
+      },
+      "card_notes": [
+        "공격 후 사용자 기절 · 접지한 사용자 + 미스트필드면 위력1.5배"
+      ],
+      "field_rule": "explosion",
+      "self_ko": true
+    },
+    "861": {
+      "move_id": 861,
+      "name": "아이스스피너",
+      "type": "ice",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 80,
+      "upgrade": {
+        "move_power": 95
+      },
+      "card_notes": [
+        "명중하면 필드 제거"
+      ],
+      "field_rule": "spinner"
+    },
+    "432": {
+      "move_id": 432,
+      "name": "안개제거",
+      "type": "flying",
+      "cost": 1,
+      "damage_class": "status",
+      "special": "defog",
+      "card_notes": [
+        "스텔스록/장막/신비의부적 제거",
+        "양쪽 기존 스텔스록/장막과 새 상대 설치4종 제거",
+        "기존 설치/장막 해제에 양쪽 신규 장막·진영 설치·필드 제거 추가 · 보호에 막히면 유지"
+      ],
+      "extension": "clear",
+      "field_rule": "defog",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "366": {
+      "move_id": 366,
+      "name": "순풍",
+      "type": "flying",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "아군 진영4턴 · 다음 턴 시작 에너지 비교의 스피드2배 · 현재 에너지/행동 순서 유지"
+      ],
+      "field_rule": "tailwind",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "694": {
+      "move_id": 694,
+      "name": "오로라베일",
+      "type": "ice",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "눈일 때만 설치 · 아군 진영5턴 물리/특수 공격 피해 절반 · 기존 해당 장막과 중복 감소 없음 · 눈이 끝나도 유지"
+      ],
+      "field_rule": "veil",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "54": {
+      "move_id": 54,
+      "name": "흰안개",
+      "type": "ice",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "아군 진영5턴 · 상대 기술에 의한 새 음수 능력 단계 변화 차단 · 자기 능력 감소/단계 교환은 유지"
+      ],
+      "field_rule": "mist",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "300": {
+      "move_id": 300,
+      "name": "흙놀이",
+      "type": "ground",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "5턴 동안 양쪽 전기 공격 피해1/3 · 접지와 무관"
+      ],
+      "field_rule": "mud",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "346": {
+      "move_id": 346,
+      "name": "물놀이",
+      "type": "water",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "5턴 동안 양쪽 불꽃 공격 피해1/3 · 접지와 무관"
+      ],
+      "field_rule": "water",
+      "upgrade": {
+        "cost": 0
+      }
+    }
+  },
+  "positive_priority": [
+    98,
+    117,
+    183,
+    245,
+    252,
+    364,
+    389,
+    410,
+    418,
+    420,
+    425,
+    453,
+    594,
+    660,
+    709,
+    729,
+    857,
+    909,
+    918
+  ],
+  "total_enhanced": 390
+}

@@ -6,6 +6,8 @@ static func capture(b: TacticalBattle) -> Dictionary:
     if not b.boss_context.is_empty():frame["boss_context"]=b.boss_context.duplicate(true)
     if not b.move_context.is_empty():frame["move_context"]=b.move_context.duplicate(true)
     if not b.technique_context.is_empty():frame["technique_context"]=b.technique_context.duplicate(true)
+    if not b.field_context.is_empty():frame["field_context"]=b.field_context.duplicate(true)
+    if b.turn_speed_inverted:frame["turn_speed_inverted"]=true
     if not b.exchange_context.is_empty():frame["exchange_context"]=b.exchange_context.duplicate(true)
     return frame
 static func member(p: BattlePokemon) -> Dictionary:

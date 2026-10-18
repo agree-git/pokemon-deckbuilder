@@ -26,3 +26,5 @@ Godot **4.7.2**, 1920×1080 UI. 전국도감1,025종 + 지역/상시폼 포함1,
 사용자 지시: 기술 효과 구현과 소스/모델 검사를 먼저 끝내고, 실제 창 검사는 이후 한꺼번에 진행한다. 구현 도중 기술별 X11/native/UI 실행을 반복하지 않는다. EXE/빌드/export/Windows CI 보류는 별도로 계속 유지한다. 상대의 구속 기술은 수동 교대와 소유 기술 카드의 자동 교대를 모두 제한하고, 현재 동료 기술/도구·구속 해제·시전자 기절·필수 교체를 정상 처리한다.
 
 새 원정v12의 플레이어 효과4는 능력 단계/기본 능력치 교환·전투 타입 변경·공격 복사30카드를 추가 보완해 누적371기술이다. 별도 `PlayerMoveExchange`/`player_move_exchange_v12.json`/선택 `exchange_context`를 사용한다. 저장에는 원래 타입을 남기고 복원 후 현재 전투 타입/능력치를 재적용한다. 복사는 적격 공격만 원래 카드 비용/UID로 실행하며 새 카드나 영구 기술 슬롯을 추가하지 않는다. 게시한v10/v11 입력·엔진과 기존v1~v11 원정 규칙은 유지하고v12도 게시 후 동결한다. [v12 범위/각색/남은 항목](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-exchange.md)을 따른다.
+
+새 원정v13의 플레이어 효과5는 필드·룸·진영 교환20카드를 추가 보완해 누적390기술이다. 별도 `PlayerMoveFields`/`player_move_fields_v13.json`과 선택 `field_context`를 사용한다. 트릭룸은 느린 쪽의 턴 시작 추가 에너지로 각색하며 지급 시 비교 방향을 선택 `turn_speed_inverted`에 저장한다. 코트체인지는 설치4종/진영 효과의 남은 기간을 교환하고 다음 입장부터 적용한다. 기존v1~v12 규칙과 동결v10~v12 입력/엔진을 유지하며v13도 게시 후 동결한다. [전체 범위/각색/남은 항목](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-fields.md)을 따른다. 실제 창/빌드/EXE 보류 지시는 계속 적용한다.

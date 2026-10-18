@@ -1,11 +1,12 @@
 class_name PlayerTechniques
 extends RefCounted
 ## Version dispatch keeps published v10 engines and definitions unchanged.
-static func version(route:int) -> int:return 4 if route>=12 else (3 if route>=11 else (2 if route>=10 else 1))
+static func version(route:int) -> int:return 5 if route>=13 else (4 if route>=12 else (3 if route>=11 else (2 if route>=10 else 1)))
 static func active(b:TacticalBattle) -> bool:return b.player_moves_version>=2
-static func definition(key:String,v:int) -> Dictionary:return PlayerMoveExchange.definition(key) if v==4 else (PlayerMoveTactics.definition(key) if v==3 else PlayerMoveCards.definition(key))
+static func definition(key:String,v:int) -> Dictionary:return PlayerMoveFields.definition(key) if v==5 else (PlayerMoveExchange.definition(key) if v==4 else (PlayerMoveTactics.definition(key) if v==3 else PlayerMoveCards.definition(key)))
 static func prepare(b:TacticalBattle,p:BattlePokemon,v:Dictionary) -> Dictionary:
-    if b.player_moves_version==4:v=PlayerMoveExchange.expand(b,p,v)
+    if b.player_moves_version==5:v=PlayerMoveFields.expand(b,p,v)
+    elif b.player_moves_version==4:v=PlayerMoveExchange.expand(b,p,v)
     var result:=PlayerMoveCards.prepare(b,p,v)
     if b.player_moves_version>=3 and result.get("sleep_call",false):
         var overlay:Dictionary=PlayerMoveTactics.data()["moves"].get(str(result["move_id"]),{})
@@ -14,39 +15,46 @@ static func prepare(b:TacticalBattle,p:BattlePokemon,v:Dictionary) -> Dictionary
             if overlay.has("poison"):result["poison"]=int(overlay["poison"])
             result["card_notes"].append_array(overlay["card_notes"])
             result=PlayerMoveCards.prepare(b,p,result)
-        if b.player_moves_version==4:
+        if b.player_moves_version>=4:
             var extra_rule:Dictionary=PlayerMoveExchange.data()["moves"].get(str(result["move_id"]),{})
             if not extra_rule.is_empty():
                 result["exchange"]=extra_rule["exchange"];result["card_notes"].append_array(extra_rule["card_notes"])
     if b.player_moves_version>=3:result=PlayerMoveTactics.prepare(b,p,result)
-    return PlayerMoveExchange.prepare(b,p,result) if b.player_moves_version==4 else result
+    if b.player_moves_version>=4:result=PlayerMoveExchange.prepare(b,p,result)
+    return PlayerMoveFields.prepare(b,p,result) if b.player_moves_version==5 else result
 static func reason(b:TacticalBattle,p:BattlePokemon,v:Dictionary) -> String:
     var why:=PlayerMoveRules.reason(b,p,v)
     if why.is_empty() and b.player_moves_version>=3:why=PlayerMoveTactics.reason(b,p,v)
-    if why.is_empty() and b.player_moves_version==4:why=PlayerMoveExchange.reason(b,p,v)
+    if why.is_empty() and b.player_moves_version>=4:why=PlayerMoveExchange.reason(b,p,v)
+    if why.is_empty() and b.player_moves_version==5:why=PlayerMoveFields.reason(b,p,v)
     return why
 static func enemy_preview(b:TacticalBattle,p:BattlePokemon,a:Dictionary) -> Dictionary:
-    if b.player_moves_version==4:a=PlayerMoveExchange.enemy_math(b,p,a)
+    if b.player_moves_version>=4:a=PlayerMoveExchange.enemy_math(b,p,a)
+    if b.player_moves_version==5:a=PlayerMoveFields.enemy_math(b,p,a)
     var result:=PlayerMoveRules.enemy_preview(b,p,a)
     return PlayerMoveTactics.enemy_preview(b,result) if b.player_moves_version>=3 else result
 static func on_card(b:TacticalBattle,v:Dictionary,p:BattlePokemon,target:BattlePokemon) -> void:
     PlayerMoveRules.on_card(b,v,p,target)
     if b.player_moves_version>=3:PlayerMoveTactics.on_card(b,v,p,target)
-    if b.player_moves_version==4:PlayerMoveExchange.on_card(b,v,p,target)
+    if b.player_moves_version>=4:PlayerMoveExchange.on_card(b,v,p,target)
 static func after_card(b:TacticalBattle,v:Dictionary,p:BattlePokemon,target:BattlePokemon) -> void:
     var base:=v
     if b.player_moves_version>=3 and v.get("extension")=="clear" and v.get("boss_blocked",false):
         base=v.duplicate(true);base.erase("special")
     PlayerMoveRules.after_card(b,base,p,target)
     if b.player_moves_version>=3:PlayerMoveTactics.after_card(b,v,p,target)
-    if b.player_moves_version==4:PlayerMoveExchange.after_card(b,v,p,target)
+    if b.player_moves_version>=4:PlayerMoveExchange.after_card(b,v,p,target)
+    if b.player_moves_version==5:PlayerMoveFields.after_card(b,v,p,target)
 static func on_switch(b:TacticalBattle,old:int) -> void:
     PlayerMoveRules.on_switch(b,old)
     if b.player_moves_version>=3:PlayerMoveTactics.on_switch(b,old)
-    if b.player_moves_version==4:PlayerMoveExchange.on_switch(b,old)
+    if b.player_moves_version>=4:PlayerMoveExchange.on_switch(b,old)
+    if b.player_moves_version==5:PlayerMoveFields.on_switch(b)
 static func raw_damage(b:TacticalBattle,p:BattlePokemon,target:BattlePokemon,v:Dictionary,bonus:int) -> int:
-    return PlayerMoveExchange.raw_damage(b,p,target,v,bonus) if b.player_moves_version==4 else PlayerMoveCards.raw_damage(b,p,target,v,bonus)
+    if b.player_moves_version==5:return PlayerMoveFields.raw_damage(b,p,target,v,bonus)
+    return PlayerMoveExchange.raw_damage(b,p,target,v,bonus) if b.player_moves_version>=4 else PlayerMoveCards.raw_damage(b,p,target,v,bonus)
 static func lines(v:Dictionary) -> Array[String]:
+    if v.get("player_rules")==5:return PlayerMoveFields.lines(v)
     return PlayerMoveExchange.lines(v) if v.get("player_rules")==4 else legacy_lines(v)
 static func legacy_lines(v:Dictionary) -> Array[String]:
     var result:=PlayerMoveCards.lines(v)
