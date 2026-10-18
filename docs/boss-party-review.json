@@ -1,0 +1,9382 @@
+{
+  "schema_version": 1,
+  "status": "review_pending_not_applied",
+  "checked_on": "2026-10-18",
+  "game_commit": "6aea96d54511060c7107e84b6179b221cf03b9d1",
+  "spreadsheet_sha256": "e302da25f57bb784ca065d5ed0c0d2ff7a9950243db5a4ccf9cb5548d7581454",
+  "spreadsheet_rows": [
+    {
+      "region": "관동",
+      "role": "관장",
+      "name": "웅",
+      "ace": "강철톤",
+      "previous": "롱스톤",
+      "change": "진화 반영",
+      "game": "레드·그린 / 금·은",
+      "note": "원작 관장전에서는 롱스톤 사용",
+      "url": "https://pokemondb.net/pokedex/onix",
+      "excel_row": 4
+    },
+    {
+      "region": "관동",
+      "role": "관장",
+      "name": "이슬",
+      "ace": "아쿠스타",
+      "previous": "아쿠스타",
+      "change": "유지",
+      "game": "레드·그린 / 금·은",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 5
+    },
+    {
+      "region": "관동",
+      "role": "관장",
+      "name": "마티스",
+      "ace": "라이츄",
+      "previous": "라이츄",
+      "change": "유지",
+      "game": "레드·그린 / 금·은",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 6
+    },
+    {
+      "region": "관동",
+      "role": "관장",
+      "name": "민화",
+      "ace": "라플레시아",
+      "previous": "라플레시아",
+      "change": "유지",
+      "game": "레드·그린 / 금·은",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 7
+    },
+    {
+      "region": "관동",
+      "role": "관장",
+      "name": "독수",
+      "ace": "도나리",
+      "previous": "도나리",
+      "change": "유지",
+      "game": "레드·그린",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 8
+    },
+    {
+      "region": "관동",
+      "role": "관장",
+      "name": "초련",
+      "ace": "후딘",
+      "previous": "후딘",
+      "change": "유지",
+      "game": "레드·그린 / 금·은",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 9
+    },
+    {
+      "region": "관동",
+      "role": "관장",
+      "name": "강연",
+      "ace": "윈디",
+      "previous": "윈디",
+      "change": "유지",
+      "game": "레드·그린 / 금·은",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 10
+    },
+    {
+      "region": "관동",
+      "role": "관장",
+      "name": "비주기",
+      "ace": "거대코뿌리",
+      "previous": "코뿌리",
+      "change": "진화 반영",
+      "game": "레드·그린",
+      "note": "원작 시점에는 거대코뿌리가 미등장",
+      "url": "https://pokemondb.net/pokedex/rhydon",
+      "excel_row": 11
+    },
+    {
+      "region": "관동",
+      "role": "관장",
+      "name": "도희",
+      "ace": "도나리",
+      "previous": "도나리",
+      "change": "유지",
+      "game": "금·은",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 12
+    },
+    {
+      "region": "관동",
+      "role": "관장",
+      "name": "그린",
+      "ace": "피죤투",
+      "previous": "피죤투",
+      "change": "유지",
+      "game": "금·은",
+      "note": "챔피언 시절과 별도 행",
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 13
+    },
+    {
+      "region": "관동",
+      "role": "사천왕",
+      "name": "칸나",
+      "ace": "라프라스",
+      "previous": "라프라스",
+      "change": "유지",
+      "game": "레드·그린",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 14
+    },
+    {
+      "region": "관동",
+      "role": "사천왕",
+      "name": "시바",
+      "ace": "괴력몬",
+      "previous": "괴력몬",
+      "change": "유지",
+      "game": "레드·그린",
+      "note": "성도에서도 사천왕으로 등장",
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 15
+    },
+    {
+      "region": "관동",
+      "role": "사천왕",
+      "name": "국화",
+      "ace": "팬텀",
+      "previous": "팬텀",
+      "change": "유지",
+      "game": "레드·그린",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 16
+    },
+    {
+      "region": "관동",
+      "role": "사천왕",
+      "name": "목호",
+      "ace": "망나뇽",
+      "previous": "망나뇽",
+      "change": "유지",
+      "game": "레드·그린",
+      "note": "성도에서는 챔피언",
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 17
+    },
+    {
+      "region": "관동",
+      "role": "챔피언",
+      "name": "그린",
+      "ace": "피죤투",
+      "previous": "피죤투",
+      "change": "유지",
+      "game": "레드·그린",
+      "note": "스타팅에 따라 최종 포켓몬이 달라짐",
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 18
+    },
+    {
+      "region": "관동",
+      "role": "챔피언",
+      "name": "진우",
+      "ace": "피죤투",
+      "previous": "메가피죤투",
+      "change": "표기 통일",
+      "game": "레츠고! 피카츄·이브이",
+      "note": "메가진화는 진화 단계가 아닌 강화 형태 / 게임에서는 메가피죤투 사용, 최종진화 '종' 기준으로 통일",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Trace_(game)",
+      "excel_row": 19
+    },
+    {
+      "region": "성도",
+      "role": "관장",
+      "name": "비상",
+      "ace": "피죤투",
+      "previous": "피죤",
+      "change": "진화 반영",
+      "game": "금·은",
+      "note": "원작 관장전에서는 피죤 사용",
+      "url": "https://pokemondb.net/pokedex/pidgeotto",
+      "excel_row": 20
+    },
+    {
+      "region": "성도",
+      "role": "관장",
+      "name": "호일",
+      "ace": "핫삼",
+      "previous": "스라크",
+      "change": "진화 반영",
+      "game": "금·은",
+      "note": "스라크의 분기 진화 중 핫삼 선택 (다른 진화형: 사마자르)",
+      "url": "https://pokemondb.net/pokedex/scyther",
+      "excel_row": 21
+    },
+    {
+      "region": "성도",
+      "role": "관장",
+      "name": "꼭두",
+      "ace": "밀탱크",
+      "previous": "밀탱크",
+      "change": "유지",
+      "game": "금·은",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 22
+    },
+    {
+      "region": "성도",
+      "role": "관장",
+      "name": "유빈",
+      "ace": "팬텀",
+      "previous": "팬텀",
+      "change": "유지",
+      "game": "금·은",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 23
+    },
+    {
+      "region": "성도",
+      "role": "관장",
+      "name": "사도",
+      "ace": "강챙이",
+      "previous": "강챙이",
+      "change": "유지",
+      "game": "금·은",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 24
+    },
+    {
+      "region": "성도",
+      "role": "관장",
+      "name": "규리",
+      "ace": "강철톤",
+      "previous": "강철톤",
+      "change": "유지",
+      "game": "금·은",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 25
+    },
+    {
+      "region": "성도",
+      "role": "관장",
+      "name": "류옹",
+      "ace": "맘모꾸리",
+      "previous": "메꾸리",
+      "change": "진화 반영",
+      "game": "금·은",
+      "note": "맘모꾸리는 4세대에서 추가된 진화형",
+      "url": "https://pokemondb.net/pokedex/piloswine",
+      "excel_row": 26
+    },
+    {
+      "region": "성도",
+      "role": "관장",
+      "name": "이향",
+      "ace": "킹드라",
+      "previous": "킹드라",
+      "change": "유지",
+      "game": "금·은",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 27
+    },
+    {
+      "region": "성도",
+      "role": "사천왕",
+      "name": "일목",
+      "ace": "네이티오",
+      "previous": "네이티오",
+      "change": "유지",
+      "game": "금·은",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 28
+    },
+    {
+      "region": "성도",
+      "role": "사천왕",
+      "name": "독수",
+      "ace": "크로뱃",
+      "previous": "크로뱃",
+      "change": "유지",
+      "game": "금·은",
+      "note": "관동 관장 경력",
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 29
+    },
+    {
+      "region": "성도",
+      "role": "사천왕",
+      "name": "시바",
+      "ace": "괴력몬",
+      "previous": "괴력몬",
+      "change": "유지",
+      "game": "금·은",
+      "note": "관동에서도 사천왕으로 등장",
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 30
+    },
+    {
+      "region": "성도",
+      "role": "사천왕",
+      "name": "카렌",
+      "ace": "헬가",
+      "previous": "헬가",
+      "change": "유지",
+      "game": "금·은",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 31
+    },
+    {
+      "region": "성도",
+      "role": "챔피언",
+      "name": "목호",
+      "ace": "망나뇽",
+      "previous": "망나뇽",
+      "change": "유지",
+      "game": "금·은",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 32
+    },
+    {
+      "region": "성도",
+      "role": "최종 보스",
+      "name": "레드",
+      "ace": "라이츄",
+      "previous": "피카츄",
+      "change": "진화 반영",
+      "game": "금·은",
+      "note": "원작의 레드는 피카츄를 사용. 최종진화 조건으로 라이츄 표시",
+      "url": "https://pokemondb.net/pokedex/pikachu",
+      "excel_row": 33
+    },
+    {
+      "region": "호연",
+      "role": "관장",
+      "name": "원규",
+      "ace": "대코파스",
+      "previous": "코코파스",
+      "change": "진화 반영",
+      "game": "루비·사파이어·에메랄드",
+      "note": "원작 시점에는 대코파스가 미등장",
+      "url": "https://pokemondb.net/pokedex/nosepass",
+      "excel_row": 34
+    },
+    {
+      "region": "호연",
+      "role": "관장",
+      "name": "철구",
+      "ace": "하리뭉",
+      "previous": "마크탕",
+      "change": "진화 반영",
+      "game": "루비·사파이어·에메랄드",
+      "note": null,
+      "url": "https://pokemondb.net/pokedex/makuhita",
+      "excel_row": 35
+    },
+    {
+      "region": "호연",
+      "role": "관장",
+      "name": "암페어",
+      "ace": "자포코일",
+      "previous": "레어코일",
+      "change": "진화 반영",
+      "game": "루비·사파이어·에메랄드",
+      "note": "원작 시점에는 자포코일이 미등장",
+      "url": "https://pokemondb.net/pokedex/magneton",
+      "excel_row": 36
+    },
+    {
+      "region": "호연",
+      "role": "관장",
+      "name": "민지",
+      "ace": "코터스",
+      "previous": "코터스",
+      "change": "유지",
+      "game": "루비·사파이어·에메랄드",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 37
+    },
+    {
+      "region": "호연",
+      "role": "관장",
+      "name": "종길",
+      "ace": "게을킹",
+      "previous": "게을킹",
+      "change": "유지",
+      "game": "루비·사파이어·에메랄드",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 38
+    },
+    {
+      "region": "호연",
+      "role": "관장",
+      "name": "은송",
+      "ace": "파비코리",
+      "previous": "파비코리",
+      "change": "유지",
+      "game": "루비·사파이어·에메랄드",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 39
+    },
+    {
+      "region": "호연",
+      "role": "관장",
+      "name": "풍",
+      "ace": "솔록",
+      "previous": "솔록",
+      "change": "유지",
+      "game": "루비·사파이어·에메랄드",
+      "note": "란과 더블배틀",
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 40
+    },
+    {
+      "region": "호연",
+      "role": "관장",
+      "name": "란",
+      "ace": "루나톤",
+      "previous": "루나톤",
+      "change": "유지",
+      "game": "루비·사파이어·에메랄드",
+      "note": "풍과 더블배틀",
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 41
+    },
+    {
+      "region": "호연",
+      "role": "관장",
+      "name": "윤진",
+      "ace": "밀로틱",
+      "previous": "밀로틱",
+      "change": "유지",
+      "game": "루비·사파이어",
+      "note": "에메랄드에서는 챔피언",
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 42
+    },
+    {
+      "region": "호연",
+      "role": "관장",
+      "name": "아단",
+      "ace": "킹드라",
+      "previous": "킹드라",
+      "change": "유지",
+      "game": "에메랄드",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 43
+    },
+    {
+      "region": "호연",
+      "role": "사천왕",
+      "name": "혁진",
+      "ace": "앱솔",
+      "previous": "앱솔",
+      "change": "유지",
+      "game": "루비·사파이어·에메랄드",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 44
+    },
+    {
+      "region": "호연",
+      "role": "사천왕",
+      "name": "회연",
+      "ace": "야느와르몽",
+      "previous": "미라몽",
+      "change": "진화 반영",
+      "game": "루비·사파이어·에메랄드",
+      "note": "원작 시점에는 야느와르몽이 미등장",
+      "url": "https://pokemondb.net/pokedex/dusclops",
+      "excel_row": 45
+    },
+    {
+      "region": "호연",
+      "role": "사천왕",
+      "name": "미혜",
+      "ace": "씨카이저",
+      "previous": "씨카이저",
+      "change": "유지",
+      "game": "루비·사파이어·에메랄드",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 46
+    },
+    {
+      "region": "호연",
+      "role": "사천왕",
+      "name": "권수",
+      "ace": "보만다",
+      "previous": "보만다",
+      "change": "유지",
+      "game": "루비·사파이어·에메랄드",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 47
+    },
+    {
+      "region": "호연",
+      "role": "챔피언",
+      "name": "성호",
+      "ace": "메타그로스",
+      "previous": "메타그로스",
+      "change": "유지",
+      "game": "루비·사파이어",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 48
+    },
+    {
+      "region": "호연",
+      "role": "챔피언",
+      "name": "윤진",
+      "ace": "밀로틱",
+      "previous": "밀로틱",
+      "change": "유지",
+      "game": "에메랄드",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 49
+    },
+    {
+      "region": "신오",
+      "role": "관장",
+      "name": "강석",
+      "ace": "램펄드",
+      "previous": "두개도스",
+      "change": "진화 반영",
+      "game": "다이아몬드·펄·플라티나",
+      "note": null,
+      "url": "https://pokemondb.net/pokedex/cranidos",
+      "excel_row": 50
+    },
+    {
+      "region": "신오",
+      "role": "관장",
+      "name": "유채",
+      "ace": "로즈레이드",
+      "previous": "로즈레이드",
+      "change": "유지",
+      "game": "다이아몬드·펄·플라티나",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 51
+    },
+    {
+      "region": "신오",
+      "role": "관장",
+      "name": "자두",
+      "ace": "루카리오",
+      "previous": "루카리오",
+      "change": "유지",
+      "game": "다이아몬드·펄·플라티나",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 52
+    },
+    {
+      "region": "신오",
+      "role": "관장",
+      "name": "맥실러",
+      "ace": "플로젤",
+      "previous": "플로젤",
+      "change": "유지",
+      "game": "다이아몬드·펄·플라티나",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 53
+    },
+    {
+      "region": "신오",
+      "role": "관장",
+      "name": "멜리사",
+      "ace": "무우마직",
+      "previous": "무우마직",
+      "change": "유지",
+      "game": "다이아몬드·펄·플라티나",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 54
+    },
+    {
+      "region": "신오",
+      "role": "관장",
+      "name": "동관",
+      "ace": "바리톱스",
+      "previous": "바리톱스",
+      "change": "유지",
+      "game": "다이아몬드·펄·플라티나",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 55
+    },
+    {
+      "region": "신오",
+      "role": "관장",
+      "name": "무청",
+      "ace": "눈설왕",
+      "previous": "눈설왕",
+      "change": "유지",
+      "game": "다이아몬드·펄·플라티나",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 56
+    },
+    {
+      "region": "신오",
+      "role": "관장",
+      "name": "전진",
+      "ace": "렌트라",
+      "previous": "렌트라",
+      "change": "유지",
+      "game": "다이아몬드·펄·플라티나",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 57
+    },
+    {
+      "region": "신오",
+      "role": "사천왕",
+      "name": "충호",
+      "ace": "드래피온",
+      "previous": "드래피온",
+      "change": "유지",
+      "game": "다이아몬드·펄·플라티나",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 58
+    },
+    {
+      "region": "신오",
+      "role": "사천왕",
+      "name": "들국화",
+      "ace": "하마돈",
+      "previous": "하마돈",
+      "change": "유지",
+      "game": "다이아몬드·펄·플라티나",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 59
+    },
+    {
+      "region": "신오",
+      "role": "사천왕",
+      "name": "대엽",
+      "ace": "초염몽",
+      "previous": "초염몽",
+      "change": "유지",
+      "game": "다이아몬드·펄·플라티나",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 60
+    },
+    {
+      "region": "신오",
+      "role": "사천왕",
+      "name": "오엽",
+      "ace": "동탁군",
+      "previous": "동탁군",
+      "change": "유지",
+      "game": "다이아몬드·펄·플라티나",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 61
+    },
+    {
+      "region": "신오",
+      "role": "챔피언",
+      "name": "난천",
+      "ace": "한카리아스",
+      "previous": "한카리아스",
+      "change": "유지",
+      "game": "다이아몬드·펄·플라티나",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 62
+    },
+    {
+      "region": "하나",
+      "role": "관장",
+      "name": "덴트",
+      "ace": "야나키",
+      "previous": "야나키",
+      "change": "유지",
+      "game": "블랙·화이트",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 63
+    },
+    {
+      "region": "하나",
+      "role": "관장",
+      "name": "팟",
+      "ace": "바오키",
+      "previous": "바오키",
+      "change": "유지",
+      "game": "블랙·화이트",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 64
+    },
+    {
+      "region": "하나",
+      "role": "관장",
+      "name": "콘",
+      "ace": "앗차키",
+      "previous": "앗차키",
+      "change": "유지",
+      "game": "블랙·화이트",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 65
+    },
+    {
+      "region": "하나",
+      "role": "관장",
+      "name": "알로에",
+      "ace": "보르그",
+      "previous": "보르그",
+      "change": "유지",
+      "game": "블랙·화이트",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 66
+    },
+    {
+      "region": "하나",
+      "role": "관장",
+      "name": "아티",
+      "ace": "모아머",
+      "previous": "모아머",
+      "change": "유지",
+      "game": "블랙·화이트 / 블랙2·화이트2",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 67
+    },
+    {
+      "region": "하나",
+      "role": "관장",
+      "name": "카밀레",
+      "ace": "제브라이카",
+      "previous": "제브라이카",
+      "change": "유지",
+      "game": "블랙·화이트 / 블랙2·화이트2",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 68
+    },
+    {
+      "region": "하나",
+      "role": "관장",
+      "name": "야콘",
+      "ace": "몰드류",
+      "previous": "몰드류",
+      "change": "유지",
+      "game": "블랙·화이트 / 블랙2·화이트2",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 69
+    },
+    {
+      "region": "하나",
+      "role": "관장",
+      "name": "풍란",
+      "ace": "스완나",
+      "previous": "스완나",
+      "change": "유지",
+      "game": "블랙·화이트 / 블랙2·화이트2",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 70
+    },
+    {
+      "region": "하나",
+      "role": "관장",
+      "name": "담죽",
+      "ace": "툰베어",
+      "previous": "툰베어",
+      "change": "유지",
+      "game": "블랙·화이트",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 71
+    },
+    {
+      "region": "하나",
+      "role": "관장",
+      "name": "사간",
+      "ace": "액스라이즈",
+      "previous": "액스라이즈",
+      "change": "유지",
+      "game": "블랙·화이트 / 블랙2·화이트2",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 72
+    },
+    {
+      "region": "하나",
+      "role": "관장",
+      "name": "아이리스",
+      "ace": "액스라이즈",
+      "previous": "액스라이즈",
+      "change": "유지",
+      "game": "화이트",
+      "note": "블랙2·화이트2에서는 챔피언",
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 73
+    },
+    {
+      "region": "하나",
+      "role": "관장",
+      "name": "체렌",
+      "ace": "바랜드",
+      "previous": "요테리",
+      "change": "진화 반영",
+      "game": "블랙2·화이트2",
+      "note": null,
+      "url": "https://pokemondb.net/pokedex/lillipup",
+      "excel_row": 74
+    },
+    {
+      "region": "하나",
+      "role": "관장",
+      "name": "보미카",
+      "ace": "펜드라",
+      "previous": "휠구",
+      "change": "진화 반영",
+      "game": "블랙2·화이트2",
+      "note": null,
+      "url": "https://pokemondb.net/pokedex/whirlipede",
+      "excel_row": 75
+    },
+    {
+      "region": "하나",
+      "role": "관장",
+      "name": "시즈",
+      "ace": "탱탱겔",
+      "previous": "탱탱겔",
+      "change": "유지",
+      "game": "블랙2·화이트2",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 76
+    },
+    {
+      "region": "하나",
+      "role": "사천왕",
+      "name": "망초",
+      "ace": "샹델라",
+      "previous": "샹델라",
+      "change": "유지",
+      "game": "블랙·화이트 / 블랙2·화이트2",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 77
+    },
+    {
+      "region": "하나",
+      "role": "사천왕",
+      "name": "블래리",
+      "ace": "대도각참",
+      "previous": "절각참",
+      "change": "진화 반영",
+      "game": "블랙·화이트 / 블랙2·화이트2",
+      "note": "대도각참은 9세대에서 추가된 진화형",
+      "url": "https://pokemondb.net/pokedex/bisharp",
+      "excel_row": 78
+    },
+    {
+      "region": "하나",
+      "role": "사천왕",
+      "name": "카틀레야",
+      "ace": "고디모아젤",
+      "previous": "고디모아젤",
+      "change": "유지",
+      "game": "블랙·화이트 / 블랙2·화이트2",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 79
+    },
+    {
+      "region": "하나",
+      "role": "사천왕",
+      "name": "연무",
+      "ace": "비조도",
+      "previous": "비조도",
+      "change": "유지",
+      "game": "블랙·화이트",
+      "note": "블랙2·화이트2에서는 노보청이 에이스",
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 80
+    },
+    {
+      "region": "하나",
+      "role": "챔피언",
+      "name": "노간주",
+      "ace": "불카모스",
+      "previous": "불카모스",
+      "change": "유지",
+      "game": "블랙·화이트",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 81
+    },
+    {
+      "region": "하나",
+      "role": "챔피언",
+      "name": "아이리스",
+      "ace": "액스라이즈",
+      "previous": "액스라이즈",
+      "change": "유지",
+      "game": "블랙2·화이트2",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 82
+    },
+    {
+      "region": "칼로스",
+      "role": "관장",
+      "name": "비올라",
+      "ace": "비비용",
+      "previous": "비비용",
+      "change": "유지",
+      "game": "X·Y",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 83
+    },
+    {
+      "region": "칼로스",
+      "role": "관장",
+      "name": "자크로",
+      "ace": "견고라스",
+      "previous": "티고라스",
+      "change": "진화 반영",
+      "game": "X·Y",
+      "note": null,
+      "url": "https://pokemondb.net/pokedex/tyrunt",
+      "excel_row": 84
+    },
+    {
+      "region": "칼로스",
+      "role": "관장",
+      "name": "코르니",
+      "ace": "루카리오",
+      "previous": "루카리오",
+      "change": "유지",
+      "game": "X·Y",
+      "note": "메가진화 가능",
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 85
+    },
+    {
+      "region": "칼로스",
+      "role": "관장",
+      "name": "후쿠지",
+      "ace": "고고트",
+      "previous": "고고트",
+      "change": "유지",
+      "game": "X·Y",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 86
+    },
+    {
+      "region": "칼로스",
+      "role": "관장",
+      "name": "시트론",
+      "ace": "일레도리자드",
+      "previous": "일레도리자드",
+      "change": "유지",
+      "game": "X·Y",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 87
+    },
+    {
+      "region": "칼로스",
+      "role": "관장",
+      "name": "마슈",
+      "ace": "님피아",
+      "previous": "님피아",
+      "change": "유지",
+      "game": "X·Y",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 88
+    },
+    {
+      "region": "칼로스",
+      "role": "관장",
+      "name": "고지카",
+      "ace": "냐오닉스",
+      "previous": "냐오닉스",
+      "change": "유지",
+      "game": "X·Y",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 89
+    },
+    {
+      "region": "칼로스",
+      "role": "관장",
+      "name": "우르프",
+      "ace": "크레베이스",
+      "previous": "크레베이스",
+      "change": "유지",
+      "game": "X·Y",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 90
+    },
+    {
+      "region": "칼로스",
+      "role": "사천왕",
+      "name": "파키라",
+      "ace": "파이어로",
+      "previous": "파이어로",
+      "change": "유지",
+      "game": "X·Y",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 91
+    },
+    {
+      "region": "칼로스",
+      "role": "사천왕",
+      "name": "즈미",
+      "ace": "거북손데스",
+      "previous": "거북손데스",
+      "change": "유지",
+      "game": "X·Y",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 92
+    },
+    {
+      "region": "칼로스",
+      "role": "사천왕",
+      "name": "간피",
+      "ace": "킬가르도",
+      "previous": "킬가르도",
+      "change": "유지",
+      "game": "X·Y",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 93
+    },
+    {
+      "region": "칼로스",
+      "role": "사천왕",
+      "name": "드라세나",
+      "ace": "음번",
+      "previous": "음번",
+      "change": "유지",
+      "game": "X·Y",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 94
+    },
+    {
+      "region": "칼로스",
+      "role": "챔피언",
+      "name": "카르네",
+      "ace": "가디안",
+      "previous": "가디안",
+      "change": "유지",
+      "game": "X·Y",
+      "note": "메가진화 가능",
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 95
+    },
+    {
+      "region": "알로라",
+      "role": "섬의 왕·사천왕",
+      "name": "할라",
+      "ace": "모단단게",
+      "previous": "모단단게",
+      "change": "유지",
+      "game": "썬·문",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 96
+    },
+    {
+      "region": "알로라",
+      "role": "섬의 여왕·사천왕",
+      "name": "라이치",
+      "ace": "루가루암 (한밤의 모습)",
+      "previous": "루가루암 (한밤의 모습)",
+      "change": "유지",
+      "game": "썬·문 / 울트라썬·울트라문",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 97
+    },
+    {
+      "region": "알로라",
+      "role": "섬의 왕",
+      "name": "나누",
+      "ace": "페르시온 (알로라의 모습)",
+      "previous": "페르시온 (알로라의 모습)",
+      "change": "유지",
+      "game": "썬·문 / 울트라썬·울트라문",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 98
+    },
+    {
+      "region": "알로라",
+      "role": "섬의 여왕",
+      "name": "하푸우",
+      "ace": "만마드",
+      "previous": "만마드",
+      "change": "유지",
+      "game": "썬·문 / 울트라썬·울트라문",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 99
+    },
+    {
+      "region": "알로라",
+      "role": "사천왕",
+      "name": "멀레인",
+      "ace": "닥트리오 (알로라의 모습)",
+      "previous": "닥트리오 (알로라의 모습)",
+      "change": "유지",
+      "game": "울트라썬·울트라문",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 100
+    },
+    {
+      "region": "알로라",
+      "role": "사천왕",
+      "name": "아세로라",
+      "ace": "모래성이당",
+      "previous": "모래성이당",
+      "change": "유지",
+      "game": "썬·문 / 울트라썬·울트라문",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 101
+    },
+    {
+      "region": "알로라",
+      "role": "사천왕",
+      "name": "카일리",
+      "ace": "왕큰부리",
+      "previous": "왕큰부리",
+      "change": "유지",
+      "game": "썬·문 / 울트라썬·울트라문",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 102
+    },
+    {
+      "region": "알로라",
+      "role": "초대 챔피언 결정전",
+      "name": "쿠쿠이박사",
+      "ace": "루가루암 (한낮의 모습)",
+      "previous": "루가루암 (한낮의 모습)",
+      "change": "유지",
+      "game": "썬·문",
+      "note": "스타팅에 따라 최종 포켓몬이 달라짐",
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 103
+    },
+    {
+      "region": "알로라",
+      "role": "초대 챔피언 결정전",
+      "name": "하우",
+      "ace": "라이츄 (알로라의 모습)",
+      "previous": "라이츄 (알로라의 모습)",
+      "change": "유지",
+      "game": "울트라썬·울트라문",
+      "note": "스타팅에 따라 최종 포켓몬이 달라짐",
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 104
+    },
+    {
+      "region": "가라르",
+      "role": "관장",
+      "name": "아킬",
+      "ace": "백솜모카",
+      "previous": "백솜모카",
+      "change": "유지",
+      "game": "소드·실드",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 105
+    },
+    {
+      "region": "가라르",
+      "role": "관장",
+      "name": "야청",
+      "ace": "갈가부기",
+      "previous": "갈가부기",
+      "change": "유지",
+      "game": "소드·실드",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 106
+    },
+    {
+      "region": "가라르",
+      "role": "관장",
+      "name": "순무",
+      "ace": "다태우지네",
+      "previous": "다태우지네",
+      "change": "유지",
+      "game": "소드·실드",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 107
+    },
+    {
+      "region": "가라르",
+      "role": "관장",
+      "name": "채두",
+      "ace": "괴력몬",
+      "previous": "괴력몬",
+      "change": "유지",
+      "game": "소드",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 108
+    },
+    {
+      "region": "가라르",
+      "role": "관장",
+      "name": "어니언",
+      "ace": "팬텀",
+      "previous": "팬텀",
+      "change": "유지",
+      "game": "실드",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 109
+    },
+    {
+      "region": "가라르",
+      "role": "관장",
+      "name": "포플러",
+      "ace": "마휘핑",
+      "previous": "마휘핑",
+      "change": "유지",
+      "game": "소드·실드",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 110
+    },
+    {
+      "region": "가라르",
+      "role": "관장",
+      "name": "마쿠와",
+      "ace": "석탄산",
+      "previous": "석탄산",
+      "change": "유지",
+      "game": "소드",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 111
+    },
+    {
+      "region": "가라르",
+      "role": "관장",
+      "name": "멜론",
+      "ace": "라프라스",
+      "previous": "라프라스",
+      "change": "유지",
+      "game": "실드",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 112
+    },
+    {
+      "region": "가라르",
+      "role": "관장",
+      "name": "금랑",
+      "ace": "브리두라스",
+      "previous": "두랄루돈",
+      "change": "진화 반영",
+      "game": "소드·실드",
+      "note": "브리두라스는 9세대 DLC에서 새로 추가된 진화형",
+      "url": "https://pokemondb.net/pokedex/duraludon",
+      "excel_row": 113
+    },
+    {
+      "region": "가라르",
+      "role": "관장",
+      "name": "두송",
+      "ace": "가로막구리",
+      "previous": "가로막구리",
+      "change": "유지",
+      "game": "소드·실드",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 114
+    },
+    {
+      "region": "가라르",
+      "role": "챔피언",
+      "name": "단델",
+      "ace": "리자몽",
+      "previous": "리자몽",
+      "change": "유지",
+      "game": "소드·실드",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 115
+    },
+    {
+      "region": "가라르",
+      "role": "전 챔피언 (DLC)",
+      "name": "마스터드",
+      "ace": "우라오스",
+      "previous": "우라오스",
+      "change": "유지",
+      "game": "갑옷의 외딴섬",
+      "note": "일격의 태세·연격의 태세 중 스토리 선택에 따라 달라짐",
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 116
+    },
+    {
+      "region": "가라르",
+      "role": "전 관장 (DLC)",
+      "name": "피오니",
+      "ace": "대왕끼리동",
+      "previous": "대왕끼리동",
+      "change": "유지",
+      "game": "왕관의 설원",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 117
+    },
+    {
+      "region": "가라르",
+      "role": "라이벌 (DLC)",
+      "name": "도정",
+      "ace": "야도란 (가라르의 모습)",
+      "previous": "야도란 (가라르의 모습)",
+      "change": "유지",
+      "game": "갑옷의 외딴섬 (소드)",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 118
+    },
+    {
+      "region": "가라르",
+      "role": "라이벌 (DLC)",
+      "name": "세이버리",
+      "ace": "야도킹 (가라르의 모습)",
+      "previous": "야도킹 (가라르의 모습)",
+      "change": "유지",
+      "game": "갑옷의 외딴섬 (실드)",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 119
+    },
+    {
+      "region": "팔데아",
+      "role": "관장",
+      "name": "단풍",
+      "ace": "다투곰",
+      "previous": "깜지곰",
+      "change": "진화 반영",
+      "game": "스칼렛·바이올렛",
+      "note": "깜지곰→링곰→다투곰. 원작 관장전에는 깜지곰 사용",
+      "url": "https://pokemondb.net/pokedex/teddiursa",
+      "excel_row": 120
+    },
+    {
+      "region": "팔데아",
+      "role": "관장",
+      "name": "콜사",
+      "ace": "꼬지모",
+      "previous": "꼬지모",
+      "change": "유지",
+      "game": "스칼렛·바이올렛",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 121
+    },
+    {
+      "region": "팔데아",
+      "role": "관장",
+      "name": "모야모",
+      "ace": "무우마직",
+      "previous": "무우마직",
+      "change": "유지",
+      "game": "스칼렛·바이올렛",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 122
+    },
+    {
+      "region": "팔데아",
+      "role": "관장",
+      "name": "곤포",
+      "ace": "모단단게",
+      "previous": "모단단게",
+      "change": "유지",
+      "game": "스칼렛·바이올렛",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 123
+    },
+    {
+      "region": "팔데아",
+      "role": "관장",
+      "name": "청목",
+      "ace": "찌르호크",
+      "previous": "찌르호크",
+      "change": "유지",
+      "game": "스칼렛·바이올렛",
+      "note": "사천왕전과 에이스가 다름",
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 124
+    },
+    {
+      "region": "팔데아",
+      "role": "관장",
+      "name": "라임",
+      "ace": "스트린더",
+      "previous": "스트린더",
+      "change": "유지",
+      "game": "스칼렛·바이올렛",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 125
+    },
+    {
+      "region": "팔데아",
+      "role": "관장",
+      "name": "리파",
+      "ace": "플라제스",
+      "previous": "플라제스",
+      "change": "유지",
+      "game": "스칼렛·바이올렛",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 126
+    },
+    {
+      "region": "팔데아",
+      "role": "관장",
+      "name": "그루샤",
+      "ace": "파비코리",
+      "previous": "파비코리",
+      "change": "유지",
+      "game": "스칼렛·바이올렛",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 127
+    },
+    {
+      "region": "팔데아",
+      "role": "사천왕",
+      "name": "칠리",
+      "ace": "토오",
+      "previous": "토오",
+      "change": "유지",
+      "game": "스칼렛·바이올렛",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 128
+    },
+    {
+      "region": "팔데아",
+      "role": "사천왕",
+      "name": "뽀삐",
+      "ace": "두드리짱",
+      "previous": "두드리짱",
+      "change": "유지",
+      "game": "스칼렛·바이올렛",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 129
+    },
+    {
+      "region": "팔데아",
+      "role": "사천왕",
+      "name": "청목",
+      "ace": "꼬이밍고",
+      "previous": "꼬이밍고",
+      "change": "유지",
+      "game": "스칼렛·바이올렛",
+      "note": "관장전과 에이스가 다름",
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 130
+    },
+    {
+      "region": "팔데아",
+      "role": "사천왕",
+      "name": "팔자크",
+      "ace": "드닐레이브",
+      "previous": "드닐레이브",
+      "change": "유지",
+      "game": "스칼렛·바이올렛",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 131
+    },
+    {
+      "region": "팔데아",
+      "role": "치프 챔피언",
+      "name": "테사",
+      "ace": "킬라플로르",
+      "previous": "킬라플로르",
+      "change": "유지",
+      "game": "스칼렛·바이올렛",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 132
+    },
+    {
+      "region": "팔데아",
+      "role": "챔피언 랭크",
+      "name": "네모",
+      "ace": "빠르모트",
+      "previous": "빠르모트",
+      "change": "유지",
+      "game": "스칼렛·바이올렛",
+      "note": "스타팅에 따라 최종 포켓몬이 달라짐",
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 133
+    },
+    {
+      "region": "팔데아",
+      "role": "블루베리그 사천왕 (DLC)",
+      "name": "하솔",
+      "ace": "번치코",
+      "previous": "번치코",
+      "change": "유지",
+      "game": "남청의 원반",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 134
+    },
+    {
+      "region": "팔데아",
+      "role": "블루베리그 사천왕 (DLC)",
+      "name": "네리네",
+      "ace": "메타그로스",
+      "previous": "메타그로스",
+      "change": "유지",
+      "game": "남청의 원반",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 135
+    },
+    {
+      "region": "팔데아",
+      "role": "블루베리그 사천왕 (DLC)",
+      "name": "타로",
+      "ace": "몰드류",
+      "previous": "몰드류",
+      "change": "유지",
+      "game": "남청의 원반",
+      "note": "페어리 테라스탈",
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 136
+    },
+    {
+      "region": "팔데아",
+      "role": "블루베리그 사천왕 (DLC)",
+      "name": "제빈",
+      "ace": "브리두라스",
+      "previous": "브리두라스",
+      "change": "유지",
+      "game": "남청의 원반",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 137
+    },
+    {
+      "region": "팔데아",
+      "role": "블루베리그 챔피언 (DLC)",
+      "name": "카지",
+      "ace": "과미드라",
+      "previous": "과미드라",
+      "change": "유지",
+      "game": "남청의 원반",
+      "note": null,
+      "url": "https://pokemondb.net/evolution",
+      "excel_row": 138
+    }
+  ],
+  "policy": {
+    "canonical_core": "재대결이 수록돼 있으면 해당 역할의 재대결을 우선하고, 없으면 본편 또는 역할 취임 후 대결을 사용. 각 행에서 작품/전투를 명시",
+    "slots": "현행 관장6·사천왕5(블루베리6)·챔피언6 유지 검토안",
+    "fixed": "엑셀 대표를 마지막 슬롯으로, 풍·란만 두 슬롯",
+    "filler": "원작 핵심이 정원보다 적으면 기존 게임 멤버를 명시적 보충안으로 유지. 미확인 멤버를 원작으로 표시하지 않음",
+    "evolution": "엑셀 대표의 미진화체만 최종형으로 바꿈. 다른 원작 멤버는 기준 전투의 종/폼 유지"
+  },
+  "entries": [
+    {
+      "key": "gym:brock",
+      "role": "gym",
+      "region": "관동",
+      "name": "웅",
+      "spreadsheet_rows": [
+        4
+      ],
+      "spreadsheet_aces": [
+        "강철톤"
+      ],
+      "current_party": [
+        95,
+        139,
+        141,
+        76,
+        142,
+        112
+      ],
+      "reference": {
+        "game": "하트골드·소울실버",
+        "battle": "재대결",
+        "party": [
+          76,
+          369,
+          139,
+          141,
+          409,
+          95
+        ],
+        "sources": [
+          "https://pokemondb.net/heartgold-soulsilver/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        208
+      ],
+      "evolution_changes": [
+        {
+          "from": 95,
+          "to": 208,
+          "reason": "엑셀 최종진화 대표 적용"
+        }
+      ],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        76,
+        369,
+        139,
+        141,
+        409,
+        208
+      ],
+      "notes": []
+    },
+    {
+      "key": "gym:misty",
+      "role": "gym",
+      "region": "관동",
+      "name": "이슬",
+      "spreadsheet_rows": [
+        5
+      ],
+      "spreadsheet_aces": [
+        "아쿠스타"
+      ],
+      "current_party": [
+        55,
+        62,
+        121,
+        184,
+        230,
+        350
+      ],
+      "reference": {
+        "game": "하트골드·소울실버",
+        "battle": "재대결",
+        "party": [
+          195,
+          131,
+          171,
+          419,
+          350,
+          121
+        ],
+        "sources": [
+          "https://pokemondb.net/heartgold-soulsilver/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        121
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        195,
+        131,
+        171,
+        419,
+        350,
+        121
+      ],
+      "notes": []
+    },
+    {
+      "key": "gym:lt_surge",
+      "role": "gym",
+      "region": "관동",
+      "name": "마티스",
+      "spreadsheet_rows": [
+        6
+      ],
+      "spreadsheet_aces": [
+        "라이츄"
+      ],
+      "current_party": [
+        26,
+        82,
+        101,
+        125,
+        181,
+        310
+      ],
+      "reference": {
+        "game": "하트골드·소울실버",
+        "battle": "재대결",
+        "party": [
+          462,
+          101,
+          310,
+          466,
+          417,
+          26
+        ],
+        "sources": [
+          "https://pokemondb.net/heartgold-soulsilver/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        26
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        462,
+        101,
+        310,
+        466,
+        417,
+        26
+      ],
+      "notes": []
+    },
+    {
+      "key": "gym:erika",
+      "role": "gym",
+      "region": "관동",
+      "name": "민화",
+      "spreadsheet_rows": [
+        7
+      ],
+      "spreadsheet_aces": [
+        "라플레시아"
+      ],
+      "current_party": [
+        182,
+        189,
+        315,
+        114,
+        45,
+        71
+      ],
+      "reference": {
+        "game": "하트골드·소울실버",
+        "battle": "재대결",
+        "party": [
+          189,
+          71,
+          182,
+          275,
+          407,
+          465
+        ],
+        "sources": [
+          "https://pokemondb.net/heartgold-soulsilver/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        45
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [
+        465
+      ],
+      "supplements": [],
+      "proposed_party": [
+        189,
+        71,
+        182,
+        275,
+        407,
+        45
+      ],
+      "notes": []
+    },
+    {
+      "key": "gym:koga",
+      "role": "gym",
+      "region": "관동",
+      "name": "독수",
+      "spreadsheet_rows": [
+        8
+      ],
+      "spreadsheet_aces": [
+        "도나리"
+      ],
+      "current_party": [
+        31,
+        34,
+        89,
+        110,
+        169,
+        336
+      ],
+      "reference": {
+        "game": "레츠고! 피카츄·이브이",
+        "battle": "재대결",
+        "party": [
+          73,
+          42,
+          110,
+          49,
+          89
+        ],
+        "sources": [
+          "https://pokemondb.net/lets-go-pikachu-eevee/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        49
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        31
+      ],
+      "proposed_party": [
+        73,
+        42,
+        110,
+        89,
+        31,
+        49
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:sabrina",
+      "role": "gym",
+      "region": "관동",
+      "name": "초련",
+      "spreadsheet_rows": [
+        9
+      ],
+      "spreadsheet_aces": [
+        "후딘"
+      ],
+      "current_party": [
+        65,
+        97,
+        122,
+        196,
+        282,
+        326
+      ],
+      "reference": {
+        "game": "하트골드·소울실버",
+        "battle": "재대결",
+        "party": [
+          196,
+          122,
+          124,
+          202,
+          475,
+          65
+        ],
+        "sources": [
+          "https://pokemondb.net/heartgold-soulsilver/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        65
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        196,
+        122,
+        124,
+        202,
+        475,
+        65
+      ],
+      "notes": []
+    },
+    {
+      "key": "gym:blaine",
+      "role": "gym",
+      "region": "관동",
+      "name": "강연",
+      "spreadsheet_rows": [
+        10
+      ],
+      "spreadsheet_aces": [
+        "윈디"
+      ],
+      "current_party": [
+        38,
+        59,
+        78,
+        126,
+        219,
+        324
+      ],
+      "reference": {
+        "game": "하트골드·소울실버",
+        "battle": "재대결",
+        "party": [
+          324,
+          323,
+          78,
+          219,
+          229,
+          467
+        ],
+        "sources": [
+          "https://pokemondb.net/heartgold-soulsilver/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        59
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [
+        467
+      ],
+      "supplements": [],
+      "proposed_party": [
+        324,
+        323,
+        78,
+        219,
+        229,
+        59
+      ],
+      "notes": []
+    },
+    {
+      "key": "gym:giovanni",
+      "role": "gym",
+      "region": "관동",
+      "name": "비주기",
+      "spreadsheet_rows": [
+        11
+      ],
+      "spreadsheet_aces": [
+        "거대코뿌리"
+      ],
+      "current_party": [
+        28,
+        51,
+        105,
+        112,
+        232,
+        330
+      ],
+      "reference": {
+        "game": "레츠고! 피카츄·이브이",
+        "battle": "본편 대결",
+        "party": [
+          51,
+          31,
+          34,
+          112
+        ],
+        "sources": [
+          "https://pokemondb.net/lets-go-pikachu-eevee/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        464
+      ],
+      "evolution_changes": [
+        {
+          "from": 112,
+          "to": 464,
+          "reason": "엑셀 최종진화 대표 적용"
+        }
+      ],
+      "omitted_reference_members": [],
+      "supplements": [
+        28,
+        105
+      ],
+      "proposed_party": [
+        51,
+        31,
+        34,
+        28,
+        105,
+        464
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:janine",
+      "role": "gym",
+      "region": "관동",
+      "name": "도희",
+      "spreadsheet_rows": [
+        12
+      ],
+      "spreadsheet_aces": [
+        "도나리"
+      ],
+      "current_party": [
+        168,
+        49,
+        169,
+        110,
+        73,
+        89
+      ],
+      "reference": {
+        "game": "하트골드·소울실버",
+        "battle": "재대결",
+        "party": [
+          168,
+          454,
+          110,
+          452,
+          169,
+          49
+        ],
+        "sources": [
+          "https://pokemondb.net/heartgold-soulsilver/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        49
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        168,
+        454,
+        110,
+        452,
+        169,
+        49
+      ],
+      "notes": []
+    },
+    {
+      "key": "gym:blue",
+      "role": "gym",
+      "region": "관동",
+      "name": "그린",
+      "spreadsheet_rows": [
+        13
+      ],
+      "spreadsheet_aces": [
+        "피죤투"
+      ],
+      "current_party": [
+        18,
+        65,
+        112,
+        103,
+        130,
+        59
+      ],
+      "reference": {
+        "game": "하트골드·소울실버",
+        "battle": "재대결",
+        "party": [
+          103,
+          68,
+          59,
+          464,
+          248,
+          18
+        ],
+        "sources": [
+          "https://pokemondb.net/heartgold-soulsilver/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        18
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        103,
+        68,
+        59,
+        464,
+        248,
+        18
+      ],
+      "notes": []
+    },
+    {
+      "key": "gym:falkner",
+      "role": "gym",
+      "region": "성도",
+      "name": "비상",
+      "spreadsheet_rows": [
+        20
+      ],
+      "spreadsheet_aces": [
+        "피죤투"
+      ],
+      "current_party": [
+        164,
+        22,
+        85,
+        227,
+        277,
+        18
+      ],
+      "reference": {
+        "game": "하트골드·소울실버",
+        "battle": "재대결",
+        "party": [
+          398,
+          164,
+          277,
+          430,
+          279,
+          18
+        ],
+        "sources": [
+          "https://pokemondb.net/heartgold-soulsilver/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        18
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        398,
+        164,
+        277,
+        430,
+        279,
+        18
+      ],
+      "notes": []
+    },
+    {
+      "key": "gym:bugsy",
+      "role": "gym",
+      "region": "성도",
+      "name": "호일",
+      "spreadsheet_rows": [
+        21
+      ],
+      "spreadsheet_aces": [
+        "핫삼"
+      ],
+      "current_party": [
+        12,
+        15,
+        127,
+        205,
+        212,
+        214
+      ],
+      "reference": {
+        "game": "하트골드·소울실버",
+        "battle": "재대결",
+        "party": [
+          292,
+          416,
+          127,
+          214,
+          469,
+          212
+        ],
+        "sources": [
+          "https://pokemondb.net/heartgold-soulsilver/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        212
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        292,
+        416,
+        127,
+        214,
+        469,
+        212
+      ],
+      "notes": []
+    },
+    {
+      "key": "gym:whitney",
+      "role": "gym",
+      "region": "성도",
+      "name": "꼭두",
+      "spreadsheet_rows": [
+        22
+      ],
+      "spreadsheet_aces": [
+        "밀탱크"
+      ],
+      "current_party": [
+        40,
+        53,
+        115,
+        128,
+        241,
+        289
+      ],
+      "reference": {
+        "game": "하트골드·소울실버",
+        "battle": "재대결",
+        "party": [
+          400,
+          463,
+          36,
+          203,
+          301,
+          241
+        ],
+        "sources": [
+          "https://pokemondb.net/heartgold-soulsilver/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        241
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        400,
+        463,
+        36,
+        203,
+        301,
+        241
+      ],
+      "notes": []
+    },
+    {
+      "key": "gym:morty",
+      "role": "gym",
+      "region": "성도",
+      "name": "유빈",
+      "spreadsheet_rows": [
+        23
+      ],
+      "spreadsheet_aces": [
+        "팬텀"
+      ],
+      "current_party": [
+        94,
+        200,
+        292,
+        302,
+        354,
+        356
+      ],
+      "reference": {
+        "game": "하트골드·소울실버",
+        "battle": "재대결",
+        "party": [
+          426,
+          477,
+          302,
+          429,
+          94,
+          94
+        ],
+        "sources": [
+          "https://pokemondb.net/heartgold-soulsilver/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        94
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        426,
+        477,
+        302,
+        429,
+        94,
+        94
+      ],
+      "notes": []
+    },
+    {
+      "key": "gym:chuck",
+      "role": "gym",
+      "region": "성도",
+      "name": "사도",
+      "spreadsheet_rows": [
+        24
+      ],
+      "spreadsheet_aces": [
+        "강챙이"
+      ],
+      "current_party": [
+        107,
+        57,
+        106,
+        237,
+        297,
+        62
+      ],
+      "reference": {
+        "game": "하트골드·소울실버",
+        "battle": "재대결",
+        "party": [
+          308,
+          107,
+          106,
+          286,
+          57,
+          62
+        ],
+        "sources": [
+          "https://pokemondb.net/heartgold-soulsilver/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        62
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        308,
+        107,
+        106,
+        286,
+        57,
+        62
+      ],
+      "notes": []
+    },
+    {
+      "key": "gym:jasmine",
+      "role": "gym",
+      "region": "성도",
+      "name": "규리",
+      "spreadsheet_rows": [
+        25
+      ],
+      "spreadsheet_aces": [
+        "강철톤"
+      ],
+      "current_party": [
+        82,
+        205,
+        208,
+        212,
+        227,
+        376
+      ],
+      "reference": {
+        "game": "하트골드·소울실버",
+        "battle": "재대결",
+        "party": [
+          437,
+          227,
+          395,
+          376,
+          462,
+          208
+        ],
+        "sources": [
+          "https://pokemondb.net/heartgold-soulsilver/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        208
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        437,
+        227,
+        395,
+        376,
+        462,
+        208
+      ],
+      "notes": []
+    },
+    {
+      "key": "gym:pryce",
+      "role": "gym",
+      "region": "성도",
+      "name": "류옹",
+      "spreadsheet_rows": [
+        26
+      ],
+      "spreadsheet_aces": [
+        "맘모꾸리"
+      ],
+      "current_party": [
+        87,
+        91,
+        124,
+        221,
+        362,
+        365
+      ],
+      "reference": {
+        "game": "하트골드·소울실버",
+        "battle": "재대결",
+        "party": [
+          460,
+          362,
+          478,
+          87,
+          365,
+          473
+        ],
+        "sources": [
+          "https://pokemondb.net/heartgold-soulsilver/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        473
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        460,
+        362,
+        478,
+        87,
+        365,
+        473
+      ],
+      "notes": []
+    },
+    {
+      "key": "gym:clair",
+      "role": "gym",
+      "region": "성도",
+      "name": "이향",
+      "spreadsheet_rows": [
+        27
+      ],
+      "spreadsheet_aces": [
+        "킹드라"
+      ],
+      "current_party": [
+        148,
+        149,
+        230,
+        330,
+        334,
+        373
+      ],
+      "reference": {
+        "game": "하트골드·소울실버",
+        "battle": "재대결",
+        "party": [
+          148,
+          130,
+          142,
+          6,
+          230,
+          149
+        ],
+        "sources": [
+          "https://pokemondb.net/heartgold-soulsilver/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        230
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        148,
+        130,
+        142,
+        6,
+        149,
+        230
+      ],
+      "notes": []
+    },
+    {
+      "key": "gym:roxanne",
+      "role": "gym",
+      "region": "호연",
+      "name": "원규",
+      "spreadsheet_rows": [
+        34
+      ],
+      "spreadsheet_aces": [
+        "대코파스"
+      ],
+      "current_party": [
+        76,
+        141,
+        142,
+        248,
+        306,
+        348
+      ],
+      "reference": {
+        "game": "오메가루비·알파사파이어",
+        "battle": "본편 대결",
+        "party": [
+          74,
+          299
+        ],
+        "sources": [
+          "https://pokemondb.net/omega-ruby-alpha-sapphire/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        476
+      ],
+      "evolution_changes": [
+        {
+          "from": 299,
+          "to": 476,
+          "reason": "엑셀 최종진화 대표 적용"
+        }
+      ],
+      "omitted_reference_members": [],
+      "supplements": [
+        76,
+        141,
+        142,
+        248
+      ],
+      "proposed_party": [
+        74,
+        76,
+        141,
+        142,
+        248,
+        476
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:brawly",
+      "role": "gym",
+      "region": "호연",
+      "name": "철구",
+      "spreadsheet_rows": [
+        35
+      ],
+      "spreadsheet_aces": [
+        "하리뭉"
+      ],
+      "current_party": [
+        57,
+        62,
+        68,
+        214,
+        286,
+        297
+      ],
+      "reference": {
+        "game": "오메가루비·알파사파이어",
+        "battle": "본편 대결",
+        "party": [
+          66,
+          296
+        ],
+        "sources": [
+          "https://pokemondb.net/omega-ruby-alpha-sapphire/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        297
+      ],
+      "evolution_changes": [
+        {
+          "from": 296,
+          "to": 297,
+          "reason": "엑셀 최종진화 대표 적용"
+        }
+      ],
+      "omitted_reference_members": [],
+      "supplements": [
+        57,
+        62,
+        68,
+        214
+      ],
+      "proposed_party": [
+        66,
+        57,
+        62,
+        68,
+        214,
+        297
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:wattson",
+      "role": "gym",
+      "region": "호연",
+      "name": "암페어",
+      "spreadsheet_rows": [
+        36
+      ],
+      "spreadsheet_aces": [
+        "자포코일"
+      ],
+      "current_party": [
+        100,
+        26,
+        101,
+        181,
+        310,
+        82
+      ],
+      "reference": {
+        "game": "오메가루비·알파사파이어",
+        "battle": "본편 대결",
+        "party": [
+          81,
+          100,
+          82
+        ],
+        "sources": [
+          "https://pokemondb.net/omega-ruby-alpha-sapphire/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        462
+      ],
+      "evolution_changes": [
+        {
+          "from": 81,
+          "to": 462,
+          "reason": "엑셀 최종진화 대표 적용"
+        }
+      ],
+      "omitted_reference_members": [],
+      "supplements": [
+        26,
+        101,
+        181
+      ],
+      "proposed_party": [
+        100,
+        82,
+        26,
+        101,
+        181,
+        462
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:flannery",
+      "role": "gym",
+      "region": "호연",
+      "name": "민지",
+      "spreadsheet_rows": [
+        37
+      ],
+      "spreadsheet_aces": [
+        "코터스"
+      ],
+      "current_party": [
+        218,
+        219,
+        38,
+        78,
+        257,
+        324
+      ],
+      "reference": {
+        "game": "오메가루비·알파사파이어",
+        "battle": "본편 대결",
+        "party": [
+          218,
+          322,
+          324
+        ],
+        "sources": [
+          "https://pokemondb.net/omega-ruby-alpha-sapphire/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        324
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        219,
+        38,
+        78
+      ],
+      "proposed_party": [
+        218,
+        322,
+        219,
+        38,
+        78,
+        324
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:norman",
+      "role": "gym",
+      "region": "호연",
+      "name": "종길",
+      "spreadsheet_rows": [
+        38
+      ],
+      "spreadsheet_aces": [
+        "게을킹"
+      ],
+      "current_party": [
+        327,
+        264,
+        335,
+        241,
+        288,
+        289
+      ],
+      "reference": {
+        "game": "오메가루비·알파사파이어",
+        "battle": "본편 대결",
+        "party": [
+          289,
+          288,
+          289
+        ],
+        "sources": [
+          "https://pokemondb.net/omega-ruby-alpha-sapphire/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        289
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        327,
+        264,
+        335
+      ],
+      "proposed_party": [
+        289,
+        288,
+        327,
+        264,
+        335,
+        289
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:winona",
+      "role": "gym",
+      "region": "호연",
+      "name": "은송",
+      "spreadsheet_rows": [
+        39
+      ],
+      "spreadsheet_aces": [
+        "파비코리"
+      ],
+      "current_party": [
+        18,
+        85,
+        164,
+        227,
+        277,
+        334
+      ],
+      "reference": {
+        "game": "오메가루비·알파사파이어",
+        "battle": "본편 대결",
+        "party": [
+          277,
+          279,
+          227,
+          334
+        ],
+        "sources": [
+          "https://pokemondb.net/omega-ruby-alpha-sapphire/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        334
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        18,
+        85
+      ],
+      "proposed_party": [
+        277,
+        279,
+        227,
+        18,
+        85,
+        334
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:tate_liza",
+      "role": "gym",
+      "region": "호연",
+      "name": "풍·란",
+      "spreadsheet_rows": [
+        40,
+        41
+      ],
+      "spreadsheet_aces": [
+        "솔록",
+        "루나톤"
+      ],
+      "current_party": [
+        178,
+        282,
+        344,
+        326,
+        337,
+        338
+      ],
+      "reference": {
+        "game": "에메랄드",
+        "battle": "본편 대결",
+        "party": [
+          344,
+          178,
+          337,
+          338
+        ],
+        "sources": [
+          "https://pokemondb.net/emerald/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "현재 공동 대진 유지안: 풍 솔록·란 루나톤 두 자리를 고정",
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        338,
+        337
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        282,
+        326
+      ],
+      "proposed_party": [
+        344,
+        178,
+        282,
+        326,
+        338,
+        337
+      ],
+      "notes": [
+        "현재 공동 대진 유지안: 풍 솔록·란 루나톤 두 자리를 고정",
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:wallace",
+      "role": "gym",
+      "region": "호연",
+      "name": "윤진",
+      "spreadsheet_rows": [
+        42
+      ],
+      "spreadsheet_aces": [
+        "밀로틱"
+      ],
+      "current_party": [
+        370,
+        340,
+        73,
+        119,
+        272,
+        350
+      ],
+      "reference": {
+        "game": "오메가루비·알파사파이어",
+        "battle": "본편 대결",
+        "party": [
+          370,
+          340,
+          364,
+          119,
+          350
+        ],
+        "sources": [
+          "https://pokemondb.net/omega-ruby-alpha-sapphire/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        350
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        73
+      ],
+      "proposed_party": [
+        370,
+        340,
+        364,
+        119,
+        73,
+        350
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:juan",
+      "role": "gym",
+      "region": "호연",
+      "name": "아단",
+      "spreadsheet_rows": [
+        43
+      ],
+      "spreadsheet_aces": [
+        "킹드라"
+      ],
+      "current_party": [
+        370,
+        364,
+        119,
+        342,
+        230,
+        350
+      ],
+      "reference": {
+        "game": "에메랄드",
+        "battle": "본편 대결",
+        "party": [
+          370,
+          340,
+          364,
+          342,
+          230
+        ],
+        "sources": [
+          "https://pokemondb.net/emerald/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        230
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        119
+      ],
+      "proposed_party": [
+        370,
+        340,
+        364,
+        342,
+        119,
+        230
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:roark",
+      "role": "gym",
+      "region": "신오",
+      "name": "강석",
+      "spreadsheet_rows": [
+        50
+      ],
+      "spreadsheet_aces": [
+        "램펄드"
+      ],
+      "current_party": [
+        95,
+        75,
+        139,
+        141,
+        299,
+        76
+      ],
+      "reference": {
+        "game": "플라티나",
+        "battle": "재대결",
+        "party": [
+          142,
+          476,
+          76,
+          409,
+          248
+        ],
+        "sources": [
+          "https://pokemondb.net/platinum/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        409
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        95
+      ],
+      "proposed_party": [
+        142,
+        476,
+        76,
+        248,
+        95,
+        409
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:gardenia",
+      "role": "gym",
+      "region": "신오",
+      "name": "유채",
+      "spreadsheet_rows": [
+        51
+      ],
+      "spreadsheet_aces": [
+        "로즈레이드"
+      ],
+      "current_party": [
+        189,
+        71,
+        182,
+        154,
+        286,
+        315
+      ],
+      "reference": {
+        "game": "플라티나",
+        "battle": "재대결",
+        "party": [
+          189,
+          182,
+          421,
+          389,
+          407
+        ],
+        "sources": [
+          "https://pokemondb.net/platinum/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        407
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        71
+      ],
+      "proposed_party": [
+        189,
+        182,
+        421,
+        389,
+        71,
+        407
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:maylene",
+      "role": "gym",
+      "region": "신오",
+      "name": "자두",
+      "spreadsheet_rows": [
+        52
+      ],
+      "spreadsheet_aces": [
+        "루카리오"
+      ],
+      "current_party": [
+        67,
+        107,
+        106,
+        214,
+        297,
+        68
+      ],
+      "reference": {
+        "game": "플라티나",
+        "battle": "재대결",
+        "party": [
+          237,
+          286,
+          308,
+          68,
+          448
+        ],
+        "sources": [
+          "https://pokemondb.net/platinum/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        448
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        67
+      ],
+      "proposed_party": [
+        237,
+        286,
+        308,
+        68,
+        67,
+        448
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:crasher_wake",
+      "role": "gym",
+      "region": "신오",
+      "name": "맥실러",
+      "spreadsheet_rows": [
+        53
+      ],
+      "spreadsheet_aces": [
+        "플로젤"
+      ],
+      "current_party": [
+        195,
+        211,
+        319,
+        365,
+        260,
+        130
+      ],
+      "reference": {
+        "game": "플라티나",
+        "battle": "재대결",
+        "party": [
+          319,
+          419,
+          195,
+          272,
+          130
+        ],
+        "sources": [
+          "https://pokemondb.net/platinum/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        419
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        211
+      ],
+      "proposed_party": [
+        319,
+        195,
+        272,
+        130,
+        211,
+        419
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:fantina",
+      "role": "gym",
+      "region": "신오",
+      "name": "멜리사",
+      "spreadsheet_rows": [
+        54
+      ],
+      "spreadsheet_aces": [
+        "무우마직"
+      ],
+      "current_party": [
+        200,
+        302,
+        93,
+        354,
+        356,
+        94
+      ],
+      "reference": {
+        "game": "플라티나",
+        "battle": "재대결",
+        "party": [
+          354,
+          429,
+          477,
+          94,
+          426
+        ],
+        "sources": [
+          "https://pokemondb.net/platinum/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        429
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        200
+      ],
+      "proposed_party": [
+        354,
+        477,
+        94,
+        426,
+        200,
+        429
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:byron",
+      "role": "gym",
+      "region": "신오",
+      "name": "동관",
+      "spreadsheet_rows": [
+        55
+      ],
+      "spreadsheet_aces": [
+        "바리톱스"
+      ],
+      "current_party": [
+        205,
+        303,
+        227,
+        212,
+        306,
+        208
+      ],
+      "reference": {
+        "game": "플라티나",
+        "battle": "재대결",
+        "party": [
+          227,
+          208,
+          462,
+          411,
+          306
+        ],
+        "sources": [
+          "https://pokemondb.net/platinum/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        411
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        205
+      ],
+      "proposed_party": [
+        227,
+        208,
+        462,
+        306,
+        205,
+        411
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:candice",
+      "role": "gym",
+      "region": "신오",
+      "name": "무청",
+      "spreadsheet_rows": [
+        56
+      ],
+      "spreadsheet_aces": [
+        "눈설왕"
+      ],
+      "current_party": [
+        215,
+        221,
+        91,
+        87,
+        362,
+        131
+      ],
+      "reference": {
+        "game": "플라티나",
+        "battle": "재대결",
+        "party": [
+          461,
+          460,
+          473,
+          478,
+          471
+        ],
+        "sources": [
+          "https://pokemondb.net/platinum/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        460
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        215
+      ],
+      "proposed_party": [
+        461,
+        473,
+        478,
+        471,
+        215,
+        460
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:volkner",
+      "role": "gym",
+      "region": "신오",
+      "name": "전진",
+      "spreadsheet_rows": [
+        57
+      ],
+      "spreadsheet_aces": [
+        "렌트라"
+      ],
+      "current_party": [
+        171,
+        181,
+        82,
+        310,
+        26,
+        125
+      ],
+      "reference": {
+        "game": "플라티나",
+        "battle": "재대결",
+        "party": [
+          135,
+          26,
+          405,
+          171,
+          466
+        ],
+        "sources": [
+          "https://pokemondb.net/platinum/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        405
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        181
+      ],
+      "proposed_party": [
+        135,
+        26,
+        171,
+        466,
+        181,
+        405
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:cilan",
+      "role": "gym",
+      "region": "하나",
+      "name": "덴트",
+      "spreadsheet_rows": [
+        63
+      ],
+      "spreadsheet_aces": [
+        "야나키"
+      ],
+      "current_party": [
+        114,
+        189,
+        71,
+        103,
+        286,
+        254
+      ],
+      "reference": {
+        "game": "블랙·화이트",
+        "battle": "본편 대결",
+        "party": [
+          506,
+          511
+        ],
+        "sources": [
+          "https://pokemondb.net/black-white/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        512
+      ],
+      "evolution_changes": [
+        {
+          "from": 511,
+          "to": 512,
+          "reason": "엑셀 최종진화 대표 적용"
+        }
+      ],
+      "omitted_reference_members": [],
+      "supplements": [
+        114,
+        189,
+        71,
+        103
+      ],
+      "proposed_party": [
+        506,
+        114,
+        189,
+        71,
+        103,
+        512
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:chili",
+      "role": "gym",
+      "region": "하나",
+      "name": "팟",
+      "spreadsheet_rows": [
+        64
+      ],
+      "spreadsheet_aces": [
+        "바오키"
+      ],
+      "current_party": [
+        136,
+        219,
+        78,
+        324,
+        257,
+        59
+      ],
+      "reference": {
+        "game": "블랙·화이트",
+        "battle": "본편 대결",
+        "party": [
+          506,
+          513
+        ],
+        "sources": [
+          "https://pokemondb.net/black-white/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        514
+      ],
+      "evolution_changes": [
+        {
+          "from": 513,
+          "to": 514,
+          "reason": "엑셀 최종진화 대표 적용"
+        }
+      ],
+      "omitted_reference_members": [],
+      "supplements": [
+        136,
+        219,
+        78,
+        324
+      ],
+      "proposed_party": [
+        506,
+        136,
+        219,
+        78,
+        324,
+        514
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:cress",
+      "role": "gym",
+      "region": "하나",
+      "name": "콘",
+      "spreadsheet_rows": [
+        65
+      ],
+      "spreadsheet_aces": [
+        "앗차키"
+      ],
+      "current_party": [
+        55,
+        121,
+        342,
+        319,
+        350,
+        134
+      ],
+      "reference": {
+        "game": "블랙·화이트",
+        "battle": "본편 대결",
+        "party": [
+          506,
+          515
+        ],
+        "sources": [
+          "https://pokemondb.net/black-white/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        516
+      ],
+      "evolution_changes": [
+        {
+          "from": 515,
+          "to": 516,
+          "reason": "엑셀 최종진화 대표 적용"
+        }
+      ],
+      "omitted_reference_members": [],
+      "supplements": [
+        55,
+        121,
+        342,
+        319
+      ],
+      "proposed_party": [
+        506,
+        55,
+        121,
+        342,
+        319,
+        516
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:lenora",
+      "role": "gym",
+      "region": "하나",
+      "name": "알로에",
+      "spreadsheet_rows": [
+        66
+      ],
+      "spreadsheet_aces": [
+        "보르그"
+      ],
+      "current_party": [
+        162,
+        234,
+        203,
+        217,
+        115,
+        128
+      ],
+      "reference": {
+        "game": "블랙·화이트",
+        "battle": "본편 대결",
+        "party": [
+          507,
+          505
+        ],
+        "sources": [
+          "https://pokemondb.net/black-white/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        505
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        162,
+        234,
+        203,
+        217
+      ],
+      "proposed_party": [
+        507,
+        162,
+        234,
+        203,
+        217,
+        505
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:burgh",
+      "role": "gym",
+      "region": "하나",
+      "name": "아티",
+      "spreadsheet_rows": [
+        67
+      ],
+      "spreadsheet_aces": [
+        "모아머"
+      ],
+      "current_party": [
+        267,
+        269,
+        284,
+        12,
+        123,
+        212
+      ],
+      "reference": {
+        "game": "블랙2·화이트2",
+        "battle": "본편 대결",
+        "party": [
+          541,
+          557,
+          542
+        ],
+        "sources": [
+          "https://pokemondb.net/black-white-2/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        542
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        267,
+        269,
+        284
+      ],
+      "proposed_party": [
+        541,
+        557,
+        267,
+        269,
+        284,
+        542
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:elesa",
+      "role": "gym",
+      "region": "하나",
+      "name": "카밀레",
+      "spreadsheet_rows": [
+        68
+      ],
+      "spreadsheet_aces": [
+        "제브라이카"
+      ],
+      "current_party": [
+        101,
+        171,
+        125,
+        26,
+        181,
+        310
+      ],
+      "reference": {
+        "game": "블랙2·화이트2",
+        "battle": "본편 대결",
+        "party": [
+          587,
+          180,
+          523
+        ],
+        "sources": [
+          "https://pokemondb.net/black-white-2/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        523
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        101,
+        171,
+        125
+      ],
+      "proposed_party": [
+        587,
+        180,
+        101,
+        171,
+        125,
+        523
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:clay",
+      "role": "gym",
+      "region": "하나",
+      "name": "야콘",
+      "spreadsheet_rows": [
+        69
+      ],
+      "spreadsheet_aces": [
+        "몰드류"
+      ],
+      "current_party": [
+        28,
+        51,
+        105,
+        232,
+        323,
+        112
+      ],
+      "reference": {
+        "game": "블랙2·화이트2",
+        "battle": "본편 대결",
+        "party": [
+          552,
+          28,
+          530
+        ],
+        "sources": [
+          "https://pokemondb.net/black-white-2/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        530
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        51,
+        105,
+        232
+      ],
+      "proposed_party": [
+        552,
+        28,
+        51,
+        105,
+        232,
+        530
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:skyla",
+      "role": "gym",
+      "region": "하나",
+      "name": "풍란",
+      "spreadsheet_rows": [
+        70
+      ],
+      "spreadsheet_aces": [
+        "스완나"
+      ],
+      "current_party": [
+        164,
+        279,
+        189,
+        227,
+        85,
+        277
+      ],
+      "reference": {
+        "game": "블랙2·화이트2",
+        "battle": "본편 대결",
+        "party": [
+          528,
+          227,
+          581
+        ],
+        "sources": [
+          "https://pokemondb.net/black-white-2/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        581
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        164,
+        279,
+        189
+      ],
+      "proposed_party": [
+        528,
+        227,
+        164,
+        279,
+        189,
+        581
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:brycen",
+      "role": "gym",
+      "region": "하나",
+      "name": "담죽",
+      "spreadsheet_rows": [
+        71
+      ],
+      "spreadsheet_aces": [
+        "툰베어"
+      ],
+      "current_party": [
+        215,
+        225,
+        87,
+        91,
+        362,
+        365
+      ],
+      "reference": {
+        "game": "블랙·화이트",
+        "battle": "본편 대결",
+        "party": [
+          583,
+          615,
+          614
+        ],
+        "sources": [
+          "https://pokemondb.net/black-white/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        614
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        215,
+        225,
+        87
+      ],
+      "proposed_party": [
+        583,
+        615,
+        215,
+        225,
+        87,
+        614
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:drayden",
+      "role": "gym",
+      "region": "하나",
+      "name": "사간",
+      "spreadsheet_rows": [
+        72
+      ],
+      "spreadsheet_aces": [
+        "액스라이즈"
+      ],
+      "current_party": [
+        148,
+        334,
+        230,
+        149,
+        373,
+        330
+      ],
+      "reference": {
+        "game": "블랙2·화이트2",
+        "battle": "본편 대결",
+        "party": [
+          621,
+          330,
+          612
+        ],
+        "sources": [
+          "https://pokemondb.net/black-white-2/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        612
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        148,
+        334,
+        230
+      ],
+      "proposed_party": [
+        621,
+        330,
+        148,
+        334,
+        230,
+        612
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:iris",
+      "role": "gym",
+      "region": "하나",
+      "name": "아이리스",
+      "spreadsheet_rows": [
+        73
+      ],
+      "spreadsheet_aces": [
+        "액스라이즈"
+      ],
+      "current_party": [
+        148,
+        230,
+        334,
+        330,
+        373,
+        149
+      ],
+      "reference": {
+        "game": "블랙·화이트",
+        "battle": "본편 대결",
+        "party": [
+          611,
+          621,
+          612
+        ],
+        "sources": [
+          "https://pokemondb.net/black-white/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        612
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        148,
+        230,
+        334
+      ],
+      "proposed_party": [
+        611,
+        621,
+        148,
+        230,
+        334,
+        612
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:cheren",
+      "role": "gym",
+      "region": "하나",
+      "name": "체렌",
+      "spreadsheet_rows": [
+        74
+      ],
+      "spreadsheet_aces": [
+        "바랜드"
+      ],
+      "current_party": [
+        264,
+        277,
+        352,
+        335,
+        217,
+        289
+      ],
+      "reference": {
+        "game": "블랙2·화이트2",
+        "battle": "본편 대결",
+        "party": [
+          504,
+          506
+        ],
+        "sources": [
+          "https://pokemondb.net/black-white-2/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        508
+      ],
+      "evolution_changes": [
+        {
+          "from": 506,
+          "to": 508,
+          "reason": "엑셀 최종진화 대표 적용"
+        }
+      ],
+      "omitted_reference_members": [],
+      "supplements": [
+        264,
+        277,
+        352,
+        335
+      ],
+      "proposed_party": [
+        504,
+        264,
+        277,
+        352,
+        335,
+        508
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:roxie",
+      "role": "gym",
+      "region": "하나",
+      "name": "보미",
+      "spreadsheet_rows": [
+        75
+      ],
+      "spreadsheet_aces": [
+        "펜드라"
+      ],
+      "current_party": [
+        109,
+        168,
+        269,
+        317,
+        89,
+        110
+      ],
+      "reference": {
+        "game": "블랙2·화이트2",
+        "battle": "본편 대결",
+        "party": [
+          109,
+          544
+        ],
+        "sources": [
+          "https://pokemondb.net/black-white-2/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        545
+      ],
+      "evolution_changes": [
+        {
+          "from": 544,
+          "to": 545,
+          "reason": "엑셀 최종진화 대표 적용"
+        }
+      ],
+      "omitted_reference_members": [],
+      "supplements": [
+        168,
+        269,
+        317,
+        89
+      ],
+      "proposed_party": [
+        109,
+        168,
+        269,
+        317,
+        89,
+        545
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:marlon",
+      "role": "gym",
+      "region": "하나",
+      "name": "시즈",
+      "spreadsheet_rows": [
+        76
+      ],
+      "spreadsheet_aces": [
+        "탱탱겔"
+      ],
+      "current_party": [
+        211,
+        226,
+        340,
+        73,
+        320,
+        321
+      ],
+      "reference": {
+        "game": "블랙2·화이트2",
+        "battle": "본편 대결",
+        "party": [
+          565,
+          321,
+          593
+        ],
+        "sources": [
+          "https://pokemondb.net/black-white-2/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        593
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        211,
+        226,
+        340
+      ],
+      "proposed_party": [
+        565,
+        321,
+        211,
+        226,
+        340,
+        593
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:viola",
+      "role": "gym",
+      "region": "칼로스",
+      "name": "비올라",
+      "spreadsheet_rows": [
+        83
+      ],
+      "spreadsheet_aces": [
+        "비비용"
+      ],
+      "current_party": [
+        283,
+        284,
+        267,
+        269,
+        166,
+        12
+      ],
+      "reference": {
+        "game": "X·Y",
+        "battle": "본편 대결",
+        "party": [
+          283,
+          666
+        ],
+        "sources": [
+          "https://pokemondb.net/x-y/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        666
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        284,
+        267,
+        269,
+        166
+      ],
+      "proposed_party": [
+        283,
+        284,
+        267,
+        269,
+        166,
+        666
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:grant",
+      "role": "gym",
+      "region": "칼로스",
+      "name": "자크로",
+      "spreadsheet_rows": [
+        84
+      ],
+      "spreadsheet_aces": [
+        "견고라스"
+      ],
+      "current_party": [
+        185,
+        95,
+        139,
+        141,
+        142,
+        348
+      ],
+      "reference": {
+        "game": "X·Y",
+        "battle": "본편 대결",
+        "party": [
+          698,
+          696
+        ],
+        "sources": [
+          "https://pokemondb.net/x-y/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        697
+      ],
+      "evolution_changes": [
+        {
+          "from": 696,
+          "to": 697,
+          "reason": "엑셀 최종진화 대표 적용"
+        }
+      ],
+      "omitted_reference_members": [],
+      "supplements": [
+        185,
+        95,
+        139,
+        141
+      ],
+      "proposed_party": [
+        698,
+        185,
+        95,
+        139,
+        141,
+        697
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:korrina",
+      "role": "gym",
+      "region": "칼로스",
+      "name": "코르니",
+      "spreadsheet_rows": [
+        85
+      ],
+      "spreadsheet_aces": [
+        "루카리오"
+      ],
+      "current_party": [
+        237,
+        106,
+        107,
+        214,
+        68,
+        257
+      ],
+      "reference": {
+        "game": "X·Y",
+        "battle": "본편 대결",
+        "party": [
+          619,
+          67,
+          701
+        ],
+        "sources": [
+          "https://pokemondb.net/x-y/gymleaders-elitefour",
+          "https://bulbapedia.bulbagarden.net/wiki/Korrina"
+        ],
+        "alternatives": [],
+        "notes": [
+          "엑셀 루카리오는 체육관 파티에 없음. 마스터타워 별도 이벤트에서 사용하는 포켓몬이며 고정 추가는 게임용 예외",
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        448
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        237,
+        106
+      ],
+      "proposed_party": [
+        619,
+        67,
+        701,
+        237,
+        106,
+        448
+      ],
+      "notes": [
+        "엑셀 루카리오는 체육관 파티에 없음. 마스터타워 별도 이벤트에서 사용하는 포켓몬이며 고정 추가는 게임용 예외",
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:ramos",
+      "role": "gym",
+      "region": "칼로스",
+      "name": "후쿠지",
+      "spreadsheet_rows": [
+        86
+      ],
+      "spreadsheet_aces": [
+        "고고트"
+      ],
+      "current_party": [
+        114,
+        189,
+        71,
+        275,
+        332,
+        103
+      ],
+      "reference": {
+        "game": "X·Y",
+        "battle": "본편 대결",
+        "party": [
+          189,
+          70,
+          673
+        ],
+        "sources": [
+          "https://pokemondb.net/x-y/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        673
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        114,
+        71,
+        275
+      ],
+      "proposed_party": [
+        189,
+        70,
+        114,
+        71,
+        275,
+        673
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:clemont",
+      "role": "gym",
+      "region": "칼로스",
+      "name": "시트론",
+      "spreadsheet_rows": [
+        87
+      ],
+      "spreadsheet_aces": [
+        "일레도리자드"
+      ],
+      "current_party": [
+        100,
+        101,
+        171,
+        26,
+        181,
+        82
+      ],
+      "reference": {
+        "game": "X·Y",
+        "battle": "본편 대결",
+        "party": [
+          587,
+          82,
+          695
+        ],
+        "sources": [
+          "https://pokemondb.net/x-y/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        695
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        100,
+        101,
+        171
+      ],
+      "proposed_party": [
+        587,
+        82,
+        100,
+        101,
+        171,
+        695
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:valerie",
+      "role": "gym",
+      "region": "칼로스",
+      "name": "마슈",
+      "spreadsheet_rows": [
+        88
+      ],
+      "spreadsheet_aces": [
+        "님피아"
+      ],
+      "current_party": [
+        36,
+        40,
+        122,
+        184,
+        210,
+        303
+      ],
+      "reference": {
+        "game": "X·Y",
+        "battle": "본편 대결",
+        "party": [
+          122,
+          303,
+          700
+        ],
+        "sources": [
+          "https://pokemondb.net/x-y/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        700
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        36,
+        40,
+        184
+      ],
+      "proposed_party": [
+        122,
+        303,
+        36,
+        40,
+        184,
+        700
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:olympia",
+      "role": "gym",
+      "region": "칼로스",
+      "name": "고지카",
+      "spreadsheet_rows": [
+        89
+      ],
+      "spreadsheet_aces": [
+        "냐오닉스"
+      ],
+      "current_party": [
+        178,
+        203,
+        196,
+        282,
+        65,
+        326
+      ],
+      "reference": {
+        "game": "X·Y",
+        "battle": "본편 대결",
+        "party": [
+          561,
+          199,
+          10025
+        ],
+        "sources": [
+          "https://pokemondb.net/x-y/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        10025
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        178,
+        203,
+        196
+      ],
+      "proposed_party": [
+        561,
+        199,
+        178,
+        203,
+        196,
+        10025
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:wulfric",
+      "role": "gym",
+      "region": "칼로스",
+      "name": "우르프",
+      "spreadsheet_rows": [
+        90
+      ],
+      "spreadsheet_aces": [
+        "크레베이스"
+      ],
+      "current_party": [
+        221,
+        91,
+        124,
+        362,
+        365,
+        131
+      ],
+      "reference": {
+        "game": "X·Y",
+        "battle": "본편 대결",
+        "party": [
+          460,
+          713,
+          615
+        ],
+        "sources": [
+          "https://pokemondb.net/x-y/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        713
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        221,
+        91,
+        124
+      ],
+      "proposed_party": [
+        460,
+        615,
+        221,
+        91,
+        124,
+        713
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:milo",
+      "role": "gym",
+      "region": "가라르",
+      "name": "아킬",
+      "spreadsheet_rows": [
+        105
+      ],
+      "spreadsheet_aces": [
+        "백솜모카"
+      ],
+      "current_party": [
+        192,
+        189,
+        182,
+        286,
+        254,
+        154
+      ],
+      "reference": {
+        "game": "소드",
+        "battle": "재대결",
+        "party": [
+          275,
+          830,
+          182,
+          421,
+          841
+        ],
+        "sources": [
+          "https://pokemondb.net/sword-shield/gymleaders"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        830
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        192
+      ],
+      "proposed_party": [
+        275,
+        182,
+        421,
+        841,
+        192,
+        830
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:nessa",
+      "role": "gym",
+      "region": "가라르",
+      "name": "야청",
+      "spreadsheet_rows": [
+        106
+      ],
+      "spreadsheet_aces": [
+        "갈가부기"
+      ],
+      "current_party": [
+        119,
+        195,
+        319,
+        342,
+        260,
+        230
+      ],
+      "reference": {
+        "game": "소드·실드",
+        "battle": "재대결",
+        "party": [
+          768,
+          279,
+          195,
+          748,
+          834
+        ],
+        "sources": [
+          "https://pokemondb.net/sword-shield/gymleaders"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        834
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        119
+      ],
+      "proposed_party": [
+        768,
+        279,
+        195,
+        748,
+        119,
+        834
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:kabu",
+      "role": "gym",
+      "region": "가라르",
+      "name": "순무",
+      "spreadsheet_rows": [
+        107
+      ],
+      "spreadsheet_aces": [
+        "다태우지네"
+      ],
+      "current_party": [
+        219,
+        324,
+        136,
+        38,
+        126,
+        59
+      ],
+      "reference": {
+        "game": "소드·실드",
+        "battle": "재대결",
+        "party": [
+          324,
+          38,
+          59,
+          758,
+          851
+        ],
+        "sources": [
+          "https://pokemondb.net/sword-shield/gymleaders"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        851
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        219
+      ],
+      "proposed_party": [
+        324,
+        38,
+        59,
+        758,
+        219,
+        851
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:bea",
+      "role": "gym",
+      "region": "가라르",
+      "name": "채두",
+      "spreadsheet_rows": [
+        108
+      ],
+      "spreadsheet_aces": [
+        "괴력몬"
+      ],
+      "current_party": [
+        237,
+        107,
+        106,
+        214,
+        297,
+        68
+      ],
+      "reference": {
+        "game": "소드",
+        "battle": "재대결",
+        "party": [
+          701,
+          853,
+          865,
+          870,
+          68
+        ],
+        "sources": [
+          "https://pokemondb.net/sword-shield/gymleaders"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        68
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        237
+      ],
+      "proposed_party": [
+        701,
+        853,
+        865,
+        870,
+        237,
+        68
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:allister",
+      "role": "gym",
+      "region": "가라르",
+      "name": "어니언",
+      "spreadsheet_rows": [
+        109
+      ],
+      "spreadsheet_aces": [
+        "팬텀"
+      ],
+      "current_party": [
+        200,
+        292,
+        302,
+        354,
+        356,
+        94
+      ],
+      "reference": {
+        "game": "실드",
+        "battle": "재대결",
+        "party": [
+          477,
+          609,
+          864,
+          867,
+          94
+        ],
+        "sources": [
+          "https://pokemondb.net/sword-shield/gymleaders"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        94
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        200
+      ],
+      "proposed_party": [
+        477,
+        609,
+        864,
+        867,
+        200,
+        94
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:opal",
+      "role": "gym",
+      "region": "가라르",
+      "name": "포플러",
+      "spreadsheet_rows": [
+        110
+      ],
+      "spreadsheet_aces": [
+        "마휘핑"
+      ],
+      "current_party": [
+        303,
+        184,
+        40,
+        36,
+        210,
+        122
+      ],
+      "reference": {
+        "game": "소드·실드",
+        "battle": "본편 대결",
+        "party": [
+          10167,
+          303,
+          468,
+          869
+        ],
+        "sources": [
+          "https://pokemondb.net/sword-shield/gymleaders"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        869
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        184,
+        40
+      ],
+      "proposed_party": [
+        10167,
+        303,
+        468,
+        184,
+        40,
+        869
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:gordie",
+      "role": "gym",
+      "region": "가라르",
+      "name": "마쿠와",
+      "spreadsheet_rows": [
+        111
+      ],
+      "spreadsheet_aces": [
+        "석탄산"
+      ],
+      "current_party": [
+        213,
+        219,
+        185,
+        141,
+        348,
+        76
+      ],
+      "reference": {
+        "game": "소드",
+        "battle": "재대결",
+        "party": [
+          689,
+          213,
+          874,
+          248,
+          839
+        ],
+        "sources": [
+          "https://pokemondb.net/sword-shield/gymleaders"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        839
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        219
+      ],
+      "proposed_party": [
+        689,
+        213,
+        874,
+        248,
+        219,
+        839
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:melony",
+      "role": "gym",
+      "region": "가라르",
+      "name": "멜론",
+      "spreadsheet_rows": [
+        112
+      ],
+      "spreadsheet_aces": [
+        "라프라스"
+      ],
+      "current_party": [
+        225,
+        87,
+        91,
+        221,
+        362,
+        131
+      ],
+      "reference": {
+        "game": "실드",
+        "battle": "재대결",
+        "party": [
+          873,
+          866,
+          875,
+          10177,
+          131
+        ],
+        "sources": [
+          "https://pokemondb.net/sword-shield/gymleaders"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        131
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        225
+      ],
+      "proposed_party": [
+        873,
+        866,
+        875,
+        10177,
+        225,
+        131
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:piers",
+      "role": "gym",
+      "region": "가라르",
+      "name": "두송",
+      "spreadsheet_rows": [
+        114
+      ],
+      "spreadsheet_aces": [
+        "가로막구리"
+      ],
+      "current_party": [
+        197,
+        198,
+        215,
+        229,
+        248,
+        359
+      ],
+      "reference": {
+        "game": "소드·실드",
+        "battle": "본편 대결",
+        "party": [
+          560,
+          687,
+          435,
+          862
+        ],
+        "sources": [
+          "https://pokemondb.net/sword-shield/gymleaders"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        862
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        197,
+        198
+      ],
+      "proposed_party": [
+        560,
+        687,
+        435,
+        197,
+        198,
+        862
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:raihan",
+      "role": "gym",
+      "region": "가라르",
+      "name": "금랑",
+      "spreadsheet_rows": [
+        113
+      ],
+      "spreadsheet_aces": [
+        "브리두라스"
+      ],
+      "current_party": [
+        148,
+        149,
+        230,
+        334,
+        373,
+        330
+      ],
+      "reference": {
+        "game": "소드·실드",
+        "battle": "재대결",
+        "party": [
+          324,
+          706,
+          776,
+          330,
+          884
+        ],
+        "sources": [
+          "https://pokemondb.net/sword-shield/gymleaders"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        1018
+      ],
+      "evolution_changes": [
+        {
+          "from": 884,
+          "to": 1018,
+          "reason": "엑셀 최종진화 대표 적용"
+        }
+      ],
+      "omitted_reference_members": [],
+      "supplements": [
+        148
+      ],
+      "proposed_party": [
+        324,
+        706,
+        776,
+        330,
+        148,
+        1018
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:bede",
+      "role": "gym",
+      "region": "가라르",
+      "name": "비트",
+      "spreadsheet_rows": [],
+      "spreadsheet_aces": [],
+      "current_party": [
+        122,
+        210,
+        40,
+        184,
+        36,
+        303
+      ],
+      "reference": {
+        "game": "소드·실드",
+        "battle": "재대결",
+        "party": [
+          303,
+          282,
+          10163,
+          700,
+          858
+        ],
+        "sources": [
+          "https://pokemondb.net/sword-shield/gymleaders"
+        ],
+        "alternatives": [],
+        "notes": [
+          "엑셀 미수록: 원작 마지막 포켓몬을 대표 후보로 제안",
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        858
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        122
+      ],
+      "proposed_party": [
+        303,
+        282,
+        10163,
+        700,
+        122,
+        858
+      ],
+      "notes": [
+        "엑셀 미수록: 원작 마지막 포켓몬을 대표 후보로 제안",
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:marnie",
+      "role": "gym",
+      "region": "가라르",
+      "name": "마리",
+      "spreadsheet_rows": [],
+      "spreadsheet_aces": [],
+      "current_party": [
+        215,
+        198,
+        302,
+        275,
+        229,
+        359
+      ],
+      "reference": {
+        "game": "소드·실드",
+        "battle": "관장 취임 후 스파이크마을 대결",
+        "party": [
+          510,
+          454,
+          560,
+          877,
+          861
+        ],
+        "sources": [
+          "https://www.serebii.net/swordshield/marnie.shtml"
+        ],
+        "alternatives": [],
+        "notes": [
+          "엑셀 미수록: 원작 마지막 포켓몬을 대표 후보로 제안",
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        861
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        215
+      ],
+      "proposed_party": [
+        510,
+        454,
+        560,
+        877,
+        215,
+        861
+      ],
+      "notes": [
+        "엑셀 미수록: 원작 마지막 포켓몬을 대표 후보로 제안",
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:klara",
+      "role": "gym",
+      "region": "가라르",
+      "name": "도정",
+      "spreadsheet_rows": [
+        118
+      ],
+      "spreadsheet_aces": [
+        "야도란 (가라르의 모습)"
+      ],
+      "current_party": [
+        49,
+        73,
+        169,
+        317,
+        110,
+        89
+      ],
+      "reference": {
+        "game": "소드 왕관의 설원 이후",
+        "battle": "도장 재대결",
+        "party": [
+          10172,
+          10167,
+          452,
+          545,
+          10165
+        ],
+        "sources": [
+          "https://www.serebii.net/swordshield/klaraavery.shtml"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        10165
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        49
+      ],
+      "proposed_party": [
+        10172,
+        10167,
+        452,
+        545,
+        49,
+        10165
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:avery",
+      "role": "gym",
+      "region": "가라르",
+      "name": "세이버리",
+      "spreadsheet_rows": [
+        119
+      ],
+      "spreadsheet_aces": [
+        "야도킹 (가라르의 모습)"
+      ],
+      "current_party": [
+        97,
+        203,
+        326,
+        178,
+        65,
+        199
+      ],
+      "reference": {
+        "game": "실드 왕관의 설원 이후",
+        "battle": "도장 재대결",
+        "party": [
+          10165,
+          528,
+          10163,
+          65,
+          10172
+        ],
+        "sources": [
+          "https://www.serebii.net/swordshield/klaraavery.shtml"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        10172
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        97
+      ],
+      "proposed_party": [
+        10165,
+        528,
+        10163,
+        65,
+        97,
+        10172
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:mustard",
+      "role": "gym",
+      "region": "가라르",
+      "name": "마스터드",
+      "spreadsheet_rows": [
+        116
+      ],
+      "spreadsheet_aces": [
+        "우라오스"
+      ],
+      "current_party": [
+        106,
+        107,
+        237,
+        68,
+        214,
+        257
+      ],
+      "reference": {
+        "game": "소드·실드 갑옷의 외딴섬",
+        "battle": "최종 도장 대결",
+        "party": [
+          620,
+          405,
+          745,
+          823,
+          784,
+          10191
+        ],
+        "sources": [
+          "https://www.serebii.net/swordshield/mustard.shtml"
+        ],
+        "alternatives": [
+          {
+            "label": "상대 우라오스 분기: 일격의 태세",
+            "party": [
+              620,
+              405,
+              745,
+              823,
+              784,
+              892
+            ]
+          }
+        ],
+        "notes": [
+          "우라오스는 원작에서 플레이어와 반대 태세. 연격을 기본 검토안, 일격을 대안으로 기록. 거다이맥스 미적용"
+        ]
+      },
+      "fixed_aces": [
+        10191
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        620,
+        405,
+        745,
+        823,
+        784,
+        10191
+      ],
+      "notes": [
+        "우라오스는 원작에서 플레이어와 반대 태세. 연격을 기본 검토안, 일격을 대안으로 기록. 거다이맥스 미적용"
+      ]
+    },
+    {
+      "key": "gym:peony",
+      "role": "gym",
+      "region": "가라르",
+      "name": "피오니",
+      "spreadsheet_rows": [
+        117
+      ],
+      "spreadsheet_aces": [
+        "대왕끼리동"
+      ],
+      "current_party": [
+        227,
+        82,
+        212,
+        205,
+        303,
+        306
+      ],
+      "reference": {
+        "game": "소드·실드 왕관의 설원",
+        "battle": "맥스다이맥스굴 재대결",
+        "party": [
+          863,
+          212,
+          437,
+          306,
+          879
+        ],
+        "sources": [
+          "https://www.serebii.net/swordshield/dailyevent.shtml"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        879
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        227
+      ],
+      "proposed_party": [
+        863,
+        212,
+        437,
+        306,
+        227,
+        879
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:tyme",
+      "role": "gym",
+      "region": "팔데아",
+      "name": "타임",
+      "spreadsheet_rows": [],
+      "spreadsheet_aces": [],
+      "current_party": [
+        185,
+        76,
+        299,
+        112,
+        142,
+        306
+      ],
+      "reference": {
+        "game": "스칼렛·바이올렛",
+        "battle": "학교 최강 선발 대회",
+        "party": [
+          745,
+          10126,
+          834,
+          874,
+          839,
+          934
+        ],
+        "sources": [
+          "https://www.serebii.net/scarletviolet/academyacetournament.shtml"
+        ],
+        "alternatives": [],
+        "notes": [
+          "엑셀 미수록: 원작 마지막 포켓몬을 대표 후보로 제안"
+        ]
+      },
+      "fixed_aces": [
+        934
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        745,
+        10126,
+        834,
+        874,
+        839,
+        934
+      ],
+      "notes": [
+        "엑셀 미수록: 원작 마지막 포켓몬을 대표 후보로 제안"
+      ]
+    },
+    {
+      "key": "gym:katy",
+      "role": "gym",
+      "region": "팔데아",
+      "name": "단풍",
+      "spreadsheet_rows": [
+        120
+      ],
+      "spreadsheet_aces": [
+        "다투곰"
+      ],
+      "current_party": [
+        166,
+        168,
+        284,
+        205,
+        127,
+        214
+      ],
+      "reference": {
+        "game": "스칼렛·바이올렛",
+        "battle": "재대결",
+        "party": [
+          920,
+          205,
+          918,
+          214,
+          217
+        ],
+        "sources": [
+          "https://pokemondb.net/scarlet-violet/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        901
+      ],
+      "evolution_changes": [
+        {
+          "from": 217,
+          "to": 901,
+          "reason": "엑셀 최종진화 대표 적용"
+        }
+      ],
+      "omitted_reference_members": [],
+      "supplements": [
+        166
+      ],
+      "proposed_party": [
+        920,
+        205,
+        918,
+        214,
+        166,
+        901
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:brassius",
+      "role": "gym",
+      "region": "팔데아",
+      "name": "콜사",
+      "spreadsheet_rows": [
+        121
+      ],
+      "spreadsheet_aces": [
+        "꼬지모"
+      ],
+      "current_party": [
+        192,
+        71,
+        332,
+        275,
+        286,
+        254
+      ],
+      "reference": {
+        "game": "스칼렛·바이올렛",
+        "battle": "재대결",
+        "party": [
+          549,
+          286,
+          763,
+          930,
+          185
+        ],
+        "sources": [
+          "https://pokemondb.net/scarlet-violet/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        185
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        192
+      ],
+      "proposed_party": [
+        549,
+        286,
+        763,
+        930,
+        192,
+        185
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:iono",
+      "role": "gym",
+      "region": "팔데아",
+      "name": "모야모",
+      "spreadsheet_rows": [
+        122
+      ],
+      "spreadsheet_aces": [
+        "무우마직"
+      ],
+      "current_party": [
+        181,
+        171,
+        101,
+        310,
+        125,
+        26
+      ],
+      "reference": {
+        "game": "스칼렛·바이올렛",
+        "battle": "재대결",
+        "party": [
+          941,
+          939,
+          101,
+          405,
+          429
+        ],
+        "sources": [
+          "https://pokemondb.net/scarlet-violet/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        429
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        181
+      ],
+      "proposed_party": [
+        941,
+        939,
+        101,
+        405,
+        181,
+        429
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:kofu",
+      "role": "gym",
+      "region": "팔데아",
+      "name": "곤포",
+      "spreadsheet_rows": [
+        123
+      ],
+      "spreadsheet_aces": [
+        "모단단게"
+      ],
+      "current_party": [
+        55,
+        224,
+        342,
+        119,
+        260,
+        99
+      ],
+      "reference": {
+        "game": "스칼렛·바이올렛",
+        "battle": "재대결",
+        "party": [
+          976,
+          279,
+          961,
+          693,
+          740
+        ],
+        "sources": [
+          "https://pokemondb.net/scarlet-violet/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        740
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        55
+      ],
+      "proposed_party": [
+        976,
+        279,
+        961,
+        693,
+        55,
+        740
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:larry",
+      "role": "gym",
+      "region": "팔데아",
+      "name": "청목",
+      "spreadsheet_rows": [
+        124
+      ],
+      "spreadsheet_aces": [
+        "찌르호크"
+      ],
+      "current_party": [
+        203,
+        234,
+        206,
+        335,
+        128,
+        277
+      ],
+      "reference": {
+        "game": "스칼렛·바이올렛",
+        "battle": "재대결",
+        "party": [
+          916,
+          775,
+          628,
+          982,
+          398
+        ],
+        "sources": [
+          "https://pokemondb.net/scarlet-violet/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        398
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        203
+      ],
+      "proposed_party": [
+        916,
+        775,
+        628,
+        982,
+        203,
+        398
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:ryme",
+      "role": "gym",
+      "region": "팔데아",
+      "name": "라임",
+      "spreadsheet_rows": [
+        125
+      ],
+      "spreadsheet_aces": [
+        "스트린더"
+      ],
+      "current_party": [
+        200,
+        302,
+        356,
+        292,
+        94,
+        354
+      ],
+      "reference": {
+        "game": "스칼렛·바이올렛",
+        "battle": "재대결",
+        "party": [
+          354,
+          778,
+          442,
+          972,
+          10184
+        ],
+        "sources": [
+          "https://pokemondb.net/scarlet-violet/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        10184
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        200
+      ],
+      "proposed_party": [
+        354,
+        778,
+        442,
+        972,
+        200,
+        10184
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:tulip",
+      "role": "gym",
+      "region": "팔데아",
+      "name": "리파",
+      "spreadsheet_rows": [
+        126
+      ],
+      "spreadsheet_aces": [
+        "플라제스"
+      ],
+      "current_party": [
+        203,
+        122,
+        196,
+        124,
+        326,
+        282
+      ],
+      "reference": {
+        "game": "스칼렛·바이올렛",
+        "battle": "재대결",
+        "party": [
+          981,
+          282,
+          956,
+          475,
+          671
+        ],
+        "sources": [
+          "https://pokemondb.net/scarlet-violet/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        671
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        203
+      ],
+      "proposed_party": [
+        981,
+        282,
+        956,
+        475,
+        203,
+        671
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:grusha",
+      "role": "gym",
+      "region": "팔데아",
+      "name": "그루샤",
+      "spreadsheet_rows": [
+        127
+      ],
+      "spreadsheet_aces": [
+        "파비코리"
+      ],
+      "current_party": [
+        215,
+        225,
+        87,
+        91,
+        362,
+        365
+      ],
+      "reference": {
+        "game": "스칼렛·바이올렛",
+        "battle": "재대결",
+        "party": [
+          873,
+          614,
+          975,
+          461,
+          334
+        ],
+        "sources": [
+          "https://pokemondb.net/scarlet-violet/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        334
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        215
+      ],
+      "proposed_party": [
+        873,
+        614,
+        975,
+        461,
+        215,
+        334
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:hala",
+      "role": "gym",
+      "region": "알로라",
+      "name": "할라",
+      "spreadsheet_rows": [
+        96
+      ],
+      "spreadsheet_aces": [
+        "모단단게"
+      ],
+      "current_party": [
+        57,
+        62,
+        68,
+        107,
+        286,
+        297
+      ],
+      "reference": {
+        "game": "썬·문",
+        "battle": "멜레멜레 큰 시련",
+        "party": [
+          56,
+          296,
+          739
+        ],
+        "sources": [
+          "https://www.serebii.net/sunmoon/grandtrials.shtml"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        740
+      ],
+      "evolution_changes": [
+        {
+          "from": 739,
+          "to": 740,
+          "reason": "엑셀 최종진화 대표 적용"
+        }
+      ],
+      "omitted_reference_members": [],
+      "supplements": [
+        57,
+        62,
+        68
+      ],
+      "proposed_party": [
+        56,
+        296,
+        57,
+        62,
+        68,
+        740
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:olivia",
+      "role": "gym",
+      "region": "알로라",
+      "name": "라이치",
+      "spreadsheet_rows": [
+        97
+      ],
+      "spreadsheet_aces": [
+        "루가루암 (한밤의 모습)"
+      ],
+      "current_party": [
+        76,
+        112,
+        139,
+        141,
+        369,
+        248
+      ],
+      "reference": {
+        "game": "썬·문",
+        "battle": "아칼라 큰 시련",
+        "party": [
+          299,
+          525,
+          10126
+        ],
+        "sources": [
+          "https://www.serebii.net/sunmoon/grandtrials.shtml"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        10126
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        76,
+        112,
+        139
+      ],
+      "proposed_party": [
+        299,
+        525,
+        76,
+        112,
+        139,
+        10126
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:nanu",
+      "role": "gym",
+      "region": "알로라",
+      "name": "나누",
+      "spreadsheet_rows": [
+        98
+      ],
+      "spreadsheet_aces": [
+        "페르시온 (알로라의 모습)"
+      ],
+      "current_party": [
+        197,
+        229,
+        248,
+        359,
+        302,
+        215
+      ],
+      "reference": {
+        "game": "썬·문",
+        "battle": "울라울라 큰 시련",
+        "party": [
+          302,
+          552,
+          10108
+        ],
+        "sources": [
+          "https://www.serebii.net/sunmoon/grandtrials.shtml"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        10108
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        197,
+        229,
+        248
+      ],
+      "proposed_party": [
+        302,
+        552,
+        197,
+        229,
+        248,
+        10108
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "gym:hapu",
+      "role": "gym",
+      "region": "알로라",
+      "name": "하푸우",
+      "spreadsheet_rows": [
+        99
+      ],
+      "spreadsheet_aces": [
+        "만마드"
+      ],
+      "current_party": [
+        28,
+        51,
+        76,
+        112,
+        232,
+        260
+      ],
+      "reference": {
+        "game": "울트라썬·울트라문",
+        "battle": "포니 큰 시련",
+        "party": [
+          623,
+          423,
+          330,
+          750
+        ],
+        "sources": [
+          "https://www.serebii.net/ultrasunultramoon/grandtrials.shtml"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        750
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        28,
+        51
+      ],
+      "proposed_party": [
+        623,
+        423,
+        330,
+        28,
+        51,
+        750
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "elite:lorelei",
+      "role": "elite",
+      "region": "관동",
+      "name": "칸나",
+      "spreadsheet_rows": [
+        14
+      ],
+      "spreadsheet_aces": [
+        "라프라스"
+      ],
+      "current_party": [
+        87,
+        91,
+        124,
+        131,
+        221
+      ],
+      "reference": {
+        "game": "레츠고! 피카츄·이브이",
+        "battle": "본편 대결",
+        "party": [
+          87,
+          124,
+          91,
+          80,
+          131
+        ],
+        "sources": [
+          "https://pokemondb.net/lets-go-pikachu-eevee/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        131
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        87,
+        124,
+        91,
+        80,
+        131
+      ],
+      "notes": []
+    },
+    {
+      "key": "elite:bruno",
+      "role": "elite",
+      "region": "관동",
+      "name": "시바",
+      "spreadsheet_rows": [
+        15,
+        30
+      ],
+      "spreadsheet_aces": [
+        "괴력몬",
+        "괴력몬"
+      ],
+      "current_party": [
+        57,
+        62,
+        68,
+        106,
+        107
+      ],
+      "reference": {
+        "game": "레츠고! 피카츄·이브이",
+        "battle": "본편 대결",
+        "party": [
+          95,
+          106,
+          107,
+          62,
+          68
+        ],
+        "sources": [
+          "https://pokemondb.net/lets-go-pikachu-eevee/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "엑셀 관동/성도 시바 두 행은 현재 게임의 동일 사천왕 역할에 연결. 성도 별도 대진은 미추가"
+        ]
+      },
+      "fixed_aces": [
+        68
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        95,
+        106,
+        107,
+        62,
+        68
+      ],
+      "notes": [
+        "엑셀 관동/성도 시바 두 행은 현재 게임의 동일 사천왕 역할에 연결. 성도 별도 대진은 미추가"
+      ]
+    },
+    {
+      "key": "elite:agatha",
+      "role": "elite",
+      "region": "관동",
+      "name": "국화",
+      "spreadsheet_rows": [
+        16
+      ],
+      "spreadsheet_aces": [
+        "팬텀"
+      ],
+      "current_party": [
+        93,
+        94,
+        200,
+        302,
+        354
+      ],
+      "reference": {
+        "game": "레츠고! 피카츄·이브이",
+        "battle": "본편 대결",
+        "party": [
+          24,
+          94,
+          42,
+          110,
+          94
+        ],
+        "sources": [
+          "https://pokemondb.net/lets-go-pikachu-eevee/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        94
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        24,
+        94,
+        42,
+        110,
+        94
+      ],
+      "notes": []
+    },
+    {
+      "key": "elite:lance",
+      "role": "elite",
+      "region": "관동·성도",
+      "name": "목호",
+      "spreadsheet_rows": [
+        17
+      ],
+      "spreadsheet_aces": [
+        "망나뇽"
+      ],
+      "current_party": [
+        148,
+        149,
+        230,
+        330,
+        373
+      ],
+      "reference": {
+        "game": "레츠고! 피카츄·이브이",
+        "battle": "본편 대결",
+        "party": [
+          117,
+          142,
+          130,
+          6,
+          149
+        ],
+        "sources": [
+          "https://pokemondb.net/lets-go-pikachu-eevee/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        149
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        117,
+        142,
+        130,
+        6,
+        149
+      ],
+      "notes": []
+    },
+    {
+      "key": "elite:will",
+      "role": "elite",
+      "region": "성도",
+      "name": "일목",
+      "spreadsheet_rows": [
+        28
+      ],
+      "spreadsheet_aces": [
+        "네이티오"
+      ],
+      "current_party": [
+        97,
+        103,
+        124,
+        178,
+        196
+      ],
+      "reference": {
+        "game": "하트골드·소울실버",
+        "battle": "본편 대결",
+        "party": [
+          178,
+          124,
+          103,
+          80,
+          178
+        ],
+        "sources": [
+          "https://pokemondb.net/heartgold-soulsilver/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        178
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        178,
+        124,
+        103,
+        80,
+        178
+      ],
+      "notes": []
+    },
+    {
+      "key": "elite:koga",
+      "role": "elite",
+      "region": "성도",
+      "name": "독수",
+      "spreadsheet_rows": [
+        29
+      ],
+      "spreadsheet_aces": [
+        "크로뱃"
+      ],
+      "current_party": [
+        49,
+        89,
+        169,
+        168,
+        317
+      ],
+      "reference": {
+        "game": "하트골드·소울실버",
+        "battle": "본편 대결",
+        "party": [
+          168,
+          49,
+          89,
+          205,
+          169
+        ],
+        "sources": [
+          "https://pokemondb.net/heartgold-soulsilver/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        169
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        168,
+        49,
+        89,
+        205,
+        169
+      ],
+      "notes": []
+    },
+    {
+      "key": "elite:karen",
+      "role": "elite",
+      "region": "성도",
+      "name": "카렌",
+      "spreadsheet_rows": [
+        31
+      ],
+      "spreadsheet_aces": [
+        "헬가"
+      ],
+      "current_party": [
+        197,
+        198,
+        215,
+        229,
+        359
+      ],
+      "reference": {
+        "game": "하트골드·소울실버",
+        "battle": "본편 대결",
+        "party": [
+          197,
+          45,
+          198,
+          94,
+          229
+        ],
+        "sources": [
+          "https://pokemondb.net/heartgold-soulsilver/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        229
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        197,
+        45,
+        198,
+        94,
+        229
+      ],
+      "notes": []
+    },
+    {
+      "key": "elite:sidney",
+      "role": "elite",
+      "region": "호연",
+      "name": "혁진",
+      "spreadsheet_rows": [
+        44
+      ],
+      "spreadsheet_aces": [
+        "앱솔"
+      ],
+      "current_party": [
+        262,
+        274,
+        275,
+        319,
+        359
+      ],
+      "reference": {
+        "game": "오메가루비·알파사파이어",
+        "battle": "본편 대결",
+        "party": [
+          262,
+          275,
+          332,
+          319,
+          359
+        ],
+        "sources": [
+          "https://pokemondb.net/omega-ruby-alpha-sapphire/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        359
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        262,
+        275,
+        332,
+        319,
+        359
+      ],
+      "notes": []
+    },
+    {
+      "key": "elite:phoebe",
+      "role": "elite",
+      "region": "호연",
+      "name": "회연",
+      "spreadsheet_rows": [
+        45
+      ],
+      "spreadsheet_aces": [
+        "야느와르몽"
+      ],
+      "current_party": [
+        94,
+        200,
+        302,
+        354,
+        356
+      ],
+      "reference": {
+        "game": "오메가루비·알파사파이어",
+        "battle": "본편 대결",
+        "party": [
+          356,
+          354,
+          302,
+          354,
+          477
+        ],
+        "sources": [
+          "https://pokemondb.net/omega-ruby-alpha-sapphire/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        477
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        356,
+        354,
+        302,
+        354,
+        477
+      ],
+      "notes": []
+    },
+    {
+      "key": "elite:glacia",
+      "role": "elite",
+      "region": "호연",
+      "name": "미혜",
+      "spreadsheet_rows": [
+        46
+      ],
+      "spreadsheet_aces": [
+        "씨카이저"
+      ],
+      "current_party": [
+        87,
+        91,
+        124,
+        362,
+        365
+      ],
+      "reference": {
+        "game": "오메가루비·알파사파이어",
+        "battle": "본편 대결",
+        "party": [
+          362,
+          478,
+          362,
+          478,
+          365
+        ],
+        "sources": [
+          "https://pokemondb.net/omega-ruby-alpha-sapphire/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        365
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        362,
+        478,
+        362,
+        478,
+        365
+      ],
+      "notes": []
+    },
+    {
+      "key": "elite:drake",
+      "role": "elite",
+      "region": "호연",
+      "name": "권수",
+      "spreadsheet_rows": [
+        47
+      ],
+      "spreadsheet_aces": [
+        "보만다"
+      ],
+      "current_party": [
+        148,
+        149,
+        230,
+        330,
+        373
+      ],
+      "reference": {
+        "game": "오메가루비·알파사파이어",
+        "battle": "본편 대결",
+        "party": [
+          334,
+          330,
+          230,
+          330,
+          373
+        ],
+        "sources": [
+          "https://pokemondb.net/omega-ruby-alpha-sapphire/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        373
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        334,
+        330,
+        230,
+        330,
+        373
+      ],
+      "notes": []
+    },
+    {
+      "key": "elite:aaron",
+      "role": "elite",
+      "region": "신오",
+      "name": "충호",
+      "spreadsheet_rows": [
+        58
+      ],
+      "spreadsheet_aces": [
+        "드래피온"
+      ],
+      "current_party": [
+        123,
+        127,
+        212,
+        214,
+        348
+      ],
+      "reference": {
+        "game": "플라티나",
+        "battle": "본편 대결",
+        "party": [
+          469,
+          212,
+          416,
+          214,
+          452
+        ],
+        "sources": [
+          "https://pokemondb.net/platinum/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        452
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        469,
+        212,
+        416,
+        214,
+        452
+      ],
+      "notes": []
+    },
+    {
+      "key": "elite:bertha",
+      "role": "elite",
+      "region": "신오",
+      "name": "들국화",
+      "spreadsheet_rows": [
+        59
+      ],
+      "spreadsheet_aces": [
+        "하마돈"
+      ],
+      "current_party": [
+        28,
+        76,
+        112,
+        195,
+        344
+      ],
+      "reference": {
+        "game": "플라티나",
+        "battle": "본편 대결",
+        "party": [
+          340,
+          472,
+          76,
+          464,
+          450
+        ],
+        "sources": [
+          "https://pokemondb.net/platinum/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        450
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        340,
+        472,
+        76,
+        464,
+        450
+      ],
+      "notes": []
+    },
+    {
+      "key": "elite:flint",
+      "role": "elite",
+      "region": "신오",
+      "name": "대엽",
+      "spreadsheet_rows": [
+        60
+      ],
+      "spreadsheet_aces": [
+        "초염몽"
+      ],
+      "current_party": [
+        38,
+        59,
+        78,
+        126,
+        324
+      ],
+      "reference": {
+        "game": "플라티나",
+        "battle": "본편 대결",
+        "party": [
+          229,
+          136,
+          78,
+          392,
+          467
+        ],
+        "sources": [
+          "https://pokemondb.net/platinum/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        392
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        229,
+        136,
+        78,
+        467,
+        392
+      ],
+      "notes": []
+    },
+    {
+      "key": "elite:lucian",
+      "role": "elite",
+      "region": "신오",
+      "name": "오엽",
+      "spreadsheet_rows": [
+        61
+      ],
+      "spreadsheet_aces": [
+        "동탁군"
+      ],
+      "current_party": [
+        65,
+        97,
+        122,
+        196,
+        282
+      ],
+      "reference": {
+        "game": "플라티나",
+        "battle": "본편 대결",
+        "party": [
+          122,
+          196,
+          437,
+          65,
+          475
+        ],
+        "sources": [
+          "https://pokemondb.net/platinum/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        437
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        122,
+        196,
+        65,
+        475,
+        437
+      ],
+      "notes": []
+    },
+    {
+      "key": "elite:shauntal",
+      "role": "elite",
+      "region": "하나",
+      "name": "망초",
+      "spreadsheet_rows": [
+        77
+      ],
+      "spreadsheet_aces": [
+        "샹델라"
+      ],
+      "current_party": [
+        94,
+        200,
+        302,
+        354,
+        356
+      ],
+      "reference": {
+        "game": "블랙2·화이트2",
+        "battle": "본편 대결",
+        "party": [
+          563,
+          426,
+          623,
+          609
+        ],
+        "sources": [
+          "https://pokemondb.net/black-white-2/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        609
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        94
+      ],
+      "proposed_party": [
+        563,
+        426,
+        623,
+        94,
+        609
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "elite:grimsley",
+      "role": "elite",
+      "region": "하나",
+      "name": "블래리",
+      "spreadsheet_rows": [
+        78
+      ],
+      "spreadsheet_aces": [
+        "대도각참"
+      ],
+      "current_party": [
+        197,
+        229,
+        248,
+        319,
+        359
+      ],
+      "reference": {
+        "game": "블랙2·화이트2",
+        "battle": "본편 대결",
+        "party": [
+          510,
+          560,
+          553,
+          625
+        ],
+        "sources": [
+          "https://pokemondb.net/black-white-2/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        983
+      ],
+      "evolution_changes": [
+        {
+          "from": 625,
+          "to": 983,
+          "reason": "엑셀 최종진화 대표 적용"
+        }
+      ],
+      "omitted_reference_members": [],
+      "supplements": [
+        197
+      ],
+      "proposed_party": [
+        510,
+        560,
+        553,
+        197,
+        983
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "elite:caitlin",
+      "role": "elite",
+      "region": "하나",
+      "name": "카틀레야",
+      "spreadsheet_rows": [
+        79
+      ],
+      "spreadsheet_aces": [
+        "고디모아젤"
+      ],
+      "current_party": [
+        65,
+        103,
+        196,
+        282,
+        326
+      ],
+      "reference": {
+        "game": "블랙2·화이트2",
+        "battle": "본편 대결",
+        "party": [
+          518,
+          561,
+          579,
+          576
+        ],
+        "sources": [
+          "https://pokemondb.net/black-white-2/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        576
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        65
+      ],
+      "proposed_party": [
+        518,
+        561,
+        579,
+        65,
+        576
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "elite:marshal",
+      "role": "elite",
+      "region": "하나",
+      "name": "연무",
+      "spreadsheet_rows": [
+        80
+      ],
+      "spreadsheet_aces": [
+        "비조도"
+      ],
+      "current_party": [
+        57,
+        68,
+        214,
+        237,
+        297
+      ],
+      "reference": {
+        "game": "블랙2·화이트2",
+        "battle": "본편 대결",
+        "party": [
+          538,
+          539,
+          620,
+          534
+        ],
+        "sources": [
+          "https://pokemondb.net/black-white-2/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        620
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        57
+      ],
+      "proposed_party": [
+        538,
+        539,
+        534,
+        57,
+        620
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "elite:malva",
+      "role": "elite",
+      "region": "칼로스",
+      "name": "파키라",
+      "spreadsheet_rows": [
+        91
+      ],
+      "spreadsheet_aces": [
+        "파이어로"
+      ],
+      "current_party": [
+        38,
+        59,
+        126,
+        229,
+        324
+      ],
+      "reference": {
+        "game": "X·Y",
+        "battle": "본편 대결",
+        "party": [
+          668,
+          663,
+          324,
+          609
+        ],
+        "sources": [
+          "https://pokemondb.net/x-y/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        663
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        38
+      ],
+      "proposed_party": [
+        668,
+        324,
+        609,
+        38,
+        663
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "elite:siebold",
+      "role": "elite",
+      "region": "칼로스",
+      "name": "즈미",
+      "spreadsheet_rows": [
+        92
+      ],
+      "spreadsheet_aces": [
+        "거북손데스"
+      ],
+      "current_party": [
+        121,
+        130,
+        230,
+        340,
+        350
+      ],
+      "reference": {
+        "game": "X·Y",
+        "battle": "본편 대결",
+        "party": [
+          693,
+          121,
+          130,
+          689
+        ],
+        "sources": [
+          "https://pokemondb.net/x-y/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        689
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        230
+      ],
+      "proposed_party": [
+        693,
+        121,
+        130,
+        230,
+        689
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "elite:wikstrom",
+      "role": "elite",
+      "region": "칼로스",
+      "name": "간피",
+      "spreadsheet_rows": [
+        93
+      ],
+      "spreadsheet_aces": [
+        "킬가르도"
+      ],
+      "current_party": [
+        82,
+        205,
+        208,
+        227,
+        306
+      ],
+      "reference": {
+        "game": "X·Y",
+        "battle": "본편 대결",
+        "party": [
+          707,
+          476,
+          681,
+          212
+        ],
+        "sources": [
+          "https://pokemondb.net/x-y/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        681
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        82
+      ],
+      "proposed_party": [
+        707,
+        476,
+        212,
+        82,
+        681
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "elite:drasna",
+      "role": "elite",
+      "region": "칼로스",
+      "name": "드라세나",
+      "spreadsheet_rows": [
+        94
+      ],
+      "spreadsheet_aces": [
+        "음번"
+      ],
+      "current_party": [
+        149,
+        230,
+        330,
+        334,
+        373
+      ],
+      "reference": {
+        "game": "X·Y",
+        "battle": "본편 대결",
+        "party": [
+          691,
+          334,
+          715,
+          621
+        ],
+        "sources": [
+          "https://pokemondb.net/x-y/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+        ]
+      },
+      "fixed_aces": [
+        715
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [
+        149
+      ],
+      "proposed_party": [
+        691,
+        334,
+        621,
+        149,
+        715
+      ],
+      "notes": [
+        "정원 보충: 원작 사용 확인 목록에 없는 기존 게임 멤버를 보충안으로 명시. 원작 파티로 주장하지 않음"
+      ]
+    },
+    {
+      "key": "elite:hala",
+      "role": "elite",
+      "region": "알로라",
+      "name": "할라",
+      "spreadsheet_rows": [
+        96
+      ],
+      "spreadsheet_aces": [
+        "모단단게"
+      ],
+      "current_party": [
+        57,
+        68,
+        237,
+        286,
+        297
+      ],
+      "reference": {
+        "game": "썬·문",
+        "battle": "첫 리그",
+        "party": [
+          297,
+          57,
+          760,
+          62,
+          740
+        ],
+        "sources": [
+          "https://www.serebii.net/sunmoon/elitefour.shtml"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        740
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        297,
+        57,
+        760,
+        62,
+        740
+      ],
+      "notes": []
+    },
+    {
+      "key": "elite:olivia",
+      "role": "elite",
+      "region": "알로라",
+      "name": "라이치",
+      "spreadsheet_rows": [
+        97
+      ],
+      "spreadsheet_aces": [
+        "루가루암 (한밤의 모습)"
+      ],
+      "current_party": [
+        76,
+        112,
+        142,
+        248,
+        348
+      ],
+      "reference": {
+        "game": "썬·문",
+        "battle": "첫 리그",
+        "party": [
+          369,
+          703,
+          10111,
+          476,
+          10126
+        ],
+        "sources": [
+          "https://www.serebii.net/sunmoon/elitefour.shtml"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        10126
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        369,
+        703,
+        10111,
+        476,
+        10126
+      ],
+      "notes": []
+    },
+    {
+      "key": "elite:acerola",
+      "role": "elite",
+      "region": "알로라",
+      "name": "아세로라",
+      "spreadsheet_rows": [
+        101
+      ],
+      "spreadsheet_aces": [
+        "모래성이당"
+      ],
+      "current_party": [
+        94,
+        200,
+        302,
+        354,
+        356
+      ],
+      "reference": {
+        "game": "썬·문",
+        "battle": "첫 리그",
+        "party": [
+          302,
+          426,
+          781,
+          478,
+          770
+        ],
+        "sources": [
+          "https://www.serebii.net/sunmoon/elitefour.shtml"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        770
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        302,
+        426,
+        781,
+        478,
+        770
+      ],
+      "notes": []
+    },
+    {
+      "key": "elite:kahili",
+      "role": "elite",
+      "region": "알로라",
+      "name": "카일리",
+      "spreadsheet_rows": [
+        102
+      ],
+      "spreadsheet_aces": [
+        "왕큰부리"
+      ],
+      "current_party": [
+        85,
+        130,
+        169,
+        227,
+        277
+      ],
+      "reference": {
+        "game": "썬·문",
+        "battle": "첫 리그",
+        "party": [
+          227,
+          169,
+          741,
+          630,
+          733
+        ],
+        "sources": [
+          "https://www.serebii.net/sunmoon/elitefour.shtml"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        733
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        227,
+        169,
+        741,
+        630,
+        733
+      ],
+      "notes": []
+    },
+    {
+      "key": "elite:rika",
+      "role": "elite",
+      "region": "팔데아",
+      "name": "칠리",
+      "spreadsheet_rows": [
+        128
+      ],
+      "spreadsheet_aces": [
+        "토오"
+      ],
+      "current_party": [
+        28,
+        112,
+        195,
+        260,
+        330
+      ],
+      "reference": {
+        "game": "스칼렛·바이올렛",
+        "battle": "본편 대결",
+        "party": [
+          340,
+          323,
+          232,
+          51,
+          980
+        ],
+        "sources": [
+          "https://pokemondb.net/scarlet-violet/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        980
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        340,
+        323,
+        232,
+        51,
+        980
+      ],
+      "notes": []
+    },
+    {
+      "key": "elite:poppy",
+      "role": "elite",
+      "region": "팔데아",
+      "name": "뽀삐",
+      "spreadsheet_rows": [
+        129
+      ],
+      "spreadsheet_aces": [
+        "두드리짱"
+      ],
+      "current_party": [
+        82,
+        205,
+        208,
+        303,
+        376
+      ],
+      "reference": {
+        "game": "스칼렛·바이올렛",
+        "battle": "본편 대결",
+        "party": [
+          879,
+          462,
+          437,
+          823,
+          959
+        ],
+        "sources": [
+          "https://pokemondb.net/scarlet-violet/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        959
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        879,
+        462,
+        437,
+        823,
+        959
+      ],
+      "notes": []
+    },
+    {
+      "key": "elite:larry",
+      "role": "elite",
+      "region": "팔데아",
+      "name": "청목",
+      "spreadsheet_rows": [
+        130
+      ],
+      "spreadsheet_aces": [
+        "꼬이밍고"
+      ],
+      "current_party": [
+        85,
+        130,
+        169,
+        227,
+        334
+      ],
+      "reference": {
+        "game": "스칼렛·바이올렛",
+        "battle": "본편 대결",
+        "party": [
+          357,
+          10123,
+          334,
+          398,
+          973
+        ],
+        "sources": [
+          "https://pokemondb.net/scarlet-violet/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        973
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        357,
+        10123,
+        334,
+        398,
+        973
+      ],
+      "notes": []
+    },
+    {
+      "key": "elite:hassel",
+      "role": "elite",
+      "region": "팔데아",
+      "name": "팔자크",
+      "spreadsheet_rows": [
+        131
+      ],
+      "spreadsheet_aces": [
+        "드닐레이브"
+      ],
+      "current_party": [
+        149,
+        230,
+        330,
+        334,
+        373
+      ],
+      "reference": {
+        "game": "스칼렛·바이올렛",
+        "battle": "본편 대결",
+        "party": [
+          715,
+          612,
+          691,
+          841,
+          998
+        ],
+        "sources": [
+          "https://pokemondb.net/scarlet-violet/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        998
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        715,
+        612,
+        691,
+        841,
+        998
+      ],
+      "notes": []
+    },
+    {
+      "key": "elite:molayne",
+      "role": "elite",
+      "region": "알로라",
+      "name": "멀레인",
+      "spreadsheet_rows": [
+        100
+      ],
+      "spreadsheet_aces": [
+        "닥트리오 (알로라의 모습)"
+      ],
+      "current_party": [
+        227,
+        82,
+        212,
+        208,
+        376
+      ],
+      "reference": {
+        "game": "울트라썬·울트라문",
+        "battle": "첫 리그",
+        "party": [
+          707,
+          625,
+          462,
+          376,
+          10106
+        ],
+        "sources": [
+          "https://www.serebii.net/ultrasunultramoon/elitefour.shtml"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        10106
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        707,
+        625,
+        462,
+        376,
+        10106
+      ],
+      "notes": []
+    },
+    {
+      "key": "elite:crispin",
+      "role": "elite",
+      "region": "블루베리",
+      "name": "하솔",
+      "spreadsheet_rows": [
+        134
+      ],
+      "spreadsheet_aces": [
+        "번치코"
+      ],
+      "current_party": [
+        324,
+        323,
+        59,
+        38,
+        126,
+        257
+      ],
+      "reference": {
+        "game": "스칼렛·바이올렛 남청의 원반",
+        "battle": "블루베리그 사천왕",
+        "party": [
+          10008,
+          663,
+          103,
+          323,
+          467,
+          257
+        ],
+        "sources": [
+          "https://www.serebii.net/scarletviolet/blueberryelitefour.shtml"
+        ],
+        "alternatives": [],
+        "notes": [
+          "메가진화·거다이맥스·테라스탈 효과는 적용하지 않고 지원되는 기본/상시 폼으로 표기"
+        ]
+      },
+      "fixed_aces": [
+        257
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        10008,
+        663,
+        103,
+        323,
+        467,
+        257
+      ],
+      "notes": [
+        "메가진화·거다이맥스·테라스탈 효과는 적용하지 않고 지원되는 기본/상시 폼으로 표기"
+      ]
+    },
+    {
+      "key": "elite:amarys",
+      "role": "elite",
+      "region": "블루베리",
+      "name": "네리네",
+      "spreadsheet_rows": [
+        135
+      ],
+      "spreadsheet_aces": [
+        "메타그로스"
+      ],
+      "current_party": [
+        227,
+        212,
+        82,
+        208,
+        306,
+        376
+      ],
+      "reference": {
+        "game": "스칼렛·바이올렛 남청의 원반",
+        "battle": "블루베리그 사천왕",
+        "party": [
+          227,
+          10106,
+          212,
+          579,
+          395,
+          376
+        ],
+        "sources": [
+          "https://www.serebii.net/scarletviolet/blueberryelitefour.shtml"
+        ],
+        "alternatives": [],
+        "notes": [
+          "메가진화·거다이맥스·테라스탈 효과는 적용하지 않고 지원되는 기본/상시 폼으로 표기"
+        ]
+      },
+      "fixed_aces": [
+        376
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        227,
+        10106,
+        212,
+        579,
+        395,
+        376
+      ],
+      "notes": [
+        "메가진화·거다이맥스·테라스탈 효과는 적용하지 않고 지원되는 기본/상시 폼으로 표기"
+      ]
+    },
+    {
+      "key": "elite:lacey",
+      "role": "elite",
+      "region": "블루베리",
+      "name": "타로",
+      "spreadsheet_rows": [
+        136
+      ],
+      "spreadsheet_aces": [
+        "몰드류"
+      ],
+      "current_party": [
+        210,
+        36,
+        40,
+        184,
+        303,
+        282
+      ],
+      "reference": {
+        "game": "스칼렛·바이올렛 남청의 원반",
+        "battle": "블루베리그 사천왕",
+        "party": [
+          547,
+          210,
+          730,
+          10165,
+          869,
+          530
+        ],
+        "sources": [
+          "https://www.serebii.net/scarletviolet/blueberryelitefour.shtml"
+        ],
+        "alternatives": [],
+        "notes": [
+          "메가진화·거다이맥스·테라스탈 효과는 적용하지 않고 지원되는 기본/상시 폼으로 표기"
+        ]
+      },
+      "fixed_aces": [
+        530
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        547,
+        210,
+        730,
+        10165,
+        869,
+        530
+      ],
+      "notes": [
+        "메가진화·거다이맥스·테라스탈 효과는 적용하지 않고 지원되는 기본/상시 폼으로 표기"
+      ]
+    },
+    {
+      "key": "elite:drayton",
+      "role": "elite",
+      "region": "블루베리",
+      "name": "제빈",
+      "spreadsheet_rows": [
+        137
+      ],
+      "spreadsheet_aces": [
+        "브리두라스"
+      ],
+      "current_party": [
+        330,
+        149,
+        230,
+        334,
+        254,
+        373
+      ],
+      "reference": {
+        "game": "스칼렛·바이올렛 남청의 원반",
+        "battle": "블루베리그 사천왕",
+        "party": [
+          149,
+          330,
+          612,
+          254,
+          230,
+          1018
+        ],
+        "sources": [
+          "https://www.serebii.net/scarletviolet/blueberryelitefour.shtml"
+        ],
+        "alternatives": [],
+        "notes": [
+          "메가진화·거다이맥스·테라스탈 효과는 적용하지 않고 지원되는 기본/상시 폼으로 표기"
+        ]
+      },
+      "fixed_aces": [
+        1018
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        149,
+        330,
+        612,
+        254,
+        230,
+        1018
+      ],
+      "notes": [
+        "메가진화·거다이맥스·테라스탈 효과는 적용하지 않고 지원되는 기본/상시 폼으로 표기"
+      ]
+    },
+    {
+      "key": "champion:blue",
+      "role": "champion",
+      "region": "관동",
+      "name": "그린",
+      "spreadsheet_rows": [
+        18
+      ],
+      "spreadsheet_aces": [
+        "피죤투"
+      ],
+      "current_party": [
+        18,
+        59,
+        65,
+        103,
+        112,
+        130
+      ],
+      "reference": {
+        "game": "레드·블루",
+        "battle": "본편 대결",
+        "party": [
+          18,
+          65,
+          112,
+          130,
+          59,
+          3
+        ],
+        "sources": [
+          "https://pokemondb.net/red-blue/gymleaders-elitefour"
+        ],
+        "alternatives": [
+          {
+            "label": "스타팅 분기 1",
+            "party": [
+              18,
+              65,
+              112,
+              103,
+              130,
+              6
+            ]
+          },
+          {
+            "label": "스타팅 분기 2",
+            "party": [
+              18,
+              65,
+              112,
+              59,
+              103,
+              9
+            ]
+          }
+        ],
+        "notes": [
+          "스타팅에 따른 원작 분기는 별도 기록. 이 검토안에서는 첫 표기 조합을 사용하며 자동 연동 미구현"
+        ]
+      },
+      "fixed_aces": [
+        18
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        65,
+        112,
+        130,
+        59,
+        3,
+        18
+      ],
+      "notes": [
+        "스타팅에 따른 원작 분기는 별도 기록. 이 검토안에서는 첫 표기 조합을 사용하며 자동 연동 미구현"
+      ]
+    },
+    {
+      "key": "champion:lance",
+      "role": "champion",
+      "region": "성도",
+      "name": "목호",
+      "spreadsheet_rows": [
+        32
+      ],
+      "spreadsheet_aces": [
+        "망나뇽"
+      ],
+      "current_party": [
+        6,
+        130,
+        142,
+        149,
+        230,
+        373
+      ],
+      "reference": {
+        "game": "하트골드·소울실버",
+        "battle": "본편 대결",
+        "party": [
+          130,
+          149,
+          149,
+          142,
+          6,
+          149
+        ],
+        "sources": [
+          "https://pokemondb.net/heartgold-soulsilver/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        149
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        130,
+        149,
+        149,
+        142,
+        6,
+        149
+      ],
+      "notes": []
+    },
+    {
+      "key": "champion:steven",
+      "role": "champion",
+      "region": "호연",
+      "name": "성호",
+      "spreadsheet_rows": [
+        48
+      ],
+      "spreadsheet_aces": [
+        "메타그로스"
+      ],
+      "current_party": [
+        227,
+        306,
+        344,
+        346,
+        348,
+        376
+      ],
+      "reference": {
+        "game": "오메가루비·알파사파이어",
+        "battle": "본편 대결",
+        "party": [
+          227,
+          344,
+          306,
+          346,
+          348,
+          376
+        ],
+        "sources": [
+          "https://pokemondb.net/omega-ruby-alpha-sapphire/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "메가진화·거다이맥스·테라스탈 효과는 적용하지 않고 지원되는 기본/상시 폼으로 표기"
+        ]
+      },
+      "fixed_aces": [
+        376
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        227,
+        344,
+        306,
+        346,
+        348,
+        376
+      ],
+      "notes": [
+        "메가진화·거다이맥스·테라스탈 효과는 적용하지 않고 지원되는 기본/상시 폼으로 표기"
+      ]
+    },
+    {
+      "key": "champion:wallace",
+      "role": "champion",
+      "region": "호연",
+      "name": "윤진",
+      "spreadsheet_rows": [
+        49
+      ],
+      "spreadsheet_aces": [
+        "밀로틱"
+      ],
+      "current_party": [
+        73,
+        121,
+        130,
+        272,
+        340,
+        350
+      ],
+      "reference": {
+        "game": "에메랄드",
+        "battle": "본편 대결",
+        "party": [
+          321,
+          73,
+          340,
+          272,
+          130,
+          350
+        ],
+        "sources": [
+          "https://pokemondb.net/emerald/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        350
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        321,
+        73,
+        340,
+        272,
+        130,
+        350
+      ],
+      "notes": []
+    },
+    {
+      "key": "champion:cynthia",
+      "role": "champion",
+      "region": "신오",
+      "name": "난천",
+      "spreadsheet_rows": [
+        62
+      ],
+      "spreadsheet_aces": [
+        "한카리아스"
+      ],
+      "current_party": [
+        94,
+        131,
+        197,
+        212,
+        282,
+        350
+      ],
+      "reference": {
+        "game": "플라티나",
+        "battle": "본편 대결",
+        "party": [
+          442,
+          407,
+          468,
+          448,
+          350,
+          445
+        ],
+        "sources": [
+          "https://pokemondb.net/platinum/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        445
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        442,
+        407,
+        468,
+        448,
+        350,
+        445
+      ],
+      "notes": []
+    },
+    {
+      "key": "champion:alder",
+      "role": "champion",
+      "region": "하나",
+      "name": "노간주",
+      "spreadsheet_rows": [
+        81
+      ],
+      "spreadsheet_aces": [
+        "불카모스"
+      ],
+      "current_party": [
+        59,
+        103,
+        127,
+        214,
+        289,
+        373
+      ],
+      "reference": {
+        "game": "블랙·화이트",
+        "battle": "본편 대결",
+        "party": [
+          617,
+          626,
+          621,
+          584,
+          589,
+          637
+        ],
+        "sources": [
+          "https://pokemondb.net/black-white/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        637
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        617,
+        626,
+        621,
+        584,
+        589,
+        637
+      ],
+      "notes": []
+    },
+    {
+      "key": "champion:iris",
+      "role": "champion",
+      "region": "하나",
+      "name": "아이리스",
+      "spreadsheet_rows": [
+        82
+      ],
+      "spreadsheet_aces": [
+        "액스라이즈"
+      ],
+      "current_party": [
+        149,
+        230,
+        248,
+        330,
+        334,
+        373
+      ],
+      "reference": {
+        "game": "블랙2·화이트2",
+        "battle": "본편 대결",
+        "party": [
+          635,
+          621,
+          306,
+          567,
+          131,
+          612
+        ],
+        "sources": [
+          "https://pokemondb.net/black-white-2/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        612
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        635,
+        621,
+        306,
+        567,
+        131,
+        612
+      ],
+      "notes": []
+    },
+    {
+      "key": "champion:diantha",
+      "role": "champion",
+      "region": "칼로스",
+      "name": "카르네",
+      "spreadsheet_rows": [
+        95
+      ],
+      "spreadsheet_aces": [
+        "가디안"
+      ],
+      "current_party": [
+        38,
+        65,
+        131,
+        142,
+        282,
+        334
+      ],
+      "reference": {
+        "game": "X·Y",
+        "battle": "본편 대결",
+        "party": [
+          701,
+          699,
+          697,
+          706,
+          711,
+          282
+        ],
+        "sources": [
+          "https://pokemondb.net/x-y/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "메가진화·거다이맥스·테라스탈 효과는 적용하지 않고 지원되는 기본/상시 폼으로 표기"
+        ]
+      },
+      "fixed_aces": [
+        282
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        701,
+        699,
+        697,
+        706,
+        711,
+        282
+      ],
+      "notes": [
+        "메가진화·거다이맥스·테라스탈 효과는 적용하지 않고 지원되는 기본/상시 폼으로 표기"
+      ]
+    },
+    {
+      "key": "champion:leon",
+      "role": "champion",
+      "region": "가라르",
+      "name": "단델",
+      "spreadsheet_rows": [
+        115
+      ],
+      "spreadsheet_aces": [
+        "리자몽"
+      ],
+      "current_party": [
+        6,
+        59,
+        94,
+        143,
+        248,
+        350
+      ],
+      "reference": {
+        "game": "소드·실드",
+        "battle": "챔피언 결정전",
+        "party": [
+          681,
+          887,
+          612,
+          537,
+          815,
+          6
+        ],
+        "sources": [
+          "https://www.serebii.net/swordshield/championcup.shtml"
+        ],
+        "alternatives": [
+          {
+            "label": "스타팅 분기: 마임꽁꽁·인텔리레온",
+            "party": [
+              681,
+              887,
+              612,
+              866,
+              818,
+              6
+            ]
+          },
+          {
+            "label": "스타팅 분기: 거대코뿌리·고릴타",
+            "party": [
+              681,
+              887,
+              612,
+              464,
+              812,
+              6
+            ]
+          }
+        ],
+        "notes": [
+          "스타팅에 따른 원작 분기는 별도 기록. 이 검토안에서는 첫 표기 조합을 사용하며 자동 연동 미구현",
+          "메가진화·거다이맥스·테라스탈 효과는 적용하지 않고 지원되는 기본/상시 폼으로 표기"
+        ]
+      },
+      "fixed_aces": [
+        6
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        681,
+        887,
+        612,
+        537,
+        815,
+        6
+      ],
+      "notes": [
+        "스타팅에 따른 원작 분기는 별도 기록. 이 검토안에서는 첫 표기 조합을 사용하며 자동 연동 미구현",
+        "메가진화·거다이맥스·테라스탈 효과는 적용하지 않고 지원되는 기본/상시 폼으로 표기"
+      ]
+    },
+    {
+      "key": "champion:geeta",
+      "role": "champion",
+      "region": "팔데아",
+      "name": "테사",
+      "spreadsheet_rows": [
+        132
+      ],
+      "spreadsheet_aces": [
+        "킬라플로르"
+      ],
+      "current_party": [
+        103,
+        121,
+        197,
+        227,
+        289,
+        376
+      ],
+      "reference": {
+        "game": "스칼렛·바이올렛",
+        "battle": "본편 대결",
+        "party": [
+          956,
+          673,
+          976,
+          713,
+          983,
+          970
+        ],
+        "sources": [
+          "https://pokemondb.net/scarlet-violet/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": []
+      },
+      "fixed_aces": [
+        970
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        956,
+        673,
+        976,
+        713,
+        983,
+        970
+      ],
+      "notes": []
+    },
+    {
+      "key": "champion:nemona",
+      "role": "champion",
+      "region": "팔데아",
+      "name": "네모",
+      "spreadsheet_rows": [
+        133
+      ],
+      "spreadsheet_aces": [
+        "빠르모트"
+      ],
+      "current_party": [
+        26,
+        65,
+        128,
+        197,
+        212,
+        282
+      ],
+      "reference": {
+        "game": "스칼렛·바이올렛",
+        "battle": "본편 대결",
+        "party": [
+          745,
+          706,
+          10255,
+          968,
+          923,
+          914
+        ],
+        "sources": [
+          "https://pokemondb.net/scarlet-violet/gymleaders-elitefour"
+        ],
+        "alternatives": [
+          {
+            "label": "스타팅 분기 2",
+            "party": [
+              745,
+              706,
+              10255,
+              968,
+              923,
+              908
+            ]
+          },
+          {
+            "label": "스타팅 분기 3",
+            "party": [
+              745,
+              706,
+              10255,
+              968,
+              923,
+              911
+            ]
+          }
+        ],
+        "notes": [
+          "스타팅에 따른 원작 분기는 별도 기록. 이 검토안에서는 첫 표기 조합을 사용하며 자동 연동 미구현"
+        ]
+      },
+      "fixed_aces": [
+        923
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        745,
+        706,
+        10255,
+        968,
+        914,
+        923
+      ],
+      "notes": [
+        "스타팅에 따른 원작 분기는 별도 기록. 이 검토안에서는 첫 표기 조합을 사용하며 자동 연동 미구현"
+      ]
+    },
+    {
+      "key": "champion:kukui",
+      "role": "champion",
+      "region": "알로라",
+      "name": "쿠쿠이",
+      "spreadsheet_rows": [
+        103
+      ],
+      "spreadsheet_aces": [
+        "루가루암 (한낮의 모습)"
+      ],
+      "current_party": [
+        82,
+        143,
+        38,
+        227,
+        257,
+        260
+      ],
+      "reference": {
+        "game": "썬·문",
+        "battle": "초대 챔피언 결정전",
+        "party": [
+          745,
+          10104,
+          628,
+          462,
+          143,
+          727
+        ],
+        "sources": [
+          "https://www.serebii.net/sunmoon/elitefour.shtml"
+        ],
+        "alternatives": [
+          {
+            "label": "스타팅 분기: 누리레느",
+            "party": [
+              745,
+              10104,
+              628,
+              462,
+              143,
+              730
+            ]
+          },
+          {
+            "label": "스타팅 분기: 모크나이퍼",
+            "party": [
+              745,
+              10104,
+              628,
+              462,
+              143,
+              724
+            ]
+          }
+        ],
+        "notes": [
+          "스타팅에 따른 원작 분기는 별도 기록. 이 검토안에서는 첫 표기 조합을 사용하며 자동 연동 미구현"
+        ]
+      },
+      "fixed_aces": [
+        745
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        10104,
+        628,
+        462,
+        143,
+        727,
+        745
+      ],
+      "notes": [
+        "스타팅에 따른 원작 분기는 별도 기록. 이 검토안에서는 첫 표기 조합을 사용하며 자동 연동 미구현"
+      ]
+    },
+    {
+      "key": "champion:hau",
+      "role": "champion",
+      "region": "알로라",
+      "name": "하우",
+      "spreadsheet_rows": [
+        104
+      ],
+      "spreadsheet_aces": [
+        "라이츄 (알로라의 모습)"
+      ],
+      "current_party": [
+        26,
+        136,
+        134,
+        103,
+        169,
+        260
+      ],
+      "reference": {
+        "game": "울트라썬·울트라문",
+        "battle": "초대 챔피언 결정전",
+        "party": [
+          10100,
+          136,
+          128,
+          715,
+          740,
+          730
+        ],
+        "sources": [
+          "https://www.serebii.net/ultrasunultramoon/elitefour.shtml"
+        ],
+        "alternatives": [
+          {
+            "label": "스타팅 분기: 샤미드·모크나이퍼",
+            "party": [
+              10100,
+              134,
+              128,
+              715,
+              740,
+              724
+            ]
+          },
+          {
+            "label": "스타팅 분기: 리피아·어흥염",
+            "party": [
+              10100,
+              470,
+              128,
+              715,
+              740,
+              727
+            ]
+          }
+        ],
+        "notes": [
+          "스타팅에 따른 원작 분기는 별도 기록. 이 검토안에서는 첫 표기 조합을 사용하며 자동 연동 미구현"
+        ]
+      },
+      "fixed_aces": [
+        10100
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        136,
+        128,
+        715,
+        740,
+        730,
+        10100
+      ],
+      "notes": [
+        "스타팅에 따른 원작 분기는 별도 기록. 이 검토안에서는 첫 표기 조합을 사용하며 자동 연동 미구현"
+      ]
+    },
+    {
+      "key": "champion:kieran",
+      "role": "champion",
+      "region": "블루베리",
+      "name": "카지",
+      "spreadsheet_rows": [
+        138
+      ],
+      "spreadsheet_aces": [
+        "과미드라"
+      ],
+      "current_party": [
+        186,
+        233,
+        257,
+        197,
+        149,
+        230
+      ],
+      "reference": {
+        "game": "스칼렛·바이올렛 남청의 원반",
+        "battle": "블루베리그 챔피언",
+        "party": [
+          186,
+          149,
+          861,
+          474,
+          727,
+          1019
+        ],
+        "sources": [
+          "https://www.serebii.net/scarletviolet/blueberryelitefour.shtml"
+        ],
+        "alternatives": [],
+        "notes": [
+          "메가진화·거다이맥스·테라스탈 효과는 적용하지 않고 지원되는 기본/상시 폼으로 표기"
+        ]
+      },
+      "fixed_aces": [
+        1019
+      ],
+      "evolution_changes": [],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        186,
+        149,
+        861,
+        474,
+        727,
+        1019
+      ],
+      "notes": [
+        "메가진화·거다이맥스·테라스탈 효과는 적용하지 않고 지원되는 기본/상시 폼으로 표기"
+      ]
+    },
+    {
+      "key": "champion:red",
+      "role": "champion",
+      "region": "관동",
+      "name": "레드",
+      "spreadsheet_rows": [
+        33
+      ],
+      "spreadsheet_aces": [
+        "라이츄"
+      ],
+      "current_party": [
+        25,
+        131,
+        143,
+        3,
+        6,
+        9
+      ],
+      "reference": {
+        "game": "하트골드·소울실버",
+        "battle": "본편 대결",
+        "party": [
+          25,
+          3,
+          6,
+          9,
+          131,
+          143
+        ],
+        "sources": [
+          "https://pokemondb.net/heartgold-soulsilver/gymleaders-elitefour"
+        ],
+        "alternatives": [],
+        "notes": [
+          "원작 피카츄 → 엑셀 요청 라이츄. 원작 사용 종과 구분"
+        ]
+      },
+      "fixed_aces": [
+        26
+      ],
+      "evolution_changes": [
+        {
+          "from": 25,
+          "to": 26,
+          "reason": "엑셀 최종진화 대표 적용"
+        }
+      ],
+      "omitted_reference_members": [],
+      "supplements": [],
+      "proposed_party": [
+        3,
+        6,
+        9,
+        131,
+        143,
+        26
+      ],
+      "notes": [
+        "원작 피카츄 → 엑셀 요청 라이츄. 원작 사용 종과 구분"
+      ]
+    }
+  ],
+  "pending_candidates": [
+    {
+      "key": "champion:trace",
+      "name": "진우",
+      "spreadsheet_rows": [
+        19
+      ],
+      "reference": {
+        "game": "레츠고! 피카츄·이브이",
+        "battle": "본편 대결",
+        "party": [
+          18,
+          45,
+          105,
+          78,
+          80,
+          135
+        ],
+        "sources": [
+          "https://pokemondb.net/lets-go-pikachu-eevee/gymleaders-elitefour"
+        ],
+        "alternatives": [
+          {
+            "label": "레츠고 이브이: 라이츄 분기",
+            "party": [
+              18,
+              45,
+              105,
+              78,
+              80,
+              26
+            ]
+          }
+        ],
+        "notes": []
+      },
+      "fixed_aces": [
+        18
+      ],
+      "status": "현재 게임에 없음. 캐릭터/대사/스프라이트/BGM 확인 전 추가 보류"
+    }
+  ]
+}

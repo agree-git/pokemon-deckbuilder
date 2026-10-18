@@ -156,3 +156,5 @@ Headless 씬 검사는 종료 전에 GameAudio/GameMusic/GameCries뿐 아니라 
 `test_national_progression.gd`는 역사적v3서명·정확한 저장 roundtrip,9세대 진화·지역폼/합체 보호·기술 소유자별 교체·진화 준비/아이템·높은 폼ID의 포획UID·재료 재고 정수 직렬화를 검사한다. `native_pokedex.gd`는 실제 X11 포인터/키로 전투→연구→폼 준비→검색/훈련→도감 화면을 촬영한다. 스크린샷은 로컬 검토용이다. 빌드/export는 사용자가 보류했으므로 실행하지 않는다.
 
 기술머신 데이터는 `python3 tools/pokedex/build_machines.py --game-dir /path/to/main --cache-dir /path/to/source-cache`로 재생성한다. 기존 고정 CSV의 SHA256을 검사하며 자료/원본 CSV는 게임에 넣지 않는다. `--suite camp`는 기술머신·성장·덱/야영·저장·경로 회귀를 실행한다. `tests/native_machines.gd`는 `tools/native_pointer.py`로 실제 X11 클릭을 사용하며 `TM_REVIEW_DIR`에 로컬 검토 PNG만 저장한다.
+
+원작 기반 파티 컨펌 자료는 `docs/boss-party-review.json`이 기준이고 `python3 tools/boss_party_review.py --game-dir /path/to/main`으로 Markdown을 재생성/검증한다. `--workbook /path/outside-repo/review.xlsx`는 선택 openpyxl로 검토용 엑셀을 만든다. 게임 파일에 쓰지 않으며 `review_pending_not_applied`는 사용자 승인 전까지 유지한다. 실제 현재 역할/BGM 목록은 `boss-roster.*`와 구분한다.
