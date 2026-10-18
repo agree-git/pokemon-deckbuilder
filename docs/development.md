@@ -210,3 +210,19 @@ BOSS_P1_REVIEW_DIR=/tmp/boss-p1-review python3 .dev-materials/tools/native_point
 전용 `test_boss_move_effects_p1.gd`는 모든41대표, 충전/날씨/재충전, 연타/보호막/기절, 반동/흡수/동시기절, 잠자기/잠꼬대 fixture, 잠긴 연속기의 중간 저장/복원과 v6 후속 정의 지문을 검사한다. `/tmp/boss-effects-v6-snapshot.bin`이 있는 개발 환경에서는 실제 수정 전 캡처도 추가 검증하며,없어도 기본 회귀는 가능하다. P0 검사는 명시적 v6,기존 파티 검사는 명시적 v5로 고정했다. 새 기본 경로 회귀는 v7이다. 실제 창 검사는6대진/10 OS Enter키이며 파티/앞 적 기절/대표 HP·행동 위치는 fixture다. EXE/export/Windows workflow는 계속 보류한다.
 
 P1 후속 회귀에서 공용 `support/tactical_policy.gd`는 새 `move` 공격 예고와 수면 취소를 읽도록 보강했다. `test_save.gd`의69전투는 모든 보상을 건너뛰는 대신 이미 사용 중인 `CampaignPolicy.reward`로 실제 보상을 고른다. 기존 무보상 봇은 독수 구간7승 뒤 패배했으며 저장 형식 오류는 아니었다. 이 변경은 검사 플레이어에만 적용하고 게임 수치/경제/성장/난수는 바꾸지 않는다. 새 v7의69전투 저장 회귀와 혼합 보상/상점 원정을 따로 검증한다. `test_boss_effects_parity.gd`는 v6의19대표를 두 엔진에서 직접 실행해 예고/실제 HP·상태·단계·보호막이 같은지 비교한다.
+
+## 대표 기술 효과 P2 구현
+
+현재 원정v8/효과3는105대표/실전189기술이며 잠꼬대·객기를 포함한 엔진191기술과 구분한다. `BossMoveEffectsP2`는 v8 전용 기술을,`BossBattleEffects`는 선택 전투 문맥/실제 카드·피격·교대·설치·UI 설명을 담당한다. 이전 `BossMoveEffects`/`BossMoveEffectsP1`과 입력은 바이트 동결이다. `PokemonStats.damage`의 선택 마지막 `offense_stat` 인자는 바디프레스용이며 기존 호출의 계산은 동일하다.
+
+```bash
+python3 .dev-materials/tools/import_boss_move_effects_p2.py --game-dir . --csv-dir /path/to/pinned-csv
+python3 .dev-materials/tools/check.py --game-dir . --suite boss-effects-p2 --godot /path/to/godot-4.7.2
+# 격리 프로필·X11에서 실제 UI 입력:
+BOSS_P2_REVIEW_DIR=/tmp/boss-p2-review python3 .dev-materials/tools/native_pointer.py \
+  --project-dir . --script .dev-materials/tests/native_boss_move_effects_p2.gd
+```
+
+생성기는 기존 고정CSV에 `move_flag_map.csv`를 추가로 읽고 접촉/음성/중력 제한 플래그와 기존 도감 체중을 동결 입력에 기록한다. JSON 플래그 숫자는 Godot 로드 시 정수로 변환한다. `boss_ace_review.py`는 v8을 우선 선택해 리뷰/엑셀에105/33을 표시하며 원래 전체 목표 JSON은 바꾸지 않는다.
+
+`test_boss_move_effects_p2.gd`는105대표의 실제 시드 원정과 중간 장막/대타/구속·반격/설치 기절 저장을 검사한다. `/tmp/boss-effects-v7-snapshot.bin`이 있으면 실제 수정 전 저장도 추가 대조하고,없으면 결정적 지문/호환 회귀는 그대로 실행한다. `test_boss_effects_p2_parity.gd`는 이전41대표를 두 엔진에서 비교한다. 기존 P1/P0 검사는 각각v7/v6 경로로 고정했으며 새 기본 경로 검사만v8이다. 공용 검사 정책은 공개된 실제 입장 피해/방어 상태를 읽어 자살 교대와 막힌 공격을 피하도록 보강했으며 게임 수치나 승리 상태를 조작하지 않는다. native는8대진/15 OS키·fixture 상태를 사용한다. EXE/export/Windows workflow는 실행하지 않는다.

@@ -116,7 +116,8 @@ def render(game, materials, csv_dir=None, workbook=None):
         v = a['current_v5_at_level100']
         return STYLE_NAMES[v['style']]+' · '+' → '.join(KINDS[p['kind']]+'('+moves[str(p['move_id'])]['name']+')' for p in v['intents'])
     entries = spec['entries']
-    rollout_path = game/'data/boss_move_effects_v7.json'
+    rollout_path = game/'data/boss_move_effects_v8.json'
+    if not rollout_path.exists(): rollout_path = game/'data/boss_move_effects_v7.json'
     if not rollout_path.exists(): rollout_path = game/'data/boss_move_effects_v6.json'
     route_version = read(rollout_path)['route_version'] if rollout_path.exists() else 0
     deployed = set(read(rollout_path)['profiles']) if rollout_path.exists() else set()

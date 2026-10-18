@@ -35,7 +35,7 @@ func checkpoint(j:TacticalJourney) -> TacticalJourney:
     check(JourneySnapshot.encode(restored)==d,"Charge, lock, recharge, HP, status and draw RNG roundtrip")
     return restored
 func run() -> void:
-    check(CampaignRoute.VERSION==7 and BossMoveEffectsP1.data()["profiles"].size()==41 and BossMoveEffectsP1.data()["deferred"].size()==97,"Versioned, bounded P1 rollout")
+    check(CampaignRoute.VERSION>=7 and BossMoveEffectsP1.data()["profiles"].size()==41 and BossMoveEffectsP1.data()["deferred"].size()==97,"Versioned, bounded P1 rollout")
     var pristine:=var_to_bytes(BossMoveEffectsP1.data())
     for k:String in BossMoveEffectsP1.data()["profiles"]:
         var p:Dictionary=BossMoveEffectsP1.data()["profiles"][k]
