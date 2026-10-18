@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "route_version": 19,
+  "player_moves_version": 11,
+  "base_sha256": "2f84e8a18ee1b46d3e9ded28bacf53a34d577911dca79c2ed20bf24923c30b9c",
+  "source": {
+    "pokeapi_commit": "5ee47a9a9c1229632ec4b473a9c1c53026e005dd",
+    "csv_sha256": {
+      "moves.csv": "8aafd37bf78f19471495c05b201545180f50f0a08a2a2a844d69f9837dd39ac9",
+      "move_meta.csv": "93b92d5bddf4fc1536ca0a647c20453bf92e6389010f33ca6fc4c5e9c54363be",
+      "move_flag_map.csv": "399cf005933418f406b94729903bd1528e9088bddc3bc1966be6c442a625da1b",
+      "move_effect_prose.csv": "f6d9bf0d28433a010a8b8b6a0a14d1ef72fbfcb997717f71b0e34483b7ee9697"
+    }
+  },
+  "moves": {
+    "171": {
+      "move_id": 171,
+      "name": "악몽",
+      "type": "ghost",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "잠든 상대에게 수면 동안 매 턴 최대HP¼ 지속 피해 · 보호막/대타 피해 흡수 무시 · 깨어나거나 대상 교대 시 해제"
+      ],
+      "fate_rule": "nightmare",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "195": {
+      "move_id": 195,
+      "name": "멸망의노래",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "현재 양쪽 포켓몬은 3상대 행동 뒤 기절 · 각자 교대하면 자기 카운트만 해제 · 보호/대타/공중/타입 무효 무시 · 재사용으로 기간 연장 없음"
+      ],
+      "fate_rule": "perish",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "361": {
+      "move_id": 361,
+      "name": "치유소원",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "자신 기절 · 다음 입장 피해를 견딘 동료의 HP/상태 회복 · 기존 회복 감소/봉인 적용 · 기절 동료 부활 없음"
+      ],
+      "fate_rule": "wish",
+      "upgrade": {
+        "cost": 0
+      },
+      "exhaust": true
+    },
+    "461": {
+      "move_id": 461,
+      "name": "초승달춤",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "자신 기절 · 다음 입장 피해를 견딘 동료의 HP/상태 회복 · 기존 회복 감소/봉인 적용 · PP 시스템이 없어 PP 회복은 생략"
+      ],
+      "fate_rule": "lunar",
+      "upgrade": {
+        "cost": 0
+      },
+      "exhaust": true
+    }
+  },
+  "total_enhanced": 423
+}

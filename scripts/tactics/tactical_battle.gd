@@ -19,6 +19,7 @@ var altitude_context:Dictionary={}
 var trap_context:Dictionary={}
 var item_context:Dictionary={}
 var assist_context:Dictionary={}
+var fate_context:Dictionary={}
 var turn_speed_inverted:=false # Cached at energy grant; a room may change later this turn.
 var party: Array[BattlePokemon] = []
 var enemies: Array[BattlePokemon] = []
@@ -80,6 +81,7 @@ func start_with(members: Array[BattlePokemon], cards: Array[BattleCardInstance],
     trap_context.clear()
     item_context.clear()
     assist_context.clear()
+    fate_context.clear()
     statistics = RunStatistics.battle()
     seed_value = battle_seed
     relic = selected_relic if TacticalContent.RELICS.has(selected_relic) else "field_kit"
@@ -560,6 +562,7 @@ func capture_enemy(energy_cost: int = 1) -> String:
     var target := enemy()
     target.hp = 0
     target.knocked_out = true
+    if player_moves_version>=11:PlayerMoveFate.on_knockout(self,target.uid)
     target.statuses.clear()
     opening()["captured"] = true
     if BossBattleRules.modern(self):BossBattleEffectsP3.source_left(self,target.uid)
@@ -678,6 +681,7 @@ func _enemy_action() -> void:
     if player_moves_version>=6:PlayerMoveSeals.after_enemy(self)
     if player_moves_version>=10:PlayerMoveAssist.after_enemy(self)
     BattleWeather.end_round(self,weather_foe)
+    if player_moves_version>=11:PlayerMoveFate.after_enemy(self)
     if _outcome(): return
     if not active().alive():
         phase = REPLACE
@@ -718,6 +722,7 @@ func status_damage(pokemon: BattlePokemon, key: String) -> int:
     var amount := PokemonStats.scale(pokemon,2+bonus)
     return floori(amount*1.5) if pokemon.uid < 0 and key in ["burn","poison","seed"] and has_relic("status_core") else amount
 func _tick(pokemon: BattlePokemon) -> void:
+    if player_moves_version>=11:PlayerMoveFate.tick(self,pokemon)
     var field_status_before:=pokemon.statuses.duplicate(true) if player_moves_version>=5 else {}
     for key: String in ["burn","seed","poison","confusion"]:
         if not pokemon.alive() or not pokemon.statuses.has(key): continue
@@ -771,6 +776,7 @@ func _damage(target: BattlePokemon, amount: int, piercing := false,damage_class 
     BuildConceptRules.full_guard(self,target,blocked,lost)
     if target.alive() or target.knocked_out: return
     target.knocked_out = true
+    if player_moves_version>=11:PlayerMoveFate.on_knockout(self,target.uid)
     if target.uid < 0:
         if has_relic("seed_relay") and target.statuses.has("seed"): _relay = target.statuses["seed"].duplicate(true)
     else:
@@ -830,6 +836,7 @@ func _clear_statuses() -> void:
     trap_context.clear()
     item_context.clear()
     assist_context.clear()
+    fate_context.clear()
     BattleWeather.clear(powers)
     _relay.clear()
     for pokemon: BattlePokemon in party+enemies:
@@ -895,6 +902,7 @@ func snapshot() -> Dictionary:
     if not trap_context.is_empty():state["trap_context"]=trap_context.duplicate(true)
     if not item_context.is_empty():state["item_context"]=item_context.duplicate(true)
     if not assist_context.is_empty():state["assist_context"]=assist_context.duplicate(true)
+    if not fate_context.is_empty():state["fate_context"]=fate_context.duplicate(true)
     if not exchange_context.is_empty():state["exchange_context"]=exchange_context.duplicate(true)
     return state
 func multiplier(attack: String, target: BattlePokemon,move_id:=0) -> float:

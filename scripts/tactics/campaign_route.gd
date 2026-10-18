@@ -1,7 +1,7 @@
 class_name CampaignRoute
 extends RefCounted
 ## Route RNG is independent from battle draws and card rewards.
-const VERSION := 18
+const VERSION := 19
 var generation := VERSION
 var signature := ""
 var stops: Array[Dictionary] = []
