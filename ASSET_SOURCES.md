@@ -141,3 +141,7 @@ Windows 시험 빌드는 공식 Godot **4.7.2** 엔진을 포함합니다. Godot
 ## 플레이어 기술 카드 v19
 
 `data/player_move_fate_v19.json`은 동결v10~v18 정의와 같은 PokéAPI 고정CSV4종을 대조한4카드 추가 정의입니다. 악몽·멸망의노래·치유소원·초승달춤은 카드 전투 각색이며 새 이미지/음원은 없습니다. 기반/원본 SHA256은 JSON에 기록했습니다. [효과/각색](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-fate.md), [정의 생성기](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/import_player_move_fate.py).
+
+## 플레이어 기술 카드 v20
+
+`data/player_move_reactions_v20.json`은 동결v10~v19 정의와 같은 PokéAPI 고정CSV4종을 대조한3카드 추가 정의입니다. 플라스마샤워·송전·분진은 기존 카드 전투 각색이며 새 이미지/음원은 없습니다. 기반/원본 SHA256은 JSON에 기록했습니다. [효과/각색](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-reactions.md), [정의 생성기](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/import_player_move_reactions.py), [NPC 타입 계산 파생기](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/derive_player_reaction_math.py).

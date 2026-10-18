@@ -20,7 +20,8 @@ static func view(id: int,version: int) -> Dictionary:
 static func active_in(b: TacticalBattle) -> bool:
     return b.enemy_definitions.any(func(d: Dictionary): return d.get("boss_moves_version",0) in [1,2,3,4])
 static func preview(b: TacticalBattle,target: BattlePokemon,source: Dictionary) -> Dictionary:
-    if b.enemy_definitions[b.enemy_index].get("boss_moves_version") == 4: return BossMoveEffectsP3.preview(b,target,source)
+    if b.enemy_definitions[b.enemy_index].get("boss_moves_version") == 4:
+        return PlayerMoveReactionMath.boss_preview(b,target,source) if b.player_moves_version>=12 and PlayerMoveReactions.conversion(b,b.enemy()) else BossMoveEffectsP3.preview(b,target,source)
     if b.enemy_definitions[b.enemy_index].get("boss_moves_version") == 3: return BossMoveEffectsP2.preview(b,target,source)
     return BossMoveEffectsP1.preview(b,target,source) if b.enemy_definitions[b.enemy_index].get("boss_moves_version") == 2 else BossMoveEffects.preview(b,target,source)
 static func tooltip(a: Dictionary) -> String:

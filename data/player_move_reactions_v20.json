@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "route_version": 20,
+  "player_moves_version": 12,
+  "base_sha256": "5aa55a74d9382b115f43f616e7f2e40e4cbba151084b1d62a529a6abe6a5970c",
+  "source": {
+    "pokeapi_commit": "5ee47a9a9c1229632ec4b473a9c1c53026e005dd",
+    "csv_sha256": {
+      "moves.csv": "8aafd37bf78f19471495c05b201545180f50f0a08a2a2a844d69f9837dd39ac9",
+      "move_meta.csv": "93b92d5bddf4fc1536ca0a647c20453bf92e6389010f33ca6fc4c5e9c54363be",
+      "move_flag_map.csv": "399cf005933418f406b94729903bd1528e9088bddc3bc1966be6c442a625da1b",
+      "move_effect_prose.csv": "f6d9bf0d28433a010a8b8b6a0a14d1ef72fbfcb997717f71b0e34483b7ee9697"
+    }
+  },
+  "moves": {
+    "569": {
+      "move_id": 569,
+      "name": "플라스마샤워",
+      "type": "electric",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "이번 상대 행동 종료까지 양쪽 노말 기술이 전기로 변함 · 실제 포켓몬 타입 유지 · 발버둥 제외"
+      ],
+      "reaction_rule": "plasma",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "582": {
+      "move_id": 582,
+      "name": "송전",
+      "type": "electric",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "이번 상대의 다음 기술만 전기로 변함 · 상대 행동/대상 교대/기절 시 해제 · 타입 상성/필드/날씨에 변환 반영"
+      ],
+      "reaction_rule": "electric",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "600": {
+      "move_id": 600,
+      "name": "분진",
+      "type": "bug",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "이번 상대가 불꽃 기술을 쓰려 하면 취소하고 상대 최대HP¼ 피해 · 송전으로 전기가 되면 폭발 없음 · 풀 타입 무효 · 다음 상대 행동까지"
+      ],
+      "reaction_rule": "powder",
+      "upgrade": {
+        "cost": 0
+      }
+    }
+  },
+  "total_enhanced": 426
+}

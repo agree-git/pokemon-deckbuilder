@@ -20,6 +20,7 @@ var trap_context:Dictionary={}
 var item_context:Dictionary={}
 var assist_context:Dictionary={}
 var fate_context:Dictionary={}
+var reaction_context:Dictionary={}
 var turn_speed_inverted:=false # Cached at energy grant; a room may change later this turn.
 var party: Array[BattlePokemon] = []
 var enemies: Array[BattlePokemon] = []
@@ -82,6 +83,7 @@ func start_with(members: Array[BattlePokemon], cards: Array[BattleCardInstance],
     item_context.clear()
     assist_context.clear()
     fate_context.clear()
+    reaction_context.clear()
     statistics = RunStatistics.battle()
     seed_value = battle_seed
     relic = selected_relic if TacticalContent.RELICS.has(selected_relic) else "field_kit"
@@ -162,6 +164,7 @@ func intent_for(defender: BattlePokemon) -> Dictionary:
     if result["kind"] in ["attack","charge","barrage"]:
         var move := TacticalMoves.definition(TacticalMoves.key_for(int(result["move_id"]))).duplicate(true)
         move["type"] = result.get("type",move.get("type","normal"))
+        if player_moves_version>=12:move=PlayerMoveReactions.move_type(self,enemy(),move);result["type"]=move["type"]
         result["damage_class"] = move.get("damage_class","physical")
         var pressure := 0.55 if result["kind"] == "barrage" else (1.2 if result["kind"] == "charge" else 1.0)
         result["value"] = PokemonStats.damage(enemy(),defender,move,1.0 if int(result["move_id"]) == 165 else multiplier(move["type"],defender,int(result["move_id"])),0,pressure,BattleWeather.kind(powers))
@@ -185,6 +188,7 @@ func card_view(card: BattleCardInstance) -> Dictionary:
         if PlayerTechniques.active(self):view=PlayerTechniques.prepare(self,actor,view)
         if actor.content_version >= 2 and card.owner_uid != 0 and view.has("move_id"):
             view["type"] = PokedexExpansion.move_type(actor.species_id,int(view["move_id"]),str(view.get("type","normal")))
+        if player_moves_version>=12:view=PlayerMoveReactions.card_type(self,actor,view)
         if card.owner_uid == turn_speed_owner_uid and has_relic("ace_core") and not turn_flags.has("ace_core"):
             view["core_discount"] = mini(1,int(view["cost"]))
             view["cost"] = maxi(0,int(view["cost"])-1)
@@ -563,6 +567,7 @@ func capture_enemy(energy_cost: int = 1) -> String:
     target.hp = 0
     target.knocked_out = true
     if player_moves_version>=11:PlayerMoveFate.on_knockout(self,target.uid)
+    if player_moves_version>=12:PlayerMoveReactions.on_switch(self,target.uid)
     target.statuses.clear()
     opening()["captured"] = true
     if BossBattleRules.modern(self):BossBattleEffectsP3.source_left(self,target.uid)
@@ -616,6 +621,7 @@ func _enemy_action() -> void:
             if state.has(key):state[key].merge({"charge":0,"recharge":false,"lock":0,"lock_left":0},true)
         if state.has("effects_v4"):
             state["effects_v4"]["actions"]+=1;state["effects_v4"]["last_failed"]=true;state["effects_v4"]["air_cancel"]=false
+    elif player_moves_version>=12 and action.get("powdered",false):PlayerMoveReactions.explode(self,action)
     elif PlayerTechniques.active(self) and action.get("player_guarded",false) and not enemy_definitions[enemy_index].has("boss_moves_version") and action["kind"]=="status":
         _record("cancel","보호 기술 · 상대 상태 효과 차단")
     elif enemy_definitions[enemy_index].get("boss_moves_version") == 4:
@@ -682,6 +688,7 @@ func _enemy_action() -> void:
     if player_moves_version>=10:PlayerMoveAssist.after_enemy(self)
     BattleWeather.end_round(self,weather_foe)
     if player_moves_version>=11:PlayerMoveFate.after_enemy(self)
+    if player_moves_version>=12:PlayerMoveReactions.after_enemy(self)
     if _outcome(): return
     if not active().alive():
         phase = REPLACE
@@ -777,6 +784,7 @@ func _damage(target: BattlePokemon, amount: int, piercing := false,damage_class 
     if target.alive() or target.knocked_out: return
     target.knocked_out = true
     if player_moves_version>=11:PlayerMoveFate.on_knockout(self,target.uid)
+    if player_moves_version>=12:PlayerMoveReactions.on_switch(self,target.uid)
     if target.uid < 0:
         if has_relic("seed_relay") and target.statuses.has("seed"): _relay = target.statuses["seed"].duplicate(true)
     else:
@@ -837,6 +845,7 @@ func _clear_statuses() -> void:
     item_context.clear()
     assist_context.clear()
     fate_context.clear()
+    reaction_context.clear()
     BattleWeather.clear(powers)
     _relay.clear()
     for pokemon: BattlePokemon in party+enemies:
@@ -903,6 +912,7 @@ func snapshot() -> Dictionary:
     if not item_context.is_empty():state["item_context"]=item_context.duplicate(true)
     if not assist_context.is_empty():state["assist_context"]=assist_context.duplicate(true)
     if not fate_context.is_empty():state["fate_context"]=fate_context.duplicate(true)
+    if not reaction_context.is_empty():state["reaction_context"]=reaction_context.duplicate(true)
     if not exchange_context.is_empty():state["exchange_context"]=exchange_context.duplicate(true)
     return state
 func multiplier(attack: String, target: BattlePokemon,move_id:=0) -> float:
