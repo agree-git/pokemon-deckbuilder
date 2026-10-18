@@ -267,3 +267,16 @@ python3 .dev-materials/tools/check.py --game-dir . --suite player-tactics --godo
 ```
 
 전용2검사는 새919카드 미리보기/32추가 효과·접지/타입/설치 연속 기절/교대 인계·제한/회복봉인/보호·대타 조합,모든32효과 저장/복원 뒤 같은 입력·설치 입장1회·위조 거부·실제 수정 전v10 저장과3시드 미래69전투 정의를 확인한다. suite는 동결v10 전용3개와 보스P3/v8호환·전투/원정/성장/기술머신/시작 회귀까지16스크립트다. 실제 창 검사는 포함하지 않으며 빌드/export/Windows CI는 계속 보류한다.
+
+## 플레이어 능력·타입 교환과 공격 복사 / 원정 v12
+
+플레이어 효과4에서 `PlayerMoveExchange`가 v10/v11 위에30카드 특징을 추가한다. `PlayerTechniques.prepare`는 공격 복사를 먼저 확장한 뒤 기존 특징과v12 규칙을 적용한다. 실제 원본 카드/UID/비용을 유지하고 새 카드를 생성하거나 RNG를 소비하지 않는다. 순수 미리보기와 실행 전 단계 훔치기를 분리한다. 동결 NPC 엔진의 급소/단계 무시용 복제에서 전투 능력치가 빠지지 않도록 새 버전에서만 예고 피해를 보정한다.
+
+`exchange_context`는 전투 타입/기본 능력치/한 턴 착지/직전 사용 기술/순환 횟수/스케치를 보관한다. 실제 `p.types`와 파생 `battle_stats`를 전투 계산/연출에 사용하고 저장 행에는 원래 타입을 기록한다. 복원 마지막에 타입 배열을 분리하고 현재 문맥을 재적용한다. 교대/전투 종료에 원래 타입/능력치를 복구한다. `BattleFrame`에도 현재 능력치를 보관한다. 새 버전에서도v11 설치·제한·인계 훅은 유지한다. [전체 각색](player-move-exchange.md).
+
+```bash
+python3 .dev-materials/tools/import_player_move_exchange.py --game-dir . --csv-dir /path/to/pinned-csv
+python3 .dev-materials/tools/check.py --game-dir . --suite player-exchange --godot /path/to/godot-4.7.2 --timeout 480
+```
+
+전용2개 검사는919카드 미리보기 순수성/설명과 바뀌지 않은889카드 피해 동등성,30효과·복사/잠꼬대·급소 연타·전투 정리·실제 다수 상대 원정 저장/재개·문맥 위조 거절을 확인한다. 실제 수정 전v11 저장과 지문을 수용하고3시드 경로/모든 미래69전투 정의가 동일한지 대조한다. suite는 기존v11 두 개/v10 세 개와 보스P3/v8호환·경로/전투/능력/날씨·저장69전·성장·혼합69전·TM/시작까지18스크립트다. 검사기는 게임 입력만 임시 복사하며 개인 저장과 분리한다. 실제 창/실제 입력·빌드/export/Windows CI는 실행하지 않는다.
