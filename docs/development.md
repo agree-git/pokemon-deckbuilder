@@ -181,3 +181,17 @@ godot --headless --path . --script .dev-materials/tools/audit_boss_aces.gd
 ```
 
 후속 효과 구현은 새 전술 버전을 먼저 설계한다. 기존v1~v5 저장을 읽고 다음 전투를 만들 때도 이전 전술을 유지해야 한다. 단순히 `BossTactics.build`를 덮어쓰거나 현행 지문을 바꾸는 것만으로 호환이 해결되지 않는다. 원작 상태/능력/부가효과가 플레이어 카드에 존재해도 적 공격 경로에 연결되어 있는지 별도로 검증한다.
+
+## 보스 기술 효과 P0 구현
+
+현재 [P0 적용 현황](boss-move-effects.md)은 새 원정v6의19대표/46기술이다. main의 `scripts/tactics/boss_move_effects.gd`가 기술별 예고/효과를 처리하고 `data/boss_move_effects_v6.json`이 동결 입력이다. `BossTactics.build`의 마지막 인자가 새 효과 선택이며 기존 기본값은false다. `CampaignRoute`가 v6의 실제 마지막 대표에만 선택하므로 일목의 첫 네이티오와 v1~v5의 미래 전투는 바뀌지 않는다. `JourneySnapshot`은 정확한 정수 기술/패턴/원정 버전을 검사한다.
+
+```bash
+python3 .dev-materials/tools/check.py --game-dir . --suite boss-effects --godot /path/to/godot-4.7.2
+# 기존 v5 전137파티 검사는 source route_version=5로 명시:
+godot --headless --path . --script .dev-materials/tests/test_boss_parties.gd
+```
+
+`tools/import_boss_move_effects.py --game-dir /path/to/main`은 고정 명세+원본 메타에서 v6 데이터를 결정적으로 생성한다. 이 v6 입력은 이미 사용한 저장의 미래 재생성을 위해 동결한다. 기존 P0를 수정하거나 P1/P2를 확장할 때 새 버전과 별도 입력을 만들고 호환을 설계한다. 전체 목표 JSON은 당시의 기준 자료로 유지하며,리뷰 Markdown/엑셀에는 실제 부분 적용 현황을 함께 표시한다.
+
+실제 창 검사는 `native_boss_move_effects.gd`와 `native_pointer.py`로 카틀레야·이슬·은송의 명상/수면/날개쉬기를 확인한다. `BOSS_EFFECT_REVIEW_DIR`과 격리 프로필을 지정한다. 무작위 손패에 특정 소유 카드가 있다고 가정하지 않고,수면 카드 검사 시 실제 소유 카드를 더미에서 손패로 옮긴 fixture를 사용한다. 해당 촬영/검사는 전체 전투를 사람이 공략한 검사가 아니다.

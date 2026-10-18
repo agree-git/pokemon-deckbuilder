@@ -24,7 +24,7 @@ func run() -> void:
     check(BossParties.aces("gym:tate_liza") == [338,337],"Joint Tate/Liza keeps both Solrock and Lunatone")
     check(BossParties.aces("gym:blue") == [18] and BossParties.aces("champion:blue") == [18],"Gym and champion Blue remain distinct roles")
     var catalog := VisualCatalog.new()
-    var route := CampaignRoute.new(2026)
+    var route := CampaignRoute.new(2026,5)
     var helper := TacticalJourney.new(2026,"field_kit",[1,4,7],true)
     var original_entries := var_to_bytes(BossParties.entries())
     var all_rosters := roster()
