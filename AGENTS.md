@@ -1,30 +1,20 @@
 # 개발 이어가기
 
-게임 코드는 이 `main`이 기준이다. 개발 자료의 첫 문서는 [START_HERE.md](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/START_HERE.md)다.
+게임은 `main`, 문서·검사·작은 도구는 `development-materials`가 기준이다. 최신 사용자 지시가 우선한다.
 
-1. `git status --short`와 최근 커밋을 확인하고 기존 변경을 보존한다.
-2. `git fetch origin main development-materials:refs/remotes/origin/development-materials` 후 `git show origin/development-materials:START_HERE.md`를 읽는다.
-3. 자료 브랜치의 `HANDOFF.md` → `AGENTS.md` → `docs/rules.md` → 필요한 `docs/development.md` 순서로 확인한다.
-4. 진행 중인 게임 checkout을 자료 확인 때문에 다른 브랜치로 전환하지 않는다. 자료 추출 방법은 START_HERE에 있다.
+## 최소 시작 경로
 
-Godot **4.7.2**, 1920×1080 UI. 전국도감1,025종 + 지역/상시폼 포함1,412항목, 최대3마리, 69전투, 통합 카드 덱, 개체값/노력치 없음이 확정 범위다. 최신 사용자 요청이 문서보다 우선한다. 보류한 밸런스/경제 튜닝을 자동 재개하지 않는다.
+1. `git status --short`와 최근 커밋으로 사용자 변경을 확인·보존한다.
+2. `git fetch origin main development-materials:refs/remotes/origin/development-materials` 후 자료의 [START_HERE.md](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/START_HERE.md) → 짧은 `HANDOFF.md` → `TASK_INDEX.md`에서 **해당 작업 항목만** 읽는다.
+3. 기존 `.dev-materials/`는 로컬 수정/원격 기준을 확인한 뒤 재사용한다. 자료 확인 때문에 게임 checkout을 전환하거나 수정 중인 자료를 덮어쓰지 않는다. 최초 환경 준비만 자료의 `docs/setup.md`를 따른다.
+4. `docs/rules.md`, `docs/development.md`, `docs/validation.md`, 과거 기록 전체를 시작할 때 일괄 읽지 않는다. 필요한 절/이전 근거만 검색해서 확장한다. 한 작업에서 이미 확인한 파일은 변경되거나 재확인이 필요할 때만 다시 읽는다.
 
-원정v5 이상은 승인된137대진 파티/마지막 대표를 `data/boss_parties.json`에서 적용한다. v1~v4 원정의 경로·난수·파티 복원용 기존 JSON은 수정하지 않는다.
+## 항상 보존할 것
 
-새 원정v9는 별도 `boss_move_effects_v9.json`/효과버전4로 검토한138대표/실전233기술의 카드 전투 효과를 적용한다. 플레이어919기술의 원작 효과 전체 구현을 뜻하지 않는다. v6/v7/v8 입력·엔진·기존 원정의 현재/미래 전투·난수는 동결한다. 새 `BossBattleRules`는 v8/v9 문맥을 분기하며 고유 상태는 선택 `boss_context`와 `effects_v4`에 저장한다. 후속 확장은 사용 중인 입력·동작을 덮어쓰지 않고 새 버전으로 설계한다.
-
-새 원정v10은 `player_move_cards_v10.json`/`PlayerMoveCards`/`PlayerMoveRules`로 플레이어919기술 중311개의 특징을 보완한다. 원작 수치의 완전 복제보다 기술의 개성을 카드 규칙으로 살리는 것이 사용자 기준이다. 선택 `player_moves_version:2`와 `move_context`에 충전·재충전·보호·대타·봉인 등을 저장한다. v1~v9 플레이어 카드 정의와 보스 전술·승인 파티·경로 RNG는 유지한다. v10 입력도 게시 후 덮어쓰지 않는다. 적용/각색/남은 단순 변환은 자료의 `docs/player-move-cards.md`를 확인한다.
-
-새 원정v11은 별도 `PlayerMoveTactics`/`player_move_tactics_v11.json`과 선택 `technique_context`로32카드를 추가 보완해 누적342기술이다. `PlayerTechniques`가 효과1/2/3을 분기한다. v10 입력·엔진은 그대로 두고 v11도 게시 후 동결한다. 설치는 순차 입장에 적용하며 울부짖기 계열은 승인 파티/마지막 대표를 유지하는 전술 밀어내기로 각색한다. 자세한 범위는 자료의 `docs/player-move-tactics.md`를 따른다.
-
-게임은 main, 문서·현재 검사는 development-materials에 따로 반영한다. 사용자 변경·게임 저장 호환·난수·사용자 배경 좌표·출처 고지를 보존한다. 캐시/개인 저장/빌드/큰 검토 산출물과 중복 게임 사본을 커밋하지 않는다. 다른 영구 원격 브랜치나 worktree를 임의로 만들지 않는다.
-
-작업 종료/중단 시 자료 브랜치의 HANDOFF를 짧게 갱신하고 실제 검증·미완료·다음 단계를 기록한다. 한국어로 간결하게 설명하며 실행하지 않은 검사와 Windows 호환성을 완료로 보고하지 않는다.
-
-사용자가 main 반영을 승인했지만 EXE 생성은 계속 보류했다. 수정·검증·main push는 진행하며 새 빌드/export/Windows CI는 실행하지 않는다. Windows preview는 수동 실행 전용이며 명시적 빌드 재개 요청 전에는 실행하거나 push 자동 빌드를 복원하지 않는다.
-
-사용자 지시: 기술 효과 구현과 소스/모델 검사를 먼저 끝내고, 실제 창 검사는 이후 한꺼번에 진행한다. 구현 도중 기술별 X11/native/UI 실행을 반복하지 않는다. EXE/빌드/export/Windows CI 보류는 별도로 계속 유지한다. 상대의 구속 기술은 수동 교대와 소유 기술 카드의 자동 교대를 모두 제한하고, 현재 동료 기술/도구·구속 해제·시전자 기절·필수 교체를 정상 처리한다.
-
-새 원정v12의 플레이어 효과4는 능력 단계/기본 능력치 교환·전투 타입 변경·공격 복사30카드를 추가 보완해 누적371기술이다. 별도 `PlayerMoveExchange`/`player_move_exchange_v12.json`/선택 `exchange_context`를 사용한다. 저장에는 원래 타입을 남기고 복원 후 현재 전투 타입/능력치를 재적용한다. 복사는 적격 공격만 원래 카드 비용/UID로 실행하며 새 카드나 영구 기술 슬롯을 추가하지 않는다. 게시한v10/v11 입력·엔진과 기존v1~v11 원정 규칙은 유지하고v12도 게시 후 동결한다. [v12 범위/각색/남은 항목](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-exchange.md)을 따른다.
-
-새 원정v13의 플레이어 효과5는 필드·룸·진영 교환20카드를 추가 보완해 누적390기술이다. 별도 `PlayerMoveFields`/`player_move_fields_v13.json`과 선택 `field_context`를 사용한다. 트릭룸은 느린 쪽의 턴 시작 추가 에너지로 각색하며 지급 시 비교 방향을 선택 `turn_speed_inverted`에 저장한다. 코트체인지는 설치4종/진영 효과의 남은 기간을 교환하고 다음 입장부터 적용한다. 기존v1~v12 규칙과 동결v10~v12 입력/엔진을 유지하며v13도 게시 후 동결한다. [전체 범위/각색/남은 항목](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-fields.md)을 따른다. 실제 창/빌드/EXE 보류 지시는 계속 적용한다.
+- Godot4.7.2,1920×1080 UI,전국1,025종/지역·상시폼 포함1,412항목,최대3마리,69전투,통합 카드 덱,개체값/노력치 없음. 승인137대진 파티/138대표와 마지막 대표,사용자 배경 좌표·UID·저장·경로/RNG·에셋 출처를 유지한다.
+- 원작 완전 복제보다 기술 특징의 카드 각색이 사용자 기준이다. 게시된 버전별 JSON/전용 엔진은 동결하며 후속 효과는 새 버전/분기로 설계한다. 최신 버전·문맥·파일 지도는 자료의 `HANDOFF.md`/작업별 안내를 확인한다.
+- 밸런스·경제·경험치 튜닝,새 특성/PP·전투 전용 폼·브레이크/고정 기술 버튼을 임의로 추가하지 않는다. 구속은 수동/소유 카드 자동 교대 모두 제한하고,해제/시전자 기절/필수 교대를 보존한다.
+- 사용자 승인으로 수정·검증·main push는 진행한다. **EXE/빌드/export/Windows CI는 명시적 재개 전 금지. 실제 창/native/X11 검사는 기술 구현 완료 뒤 일괄 진행.** 수동 workflow를 자동 빌드로 바꾸지 않는다.
+- 변경에 필요한 검사부터 실행한다. 문서만 바꾸면 링크/참조/변경 범위를 확인하며 게임 전체 검사를 반복하지 않는다. 공통 계산·저장·버전 분기 수정은 관련 이전 버전/원정 회귀까지 확대한다. 통과 뒤 관련 코드 변경·실패·새 우려가 없으면 같은 검사를 반복하지 않는다.
+- 다른 영구 원격 브랜치/worktree·강제 push를 임의로 만들지 않는다. 캐시/개인 저장/빌드/긴 로그/중복 게임 사본은 커밋하지 않는다. 게임과 자료는 각각 반영한다.
+- 종료 시 자료 `HANDOFF.md`는 현재 상태/실제 검증/미완료/다음 한 단계만 남긴다. 과거는 고정 커밋 링크로 보관한다. 한국어로 간결하게 보고하고 미실행 검사를 완료로 쓰지 않는다.
