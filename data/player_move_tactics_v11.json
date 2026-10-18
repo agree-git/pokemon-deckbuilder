@@ -1,0 +1,501 @@
+{
+  "schema_version": 1,
+  "route_version": 11,
+  "player_moves_version": 3,
+  "base_sha256": "cb17b795f6e3ee8309a1f8151846bbc0a79a06cf1127d01739539e276aaf1255",
+  "source": {
+    "pokeapi_commit": "5ee47a9a9c1229632ec4b473a9c1c53026e005dd",
+    "csv_sha256": {
+      "moves.csv": "8aafd37bf78f19471495c05b201545180f50f0a08a2a2a844d69f9837dd39ac9",
+      "move_meta.csv": "93b92d5bddf4fc1536ca0a647c20453bf92e6389010f33ca6fc4c5e9c54363be",
+      "move_flag_map.csv": "399cf005933418f406b94729903bd1528e9088bddc3bc1966be6c442a625da1b",
+      "move_effect_prose.csv": "f6d9bf0d28433a010a8b8b6a0a14d1ef72fbfcb997717f71b0e34483b7ee9697"
+    }
+  },
+  "moves": {
+    "46": {
+      "move_id": 46,
+      "name": "울부짖기",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "파티 순서를 바꾸는 강제 교대 대신 상대의 행동 예고를 다음 칸으로 밀어냄 · 상대당 턴1회 · 충전/연속 행동 중단"
+      ],
+      "extension": "push"
+    },
+    "18": {
+      "move_id": 18,
+      "name": "날려버리기",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "파티 순서를 바꾸는 강제 교대 대신 상대의 행동 예고를 다음 칸으로 밀어냄 · 상대당 턴1회 · 충전/연속 행동 중단"
+      ],
+      "extension": "push"
+    },
+    "525": {
+      "move_id": 525,
+      "name": "드래곤테일",
+      "type": "dragon",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 60,
+      "upgrade": {
+        "move_power": 75
+      },
+      "card_notes": [
+        "파티 순서를 바꾸는 강제 교대 대신 상대의 행동 예고를 다음 칸으로 밀어냄 · 상대당 턴1회 · 충전/연속 행동 중단"
+      ],
+      "extension": "push"
+    },
+    "509": {
+      "move_id": 509,
+      "name": "배대뒤치기",
+      "type": "fighting",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 60,
+      "upgrade": {
+        "move_power": 75
+      },
+      "card_notes": [
+        "파티 순서를 바꾸는 강제 교대 대신 상대의 행동 예고를 다음 칸으로 밀어냄 · 상대당 턴1회 · 충전/연속 행동 중단"
+      ],
+      "extension": "push"
+    },
+    "100": {
+      "move_id": 100,
+      "name": "순간이동",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "사용 뒤 이번 턴 다음 수동 교대 비용0 · 구속/뿌리 제한 유지"
+      ],
+      "extension": "pivot",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "575": {
+      "move_id": 575,
+      "name": "막말내뱉기",
+      "type": "dark",
+      "cost": 1,
+      "damage_class": "status",
+      "stat_changes": {
+        "attack": -1,
+        "special_attack": -1
+      },
+      "stat_target": "enemy",
+      "card_notes": [
+        "사용 뒤 이번 턴 다음 수동 교대 비용0 · 구속/뿌리 제한 유지"
+      ],
+      "extension": "pivot",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "881": {
+      "move_id": 881,
+      "name": "썰렁개그",
+      "type": "ice",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "사용 뒤 이번 턴 다음 수동 교대 비용0 · 구속/뿌리 제한 유지",
+        "눈 날씨5턴"
+      ],
+      "extension": "pivot",
+      "weather": "snow",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "226": {
+      "move_id": 226,
+      "name": "배턴터치",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "이번 턴 다음 교대에 자신의 능력 단계와 남은 대타HP 인계 · 수동 교대 비용0 · 구속/뿌리 제한 유지"
+      ],
+      "extension": "baton",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "880": {
+      "move_id": 880,
+      "name": "꼬리자르기",
+      "type": "normal",
+      "cost": 2,
+      "damage_class": "status",
+      "card_notes": [
+        "최대HP½ 소비 · 최대HP¼의 대타 생성 · 이번 턴 다음 교대에 대타 인계/수동 교대 비용0"
+      ],
+      "extension": "shed",
+      "upgrade": {
+        "cost": 1
+      }
+    },
+    "446": {
+      "move_id": 446,
+      "name": "스텔스록",
+      "type": "rock",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대 필드에 스텔스록 · 다음 상대 입장마다 최대HP⅛×바위 상성 피해 · 중첩 없음"
+      ],
+      "extension": "rocks",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "191": {
+      "move_id": 191,
+      "name": "압정뿌리기",
+      "type": "ground",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대 필드 압정1~3겹 · 땅에 닿은 다음 상대 입장 시 최대HP⅛/⅙/¼ 피해"
+      ],
+      "extension": "spikes",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "390": {
+      "move_id": 390,
+      "name": "독압정",
+      "type": "poison",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대 필드 독압정1~2겹 · 접지한 다음 상대에게 독3/5회 · 독 타입이 흡수하고 강철/비행은 면역"
+      ],
+      "extension": "toxic",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "564": {
+      "move_id": 564,
+      "name": "끈적끈적네트",
+      "type": "bug",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "다음 상대가 땅에 닿아 입장하면 스피드-1 · 중첩 없음"
+      ],
+      "extension": "web",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "20": {
+      "move_id": 20,
+      "name": "조이기",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 15,
+      "upgrade": {
+        "move_power": 30
+      },
+      "card_notes": [
+        "실제 명중 뒤4상대턴 동안 행동 종료마다 최대HP⅛ 구속 피해 · 시전자 교대/기절 시 해제 · 현재 NPC는 자발 교대 없음"
+      ],
+      "extension": "bind"
+    },
+    "35": {
+      "move_id": 35,
+      "name": "김밥말이",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 15,
+      "upgrade": {
+        "move_power": 30
+      },
+      "card_notes": [
+        "실제 명중 뒤4상대턴 동안 행동 종료마다 최대HP⅛ 구속 피해 · 시전자 교대/기절 시 해제 · 현재 NPC는 자발 교대 없음"
+      ],
+      "extension": "bind"
+    },
+    "83": {
+      "move_id": 83,
+      "name": "회오리불꽃",
+      "type": "fire",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 35,
+      "upgrade": {
+        "move_power": 50
+      },
+      "card_notes": [
+        "실제 명중 뒤4상대턴 동안 행동 종료마다 최대HP⅛ 구속 피해 · 시전자 교대/기절 시 해제 · 현재 NPC는 자발 교대 없음"
+      ],
+      "extension": "bind"
+    },
+    "250": {
+      "move_id": 250,
+      "name": "바다회오리",
+      "type": "water",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 35,
+      "upgrade": {
+        "move_power": 50
+      },
+      "card_notes": [
+        "실제 명중 뒤4상대턴 동안 행동 종료마다 최대HP⅛ 구속 피해 · 시전자 교대/기절 시 해제 · 현재 NPC는 자발 교대 없음"
+      ],
+      "extension": "bind"
+    },
+    "328": {
+      "move_id": 328,
+      "name": "모래지옥",
+      "type": "ground",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 35,
+      "upgrade": {
+        "move_power": 50
+      },
+      "card_notes": [
+        "실제 명중 뒤4상대턴 동안 행동 종료마다 최대HP⅛ 구속 피해 · 시전자 교대/기절 시 해제 · 현재 NPC는 자발 교대 없음"
+      ],
+      "extension": "bind"
+    },
+    "463": {
+      "move_id": 463,
+      "name": "마그마스톰",
+      "type": "fire",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 100,
+      "upgrade": {
+        "move_power": 115
+      },
+      "card_notes": [
+        "실제 명중 뒤4상대턴 동안 행동 종료마다 최대HP⅛ 구속 피해 · 시전자 교대/기절 시 해제 · 현재 NPC는 자발 교대 없음"
+      ],
+      "extension": "bind"
+    },
+    "611": {
+      "move_id": 611,
+      "name": "엉겨붙기",
+      "type": "bug",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 20,
+      "upgrade": {
+        "move_power": 35
+      },
+      "card_notes": [
+        "실제 명중 뒤4상대턴 동안 행동 종료마다 최대HP⅛ 구속 피해 · 시전자 교대/기절 시 해제 · 현재 NPC는 자발 교대 없음"
+      ],
+      "extension": "bind"
+    },
+    "779": {
+      "move_id": 779,
+      "name": "집게덫",
+      "type": "grass",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 35,
+      "upgrade": {
+        "move_power": 50
+      },
+      "card_notes": [
+        "실제 명중 뒤4상대턴 동안 행동 종료마다 최대HP⅛ 구속 피해 · 시전자 교대/기절 시 해제 · 현재 NPC는 자발 교대 없음"
+      ],
+      "extension": "bind"
+    },
+    "819": {
+      "move_id": 819,
+      "name": "썬더프리즌",
+      "type": "electric",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 80,
+      "upgrade": {
+        "move_power": 95
+      },
+      "card_notes": [
+        "실제 명중 뒤4상대턴 동안 행동 종료마다 최대HP⅛ 구속 피해 · 시전자 교대/기절 시 해제 · 현재 NPC는 자발 교대 없음"
+      ],
+      "extension": "bind"
+    },
+    "269": {
+      "move_id": 269,
+      "name": "도발",
+      "type": "dark",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "이번부터3상대턴 동안 변화 기술 사용 금지 · 막힌 예고는 행동 실패 후 다음 칸 진행"
+      ],
+      "extension": "taunt",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "227": {
+      "move_id": 227,
+      "name": "앙코르",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "이번부터3상대턴 동안 직전 사용 기술만 허용 · 다른 예고는 행동 실패 후 다음 칸 진행 · 원래 순서 유지"
+      ],
+      "extension": "encore",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "50": {
+      "move_id": 50,
+      "name": "사슬묶기",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "직전 사용 기술을 이번부터4상대턴 봉인 · 다른 기술은 허용"
+      ],
+      "extension": "disable",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "259": {
+      "move_id": 259,
+      "name": "트집",
+      "type": "dark",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "이번부터4상대턴 동안 같은 기술 연속 성공 금지 · 막힌 행동은 다음 예고로 진행"
+      ],
+      "extension": "torment",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "377": {
+      "move_id": 377,
+      "name": "회복봉인",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "이번부터5상대턴 회복 기술 사용 금지 · 흡수/지속 회복도 HP 증가 차단"
+      ],
+      "extension": "heal_block",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "220": {
+      "move_id": 220,
+      "name": "아픔나누기",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "양쪽 현재HP 평균으로 조정 · 각 최대HP 상한 · 보호/대타에는 양쪽 모두 실패 · 자기 회복 증가에는 회복 감소 유물 반영"
+      ],
+      "extension": "split",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "668": {
+      "move_id": 668,
+      "name": "힘흡수",
+      "type": "grass",
+      "cost": 1,
+      "damage_class": "status",
+      "stat_changes": {
+        "attack": -1
+      },
+      "stat_target": "enemy",
+      "card_notes": [
+        "상대의 감소 전 실제 공격 능력치만큼 자기HP 회복 후 상대 공격-1 · 보호/대타/공격-6에는 실패"
+      ],
+      "extension": "sap",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "432": {
+      "move_id": 432,
+      "name": "안개제거",
+      "type": "flying",
+      "cost": 1,
+      "damage_class": "status",
+      "special": "defog",
+      "card_notes": [
+        "스텔스록/장막/신비의부적 제거",
+        "양쪽 기존 스텔스록/장막과 새 상대 설치4종 제거"
+      ],
+      "extension": "clear"
+    },
+    "229": {
+      "move_id": 229,
+      "name": "고속스핀",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 50,
+      "stat_changes": {
+        "speed": 1
+      },
+      "stat_target": "self",
+      "upgrade": {
+        "move_power": 65
+      },
+      "card_notes": [
+        "명중 시 자기 쪽 스텔스록/구속 해제 · 킬러스핀은 독3회"
+      ],
+      "extension": "spin"
+    },
+    "866": {
+      "move_id": 866,
+      "name": "킬러스핀",
+      "type": "poison",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 30,
+      "upgrade": {
+        "move_power": 45
+      },
+      "card_notes": [
+        "명중 시 자기 쪽 스텔스록/구속 해제 · 킬러스핀은 독3회"
+      ],
+      "extension": "spin",
+      "poison": 3
+    }
+  },
+  "total_enhanced": 342
+}

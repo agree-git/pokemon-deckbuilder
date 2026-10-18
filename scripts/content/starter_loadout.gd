@@ -27,7 +27,7 @@ func member(uid: int) -> BattlePokemon:
         if p.uid == uid: return p
     return null
 func view(card: BattleCardInstance) -> Dictionary:
-    var result := TacticalContent.definition(card,2)
+    var result := TacticalContent.definition(card,PlayerTechniques.version(CampaignRoute.VERSION))
     var owner := member(card.owner_uid)
     result["owner_name"] = owner.display_name if owner != null else ""
     result["species_id"] = owner.species_id if owner != null else 0

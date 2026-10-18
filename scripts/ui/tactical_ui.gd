@@ -944,6 +944,17 @@ func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
             if key in ["infatuation","seals"] and cards_board[key][pokemon.uid]["until"]<turn_shown:continue
             items.append(["counter",{"pressure":"압박","yawn":"졸림","curses":"저주","infatuation":"매혹","silence":"침묵","seals":"봉인","tar":"타르"}[key],{"pressure":"이번 공격 피해20% 감소","yawn":"다음 행동을 마친 뒤 수면","curses":"행동 종료마다 최대HP¼ 피해","infatuation":"시전자 대상 공격 피해 절반","silence":"음성 기술 봉인","seals":"직전에 쓴 기술 봉인","tar":"받는 불꽃 피해2배"}[key]])
 
+    var tactics:Dictionary=_visual_frame.get("technique_context",battle.technique_context if _visual_frame.is_empty() else {})
+    if pokemon.uid<0:
+        for key:String in ["taunt","encore","disable","torment","heal_block","binds"]:
+            var state:Variant=tactics.get(key,{}).get(pokemon.uid,0)
+            var until:int=int(state.get("until",0)) if state is Dictionary else int(state)
+            if until<turn_shown:continue
+            items.append(["counter",{"taunt":"도발","encore":"반복","disable":"금지","torment":"트집","heal_block":"회봉","binds":"구속"}[key],{"taunt":"변화 기술 사용 금지","encore":"직전 사용 기술만 허용","disable":"직전 사용 기술 봉인","torment":"같은 기술 연속 성공 금지","heal_block":"회복 기술/흡수/지속 회복 차단","binds":"시전자 출전 중 최대HP⅛ 지속 피해"}[key]+" · %d회 남음" % (until-turn_shown+1)])
+        for key:String in ["rocks","spikes","toxic","web"]:
+            var count:int=int(tactics.get("hazards",{}).get(key,0))
+            if count>0:items.append(["ground",str(count),{"rocks":"상대 필드 스텔스록","spikes":"상대 필드 압정","toxic":"상대 필드 독압정","web":"상대 필드 끈적끈적네트"}[key]+" · 다음 상대 입장 시 적용"])
+    elif tactics.get("pass",{}).get("source",0)==pokemon.uid:items.append(["counter","인계","이번 턴 다음 교대에 능력 단계/대타 인계"])
     var signature := str([pokemon.uid,items])
     if row.get_meta("status_signature","") == signature: return
     row.set_meta("status_signature",signature)

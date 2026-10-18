@@ -172,4 +172,4 @@ func _train(uid: int,move: int,index: int) -> void:
     rebuild()
 
 func _move_definition(move:int) -> Dictionary:
-    return PlayerMoveCards.definition(TacticalMoves.key_for(move)) if journey.full_campaign and journey.route.generation>=10 else TacticalMoves.definition(TacticalMoves.key_for(move))
+    return PlayerTechniques.definition(TacticalMoves.key_for(move),journey.battle.player_moves_version) if journey.full_campaign and journey.route.generation>=10 else TacticalMoves.definition(TacticalMoves.key_for(move))

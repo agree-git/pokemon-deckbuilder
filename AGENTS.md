@@ -15,6 +15,8 @@ Godot **4.7.2**, 1920×1080 UI. 전국도감1,025종 + 지역/상시폼 포함1,
 
 새 원정v10은 `player_move_cards_v10.json`/`PlayerMoveCards`/`PlayerMoveRules`로 플레이어919기술 중311개의 특징을 보완한다. 원작 수치의 완전 복제보다 기술의 개성을 카드 규칙으로 살리는 것이 사용자 기준이다. 선택 `player_moves_version:2`와 `move_context`에 충전·재충전·보호·대타·봉인 등을 저장한다. v1~v9 플레이어 카드 정의와 보스 전술·승인 파티·경로 RNG는 유지한다. v10 입력도 게시 후 덮어쓰지 않는다. 적용/각색/남은 단순 변환은 자료의 `docs/player-move-cards.md`를 확인한다.
 
+새 원정v11은 별도 `PlayerMoveTactics`/`player_move_tactics_v11.json`과 선택 `technique_context`로32카드를 추가 보완해 누적342기술이다. `PlayerTechniques`가 효과1/2/3을 분기한다. v10 입력·엔진은 그대로 두고 v11도 게시 후 동결한다. 설치는 순차 입장에 적용하며 울부짖기 계열은 승인 파티/마지막 대표를 유지하는 전술 밀어내기로 각색한다. 자세한 범위는 자료의 `docs/player-move-tactics.md`를 따른다.
+
 게임은 main, 문서·현재 검사는 development-materials에 따로 반영한다. 사용자 변경·게임 저장 호환·난수·사용자 배경 좌표·출처 고지를 보존한다. 캐시/개인 저장/빌드/큰 검토 산출물과 중복 게임 사본을 커밋하지 않는다. 다른 영구 원격 브랜치나 worktree를 임의로 만들지 않는다.
 
 작업 종료/중단 시 자료 브랜치의 HANDOFF를 짧게 갱신하고 실제 검증·미완료·다음 단계를 기록한다. 한국어로 간결하게 설명하며 실행하지 않은 검사와 Windows 호환성을 완료로 보고하지 않는다.

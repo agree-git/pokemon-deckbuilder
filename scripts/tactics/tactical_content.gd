@@ -133,7 +133,7 @@ const HELD_ITEMS := {
 }
 
 static func definition(card: BattleCardInstance,player_version := 1) -> Dictionary:
-    var result: Dictionary = ((PlayerMoveCards.definition(card.key) if player_version==2 else TacticalMoves.definition(card.key)) if card.owner_uid != 0 else CARDS.get(card.key,{})).duplicate(true)
+    var result: Dictionary = ((PlayerTechniques.definition(card.key,player_version) if player_version>=2 else TacticalMoves.definition(card.key)) if card.owner_uid != 0 else CARDS.get(card.key,{})).duplicate(true)
     if result.is_empty(): return result
     result["category"] = "technique" if card.owner_uid != 0 else result.get("category","trainer")
     result["uid"] = card.uid
@@ -224,7 +224,7 @@ static func description(view: Dictionary) -> String:
     if view.has("power"): parts.append({"relay":"지속: 기술로 교대 시 최대 HP의 6.3% 보호막","ace":"지속: 출전 유지 시 다음 턴 위력 보정 +20%","supply":"지속: 도구 사용 시 최대 HP의 10.4% 보호막","attrition":"지속: 아군이 건 화상·독·씨앗의 매회 피해 + 상대 최대 HP의 2.1%"}.get(view["power"],BuildConceptContent.POWER_TEXT.get(view["power"],"")))
     if view.has("cleanse"): parts.append("상태이상 해제")
     if view.get("exhaust",false): parts.append("소진")
-    if view.get("player_rules")==2:parts.append_array(view.get("card_notes",[]))
+    if view.get("player_rules",1)>=2:parts.append_array(view.get("card_notes",[]))
     return " · ".join(parts) if not parts.is_empty() else str(view.get("description","효과 없음"))
 
 static func starting_deck(members: Array[BattlePokemon]) -> Array[BattleCardInstance]:

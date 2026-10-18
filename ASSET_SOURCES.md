@@ -105,3 +105,7 @@ Windows 시험 빌드는 공식 Godot **4.7.2** 엔진을 포함합니다. Godot
 `data/player_move_cards_v10.json`은 기존 전국도감의 한국어 기술·위력·대상·상태/단계 자료에 PokéAPI 고정 커밋 [`5ee47a9a9c1229632ec4b473a9c1c53026e005dd`](https://github.com/PokeAPI/pokeapi/tree/5ee47a9a9c1229632ec4b473a9c1c53026e005dd/data/v2/csv)의 `moves.csv`, `move_meta.csv`, `move_flag_map.csv`, `move_effect_prose.csv`를 대조해 만든 카드 전투용 정의입니다. 원본 CSV 지문은 JSON의 `source.csv_sha256`에 기록했습니다. 게임 실행에 원본 CSV나 네트워크가 필요하지 않습니다.
 
 919기술 중311개의 연타·흡수·반동·충전·재충전·조건부 위력·보조 효과를 보완했습니다. 성별/확률/PP/특성 등은 카드 규칙으로 각색하거나 기존 단순 변환으로 남습니다. 새 이미지·음원은 추가하지 않았습니다. [규칙·적용 목록](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-cards.md), [결정적 생성 도구](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/import_player_move_cards.py).
+
+## 플레이어 기술 카드 v11
+
+`data/player_move_tactics_v11.json`은 위 동결v10 JSON과 같은 PokéAPI 고정CSV4종을 대조한32카드 추가 정의입니다. 원본 지문과v10 기반 지문은 JSON에 기록했습니다. 설치·구속·행동 제한·교대 인계·HP 조정은 자체 카드 전투 각색이며 새 에셋은 추가하지 않았습니다. [적용/각색/남은 범위](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-tactics.md), [결정적 생성기](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/import_player_move_tactics.py).
