@@ -750,7 +750,7 @@ func _refresh() -> void:
     var action: Dictionary = _visual_frame.get("intent",battle.intent())
     var names := {"charge":"강공격","attack":"공격","block":"방어","boost":"강화","barrage":"연타","fortify":"방벽","recover":"회복","status":"상태 지시","move":"기술","guard":"전술 방어","prepare":"충전","recharge":"재충전","wait":"휴식"}
     var intent_icon := {"charge":"attack","attack":"attack","block":"shield","boost":"boost","barrage":"attack","fortify":"shield","recover":"heal","status":"counter","move":"attack","guard":"shield","prepare":"boost","recharge":"counter","wait":"counter"}
-    var cancelled: bool = action.get("asleep",false)
+    var cancelled: bool = action.get("asleep",false) or (action.get("boss_moves_version")==3 and (action.get("failed_move",false) or action.get("failed_charge",false)))
     var intent_signature := str([battle.enemy().uid,action,cancelled])
     if _shown_intent != intent_signature:
         UiMotion.pulse(get_node("Intent/Icon"))
@@ -804,6 +804,7 @@ func _refresh() -> void:
         W.fill_bar(party_bars[i],pokemon.hp,pokemon.max_hp)
         button.disabled = busy or not battle.switch_reason(pokemon.uid).is_empty()
         button.tooltip_text = "%d · %s · Lv.%d · %s\n%s XP\n%s\n%s" % [i+1,pokemon.display_name,pokemon.level,catalog.type_name(pokemon.type),TacticalGrowth.progress_text(pokemon),PokemonStats.summary(pokemon),"출전 중" if pokemon.uid == ally.uid else (battle.switch_reason(pokemon.uid) if not battle.switch_reason(pokemon.uid).is_empty() else switch_label.text)]
+        if BossBattleEffects.active_in(battle) and pokemon.uid != ally.uid and BossBattleEffects.entry_damage(battle,pokemon)>0:button.tooltip_text += "\n스텔스록 입장 피해 HP -%d" % BossBattleEffects.entry_damage(battle,pokemon)
         if not pokemon.held_item.is_empty(): button.tooltip_text += "\n"+str(TacticalContent.HELD_ITEMS[pokemon.held_item]["name"])+" · "+str(TacticalContent.HELD_ITEMS[pokemon.held_item]["description"])
         var border := MINT if pokemon.uid == ally.uid else Color("3d555a")
         button.add_theme_stylebox_override("disabled",W.box(Color("203a3d") if pokemon.uid == ally.uid else Color("17262e"),border))
@@ -906,6 +907,18 @@ func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
         items.append(["boost","+%d" % battle.next_attack_bonus,"강화 지시 · 다음 공격 추가 피해 +%d (자속·상성 적용 전)" % PokemonStats.scale(pokemon,battle.next_attack_bonus)])
     if pokemon.uid == battle.active().uid and battle.switch_bonus.has(pokemon.uid):
         items.append(["switch","+3","교체 연계 · 다음 공격 추가 피해 +%d (자속·상성 적용 전)" % PokemonStats.scale(pokemon,3)])
+
+    var board: Dictionary=_visual_frame.get("boss_context",battle.boss_context if _visual_frame.is_empty() else {})
+    if pokemon.uid < 0:
+        if not board.get("guards",{}).get(pokemon.uid,"").is_empty():items.append(["shield","방어","방어 유지 · 다음 자기 행동까지"])
+        if board.get("substitutes",{}).get(pokemon.uid,0)>0:items.append(["shield",str(board["substitutes"][pokemon.uid]),"대타출동 · 대타 HP · 깨진 타격의 초과 피해 없음"])
+        if board.get("roots",{}).get(pokemon.uid,false):items.append(["heal","뿌리","뿌리박기 · 자기 행동 종료 시 최대HP/16 회복"])
+        if board.get("screen",0)>0:items.append(["shield",str(board["screen"]),"빛의장막 · 특수 기술 피해 절반"])
+        if board.get("safeguard",0)>0:items.append(["counter",str(board["safeguard"]),"신비의부적 · 상태 부여 방어"])
+    else:
+        if board.get("rocks",false):items.append(["rock","설치","스텔스록 · 교대 시 최대HP/8 × 바위 상성"])
+        if board.get("traps",{}).has(pokemon.uid):items.append(["counter",str(board["traps"][pokemon.uid]["turns"]) if board["traps"][pokemon.uid]["dot"] else "구속","구속 · 교대 제한 · 고스트는 교대 가능"])
+    if board.get("gravity",0)>0:items.append(["ground",str(board["gravity"]),"중력 · 비행의 땅 무효 해제 · 공중 기술 제한"])
 
     var signature := str([pokemon.uid,items])
     if row.get_meta("status_signature","") == signature: return

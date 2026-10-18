@@ -86,3 +86,9 @@ Windows 시험 빌드는 공식 Godot **4.7.2** 엔진을 포함합니다. Godot
 ## 보스 대표 기술 효과 v7
 
 [boss_move_effects_v7.json](data/boss_move_effects_v7.json)은 같은 고정 PokeAPI 기술 메타와 검토 명세의41대표 적용본입니다. 원작 파티/기술 출처는 위 고정 목록을 유지합니다. 잠자기·잠꼬대/일렉트로빔/솔라빔의 충전 및 날씨 조건은 [Rest](https://pokemondb.net/move/rest), [Sleep Talk](https://pokemondb.net/move/sleep-talk), [Electro Shot](https://pokemondb.net/move/electro-shot), [Solar Beam](https://pokemondb.net/move/solar-beam)을 추가 확인했습니다(2026-10-18). 카드 전투용 고정 연타/연속기 횟수,공개된 잠꼬대 선택,그림자분신 보호막 대체,고정 턴 순서는 자체 각색이며 원작 전체 전투 규칙을 재현한 것은 아닙니다. v6 입력은 그대로 보존했고 새 이미지·음원은 추가하지 않았습니다.
+
+## 보스 대표 기술 효과 v8
+
+[boss_move_effects_v8.json](data/boss_move_effects_v8.json)은 같은 고정 PokeAPI/검토 명세의105대표/실전189기술 적용본입니다. 체중은 기존 고정 도감의 `weight_hg`,접촉/음성/중력 제한 플래그는 같은 PokeAPI 커밋의 [move_flag_map.csv](https://raw.githubusercontent.com/PokeAPI/pokeapi/5ee47a9a9c1229632ec4b473a9c1c53026e005dd/data/v2/csv/move_flag_map.csv)(SHA256 `399cf005933418f406b94729903bd1528e9088bddc3bc1966be6c442a625da1b`)를 별도 동결 입력으로 보관합니다. 카운터/대타출동/뿌리박기/킹실드/성스러운칼/바디프레스 등의 효과는 같은 고정 `move_effect_prose.csv`와 Pokémon Database의 [중력](https://pokemondb.net/move/gravity),[스텔스록](https://pokemondb.net/move/stealth-rock),[자이로볼](https://pokemondb.net/move/gyro-ball),[메탈버스트](https://pokemondb.net/move/metal-burst),[빛의장막](https://pokemondb.net/move/light-screen)에서 추가 대조했습니다(2026-10-18).
+
+고정 턴 순서의 따라가때리기/보복·현재 출전자 반격·NPC 은혜갚기 친밀도255 기준·고정 구속4회 등은 카드 전투용 각색입니다. 설치/장막 해제,대타 HP,실제 접촉 페널티와 상태 배지는 자체 구현/설명입니다. 새 이미지·음원·특성/PP 시스템은 추가하지 않았고 기존 v6/v7 데이터와 엔진을 보존했습니다.
