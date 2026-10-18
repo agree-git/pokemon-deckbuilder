@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "route_version": 17,
+  "player_moves_version": 9,
+  "base_sha256": "1784987e13a8d2a405a48e1983f4a9637a8b36c7b7be8795f2343115a1347103",
+  "source": {
+    "pokeapi_commit": "5ee47a9a9c1229632ec4b473a9c1c53026e005dd",
+    "csv_sha256": {
+      "moves.csv": "8aafd37bf78f19471495c05b201545180f50f0a08a2a2a844d69f9837dd39ac9",
+      "move_meta.csv": "93b92d5bddf4fc1536ca0a647c20453bf92e6389010f33ca6fc4c5e9c54363be",
+      "move_flag_map.csv": "399cf005933418f406b94729903bd1528e9088bddc3bc1966be6c442a625da1b",
+      "move_effect_prose.csv": "f6d9bf0d28433a010a8b8b6a0a14d1ef72fbfcb997717f71b0e34483b7ee9697"
+    }
+  },
+  "moves": {
+    "614": {
+      "move_id": 614,
+      "name": "사우전드애로",
+      "type": "ground",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 90,
+      "upgrade": {
+        "move_power": 105
+      },
+      "card_notes": [
+        "부유/공중 회피를 뚫고 명중 후 착지 · 아직 접지하지 않은 비행 타입 첫 타격은 땅 상성1배 · 이후 일반 땅 상성 · 대타/보호는 착지 차단"
+      ],
+      "item_rule": "arrows"
+    },
+    "271": {
+      "move_id": 271,
+      "name": "트릭",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "양쪽 소지품 교환 · 무소지와 교환 가능 · 전투 종료 시 원래 장비 복구"
+      ],
+      "item_rule": "swap",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "415": {
+      "move_id": 415,
+      "name": "바꿔치기",
+      "type": "dark",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "양쪽 소지품 교환 · 무소지와 교환 가능 · 전투 종료 시 원래 장비 복구"
+      ],
+      "item_rule": "swap",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "516": {
+      "move_id": 516,
+      "name": "기프트패스",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대가 무소지일 때 자신의 소지품 전달 · 전투 종료 시 원래 장비 복구"
+      ],
+      "item_rule": "give",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "278": {
+      "move_id": 278,
+      "name": "리사이클",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "자신이 이번 전투에서 내던지기로 소비한 마지막 소지품 복구 · 현재 무소지 필요 · 탁쳐서떨구기/부식가스의 제거물은 복구 불가"
+      ],
+      "item_rule": "recycle",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "373": {
+      "move_id": 373,
+      "name": "금제",
+      "type": "dark",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대5턴 소지품 효과/도구 카드/내던지기 금지 · 소유권은 유지 · 교대 시 해제"
+      ],
+      "item_rule": "embargo",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "810": {
+      "move_id": 810,
+      "name": "부식가스",
+      "type": "poison",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "보호/대타에 막히지 않은 상대 소지품 제거 · 전투 종료 시 원래 장비 복구 · 리사이클 복구 불가"
+      ],
+      "item_rule": "gas",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "374": {
+      "move_id": 374,
+      "name": "내던지기",
+      "type": "dark",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 40,
+      "upgrade": {
+        "move_power": 55
+      },
+      "card_notes": [
+        "현재 커스텀 소지품6종을 위력40(강화55)으로 던져 소비 · 보호/타입 무효에도 소비 · 금제/매직룸 또는 무소지 중 사용 불가 · 추가 상태 효과 없음"
+      ],
+      "item_rule": "fling"
+    }
+  },
+  "total_enhanced": 411
+}

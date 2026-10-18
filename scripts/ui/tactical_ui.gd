@@ -966,6 +966,10 @@ func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
             var count:int=int(tactics.get("hazards",{}).get(key,0))
             if count>0:items.append(["ground",str(count),{"rocks":"상대 필드 스텔스록","spikes":"상대 필드 압정","toxic":"상대 필드 독압정","web":"상대 필드 끈적끈적네트"}[key]+" · 다음 상대 입장 시 적용"])
     elif tactics.get("pass",{}).get("source",0)==pokemon.uid:items.append(["counter","인계","이번 턴 다음 교대에 능력 단계/대타 인계"])
+    var items_context:Dictionary=_visual_frame.get("item_context",battle.item_context if _visual_frame.is_empty() else {})
+    var embargo:int=int(items_context.get("embargo",{}).get(pokemon.uid,0))
+    if embargo>0:items.append(["counter",str(embargo),"금제 · 소지품 효과/도구/내던지기 정지"])
+    if items_context.get("spent",{}).has(pokemon.uid):items.append(["counter","회수","리사이클로 내던지기 소비물 복구 가능(무소지 필요)"])
     var traps:Dictionary=_visual_frame.get("trap_context",battle.trap_context if _visual_frame.is_empty() else {})
     if traps.get("stand",{}).get(pokemon.uid,false):items.append(["counter","배수","배수의진 · 재사용/자발 교대 제한 · 고스트 교대 허용"])
     for link:Dictionary in traps.get("links",[]):

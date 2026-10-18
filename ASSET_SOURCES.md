@@ -129,3 +129,7 @@ Windows 시험 빌드는 공식 Godot **4.7.2** 엔진을 포함합니다. Godot
 ## 플레이어 기술 카드 v16
 
 `data/player_move_traps_v16.json`은 동결v10~v15 정의와 같은 PokéAPI 고정CSV4종을 대조한7카드 추가 정의입니다. 지속 구속·문어굳히기·배수의진은 카드 전투 각색이며 새 에셋은 없습니다. 기반/원본 SHA256은 JSON에 기록했습니다. [효과/각색](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-traps.md), [결정적 생성기](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/import_player_move_traps.py).
+
+## 플레이어 기술 카드 v17
+
+`data/player_move_items_v17.json`은 동결v10~v16 정의와 같은 PokéAPI 고정CSV4종을 대조한8카드 추가 정의입니다. 사우전드애로·소지품 교환/전달/복구/봉쇄·내던지기는 기존 커스텀 장비6종을 활용한 카드 각색이며 새 에셋은 없습니다. 기반/원본 SHA256은 JSON에 기록했습니다. [효과/각색](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-items.md), [정의 생성기](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/import_player_move_items.py), [피해/공중 파생기](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/derive_player_item_math.py).

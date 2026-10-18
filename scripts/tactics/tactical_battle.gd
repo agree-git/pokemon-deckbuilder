@@ -17,6 +17,7 @@ var field_context:Dictionary={}
 var seal_context:Dictionary={}
 var altitude_context:Dictionary={}
 var trap_context:Dictionary={}
+var item_context:Dictionary={}
 var turn_speed_inverted:=false # Cached at energy grant; a room may change later this turn.
 var party: Array[BattlePokemon] = []
 var enemies: Array[BattlePokemon] = []
@@ -67,6 +68,7 @@ func restart(battle_seed: int = 2026, selected_relic: String = "field_kit", oppo
     start_with(members,cards,opponents,battle_seed,selected_relic,true)
 func start_with(members: Array[BattlePokemon], cards: Array[BattleCardInstance], opponents: Array, battle_seed: int, selected_relic: String, _lead_first := true, acquired: Array[String] = []) -> void:
     if BossBattleRules.modern(self):BossBattleEffectsP3.restore_items(self)
+    if player_moves_version>=9:PlayerMoveItems.restore(self)
     if not exchange_context.is_empty():PlayerMoveExchange.clear(self)
     boss_context.clear()
     move_context.clear()
@@ -75,6 +77,7 @@ func start_with(members: Array[BattlePokemon], cards: Array[BattleCardInstance],
     seal_context.clear()
     altitude_context.clear()
     trap_context.clear()
+    item_context.clear()
     statistics = RunStatistics.battle()
     seed_value = battle_seed
     relic = selected_relic if TacticalContent.RELICS.has(selected_relic) else "field_kit"
@@ -157,7 +160,7 @@ func intent_for(defender: BattlePokemon) -> Dictionary:
         move["type"] = result.get("type",move.get("type","normal"))
         result["damage_class"] = move.get("damage_class","physical")
         var pressure := 0.55 if result["kind"] == "barrage" else (1.2 if result["kind"] == "charge" else 1.0)
-        result["value"] = PokemonStats.damage(enemy(),defender,move,1.0 if int(result["move_id"]) == 165 else multiplier(move["type"],defender),0,pressure,BattleWeather.kind(powers))
+        result["value"] = PokemonStats.damage(enemy(),defender,move,1.0 if int(result["move_id"]) == 165 else multiplier(move["type"],defender,int(result["move_id"])),0,pressure,BattleWeather.kind(powers))
         if result["kind"] == "barrage":
             result["per_hit"] = result["value"]
             result["value"] = int(result["per_hit"])*int(result["hits"])
@@ -226,7 +229,7 @@ func _gain_block(actor: BattlePokemon,amount: int) -> int:
     actor.block += gained
     return gained
 func effective_item(actor:BattlePokemon) -> String:
-    return "" if player_moves_version>=6 and PlayerMoveSeals.read(self)["magic"]>0 else actor.held_item
+    return "" if (player_moves_version>=6 and PlayerMoveSeals.read(self)["magic"]>0) or (player_moves_version>=9 and PlayerMoveItems.suppressed(self,actor)) else actor.held_item
 func defense_bonus(actor: BattlePokemon) -> int:
     return (PokemonStats.scale(actor,4) if effective_item(actor) == "guard_charm" else 0)+(PokemonStats.scale(actor,3) if has_relic("shield_pad") and not turn_flags.has("shield_pad") else 0)
 # Old input/API callers must also own a drawn card; fixed skills cannot bypass draw.
@@ -661,6 +664,7 @@ func _enemy_action() -> void:
     if PlayerTechniques.active(self):PlayerMoveRules.after_enemy(self,weather_foe,player_actor,action,player_status,player_sub,player_stages,player_marks)
     if not saved_air.is_empty() and player_actor.alive() and player_actor==active():PlayerMoveRules.write(self)["charges"][player_actor.uid]=saved_air
     if player_moves_version>=8:PlayerMoveTraps.after_enemy(self,weather_foe,player_actor,action,player_sub)
+    if player_moves_version>=9:PlayerMoveItems.after_enemy(self,player_actor,action,player_sub)
     if player_moves_version>=3:PlayerMoveTactics.after_enemy(self,weather_foe,action,end_hp_before)
     if player_moves_version>=4:PlayerMoveExchange.after_enemy(self,weather_foe,action)
     if player_moves_version>=5:
@@ -812,6 +816,7 @@ func _outcome() -> bool:
     return false
 func _clear_statuses() -> void:
     if BossBattleRules.modern(self):BossBattleEffectsP3.restore_items(self)
+    if player_moves_version>=9:PlayerMoveItems.restore(self)
     if not exchange_context.is_empty():PlayerMoveExchange.clear(self)
     boss_context.clear()
     move_context.clear()
@@ -820,6 +825,7 @@ func _clear_statuses() -> void:
     seal_context.clear()
     altitude_context.clear()
     trap_context.clear()
+    item_context.clear()
     BattleWeather.clear(powers)
     _relay.clear()
     for pokemon: BattlePokemon in party+enemies:
@@ -883,12 +889,14 @@ func snapshot() -> Dictionary:
     if not seal_context.is_empty():state["seal_context"]=seal_context.duplicate(true)
     if not altitude_context.is_empty():state["altitude_context"]=altitude_context.duplicate(true)
     if not trap_context.is_empty():state["trap_context"]=trap_context.duplicate(true)
+    if not item_context.is_empty():state["item_context"]=item_context.duplicate(true)
     if not exchange_context.is_empty():state["exchange_context"]=exchange_context.duplicate(true)
     return state
-func multiplier(attack: String, target: BattlePokemon) -> float:
+func multiplier(attack: String, target: BattlePokemon,move_id:=0) -> float:
     var affinity:=BossBattleRules.affinity(self,attack,target) if full_type_chart and BossBattleRules.active_in(self) else (TypeMatchup.multiplier(attack,target.types) if full_type_chart else BattleContent.multiplier(attack,target.type))
     if PlayerTechniques.active(self):affinity=PlayerMoveRules.affinity(self,attack,target,affinity)
-    return PlayerMoveAltitude.affinity(self,attack,target,affinity) if player_moves_version>=7 else affinity
+    if player_moves_version>=7:affinity=PlayerMoveAltitude.affinity(self,attack,target,affinity)
+    return PlayerMoveItems.affinity(self,attack,target,affinity,move_id) if player_moves_version>=9 else affinity
 func notify_changed() -> String:
     changed.emit()
     return ""
