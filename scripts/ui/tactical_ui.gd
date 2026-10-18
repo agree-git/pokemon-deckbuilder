@@ -809,7 +809,7 @@ func _refresh() -> void:
         button.disabled = busy or not battle.switch_reason(pokemon.uid).is_empty()
         button.tooltip_text = "%d · %s · Lv.%d · %s\n%s XP\n%s\n%s" % [i+1,pokemon.display_name,pokemon.level,_combat_type_text(pokemon) if battle.player_moves_version>=4 else catalog.type_name(pokemon.type),TacticalGrowth.progress_text(pokemon),PokemonStats.summary(pokemon),"출전 중" if pokemon.uid == ally.uid else (battle.switch_reason(pokemon.uid) if not battle.switch_reason(pokemon.uid).is_empty() else switch_label.text)]
         if BossBattleRules.active_in(battle) and pokemon.uid != ally.uid and BossBattleRules.entry_damage(battle,pokemon)>0:button.tooltip_text += "\n스텔스록 입장 피해 HP -%d" % BossBattleRules.entry_damage(battle,pokemon)
-        if battle.player_moves_version==5 and pokemon.uid!=ally.uid and PlayerMoveFields.entry_damage(battle,pokemon)>0:button.tooltip_text += "\n진영 설치 입장 피해 HP -%d" % PlayerMoveFields.entry_damage(battle,pokemon)
+        if battle.player_moves_version>=5 and pokemon.uid!=ally.uid and PlayerMoveFields.entry_damage(battle,pokemon)>0:button.tooltip_text += "\n진영 설치 입장 피해 HP -%d" % PlayerMoveFields.entry_damage(battle,pokemon)
         if not pokemon.held_item.is_empty(): button.tooltip_text += "\n"+str(TacticalContent.HELD_ITEMS[pokemon.held_item]["name"])+" · "+str(TacticalContent.HELD_ITEMS[pokemon.held_item]["description"])
         var border := MINT if pokemon.uid == ally.uid else Color("3d555a")
         button.add_theme_stylebox_override("disabled",W.box(Color("203a3d") if pokemon.uid == ally.uid else Color("17262e"),border))
@@ -966,6 +966,11 @@ func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
             var count:int=int(tactics.get("hazards",{}).get(key,0))
             if count>0:items.append(["ground",str(count),{"rocks":"상대 필드 스텔스록","spikes":"상대 필드 압정","toxic":"상대 필드 독압정","web":"상대 필드 끈적끈적네트"}[key]+" · 다음 상대 입장 시 적용"])
     elif tactics.get("pass",{}).get("source",0)==pokemon.uid:items.append(["counter","인계","이번 턴 다음 교대에 능력 단계/대타 인계"])
+    var seals:Dictionary=_visual_frame.get("seal_context",battle.seal_context if _visual_frame.is_empty() else {})
+    for key:String in ["magic","fairy"]:
+        if int(seals.get(key,0))>0:items.append(["counter",str(seals[key]),str(PlayerMoveSeals.TITLES[key])+" · 양쪽 적용 · 남은 상대 행동"])
+    var chant:int=int(seals.get("ally" if pokemon.uid>0 else "foe",0))
+    if chant>0:items.append(["shield",str(chant),"주술 · 진영 급소 방어"])
     var field:Dictionary=_visual_frame.get("field_context",battle.field_context if _visual_frame.is_empty() else {})
     if not field.get("terrain","").is_empty():items.append(["counter",str(field["left"]),str(PlayerMoveFields.TITLES[field["terrain"]])+" · 양쪽 접지 대상 적용"])
     for key:String in ["trick","wonder","mud","water"]:

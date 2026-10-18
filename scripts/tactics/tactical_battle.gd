@@ -14,6 +14,7 @@ var move_context:Dictionary={}
 var technique_context:Dictionary={}
 var exchange_context:Dictionary={}
 var field_context:Dictionary={}
+var seal_context:Dictionary={}
 var turn_speed_inverted:=false # Cached at energy grant; a room may change later this turn.
 var party: Array[BattlePokemon] = []
 var enemies: Array[BattlePokemon] = []
@@ -69,6 +70,7 @@ func start_with(members: Array[BattlePokemon], cards: Array[BattleCardInstance],
     move_context.clear()
     technique_context.clear()
     field_context.clear()
+    seal_context.clear()
     statistics = RunStatistics.battle()
     seed_value = battle_seed
     relic = selected_relic if TacticalContent.RELICS.has(selected_relic) else "field_kit"
@@ -128,12 +130,12 @@ func _grant_turn_energy() -> void:
     _stat("turns_started")
     turn_speed_actor = PokemonStats.effective(active(),"speed")
     turn_speed_enemy = PokemonStats.effective(enemy(),"speed")
-    if player_moves_version==5:
+    if player_moves_version>=5:
         turn_speed_actor=PlayerMoveFields.speed(self,active());turn_speed_enemy=PlayerMoveFields.speed(self,enemy())
     turn_speed_owner_uid = active().uid
     turn_speed_target_uid = enemy().uid
     turn_energy_bonus = 1 if turn_speed_actor > turn_speed_enemy else 0
-    turn_speed_inverted=player_moves_version==5 and PlayerMoveFields.read(self)["trick"]>0
+    turn_speed_inverted=player_moves_version>=5 and PlayerMoveFields.read(self)["trick"]>0
     if turn_speed_inverted:turn_energy_bonus=1 if turn_speed_actor<turn_speed_enemy else 0
     energy = 3+turn_energy_bonus
 func intent() -> Dictionary:
@@ -186,7 +188,7 @@ func card_view(card: BattleCardInstance) -> Dictionary:
             for status: String in ["burn","poison","seed"]:
                 if view.has(status): view["preview_"+status] = int(view[status])+1
         if view.has("condition"): view["condition_active"] = BuildConceptRules.condition(self,actor,str(view["condition"]))
-        if view.has("heal"): view["preview_heal"] = PokemonStats.scale(actor,int(view["heal"])+(6 if actor.held_item == "healing_bell" and view["category"] == "tool" else 0))
+        if view.has("heal"): view["preview_heal"] = PokemonStats.scale(actor,int(view["heal"])+(6 if effective_item(actor) == "healing_bell" and view["category"] == "tool" else 0))
         if view.has("heal") and has_relic("shield_core"): view["preview_heal"] = maxi(1,floori(int(view["preview_heal"])*0.5))
         if view.has("block"): view["preview_block"] = mini(PokemonStats.scale(actor,int(view["block"]))+defense_bonus(actor),MAX_BLOCK-_block_on_entry(actor))
         if view.has("bonus"): view["preview_bonus"] = PokemonStats.scale(actor,int(view["bonus"]))
@@ -199,7 +201,7 @@ func attack_damage(view: Dictionary, actor: BattlePokemon) -> int:
     var switched_attack := int(switch_bonus.get(actor.uid,0))
     if actor != active() and has_relic("switch_power"): switched_attack = 3
     var bonus := next_attack_bonus+switched_attack
-    if actor.held_item == "power_band": bonus += 3
+    if effective_item(actor) == "power_band": bonus += 3
     if enemy().statuses.has("exposed"): bonus += 2
     if view.get("omit_card_bonus",false):bonus-=next_attack_bonus+switched_attack
     var amount := PlayerTechniques.raw_damage(self,actor,enemy(),view,bonus) if PlayerTechniques.active(self) and view.get("category")=="technique" else PokemonStats.damage(actor,enemy(),view,1.0 if int(view.get("move_id",0)) == 165 else multiplier(view.get("type","normal"),enemy()),bonus,1.0,BattleWeather.kind(powers))
@@ -210,7 +212,7 @@ func attack_damage(view: Dictionary, actor: BattlePokemon) -> int:
 func _block_on_entry(actor: BattlePokemon) -> int:
     if actor == active(): return actor.block
     var protection := actor.block+PokemonStats.scale(actor,3*int(powers.get("relay",0)))
-    if actor.held_item == "relay_ribbon" and not turn_flags.has("ribbon_%d" % actor.uid): protection += PokemonStats.scale(actor,5)
+    if effective_item(actor) == "relay_ribbon" and not turn_flags.has("ribbon_%d" % actor.uid): protection += PokemonStats.scale(actor,5)
     if has_relic("relay_cloak") and not turn_flags.has("relay_cloak"): protection += active().block
     return mini(MAX_BLOCK,protection)
 func block_gain(actor: BattlePokemon,amount: int) -> int:
@@ -219,8 +221,10 @@ func _gain_block(actor: BattlePokemon,amount: int) -> int:
     var gained := block_gain(actor,amount)
     actor.block += gained
     return gained
+func effective_item(actor:BattlePokemon) -> String:
+    return "" if player_moves_version>=6 and PlayerMoveSeals.read(self)["magic"]>0 else actor.held_item
 func defense_bonus(actor: BattlePokemon) -> int:
-    return (PokemonStats.scale(actor,4) if actor.held_item == "guard_charm" else 0)+(PokemonStats.scale(actor,3) if has_relic("shield_pad") and not turn_flags.has("shield_pad") else 0)
+    return (PokemonStats.scale(actor,4) if effective_item(actor) == "guard_charm" else 0)+(PokemonStats.scale(actor,3) if has_relic("shield_pad") and not turn_flags.has("shield_pad") else 0)
 # Old input/API callers must also own a drawn card; fixed skills cannot bypass draw.
 func skill_view(key: String) -> Dictionary:
     for card: BattleCardInstance in hand:
@@ -425,9 +429,9 @@ func play_card(uid: int) -> String:
             _draw(2)
             _record("relic","비상 보급함 · 에너지 +1 · 카드 2장",{"relic_key":"supply_core"})
     if PlayerTechniques.active(self) and card.owner_uid!=0:PlayerTechniques.after_card(self,view,actor,target)
-    var contact_stages:=actor.stat_stages.duplicate() if player_moves_version==5 else {}
+    var contact_stages:=actor.stat_stages.duplicate() if player_moves_version>=5 else {}
     if BossBattleRules.active_in(self):BossBattleRules.after_card(self,view,actor)
-    if player_moves_version==5:PlayerMoveFields.prevent_drops(self,actor,contact_stages)
+    if player_moves_version>=5:PlayerMoveFields.prevent_drops(self,actor,contact_stages)
     BuildConceptRules.after_card(self,view,actor)
     if PlayerTechniques.active(self) and card.owner_uid!=0:PlayerMoveRules.finish_card(self,view,actor)
     if BossBattleRules.modern(self):BossBattleEffectsP3.finish_card(self)
@@ -475,7 +479,7 @@ func _change_active(uid: int, technique := false) -> void:
             switch_bonus[uid] = 3
             _relic_stat("switch_power")
     var ribbon := "ribbon_%d" % uid
-    if active().held_item == "relay_ribbon" and not turn_flags.has(ribbon):
+    if effective_item(active()) == "relay_ribbon" and not turn_flags.has(ribbon):
         turn_flags[ribbon] = true
         _gain_block(active(),PokemonStats.scale(active(),5))
     _record("switch",active().display_name+" 출전",{"actor":uid})
@@ -500,6 +504,7 @@ func switch_reason(uid: int) -> String:
     if pokemon == null or not pokemon.alive() or pokemon == active(): return "살아 있는 대기 포켓몬을 선택하세요."
     if phase==PLAYER and PlayerTechniques.active(self) and PlayerMoveRules.rooted(self):return "뿌리박기 중에는 교대할 수 없습니다."
     if phase == PLAYER and BossBattleRules.active_in(self) and BossBattleRules.trapped(self):return "구속 중에는 교대할 수 없습니다. 상대의 기절/구속 해제를 기다리세요."
+    if phase==PLAYER and player_moves_version>=6 and PlayerMoveSeals.locked(self,active()):return "페어리록 중에는 교대할 수 없습니다."
     if phase == PLAYER and energy < manual_switch_cost(): return "수동 교대에는 에너지 %d이 필요합니다. 기술 카드는 무료로 교대합니다." % manual_switch_cost()
     return ""
 func manual_switch_cost() -> int:
@@ -566,7 +571,7 @@ func end_turn() -> String:
     if player_moves_version>=3:PlayerMoveTactics.end_player(self)
     phase = "enemy"
     for pokemon: BattlePokemon in party:
-        if pokemon.alive() and pokemon.held_item == "seed_charm" and ["burn","seed","poison"].any(func(key: String): return enemy().statuses.has(key)):
+        if pokemon.alive() and effective_item(pokemon) == "seed_charm" and ["burn","seed","poison"].any(func(key: String): return enemy().statuses.has(key)):
             var recovered := mini(pokemon.max_hp-pokemon.hp,PokemonStats.scale(pokemon,2))
             pokemon.hp += recovered
             if recovered > 0: _record("heal","생명의 부적",{"target":pokemon.uid,"amount":recovered})
@@ -587,7 +592,7 @@ func _enemy_action() -> void:
     var enemy_hp_before:=weather_foe.hp
     var player_actor:=active()
     var player_status:=player_actor.statuses.duplicate(true)
-    var foe_status:=weather_foe.statuses.duplicate(true) if player_moves_version==5 else {}
+    var foe_status:=weather_foe.statuses.duplicate(true) if player_moves_version>=5 else {}
     var player_stages:=player_actor.stat_stages.duplicate()
     var player_marks:=boss_context.duplicate(true)
     var player_sub:bool=PlayerTechniques.active(self) and PlayerMoveRules.read(self)["substitutes"].get(player_actor.uid,0)>0
@@ -645,13 +650,14 @@ func _enemy_action() -> void:
     var end_hp_before:=weather_foe.hp
     if BossBattleRules.active_in(self):BossBattleRules.end_enemy(self,weather_foe)
     if player_moves_version>=3:PlayerMoveTactics.limit_healing(self,weather_foe,end_hp_before)
-    var contact_foe_stages:=weather_foe.stat_stages.duplicate() if player_moves_version==5 else {}
+    var contact_foe_stages:=weather_foe.stat_stages.duplicate() if player_moves_version>=5 else {}
     if PlayerTechniques.active(self):PlayerMoveRules.after_enemy(self,weather_foe,player_actor,action,player_status,player_sub,player_stages,player_marks)
     if player_moves_version>=3:PlayerMoveTactics.after_enemy(self,weather_foe,action,end_hp_before)
     if player_moves_version>=4:PlayerMoveExchange.after_enemy(self,weather_foe,action)
-    if player_moves_version==5:
+    if player_moves_version>=5:
         PlayerMoveFields.prevent_drops(self,weather_foe,contact_foe_stages)
         PlayerMoveFields.after_enemy(self,weather_foe,player_actor,action,player_status,foe_status,player_stages)
+    if player_moves_version>=6:PlayerMoveSeals.after_enemy(self)
     BattleWeather.end_round(self,weather_foe)
     if _outcome(): return
     if not active().alive():
@@ -679,7 +685,7 @@ func _start_player() -> void:
     if core_preserved: _record("relic","잔류 방벽 · 보호막 절반 보존",{"relic_key":"shield_core"})
     if _ace_uid == active().uid:
         if has_relic("ace_focus"): _relic_stat("ace_focus")
-        active().strength += 2*int(powers.get("ace",0))+(1 if has_relic("ace_focus") else 0)+(1 if active().held_item == "ace_band" else 0)
+        active().strength += 2*int(powers.get("ace",0))+(1 if has_relic("ace_focus") else 0)+(1 if effective_item(active()) == "ace_band" else 0)
     _ace_uid = 0
     _draw(CoreRelics.draw_count(relics))
     _record("turn","턴 %d · 에너지 %d" % [turn,energy])
@@ -693,7 +699,7 @@ func status_damage(pokemon: BattlePokemon, key: String) -> int:
     var amount := PokemonStats.scale(pokemon,2+bonus)
     return floori(amount*1.5) if pokemon.uid < 0 and key in ["burn","poison","seed"] and has_relic("status_core") else amount
 func _tick(pokemon: BattlePokemon) -> void:
-    var field_status_before:=pokemon.statuses.duplicate(true) if player_moves_version==5 else {}
+    var field_status_before:=pokemon.statuses.duplicate(true) if player_moves_version>=5 else {}
     for key: String in ["burn","seed","poison","confusion"]:
         if not pokemon.alive() or not pokemon.statuses.has(key): continue
         var status: Dictionary = pokemon.statuses[key]
@@ -707,7 +713,7 @@ func _tick(pokemon: BattlePokemon) -> void:
             pokemon.statuses[key]["turns"] = int(pokemon.statuses[key]["turns"])-1
             if int(pokemon.statuses[key]["turns"]) <= 0: pokemon.statuses.erase(key)
     if BossBattleRules.active_in(self):BossBattleRules.tick_trap(self,pokemon)
-    if player_moves_version==5:PlayerMoveFields.prevent_status(self,pokemon,field_status_before)
+    if player_moves_version>=5:PlayerMoveFields.prevent_status(self,pokemon,field_status_before)
     if PlayerTechniques.active(self) and pokemon.uid>0:PlayerMoveRules.end_player(self,pokemon)
 func _status_hit(pokemon: BattlePokemon,key: String,status: Dictionary) -> void:
     var health_before := pokemon.hp
@@ -778,9 +784,9 @@ func _outcome() -> bool:
                 _record("relic","씨앗이 "+enemy().display_name+"에게 전이되었습니다.",{"relic_key":"seed_relay"})
             if player_moves_version>=3:
                 _record("enemy_switch",enemy().display_name+" 출전 · 턴과 남은 자원 유지")
-                var entry_status:=enemy().statuses.duplicate(true) if player_moves_version==5 else {}
+                var entry_status:=enemy().statuses.duplicate(true) if player_moves_version>=5 else {}
                 PlayerMoveTactics.enter_enemy(self)
-                if player_moves_version==5:PlayerMoveFields.prevent_status(self,enemy(),entry_status)
+                if player_moves_version>=5:PlayerMoveFields.prevent_status(self,enemy(),entry_status)
                 if not enemy().alive():return _outcome()
             else:_record("enemy_switch",enemy().display_name+" 출전 · 턴과 남은 자원 유지")
         else:
@@ -796,6 +802,7 @@ func _clear_statuses() -> void:
     move_context.clear()
     technique_context.clear()
     field_context.clear()
+    seal_context.clear()
     BattleWeather.clear(powers)
     _relay.clear()
     for pokemon: BattlePokemon in party+enemies:
@@ -856,6 +863,7 @@ func snapshot() -> Dictionary:
     if not technique_context.is_empty():state["technique_context"]=technique_context.duplicate(true)
     if turn_speed_inverted:state["turn_speed_inverted"]=true
     if not field_context.is_empty():state["field_context"]=field_context.duplicate(true)
+    if not seal_context.is_empty():state["seal_context"]=seal_context.duplicate(true)
     if not exchange_context.is_empty():state["exchange_context"]=exchange_context.duplicate(true)
     return state
 func multiplier(attack: String, target: BattlePokemon) -> float:

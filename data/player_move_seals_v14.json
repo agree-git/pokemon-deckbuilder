@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "route_version": 14,
+  "player_moves_version": 6,
+  "base_sha256": "4a970fc9f58ab132138d42ab53b2d779fb2fbcc9d3a414cb520be5d4ec9716d1",
+  "source": {
+    "pokeapi_commit": "5ee47a9a9c1229632ec4b473a9c1c53026e005dd",
+    "csv_sha256": {
+      "moves.csv": "8aafd37bf78f19471495c05b201545180f50f0a08a2a2a844d69f9837dd39ac9",
+      "move_meta.csv": "93b92d5bddf4fc1536ca0a647c20453bf92e6389010f33ca6fc4c5e9c54363be",
+      "move_flag_map.csv": "399cf005933418f406b94729903bd1528e9088bddc3bc1966be6c442a625da1b",
+      "move_effect_prose.csv": "f6d9bf0d28433a010a8b8b6a0a14d1ef72fbfcb997717f71b0e34483b7ee9697"
+    }
+  },
+  "moves": {
+    "478": {
+      "move_id": 478,
+      "name": "매직룸",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "5턴 동안 양쪽 소지품의 지속 효과만 정지 · 소지품 소유/제거 판정은 유지 · 재사용 시 해제 · 이미 얻은 보호막/강화는 유지"
+      ],
+      "seal_rule": "magic",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "381": {
+      "move_id": 381,
+      "name": "주술",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "아군 진영5턴 급소 방어 · 확정 급소/높은 급소 보너스와 급소의 단계 무시를 차단 · 교대해도 유지"
+      ],
+      "seal_rule": "chant",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "587": {
+      "move_id": 587,
+      "name": "페어리록",
+      "type": "fairy",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "현재 턴과 다음 턴의 자발적 교대 금지 · 소유 기술 카드 자동 교대도 금지 · 고스트/기절 후 필수 교대/상대의 강제 교대는 허용 · 재사용은 기간 갱신"
+      ],
+      "seal_rule": "fairy",
+      "upgrade": {
+        "cost": 0
+      }
+    }
+  },
+  "total_enhanced": 393
+}
