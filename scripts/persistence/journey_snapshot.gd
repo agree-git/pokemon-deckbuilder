@@ -19,6 +19,7 @@ static func encode(j: TacticalJourney) -> Dictionary:
     var b := j.battle
     for p: BattlePokemon in j.party+b.party+b.enemies+j.pending_captures:
         pokemon[p.uid] = fields(p,POKEMON_FIELDS)
+        if b.player_moves_version==4:PlayerMoveExchange.canonical(b,p,pokemon[p.uid])
         if p.content_version > 1: pokemon[p.uid]["content_version"] = p.content_version
         if p.evolution_prepared > 0: pokemon[p.uid]["evolution_prepared"] = p.evolution_prepared
         if p.friendship >= 0: pokemon[p.uid]["friendship"] = p.friendship
@@ -40,6 +41,7 @@ static func encode(j: TacticalJourney) -> Dictionary:
     if b.player_moves_version>=2:combat["player_moves_version"]=b.player_moves_version
     if not b.move_context.is_empty():combat["move_context"]=b.move_context.duplicate(true)
     if not b.technique_context.is_empty():combat["technique_context"]=b.technique_context.duplicate(true)
+    if not b.exchange_context.is_empty():combat["exchange_context"]=b.exchange_context.duplicate(true)
     combat["party"] = ids(b.party)
     combat["enemies"] = ids(b.enemies)
     combat["piles"] = [ids(b.hand),ids(b.draw_pile),ids(b.discard),ids(b.exhausted)]
@@ -87,6 +89,7 @@ static func restore(data: Dictionary) -> TacticalJourney:
     b.player_moves_version=int(combat.get("player_moves_version",1))
     b.move_context=combat.get("move_context",{}).duplicate(true)
     b.technique_context=combat.get("technique_context",{}).duplicate(true)
+    b.exchange_context=combat.get("exchange_context",{}).duplicate(true)
     b.party.assign(combat["party"].map(func(uid: int): return pokemon[uid]))
     b.enemies.assign(combat["enemies"].map(func(uid: int): return pokemon[uid]))
     var piles: Array = [b.hand,b.draw_pile,b.discard,b.exhausted]
@@ -96,6 +99,7 @@ static func restore(data: Dictionary) -> TacticalJourney:
     j.battle = b
     j._settled = b if state["settled"] else null
     j.shop_stock = j.camp_states[j.step]["stock"] if j.camp_states.has(j.step) else {}
+    if b.player_moves_version==4:PlayerMoveExchange.reapply(b)
     j.bind_battle()
     return j
 static func integer(value: Variant, minimum: int, maximum: int) -> bool:
@@ -215,9 +219,10 @@ static func validate(data: Variant) -> bool:
     if b["_pending"] not in ["","player","enemy","hazard","card"]: return false
     if b.get("player_moves_version",1)!=PlayerTechniques.version(int(data.get("route_version",1))):return false
     if b.has("player_moves_version") and not b["player_moves_version"] is int:return false
-    if b.has("technique_context") and (b.get("player_moves_version",1)!=3 or not PlayerMoveTactics.valid_context(b["technique_context"],b)):return false
-    if b.has("move_context") and (b.get("player_moves_version",1) not in [2,3] or not PlayerMoveRules.valid_context(b["move_context"],b,cs)):return false
-    if b["_pending"]=="card" and (int(data.get("route_version",1))<9 or b["phase"]!=TacticalBattle.REPLACE or (not b.has("boss_context") and b.get("player_moves_version",1) not in [2,3])):return false
+    if b.has("exchange_context") and (b.get("player_moves_version",1)!=4 or not PlayerMoveExchange.valid_context(b["exchange_context"],b,ps)):return false
+    if b.has("technique_context") and (b.get("player_moves_version",1) not in [3,4] or not PlayerMoveTactics.valid_context(b["technique_context"],b)):return false
+    if b.has("move_context") and (b.get("player_moves_version",1) not in [2,3,4] or not PlayerMoveRules.valid_context(b["move_context"],b,cs)):return false
+    if b["_pending"]=="card" and (int(data.get("route_version",1))<9 or b["phase"]!=TacticalBattle.REPLACE or (not b.has("boss_context") and b.get("player_moves_version",1) not in [2,3,4])):return false
     if b["_pending"]=="hazard" and (int(data.get("route_version",1))<8 or b["phase"]!=TacticalBattle.REPLACE or not b.has("boss_context")):return false
     if b.has("boss_context") and (int(data.get("route_version",1))<(9 if b["enemy_definitions"].any(func(d:Variant):return d is Dictionary and d.get("boss_moves_version")==4) else 8) or not BossBattleRules.valid_context(b["boss_context"],b)):return false
     if b["phase"] == TacticalBattle.REPLACE and b["_pending"].is_empty(): return false

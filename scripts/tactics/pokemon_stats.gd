@@ -29,7 +29,7 @@ static func apply(pokemon: BattlePokemon, full := false) -> void:
 static func effective(pokemon: BattlePokemon, stat: String) -> int:
     var stage := clampi(int(pokemon.stat_stages.get(stat,0)),-6,6)
     var ratio := (2.0+stage)/2.0 if stage >= 0 else 2.0/(2.0-stage)
-    var result := floori(value(pokemon.species_id,pokemon.level,stat)*ratio)
+    var result := floori(int(pokemon.battle_stats.get(stat,value(pokemon.species_id,pokemon.level,stat)))*ratio)
     if stat == "speed" and pokemon.statuses.has("paralysis"): result = floori(result*0.5)
     return maxi(1,result)
 static func scale(pokemon: BattlePokemon, points: int) -> int:

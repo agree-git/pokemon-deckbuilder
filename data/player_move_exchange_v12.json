@@ -1,0 +1,529 @@
+{
+  "schema_version": 1,
+  "route_version": 12,
+  "player_moves_version": 4,
+  "base_sha256": "ee46cbac553dd2736ff20c4781205c3024fe39e4ef52b8c1761a54d95666ab53",
+  "source": {
+    "pokeapi_commit": "5ee47a9a9c1229632ec4b473a9c1c53026e005dd",
+    "csv_sha256": {
+      "moves.csv": "8aafd37bf78f19471495c05b201545180f50f0a08a2a2a844d69f9837dd39ac9",
+      "move_meta.csv": "93b92d5bddf4fc1536ca0a647c20453bf92e6389010f33ca6fc4c5e9c54363be",
+      "move_flag_map.csv": "399cf005933418f406b94729903bd1528e9088bddc3bc1966be6c442a625da1b",
+      "move_effect_prose.csv": "f6d9bf0d28433a010a8b8b6a0a14d1ef72fbfcb997717f71b0e34483b7ee9697"
+    }
+  },
+  "moves": {
+    "384": {
+      "move_id": 384,
+      "name": "파워스왑",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대와 공격/특공 능력 단계 교환",
+        "교대/전투 종료 시 원래 능력치·타입 복구 · 도감/폼/HP 유지"
+      ],
+      "exchange": "power_swap",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "385": {
+      "move_id": 385,
+      "name": "가드스왑",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대와 방어/특방 능력 단계 교환",
+        "교대/전투 종료 시 원래 능력치·타입 복구 · 도감/폼/HP 유지"
+      ],
+      "exchange": "guard_swap",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "391": {
+      "move_id": 391,
+      "name": "하트스왑",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대와 모든 능력 단계 교환",
+        "교대/전투 종료 시 원래 능력치·타입 복구 · 도감/폼/HP 유지"
+      ],
+      "exchange": "heart_swap",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "244": {
+      "move_id": 244,
+      "name": "자기암시",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대의 능력 단계를 자신에게 복사",
+        "교대/전투 종료 시 원래 능력치·타입 복구 · 도감/폼/HP 유지"
+      ],
+      "exchange": "psych_up",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "576": {
+      "move_id": 576,
+      "name": "뒤집어엎기",
+      "type": "dark",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대의 양수/음수 능력 단계 반전",
+        "교대/전투 종료 시 원래 능력치·타입 복구 · 도감/폼/HP 유지"
+      ],
+      "exchange": "invert",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "712": {
+      "move_id": 712,
+      "name": "섀도스틸",
+      "type": "ghost",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 90,
+      "upgrade": {
+        "move_power": 105
+      },
+      "card_notes": [
+        "공격 전에 상대의 양수 능력 단계를 훔쳐 자신의 단계에 더함",
+        "교대/전투 종료 시 원래 능력치·타입 복구 · 도감/폼/HP 유지"
+      ],
+      "exchange": "steal"
+    },
+    "379": {
+      "move_id": 379,
+      "name": "파워트릭",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "자신의 공격/방어 기본 능력치 교환 · 능력 단계는 유지",
+        "교대/전투 종료 시 원래 능력치·타입 복구 · 도감/폼/HP 유지"
+      ],
+      "exchange": "power_trick",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "471": {
+      "move_id": 471,
+      "name": "파워셰어",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "양쪽 공격/특공 기본 능력치를 각각 평균으로 조정 · 단계 유지",
+        "교대/전투 종료 시 원래 능력치·타입 복구 · 도감/폼/HP 유지"
+      ],
+      "exchange": "power_split",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "470": {
+      "move_id": 470,
+      "name": "가드셰어",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "양쪽 방어/특방 기본 능력치를 각각 평균으로 조정 · 단계 유지",
+        "교대/전투 종료 시 원래 능력치·타입 복구 · 도감/폼/HP 유지"
+      ],
+      "exchange": "guard_split",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "683": {
+      "move_id": 683,
+      "name": "스피드스왑",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대와 스피드 기본 능력치 교환 · 이번 턴 지급 에너지 유지",
+        "교대/전투 종료 시 원래 능력치·타입 복구 · 도감/폼/HP 유지"
+      ],
+      "exchange": "speed_swap",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "487": {
+      "move_id": 487,
+      "name": "물붓기",
+      "type": "water",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대의 전투 타입을 물 하나로 변경",
+        "교대/전투 종료 시 원래 능력치·타입 복구 · 도감/폼/HP 유지"
+      ],
+      "exchange": "water",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "750": {
+      "move_id": 750,
+      "name": "마법가루",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대의 전투 타입을 에스퍼 하나로 변경 · 풀 타입은 가루 면역",
+        "교대/전투 종료 시 원래 능력치·타입 복구 · 도감/폼/HP 유지"
+      ],
+      "exchange": "psychic",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "567": {
+      "move_id": 567,
+      "name": "핼러윈",
+      "type": "ghost",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대에게 고스트 타입 추가 · 추가 타입은 하나만 유지",
+        "교대/전투 종료 시 원래 능력치·타입 복구 · 도감/폼/HP 유지"
+      ],
+      "exchange": "ghost",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "571": {
+      "move_id": 571,
+      "name": "숲의저주",
+      "type": "grass",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대에게 풀 타입 추가 · 추가 타입은 하나만 유지",
+        "교대/전투 종료 시 원래 능력치·타입 복구 · 도감/폼/HP 유지"
+      ],
+      "exchange": "grass",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "513": {
+      "move_id": 513,
+      "name": "미러타입",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "자신의 전투 타입을 상대와 같게 변경",
+        "교대/전투 종료 시 원래 능력치·타입 복구 · 도감/폼/HP 유지"
+      ],
+      "exchange": "reflect_type",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "160": {
+      "move_id": 160,
+      "name": "텍스처",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "자신의 첫 습득 기술 타입 하나로 변경",
+        "교대/전투 종료 시 원래 능력치·타입 복구 · 도감/폼/HP 유지"
+      ],
+      "exchange": "conversion",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "176": {
+      "move_id": 176,
+      "name": "텍스처2",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대가 직전 사용한 공격을 반감/무효로 받는 다른 타입을 공개된 순서로 선택",
+        "교대/전투 종료 시 원래 능력치·타입 복구 · 도감/폼/HP 유지"
+      ],
+      "exchange": "conversion2",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "293": {
+      "move_id": 293,
+      "name": "보호색",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "날씨에 맞는 전투 타입: 비 물/쾌청 불꽃/눈 얼음/모래 바위/그 외 노말",
+        "교대/전투 종료 시 원래 능력치·타입 복구 · 도감/폼/HP 유지"
+      ],
+      "exchange": "camouflage",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "355": {
+      "move_id": 355,
+      "name": "날개쉬기",
+      "type": "flying",
+      "cost": 1,
+      "damage_class": "status",
+      "heal": 24,
+      "card_notes": [
+        "원래 회복 비율 적용 · 잃은 HP까지만 회복",
+        "회복 뒤 이번 상대 행동까지 자신의 비행 타입 제거"
+      ],
+      "exchange": "roost",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "682": {
+      "move_id": 682,
+      "name": "불사르기",
+      "type": "fire",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 130,
+      "upgrade": {
+        "cost": 1
+      },
+      "card_notes": [
+        "불꽃 타입일 때만 사용 · 성공 후 불꽃 타입 소모 · 타입 재부여/교대하면 다시 사용 가능",
+        "교대/전투 종료 시 원래 능력치·타입 복구 · 도감/폼/HP 유지"
+      ],
+      "exchange": "burn_up"
+    },
+    "375": {
+      "move_id": 375,
+      "name": "사이코시프트",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "자신의 주 상태이상을 상대에게 옮기고 자신은 해제 · 상대 상태/타입/보호를 확인"
+      ],
+      "exchange": "shift",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "102": {
+      "move_id": 102,
+      "name": "흉내내기",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대의 직전 공격 기술 복사",
+        "충전/재충전/자폭/복사/반격/일격기 제외 · 현재 사용자 능력치 · 복사 카드 비용 유지 · 추가 카드/UID 없음"
+      ],
+      "exchange": "copy",
+      "copy_mode": "mimic",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "119": {
+      "move_id": 119,
+      "name": "따라하기",
+      "type": "flying",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대의 직전 공격 중 따라하기 허용 플래그의 기술만 복사",
+        "충전/재충전/자폭/복사/반격/일격기 제외 · 현재 사용자 능력치 · 복사 카드 비용 유지 · 추가 카드/UID 없음"
+      ],
+      "exchange": "copy",
+      "copy_mode": "mirror-move",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "383": {
+      "move_id": 383,
+      "name": "흉내쟁이",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "양쪽이 마지막으로 사용한 기술이 공격이면 복사",
+        "충전/재충전/자폭/복사/반격/일격기 제외 · 현재 사용자 능력치 · 복사 카드 비용 유지 · 추가 카드/UID 없음"
+      ],
+      "exchange": "copy",
+      "copy_mode": "copycat",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "382": {
+      "move_id": 382,
+      "name": "선취",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대가 다음에 예고한 공격 기술을 복사하고 피해1.5배",
+        "충전/재충전/자폭/복사/반격/일격기 제외 · 현재 사용자 능력치 · 복사 카드 비용 유지 · 추가 카드/UID 없음"
+      ],
+      "exchange": "copy",
+      "copy_mode": "me-first",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "118": {
+      "move_id": 118,
+      "name": "손가락흔들기",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "시드/사용자별 공개18타입 공격 순환 · 사용 시에만 다음 순서",
+        "충전/재충전/자폭/복사/반격/일격기 제외 · 현재 사용자 능력치 · 복사 카드 비용 유지 · 추가 카드/UID 없음"
+      ],
+      "exchange": "copy",
+      "copy_mode": "metronome",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "274": {
+      "move_id": 274,
+      "name": "조수",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "살아 있는 다른 동료의 첫 복사 가능한 습득 공격 호출",
+        "충전/재충전/자폭/복사/반격/일격기 제외 · 현재 사용자 능력치 · 복사 카드 비용 유지 · 추가 카드/UID 없음"
+      ],
+      "exchange": "copy",
+      "copy_mode": "assist",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "267": {
+      "move_id": 267,
+      "name": "자연의힘",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "날씨에 맞는 공격: 비 파도타기/쾌청 화염방사/눈 냉동빔/모래 파워젬/그 외 트라이어택",
+        "충전/재충전/자폭/복사/반격/일격기 제외 · 현재 사용자 능력치 · 복사 카드 비용 유지 · 추가 카드/UID 없음"
+      ],
+      "exchange": "copy",
+      "copy_mode": "nature-power",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "166": {
+      "move_id": 166,
+      "name": "스케치",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "첫 복사 공격을 이번 전투에 고정 · 소진 · 영구 기술 슬롯은 유지",
+        "충전/재충전/자폭/복사/반격/일격기 제외 · 현재 사용자 능력치 · 복사 카드 비용 유지 · 추가 카드/UID 없음"
+      ],
+      "exchange": "copy",
+      "copy_mode": "sketch",
+      "exhaust": true,
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "689": {
+      "move_id": 689,
+      "name": "지휘",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "자신이 직전 사용한 공격을 반복",
+        "충전/재충전/자폭/복사/반격/일격기 제외 · 현재 사용자 능력치 · 복사 카드 비용 유지 · 추가 카드/UID 없음"
+      ],
+      "exchange": "copy",
+      "copy_mode": "instruct",
+      "upgrade": {
+        "cost": 0
+      }
+    }
+  },
+  "total_enhanced": 371,
+  "pool": [
+    33,
+    52,
+    55,
+    84,
+    22,
+    181,
+    2,
+    40,
+    189,
+    16,
+    93,
+    210,
+    88,
+    122,
+    225,
+    44,
+    232,
+    584
+  ],
+  "nature": {
+    "rain": 57,
+    "sun": 53,
+    "snow": 58,
+    "sand": 408,
+    "": 161
+  },
+  "type_order": [
+    "normal",
+    "fire",
+    "water",
+    "electric",
+    "grass",
+    "ice",
+    "fighting",
+    "poison",
+    "ground",
+    "flying",
+    "psychic",
+    "bug",
+    "rock",
+    "ghost",
+    "dragon",
+    "dark",
+    "steel",
+    "fairy"
+  ]
+}

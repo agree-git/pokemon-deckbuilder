@@ -6,12 +6,16 @@ static func capture(b: TacticalBattle) -> Dictionary:
     if not b.boss_context.is_empty():frame["boss_context"]=b.boss_context.duplicate(true)
     if not b.move_context.is_empty():frame["move_context"]=b.move_context.duplicate(true)
     if not b.technique_context.is_empty():frame["technique_context"]=b.technique_context.duplicate(true)
+    if not b.exchange_context.is_empty():frame["exchange_context"]=b.exchange_context.duplicate(true)
     return frame
 static func member(p: BattlePokemon) -> Dictionary:
-    return p.snapshot().merged({"name":p.display_name,"type":p.type})
+    var row:=p.snapshot().merged({"name":p.display_name,"type":p.type})
+    if not p.battle_stats.is_empty():row["battle_stats"]=p.battle_stats.duplicate()
+    return row
 static func restore(row: Dictionary) -> BattlePokemon:
     var p := BattlePokemon.new({"id":row["id"],"name":row["name"],"type":row["type"],"types":row["types"],"max_hp":row["max_hp"],"level":row["level"]},row["uid"])
     for field: String in ["hp","block","strength","statuses","stat_stages","held_item","experience","knocked_out"]: p.set(field,row[field])
     for field: String in ["friendship","beauty","evolution_personality","evolution_choice"]:
         if row.has(field): p.set(field,row[field])
+    p.battle_stats=row.get("battle_stats",{}).duplicate()
     return p

@@ -12,6 +12,7 @@ var boss_context: Dictionary = {}
 var player_moves_version:=1
 var move_context:Dictionary={}
 var technique_context:Dictionary={}
+var exchange_context:Dictionary={}
 var party: Array[BattlePokemon] = []
 var enemies: Array[BattlePokemon] = []
 var enemy_definitions: Array = []
@@ -61,6 +62,7 @@ func restart(battle_seed: int = 2026, selected_relic: String = "field_kit", oppo
     start_with(members,cards,opponents,battle_seed,selected_relic,true)
 func start_with(members: Array[BattlePokemon], cards: Array[BattleCardInstance], opponents: Array, battle_seed: int, selected_relic: String, _lead_first := true, acquired: Array[String] = []) -> void:
     if BossBattleRules.modern(self):BossBattleEffectsP3.restore_items(self)
+    if not exchange_context.is_empty():PlayerMoveExchange.clear(self)
     boss_context.clear()
     move_context.clear()
     technique_context.clear()
@@ -193,7 +195,7 @@ func attack_damage(view: Dictionary, actor: BattlePokemon) -> int:
     if actor.held_item == "power_band": bonus += 3
     if enemy().statuses.has("exposed"): bonus += 2
     if view.get("omit_card_bonus",false):bonus-=next_attack_bonus+switched_attack
-    var amount := PlayerMoveCards.raw_damage(self,actor,enemy(),view,bonus) if PlayerTechniques.active(self) and view.get("category")=="technique" else PokemonStats.damage(actor,enemy(),view,1.0 if int(view.get("move_id",0)) == 165 else multiplier(view.get("type","normal"),enemy()),bonus,1.0,BattleWeather.kind(powers))
+    var amount := PlayerTechniques.raw_damage(self,actor,enemy(),view,bonus) if PlayerTechniques.active(self) and view.get("category")=="technique" else PokemonStats.damage(actor,enemy(),view,1.0 if int(view.get("move_id",0)) == 165 else multiplier(view.get("type","normal"),enemy()),bonus,1.0,BattleWeather.kind(powers))
     if amount > 0 and view.get("category","technique") == "technique" and has_relic("status_core"): amount = maxi(1,floori(amount*0.8))
     if amount > 0 and BuildConceptRules.sight_active(self,view,actor): amount = maxi(1,floori(amount*1.25))
     if view.get("category","technique") == "technique" and turn_flags.get("finisher_%d" % actor.uid,false): amount *= 2
@@ -552,7 +554,7 @@ func end_turn() -> String:
             hand.erase(card)
             discard.append(card)
     retained.clear()
-    if player_moves_version==3:PlayerMoveTactics.end_player(self)
+    if player_moves_version>=3:PlayerMoveTactics.end_player(self)
     phase = "enemy"
     for pokemon: BattlePokemon in party:
         if pokemon.alive() and pokemon.held_item == "seed_charm" and ["burn","seed","poison"].any(func(key: String): return enemy().statuses.has(key)):
@@ -624,7 +626,7 @@ func _enemy_action() -> void:
             "status":
                 active().statuses[action["status"]] = {"turns":int(action["value"]),"source_uid":enemy().uid}
                 _record("status",active().display_name+" · "+str({"burn":"화상","poison":"독","seed":"씨뿌리기"}[action["status"]]),{"target":active().uid})
-    if player_moves_version==3:PlayerMoveTactics.limit_healing(self,weather_foe,enemy_hp_before)
+    if player_moves_version>=3:PlayerMoveTactics.limit_healing(self,weather_foe,enemy_hp_before)
     if PlayerTechniques.active(self):PlayerMoveRules.finish_enemy_hit(self)
     state["intent"] = int(state["intent"])+(int(action.get("advance",1)) if p1 and not action.get("asleep",false) else 1)
     if _outcome(): return
@@ -632,9 +634,10 @@ func _enemy_action() -> void:
     if _outcome(): return
     var end_hp_before:=weather_foe.hp
     if BossBattleRules.active_in(self):BossBattleRules.end_enemy(self,weather_foe)
-    if player_moves_version==3:PlayerMoveTactics.limit_healing(self,weather_foe,end_hp_before)
+    if player_moves_version>=3:PlayerMoveTactics.limit_healing(self,weather_foe,end_hp_before)
     if PlayerTechniques.active(self):PlayerMoveRules.after_enemy(self,weather_foe,player_actor,action,player_status,player_sub,player_stages,player_marks)
-    if player_moves_version==3:PlayerMoveTactics.after_enemy(self,weather_foe,action,end_hp_before)
+    if player_moves_version>=3:PlayerMoveTactics.after_enemy(self,weather_foe,action,end_hp_before)
+    if player_moves_version==4:PlayerMoveExchange.after_enemy(self,weather_foe,action)
     BattleWeather.end_round(self,weather_foe)
     if _outcome(): return
     if not active().alive():
@@ -648,6 +651,7 @@ func _start_player() -> void:
     phase = PLAYER
     _pending = ""
     turn += 1
+    if player_moves_version==4:PlayerMoveExchange.start_player(self)
     _grant_turn_energy()
     switch_bonus.clear()
     turn_flags.clear()
@@ -756,7 +760,7 @@ func _outcome() -> bool:
                 enemy().statuses["seed"] = _relay.duplicate(true)
                 _relay.clear()
                 _record("relic","씨앗이 "+enemy().display_name+"에게 전이되었습니다.",{"relic_key":"seed_relay"})
-            if player_moves_version==3:
+            if player_moves_version>=3:
                 _record("enemy_switch",enemy().display_name+" 출전 · 턴과 남은 자원 유지")
                 PlayerMoveTactics.enter_enemy(self)
                 if not enemy().alive():return _outcome()
@@ -769,6 +773,7 @@ func _outcome() -> bool:
     return false
 func _clear_statuses() -> void:
     if BossBattleRules.modern(self):BossBattleEffectsP3.restore_items(self)
+    if not exchange_context.is_empty():PlayerMoveExchange.clear(self)
     boss_context.clear()
     move_context.clear()
     technique_context.clear()
@@ -830,6 +835,7 @@ func snapshot() -> Dictionary:
     if player_moves_version>=2:state["player_moves_version"]=player_moves_version
     if not move_context.is_empty():state["move_context"]=move_context.duplicate(true)
     if not technique_context.is_empty():state["technique_context"]=technique_context.duplicate(true)
+    if not exchange_context.is_empty():state["exchange_context"]=exchange_context.duplicate(true)
     return state
 func multiplier(attack: String, target: BattlePokemon) -> float:
     var affinity:=BossBattleRules.affinity(self,attack,target) if full_type_chart and BossBattleRules.active_in(self) else (TypeMatchup.multiplier(attack,target.types) if full_type_chart else BattleContent.multiplier(attack,target.type))

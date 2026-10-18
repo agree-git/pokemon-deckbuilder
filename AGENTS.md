@@ -24,3 +24,5 @@ Godot **4.7.2**, 1920×1080 UI. 전국도감1,025종 + 지역/상시폼 포함1,
 사용자가 main 반영을 승인했지만 EXE 생성은 계속 보류했다. 수정·검증·main push는 진행하며 새 빌드/export/Windows CI는 실행하지 않는다. Windows preview는 수동 실행 전용이며 명시적 빌드 재개 요청 전에는 실행하거나 push 자동 빌드를 복원하지 않는다.
 
 사용자 지시: 기술 효과 구현과 소스/모델 검사를 먼저 끝내고, 실제 창 검사는 이후 한꺼번에 진행한다. 구현 도중 기술별 X11/native/UI 실행을 반복하지 않는다. EXE/빌드/export/Windows CI 보류는 별도로 계속 유지한다. 상대의 구속 기술은 수동 교대와 소유 기술 카드의 자동 교대를 모두 제한하고, 현재 동료 기술/도구·구속 해제·시전자 기절·필수 교체를 정상 처리한다.
+
+새 원정v12의 플레이어 효과4는 능력 단계/기본 능력치 교환·전투 타입 변경·공격 복사30카드를 추가 보완해 누적371기술이다. 별도 `PlayerMoveExchange`/`player_move_exchange_v12.json`/선택 `exchange_context`를 사용한다. 저장에는 원래 타입을 남기고 복원 후 현재 전투 타입/능력치를 재적용한다. 복사는 적격 공격만 원래 카드 비용/UID로 실행하며 새 카드나 영구 기술 슬롯을 추가하지 않는다. 게시한v10/v11 입력·엔진과 기존v1~v11 원정 규칙은 유지하고v12도 게시 후 동결한다. [v12 범위/각색/남은 항목](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-exchange.md)을 따른다.

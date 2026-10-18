@@ -109,3 +109,7 @@ Windows 시험 빌드는 공식 Godot **4.7.2** 엔진을 포함합니다. Godot
 ## 플레이어 기술 카드 v11
 
 `data/player_move_tactics_v11.json`은 위 동결v10 JSON과 같은 PokéAPI 고정CSV4종을 대조한32카드 추가 정의입니다. 원본 지문과v10 기반 지문은 JSON에 기록했습니다. 설치·구속·행동 제한·교대 인계·HP 조정은 자체 카드 전투 각색이며 새 에셋은 추가하지 않았습니다. [적용/각색/남은 범위](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-tactics.md), [결정적 생성기](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/import_player_move_tactics.py).
+
+## 플레이어 기술 카드 v12
+
+`data/player_move_exchange_v12.json`은 동결v10/v11 JSON과 같은 PokéAPI 고정CSV4종을 대조한30카드 추가 정의입니다. 기반/원본 SHA256은 JSON에 기록했습니다. 능력 단계/기본 능력치 교환·타입 변경·공격 복사는 자체 카드 전투 각색이며 새 이미지나 음원은 추가하지 않았습니다. [적용/각색/남은 범위](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-exchange.md), [결정적 생성기](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/import_player_move_exchange.py).

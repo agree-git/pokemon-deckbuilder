@@ -17,16 +17,17 @@ var held_item := ""
 var level := 5
 var species_stats := false
 var stat_stages: Dictionary = {}
+var battle_stats: Dictionary = {} # Derived only from the v12 battle context; never permanent stats.
 var attack: int:
-    get: return PokemonStats.value(species_id,level,"attack")
+    get: return int(battle_stats.get("attack",PokemonStats.value(species_id,level,"attack")))
 var defense: int:
-    get: return PokemonStats.value(species_id,level,"defense")
+    get: return int(battle_stats.get("defense",PokemonStats.value(species_id,level,"defense")))
 var special_attack: int:
-    get: return PokemonStats.value(species_id,level,"special_attack")
+    get: return int(battle_stats.get("special_attack",PokemonStats.value(species_id,level,"special_attack")))
 var special_defense: int:
-    get: return PokemonStats.value(species_id,level,"special_defense")
+    get: return int(battle_stats.get("special_defense",PokemonStats.value(species_id,level,"special_defense")))
 var speed: int:
-    get: return PokemonStats.value(species_id,level,"speed")
+    get: return int(battle_stats.get("speed",PokemonStats.value(species_id,level,"speed")))
 var learned_skills: Array[String] = []
 var progression_initialized := false
 var friendship := -1

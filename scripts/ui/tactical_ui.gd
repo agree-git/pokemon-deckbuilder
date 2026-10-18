@@ -190,7 +190,7 @@ func _start_rare_intro() -> void:
     rare_speech = W.panel(self,Rect2(576,150,768,132),Color(0.035,0.075,0.095,0.97),GOLD,10)
     rare_speech.name = "RareEncounterIntro"
     rare_speech.z_index = 30
-    W.icon(rare_speech,str(battle.enemy().types[0]),Rect2(16,12,24,24))
+    W.icon(rare_speech,str(battle.enemy().types[0]) if not battle.enemy().types.is_empty() else "normal",Rect2(16,12,24,24))
     W.label(rare_speech,str(story["site"]),Rect2(50,8,700,30),19,GOLD)
     var line := W.label(rare_speech,str(story["arrival"]),Rect2(20,44,728,72),24,W.TEXT)
     line.name = "RareArrival"
@@ -787,6 +787,9 @@ func _refresh() -> void:
     enemy_label.mouse_filter = Control.MOUSE_FILTER_PASS
     ally_label.tooltip_text = PokemonStats.summary(ally)
     enemy_label.tooltip_text = PokemonStats.summary(foe)
+    if battle.player_moves_version==4:
+        ally_label.tooltip_text = "타입: "+_combat_type_text(ally)+"\n"+ally_label.tooltip_text
+        enemy_label.tooltip_text = "타입: "+_combat_type_text(foe)+"\n"+enemy_label.tooltip_text
     UiMotion.text(draw_count,str(_visual_frame.get("draw",battle.draw_pile.size())))
     UiMotion.text(discard_count,str(_visual_frame.get("discard",battle.discard.size())))
     end_button.disabled = busy or battle.phase != TacticalBattle.PLAYER
@@ -803,7 +806,7 @@ func _refresh() -> void:
         party_values[i].text = "기절" if not pokemon.alive() else "%d / %d" % [pokemon.hp,pokemon.max_hp]
         W.fill_bar(party_bars[i],pokemon.hp,pokemon.max_hp)
         button.disabled = busy or not battle.switch_reason(pokemon.uid).is_empty()
-        button.tooltip_text = "%d · %s · Lv.%d · %s\n%s XP\n%s\n%s" % [i+1,pokemon.display_name,pokemon.level,catalog.type_name(pokemon.type),TacticalGrowth.progress_text(pokemon),PokemonStats.summary(pokemon),"출전 중" if pokemon.uid == ally.uid else (battle.switch_reason(pokemon.uid) if not battle.switch_reason(pokemon.uid).is_empty() else switch_label.text)]
+        button.tooltip_text = "%d · %s · Lv.%d · %s\n%s XP\n%s\n%s" % [i+1,pokemon.display_name,pokemon.level,_combat_type_text(pokemon) if battle.player_moves_version==4 else catalog.type_name(pokemon.type),TacticalGrowth.progress_text(pokemon),PokemonStats.summary(pokemon),"출전 중" if pokemon.uid == ally.uid else (battle.switch_reason(pokemon.uid) if not battle.switch_reason(pokemon.uid).is_empty() else switch_label.text)]
         if BossBattleRules.active_in(battle) and pokemon.uid != ally.uid and BossBattleRules.entry_damage(battle,pokemon)>0:button.tooltip_text += "\n스텔스록 입장 피해 HP -%d" % BossBattleRules.entry_damage(battle,pokemon)
         if not pokemon.held_item.is_empty(): button.tooltip_text += "\n"+str(TacticalContent.HELD_ITEMS[pokemon.held_item]["name"])+" · "+str(TacticalContent.HELD_ITEMS[pokemon.held_item]["description"])
         var border := MINT if pokemon.uid == ally.uid else Color("3d555a")
@@ -886,6 +889,12 @@ func _refresh() -> void:
 
     _mask_rare_identity()
 
+func _combat_type_text(pokemon:BattlePokemon) -> String:
+    var types:=pokemon.types.duplicate()
+    var moves:Dictionary=_visual_frame.get("move_context",battle.move_context if _visual_frame.is_empty() else {})
+    var bosses:Dictionary=_visual_frame.get("boss_context",battle.boss_context if _visual_frame.is_empty() else {})
+    if moves.get("spent_electric",{}).get(pokemon.uid,false) or bosses.get("spent_electric",{}).get(pokemon.uid,false):types.erase("electric")
+    return "없음" if types.is_empty() else " / ".join(types.map(func(key:String):return catalog.type_name(key)))
 func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
     var items: Array = []
     if pokemon.strength != 0: items.append(["boost",str(pokemon.strength),"위력 보정 %+d%% · 이번 전투 동안 유지" % (pokemon.strength*10)])
@@ -955,6 +964,11 @@ func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
             var count:int=int(tactics.get("hazards",{}).get(key,0))
             if count>0:items.append(["ground",str(count),{"rocks":"상대 필드 스텔스록","spikes":"상대 필드 압정","toxic":"상대 필드 독압정","web":"상대 필드 끈적끈적네트"}[key]+" · 다음 상대 입장 시 적용"])
     elif tactics.get("pass",{}).get("source",0)==pokemon.uid:items.append(["counter","인계","이번 턴 다음 교대에 능력 단계/대타 인계"])
+    var exchange:Dictionary=_visual_frame.get("exchange_context",battle.exchange_context if _visual_frame.is_empty() else {})
+    if exchange.get("types",{}).has(pokemon.uid):items.append(["counter","타입","현재 전투 타입: "+_combat_type_text(pokemon)+" · 교대/전투 종료 시 복구"])
+    if exchange.get("stats",{}).has(pokemon.uid):items.append(["boost","능력","기본 능력치 교환/공유 · 단계와 별개 · 교대/종료 시 복구"])
+    if exchange.get("roost",{}).get(pokemon.uid,0)==turn_shown:items.append(["flying","착지","날개쉬기 · 이번 상대 행동까지 비행 타입 제거"])
+    if exchange.get("copies",{}).has(pokemon.uid):items.append(["counter","복사","스케치 · 이번 전투 복사 공격 고정"])
     var signature := str([pokemon.uid,items])
     if row.get_meta("status_signature","") == signature: return
     row.set_meta("status_signature",signature)
