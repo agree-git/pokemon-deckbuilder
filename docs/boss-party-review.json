@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "review_pending_not_applied",
+  "status": "applied",
   "checked_on": "2026-10-18",
   "game_commit": "6aea96d54511060c7107e84b6179b221cf03b9d1",
   "spreadsheet_sha256": "e302da25f57bb784ca065d5ed0c0d2ff7a9950243db5a4ccf9cb5548d7581454",
@@ -9378,5 +9378,7 @@
       ],
       "status": "현재 게임에 없음. 캐릭터/대사/스프라이트/BGM 확인 전 추가 보류"
     }
-  ]
+  ],
+  "approved_on": "2026-10-18",
+  "applied_route_version": 5
 }

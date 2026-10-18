@@ -158,3 +158,5 @@ Headless 씬 검사는 종료 전에 GameAudio/GameMusic/GameCries뿐 아니라 
 기술머신 데이터는 `python3 tools/pokedex/build_machines.py --game-dir /path/to/main --cache-dir /path/to/source-cache`로 재생성한다. 기존 고정 CSV의 SHA256을 검사하며 자료/원본 CSV는 게임에 넣지 않는다. `--suite camp`는 기술머신·성장·덱/야영·저장·경로 회귀를 실행한다. `tests/native_machines.gd`는 `tools/native_pointer.py`로 실제 X11 클릭을 사용하며 `TM_REVIEW_DIR`에 로컬 검토 PNG만 저장한다.
 
 원작 기반 파티 컨펌 자료는 `docs/boss-party-review.json`이 기준이고 `python3 tools/boss_party_review.py --game-dir /path/to/main`으로 Markdown을 재생성/검증한다. `--workbook /path/outside-repo/review.xlsx`는 선택 openpyxl로 검토용 엑셀을 만든다. 게임 파일에 쓰지 않으며 `review_pending_not_applied`는 사용자 승인 전까지 유지한다. 실제 현재 역할/BGM 목록은 `boss-roster.*`와 구분한다.
+
+승인 파티는 `scripts/content/boss_parties.gd`와 `data/boss_parties.json`, 경로 적용은 `campaign_route.gd`의v5분기다. `python3 tools/import_boss_parties.py --game-dir /path/to/main`은 승인/applied 상태 검토안만 가져오고 역사적 파티 JSON은 건드리지 않는다. `boss_roster.py`는 현재 승인 파티/대표를 BGM 목록에도 표시한다. 새 파티 검사는 `test_boss_parties.gd`, 주변 회귀는 `--suite boss-party-regression`이며 native는 `tests/native_boss_parties.gd` + `BOSS_PARTY_REVIEW_DIR`/실제 X11 입력 도구를 쓴다. EXE 보류 중에는 export/Windows workflow를 실행하지 않는다.

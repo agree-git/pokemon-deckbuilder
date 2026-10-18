@@ -45,8 +45,10 @@ func run() -> void:
     var rosters := {"gym":GymLeaders.all(),"elite":base_league["elite"]+BossExpansion.data()["elite"],"champion":base_league["champions"]+BossExpansion.data()["champions"]}
     for role: String in rosters:
         for entry: Dictionary in rosters[role]:
+            entry = BossParties.apply(role,entry)
             var trainer := TrainerDialogue.opponent({"kind":role,"trainer":entry},catalog.biomes[0])
             check(TrainerSprites.texture(trainer) != null and not TrainerDialogue.line(trainer,"intro").is_empty() and not BossMusic.variants(trainer).is_empty(),"Packed complete boss "+TrainerDialogue.key(trainer))
+            check(entry["party"] == BossParties.party(TrainerDialogue.key(trainer)),"Packed approved boss party "+TrainerDialogue.key(trainer))
     for key: String in BossExpansion.data()["backdrops"]:
         check(VisualCatalog.biome_texture(BossExpansion.data()["backdrops"][key]) != null,"Packed new boss room "+key)
     for pokemon: Dictionary in catalog.pokemon:

@@ -29,6 +29,7 @@ func run() -> void:
     var snapshot := JourneySnapshot.encode(journey)
     for role: String in roster:
         for entry: Dictionary in roster[role]:
+            entry = BossParties.apply(role,entry)
             var key := role+":"+str(entry.get("leader_id",entry.get("id")))
             var stop := {"kind":role,"trainer":entry}
             var trainer := TrainerDialogue.opponent(stop,catalog.biomes[0])
@@ -42,7 +43,7 @@ func run() -> void:
             check(tactics["styles"].size() == entry["party"].size(),"Party/style correspondence "+key)
             for i in entry["party"].size():
                 var id := int(entry["party"][i])
-                check(not catalog.species(id).is_empty() and not BossTactics.build(key,i,id,50,catalog.species(id)["types"]).is_empty(),"Playable supported party slot "+key+"/"+str(i))
+                check(not catalog.species(id).is_empty() and not BossTactics.build(key,i,id,50,catalog.species(id)["types"],true).is_empty(),"Playable supported party slot "+key+"/"+str(i))
             seed(1234)
             var expected := randi()
             seed(1234)

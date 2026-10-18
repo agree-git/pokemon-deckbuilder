@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render the pending boss-party review; never writes runtime game data."""
+"""Render the pending or approved boss-party review; never writes runtime game data."""
 import argparse
 import collections
 import json
@@ -20,7 +20,7 @@ def validate(game, data, species):
         for row in rows:
             current[role+':'+row.get('leader_id',row.get('id'))]=list(map(int,row['party']))
     entries=data['entries']
-    assert data['status']=='review_pending_not_applied'
+    assert data['status'] in ['review_pending_not_applied','approved_for_application','applied']
     assert len(entries)==137 and set(e['key'] for e in entries)==set(current)
     covered=set()
     checks=3
@@ -122,6 +122,11 @@ def render(game, source, destination, workbook=None):
     lines += ['', '## 변경 전 구성과 대조', '', '| 역할 키 | 현재 게임 파티 |', '|---|---|']
     for e in rows:
         lines.append('| `'+e['key']+'` | '+names(e['current_party'])+' |')
+    applied=data['status']=='applied'
+    if applied:
+        lines=[line.replace('**상태: 컨펌 대기. 게임에는 아직 적용하지 않았습니다.**',
+                            '**상태: 사용자 승인 후 새 원정 v5에 적용했습니다. 기존 v1~v4 원정은 이전 파티를 유지합니다.**')
+               .replace('게임 검토안','승인 적용 파티').replace('현재 게임 파티','적용 전 파티') for line in lines]
     destination.write_text('\n'.join(lines)+'\n', encoding='utf-8')
 
     if workbook:
@@ -132,7 +137,7 @@ def render(game, source, destination, workbook=None):
         wb = Workbook()
         ws = wb.active
         ws.title = '게임 적용 검토안'
-        ws.append(['지방', '역할', '이름', '원작 기준', '원작 파티', '고정 대표', '게임 검토안', '원작 외 보충', '현재 게임 파티', '주의사항', '출처', '엑셀 행'])
+        ws.append(['지방', '역할', '이름', '원작 기준', '원작 파티', '고정 대표', '승인 적용 파티' if applied else '게임 검토안', '원작 외 보충', '적용 전 파티', '주의사항', '출처', '엑셀 행'])
         for e in rows:
             ref = e['reference']
             ws.append([e['region'], ROLES[e['role']], e['name'], ref['game']+' / '+ref['battle'], names(ref['party']),
@@ -157,7 +162,7 @@ def render(game, source, destination, workbook=None):
         ws.add_table(table)
         info=wb.create_sheet('검토 기준')
         info.append(['항목','내용'])
-        info.append(['상태','컨펌 대기 / 게임 미적용 / EXE 미생성'])
+        info.append(['상태','사용자 승인 / 새 원정 v5 적용 / EXE 미생성' if applied else '컨펌 대기 / 게임 미적용 / EXE 미생성'])
         for key,value in data['policy'].items():info.append([key,value])
         info.append(['주의','원작 외 보충 열은 원작 사용 포켓몬으로 확인한 것이 아닙니다. 대표는 마지막, 풍·란만 두 자리입니다.'])
         info.append(['장식 폼','장식·색상 폼 전체를 원작과 대조한 목록이 아닙니다. 명시된 지역/상시 폼을 구분합니다.'])
