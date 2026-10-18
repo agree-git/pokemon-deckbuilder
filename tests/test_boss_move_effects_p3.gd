@@ -37,7 +37,7 @@ func checkpoint(j:TacticalJourney) -> TacticalJourney:
     check(JourneySnapshot.encode(r)==d,"HP, field, trap, substitute, guard and RNG roundtrip")
     return r
 func run() -> void:
-    check(CampaignRoute.VERSION==9 and BossMoveEffectsP3.data()["profiles"].size()==138 and BossMoveEffectsP3.data()["moves"].size()==233,"Complete reviewed ace scope, separate from player919 mechanics")
+    check(CampaignRoute.VERSION>=9 and BossMoveEffectsP3.data()["profiles"].size()==138 and BossMoveEffectsP3.data()["moves"].size()==233,"Complete reviewed ace scope, separate from player919 mechanics")
     var b:=fixture("gym:clair",230);select_move(b,281)
     step(b);check(not b.active().statuses.has("sleep") and BossBattleEffectsP3.read(b)["drowsy"].has(b.active().uid),"Yawn is delayed rather than immediate sleep")
     b.end_turn();check(b.active().statuses.has("sleep"),"Yawn sleeps at end of next player turn")

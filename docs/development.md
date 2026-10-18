@@ -241,3 +241,17 @@ python3 .dev-materials/tools/boss_ace_review.py --game-dir . --csv-dir /path/to/
 P3 core는138대표의3레벨 실제 예고/실행·정수 상태·실제 경로의 각 행동 저장 재개를 검사한다. 추가 unique_edges는 공중 예외/착지 중단/카드 도중 동반 기절의 같은 턴 교체를,unique_saves는12실제 대진의 지연/봉인/장비/복사/공중/타입 상태의 저장을 검사한다. v8 compatibility와 기존 P2/P1/P0·경로·전투·날씨·저장·혼합 원정을 함께 실행한다. 원본CSV/개인 저장/긴 로그/임시 PNG는 Git에 넣지 않는다.
 
 사용자 지시로 **이번 단계는 기술 구현과 소스/모델 검사**다. 기술별 실제 창 실행은 중단하고 구현 완료 후 일괄 UI 검사를 다음 단계로 둔다. 과거 v6~v8의 native 결과를 v9 검증으로 합산하지 않는다. EXE/export/Windows CI는 계속 미실행이다.
+
+
+## 플레이어 기술 카드 / 원정 v10
+
+`PlayerMoveCards`는 v10 카드 정의·순수 미리보기·조건부 위력·본문을, `PlayerMoveRules`는 전투 훅/선택 문맥/저장 검증을 담당한다. `TacticalContent.definition`의 선택 버전 기본값1과 기존 `TacticalMoves`는 유지한다. 새 원정은 전투 시작 전에 플레이어 효과2를 선택한다. 카드 사용·피격·교대·턴 시작/종료에만 문맥을 쓰며 카드/행동 예고는 RNG와 상태를 바꾸지 않는다. 도감/야영 학습·영입/시작 덱·강화/보상·카드 더미도 해당 원정 버전의 정의를 사용한다. 기존 상인 가격 산식은 유지한다.
+
+```bash
+python3 .dev-materials/tools/import_player_move_cards.py --game-dir . --csv-dir /path/to/pinned-csv
+python3 .dev-materials/tools/check.py --game-dir . --suite player-cards --godot /path/to/godot-4.7.2 --timeout 480
+```
+
+입력은 고정 `moves.csv`/`move_meta.csv`/`move_flag_map.csv`/`move_effect_prose.csv`와 main의 동결 전국도감/보스 무게다. SHA256 검증 뒤919정의/311보완 목록을 결정적으로 생성한다. 게시 이후 v10 파일을 수정하지 않고 다음 버전으로 확장한다.
+
+전용3스크립트는919정의/311특징의 공개 카드 사용과 미리보기 순수성,연타/실제 피해/충전/재충전/고정 피해/방어/잠꼬대/유물,보스 보호/대타/길동무와의 조합,각 효과 저장·복원 뒤 동일 행동·무료 발사·위조 거부를 검사한다. 같은 시드의v9/v10 미래69전투 정의가 같고 이전v9 정의 지문도 일치하는지 확인한다. suite는 기존P3/v8호환·경로·전투·능력/날씨·저장69전·성장·혼합 덱69전·기술머신·시작 흐름을 포함한다. 실제 창 검사는 포함하지 않으며 사용자 지시대로 후속 일괄 진행한다. 빌드/export/Windows CI는 실행하지 않는다.
