@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "route_version": 18,
+  "player_moves_version": 10,
+  "base_sha256": "5165abda6c87b7274ea1f7dcd57c23c03b9dd9b40b33a13163adeacf51f02251",
+  "source": {
+    "pokeapi_commit": "5ee47a9a9c1229632ec4b473a9c1c53026e005dd",
+    "csv_sha256": {
+      "moves.csv": "8aafd37bf78f19471495c05b201545180f50f0a08a2a2a844d69f9837dd39ac9",
+      "move_meta.csv": "93b92d5bddf4fc1536ca0a647c20453bf92e6389010f33ca6fc4c5e9c54363be",
+      "move_flag_map.csv": "399cf005933418f406b94729903bd1528e9088bddc3bc1966be6c442a625da1b",
+      "move_effect_prose.csv": "f6d9bf0d28433a010a8b8b6a0a14d1ef72fbfcb997717f71b0e34483b7ee9697"
+    }
+  },
+  "moves": {
+    "193": {
+      "move_id": 193,
+      "name": "꿰뚫어보기",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대가 교대할 때까지 고스트의 노말/격투 무효만 해제 · 실제 타입 유지 · 회피 단계/명중 추첨 없음"
+      ],
+      "assist_rule": "ghost",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "316": {
+      "move_id": 316,
+      "name": "냄새구별",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대가 교대할 때까지 고스트의 노말/격투 무효만 해제 · 실제 타입 유지 · 회피 단계/명중 추첨 없음"
+      ],
+      "assist_rule": "ghost",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "357": {
+      "move_id": 357,
+      "name": "미라클아이",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대가 교대할 때까지 악의 에스퍼 무효만 해제 · 실제 타입 유지 · 회피 단계/명중 추첨 없음"
+      ],
+      "assist_rule": "dark",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "199": {
+      "move_id": 199,
+      "name": "록온",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "현재 상대에 대한 자신의 다음 공격은 공중 회피에 막히지 않음 · 보호/대타/타입 무효는 유지 · 2상대 행동 또는 교대 시 만료"
+      ],
+      "assist_rule": "aim",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "170": {
+      "move_id": 170,
+      "name": "마음의눈",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "현재 상대에 대한 자신의 다음 공격은 공중 회피에 막히지 않음 · 보호/대타/타입 무효는 유지 · 2상대 행동 또는 교대 시 만료"
+      ],
+      "assist_rule": "aim",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "270": {
+      "move_id": 270,
+      "name": "도우미",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "이번 턴 다른 동료의 다음 공격 피해1.5배 · 자신의 공격에는 적용하지 않음 · 중복 배율 누적 없음"
+      ],
+      "assist_rule": "help",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "495": {
+      "move_id": 495,
+      "name": "당신먼저",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "고정 행동 순서 대신 이번 턴 다른 동료의 다음 비용 있는 기술 카드 비용-1 · 최소0 · 행동 순서/현재 에너지 변경 없음"
+      ],
+      "assist_rule": "after",
+      "upgrade": {
+        "cost": 0
+      }
+    },
+    "511": {
+      "move_id": 511,
+      "name": "순서미루기",
+      "type": "dark",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "고정 행동 순서 대신 상대 예고 한 칸 밀기 · 같은 상대에 턴당1회 · 승인 파티 순서 유지"
+      ],
+      "assist_rule": "quash",
+      "upgrade": {
+        "cost": 0
+      },
+      "extension": "push"
+    }
+  },
+  "total_enhanced": 419
+}

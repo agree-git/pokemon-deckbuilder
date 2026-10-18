@@ -18,6 +18,7 @@ var seal_context:Dictionary={}
 var altitude_context:Dictionary={}
 var trap_context:Dictionary={}
 var item_context:Dictionary={}
+var assist_context:Dictionary={}
 var turn_speed_inverted:=false # Cached at energy grant; a room may change later this turn.
 var party: Array[BattlePokemon] = []
 var enemies: Array[BattlePokemon] = []
@@ -78,6 +79,7 @@ func start_with(members: Array[BattlePokemon], cards: Array[BattleCardInstance],
     altitude_context.clear()
     trap_context.clear()
     item_context.clear()
+    assist_context.clear()
     statistics = RunStatistics.battle()
     seed_value = battle_seed
     relic = selected_relic if TacticalContent.RELICS.has(selected_relic) else "field_kit"
@@ -674,6 +676,7 @@ func _enemy_action() -> void:
             PlayerMoveAltitude.after_enemy(self)
         else:PlayerMoveFields.after_enemy(self,weather_foe,player_actor,action,player_status,foe_status,player_stages)
     if player_moves_version>=6:PlayerMoveSeals.after_enemy(self)
+    if player_moves_version>=10:PlayerMoveAssist.after_enemy(self)
     BattleWeather.end_round(self,weather_foe)
     if _outcome(): return
     if not active().alive():
@@ -826,6 +829,7 @@ func _clear_statuses() -> void:
     altitude_context.clear()
     trap_context.clear()
     item_context.clear()
+    assist_context.clear()
     BattleWeather.clear(powers)
     _relay.clear()
     for pokemon: BattlePokemon in party+enemies:
@@ -890,13 +894,15 @@ func snapshot() -> Dictionary:
     if not altitude_context.is_empty():state["altitude_context"]=altitude_context.duplicate(true)
     if not trap_context.is_empty():state["trap_context"]=trap_context.duplicate(true)
     if not item_context.is_empty():state["item_context"]=item_context.duplicate(true)
+    if not assist_context.is_empty():state["assist_context"]=assist_context.duplicate(true)
     if not exchange_context.is_empty():state["exchange_context"]=exchange_context.duplicate(true)
     return state
 func multiplier(attack: String, target: BattlePokemon,move_id:=0) -> float:
     var affinity:=BossBattleRules.affinity(self,attack,target) if full_type_chart and BossBattleRules.active_in(self) else (TypeMatchup.multiplier(attack,target.types) if full_type_chart else BattleContent.multiplier(attack,target.type))
     if PlayerTechniques.active(self):affinity=PlayerMoveRules.affinity(self,attack,target,affinity)
     if player_moves_version>=7:affinity=PlayerMoveAltitude.affinity(self,attack,target,affinity)
-    return PlayerMoveItems.affinity(self,attack,target,affinity,move_id) if player_moves_version>=9 else affinity
+    if player_moves_version>=9:affinity=PlayerMoveItems.affinity(self,attack,target,affinity,move_id)
+    return PlayerMoveAssist.affinity(self,attack,target,affinity) if player_moves_version>=10 else affinity
 func notify_changed() -> String:
     changed.emit()
     return ""

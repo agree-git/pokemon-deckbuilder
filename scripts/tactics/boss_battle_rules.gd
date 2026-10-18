@@ -10,9 +10,11 @@ static func read(b: TacticalBattle) -> Dictionary:
 static func write(b: TacticalBattle) -> Dictionary:
     return BossBattleEffectsP3.write(b) if modern(b) else BossBattleEffects.write(b)
 static func player_damage(b: TacticalBattle,v: Dictionary,amount: int) -> int:
+    if modern(b) and b.player_moves_version>=10 and v.get("aimed",false):return PlayerMoveAssistMath.boss_player_damage(b,v,amount)
     v=PlayerMoveItems.boss_proxy(b,v)
     return BossBattleEffectsP3.player_damage(b,v,amount) if modern(b) else BossBattleEffects.player_damage(b,v,amount)
 static func card_notice(b: TacticalBattle,v: Dictionary,actor: BattlePokemon) -> String:
+    if modern(b) and b.player_moves_version>=10 and v.get("aimed",false):return PlayerMoveAssistMath.boss_card_notice(b,v,actor)
     v=PlayerMoveItems.boss_proxy(b,v)
     return BossBattleEffectsP3.card_notice(b,v,actor) if modern(b) else BossBattleEffects.card_notice(b,v,actor)
 static func trapped(b: TacticalBattle) -> bool:
@@ -21,9 +23,11 @@ static func entry_damage(b: TacticalBattle,p: BattlePokemon) -> int:
     return BossBattleEffectsP3.entry_damage(b,p) if modern(b) else BossBattleEffects.entry_damage(b,p)
 static func on_card(b: TacticalBattle,v: Dictionary,actor: BattlePokemon) -> void:
     if modern(b) and b.player_moves_version>=9 and int(v.get("move_id",0))==614:PlayerMoveItems.boss_card(b,v,actor)
+    elif modern(b) and b.player_moves_version>=10 and v.get("aimed",false):PlayerMoveAssistMath.boss_on_card(b,v,actor)
     elif modern(b):BossBattleEffectsP3.on_card(b,v,actor)
     else:BossBattleEffects.on_card(b,v,actor)
 static func filter_view(b: TacticalBattle,v: Dictionary) -> Dictionary:
+    if modern(b) and b.player_moves_version>=10 and v.get("aimed",false):return PlayerMoveAssistMath.boss_filter_view(b,v)
     var result:=BossBattleEffectsP3.filter_view(b,PlayerMoveItems.boss_proxy(b,v)) if modern(b) else BossBattleEffects.filter_view(b,v)
     if b.player_moves_version>=9 and int(v.get("move_id",0))==614:result["move_id"]=614
     return result

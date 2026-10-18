@@ -966,6 +966,13 @@ func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
             var count:int=int(tactics.get("hazards",{}).get(key,0))
             if count>0:items.append(["ground",str(count),{"rocks":"상대 필드 스텔스록","spikes":"상대 필드 압정","toxic":"상대 필드 독압정","web":"상대 필드 끈적끈적네트"}[key]+" · 다음 상대 입장 시 적용"])
     elif tactics.get("pass",{}).get("source",0)==pokemon.uid:items.append(["counter","인계","이번 턴 다음 교대에 능력 단계/대타 인계"])
+    var assist:Dictionary=_visual_frame.get("assist_context",battle.assist_context if _visual_frame.is_empty() else {})
+    if assist.get("ghost",{}).get(pokemon.uid,false):items.append(["counter","식별","꿰뚫어보기/냄새구별 · 고스트의 노말/격투 무효 해제"])
+    if assist.get("dark",{}).get(pokemon.uid,false):items.append(["counter","간파","미라클아이 · 악의 에스퍼 무효 해제"])
+    if assist.get("aim",{}).has(pokemon.uid):items.append(["counter",str(assist["aim"][pokemon.uid]["left"]),"조준 · 현재 상대에 대한 다음 공격 공중 회피 무시"])
+    if pokemon.uid>0:
+        for key:String in ["help","after"]:
+            if int(assist.get(key,0))>0:items.append(["boost","도움" if key=="help" else "양보","다른 동료의 다음 공격1.5배" if key=="help" else "다른 동료의 다음 기술 비용-1"])
     var items_context:Dictionary=_visual_frame.get("item_context",battle.item_context if _visual_frame.is_empty() else {})
     var embargo:int=int(items_context.get("embargo",{}).get(pokemon.uid,0))
     if embargo>0:items.append(["counter",str(embargo),"금제 · 소지품 효과/도구/내던지기 정지"])

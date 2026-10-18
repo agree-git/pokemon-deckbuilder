@@ -6,6 +6,7 @@ static func capture(b: TacticalBattle) -> Dictionary:
     if not b.boss_context.is_empty():frame["boss_context"]=b.boss_context.duplicate(true)
     if not b.move_context.is_empty():frame["move_context"]=b.move_context.duplicate(true)
     if not b.technique_context.is_empty():frame["technique_context"]=b.technique_context.duplicate(true)
+    if not b.assist_context.is_empty():frame["assist_context"]=b.assist_context.duplicate(true)
     if not b.item_context.is_empty():frame["item_context"]=b.item_context.duplicate(true)
     if not b.trap_context.is_empty():frame["trap_context"]=b.trap_context.duplicate(true)
     if not b.altitude_context.is_empty():frame["altitude_context"]=b.altitude_context.duplicate(true)

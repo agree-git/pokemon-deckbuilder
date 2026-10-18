@@ -133,3 +133,7 @@ Windows 시험 빌드는 공식 Godot **4.7.2** 엔진을 포함합니다. Godot
 ## 플레이어 기술 카드 v17
 
 `data/player_move_items_v17.json`은 동결v10~v16 정의와 같은 PokéAPI 고정CSV4종을 대조한8카드 추가 정의입니다. 사우전드애로·소지품 교환/전달/복구/봉쇄·내던지기는 기존 커스텀 장비6종을 활용한 카드 각색이며 새 에셋은 없습니다. 기반/원본 SHA256은 JSON에 기록했습니다. [효과/각색](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-items.md), [정의 생성기](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/import_player_move_items.py), [피해/공중 파생기](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/derive_player_item_math.py).
+
+## 플레이어 기술 카드 v18
+
+`data/player_move_assist_v18.json`은 동결v10~v17 정의와 같은 PokéAPI 고정CSV4종을 대조한8카드 추가 정의입니다. 식별·조준·동료 보조는 기존 카드 전투의 각색이며 새 이미지/음원은 없습니다. 기반/원본 SHA256은 JSON에 기록했습니다. [효과/각색](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-assist.md), [정의 생성기](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/import_player_move_assist.py), [조준 파생기](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/derive_player_assist_math.py).

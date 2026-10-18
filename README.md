@@ -40,7 +40,7 @@
 
 `main`에는 사용하는 게임 코드·씬·데이터·에셋과 필수 출처/라이선스가 있습니다. Windows 내보내기 설정과 자동 시험 빌드 절차를 포함합니다. 상세 검증 범위와 한계는 [검증 현황](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/validation.md)에 기록합니다.
 
-개발을 이어갈 때는 **[START_HERE.md](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/START_HERE.md)**부터 읽으세요. 이어서 [현재 상태](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/HANDOFF.md) → [작업 지침](AGENTS.md) → [확정 규칙](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/rules.md) → [개발·검사 방법](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/development.md) 순서로 확인합니다.
+개발을 이어갈 때는 **[START_HERE.md](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/START_HERE.md)**부터 읽으세요. 이어서 [현재 상태](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/HANDOFF.md)와 [작업별 파일 지도](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/TASK_INDEX.md)에서 필요한 항목만 확인합니다.
 
 `development-materials`는 문서·현재 검사만 둡니다. 과거 갤러리·ZIP·CSV·수집 도구는 [보관 링크](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/history.md)로 열 수 있습니다. 최신 게임 코드는 이 `main`이 기준입니다.
 
@@ -48,6 +48,6 @@
 
 야영지의 **포켓몬 연구**에서 진화 분기·상시 폼·기술 훈련을 준비할 수 있습니다. 기술은 해당 포켓몬의 습득 경로와 레벨을 따르며 기존 카드 전투 규칙으로 사용합니다. 장소·통신·특수 조작 진화는 화면에 표시한 야영 행동으로 준비합니다. 지역폼은 별도 계통을 포획·진화하고, 합체 폼은 두 포켓몬의 포획 기록이 필요합니다. 기존 원정은 이전 경로를 복원하며 새 원정부터 전 세대 조우를 사용합니다.
 
-새 원정 v17은 플레이어 기술919개 중 **411개 기술의 특징**을 보완했습니다. 설치·구속·교대 인계·능력/타입 교환·복사에 필드·룸·진영 교환과 소지품 효과 봉쇄·급소 방어·교대 잠금·접지/부유·지속 구속·사우전드애로·소지품 조작을 추가했습니다. 연타는 개별 타격, 흡수·반동은 실제 HP 피해, 솔라빔은 충전, 파괴광선은 재충전으로 처리합니다. 방어·대타·반격·조건부 위력·잠꼬대·소원·비축하기와 기술 봉인도 카드 설명과 실제 전투에 연결했습니다. 원작을 그대로 복제하기보다 카드 전투에서 특징이 드러나도록 각색했으며, 모든919기술의 원작 고유 효과를 완성한 것은 아닙니다. [추가 기술과 각색 규칙](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-items.md)을 확인하세요.
+새 원정 v18은 플레이어 기술919개 중 **419개 기술의 특징**을 보완했습니다. 설치·구속·교대 인계·능력/타입 교환·복사에 필드·룸·진영 교환과 소지품 효과 봉쇄·급소 방어·교대 잠금·접지/부유·지속 구속·사우전드애로·소지품 조작·식별·조준·동료 보조를 추가했습니다. 연타는 개별 타격, 흡수·반동은 실제 HP 피해, 솔라빔은 충전, 파괴광선은 재충전으로 처리합니다. 방어·대타·반격·조건부 위력·잠꼬대·소원·비축하기와 기술 봉인도 카드 설명과 실제 전투에 연결했습니다. 원작을 그대로 복제하기보다 카드 전투에서 특징이 드러나도록 각색했으며, 모든919기술의 원작 고유 효과를 완성한 것은 아닙니다. [추가 기술과 각색 규칙](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-assist.md)을 확인하세요.
 
 보스는 v9의 검토한 대표138마리/실전233기술 효과를 그대로 사용합니다. 기존 v1~v12 원정 저장과 미래 전투는 이전 규칙을 유지합니다. [보스 적용 현황](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/boss-move-effects.md). 사용자 요청으로 실제 창 검사는 기술 구현 뒤 일괄 진행하며 EXE 생성은 계속 보류합니다.
