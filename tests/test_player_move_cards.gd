@@ -24,7 +24,7 @@ func cast(b:TacticalBattle,id:int) -> Dictionary:
     check(why.is_empty(),"Canonical card can be played: "+str(id)+" "+why)
     return v
 func run() -> void:
-    check(CampaignRoute.VERSION==10 and PlayerMoveCards.data()["moves"].size()==919,"All919 cards use versioned definitions for new journeys")
+    check(CampaignRoute.VERSION>=10 and PlayerMoveCards.data()["moves"].size()==919,"All919 cards use versioned definitions for new journeys")
     var b:=fixture();var c:=card(b,24);b.enemy().block=10
     var v:=b.card_view(c);var hp:=b.enemy().hp;b.play_card(c.uid)
     check(b.events.filter(func(e:Dictionary):return e["kind"]=="damage" and e.get("target",0)==b.enemy().uid).size()==2,"Double Kick deals two actual shield-consuming hits")

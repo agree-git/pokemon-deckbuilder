@@ -12,6 +12,7 @@ import uuid
 
 ROOT = Path(__file__).resolve().parents[1]
 SUITES = {
+    'player-tactics': ['test_player_move_tactics.gd','test_player_tactics_saves.gd','test_player_move_cards.gd','test_player_move_edges.gd','test_player_move_saves.gd','test_boss_move_effects_p3.gd','test_boss_v8_compatibility.gd','test_boss_routes.gd','test_battle.gd','test_stats.gd','test_weather.gd','test_save.gd','test_national_progression.gd','test_deck_run.gd','test_machines.gd','test_start.gd'],
     'player-cards': ['test_player_move_cards.gd','test_player_move_edges.gd','test_player_move_saves.gd','test_boss_move_effects_p3.gd','test_boss_v8_compatibility.gd','test_boss_routes.gd','test_battle.gd','test_stats.gd','test_weather.gd','test_save.gd','test_national_progression.gd','test_deck_run.gd','test_machines.gd','test_start.gd'],
     'smoke': ['test_start.gd','test_battle.gd','test_stats.gd','test_weather.gd'],
     'reactions': ['test_rare_reactions.gd','test_visibility.gd','test_compatibility.gd','test_rare_capture.gd'],

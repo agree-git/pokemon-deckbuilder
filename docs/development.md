@@ -255,3 +255,15 @@ python3 .dev-materials/tools/check.py --game-dir . --suite player-cards --godot 
 입력은 고정 `moves.csv`/`move_meta.csv`/`move_flag_map.csv`/`move_effect_prose.csv`와 main의 동결 전국도감/보스 무게다. SHA256 검증 뒤919정의/311보완 목록을 결정적으로 생성한다. 게시 이후 v10 파일을 수정하지 않고 다음 버전으로 확장한다.
 
 전용3스크립트는919정의/311특징의 공개 카드 사용과 미리보기 순수성,연타/실제 피해/충전/재충전/고정 피해/방어/잠꼬대/유물,보스 보호/대타/길동무와의 조합,각 효과 저장·복원 뒤 동일 행동·무료 발사·위조 거부를 검사한다. 같은 시드의v9/v10 미래69전투 정의가 같고 이전v9 정의 지문도 일치하는지 확인한다. suite는 기존P3/v8호환·경로·전투·능력/날씨·저장69전·성장·혼합 덱69전·기술머신·시작 흐름을 포함한다. 실제 창 검사는 포함하지 않으며 사용자 지시대로 후속 일괄 진행한다. 빌드/export/Windows CI는 실행하지 않는다.
+
+
+## 플레이어 설치·교대·행동 제한 / 원정 v11
+
+`PlayerTechniques` 분기는 기존v10 엔진을 그대로 호출한 뒤 v11에서만 `PlayerMoveTactics`의 추가 훅을 호출한다. 별도 `technique_context`에는 설치/구속/행동 금지/직전 기술/인계 예약을 저장한다. 상대 입장 훅은 교대 연출 기록 후 피해를 처리하고 연속 기절을 해결한다. 카드/상대 예고는 순수 함수이며 슬롯/준비 상태 변경은 실제 카드 사용 뒤에만 한다. 회복봉인은 직접 행동 후와 지속 회복 후 두 번 검사해 DOT와 회복이 상쇄돼도 회복이 새지 않게 한다.
+
+```bash
+python3 .dev-materials/tools/import_player_move_tactics.py --game-dir . --csv-dir /path/to/pinned-csv
+python3 .dev-materials/tools/check.py --game-dir . --suite player-tactics --godot /path/to/godot-4.7.2 --timeout 480
+```
+
+전용2검사는 새919카드 미리보기/32추가 효과·접지/타입/설치 연속 기절/교대 인계·제한/회복봉인/보호·대타 조합,모든32효과 저장/복원 뒤 같은 입력·설치 입장1회·위조 거부·실제 수정 전v10 저장과3시드 미래69전투 정의를 확인한다. suite는 동결v10 전용3개와 보스P3/v8호환·전투/원정/성장/기술머신/시작 회귀까지16스크립트다. 실제 창 검사는 포함하지 않으며 빌드/export/Windows CI는 계속 보류한다.

@@ -22,3 +22,6 @@
 사용자 지시: 기술 효과 구현과 소스/모델 검사를 먼저 끝내고, 실제 창 검사는 이후 한꺼번에 진행한다. 구현 도중 기술별 X11/native/UI 실행을 반복하지 않는다. EXE/빌드/export/Windows CI 보류는 별도로 계속 유지한다. 상대의 구속 기술은 수동 교대와 소유 기술 카드의 자동 교대를 모두 제한하고, 현재 동료 기술/도구·구속 해제·시전자 기절·필수 교체를 정상 처리한다.
 
 새 원정v10의 플레이어 기술919개 중311개의 특징은 별도 `player_move_cards_v10.json`/`PlayerMoveCards`/`PlayerMoveRules`로 처리한다. 원작 수치의 완전 복제보다 기술의 개성을 카드 규칙으로 살린다는 사용자 기준을 따른다. 선택 `player_moves_version:2`/`move_context`를 저장하며 기존v1~v9 정의·보스 전술·승인 파티·경로 RNG는 유지한다. 게시한v10 입력도 이후 덮어쓰지 않는다. 적용/각색/남은 단순 변환은 [기술 카드 현황](docs/player-move-cards.md)을 확인한다.
+
+
+새 원정v11의 플레이어 효과3은32카드를 추가 보완해 누적342기술이다. 별도 `PlayerMoveTactics`/`player_move_tactics_v11.json`/선택 `technique_context`와 `PlayerTechniques` 분기를 사용한다. 게시된v10 데이터/엔진·기존v1~v10 저장·경로/RNG·승인 파티/마지막 대표를 유지하며 v11도 게시 후 동결한다. 설치는 다음 상대 입장, 울부짖기 계열은 전술 밀어내기, 앙코르는 기존 예고 순서에서 직전 기술만 허용하는 명시 각색이다. [v11 기술 현황](docs/player-move-tactics.md)을 따른다. 실제 창/빌드/EXE 보류 지시는 계속 적용한다.
