@@ -4,6 +4,7 @@ extends RefCounted
 static func capture(b: TacticalBattle) -> Dictionary:
     var frame := {"powers":b.powers.duplicate(true),"turn_flags":b.turn_flags.duplicate(true),"party":b.party.map(member),"enemies":b.enemies.map(member),"active_index":b.active_index,"enemy_index":b.enemy_index,"energy":b.energy,"turn":b.turn,"turn_energy_bonus":b.turn_energy_bonus,"turn_speed_actor":b.turn_speed_actor,"turn_speed_enemy":b.turn_speed_enemy,"intent":b.intent(),"draw":b.draw_pile.size(),"discard":b.discard.size()}
     if not b.boss_context.is_empty():frame["boss_context"]=b.boss_context.duplicate(true)
+    if not b.move_context.is_empty():frame["move_context"]=b.move_context.duplicate(true)
     return frame
 static func member(p: BattlePokemon) -> Dictionary:
     return p.snapshot().merged({"name":p.display_name,"type":p.type})

@@ -4,9 +4,9 @@ extends RefCounted
 const VERSION := 1
 const SAVE_PATH := "user://journey.json"
 const MAX_FILE_BYTES := 4*1024*1024
-const RULESET := "campaign-69-boss-effects-v9"
-const COMPATIBLE_CONTENT := ["36fe00197a9e4de42cae2a20b6dffe564f7478250f8659812a68790fc76bae08","5de9a69473977ace2c89e2ba54e0951ca8c436ce9a47d611ac61b636f7acbf30","6c3446b61b27f5743982dd04b96f2882dd5a994615edf785ae87160c2ea3da4e","8105ad5dafd74ab91cfd49421042e0281a9e15e0297f99563ea392faa3fc606e","f1cf5bc91b4f53123011c7a2ec0049862d425f11127d63782b19971ab44411a5","7ce6e0d58dab102bb60728714b36d36cc417cedeb0ed92811261c6339ad15b89","cb812fd10b00f224a7c50255448f2d5643ed440af7daa4429d41ae26bfc6e952","1f49586798419ec8b34b5e1698a3d7b470905520caed012674308eec391001c2"]
-const CONTENT := ["res://data/base_stats.json","res://data/catalog.json","res://data/biomes.json","res://data/gyms.json","res://data/league.json","res://data/progression.json","res://data/evolutions.json","res://data/type_chart.json",PokedexExpansion.PATH,TechnicalMachines.PATH,BossParties.PATH,BossMoveEffects.PATH,BossMoveEffectsP1.PATH,BossMoveEffectsP2.PATH,BossMoveEffectsP3.PATH]
+const RULESET := "campaign-69-player-cards-v10"
+const COMPATIBLE_CONTENT := ["f823671d51317f3d0352a807005558ef2c9e4accc868fdc17b91c25d619e2d43","36fe00197a9e4de42cae2a20b6dffe564f7478250f8659812a68790fc76bae08","5de9a69473977ace2c89e2ba54e0951ca8c436ce9a47d611ac61b636f7acbf30","6c3446b61b27f5743982dd04b96f2882dd5a994615edf785ae87160c2ea3da4e","8105ad5dafd74ab91cfd49421042e0281a9e15e0297f99563ea392faa3fc606e","f1cf5bc91b4f53123011c7a2ec0049862d425f11127d63782b19971ab44411a5","7ce6e0d58dab102bb60728714b36d36cc417cedeb0ed92811261c6339ad15b89","cb812fd10b00f224a7c50255448f2d5643ed440af7daa4429d41ae26bfc6e952","1f49586798419ec8b34b5e1698a3d7b470905520caed012674308eec391001c2"]
+const CONTENT := ["res://data/base_stats.json","res://data/catalog.json","res://data/biomes.json","res://data/gyms.json","res://data/league.json","res://data/progression.json","res://data/evolutions.json","res://data/type_chart.json",PokedexExpansion.PATH,TechnicalMachines.PATH,BossParties.PATH,BossMoveEffects.PATH,BossMoveEffectsP1.PATH,BossMoveEffectsP2.PATH,BossMoveEffectsP3.PATH,PlayerMoveCards.PATH]
 static var _fingerprint := ""
 var path: String
 var last_error := ""

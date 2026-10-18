@@ -78,4 +78,4 @@ func refresh() -> void:
 func _upgrade_reason(card: BattleCardInstance) -> String:
     if journey.phase != TacticalJourney.REST: return "야영지에서 강화할 수 있습니다."
     if journey.step in journey.rested_steps: return "이번 야영지의 주 행동을 이미 사용했습니다."
-    return "" if TacticalContent.can_upgrade(card) else "이 카드는 강화할 수 없습니다."
+    return "" if TacticalContent.can_upgrade(card,journey.battle.player_moves_version) else "이 카드는 강화할 수 없습니다."

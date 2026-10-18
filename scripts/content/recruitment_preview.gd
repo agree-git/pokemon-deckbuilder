@@ -17,7 +17,7 @@ static func describe(j: TacticalJourney, index: int) -> Dictionary:
             removed.append(j.reward_view({"kind":"card","key":card.key,"owner_uid":card.owner_uid,"upgraded":card.upgraded}))
     var added: Array[Dictionary] = []
     for key: String in keys_for(caught):
-        var view := TacticalContent.definition(BattleCardInstance.new(0,key,caught.uid))
+        var view := TacticalContent.definition(BattleCardInstance.new(0,key,caught.uid),2 if j.full_campaign and j.route.generation>=10 else 1)
         view["species_id"] = caught.species_id
         view["owner_name"] = caught.display_name
         added.append(view)

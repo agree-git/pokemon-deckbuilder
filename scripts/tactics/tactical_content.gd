@@ -132,8 +132,8 @@ const HELD_ITEMS := {
     "healing_bell":{"name":"치유의 방울","icon":"heal","description":"장착한 포켓몬이 도구 카드로 받는 회복 추가 · 최대 HP의 12.5%."},
 }
 
-static func definition(card: BattleCardInstance) -> Dictionary:
-    var result: Dictionary = (TacticalMoves.definition(card.key) if card.owner_uid != 0 else CARDS.get(card.key,{})).duplicate(true)
+static func definition(card: BattleCardInstance,player_version := 1) -> Dictionary:
+    var result: Dictionary = ((PlayerMoveCards.definition(card.key) if player_version==2 else TacticalMoves.definition(card.key)) if card.owner_uid != 0 else CARDS.get(card.key,{})).duplicate(true)
     if result.is_empty(): return result
     result["category"] = "technique" if card.owner_uid != 0 else result.get("category","trainer")
     result["uid"] = card.uid
@@ -170,12 +170,12 @@ static func definition(card: BattleCardInstance) -> Dictionary:
     result["description"] = description(result)
     return result
 
-static func can_upgrade(card: BattleCardInstance) -> bool:
+static func can_upgrade(card: BattleCardInstance,player_version := 1) -> bool:
     if card.upgraded or card.key == "injury": return false
-    var original := definition(card)
+    var original := definition(card,player_version)
     var upgraded := BattleCardInstance.new(card.uid,card.key,card.owner_uid)
     upgraded.upgraded = true
-    var improved := definition(upgraded)
+    var improved := definition(upgraded,player_version)
     original.erase("name")
     improved.erase("name")
     return original != improved
@@ -224,6 +224,7 @@ static func description(view: Dictionary) -> String:
     if view.has("power"): parts.append({"relay":"지속: 기술로 교대 시 최대 HP의 6.3% 보호막","ace":"지속: 출전 유지 시 다음 턴 위력 보정 +20%","supply":"지속: 도구 사용 시 최대 HP의 10.4% 보호막","attrition":"지속: 아군이 건 화상·독·씨앗의 매회 피해 + 상대 최대 HP의 2.1%"}.get(view["power"],BuildConceptContent.POWER_TEXT.get(view["power"],"")))
     if view.has("cleanse"): parts.append("상태이상 해제")
     if view.get("exhaust",false): parts.append("소진")
+    if view.get("player_rules")==2:parts.append_array(view.get("card_notes",[]))
     return " · ".join(parts) if not parts.is_empty() else str(view.get("description","효과 없음"))
 
 static func starting_deck(members: Array[BattlePokemon]) -> Array[BattleCardInstance]:

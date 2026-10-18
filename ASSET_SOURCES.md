@@ -99,3 +99,9 @@ Windows 시험 빌드는 공식 Godot **4.7.2** 엔진을 포함합니다. Godot
 `data/boss_move_effects_v9.json`은 검토한138대표/233기술의 카드 전투용 효과 입력입니다. v6/v7/v8 자료와 엔진은 보존합니다. 기술 효과의 기초 사실은 위 PokéAPI 고정 커밋의 `move_effect_prose.csv`(SHA256 `f6d9bf0d28433a010a8b8b6a0a14d1ef72fbfcb997717f71b0e34483b7ee9697`)와 `move_flag_map.csv`에서 대조했습니다. 빈 효과 번호의 보충 사실은 [들이받기](https://pokemondb.net/move/headlong-rush),[열불내기](https://pokemondb.net/move/temper-flare),[변덕레이저](https://pokemondb.net/move/fickle-beam),[대검돌격](https://bulbapedia.bulbagarden.net/wiki/Glaive_Rush_(move)),[거대해머](https://bulbapedia.bulbagarden.net/wiki/Gigaton_Hammer_(move)),[전광쌍격](https://bulbapedia.bulbagarden.net/wiki/Double_Shock_(move))에서 대조했습니다(2026-10-18). 설명 원문을 통째로 복제하지 않았습니다.
 
 헤롱헤롱의 확정 피해 감소·섬뜩한주문의 카드 봉인·일격기의 공개 위력160·변덕레이저의 공개10회 주기·따라하기의 기본 공격 카드 효과 복사·전투 중 장비 무효/종료 복구는 자체 카드 전투 각색입니다. 타입 소모는 전투 문맥에만 기록하며 도감/폼을 바꾸지 않습니다. 기술별 예고와 자료 브랜치의 [적용 현황](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/boss-move-effects.md)에 원작과의 차이를 표시합니다. 플레이어919기술의 모든 고유 효과나 성별/명중/PP/특성/테라스탈 시스템을 추가한 것은 아닙니다.
+
+## 플레이어 기술 카드 v10
+
+`data/player_move_cards_v10.json`은 기존 전국도감의 한국어 기술·위력·대상·상태/단계 자료에 PokéAPI 고정 커밋 [`5ee47a9a9c1229632ec4b473a9c1c53026e005dd`](https://github.com/PokeAPI/pokeapi/tree/5ee47a9a9c1229632ec4b473a9c1c53026e005dd/data/v2/csv)의 `moves.csv`, `move_meta.csv`, `move_flag_map.csv`, `move_effect_prose.csv`를 대조해 만든 카드 전투용 정의입니다. 원본 CSV 지문은 JSON의 `source.csv_sha256`에 기록했습니다. 게임 실행에 원본 CSV나 네트워크가 필요하지 않습니다.
+
+919기술 중311개의 연타·흡수·반동·충전·재충전·조건부 위력·보조 효과를 보완했습니다. 성별/확률/PP/특성 등은 카드 규칙으로 각색하거나 기존 단순 변환으로 남습니다. 새 이미지·음원은 추가하지 않았습니다. [규칙·적용 목록](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-cards.md), [결정적 생성 도구](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/import_player_move_cards.py).

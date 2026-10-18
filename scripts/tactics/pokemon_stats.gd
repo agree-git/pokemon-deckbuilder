@@ -38,10 +38,10 @@ static func scale(pokemon: BattlePokemon, points: int) -> int:
     return maxi(1,roundi(points*pokemon.max_hp/48.0))
 static func percent(points: int) -> String:
     return String.num(points*100.0/48.0,1).trim_suffix(".0")+"%"
-static func damage(actor: BattlePokemon, target: BattlePokemon, move: Dictionary, affinity: float, flat_bonus := 0, pressure := 1.0, weather := "",offense_stat := "") -> int:
+static func damage(actor: BattlePokemon, target: BattlePokemon, move: Dictionary, affinity: float, flat_bonus := 0, pressure := 1.0, weather := "",offense_stat := "",offense_override := 0) -> int:
     if affinity <= 0: return 0
     var special: bool = move.get("damage_class","physical") == "special"
-    var offense := effective(actor,offense_stat if not offense_stat.is_empty() else ("special_attack" if special else "attack"))
+    var offense := offense_override if offense_override>0 else effective(actor,offense_stat if not offense_stat.is_empty() else ("special_attack" if special else "attack"))
     var defense := maxi(1,floori(effective(target,"special_defense" if special else "defense")*BattleWeather.defense_factor(weather,target,special)))
     var power := maxi(1,int(move.get("move_power",40)))
     var level_factor := floori(2*actor.level/5.0)+2

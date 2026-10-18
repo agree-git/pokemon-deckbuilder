@@ -45,7 +45,7 @@ static func analyze_cards(j: TacticalJourney, definition: Dictionary, cards: Arr
                 unavailable += 1
                 continue
         elif not living: continue
-        var view := TacticalContent.definition(card)
+        var view := TacticalContent.definition(card,2 if j.full_campaign and j.route.generation>=10 else 1)
         view["owner_name"] = owner.display_name if owner != null else ""
         view["species_id"] = owner.species_id if owner != null else 0
         if view.has("damage"):

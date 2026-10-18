@@ -86,7 +86,11 @@ static func description(definition: Dictionary) -> String:
     var profile: Dictionary = PROFILES.get(key,{"name":"기본형","description":"예고된 순서대로 행동합니다."})
     return "%s · %s\n순서: %s" % [profile["name"],profile["description"],pattern_text(definition)]
 static func intent_text(action: Dictionary) -> String:
-    if action.has("boss_moves_version"): return BossEffects.tooltip(action)
+    if action.has("boss_moves_version"):
+        if action.get("player_guarded",false) or action.get("player_airborne",false):
+            var copy:=action.duplicate(true);copy["immune"]=false
+            return BossEffects.tooltip(copy)
+        return BossEffects.tooltip(action)
     if action.get("asleep",false): return "수면으로 다음 행동을 취소합니다."
     if action["kind"] == "status": return "%s %d회 · 현재 출전 동료에게 부여 · 대기 중에도 지속" % [{"burn":"화상","poison":"독","seed":"씨뿌리기"}[action["status"]],action["value"]]
     if action["kind"] == "fortify": return "%s +%d단계 · 보호막 %d · 단계는 해당 적에게만 유지" % [PokemonStats.TITLES[action["stat"]],action["stat_delta"],action["value"]]

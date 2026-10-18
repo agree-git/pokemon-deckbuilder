@@ -21,6 +21,7 @@ static func label(parent: Node,rect: Rect2,font_size := 15,color := W.TEXT) -> R
 static func amount(view: Dictionary,field: String) -> String:
     return str(view["preview_"+field]) if view.has("preview_"+field) else PokemonStats.percent(int(view[field]))
 static func render(view: Dictionary) -> String:
+    if view.get("player_rules")==2 and not view.has("weather"):return "[center]"+"\n".join(PlayerMoveCards.lines(view))+"[/center]"
     var rows: Array[String] = []
     if view.has("weather"):
         var key := str(view["weather"])

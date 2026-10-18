@@ -673,7 +673,7 @@ func _show_pile(key: String) -> void:
     pile.sort_custom(func(a: BattleCardInstance,b: BattleCardInstance): return ("%s:%04d:%s" % [a.key,a.owner_uid,a.upgraded]) < ("%s:%04d:%s" % [b.key,b.owner_uid,b.upgraded]))
     var views: Array[Dictionary] = []
     for instance: BattleCardInstance in pile:
-        var view := TacticalContent.definition(instance)
+        var view := TacticalContent.definition(instance,battle.player_moves_version)
         var owner := battle.member(instance.owner_uid)
         view["owner_name"] = owner.display_name if owner != null else ""
         view["species_id"] = owner.species_id if owner != null else 0
@@ -750,7 +750,7 @@ func _refresh() -> void:
     var action: Dictionary = _visual_frame.get("intent",battle.intent())
     var names := {"charge":"강공격","attack":"공격","block":"방어","boost":"강화","barrage":"연타","fortify":"방벽","recover":"회복","status":"상태 지시","move":"기술","guard":"전술 방어","prepare":"충전","recharge":"재충전","wait":"휴식"}
     var intent_icon := {"charge":"attack","attack":"attack","block":"shield","boost":"boost","barrage":"attack","fortify":"shield","recover":"heal","status":"counter","move":"attack","guard":"shield","prepare":"boost","recharge":"counter","wait":"counter"}
-    var cancelled: bool = action.get("asleep",false) or (action.get("boss_moves_version") in [3,4] and (action.get("failed_move",false) or action.get("failed_charge",false)))
+    var cancelled: bool = action.get("asleep",false) or action.get("player_sealed",false) or (action.get("boss_moves_version") in [3,4] and (action.get("failed_move",false) or action.get("failed_charge",false)))
     var intent_signature := str([battle.enemy().uid,action,cancelled])
     if _shown_intent != intent_signature:
         UiMotion.pulse(get_node("Intent/Icon"))
@@ -923,6 +923,26 @@ func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
     for key:String in extra_names:
         if board.get(key,{}).has(pokemon.uid):items.append(["counter",extra_labels[key],extra_names[key]])
     if board.get("gravity",0)>0:items.append(["ground",str(board["gravity"]),"중력 · 비행의 땅 무효 해제 · 공중 기술 제한"])
+
+    var cards_board:Dictionary=_visual_frame.get("move_context",battle.move_context if _visual_frame.is_empty() else {})
+    var turn_shown:int=int(_visual_frame.get("turn",battle.turn))
+    if pokemon.uid>0:
+        if cards_board.get("charges",{}).has(pokemon.uid):items.append(["boost","충전","충전 카드 보존 · 다음 아군턴부터 비용0 발사 · 교대하면 취소"])
+        if cards_board.get("recharge",{}).get(pokemon.uid,0)>=turn_shown:items.append(["counter","정비","재충전 · 다음 아군턴 종료까지 자기 기술 사용 불가"])
+        if cards_board.get("substitutes",{}).get(pokemon.uid,0)>0:items.append(["shield",str(cards_board["substitutes"][pokemon.uid]),"자신의 대타 HP · 교대하면 해제"])
+        if cards_board.get("guards",{}).get(pokemon.uid,{}).get("turn",0)==turn_shown:items.append(["shield","보호","이번 상대 행동까지 보호/버티기"])
+        if cards_board.get("stocks",{}).get(pokemon.uid,0)>0:items.append(["boost",str(cards_board["stocks"][pokemon.uid]),"비축 횟수 · 꿀꺽/토해내기로 소비"])
+        for key:String in ["screen","reflect","safeguard"]:
+            if cards_board.get(key,0)>0:items.append(["shield",str(cards_board[key]),{"screen":"아군 빛의장막","reflect":"아군 리플렉터","safeguard":"아군 신비의부적"}[key]])
+        for key:String in ["wishes","rings","roots","focus","destiny","spent_electric","vulnerable"]:
+            if cards_board.get(key,{}).has(pokemon.uid):items.append(["counter",{"wishes":"소원","rings":"회복","roots":"뿌리","focus":"급소","destiny":"동반","spent_electric":"방전","vulnerable":"취약"}[key],{"wishes":"다음 아군턴 시작에 자신 HP½ 회복","rings":"아쿠아링 · 행동 종료마다HP1/16 회복","roots":"뿌리박기 · HP1/16 회복/교대 제한","focus":"다음 자신의 공격 확정 급소","destiny":"다음 자기 기술 전 직접 공격한 상대와 동반 기절","spent_electric":"전기 타입 소모 · 교대하면 복구","vulnerable":"대검돌격 · 다음 자기 기술까지 받는 공격 피해2배"}[key]])
+    else:
+        for key:String in ["pressure","yawn","curses","infatuation","silence","seals","tar"]:
+            if not cards_board.get(key,{}).has(pokemon.uid):continue
+            if key=="pressure" and cards_board[key][pokemon.uid]!=turn_shown:continue
+            if key=="silence" and cards_board[key][pokemon.uid]<turn_shown:continue
+            if key in ["infatuation","seals"] and cards_board[key][pokemon.uid]["until"]<turn_shown:continue
+            items.append(["counter",{"pressure":"압박","yawn":"졸림","curses":"저주","infatuation":"매혹","silence":"침묵","seals":"봉인","tar":"타르"}[key],{"pressure":"이번 공격 피해20% 감소","yawn":"다음 행동을 마친 뒤 수면","curses":"행동 종료마다 최대HP¼ 피해","infatuation":"시전자 대상 공격 피해 절반","silence":"음성 기술 봉인","seals":"직전에 쓴 기술 봉인","tar":"받는 불꽃 피해2배"}[key]])
 
     var signature := str([pokemon.uid,items])
     if row.get_meta("status_signature","") == signature: return

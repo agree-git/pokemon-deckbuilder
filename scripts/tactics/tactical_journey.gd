@@ -107,6 +107,7 @@ func restart(run_seed: int = 2026, selected_relic: String = "field_kit", selecte
     _next_card_uid = deck.size()+1
     var opponents := route.opponents(0) if full_campaign else TacticalJourneyContent.opponents(0)
     if party.size() == 1: opponents = [opponents[0]]
+    battle.player_moves_version=2 if full_campaign and route.generation>=10 else 1
     battle.start_with(party,deck,opponents,seed_value,relic,true,relics)
     battle.full_type_chart = full_campaign
     phase = BATTLE
@@ -266,7 +267,7 @@ func reward_view(option: Dictionary) -> Dictionary:
     if option["kind"] == "card":
         var card := BattleCardInstance.new(0,option["key"],int(option["owner_uid"]))
         card.upgraded = option.get("upgraded",false)
-        var view := TacticalContent.definition(card)
+        var view := TacticalContent.definition(card,2 if full_campaign and route.generation>=10 else 1)
         for pokemon: BattlePokemon in party:
             if pokemon.uid == card.owner_uid:
                 view["species_id"] = pokemon.species_id
@@ -355,6 +356,7 @@ func enter_next() -> String:
         _prepare_camp()
     else:
         battle = TacticalBattle.new()
+        battle.player_moves_version=2 if full_campaign and route.generation>=10 else 1
         battle.start_with(party,deck,opponents_at(step),seed_value+step,relic,true,relics)
         battle.full_type_chart = full_campaign
         phase = BATTLE
@@ -366,10 +368,10 @@ func rest(action: String = "heal", card_uid: int = 0) -> String:
     if step in rested_steps: return "이번 야영지의 휴식·강화·조사 행동을 이미 사용했습니다."
     if action == "upgrade":
         for card: BattleCardInstance in deck:
-            if card.uid == card_uid and TacticalContent.can_upgrade(card):
+            if card.uid == card_uid and TacticalContent.can_upgrade(card,2 if full_campaign and route.generation>=10 else 1):
                 card.upgraded = true
                 rested_steps.append(step)
-                var choice := "카드 강화 · "+str(TacticalContent.definition(card)["name"])
+                var choice := "카드 강화 · "+str(TacticalContent.definition(card,2 if full_campaign and route.generation>=10 else 1)["name"])
                 history.append(choice)
                 _stat("cards_upgraded")
                 _decision(choice)
@@ -495,7 +497,7 @@ func buy_shop_card(index: int) -> String:
     _stat("cards_bought")
     deck.append(card)
     offer["sold"] = true
-    var choice := "상인 카드 구매 · %s · %d 골드" % [TacticalContent.definition(card)["name"],offer["price"]]
+    var choice := "상인 카드 구매 · %s · %d 골드" % [TacticalContent.definition(card,2 if full_campaign and route.generation>=10 else 1)["name"],offer["price"]]
     history.append(choice)
     _decision(choice)
     return notify_changed()
@@ -672,7 +674,7 @@ func remove_card(uid: int) -> String:
     _stat("cards_removed")
     for card: BattleCardInstance in deck:
         if card.uid == uid:
-            var choice := "카드 제거 · %s · %d 골드" % [TacticalContent.definition(card)["name"],price]
+            var choice := "카드 제거 · %s · %d 골드" % [TacticalContent.definition(card,2 if full_campaign and route.generation>=10 else 1)["name"],price]
             history.append(choice)
             _decision(choice)
             deck.erase(card)

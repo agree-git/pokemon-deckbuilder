@@ -111,7 +111,7 @@ func populate() -> void:
             row(str(entry["name"]) if available else "미해금 합체 폼",detail,_form.bind(p.uid,target),"현재 모습" if target == p.species_id else "폼 준비",target == p.species_id or not available,target if available else 0)
     elif mode == "moves":
         for move: int in NationalEvolution.teachable_moves(p):
-            var view := TacticalMoves.definition(TacticalMoves.key_for(move))
+            var view := _move_definition(move)
             var type := VisualCatalog.new().type_name(view["type"])
             if not matches(str(view["name"])+str(move)+type): continue
             var known := TacticalMoves.key_for(move) in p.learned_skills
@@ -121,7 +121,7 @@ func populate() -> void:
         for i in offers.size():
             var offer: Dictionary = offers[i]
             var move := int(offer["move"])
-            var view := TacticalMoves.definition(TacticalMoves.key_for(move))
+            var view := _move_definition(move)
             var type := VisualCatalog.new().type_name(view["type"])
             if not matches(str(view["name"])+str(move)+type): continue
             var merchant: bool = journey.camp().get("kind","") == "merchant"
@@ -133,7 +133,7 @@ func populate() -> void:
         for move: int in owned:
             var count := int(journey.machines[move])
             if count <= 0: continue
-            var view := TacticalMoves.definition(TacticalMoves.key_for(move))
+            var view := _move_definition(move)
             var type := VisualCatalog.new().type_name(view["type"])
             if not matches(str(view["name"])+str(move)+type): continue
             var known := TacticalMoves.key_for(move) in p.learned_skills
@@ -143,7 +143,7 @@ func populate() -> void:
     if rows.get_child_count() == 0: W.label(rows,"해당하는 항목이 없습니다.",Rect2(0,0,1200,72),22,W.MUTED)
 func _machine_detail(move: int,p: BattlePokemon) -> String:
     var compatible := move in TechnicalMachines.moves(p.species_id)
-    return "%s · %s\n%s" % [p.display_name,"사용 가능" if compatible else "호환되지 않음",TacticalMoves.definition(TacticalMoves.key_for(move))["description"]]
+    return "%s · %s\n%s" % [p.display_name,"사용 가능" if compatible else "호환되지 않음",_move_definition(move)["description"]]
 func _take_machine(index: int) -> void:
     notice = journey.take_machine(index)
     if notice.is_empty(): notice = "기술머신을 획득했습니다. 보유 목록에서 사용할 수 있습니다."
@@ -170,3 +170,6 @@ func _train(uid: int,move: int,index: int) -> void:
     notice = journey.train_move(uid,move,index)
     if notice.is_empty(): notice = "기술을 훈련했습니다."
     rebuild()
+
+func _move_definition(move:int) -> Dictionary:
+    return PlayerMoveCards.definition(TacticalMoves.key_for(move)) if journey.full_campaign and journey.route.generation>=10 else TacticalMoves.definition(TacticalMoves.key_for(move))

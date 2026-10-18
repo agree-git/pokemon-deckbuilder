@@ -403,7 +403,7 @@ func _rest() -> void:
             rest_button.disabled = journey.step in journey.rested_steps
             var upgrade := W.button(page,Rect2(1190,742,500,78),_select_deck_action.bind("upgrade"),"카드 강화 선택")
             upgrade.name = "Upgrade"
-            upgrade.disabled = journey.step in journey.rested_steps or not journey.deck.any(func(card: BattleCardInstance): return TacticalContent.can_upgrade(card))
+            upgrade.disabled = journey.step in journey.rested_steps or not journey.deck.any(func(card: BattleCardInstance): return TacticalContent.can_upgrade(card,journey.battle.player_moves_version))
             actions.append(upgrade)
         "encounter": _encounter()
         "shop": _shop()
@@ -904,7 +904,7 @@ func _deck() -> void:
     deck_close = browser.close_button
 func _deck_select(uid: int) -> void:
     if deck_action == "upgrade":
-        if not journey.deck.any(func(card: BattleCardInstance): return card.uid == uid and TacticalContent.can_upgrade(card)): return
+        if not journey.deck.any(func(card: BattleCardInstance): return card.uid == uid and TacticalContent.can_upgrade(card,journey.battle.player_moves_version)): return
         if journey.phase != TacticalJourney.REST or journey.step in journey.rested_steps: return
         upgrade_preview_uid = uid
         refresh()
@@ -976,7 +976,7 @@ func _upgrade_preview() -> void:
     W.button(panel,Rect2(130,650,350,72),_close_upgrade_preview,"목록으로").name = "UpgradeCancel"
     var confirm := W.button(panel,Rect2(600,650,350,72),_confirm_upgrade,"이 카드 강화")
     confirm.name = "UpgradeConfirm"
-    confirm.disabled = journey.phase != TacticalJourney.REST or journey.step in journey.rested_steps or not TacticalContent.can_upgrade(selected)
+    confirm.disabled = journey.phase != TacticalJourney.REST or journey.step in journey.rested_steps or not TacticalContent.can_upgrade(selected,journey.battle.player_moves_version)
     UiMotion.appear(overlay)
 func _close_deck() -> void:
     deck_owner_filter = -1
