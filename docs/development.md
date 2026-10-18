@@ -160,3 +160,24 @@ Headless 씬 검사는 종료 전에 GameAudio/GameMusic/GameCries뿐 아니라 
 원작 기반 파티 컨펌 자료는 `docs/boss-party-review.json`이 기준이고 `python3 tools/boss_party_review.py --game-dir /path/to/main`으로 Markdown을 재생성/검증한다. `--workbook /path/outside-repo/review.xlsx`는 선택 openpyxl로 검토용 엑셀을 만든다. 게임 파일에 쓰지 않으며 `review_pending_not_applied`는 사용자 승인 전까지 유지한다. 실제 현재 역할/BGM 목록은 `boss-roster.*`와 구분한다.
 
 승인 파티는 `scripts/content/boss_parties.gd`와 `data/boss_parties.json`, 경로 적용은 `campaign_route.gd`의v5분기다. `python3 tools/import_boss_parties.py --game-dir /path/to/main`은 승인/applied 상태 검토안만 가져오고 역사적 파티 JSON은 건드리지 않는다. `boss_roster.py`는 현재 승인 파티/대표를 BGM 목록에도 표시한다. 새 파티 검사는 `test_boss_parties.gd`, 주변 회귀는 `--suite boss-party-regression`이며 native는 `tests/native_boss_parties.gd` + `BOSS_PARTY_REVIEW_DIR`/실제 X11 입력 도구를 쓴다. EXE 보류 중에는 export/Windows workflow를 실행하지 않는다.
+
+## 대표 기술·전술 명세
+
+[전술 목록](boss-ace-tactics.md)은 계획1번의 결과이며 게임에는 미적용이다. 원작 참조와 제안을 각각 `boss-ace-references.json`/`boss-ace-tactics.json`에서 관리한다. `boss_ace_review.py`는 검증/문서 생성만 하며 게임 파일을 쓰지 않는다. 선택 의존성openpyxl은 엑셀 출력에만 필요하다.
+
+```bash
+python3 .dev-materials/tools/boss_ace_review.py --game-dir .
+# 고정 출처 CSV가 있는 경우 실제 습득 증거도 재검증:
+python3 .dev-materials/tools/boss_ace_review.py --game-dir . --csv-dir /path/to/pinned-csv \
+  --workbook .dev-materials/docs/boss-ace-tactics.xlsx
+```
+
+현재 런타임 전술과 제안 기술의 플레이어 카드 정의를 비교하는 읽기 전용 Godot 도구도 있다. 실제 사용자 저장과 분리한 XDG/APPDATA 경로에서 실행한다. 출력 경로와 JSON 경로는 사용 환경에 맞춰 지정한다. 게임의 기존 전술만 읽는 감사이며 제안 전술 실행 검사가 아니다.
+
+```bash
+BOSS_ACE_AUDIT_OUTPUT=/tmp/boss-ace-current.json \
+BOSS_ACE_SPEC_PATH=/absolute/path/to/.dev-materials/docs/boss-ace-tactics.json \
+godot --headless --path . --script .dev-materials/tools/audit_boss_aces.gd
+```
+
+후속 효과 구현은 새 전술 버전을 먼저 설계한다. 기존v1~v5 저장을 읽고 다음 전투를 만들 때도 이전 전술을 유지해야 한다. 단순히 `BossTactics.build`를 덮어쓰거나 현행 지문을 바꾸는 것만으로 호환이 해결되지 않는다. 원작 상태/능력/부가효과가 플레이어 카드에 존재해도 적 공격 경로에 연결되어 있는지 별도로 검증한다.

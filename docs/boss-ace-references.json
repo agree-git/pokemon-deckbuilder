@@ -1,0 +1,3429 @@
+{
+  "schema_version": 1,
+  "checked_on": "2026-10-18",
+  "scope": "대표138마리의 원작 참조 기술 ID와 출처 · 런타임 입력 아님",
+  "source_pins": {
+    "pret/pokeheartgold": "75912a082f196496b4f9d347e0f99319150a96b4",
+    "pret/pokeplatinum": "1dc13dcea40c04ab53f1f607de46023dc409ef20",
+    "pret/pokeemerald": "731ad5bfd6e6f265508d0efcca0ba42f9dcf5881"
+  },
+  "entries": [
+    {
+      "key": "gym:brock",
+      "name": "웅",
+      "role": "gym",
+      "region": "관동",
+      "species": 208,
+      "source_species": 95,
+      "source_moves": [
+        446,
+        157,
+        397,
+        201
+      ],
+      "source": "https://github.com/pret/pokeheartgold/blob/75912a082f196496b4f9d347e0f99319150a96b4/files/poketool/trainer/trainers.json",
+      "source_locator": {
+        "header": "Brock",
+        "record": 720
+      },
+      "basis": "엑셀 최종형으로 진화 · 원작 미진화체 기술 계승 검토",
+      "reference_game": "하트골드·소울실버",
+      "reference_battle": "재대결",
+      "id": "gym:brock:208",
+      "source_game": "하트골드·소울실버",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:misty",
+      "name": "이슬",
+      "role": "gym",
+      "region": "관동",
+      "species": 121,
+      "source_species": 121,
+      "source_moves": [
+        85,
+        94,
+        58,
+        57
+      ],
+      "source": "https://github.com/pret/pokeheartgold/blob/75912a082f196496b4f9d347e0f99319150a96b4/files/poketool/trainer/trainers.json",
+      "source_locator": {
+        "header": "Misty",
+        "record": 721
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "하트골드·소울실버",
+      "reference_battle": "재대결",
+      "id": "gym:misty:121",
+      "source_game": "하트골드·소울실버",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:lt_surge",
+      "name": "마티스",
+      "role": "gym",
+      "region": "관동",
+      "species": 26,
+      "source_species": 26,
+      "source_moves": [
+        86,
+        98,
+        85,
+        447
+      ],
+      "source": "https://github.com/pret/pokeheartgold/blob/75912a082f196496b4f9d347e0f99319150a96b4/files/poketool/trainer/trainers.json",
+      "source_locator": {
+        "header": "Lt. Surge",
+        "record": 722
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "하트골드·소울실버",
+      "reference_battle": "재대결",
+      "id": "gym:lt_surge:26",
+      "source_game": "하트골드·소울실버",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:erika",
+      "name": "민화",
+      "role": "gym",
+      "region": "관동",
+      "species": 45,
+      "source_species": 45,
+      "source_moves": [
+        585,
+        188,
+        80,
+        78
+      ],
+      "source": "https://www.serebii.net/letsgopikachueevee/gymrematch.shtml",
+      "source_locator": {
+        "header": "Gym Leader Erika",
+        "line": 488
+      },
+      "basis": "승인 파티 기준 전투에 대표가 없어 같은 트레이너의 레츠고 재대결 기술 참조",
+      "reference_game": "하트골드·소울실버",
+      "reference_battle": "재대결",
+      "id": "gym:erika:45",
+      "source_game": "레츠고! 피카츄·이브이",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:koga",
+      "name": "독수",
+      "role": "gym",
+      "region": "관동",
+      "species": 49,
+      "source_species": 49,
+      "source_moves": [
+        72,
+        188,
+        94,
+        405
+      ],
+      "source": "https://www.serebii.net/letsgopikachueevee/gymrematch.shtml",
+      "source_locator": {
+        "header": "Gym Leader Koga",
+        "line": 518
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "레츠고! 피카츄·이브이",
+      "reference_battle": "재대결",
+      "id": "gym:koga:49",
+      "source_game": "레츠고! 피카츄·이브이",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:sabrina",
+      "name": "초련",
+      "role": "gym",
+      "region": "관동",
+      "species": 65,
+      "source_species": 65,
+      "source_moves": [
+        356,
+        411,
+        412,
+        94
+      ],
+      "source": "https://github.com/pret/pokeheartgold/blob/75912a082f196496b4f9d347e0f99319150a96b4/files/poketool/trainer/trainers.json",
+      "source_locator": {
+        "header": "Sabrina",
+        "record": 725
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "하트골드·소울실버",
+      "reference_battle": "재대결",
+      "id": "gym:sabrina:65",
+      "source_game": "하트골드·소울실버",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:blaine",
+      "name": "강연",
+      "role": "gym",
+      "region": "관동",
+      "species": 59,
+      "source_species": 59,
+      "source_moves": [
+        394,
+        200,
+        242,
+        583
+      ],
+      "source": "https://www.serebii.net/letsgopikachueevee/gymrematch.shtml",
+      "source_locator": {
+        "header": "Gym Leader Blaine",
+        "line": 578
+      },
+      "basis": "승인 파티 기준 전투에 대표가 없어 같은 트레이너의 레츠고 재대결 기술 참조",
+      "reference_game": "하트골드·소울실버",
+      "reference_battle": "재대결",
+      "id": "gym:blaine:59",
+      "source_game": "레츠고! 피카츄·이브이",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:giovanni",
+      "name": "비주기",
+      "role": "gym",
+      "region": "관동",
+      "species": 464,
+      "source_species": 112,
+      "source_moves": [
+        89,
+        157,
+        224
+      ],
+      "source": "https://www.serebii.net/letsgopikachueevee/gyms.shtml",
+      "source_locator": {
+        "header": "Gym Leader Giovanni",
+        "line": 559
+      },
+      "basis": "엑셀 최종형으로 진화 · 원작 미진화체 기술 계승 검토",
+      "reference_game": "레츠고! 피카츄·이브이",
+      "reference_battle": "본편 대결",
+      "id": "gym:giovanni:464",
+      "source_game": "레츠고! 피카츄·이브이",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:janine",
+      "name": "도희",
+      "role": "gym",
+      "region": "관동",
+      "species": 49,
+      "source_species": 49,
+      "source_moves": [
+        79,
+        104,
+        405,
+        94
+      ],
+      "source": "https://github.com/pret/pokeheartgold/blob/75912a082f196496b4f9d347e0f99319150a96b4/files/poketool/trainer/trainers.json",
+      "source_locator": {
+        "header": "Janine",
+        "record": 724
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "하트골드·소울실버",
+      "reference_battle": "재대결",
+      "id": "gym:janine:49",
+      "source_game": "하트골드·소울실버",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:blue",
+      "name": "그린",
+      "role": "gym",
+      "region": "관동",
+      "species": 18,
+      "source_species": 18,
+      "source_moves": [
+        216,
+        104,
+        403,
+        211
+      ],
+      "source": "https://github.com/pret/pokeheartgold/blob/75912a082f196496b4f9d347e0f99319150a96b4/files/poketool/trainer/trainers.json",
+      "source_locator": {
+        "header": "Blue",
+        "record": 727
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "하트골드·소울실버",
+      "reference_battle": "재대결",
+      "id": "gym:blue:18",
+      "source_game": "하트골드·소울실버",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:falkner",
+      "name": "비상",
+      "role": "gym",
+      "region": "성도",
+      "species": 18,
+      "source_species": 18,
+      "source_moves": [
+        216,
+        104,
+        207,
+        355
+      ],
+      "source": "https://github.com/pret/pokeheartgold/blob/75912a082f196496b4f9d347e0f99319150a96b4/files/poketool/trainer/trainers.json",
+      "source_locator": {
+        "header": "Falkner",
+        "record": 712
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "하트골드·소울실버",
+      "reference_battle": "재대결",
+      "id": "gym:falkner:18",
+      "source_game": "하트골드·소울실버",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:bugsy",
+      "name": "호일",
+      "role": "gym",
+      "region": "성도",
+      "species": 212,
+      "source_species": 212,
+      "source_moves": [
+        418,
+        404,
+        14,
+        276
+      ],
+      "source": "https://github.com/pret/pokeheartgold/blob/75912a082f196496b4f9d347e0f99319150a96b4/files/poketool/trainer/trainers.json",
+      "source_locator": {
+        "header": "Bugsy",
+        "record": 713
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "하트골드·소울실버",
+      "reference_battle": "재대결",
+      "id": "gym:bugsy:212",
+      "source_game": "하트골드·소울실버",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:whitney",
+      "name": "꼭두",
+      "role": "gym",
+      "region": "성도",
+      "species": 241,
+      "source_species": 241,
+      "source_moves": [
+        34,
+        213,
+        214,
+        156
+      ],
+      "source": "https://github.com/pret/pokeheartgold/blob/75912a082f196496b4f9d347e0f99319150a96b4/files/poketool/trainer/trainers.json",
+      "source_locator": {
+        "header": "Whitney",
+        "record": 714
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "하트골드·소울실버",
+      "reference_battle": "재대결",
+      "id": "gym:whitney:241",
+      "source_game": "하트골드·소울실버",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:morty",
+      "name": "유빈",
+      "role": "gym",
+      "region": "성도",
+      "species": 94,
+      "source_species": 94,
+      "source_moves": [
+        164,
+        247,
+        85,
+        194
+      ],
+      "source": "https://github.com/pret/pokeheartgold/blob/75912a082f196496b4f9d347e0f99319150a96b4/files/poketool/trainer/trainers.json",
+      "source_locator": {
+        "header": "Morty",
+        "record": 715
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "하트골드·소울실버",
+      "reference_battle": "재대결",
+      "id": "gym:morty:94",
+      "source_game": "하트골드·소울실버",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:chuck",
+      "name": "사도",
+      "role": "gym",
+      "region": "성도",
+      "species": 62,
+      "source_species": 62,
+      "source_moves": [
+        104,
+        127,
+        264,
+        164
+      ],
+      "source": "https://github.com/pret/pokeheartgold/blob/75912a082f196496b4f9d347e0f99319150a96b4/files/poketool/trainer/trainers.json",
+      "source_locator": {
+        "header": "Chuck",
+        "record": 718
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "하트골드·소울실버",
+      "reference_battle": "재대결",
+      "id": "gym:chuck:62",
+      "source_game": "하트골드·소울실버",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:jasmine",
+      "name": "규리",
+      "role": "gym",
+      "region": "성도",
+      "species": 208,
+      "source_species": 208,
+      "source_moves": [
+        444,
+        446,
+        46,
+        231
+      ],
+      "source": "https://github.com/pret/pokeheartgold/blob/75912a082f196496b4f9d347e0f99319150a96b4/files/poketool/trainer/trainers.json",
+      "source_locator": {
+        "header": "Jasmine",
+        "record": 717
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "하트골드·소울실버",
+      "reference_battle": "재대결",
+      "id": "gym:jasmine:208",
+      "source_game": "하트골드·소울실버",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:pryce",
+      "name": "류옹",
+      "role": "gym",
+      "region": "성도",
+      "species": 473,
+      "source_species": 473,
+      "source_moves": [
+        89,
+        419,
+        444,
+        104
+      ],
+      "source": "https://github.com/pret/pokeheartgold/blob/75912a082f196496b4f9d347e0f99319150a96b4/files/poketool/trainer/trainers.json",
+      "source_locator": {
+        "header": "Pryce",
+        "record": 716
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "하트골드·소울실버",
+      "reference_battle": "재대결",
+      "id": "gym:pryce:473",
+      "source_game": "하트골드·소울실버",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:clair",
+      "name": "이향",
+      "role": "gym",
+      "region": "성도",
+      "species": 230,
+      "source_species": 230,
+      "source_moves": [
+        281,
+        56,
+        58,
+        225
+      ],
+      "source": "https://github.com/pret/pokeheartgold/blob/75912a082f196496b4f9d347e0f99319150a96b4/files/poketool/trainer/trainers.json",
+      "source_locator": {
+        "header": "Clair",
+        "record": 719
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "하트골드·소울실버",
+      "reference_battle": "재대결",
+      "id": "gym:clair:230",
+      "source_game": "하트골드·소울실버",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:roxanne",
+      "name": "원규",
+      "role": "gym",
+      "region": "호연",
+      "species": 476,
+      "source_species": 299,
+      "source_moves": [
+        33,
+        106,
+        317
+      ],
+      "source": "https://www.serebii.net/omegarubyalphasapphire/gyms.shtml",
+      "source_locator": {
+        "header": "Leader Roxanne",
+        "line": 400
+      },
+      "basis": "엑셀 최종형으로 진화 · 원작 미진화체 기술 계승 검토",
+      "reference_game": "오메가루비·알파사파이어",
+      "reference_battle": "본편 대결",
+      "id": "gym:roxanne:476",
+      "source_game": "오메가루비·알파사파이어",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:brawly",
+      "name": "철구",
+      "role": "gym",
+      "region": "호연",
+      "species": 297,
+      "source_species": 296,
+      "source_moves": [
+        292,
+        282,
+        28,
+        339
+      ],
+      "source": "https://www.serebii.net/omegarubyalphasapphire/gyms.shtml",
+      "source_locator": {
+        "header": "Leader Brawly",
+        "line": 423
+      },
+      "basis": "엑셀 최종형으로 진화 · 원작 미진화체 기술 계승 검토",
+      "reference_game": "오메가루비·알파사파이어",
+      "reference_battle": "본편 대결",
+      "id": "gym:brawly:297",
+      "source_game": "오메가루비·알파사파이어",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:wattson",
+      "name": "암페어",
+      "role": "gym",
+      "region": "호연",
+      "species": 462,
+      "source_species": 82,
+      "source_moves": [
+        48,
+        443,
+        521
+      ],
+      "source": "https://www.serebii.net/omegarubyalphasapphire/gyms.shtml",
+      "source_locator": {
+        "header": "Leader Wattson",
+        "line": 447
+      },
+      "basis": "엑셀 자포코일 · 원작 최종 레어코일 기술을 기준으로 각색(기존 파티 검토의 코일 진화 표기와 구분)",
+      "reference_game": "오메가루비·알파사파이어",
+      "reference_battle": "본편 대결",
+      "id": "gym:wattson:462",
+      "source_game": "오메가루비·알파사파이어",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:flannery",
+      "name": "민지",
+      "role": "gym",
+      "region": "호연",
+      "species": 324,
+      "source_species": 324,
+      "source_moves": [
+        315,
+        34,
+        174,
+        241
+      ],
+      "source": "https://www.serebii.net/omegarubyalphasapphire/gyms.shtml",
+      "source_locator": {
+        "header": "Leader Flannery",
+        "line": 475
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "오메가루비·알파사파이어",
+      "reference_battle": "본편 대결",
+      "id": "gym:flannery:324",
+      "source_game": "오메가루비·알파사파이어",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:norman",
+      "name": "종길",
+      "role": "gym",
+      "region": "호연",
+      "species": 289,
+      "source_species": 289,
+      "source_moves": [
+        498,
+        207,
+        514,
+        185
+      ],
+      "source": "https://www.serebii.net/omegarubyalphasapphire/gyms.shtml",
+      "source_locator": {
+        "header": "Leader Norman",
+        "line": 504
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "오메가루비·알파사파이어",
+      "reference_battle": "본편 대결",
+      "id": "gym:norman:289",
+      "source_game": "오메가루비·알파사파이어",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:winona",
+      "name": "은송",
+      "role": "gym",
+      "region": "호연",
+      "species": 334,
+      "source_species": 334,
+      "source_moves": [
+        89,
+        225,
+        538,
+        355
+      ],
+      "source": "https://www.serebii.net/omegarubyalphasapphire/gyms.shtml",
+      "source_locator": {
+        "header": "Leader Winona",
+        "line": 533
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "오메가루비·알파사파이어",
+      "reference_battle": "본편 대결",
+      "id": "gym:winona:334",
+      "source_game": "오메가루비·알파사파이어",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:tate_liza",
+      "name": "풍·란",
+      "role": "gym",
+      "region": "호연",
+      "species": 338,
+      "source_species": 338,
+      "source_moves": [
+        241,
+        76,
+        94,
+        53
+      ],
+      "source": "https://github.com/pret/pokeemerald/blob/731ad5bfd6e6f265508d0efcca0ba42f9dcf5881/src/data/trainer_parties.h",
+      "source_locator": {
+        "header": "TateAndLiza1",
+        "record": "TateAndLiza1"
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "에메랄드",
+      "reference_battle": "본편 대결",
+      "id": "gym:tate_liza:338",
+      "source_game": "에메랄드",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:tate_liza",
+      "name": "풍·란",
+      "role": "gym",
+      "region": "호연",
+      "species": 337,
+      "source_species": 337,
+      "source_moves": [
+        113,
+        94,
+        95,
+        347
+      ],
+      "source": "https://github.com/pret/pokeemerald/blob/731ad5bfd6e6f265508d0efcca0ba42f9dcf5881/src/data/trainer_parties.h",
+      "source_locator": {
+        "header": "TateAndLiza1",
+        "record": "TateAndLiza1"
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "에메랄드",
+      "reference_battle": "본편 대결",
+      "id": "gym:tate_liza:337",
+      "source_game": "에메랄드",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:wallace",
+      "name": "윤진",
+      "role": "gym",
+      "region": "호연",
+      "species": 350,
+      "source_species": 350,
+      "source_moves": [
+        56,
+        574,
+        105,
+        58
+      ],
+      "source": "https://www.serebii.net/omegarubyalphasapphire/gyms.shtml",
+      "source_locator": {
+        "header": "Leader Wallace",
+        "line": 591
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "오메가루비·알파사파이어",
+      "reference_battle": "본편 대결",
+      "id": "gym:wallace:350",
+      "source_game": "오메가루비·알파사파이어",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:juan",
+      "name": "아단",
+      "role": "gym",
+      "region": "호연",
+      "species": 230,
+      "source_species": 230,
+      "source_moves": [
+        352,
+        104,
+        58,
+        156
+      ],
+      "source": "https://github.com/pret/pokeemerald/blob/731ad5bfd6e6f265508d0efcca0ba42f9dcf5881/src/data/trainer_parties.h",
+      "source_locator": {
+        "header": "Juan1",
+        "record": "Juan1"
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "에메랄드",
+      "reference_battle": "본편 대결",
+      "id": "gym:juan:230",
+      "source_game": "에메랄드",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:roark",
+      "name": "강석",
+      "role": "gym",
+      "region": "신오",
+      "species": 409,
+      "source_species": 409,
+      "source_moves": [
+        457,
+        428,
+        419,
+        89
+      ],
+      "source": "https://github.com/pret/pokeplatinum/blob/1dc13dcea40c04ab53f1f607de46023dc409ef20/res/trainers/data/leader_roark_rematch.json",
+      "source_locator": {
+        "header": "Roark"
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "플라티나",
+      "reference_battle": "재대결",
+      "id": "gym:roark:409",
+      "source_game": "플라티나",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:gardenia",
+      "name": "유채",
+      "role": "gym",
+      "region": "신오",
+      "species": 407,
+      "source_species": 407,
+      "source_moves": [
+        247,
+        437,
+        188,
+        63
+      ],
+      "source": "https://github.com/pret/pokeplatinum/blob/1dc13dcea40c04ab53f1f607de46023dc409ef20/res/trainers/data/leader_gardenia_rematch.json",
+      "source_locator": {
+        "header": "Gardenia"
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "플라티나",
+      "reference_battle": "재대결",
+      "id": "gym:gardenia:407",
+      "source_game": "플라티나",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:maylene",
+      "name": "자두",
+      "role": "gym",
+      "region": "신오",
+      "species": 448,
+      "source_species": 448,
+      "source_moves": [
+        409,
+        370,
+        245,
+        198
+      ],
+      "source": "https://github.com/pret/pokeplatinum/blob/1dc13dcea40c04ab53f1f607de46023dc409ef20/res/trainers/data/leader_maylene_rematch.json",
+      "source_locator": {
+        "header": "Maylene"
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "플라티나",
+      "reference_battle": "재대결",
+      "id": "gym:maylene:448",
+      "source_game": "플라티나",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:crasher_wake",
+      "name": "맥실러",
+      "role": "gym",
+      "region": "신오",
+      "species": 419,
+      "source_species": 419,
+      "source_moves": [
+        362,
+        423,
+        242,
+        453
+      ],
+      "source": "https://github.com/pret/pokeplatinum/blob/1dc13dcea40c04ab53f1f607de46023dc409ef20/res/trainers/data/leader_wake_rematch.json",
+      "source_locator": {
+        "header": "Wake"
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "플라티나",
+      "reference_battle": "재대결",
+      "id": "gym:crasher_wake:419",
+      "source_game": "플라티나",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:fantina",
+      "name": "멜리사",
+      "role": "gym",
+      "region": "신오",
+      "species": 429,
+      "source_species": 429,
+      "source_moves": [
+        247,
+        94,
+        345,
+        85
+      ],
+      "source": "https://github.com/pret/pokeplatinum/blob/1dc13dcea40c04ab53f1f607de46023dc409ef20/res/trainers/data/leader_fantina_rematch.json",
+      "source_locator": {
+        "header": "Fantina"
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "플라티나",
+      "reference_battle": "재대결",
+      "id": "gym:fantina:429",
+      "source_game": "플라티나",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:byron",
+      "name": "동관",
+      "role": "gym",
+      "region": "신오",
+      "species": 411,
+      "source_species": 411,
+      "source_moves": [
+        368,
+        246,
+        334,
+        156
+      ],
+      "source": "https://github.com/pret/pokeplatinum/blob/1dc13dcea40c04ab53f1f607de46023dc409ef20/res/trainers/data/leader_byron_rematch.json",
+      "source_locator": {
+        "header": "Byron"
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "플라티나",
+      "reference_battle": "재대결",
+      "id": "gym:byron:411",
+      "source_game": "플라티나",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:candice",
+      "name": "무청",
+      "role": "gym",
+      "region": "신오",
+      "species": 460,
+      "source_species": 460,
+      "source_moves": [
+        419,
+        452,
+        320,
+        275
+      ],
+      "source": "https://github.com/pret/pokeplatinum/blob/1dc13dcea40c04ab53f1f607de46023dc409ef20/res/trainers/data/leader_candice_rematch.json",
+      "source_locator": {
+        "header": "Candice"
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "플라티나",
+      "reference_battle": "재대결",
+      "id": "gym:candice:460",
+      "source_game": "플라티나",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:volkner",
+      "name": "전진",
+      "role": "gym",
+      "region": "신오",
+      "species": 405,
+      "source_species": 405,
+      "source_moves": [
+        423,
+        422,
+        242,
+        424
+      ],
+      "source": "https://github.com/pret/pokeplatinum/blob/1dc13dcea40c04ab53f1f607de46023dc409ef20/res/trainers/data/leader_volkner_rematch.json",
+      "source_locator": {
+        "header": "Volkner"
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "플라티나",
+      "reference_battle": "재대결",
+      "id": "gym:volkner:405",
+      "source_game": "플라티나",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:cilan",
+      "name": "덴트",
+      "role": "gym",
+      "region": "하나",
+      "species": 512,
+      "source_species": 511,
+      "source_moves": [
+        22,
+        526,
+        122,
+        154
+      ],
+      "source": "https://www.serebii.net/blackwhite/gyms.shtml",
+      "source_locator": {
+        "header": "Gym Leader Cilan",
+        "line": 423
+      },
+      "basis": "엑셀 최종형으로 진화 · 원작 미진화체 기술 계승 검토",
+      "reference_game": "블랙·화이트",
+      "reference_battle": "본편 대결",
+      "id": "gym:cilan:512",
+      "source_game": "블랙·화이트",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:chili",
+      "name": "팟",
+      "role": "gym",
+      "region": "하나",
+      "species": 514,
+      "source_species": 513,
+      "source_moves": [
+        510,
+        526,
+        122,
+        154
+      ],
+      "source": "https://www.serebii.net/blackwhite/gyms.shtml",
+      "source_locator": {
+        "header": "Gym Leader Chili",
+        "line": 402
+      },
+      "basis": "엑셀 최종형으로 진화 · 원작 미진화체 기술 계승 검토",
+      "reference_game": "블랙·화이트",
+      "reference_battle": "본편 대결",
+      "id": "gym:chili:514",
+      "source_game": "블랙·화이트",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:cress",
+      "name": "콘",
+      "role": "gym",
+      "region": "하나",
+      "species": 516,
+      "source_species": 515,
+      "source_moves": [
+        55,
+        526,
+        122,
+        154
+      ],
+      "source": "https://www.serebii.net/blackwhite/gyms.shtml",
+      "source_locator": {
+        "header": "Gym Leader Cress",
+        "line": 444
+      },
+      "basis": "엑셀 최종형으로 진화 · 원작 미진화체 기술 계승 검토",
+      "reference_game": "블랙·화이트",
+      "reference_battle": "본편 대결",
+      "id": "gym:cress:516",
+      "source_game": "블랙·화이트",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:lenora",
+      "name": "알로에",
+      "role": "gym",
+      "region": "하나",
+      "species": 505,
+      "source_species": 505,
+      "source_moves": [
+        43,
+        242,
+        514,
+        95
+      ],
+      "source": "https://www.serebii.net/blackwhite/gyms.shtml",
+      "source_locator": {
+        "header": "Gym Leader Lenora",
+        "line": 472
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "블랙·화이트",
+      "reference_battle": "본편 대결",
+      "id": "gym:lenora:505",
+      "source_game": "블랙·화이트",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:burgh",
+      "name": "아티",
+      "role": "gym",
+      "region": "하나",
+      "species": 542,
+      "source_species": 542,
+      "source_moves": [
+        522,
+        75,
+        15,
+        81
+      ],
+      "source": "https://www.serebii.net/black2white2/gyms.shtml",
+      "source_locator": {
+        "header": "Leader Burgh",
+        "line": 508
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "블랙2·화이트2",
+      "reference_battle": "본편 대결",
+      "id": "gym:burgh:542",
+      "source_game": "블랙2·화이트2",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:elesa",
+      "name": "카밀레",
+      "role": "gym",
+      "region": "하나",
+      "species": 523,
+      "source_species": 523,
+      "source_moves": [
+        521,
+        488,
+        98,
+        228
+      ],
+      "source": "https://www.serebii.net/black2white2/gyms.shtml",
+      "source_locator": {
+        "header": "Leader Elesa",
+        "line": 574
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "블랙2·화이트2",
+      "reference_battle": "본편 대결",
+      "id": "gym:elesa:523",
+      "source_game": "블랙2·화이트2",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:clay",
+      "name": "야콘",
+      "role": "gym",
+      "region": "하나",
+      "species": 530,
+      "source_species": 530,
+      "source_moves": [
+        523,
+        232,
+        163,
+        157
+      ],
+      "source": "https://www.serebii.net/black2white2/gyms.shtml",
+      "source_locator": {
+        "header": "Leader Clay",
+        "line": 640
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "블랙2·화이트2",
+      "reference_battle": "본편 대결",
+      "id": "gym:clay:530",
+      "source_game": "블랙2·화이트2",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:skyla",
+      "name": "풍란",
+      "role": "gym",
+      "region": "하나",
+      "species": 581,
+      "source_species": 581,
+      "source_moves": [
+        403,
+        61,
+        355,
+        297
+      ],
+      "source": "https://www.serebii.net/black2white2/gyms.shtml",
+      "source_locator": {
+        "header": "Leader Skyla",
+        "line": 706
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "블랙2·화이트2",
+      "reference_battle": "본편 대결",
+      "id": "gym:skyla:581",
+      "source_game": "블랙2·화이트2",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:brycen",
+      "name": "담죽",
+      "role": "gym",
+      "region": "하나",
+      "species": 614,
+      "source_species": 614,
+      "source_moves": [
+        163,
+        362,
+        556,
+        207
+      ],
+      "source": "https://www.serebii.net/blackwhite/gyms.shtml",
+      "source_locator": {
+        "header": "Gym Leader Brycen",
+        "line": 631
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "블랙·화이트",
+      "reference_battle": "본편 대결",
+      "id": "gym:brycen:614",
+      "source_game": "블랙·화이트",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:drayden",
+      "name": "사간",
+      "role": "gym",
+      "region": "하나",
+      "species": 612,
+      "source_species": 612,
+      "source_moves": [
+        525,
+        163,
+        372,
+        349
+      ],
+      "source": "https://www.serebii.net/black2white2/gyms.shtml",
+      "source_locator": {
+        "header": "Leader Drayden",
+        "line": 772
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "블랙2·화이트2",
+      "reference_battle": "본편 대결",
+      "id": "gym:drayden:612",
+      "source_game": "블랙2·화이트2",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:iris",
+      "name": "아이리스",
+      "role": "gym",
+      "region": "하나",
+      "species": 612,
+      "source_species": 612,
+      "source_moves": [
+        349,
+        163,
+        525,
+        372
+      ],
+      "source": "https://www.serebii.net/blackwhite/gyms.shtml",
+      "source_locator": {
+        "header": "Gym Leader Drayden",
+        "line": 664
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "블랙·화이트",
+      "reference_battle": "본편 대결",
+      "id": "gym:iris:612",
+      "source_game": "블랙·화이트",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:cheren",
+      "name": "체렌",
+      "role": "gym",
+      "region": "하나",
+      "species": 508,
+      "source_species": 506,
+      "source_moves": [
+        526,
+        44,
+        33,
+        270
+      ],
+      "source": "https://www.serebii.net/black2white2/gyms.shtml",
+      "source_locator": {
+        "header": "Leader Cheren",
+        "line": 400
+      },
+      "basis": "엑셀 최종형으로 진화 · 원작 미진화체 기술 계승 검토",
+      "reference_game": "블랙2·화이트2",
+      "reference_battle": "본편 대결",
+      "id": "gym:cheren:508",
+      "source_game": "블랙2·화이트2",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:roxie",
+      "name": "보미",
+      "role": "gym",
+      "region": "하나",
+      "species": 545,
+      "source_species": 544,
+      "source_moves": [
+        474,
+        40,
+        182,
+        228
+      ],
+      "source": "https://www.serebii.net/black2white2/gyms.shtml",
+      "source_locator": {
+        "header": "Leader Roxie",
+        "line": 454
+      },
+      "basis": "엑셀 최종형으로 진화 · 원작 미진화체 기술 계승 검토",
+      "reference_game": "블랙2·화이트2",
+      "reference_battle": "본편 대결",
+      "id": "gym:roxie:545",
+      "source_game": "블랙2·화이트2",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:marlon",
+      "name": "시즈",
+      "role": "gym",
+      "region": "하나",
+      "species": 593,
+      "source_species": 593,
+      "source_moves": [
+        503,
+        466,
+        362,
+        105
+      ],
+      "source": "https://www.serebii.net/black2white2/gyms.shtml",
+      "source_locator": {
+        "header": "Leader Marlon",
+        "line": 838
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "블랙2·화이트2",
+      "reference_battle": "본편 대결",
+      "id": "gym:marlon:593",
+      "source_game": "블랙2·화이트2",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:viola",
+      "name": "비올라",
+      "role": "gym",
+      "region": "칼로스",
+      "species": 666,
+      "source_species": 666,
+      "source_moves": [
+        106,
+        33,
+        611
+      ],
+      "source": "https://www.serebii.net/xy/gyms.shtml",
+      "source_locator": {
+        "header": "Leader Viola",
+        "line": 399
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "X·Y",
+      "reference_battle": "본편 대결",
+      "id": "gym:viola:666",
+      "source_game": "X·Y",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:grant",
+      "name": "자크로",
+      "role": "gym",
+      "region": "칼로스",
+      "species": 697,
+      "source_species": 696,
+      "source_moves": [
+        44,
+        317,
+        23
+      ],
+      "source": "https://www.serebii.net/xy/gyms.shtml",
+      "source_locator": {
+        "header": "Leader Grant",
+        "line": 423
+      },
+      "basis": "엑셀 최종형으로 진화 · 원작 미진화체 기술 계승 검토",
+      "reference_game": "X·Y",
+      "reference_battle": "본편 대결",
+      "id": "gym:grant:697",
+      "source_game": "X·Y",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:korrina",
+      "name": "코르니",
+      "role": "gym",
+      "region": "칼로스",
+      "species": 448,
+      "source_species": 448,
+      "source_moves": [
+        612,
+        14,
+        319,
+        198
+      ],
+      "source": "https://bulbapedia.bulbagarden.net/wiki/Tower_of_Mastery",
+      "source_locator": {
+        "header": "Korrina / Tower of Mastery"
+      },
+      "basis": "체육관 외 마스터타워 이벤트 · 메가진화 효과 제외",
+      "reference_game": "X·Y",
+      "reference_battle": "본편 대결",
+      "id": "gym:korrina:448",
+      "source_game": "X·Y",
+      "source_battle": "마스터타워"
+    },
+    {
+      "key": "gym:ramos",
+      "name": "후쿠지",
+      "role": "gym",
+      "region": "칼로스",
+      "species": 673,
+      "source_species": 673,
+      "source_moves": [
+        523,
+        447,
+        36
+      ],
+      "source": "https://www.serebii.net/xy/gyms.shtml",
+      "source_locator": {
+        "header": "Leader Ramos",
+        "line": 478
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "X·Y",
+      "reference_battle": "본편 대결",
+      "id": "gym:ramos:673",
+      "source_game": "X·Y",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:clemont",
+      "name": "시트론",
+      "role": "gym",
+      "region": "칼로스",
+      "species": 695,
+      "source_species": 695,
+      "source_moves": [
+        85,
+        98,
+        447
+      ],
+      "source": "https://www.serebii.net/xy/gyms.shtml",
+      "source_locator": {
+        "header": "Leader Clemont",
+        "line": 509
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "X·Y",
+      "reference_battle": "본편 대결",
+      "id": "gym:clemont:695",
+      "source_game": "X·Y",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:valerie",
+      "name": "마슈",
+      "role": "gym",
+      "region": "칼로스",
+      "species": 700,
+      "source_species": 700,
+      "source_moves": [
+        605,
+        98,
+        129,
+        204
+      ],
+      "source": "https://www.serebii.net/xy/gyms.shtml",
+      "source_locator": {
+        "header": "Leader Valerie",
+        "line": 539
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "X·Y",
+      "reference_battle": "본편 대결",
+      "id": "gym:valerie:700",
+      "source_game": "X·Y",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:olympia",
+      "name": "고지카",
+      "role": "gym",
+      "region": "칼로스",
+      "species": 10025,
+      "source_species": 10025,
+      "source_moves": [
+        94,
+        347,
+        252,
+        247
+      ],
+      "source": "https://www.serebii.net/xy/gyms.shtml",
+      "source_locator": {
+        "header": "Leader Olympia",
+        "line": 570
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "X·Y",
+      "reference_battle": "본편 대결",
+      "id": "gym:olympia:10025",
+      "source_game": "X·Y",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:wulfric",
+      "name": "우르프",
+      "role": "gym",
+      "region": "칼로스",
+      "species": 713,
+      "source_species": 713,
+      "source_moves": [
+        419,
+        242,
+        174,
+        360
+      ],
+      "source": "https://www.serebii.net/xy/gyms.shtml",
+      "source_locator": {
+        "header": "Leader Wulfric",
+        "line": 601
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "X·Y",
+      "reference_battle": "본편 대결",
+      "id": "gym:wulfric:713",
+      "source_game": "X·Y",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:milo",
+      "name": "아킬",
+      "role": "gym",
+      "region": "가라르",
+      "species": 830,
+      "source_species": 830,
+      "source_moves": [
+        202,
+        538,
+        182,
+        304
+      ],
+      "source": "https://www.serebii.net/swordshield/championcuprematch.shtml",
+      "source_locator": {
+        "header": "Gym Leader Milo",
+        "line": 436
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "소드",
+      "reference_battle": "재대결",
+      "id": "gym:milo:830",
+      "source_game": "소드",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:nessa",
+      "name": "야청",
+      "role": "gym",
+      "region": "가라르",
+      "species": 834,
+      "source_species": 834,
+      "source_moves": [
+        710,
+        746,
+        317,
+        242
+      ],
+      "source": "https://www.serebii.net/swordshield/championcuprematch.shtml",
+      "source_locator": {
+        "header": "Gym Leader Nessa",
+        "line": 573
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "소드·실드",
+      "reference_battle": "재대결",
+      "id": "gym:nessa:834",
+      "source_game": "소드·실드",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:kabu",
+      "name": "순무",
+      "role": "gym",
+      "region": "가라르",
+      "species": 851,
+      "source_species": 851,
+      "source_moves": [
+        680,
+        679,
+        242,
+        438
+      ],
+      "source": "https://www.serebii.net/swordshield/championcuprematch.shtml",
+      "source_locator": {
+        "header": "Gym Leader Kabu",
+        "line": 644
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "소드·실드",
+      "reference_battle": "재대결",
+      "id": "gym:kabu:851",
+      "source_game": "소드·실드",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:bea",
+      "name": "채두",
+      "role": "gym",
+      "region": "가라르",
+      "species": 68,
+      "source_species": 68,
+      "source_moves": [
+        7,
+        282,
+        238,
+        8
+      ],
+      "source": "https://www.serebii.net/swordshield/championcuprematch.shtml",
+      "source_locator": {
+        "header": "Gym Leader Bea",
+        "line": 716
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "소드",
+      "reference_battle": "재대결",
+      "id": "gym:bea:68",
+      "source_game": "소드",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:allister",
+      "name": "어니언",
+      "role": "gym",
+      "region": "가라르",
+      "species": 94,
+      "source_species": 94,
+      "source_moves": [
+        247,
+        188,
+        399,
+        95
+      ],
+      "source": "https://www.serebii.net/swordshield/championcuprematch.shtml",
+      "source_locator": {
+        "header": "Gym Leader Allister",
+        "line": 788
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "실드",
+      "reference_battle": "재대결",
+      "id": "gym:allister:94",
+      "source_game": "실드",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:opal",
+      "name": "포플러",
+      "role": "gym",
+      "region": "가라르",
+      "species": 869,
+      "source_species": 869,
+      "source_moves": [
+        577,
+        151,
+        186
+      ],
+      "source": "https://www.serebii.net/swordshield/gyms.shtml",
+      "source_locator": {
+        "header": "Gym Leader Opal",
+        "line": 569
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "소드·실드",
+      "reference_battle": "본편 대결",
+      "id": "gym:opal:869",
+      "source_game": "소드·실드",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:gordie",
+      "name": "마쿠와",
+      "role": "gym",
+      "region": "가라르",
+      "species": 839,
+      "source_species": 839,
+      "source_moves": [
+        749,
+        89,
+        394,
+        444
+      ],
+      "source": "https://www.serebii.net/swordshield/championcuprematch.shtml",
+      "source_locator": {
+        "header": "Gym Leader Gordie",
+        "line": 932
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "소드",
+      "reference_battle": "재대결",
+      "id": "gym:gordie:839",
+      "source_game": "소드",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:melony",
+      "name": "멜론",
+      "role": "gym",
+      "region": "가라르",
+      "species": 131,
+      "source_species": 131,
+      "source_moves": [
+        59,
+        56,
+        87,
+        791
+      ],
+      "source": "https://www.serebii.net/swordshield/championcuprematch.shtml",
+      "source_locator": {
+        "header": "Gym Leader Melony",
+        "line": 1005
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "실드",
+      "reference_battle": "재대결",
+      "id": "gym:melony:131",
+      "source_game": "실드",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:piers",
+      "name": "두송",
+      "role": "gym",
+      "region": "가라르",
+      "species": 862,
+      "source_species": 862,
+      "source_moves": [
+        792,
+        675,
+        68,
+        421
+      ],
+      "source": "https://www.serebii.net/swordshield/gyms.shtml",
+      "source_locator": {
+        "header": "Gym Leader Piers",
+        "line": 674
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "소드·실드",
+      "reference_battle": "본편 대결",
+      "id": "gym:piers:862",
+      "source_game": "소드·실드",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "gym:raihan",
+      "name": "금랑",
+      "role": "gym",
+      "region": "가라르",
+      "species": 1018,
+      "source_species": 884,
+      "source_moves": [
+        337,
+        442,
+        444,
+        776
+      ],
+      "source": "https://www.serebii.net/swordshield/championcuprematch.shtml",
+      "source_locator": {
+        "header": "Gym Leader Raihan",
+        "line": 1216
+      },
+      "basis": "엑셀 최종형으로 진화 · 원작 미진화체 기술 계승 검토",
+      "reference_game": "소드·실드",
+      "reference_battle": "재대결",
+      "id": "gym:raihan:1018",
+      "source_game": "소드·실드",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:bede",
+      "name": "비트",
+      "role": "gym",
+      "region": "가라르",
+      "species": 858,
+      "source_species": 858,
+      "source_moves": [
+        94,
+        605,
+        399,
+        347
+      ],
+      "source": "https://www.serebii.net/swordshield/championcuprematch.shtml",
+      "source_locator": {
+        "header": "Gym Leader Bede",
+        "line": 860
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "소드·실드",
+      "reference_battle": "재대결",
+      "id": "gym:bede:858",
+      "source_game": "소드·실드",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:marnie",
+      "name": "마리",
+      "role": "gym",
+      "region": "가라르",
+      "species": 861,
+      "source_species": 861,
+      "source_moves": [
+        789,
+        663,
+        339,
+        583
+      ],
+      "source": "https://www.serebii.net/swordshield/marnie.shtml",
+      "source_locator": {
+        "header": "Pokémon Trainer Marnie",
+        "line": 503
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "소드·실드",
+      "reference_battle": "관장 취임 후 스파이크마을 대결",
+      "id": "gym:marnie:861",
+      "source_game": "소드·실드",
+      "source_battle": "관장 취임 후 스파이크마을 대결"
+    },
+    {
+      "key": "gym:klara",
+      "name": "도정",
+      "role": "gym",
+      "region": "가라르",
+      "species": 10165,
+      "source_species": 10165,
+      "source_moves": [
+        503,
+        801,
+        411,
+        94
+      ],
+      "source": "https://www.serebii.net/swordshield/klaraavery.shtml",
+      "source_locator": {
+        "header": "Gym Leader Klara",
+        "line": 824
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "소드 왕관의 설원 이후",
+      "reference_battle": "도장 재대결",
+      "id": "gym:klara:10165",
+      "source_game": "소드 왕관의 설원 이후",
+      "source_battle": "도장 재대결"
+    },
+    {
+      "key": "gym:avery",
+      "name": "세이버리",
+      "role": "gym",
+      "region": "가라르",
+      "species": 10172,
+      "source_species": 10172,
+      "source_moves": [
+        503,
+        826,
+        408,
+        59
+      ],
+      "source": "https://www.serebii.net/swordshield/klaraavery.shtml",
+      "source_locator": {
+        "header": "Gym Leader Avery",
+        "line": 790
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "실드 왕관의 설원 이후",
+      "reference_battle": "도장 재대결",
+      "id": "gym:avery:10172",
+      "source_game": "실드 왕관의 설원 이후",
+      "source_battle": "도장 재대결"
+    },
+    {
+      "key": "gym:mustard",
+      "name": "마스터드",
+      "role": "gym",
+      "region": "가라르",
+      "species": 10191,
+      "source_species": 10191,
+      "source_moves": [
+        818,
+        370,
+        398,
+        442
+      ],
+      "source": "https://www.serebii.net/swordshield/mustard.shtml",
+      "source_locator": {
+        "header": "Dojo Master Mustard",
+        "line": 466
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "소드·실드 갑옷의 외딴섬",
+      "reference_battle": "최종 도장 대결",
+      "id": "gym:mustard:10191",
+      "source_game": "소드·실드 갑옷의 외딴섬",
+      "source_battle": "최종 도장 대결"
+    },
+    {
+      "key": "gym:peony",
+      "name": "피오니",
+      "role": "gym",
+      "region": "가라르",
+      "species": 879,
+      "source_species": 879,
+      "source_moves": [
+        484,
+        583,
+        667,
+        276
+      ],
+      "source": "https://www.serebii.net/swordshield/dailyevent.shtml",
+      "source_locator": {
+        "header": "Pokémon Trainer Peony",
+        "line": 971
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "소드·실드 왕관의 설원",
+      "reference_battle": "맥스다이맥스굴 재대결",
+      "id": "gym:peony:879",
+      "source_game": "소드·실드 왕관의 설원",
+      "source_battle": "맥스다이맥스굴 재대결"
+    },
+    {
+      "key": "gym:tyme",
+      "name": "타임",
+      "role": "gym",
+      "region": "팔데아",
+      "species": 934,
+      "source_species": 934,
+      "source_moves": [
+        444,
+        7,
+        8,
+        9
+      ],
+      "source": "https://www.serebii.net/scarletviolet/academyacetournament.shtml",
+      "source_locator": {
+        "header": "Instructor Tyme  |",
+        "line": 896
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "스칼렛·바이올렛",
+      "reference_battle": "학교 최강 선발 대회",
+      "id": "gym:tyme:934",
+      "source_game": "스칼렛·바이올렛",
+      "source_battle": "학교 최강 선발 대회"
+    },
+    {
+      "key": "gym:katy",
+      "name": "단풍",
+      "role": "gym",
+      "region": "팔데아",
+      "species": 901,
+      "source_species": 217,
+      "source_moves": [
+        210,
+        667,
+        583,
+        242
+      ],
+      "source": "https://www.serebii.net/scarletviolet/gymrematches.shtml",
+      "source_locator": {
+        "header": "Gym Leader Katy",
+        "line": 400
+      },
+      "basis": "엑셀 최종형으로 진화 · 원작 미진화체 기술 계승 검토",
+      "reference_game": "스칼렛·바이올렛",
+      "reference_battle": "재대결",
+      "id": "gym:katy:901",
+      "source_game": "스칼렛·바이올렛",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:brassius",
+      "name": "콜사",
+      "role": "gym",
+      "region": "팔데아",
+      "species": 185,
+      "source_species": 185,
+      "source_moves": [
+        885,
+        444,
+        7,
+        8
+      ],
+      "source": "https://www.serebii.net/scarletviolet/gymrematches.shtml",
+      "source_locator": {
+        "header": "Gym Leader Brassius",
+        "line": 444
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "스칼렛·바이올렛",
+      "reference_battle": "재대결",
+      "id": "gym:brassius:185",
+      "source_game": "스칼렛·바이올렛",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:iono",
+      "name": "모야모",
+      "role": "gym",
+      "region": "팔데아",
+      "species": 429,
+      "source_species": 429,
+      "source_moves": [
+        451,
+        247,
+        595,
+        605
+      ],
+      "source": "https://www.serebii.net/scarletviolet/gymrematches.shtml",
+      "source_locator": {
+        "header": "Gym Leader Iono",
+        "line": 488
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "스칼렛·바이올렛",
+      "reference_battle": "재대결",
+      "id": "gym:iono:429",
+      "source_game": "스칼렛·바이올렛",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:kofu",
+      "name": "곤포",
+      "role": "gym",
+      "region": "팔데아",
+      "species": 740,
+      "source_species": 740,
+      "source_moves": [
+        152,
+        665,
+        428,
+        370
+      ],
+      "source": "https://www.serebii.net/scarletviolet/gymrematches.shtml",
+      "source_locator": {
+        "header": "Gym Leader Kofu",
+        "line": 532
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "스칼렛·바이올렛",
+      "reference_battle": "재대결",
+      "id": "gym:kofu:740",
+      "source_game": "스칼렛·바이올렛",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:larry",
+      "name": "청목",
+      "role": "gym",
+      "region": "팔데아",
+      "species": 398,
+      "source_species": 398,
+      "source_moves": [
+        263,
+        413,
+        370,
+        168
+      ],
+      "source": "https://www.serebii.net/scarletviolet/gymrematches.shtml",
+      "source_locator": {
+        "header": "Gym Leader Larry",
+        "line": 576
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "스칼렛·바이올렛",
+      "reference_battle": "재대결",
+      "id": "gym:larry:398",
+      "source_game": "스칼렛·바이올렛",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:ryme",
+      "name": "라임",
+      "role": "gym",
+      "region": "팔데아",
+      "species": 10184,
+      "source_species": 10184,
+      "source_moves": [
+        786,
+        506,
+        586,
+        188
+      ],
+      "source": "https://www.serebii.net/scarletviolet/gymrematches.shtml",
+      "source_locator": {
+        "header": "Gym Leader Ryme",
+        "line": 620
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "스칼렛·바이올렛",
+      "reference_battle": "재대결",
+      "id": "gym:ryme:10184",
+      "source_game": "스칼렛·바이올렛",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:tulip",
+      "name": "리파",
+      "role": "gym",
+      "region": "팔데아",
+      "species": 671,
+      "source_species": 671,
+      "source_moves": [
+        94,
+        585,
+        572,
+        204
+      ],
+      "source": "https://www.serebii.net/scarletviolet/gymrematches.shtml",
+      "source_locator": {
+        "header": "Gym Leader Tulip",
+        "line": 664
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "스칼렛·바이올렛",
+      "reference_battle": "재대결",
+      "id": "gym:tulip:671",
+      "source_game": "스칼렛·바이올렛",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:grusha",
+      "name": "그루샤",
+      "role": "gym",
+      "region": "팔데아",
+      "species": 334,
+      "source_species": 334,
+      "source_moves": [
+        58,
+        406,
+        585,
+        542
+      ],
+      "source": "https://www.serebii.net/scarletviolet/gymrematches.shtml",
+      "source_locator": {
+        "header": "Gym Leader Grusha",
+        "line": 708
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "스칼렛·바이올렛",
+      "reference_battle": "재대결",
+      "id": "gym:grusha:334",
+      "source_game": "스칼렛·바이올렛",
+      "source_battle": "재대결"
+    },
+    {
+      "key": "gym:hala",
+      "name": "할라",
+      "role": "gym",
+      "region": "알로라",
+      "species": 740,
+      "source_species": 739,
+      "source_moves": [
+        228,
+        612,
+        43
+      ],
+      "source": "https://www.serebii.net/sunmoon/grandtrials.shtml",
+      "source_locator": {
+        "header": "Island Kahuna Hala",
+        "line": 397
+      },
+      "basis": "엑셀 최종형으로 진화 · 원작 미진화체 기술 계승 검토",
+      "reference_game": "썬·문",
+      "reference_battle": "멜레멜레 큰 시련",
+      "id": "gym:hala:740",
+      "source_game": "썬·문",
+      "source_battle": "멜레멜레 큰 시련"
+    },
+    {
+      "key": "gym:olivia",
+      "name": "라이치",
+      "role": "gym",
+      "region": "알로라",
+      "species": 10126,
+      "source_species": 10126,
+      "source_moves": [
+        44,
+        88
+      ],
+      "source": "https://www.serebii.net/sunmoon/grandtrials.shtml",
+      "source_locator": {
+        "header": "Island Kahuna Olivia",
+        "line": 421
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "썬·문",
+      "reference_battle": "아칼라 큰 시련",
+      "id": "gym:olivia:10126",
+      "source_game": "썬·문",
+      "source_battle": "아칼라 큰 시련"
+    },
+    {
+      "key": "gym:nanu",
+      "name": "나누",
+      "role": "gym",
+      "region": "알로라",
+      "species": 10108,
+      "source_species": 10108,
+      "source_moves": [
+        408,
+        252,
+        399
+      ],
+      "source": "https://www.serebii.net/sunmoon/grandtrials.shtml",
+      "source_locator": {
+        "header": "Island Kahuna Nanu",
+        "line": 444
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "썬·문",
+      "reference_battle": "울라울라 큰 시련",
+      "id": "gym:nanu:10108",
+      "source_game": "썬·문",
+      "source_battle": "울라울라 큰 시련"
+    },
+    {
+      "key": "gym:hapu",
+      "name": "하푸우",
+      "role": "gym",
+      "region": "알로라",
+      "species": 750,
+      "source_species": 750,
+      "source_moves": [
+        484,
+        89,
+        24,
+        371
+      ],
+      "source": "https://www.serebii.net/ultrasunultramoon/grandtrials.shtml",
+      "source_locator": {
+        "header": "Island Kahuna Hapu",
+        "line": 470
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "울트라썬·울트라문",
+      "reference_battle": "포니 큰 시련",
+      "id": "gym:hapu:750",
+      "source_game": "울트라썬·울트라문",
+      "source_battle": "포니 큰 시련"
+    },
+    {
+      "key": "elite:lorelei",
+      "name": "칸나",
+      "role": "elite",
+      "region": "관동",
+      "species": 131,
+      "source_species": 131,
+      "source_moves": [
+        56,
+        59,
+        406
+      ],
+      "source": "https://www.serebii.net/letsgopikachueevee/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Lorelei",
+        "line": 397
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "레츠고! 피카츄·이브이",
+      "reference_battle": "본편 대결",
+      "id": "elite:lorelei:131",
+      "source_game": "레츠고! 피카츄·이브이",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:bruno",
+      "name": "시바",
+      "role": "elite",
+      "region": "관동",
+      "species": 68,
+      "source_species": 68,
+      "source_moves": [
+        89,
+        276,
+        157
+      ],
+      "source": "https://www.serebii.net/letsgopikachueevee/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Bruno",
+        "line": 425
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "레츠고! 피카츄·이브이",
+      "reference_battle": "본편 대결",
+      "id": "elite:bruno:68",
+      "source_game": "레츠고! 피카츄·이브이",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:agatha",
+      "name": "국화",
+      "role": "elite",
+      "region": "관동",
+      "species": 94,
+      "source_species": 94,
+      "source_moves": [
+        605,
+        247,
+        188
+      ],
+      "source": "https://www.serebii.net/letsgopikachueevee/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Agatha",
+        "line": 453
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "레츠고! 피카츄·이브이",
+      "reference_battle": "본편 대결",
+      "id": "elite:agatha:94",
+      "source_game": "레츠고! 피카츄·이브이",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:lance",
+      "name": "목호",
+      "role": "elite",
+      "region": "관동·성도",
+      "species": 149,
+      "source_species": 149,
+      "source_moves": [
+        200,
+        7,
+        63
+      ],
+      "source": "https://www.serebii.net/letsgopikachueevee/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Lance",
+        "line": 481
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "레츠고! 피카츄·이브이",
+      "reference_battle": "본편 대결",
+      "id": "elite:lance:149",
+      "source_game": "레츠고! 피카츄·이브이",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:will",
+      "name": "일목",
+      "role": "elite",
+      "region": "성도",
+      "species": 178,
+      "source_species": 178,
+      "source_moves": [
+        332,
+        466,
+        109,
+        94
+      ],
+      "source": "https://github.com/pret/pokeheartgold/blob/75912a082f196496b4f9d347e0f99319150a96b4/files/poketool/trainer/trainers.json",
+      "source_locator": {
+        "header": "Will",
+        "record": 245
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "하트골드·소울실버",
+      "reference_battle": "본편 대결",
+      "id": "elite:will:178",
+      "source_game": "하트골드·소울실버",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:koga",
+      "name": "독수",
+      "role": "elite",
+      "region": "성도",
+      "species": 169,
+      "source_species": 169,
+      "source_moves": [
+        104,
+        98,
+        17,
+        305
+      ],
+      "source": "https://github.com/pret/pokeheartgold/blob/75912a082f196496b4f9d347e0f99319150a96b4/files/poketool/trainer/trainers.json",
+      "source_locator": {
+        "header": "Koga",
+        "record": 247
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "하트골드·소울실버",
+      "reference_battle": "본편 대결",
+      "id": "elite:koga:169",
+      "source_game": "하트골드·소울실버",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:karen",
+      "name": "카렌",
+      "role": "elite",
+      "region": "성도",
+      "species": 229,
+      "source_species": 229,
+      "source_moves": [
+        417,
+        399,
+        53,
+        242
+      ],
+      "source": "https://github.com/pret/pokeheartgold/blob/75912a082f196496b4f9d347e0f99319150a96b4/files/poketool/trainer/trainers.json",
+      "source_locator": {
+        "header": "Karen",
+        "record": 246
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "하트골드·소울실버",
+      "reference_battle": "본편 대결",
+      "id": "elite:karen:229",
+      "source_game": "하트골드·소울실버",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:sidney",
+      "name": "혁진",
+      "role": "elite",
+      "region": "호연",
+      "species": 359,
+      "source_species": 359,
+      "source_moves": [
+        332,
+        400,
+        427,
+        163
+      ],
+      "source": "https://www.serebii.net/omegarubyalphasapphire/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Sidney",
+        "line": 398
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "오메가루비·알파사파이어",
+      "reference_battle": "본편 대결",
+      "id": "elite:sidney:359",
+      "source_game": "오메가루비·알파사파이어",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:phoebe",
+      "name": "회연",
+      "role": "elite",
+      "region": "호연",
+      "species": 477,
+      "source_species": 477,
+      "source_moves": [
+        506,
+        7,
+        8,
+        9
+      ],
+      "source": "https://www.serebii.net/omegarubyalphasapphire/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Phoebe",
+        "line": 436
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "오메가루비·알파사파이어",
+      "reference_battle": "본편 대결",
+      "id": "elite:phoebe:477",
+      "source_game": "오메가루비·알파사파이어",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:glacia",
+      "name": "미혜",
+      "role": "elite",
+      "region": "호연",
+      "species": 365,
+      "source_species": 365,
+      "source_moves": [
+        57,
+        34,
+        59,
+        329
+      ],
+      "source": "https://www.serebii.net/omegarubyalphasapphire/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Glacia",
+        "line": 473
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "오메가루비·알파사파이어",
+      "reference_battle": "본편 대결",
+      "id": "elite:glacia:365",
+      "source_game": "오메가루비·알파사파이어",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:drake",
+      "name": "권수",
+      "role": "elite",
+      "region": "호연",
+      "species": 373,
+      "source_species": 373,
+      "source_moves": [
+        407,
+        428,
+        242,
+        422
+      ],
+      "source": "https://www.serebii.net/omegarubyalphasapphire/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Drake",
+        "line": 510
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "오메가루비·알파사파이어",
+      "reference_battle": "본편 대결",
+      "id": "elite:drake:373",
+      "source_game": "오메가루비·알파사파이어",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:aaron",
+      "name": "충호",
+      "role": "elite",
+      "region": "신오",
+      "species": 452,
+      "source_species": 452,
+      "source_moves": [
+        404,
+        440,
+        423,
+        332
+      ],
+      "source": "https://github.com/pret/pokeplatinum/blob/1dc13dcea40c04ab53f1f607de46023dc409ef20/res/trainers/data/elite_four_aaron.json",
+      "source_locator": {
+        "header": "Aaron"
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "플라티나",
+      "reference_battle": "본편 대결",
+      "id": "elite:aaron:452",
+      "source_game": "플라티나",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:bertha",
+      "name": "들국화",
+      "role": "elite",
+      "region": "신오",
+      "species": 450,
+      "source_species": 450,
+      "source_moves": [
+        89,
+        444,
+        242,
+        281
+      ],
+      "source": "https://github.com/pret/pokeplatinum/blob/1dc13dcea40c04ab53f1f607de46023dc409ef20/res/trainers/data/elite_four_bertha.json",
+      "source_locator": {
+        "header": "Bertha"
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "플라티나",
+      "reference_battle": "본편 대결",
+      "id": "elite:bertha:450",
+      "source_game": "플라티나",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:flint",
+      "name": "대엽",
+      "role": "elite",
+      "region": "신오",
+      "species": 392,
+      "source_species": 392,
+      "source_moves": [
+        394,
+        9,
+        183,
+        89
+      ],
+      "source": "https://github.com/pret/pokeplatinum/blob/1dc13dcea40c04ab53f1f607de46023dc409ef20/res/trainers/data/elite_four_flint.json",
+      "source_locator": {
+        "header": "Flint"
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "플라티나",
+      "reference_battle": "본편 대결",
+      "id": "elite:flint:392",
+      "source_game": "플라티나",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:lucian",
+      "name": "오엽",
+      "role": "elite",
+      "region": "신오",
+      "species": 437,
+      "source_species": 437,
+      "source_moves": [
+        94,
+        360,
+        89,
+        347
+      ],
+      "source": "https://github.com/pret/pokeplatinum/blob/1dc13dcea40c04ab53f1f607de46023dc409ef20/res/trainers/data/elite_four_lucian.json",
+      "source_locator": {
+        "header": "Lucian"
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "플라티나",
+      "reference_battle": "본편 대결",
+      "id": "elite:lucian:437",
+      "source_game": "플라티나",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:shauntal",
+      "name": "망초",
+      "role": "elite",
+      "region": "하나",
+      "species": 609,
+      "source_species": 609,
+      "source_moves": [
+        412,
+        126,
+        94,
+        247
+      ],
+      "source": "https://www.serebii.net/black2white2/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Shauntal",
+        "line": 398
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "블랙2·화이트2",
+      "reference_battle": "본편 대결",
+      "id": "elite:shauntal:609",
+      "source_game": "블랙2·화이트2",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:grimsley",
+      "name": "블래리",
+      "role": "elite",
+      "region": "하나",
+      "species": 983,
+      "source_species": 625,
+      "source_moves": [
+        400,
+        404,
+        232,
+        332
+      ],
+      "source": "https://www.serebii.net/black2white2/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Grimsley",
+        "line": 474
+      },
+      "basis": "엑셀 최종형으로 진화 · 원작 미진화체 기술 계승 검토",
+      "reference_game": "블랙2·화이트2",
+      "reference_battle": "본편 대결",
+      "id": "elite:grimsley:983",
+      "source_game": "블랙2·화이트2",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:caitlin",
+      "name": "카틀레야",
+      "role": "elite",
+      "region": "하나",
+      "species": 576,
+      "source_species": 576,
+      "source_moves": [
+        94,
+        247,
+        85,
+        347
+      ],
+      "source": "https://www.serebii.net/black2white2/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Caitlin",
+        "line": 550
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "블랙2·화이트2",
+      "reference_battle": "본편 대결",
+      "id": "elite:caitlin:576",
+      "source_game": "블랙2·화이트2",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:marshal",
+      "name": "연무",
+      "role": "elite",
+      "region": "하나",
+      "species": 620,
+      "source_species": 620,
+      "source_moves": [
+        136,
+        369,
+        340,
+        514
+      ],
+      "source": "https://www.serebii.net/black2white2/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Marshal",
+        "line": 626
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "블랙2·화이트2",
+      "reference_battle": "본편 대결",
+      "id": "elite:marshal:620",
+      "source_game": "블랙2·화이트2",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:malva",
+      "name": "파키라",
+      "role": "elite",
+      "region": "칼로스",
+      "species": 663,
+      "source_species": 663,
+      "source_moves": [
+        98,
+        413,
+        394,
+        175
+      ],
+      "source": "https://www.serebii.net/xy/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Malva",
+        "line": 396
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "X·Y",
+      "reference_battle": "본편 대결",
+      "id": "elite:malva:663",
+      "source_game": "X·Y",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:siebold",
+      "name": "즈미",
+      "role": "elite",
+      "region": "칼로스",
+      "species": 689,
+      "source_species": 689,
+      "source_moves": [
+        444,
+        534,
+        238,
+        404
+      ],
+      "source": "https://www.serebii.net/xy/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Siebold",
+        "line": 498
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "X·Y",
+      "reference_battle": "본편 대결",
+      "id": "elite:siebold:689",
+      "source_game": "X·Y",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:wikstrom",
+      "name": "간피",
+      "role": "elite",
+      "region": "칼로스",
+      "species": 681,
+      "source_species": 681,
+      "source_moves": [
+        533,
+        442,
+        588,
+        421
+      ],
+      "source": "https://www.serebii.net/xy/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Wikstrom",
+        "line": 430
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "X·Y",
+      "reference_battle": "본편 대결",
+      "id": "elite:wikstrom:681",
+      "source_game": "X·Y",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:drasna",
+      "name": "드라세나",
+      "role": "elite",
+      "region": "칼로스",
+      "species": 715,
+      "source_species": 715,
+      "source_moves": [
+        53,
+        586,
+        403,
+        406
+      ],
+      "source": "https://www.serebii.net/xy/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Drasna",
+        "line": 464
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "X·Y",
+      "reference_battle": "본편 대결",
+      "id": "elite:drasna:715",
+      "source_game": "X·Y",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:hala",
+      "name": "할라",
+      "role": "elite",
+      "region": "알로라",
+      "species": 740,
+      "source_species": 740,
+      "source_moves": [
+        665,
+        370
+      ],
+      "source": "https://www.serebii.net/sunmoon/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Hala",
+        "line": 401
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "썬·문",
+      "reference_battle": "첫 리그",
+      "id": "elite:hala:740",
+      "source_game": "썬·문",
+      "source_battle": "첫 리그"
+    },
+    {
+      "key": "elite:olivia",
+      "name": "라이치",
+      "role": "elite",
+      "region": "알로라",
+      "species": 10126,
+      "source_species": 10126,
+      "source_moves": [
+        242,
+        444,
+        68,
+        431
+      ],
+      "source": "https://www.serebii.net/sunmoon/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Olivia",
+        "line": 433
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "썬·문",
+      "reference_battle": "첫 리그",
+      "id": "elite:olivia:10126",
+      "source_game": "썬·문",
+      "source_battle": "첫 리그"
+    },
+    {
+      "key": "elite:acerola",
+      "name": "아세로라",
+      "role": "elite",
+      "region": "알로라",
+      "species": 770,
+      "source_species": 770,
+      "source_moves": [
+        247,
+        414,
+        202,
+        334
+      ],
+      "source": "https://www.serebii.net/sunmoon/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Acerola",
+        "line": 469
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "썬·문",
+      "reference_battle": "첫 리그",
+      "id": "elite:acerola:770",
+      "source_game": "썬·문",
+      "source_battle": "첫 리그"
+    },
+    {
+      "key": "elite:kahili",
+      "name": "카일리",
+      "role": "elite",
+      "region": "알로라",
+      "species": 733,
+      "source_species": 733,
+      "source_moves": [
+        331,
+        350,
+        690,
+        103
+      ],
+      "source": "https://www.serebii.net/sunmoon/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Kahili",
+        "line": 505
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "썬·문",
+      "reference_battle": "첫 리그",
+      "id": "elite:kahili:733",
+      "source_game": "썬·문",
+      "source_battle": "첫 리그"
+    },
+    {
+      "key": "elite:rika",
+      "name": "칠리",
+      "role": "elite",
+      "region": "팔데아",
+      "species": 980,
+      "source_species": 980,
+      "source_moves": [
+        89,
+        710,
+        92,
+        182
+      ],
+      "source": "https://www.serebii.net/scarletviolet/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Rika",
+        "line": 401
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "스칼렛·바이올렛",
+      "reference_battle": "본편 대결",
+      "id": "elite:rika:980",
+      "source_game": "스칼렛·바이올렛",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:poppy",
+      "name": "뽀삐",
+      "role": "elite",
+      "region": "팔데아",
+      "species": 959,
+      "source_species": 959,
+      "source_moves": [
+        583,
+        893,
+        280,
+        444
+      ],
+      "source": "https://www.serebii.net/scarletviolet/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Poppy",
+        "line": 444
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "스칼렛·바이올렛",
+      "reference_battle": "본편 대결",
+      "id": "elite:poppy:959",
+      "source_game": "스칼렛·바이올렛",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:larry",
+      "name": "청목",
+      "role": "elite",
+      "region": "팔데아",
+      "species": 973,
+      "source_species": 973,
+      "source_moves": [
+        413,
+        370,
+        675,
+        710
+      ],
+      "source": "https://www.serebii.net/scarletviolet/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Larry",
+        "line": 487
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "스칼렛·바이올렛",
+      "reference_battle": "본편 대결",
+      "id": "elite:larry:973",
+      "source_game": "스칼렛·바이올렛",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:hassel",
+      "name": "팔자크",
+      "role": "elite",
+      "region": "팔데아",
+      "species": 998,
+      "source_species": 998,
+      "source_moves": [
+        556,
+        280,
+        862
+      ],
+      "source": "https://www.serebii.net/scarletviolet/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Hassel",
+        "line": 530
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "스칼렛·바이올렛",
+      "reference_battle": "본편 대결",
+      "id": "elite:hassel:998",
+      "source_game": "스칼렛·바이올렛",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "elite:molayne",
+      "name": "멀레인",
+      "role": "elite",
+      "region": "알로라",
+      "species": 10106,
+      "source_species": 10106,
+      "source_moves": [
+        89,
+        442,
+        389,
+        90
+      ],
+      "source": "https://www.serebii.net/ultrasunultramoon/elitefour.shtml",
+      "source_locator": {
+        "header": "Elite Four Molayne",
+        "line": 401
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "울트라썬·울트라문",
+      "reference_battle": "첫 리그",
+      "id": "elite:molayne:10106",
+      "source_game": "울트라썬·울트라문",
+      "source_battle": "첫 리그"
+    },
+    {
+      "key": "elite:crispin",
+      "name": "하솔",
+      "role": "elite",
+      "region": "블루베리",
+      "species": 257,
+      "source_species": 257,
+      "source_moves": [
+        444,
+        411,
+        915,
+        421
+      ],
+      "source": "https://www.serebii.net/scarletviolet/blueberryelitefour.shtml",
+      "source_locator": {
+        "header": "BB League Elite Four Crispin",
+        "line": 458
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "스칼렛·바이올렛 남청의 원반",
+      "reference_battle": "블루베리그 사천왕",
+      "id": "elite:crispin:257",
+      "source_game": "스칼렛·바이올렛 남청의 원반",
+      "source_battle": "블루베리그 사천왕"
+    },
+    {
+      "key": "elite:amarys",
+      "name": "네리네",
+      "role": "elite",
+      "region": "블루베리",
+      "species": 376,
+      "source_species": 376,
+      "source_moves": [
+        912,
+        8,
+        428,
+        280
+      ],
+      "source": "https://www.serebii.net/scarletviolet/blueberryelitefour.shtml",
+      "source_locator": {
+        "header": "BB League Elite Four Amarys",
+        "line": 399
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "스칼렛·바이올렛 남청의 원반",
+      "reference_battle": "블루베리그 사천왕",
+      "id": "elite:amarys:376",
+      "source_game": "스칼렛·바이올렛 남청의 원반",
+      "source_battle": "블루베리그 사천왕"
+    },
+    {
+      "key": "elite:lacey",
+      "name": "타로",
+      "role": "elite",
+      "region": "블루베리",
+      "species": 530,
+      "source_species": 530,
+      "source_moves": [
+        851,
+        442,
+        317,
+        667
+      ],
+      "source": "https://www.serebii.net/scarletviolet/blueberryelitefour.shtml",
+      "source_locator": {
+        "header": "BB League Elite Four Lacey",
+        "line": 576
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "스칼렛·바이올렛 남청의 원반",
+      "reference_battle": "블루베리그 사천왕",
+      "id": "elite:lacey:530",
+      "source_game": "스칼렛·바이올렛 남청의 원반",
+      "source_battle": "블루베리그 사천왕"
+    },
+    {
+      "key": "elite:drayton",
+      "name": "제빈",
+      "role": "elite",
+      "region": "블루베리",
+      "species": 1018,
+      "source_species": 1018,
+      "source_moves": [
+        905,
+        406,
+        430,
+        555
+      ],
+      "source": "https://www.serebii.net/scarletviolet/blueberryelitefour.shtml",
+      "source_locator": {
+        "header": "BB League Elite Four Drayton",
+        "line": 517
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "스칼렛·바이올렛 남청의 원반",
+      "reference_battle": "블루베리그 사천왕",
+      "id": "elite:drayton:1018",
+      "source_game": "스칼렛·바이올렛 남청의 원반",
+      "source_battle": "블루베리그 사천왕"
+    },
+    {
+      "key": "champion:blue",
+      "name": "그린",
+      "role": "champion",
+      "region": "관동",
+      "species": 18,
+      "source_species": 18,
+      "source_moves": [
+        17,
+        119,
+        143,
+        18
+      ],
+      "source": "https://www.serebii.net/rb/rival.shtml",
+      "source_locator": {
+        "header": "Champion Blue",
+        "line": 902
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "레드·블루",
+      "reference_battle": "본편 대결",
+      "id": "champion:blue:18",
+      "source_game": "레드·블루",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "champion:lance",
+      "name": "목호",
+      "role": "champion",
+      "region": "성도",
+      "species": 149,
+      "source_species": 149,
+      "source_moves": [
+        126,
+        219,
+        200,
+        63
+      ],
+      "source": "https://github.com/pret/pokeheartgold/blob/75912a082f196496b4f9d347e0f99319150a96b4/files/poketool/trainer/trainers.json",
+      "source_locator": {
+        "header": "Lance",
+        "record": 244
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "하트골드·소울실버",
+      "reference_battle": "본편 대결",
+      "id": "champion:lance:149",
+      "source_game": "하트골드·소울실버",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "champion:steven",
+      "name": "성호",
+      "role": "champion",
+      "region": "호연",
+      "species": 376,
+      "source_species": 376,
+      "source_moves": [
+        418,
+        428,
+        309,
+        416
+      ],
+      "source": "https://www.serebii.net/omegarubyalphasapphire/elitefour.shtml",
+      "source_locator": {
+        "header": "Champion Steven",
+        "line": 547
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "오메가루비·알파사파이어",
+      "reference_battle": "본편 대결",
+      "id": "champion:steven:376",
+      "source_game": "오메가루비·알파사파이어",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "champion:wallace",
+      "name": "윤진",
+      "role": "champion",
+      "region": "호연",
+      "species": 350,
+      "source_species": 350,
+      "source_moves": [
+        105,
+        57,
+        58,
+        92
+      ],
+      "source": "https://github.com/pret/pokeemerald/blob/731ad5bfd6e6f265508d0efcca0ba42f9dcf5881/src/data/trainer_parties.h",
+      "source_locator": {
+        "header": "Wallace",
+        "record": "Wallace"
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "에메랄드",
+      "reference_battle": "본편 대결",
+      "id": "champion:wallace:350",
+      "source_game": "에메랄드",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "champion:cynthia",
+      "name": "난천",
+      "role": "champion",
+      "region": "신오",
+      "species": 445,
+      "source_species": 445,
+      "source_moves": [
+        407,
+        89,
+        53,
+        416
+      ],
+      "source": "https://github.com/pret/pokeplatinum/blob/1dc13dcea40c04ab53f1f607de46023dc409ef20/res/trainers/data/champion_cynthia.json",
+      "source_locator": {
+        "header": "Cynthia"
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "플라티나",
+      "reference_battle": "본편 대결",
+      "id": "champion:cynthia:445",
+      "source_game": "플라티나",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "champion:alder",
+      "name": "노간주",
+      "role": "champion",
+      "region": "하나",
+      "species": 637,
+      "source_species": 637,
+      "source_moves": [
+        315,
+        483,
+        405,
+        63
+      ],
+      "source": "https://www.serebii.net/blackwhite/elitefour.shtml",
+      "source_locator": {
+        "header": "Champion Alder",
+        "line": 739
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "블랙·화이트",
+      "reference_battle": "본편 대결",
+      "id": "champion:alder:637",
+      "source_game": "블랙·화이트",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "champion:iris",
+      "name": "아이리스",
+      "role": "champion",
+      "region": "하나",
+      "species": 612,
+      "source_species": 612,
+      "source_moves": [
+        89,
+        404,
+        530,
+        349
+      ],
+      "source": "https://www.serebii.net/black2white2/elitefour.shtml",
+      "source_locator": {
+        "header": "Champion Iris",
+        "line": 702
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "블랙2·화이트2",
+      "reference_battle": "본편 대결",
+      "id": "champion:iris:612",
+      "source_game": "블랙2·화이트2",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "champion:diantha",
+      "name": "카르네",
+      "role": "champion",
+      "region": "칼로스",
+      "species": 282,
+      "source_species": 282,
+      "source_moves": [
+        85,
+        585,
+        94,
+        247
+      ],
+      "source": "https://www.serebii.net/xy/elitefour.shtml",
+      "source_locator": {
+        "header": "Champion Dianthe",
+        "line": 532
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "X·Y",
+      "reference_battle": "본편 대결",
+      "id": "champion:diantha:282",
+      "source_game": "X·Y",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "champion:leon",
+      "name": "단델",
+      "role": "champion",
+      "region": "가라르",
+      "species": 6,
+      "source_species": 6,
+      "source_moves": [
+        126,
+        403,
+        76,
+        246
+      ],
+      "source": "https://www.serebii.net/swordshield/championcup.shtml",
+      "source_locator": {
+        "header": "Champion Leon",
+        "line": 717
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "소드·실드",
+      "reference_battle": "챔피언 결정전",
+      "id": "champion:leon:6",
+      "source_game": "소드·실드",
+      "source_battle": "챔피언 결정전"
+    },
+    {
+      "key": "champion:geeta",
+      "name": "테사",
+      "role": "champion",
+      "region": "팔데아",
+      "species": 970,
+      "source_species": 970,
+      "source_moves": [
+        851,
+        482,
+        414,
+        605
+      ],
+      "source": "https://www.serebii.net/scarletviolet/academyacetournament.shtml",
+      "source_locator": {
+        "header": "Top Champion Geeta",
+        "line": 563
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "스칼렛·바이올렛",
+      "reference_battle": "본편 대결",
+      "id": "champion:geeta:970",
+      "source_game": "스칼렛·바이올렛",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "champion:nemona",
+      "name": "네모",
+      "role": "champion",
+      "region": "팔데아",
+      "species": 923,
+      "source_species": 923,
+      "source_moves": [
+        892,
+        370,
+        8,
+        98
+      ],
+      "source": "https://www.serebii.net/scarletviolet/victoryroad.shtml",
+      "source_locator": {
+        "header": "Champion Nemona",
+        "line": 1228
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "스칼렛·바이올렛",
+      "reference_battle": "본편 대결",
+      "id": "champion:nemona:923",
+      "source_game": "스칼렛·바이올렛",
+      "source_battle": "본편 대결"
+    },
+    {
+      "key": "champion:kukui",
+      "name": "쿠쿠이",
+      "role": "champion",
+      "region": "알로라",
+      "species": 745,
+      "source_species": 745,
+      "source_moves": [
+        444,
+        709,
+        242,
+        446
+      ],
+      "source": "https://www.serebii.net/sunmoon/elitefour.shtml",
+      "source_locator": {
+        "header": "Pokémon Professor Kukui",
+        "line": 541
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "썬·문",
+      "reference_battle": "초대 챔피언 결정전",
+      "id": "champion:kukui:745",
+      "source_game": "썬·문",
+      "source_battle": "초대 챔피언 결정전"
+    },
+    {
+      "key": "champion:hau",
+      "name": "하우",
+      "role": "champion",
+      "region": "알로라",
+      "species": 10100,
+      "source_species": 10100,
+      "source_moves": [
+        85,
+        98,
+        94,
+        411
+      ],
+      "source": "https://www.serebii.net/ultrasunultramoon/elitefour.shtml",
+      "source_locator": {
+        "header": "Pokémon Trainer Hau",
+        "line": 545
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "울트라썬·울트라문",
+      "reference_battle": "초대 챔피언 결정전",
+      "id": "champion:hau:10100",
+      "source_game": "울트라썬·울트라문",
+      "source_battle": "초대 챔피언 결정전"
+    },
+    {
+      "key": "champion:kieran",
+      "name": "카지",
+      "role": "champion",
+      "region": "블루베리",
+      "species": 1019,
+      "source_species": 1019,
+      "source_moves": [
+        907,
+        360,
+        851,
+        414
+      ],
+      "source": "https://www.serebii.net/scarletviolet/blueberryelitefour.shtml",
+      "source_locator": {
+        "header": "BB League Champion Kieran",
+        "line": 635
+      },
+      "basis": "승인 파티와 같은 원작 전투",
+      "reference_game": "스칼렛·바이올렛 남청의 원반",
+      "reference_battle": "블루베리그 챔피언",
+      "id": "champion:kieran:1019",
+      "source_game": "스칼렛·바이올렛 남청의 원반",
+      "source_battle": "블루베리그 챔피언"
+    },
+    {
+      "key": "champion:red",
+      "name": "레드",
+      "role": "champion",
+      "region": "관동",
+      "species": 26,
+      "source_species": 25,
+      "source_moves": [
+        344,
+        231,
+        98,
+        85
+      ],
+      "source": "https://github.com/pret/pokeheartgold/blob/75912a082f196496b4f9d347e0f99319150a96b4/files/poketool/trainer/trainers.json",
+      "source_locator": {
+        "header": "Red",
+        "record": 260
+      },
+      "basis": "엑셀 최종형으로 진화 · 원작 미진화체 기술 계승 검토",
+      "reference_game": "하트골드·소울실버",
+      "reference_battle": "본편 대결",
+      "id": "champion:red:26",
+      "source_game": "하트골드·소울실버",
+      "source_battle": "본편 대결"
+    }
+  ]
+}
