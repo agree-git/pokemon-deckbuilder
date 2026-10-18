@@ -92,3 +92,10 @@ Windows 시험 빌드는 공식 Godot **4.7.2** 엔진을 포함합니다. Godot
 [boss_move_effects_v8.json](data/boss_move_effects_v8.json)은 같은 고정 PokeAPI/검토 명세의105대표/실전189기술 적용본입니다. 체중은 기존 고정 도감의 `weight_hg`,접촉/음성/중력 제한 플래그는 같은 PokeAPI 커밋의 [move_flag_map.csv](https://raw.githubusercontent.com/PokeAPI/pokeapi/5ee47a9a9c1229632ec4b473a9c1c53026e005dd/data/v2/csv/move_flag_map.csv)(SHA256 `399cf005933418f406b94729903bd1528e9088bddc3bc1966be6c442a625da1b`)를 별도 동결 입력으로 보관합니다. 카운터/대타출동/뿌리박기/킹실드/성스러운칼/바디프레스 등의 효과는 같은 고정 `move_effect_prose.csv`와 Pokémon Database의 [중력](https://pokemondb.net/move/gravity),[스텔스록](https://pokemondb.net/move/stealth-rock),[자이로볼](https://pokemondb.net/move/gyro-ball),[메탈버스트](https://pokemondb.net/move/metal-burst),[빛의장막](https://pokemondb.net/move/light-screen)에서 추가 대조했습니다(2026-10-18).
 
 고정 턴 순서의 따라가때리기/보복·현재 출전자 반격·NPC 은혜갚기 친밀도255 기준·고정 구속4회 등은 카드 전투용 각색입니다. 설치/장막 해제,대타 HP,실제 접촉 페널티와 상태 배지는 자체 구현/설명입니다. 새 이미지·음원·특성/PP 시스템은 추가하지 않았고 기존 v6/v7 데이터와 엔진을 보존했습니다.
+
+
+## 대표 기술 고유 효과와 원정 v9
+
+`data/boss_move_effects_v9.json`은 검토한138대표/233기술의 카드 전투용 효과 입력입니다. v6/v7/v8 자료와 엔진은 보존합니다. 기술 효과의 기초 사실은 위 PokéAPI 고정 커밋의 `move_effect_prose.csv`(SHA256 `f6d9bf0d28433a010a8b8b6a0a14d1ef72fbfcb997717f71b0e34483b7ee9697`)와 `move_flag_map.csv`에서 대조했습니다. 빈 효과 번호의 보충 사실은 [들이받기](https://pokemondb.net/move/headlong-rush),[열불내기](https://pokemondb.net/move/temper-flare),[변덕레이저](https://pokemondb.net/move/fickle-beam),[대검돌격](https://bulbapedia.bulbagarden.net/wiki/Glaive_Rush_(move)),[거대해머](https://bulbapedia.bulbagarden.net/wiki/Gigaton_Hammer_(move)),[전광쌍격](https://bulbapedia.bulbagarden.net/wiki/Double_Shock_(move))에서 대조했습니다(2026-10-18). 설명 원문을 통째로 복제하지 않았습니다.
+
+헤롱헤롱의 확정 피해 감소·섬뜩한주문의 카드 봉인·일격기의 공개 위력160·변덕레이저의 공개10회 주기·따라하기의 기본 공격 카드 효과 복사·전투 중 장비 무효/종료 복구는 자체 카드 전투 각색입니다. 타입 소모는 전투 문맥에만 기록하며 도감/폼을 바꾸지 않습니다. 기술별 예고와 자료 브랜치의 [적용 현황](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/boss-move-effects.md)에 원작과의 차이를 표시합니다. 플레이어919기술의 모든 고유 효과나 성별/명중/PP/특성/테라스탈 시스템을 추가한 것은 아닙니다.

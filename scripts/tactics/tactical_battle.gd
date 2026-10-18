@@ -57,6 +57,7 @@ func restart(battle_seed: int = 2026, selected_relic: String = "field_kit", oppo
     var cards := TacticalContent.starting_deck(members)
     start_with(members,cards,opponents,battle_seed,selected_relic,true)
 func start_with(members: Array[BattlePokemon], cards: Array[BattleCardInstance], opponents: Array, battle_seed: int, selected_relic: String, _lead_first := true, acquired: Array[String] = []) -> void:
+    if BossBattleRules.modern(self):BossBattleEffectsP3.restore_items(self)
     boss_context.clear()
     statistics = RunStatistics.battle()
     seed_value = battle_seed
@@ -162,7 +163,7 @@ func card_view(card: BattleCardInstance) -> Dictionary:
             view["tool_discount"] = mini(1,int(view["cost"]))
             view["cost"] = maxi(0,int(view["cost"])-1)
         if view.has("damage"): view["preview_damage"] = attack_damage(view,actor)
-        if view.has("shield_attack"): view["preview_damage"] = BossBattleEffects.player_damage(self,view,actor.block)
+        if view.has("shield_attack"): view["preview_damage"] = BossBattleRules.player_damage(self,view,actor.block)
         if view.has("double_block"): view["preview_block_gain"] = block_gain(actor,actor.block)
         if has_relic("status_flask") and not turn_flags.has("status_flask"):
             for status: String in ["burn","poison","seed"]:
@@ -173,8 +174,8 @@ func card_view(card: BattleCardInstance) -> Dictionary:
         if view.has("block"): view["preview_block"] = mini(PokemonStats.scale(actor,int(view["block"]))+defense_bonus(actor),MAX_BLOCK-_block_on_entry(actor))
         if view.has("bonus"): view["preview_bonus"] = PokemonStats.scale(actor,int(view["bonus"]))
         view["description"] = TacticalContent.description(view)
-        if BossBattleEffects.active_in(self):
-            var notice:=BossBattleEffects.card_notice(self,view,actor)
+        if BossBattleRules.active_in(self):
+            var notice:=BossBattleRules.card_notice(self,view,actor)
             if not notice.is_empty():view["description"] += "\n"+notice
     return view
 func attack_damage(view: Dictionary, actor: BattlePokemon) -> int:
@@ -187,7 +188,7 @@ func attack_damage(view: Dictionary, actor: BattlePokemon) -> int:
     if amount > 0 and view.get("category","technique") == "technique" and has_relic("status_core"): amount = maxi(1,floori(amount*0.8))
     if amount > 0 and BuildConceptRules.sight_active(self,view,actor): amount = maxi(1,floori(amount*1.25))
     if view.get("category","technique") == "technique" and turn_flags.get("finisher_%d" % actor.uid,false): amount *= 2
-    return BossBattleEffects.player_damage(self,view,amount)
+    return BossBattleRules.player_damage(self,view,amount)
 func _block_on_entry(actor: BattlePokemon) -> int:
     if actor == active(): return actor.block
     var protection := actor.block+PokemonStats.scale(actor,3*int(powers.get("relay",0)))
@@ -223,12 +224,15 @@ func card_reason(uid: int) -> String:
         var actor := member(card.owner_uid)
         if actor == null or not actor.alive(): return "기절했거나 파티를 떠난 포켓몬의 기술입니다."
         if BossEffects.active_in(self) and actor.statuses.has("sleep"): return "수면 중인 포켓몬은 이번 턴 기술을 쓸 수 없습니다. 다른 동료의 기술이나 도구를 사용하세요."
-    if BossBattleEffects.active_in(self) and card.owner_uid != 0:
+    if BossBattleRules.active_in(self) and card.owner_uid != 0:
         var actor:=member(card.owner_uid)
-        if BossBattleEffects.read(self)["gravity"]>0 and BossBattleEffects.flag(int(TacticalContent.definition(card).get("move_id",0)),10):return "중력 중에는 공중 기술을 사용할 수 없습니다."
+        if BossBattleRules.read(self)["gravity"]>0 and BossBattleRules.flag(int(TacticalContent.definition(card).get("move_id",0)),10):return "중력 중에는 공중 기술을 사용할 수 없습니다."
         if actor!=active():
-            if BossBattleEffects.trapped(self):return "구속 중에는 기술 카드로 자동 교대할 수 없습니다."
-            if BossBattleEffects.entry_damage(self,actor)>=actor.hp:return "스텔스록 입장 피해로 기절해 기술을 쓸 수 없습니다. 다른 동료를 선택하세요."
+            if BossBattleRules.trapped(self):return "구속 중에는 기술 카드로 자동 교대할 수 없습니다."
+            if BossBattleRules.entry_damage(self,actor)>=actor.hp:return "스텔스록 입장 피해로 기절해 기술을 쓸 수 없습니다. 다른 동료를 선택하세요."
+    if BossBattleRules.modern(self):
+        var why:=BossBattleEffectsP3.card_reason(self,card_view(card),member(card.owner_uid) if card.owner_uid!=0 else active())
+        if not why.is_empty():return why
     if energy < int(card_view(card)["cost"]): return "에너지가 부족합니다."
     return ""
 func play_card(uid: int) -> String:
@@ -247,9 +251,9 @@ func play_card(uid: int) -> String:
     if card.owner_uid != 0 and card.owner_uid != active().uid: _change_active(card.owner_uid,true)
     var actor := active()
     var target := enemy()
-    if BossBattleEffects.active_in(self):
-        BossBattleEffects.on_card(self,view,actor)
-        view=BossBattleEffects.filter_view(self,view)
+    if BossBattleRules.active_in(self):
+        BossBattleRules.on_card(self,view,actor)
+        view=BossBattleRules.filter_view(self,view)
     if view["category"] == "tool" and has_relic("tool_discount") and not turn_flags.has("tool_discount"):
         turn_flags["tool_discount"] = true
         if int(view.get("tool_discount",0)) > 0: BuildConceptRules.relic(self,"tool_discount","정밀 공구 · 도구 비용 -1")
@@ -265,7 +269,7 @@ func play_card(uid: int) -> String:
         next_attack_bonus = 0
         switch_bonus.erase(actor.uid)
         if card.owner_uid != 0: turn_flags.erase("finisher_%d" % actor.uid)
-        _damage(target,amount,false,str(view.get("damage_class","physical")),BossBattleEffects.flag(int(view["move_id"]),9) or BossBattleEffects.flag(int(view["move_id"]),14) if BossBattleEffects.active_in(self) else false)
+        _damage(target,amount,false,str(view.get("damage_class","physical")),BossBattleRules.flag(int(view["move_id"]),9) or BossBattleRules.flag(int(view["move_id"]),14) if BossBattleRules.active_in(self) else false)
     if view.has("shield_attack"):
         var amount := actor.block
         actor.block = 0
@@ -393,11 +397,15 @@ func play_card(uid: int) -> String:
             energy += 1
             _draw(2)
             _record("relic","비상 보급함 · 에너지 +1 · 카드 2장",{"relic_key":"supply_core"})
-    if BossBattleEffects.active_in(self):BossBattleEffects.after_card(self,view,actor)
+    if BossBattleRules.active_in(self):BossBattleRules.after_card(self,view,actor)
     BuildConceptRules.after_card(self,view,actor)
+    if BossBattleRules.modern(self):BossBattleEffectsP3.finish_card(self)
     if view.get("exhaust",false) or view.has("power"): exhausted.append(card)
     else: discard.append(card)
     _outcome()
+    if BossBattleRules.modern(self) and phase==PLAYER and not active().alive():
+        phase=REPLACE
+        _pending="card"
     return notify_changed()
 func _retrieval_candidates(view: Dictionary,actor: BattlePokemon) -> Array[BattleCardInstance]:
     var result: Array[BattleCardInstance] = []
@@ -450,12 +458,12 @@ func _change_active(uid: int, technique := false) -> void:
         energy += 1
         _record("relic","릴레이 발전기 · 에너지 +1",{"relic_key":"relay_cell"})
     BuildConceptRules.after_switch(self,technique)
-    if BossBattleEffects.active_in(self):BossBattleEffects.on_switch(self,old.uid)
+    if BossBattleRules.active_in(self):BossBattleRules.on_switch(self,old.uid)
 func switch_reason(uid: int) -> String:
     if phase not in [PLAYER,REPLACE]: return "전투가 끝났습니다."
     var pokemon := member(uid)
     if pokemon == null or not pokemon.alive() or pokemon == active(): return "살아 있는 대기 포켓몬을 선택하세요."
-    if phase == PLAYER and BossBattleEffects.active_in(self) and BossBattleEffects.trapped(self):return "구속 중에는 교대할 수 없습니다. 상대의 기절/구속 해제를 기다리세요."
+    if phase == PLAYER and BossBattleRules.active_in(self) and BossBattleRules.trapped(self):return "구속 중에는 교대할 수 없습니다. 상대의 기절/구속 해제를 기다리세요."
     if phase == PLAYER and energy < manual_switch_cost(): return "수동 교대에는 에너지 %d이 필요합니다. 기술 카드는 무료로 교대합니다." % manual_switch_cost()
     return ""
 func manual_switch_cost() -> int:
@@ -480,7 +488,7 @@ func switch_to(uid: int) -> String:
         if not forced:_pending="hazard"
         return notify_changed()
     if forced:
-        if _pending == "hazard":phase=PLAYER;_pending=""
+        if _pending in ["hazard","card"]:phase=PLAYER;_pending=""
         elif _pending == "enemy": _enemy_action()
         else: _start_player()
     return notify_changed()
@@ -502,6 +510,7 @@ func capture_enemy(energy_cost: int = 1) -> String:
     target.knocked_out = true
     target.statuses.clear()
     opening()["captured"] = true
+    if BossBattleRules.modern(self):BossBattleEffectsP3.source_left(self,target.uid)
     _relay.clear()
     _record("capture",target.display_name+" 포획 성공!",{"species_id":target.species_id})
     _outcome()
@@ -535,10 +544,12 @@ func _enemy_action() -> void:
     enemy().block = 0
     var weather_foe := enemy()
     var state := opening()
-    if BossBattleEffects.active_in(self):BossBattleEffects.begin_enemy(self)
+    if BossBattleRules.active_in(self):BossBattleRules.begin_enemy(self)
     var action := intent()
-    var p1: bool = enemy_definitions[enemy_index].get("boss_moves_version") in [2,3]
-    if enemy_definitions[enemy_index].get("boss_moves_version") == 3:
+    var p1: bool = enemy_definitions[enemy_index].get("boss_moves_version") in [2,3,4]
+    if enemy_definitions[enemy_index].get("boss_moves_version") == 4:
+        BossMoveEffectsP3.execute(self,action)
+    elif enemy_definitions[enemy_index].get("boss_moves_version") == 3:
         BossMoveEffectsP2.execute(self,action)
     elif p1:
         BossMoveEffectsP1.execute(self,action)
@@ -574,7 +585,7 @@ func _enemy_action() -> void:
     if _outcome(): return
     _tick(weather_foe if p1 else enemy())
     if _outcome(): return
-    if BossBattleEffects.active_in(self):BossBattleEffects.end_enemy(self,weather_foe)
+    if BossBattleRules.active_in(self):BossBattleRules.end_enemy(self,weather_foe)
     BattleWeather.end_round(self,weather_foe)
     if _outcome(): return
     if not active().alive():
@@ -626,7 +637,7 @@ func _tick(pokemon: BattlePokemon) -> void:
         if pokemon.statuses.has(key):
             pokemon.statuses[key]["turns"] = int(pokemon.statuses[key]["turns"])-1
             if int(pokemon.statuses[key]["turns"]) <= 0: pokemon.statuses.erase(key)
-    if BossBattleEffects.active_in(self):BossBattleEffects.tick_trap(self,pokemon)
+    if BossBattleRules.active_in(self):BossBattleRules.tick_trap(self,pokemon)
 func _status_hit(pokemon: BattlePokemon,key: String,status: Dictionary) -> void:
     var health_before := pokemon.hp
     if pokemon.uid < 0 and key in ["burn","seed","poison"] and has_relic("status_core"): _record("relic","침식 촉매 · 지속 피해 +50%",{"relic_key":"status_core"})
@@ -645,9 +656,9 @@ func _damage(target: BattlePokemon, amount: int, piercing := false,damage_class 
     var blocked := 0 if piercing else mini(target.block,maxi(0,amount))
     target.block -= blocked
     var lost := mini(target.hp,maxi(0,amount-blocked))
-    if BossBattleEffects.active_in(self):lost=BossBattleEffects.absorb(self,target,lost,piercing,bypass_substitute)
+    if BossBattleRules.active_in(self):lost=BossBattleRules.absorb(self,target,lost,piercing,bypass_substitute)
     target.hp -= lost
-    if BossBattleEffects.active_in(self):BossBattleEffects.track(self,target,lost,damage_class)
+    if BossBattleRules.active_in(self):BossBattleRules.track(self,target,lost,damage_class)
     _stat("damage_taken" if target.uid > 0 else "damage_dealt",lost)
     if target.uid > 0: _stat("shield_absorbed",blocked)
     _record("damage","%s · 피해 %d" % [target.display_name,lost],{"target":target.uid,"amount":lost,"blocked":blocked})
@@ -696,6 +707,7 @@ func _outcome() -> bool:
             return true
     return false
 func _clear_statuses() -> void:
+    if BossBattleRules.modern(self):BossBattleEffectsP3.restore_items(self)
     boss_context.clear()
     BattleWeather.clear(powers)
     _relay.clear()
@@ -754,7 +766,7 @@ func snapshot() -> Dictionary:
     if not boss_context.is_empty():state["boss_context"]=boss_context.duplicate(true)
     return state
 func multiplier(attack: String, target: BattlePokemon) -> float:
-    if full_type_chart and BossBattleEffects.active_in(self):return BossBattleEffects.affinity(self,attack,target)
+    if full_type_chart and BossBattleRules.active_in(self):return BossBattleRules.affinity(self,attack,target)
     return TypeMatchup.multiplier(attack,target.types) if full_type_chart else BattleContent.multiplier(attack,target.type)
 func notify_changed() -> String:
     changed.emit()

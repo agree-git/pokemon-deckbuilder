@@ -1,0 +1,10910 @@
+{
+  "schema_version": 1,
+  "route_version": 9,
+  "effects_version": 4,
+  "specification_sha256": "f88b3292b984ca252d663eb481fa8e89eb1e60c8813caa24ec2c8a6c5c167f95",
+  "scope": "검토된138대표/233기술의 카드 전투 효과; 원작 확률·PP·특성·테라스탈은 명시 각색",
+  "rules": {
+    "secondary_effects": "기존 카드처럼 표시된 효과를 확정 적용; 확률 RNG 추가 없음",
+    "freeze": "기존 카드처럼 수면1턴으로 각색",
+    "toxic": "기존 카드처럼 독3회; 누적 맹독 아님",
+    "roost": "회복만 적용; 타입 변경 없음",
+    "life_dew": "출전한 자신만 회복",
+    "multi_hit": "가변 연타는3회, 고정 연타는 원래 횟수. 기절 시 중단",
+    "recoil": "보호막/과잉 피해를 뺀 실제 HP 피해 기준; 33은1/3",
+    "rampage": "2턴 고정 공격 후 자신 혼란3회",
+    "rest": "최대 HP 회복·화상/독/마비 해제 후 다음2행동 수면; HP가 가득 차면 실패",
+    "sleep_talk": "수면 중 충전기/잠자기/잠꼬대 제외 기술을 순서 기반 선택, 추첨 없음",
+    "double_team": "회피 추첨 대신 HP 비례 보호막6",
+    "order": "우선도/풀죽음은 고정 턴 순서를 바꾸지 않음",
+    "retaliation": "카운터/메탈버스트는 이번 턴 마지막 기술로 받은 실제HP 피해를 현재 출전자에게 반환",
+    "pursuit": "이번 턴 교대한 출전자에게2배; 교대 도중 끼어들지 않음",
+    "retaliate": "동료가 이번/직전 턴 기절했을 때2배",
+    "return_power": "NPC 친밀도255 기준 위력102",
+    "protection": "다음 자기 행동까지 보호; 킹실드 접촉 공격-2; 전투 폼 변경 없음",
+    "rocks": "교대 시 최대HP/8×바위 상성; 중첩 없음",
+    "pivot": "대표 마지막 규칙 유지; 앞 동료가 기절한 마지막 대표는 교대 대상 없음",
+    "duration": "장막/신비/중력은 다음5아군턴; 구속 피해4회; 뿌리박기1/16회복",
+    "attract": "성별/확률 시스템 대신 다음2아군턴 시전자 대상 기술 피해 절반; 어느 쪽 교대/기절 시 해제",
+    "eerie": "PP 대신 대상이 마지막 사용한 기술ID를 다음3아군턴 봉인; 다른 기술/도구/교대 가능",
+    "ohko": "일격 기절 대신 위력160 공개 강공격; 더 높은 레벨/절대영도 얼음/땅 무효는 실패",
+    "fickle": "새 난수 없이10회 중3/6/10번째160,나머지80; 예고에 공개",
+    "mirror": "현 출전자가 마지막으로 상대에게 쓴 공격 기술의 카드 위력/타입/분류·기본 상태/단계 복사; 원작 고유효과 전체 복사는 아님",
+    "items": "탁쳐서떨구기/도둑질은 전투 동안 장비 무효; 전투 종료 복구,영구 아이템 손실/적 장비 보너스 없음",
+    "critical": "수류연타 확정1.5배 · 자기 공격 음수/대상 방어 양수 무시; 화상 감소 유지; 급소 추첨 없음",
+    "fake_out": "첫 자기 행동만 성공; 기존 명세 순서에서 이미 행동했다면 실패",
+    "sucker": "고정 아군→적 순서에서 현재 대상이 이번 턴 공격 기술을 썼으면 성공",
+    "type_loss": "전광쌍격 성공 후 전투 문맥에서 전기 타입 소모; 도감 타입/폼은 보존",
+    "charge": "불새는 명세 충전1행동,뛰어오르기는 같은 단계에서 준비/공격2행동과 공중 회피",
+    "temper": "직전 자기 기술 실패/수면 취소 시 위력150; 화상 부여 기술 아님"
+  },
+  "moves": {
+    "7": {
+      "move_id": 7,
+      "name": "불꽃펀치",
+      "type": "fire",
+      "damage_class": "physical",
+      "move_power": 75,
+      "burn": 3
+    },
+    "8": {
+      "move_id": 8,
+      "name": "냉동펀치",
+      "type": "ice",
+      "damage_class": "physical",
+      "move_power": 75,
+      "sleep": 1
+    },
+    "9": {
+      "move_id": 9,
+      "name": "번개펀치",
+      "type": "electric",
+      "damage_class": "physical",
+      "move_power": 75,
+      "paralysis": 3
+    },
+    "14": {
+      "move_id": 14,
+      "name": "칼춤",
+      "type": "normal",
+      "damage_class": "status",
+      "stat_changes": {
+        "attack": 2
+      },
+      "stat_target": "self"
+    },
+    "15": {
+      "move_id": 15,
+      "name": "풀베기",
+      "type": "normal",
+      "damage_class": "physical",
+      "move_power": 50
+    },
+    "17": {
+      "move_id": 17,
+      "name": "날개치기",
+      "type": "flying",
+      "damage_class": "physical",
+      "move_power": 60
+    },
+    "18": {
+      "move_id": 18,
+      "name": "날려버리기",
+      "type": "normal",
+      "damage_class": "status"
+    },
+    "24": {
+      "move_id": 24,
+      "name": "두번차기",
+      "type": "fighting",
+      "damage_class": "physical",
+      "move_power": 30,
+      "hits": 2
+    },
+    "34": {
+      "move_id": 34,
+      "name": "누르기",
+      "type": "normal",
+      "damage_class": "physical",
+      "move_power": 85,
+      "paralysis": 3
+    },
+    "36": {
+      "move_id": 36,
+      "name": "돌진",
+      "type": "normal",
+      "damage_class": "physical",
+      "move_power": 90,
+      "drain_percent": -25
+    },
+    "43": {
+      "move_id": 43,
+      "name": "째려보기",
+      "type": "normal",
+      "damage_class": "status",
+      "stat_changes": {
+        "defense": -1
+      },
+      "stat_target": "enemy"
+    },
+    "44": {
+      "move_id": 44,
+      "name": "물기",
+      "type": "dark",
+      "damage_class": "physical",
+      "move_power": 60,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "46": {
+      "move_id": 46,
+      "name": "울부짖기",
+      "type": "normal",
+      "damage_class": "status",
+      "force_switch": true,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "48": {
+      "move_id": 48,
+      "name": "초음파",
+      "type": "normal",
+      "damage_class": "status",
+      "confusion": 3
+    },
+    "53": {
+      "move_id": 53,
+      "name": "화염방사",
+      "type": "fire",
+      "damage_class": "special",
+      "move_power": 90,
+      "burn": 3
+    },
+    "56": {
+      "move_id": 56,
+      "name": "하이드로펌프",
+      "type": "water",
+      "damage_class": "special",
+      "move_power": 110
+    },
+    "57": {
+      "move_id": 57,
+      "name": "파도타기",
+      "type": "water",
+      "damage_class": "special",
+      "move_power": 90
+    },
+    "58": {
+      "move_id": 58,
+      "name": "냉동빔",
+      "type": "ice",
+      "damage_class": "special",
+      "move_power": 90,
+      "sleep": 1
+    },
+    "59": {
+      "move_id": 59,
+      "name": "눈보라",
+      "type": "ice",
+      "damage_class": "special",
+      "move_power": 110,
+      "sleep": 1
+    },
+    "61": {
+      "move_id": 61,
+      "name": "거품광선",
+      "type": "water",
+      "damage_class": "special",
+      "move_power": 65,
+      "stat_changes": {
+        "speed": -1
+      },
+      "stat_target": "enemy"
+    },
+    "63": {
+      "move_id": 63,
+      "name": "파괴광선",
+      "type": "normal",
+      "damage_class": "special",
+      "move_power": 150,
+      "recharge": true
+    },
+    "68": {
+      "move_id": 68,
+      "name": "카운터",
+      "type": "fighting",
+      "damage_class": "physical",
+      "move_power": 1,
+      "variable": "counter",
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "72": {
+      "move_id": 72,
+      "name": "메가드레인",
+      "type": "grass",
+      "damage_class": "special",
+      "move_power": 40,
+      "drain_percent": 50
+    },
+    "75": {
+      "move_id": 75,
+      "name": "잎날가르기",
+      "type": "grass",
+      "damage_class": "physical",
+      "move_power": 55,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "76": {
+      "move_id": 76,
+      "name": "솔라빔",
+      "type": "grass",
+      "damage_class": "special",
+      "move_power": 120,
+      "charge_weather": "sun"
+    },
+    "78": {
+      "move_id": 78,
+      "name": "저리가루",
+      "type": "grass",
+      "damage_class": "status",
+      "paralysis": 3
+    },
+    "79": {
+      "move_id": 79,
+      "name": "수면가루",
+      "type": "grass",
+      "damage_class": "status",
+      "sleep": 1
+    },
+    "80": {
+      "move_id": 80,
+      "name": "꽃잎댄스",
+      "type": "grass",
+      "damage_class": "special",
+      "move_power": 120,
+      "lock_turns": 2
+    },
+    "81": {
+      "move_id": 81,
+      "name": "실뿜기",
+      "type": "bug",
+      "damage_class": "status",
+      "stat_changes": {
+        "speed": -2
+      },
+      "stat_target": "enemy"
+    },
+    "85": {
+      "move_id": 85,
+      "name": "10만볼트",
+      "type": "electric",
+      "damage_class": "special",
+      "move_power": 90,
+      "paralysis": 3
+    },
+    "86": {
+      "move_id": 86,
+      "name": "전기자석파",
+      "type": "electric",
+      "damage_class": "status",
+      "paralysis": 3
+    },
+    "87": {
+      "move_id": 87,
+      "name": "번개",
+      "type": "electric",
+      "damage_class": "special",
+      "move_power": 110,
+      "paralysis": 3
+    },
+    "88": {
+      "move_id": 88,
+      "name": "돌떨구기",
+      "type": "rock",
+      "damage_class": "physical",
+      "move_power": 50
+    },
+    "89": {
+      "move_id": 89,
+      "name": "지진",
+      "type": "ground",
+      "damage_class": "physical",
+      "move_power": 100
+    },
+    "90": {
+      "move_id": 90,
+      "name": "땅가르기",
+      "type": "ground",
+      "damage_class": "physical",
+      "move_power": 160,
+      "unique": "ohko"
+    },
+    "92": {
+      "move_id": 92,
+      "name": "맹독",
+      "type": "poison",
+      "damage_class": "status",
+      "poison": 3
+    },
+    "94": {
+      "move_id": 94,
+      "name": "사이코키네시스",
+      "type": "psychic",
+      "damage_class": "special",
+      "move_power": 90,
+      "stat_changes": {
+        "special_defense": -1
+      },
+      "stat_target": "enemy"
+    },
+    "95": {
+      "move_id": 95,
+      "name": "최면술",
+      "type": "psychic",
+      "damage_class": "status",
+      "sleep": 1
+    },
+    "98": {
+      "move_id": 98,
+      "name": "전광석화",
+      "type": "normal",
+      "damage_class": "physical",
+      "move_power": 40,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "103": {
+      "move_id": 103,
+      "name": "싫은소리",
+      "type": "normal",
+      "damage_class": "status",
+      "stat_changes": {
+        "defense": -2
+      },
+      "stat_target": "enemy"
+    },
+    "104": {
+      "move_id": 104,
+      "name": "그림자분신",
+      "type": "normal",
+      "damage_class": "status",
+      "shield": 6
+    },
+    "105": {
+      "move_id": 105,
+      "name": "HP회복",
+      "type": "normal",
+      "damage_class": "status",
+      "heal": 8
+    },
+    "109": {
+      "move_id": 109,
+      "name": "이상한빛",
+      "type": "ghost",
+      "damage_class": "status",
+      "confusion": 3
+    },
+    "113": {
+      "move_id": 113,
+      "name": "빛의장막",
+      "type": "psychic",
+      "damage_class": "status",
+      "field": "screen"
+    },
+    "119": {
+      "move_id": 119,
+      "name": "따라하기",
+      "type": "flying",
+      "damage_class": "status",
+      "unique": "mirror"
+    },
+    "122": {
+      "move_id": 122,
+      "name": "핥기",
+      "type": "ghost",
+      "damage_class": "physical",
+      "move_power": 30,
+      "paralysis": 3
+    },
+    "126": {
+      "move_id": 126,
+      "name": "불대문자",
+      "type": "fire",
+      "damage_class": "special",
+      "move_power": 110,
+      "burn": 3
+    },
+    "127": {
+      "move_id": 127,
+      "name": "폭포오르기",
+      "type": "water",
+      "damage_class": "physical",
+      "move_power": 80,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "129": {
+      "move_id": 129,
+      "name": "스피드스타",
+      "type": "normal",
+      "damage_class": "special",
+      "move_power": 60
+    },
+    "136": {
+      "move_id": 136,
+      "name": "무릎차기",
+      "type": "fighting",
+      "damage_class": "physical",
+      "move_power": 130,
+      "unique": "jump_kick"
+    },
+    "143": {
+      "move_id": 143,
+      "name": "불새",
+      "type": "flying",
+      "damage_class": "physical",
+      "move_power": 140,
+      "unique": "sky"
+    },
+    "151": {
+      "move_id": 151,
+      "name": "녹기",
+      "type": "poison",
+      "damage_class": "status",
+      "stat_changes": {
+        "defense": 2
+      },
+      "stat_target": "self"
+    },
+    "152": {
+      "move_id": 152,
+      "name": "집게해머",
+      "type": "water",
+      "damage_class": "physical",
+      "move_power": 100,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "154": {
+      "move_id": 154,
+      "name": "마구할퀴기",
+      "type": "normal",
+      "damage_class": "physical",
+      "move_power": 18,
+      "hits": 3
+    },
+    "156": {
+      "move_id": 156,
+      "name": "잠자기",
+      "type": "psychic",
+      "damage_class": "status",
+      "rest": true
+    },
+    "157": {
+      "move_id": 157,
+      "name": "스톤샤워",
+      "type": "rock",
+      "damage_class": "physical",
+      "move_power": 75,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "163": {
+      "move_id": 163,
+      "name": "베어가르기",
+      "type": "normal",
+      "damage_class": "physical",
+      "move_power": 70,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "164": {
+      "move_id": 164,
+      "name": "대타출동",
+      "type": "normal",
+      "damage_class": "status",
+      "substitute": true
+    },
+    "168": {
+      "move_id": 168,
+      "name": "도둑질",
+      "type": "dark",
+      "damage_class": "physical",
+      "move_power": 60,
+      "unique": "thief"
+    },
+    "174": {
+      "move_id": 174,
+      "name": "저주",
+      "type": "ghost",
+      "damage_class": "status",
+      "unique": "curse"
+    },
+    "175": {
+      "move_id": 175,
+      "name": "바둥바둥",
+      "type": "normal",
+      "damage_class": "physical",
+      "move_power": 1,
+      "variable": "flail"
+    },
+    "182": {
+      "move_id": 182,
+      "name": "방어",
+      "type": "normal",
+      "damage_class": "status",
+      "guard_kind": "protect",
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "183": {
+      "move_id": 183,
+      "name": "마하펀치",
+      "type": "fighting",
+      "damage_class": "physical",
+      "move_power": 40,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "185": {
+      "move_id": 185,
+      "name": "속여때리기",
+      "type": "dark",
+      "damage_class": "physical",
+      "move_power": 60
+    },
+    "186": {
+      "move_id": 186,
+      "name": "천사의키스",
+      "type": "fairy",
+      "damage_class": "status",
+      "confusion": 3
+    },
+    "188": {
+      "move_id": 188,
+      "name": "오물폭탄",
+      "type": "poison",
+      "damage_class": "special",
+      "move_power": 90,
+      "poison": 3
+    },
+    "194": {
+      "move_id": 194,
+      "name": "길동무",
+      "type": "ghost",
+      "damage_class": "status",
+      "unique": "destiny"
+    },
+    "198": {
+      "move_id": 198,
+      "name": "본러시",
+      "type": "ground",
+      "damage_class": "physical",
+      "move_power": 25,
+      "hits": 3
+    },
+    "200": {
+      "move_id": 200,
+      "name": "역린",
+      "type": "dragon",
+      "damage_class": "physical",
+      "move_power": 120,
+      "lock_turns": 2
+    },
+    "202": {
+      "move_id": 202,
+      "name": "기가드레인",
+      "type": "grass",
+      "damage_class": "special",
+      "move_power": 75,
+      "drain_percent": 50
+    },
+    "204": {
+      "move_id": 204,
+      "name": "애교부리기",
+      "type": "fairy",
+      "damage_class": "status",
+      "stat_changes": {
+        "attack": -2
+      },
+      "stat_target": "enemy"
+    },
+    "207": {
+      "move_id": 207,
+      "name": "뽐내기",
+      "type": "normal",
+      "damage_class": "status",
+      "stat_changes": {
+        "attack": 2
+      },
+      "stat_target": "enemy",
+      "confusion": 3,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "211": {
+      "move_id": 211,
+      "name": "강철날개",
+      "type": "steel",
+      "damage_class": "physical",
+      "move_power": 70,
+      "stat_changes": {
+        "defense": 1
+      },
+      "stat_target": "self"
+    },
+    "213": {
+      "move_id": 213,
+      "name": "헤롱헤롱",
+      "type": "normal",
+      "damage_class": "status",
+      "unique": "attract"
+    },
+    "214": {
+      "move_id": 214,
+      "name": "잠꼬대",
+      "type": "normal",
+      "damage_class": "status",
+      "sleep_talk": true
+    },
+    "216": {
+      "move_id": 216,
+      "name": "은혜갚기",
+      "type": "normal",
+      "damage_class": "physical",
+      "move_power": 1,
+      "variable": "return"
+    },
+    "219": {
+      "move_id": 219,
+      "name": "신비의부적",
+      "type": "normal",
+      "damage_class": "status",
+      "field": "safeguard"
+    },
+    "224": {
+      "move_id": 224,
+      "name": "메가혼",
+      "type": "bug",
+      "damage_class": "physical",
+      "move_power": 120
+    },
+    "225": {
+      "move_id": 225,
+      "name": "용의숨결",
+      "type": "dragon",
+      "damage_class": "special",
+      "move_power": 60,
+      "paralysis": 3
+    },
+    "228": {
+      "move_id": 228,
+      "name": "따라가때리기",
+      "type": "dark",
+      "damage_class": "physical",
+      "move_power": 40,
+      "variable": "pursuit"
+    },
+    "231": {
+      "move_id": 231,
+      "name": "아이언테일",
+      "type": "steel",
+      "damage_class": "physical",
+      "move_power": 100,
+      "stat_changes": {
+        "defense": -1
+      },
+      "stat_target": "enemy"
+    },
+    "232": {
+      "move_id": 232,
+      "name": "메탈클로",
+      "type": "steel",
+      "damage_class": "physical",
+      "move_power": 50,
+      "stat_changes": {
+        "attack": 1
+      },
+      "stat_target": "self"
+    },
+    "238": {
+      "move_id": 238,
+      "name": "크로스촙",
+      "type": "fighting",
+      "damage_class": "physical",
+      "move_power": 100,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "241": {
+      "move_id": 241,
+      "name": "쾌청",
+      "type": "fire",
+      "damage_class": "status",
+      "weather": "sun"
+    },
+    "242": {
+      "move_id": 242,
+      "name": "깨물어부수기",
+      "type": "dark",
+      "damage_class": "physical",
+      "move_power": 80,
+      "stat_changes": {
+        "defense": -1
+      },
+      "stat_target": "enemy"
+    },
+    "245": {
+      "move_id": 245,
+      "name": "신속",
+      "type": "normal",
+      "damage_class": "physical",
+      "move_power": 80,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "246": {
+      "move_id": 246,
+      "name": "원시의힘",
+      "type": "rock",
+      "damage_class": "special",
+      "move_power": 60,
+      "stat_changes": {
+        "attack": 1,
+        "defense": 1,
+        "special_attack": 1,
+        "special_defense": 1,
+        "speed": 1
+      },
+      "stat_target": "self"
+    },
+    "247": {
+      "move_id": 247,
+      "name": "섀도볼",
+      "type": "ghost",
+      "damage_class": "special",
+      "move_power": 80,
+      "stat_changes": {
+        "special_defense": -1
+      },
+      "stat_target": "enemy"
+    },
+    "252": {
+      "move_id": 252,
+      "name": "속이기",
+      "type": "normal",
+      "damage_class": "physical",
+      "move_power": 40,
+      "unique": "fake_out"
+    },
+    "263": {
+      "move_id": 263,
+      "name": "객기",
+      "type": "normal",
+      "damage_class": "physical",
+      "move_power": 70,
+      "variable": "facade"
+    },
+    "264": {
+      "move_id": 264,
+      "name": "힘껏펀치",
+      "type": "fighting",
+      "damage_class": "physical",
+      "move_power": 150,
+      "variable": "focus",
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "275": {
+      "move_id": 275,
+      "name": "뿌리박기",
+      "type": "grass",
+      "damage_class": "status",
+      "root": true
+    },
+    "276": {
+      "move_id": 276,
+      "name": "엄청난힘",
+      "type": "fighting",
+      "damage_class": "physical",
+      "move_power": 120,
+      "stat_changes": {
+        "attack": -1,
+        "defense": -1
+      },
+      "stat_target": "self"
+    },
+    "280": {
+      "move_id": 280,
+      "name": "깨뜨리다",
+      "type": "fighting",
+      "damage_class": "physical",
+      "move_power": 75
+    },
+    "281": {
+      "move_id": 281,
+      "name": "하품",
+      "type": "normal",
+      "damage_class": "status",
+      "unique": "yawn"
+    },
+    "282": {
+      "move_id": 282,
+      "name": "탁쳐서떨구기",
+      "type": "dark",
+      "damage_class": "physical",
+      "move_power": 65,
+      "unique": "knock_off"
+    },
+    "292": {
+      "move_id": 292,
+      "name": "손바닥치기",
+      "type": "fighting",
+      "damage_class": "physical",
+      "move_power": 15,
+      "hits": 3
+    },
+    "297": {
+      "move_id": 297,
+      "name": "깃털댄스",
+      "type": "flying",
+      "damage_class": "status",
+      "stat_changes": {
+        "attack": -2
+      },
+      "stat_target": "enemy"
+    },
+    "304": {
+      "move_id": 304,
+      "name": "하이퍼보이스",
+      "type": "normal",
+      "damage_class": "special",
+      "move_power": 90
+    },
+    "305": {
+      "move_id": 305,
+      "name": "맹독엄니",
+      "type": "poison",
+      "damage_class": "physical",
+      "move_power": 50,
+      "poison": 3
+    },
+    "309": {
+      "move_id": 309,
+      "name": "코멧펀치",
+      "type": "steel",
+      "damage_class": "physical",
+      "move_power": 90,
+      "stat_changes": {
+        "attack": 1
+      },
+      "stat_target": "self"
+    },
+    "314": {
+      "move_id": 314,
+      "name": "에어커터",
+      "type": "flying",
+      "damage_class": "special",
+      "move_power": 60,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "315": {
+      "move_id": 315,
+      "name": "오버히트",
+      "type": "fire",
+      "damage_class": "special",
+      "move_power": 130,
+      "stat_changes": {
+        "special_attack": -2
+      },
+      "stat_target": "self"
+    },
+    "317": {
+      "move_id": 317,
+      "name": "암석봉인",
+      "type": "rock",
+      "damage_class": "physical",
+      "move_power": 60,
+      "stat_changes": {
+        "speed": -1
+      },
+      "stat_target": "enemy"
+    },
+    "319": {
+      "move_id": 319,
+      "name": "금속음",
+      "type": "steel",
+      "damage_class": "status",
+      "stat_changes": {
+        "special_defense": -2
+      },
+      "stat_target": "enemy"
+    },
+    "320": {
+      "move_id": 320,
+      "name": "풀피리",
+      "type": "grass",
+      "damage_class": "status",
+      "sleep": 1
+    },
+    "329": {
+      "move_id": 329,
+      "name": "절대영도",
+      "type": "ice",
+      "damage_class": "special",
+      "move_power": 160,
+      "unique": "ohko"
+    },
+    "331": {
+      "move_id": 331,
+      "name": "씨기관총",
+      "type": "grass",
+      "damage_class": "physical",
+      "move_power": 25,
+      "hits": 3
+    },
+    "332": {
+      "move_id": 332,
+      "name": "제비반환",
+      "type": "flying",
+      "damage_class": "physical",
+      "move_power": 60
+    },
+    "334": {
+      "move_id": 334,
+      "name": "철벽",
+      "type": "steel",
+      "damage_class": "status",
+      "stat_changes": {
+        "defense": 2
+      },
+      "stat_target": "self"
+    },
+    "337": {
+      "move_id": 337,
+      "name": "드래곤클로",
+      "type": "dragon",
+      "damage_class": "physical",
+      "move_power": 80
+    },
+    "339": {
+      "move_id": 339,
+      "name": "벌크업",
+      "type": "fighting",
+      "damage_class": "status",
+      "stat_changes": {
+        "attack": 1,
+        "defense": 1
+      },
+      "stat_target": "self"
+    },
+    "340": {
+      "move_id": 340,
+      "name": "뛰어오르기",
+      "type": "flying",
+      "damage_class": "physical",
+      "move_power": 85,
+      "paralysis": 3,
+      "unique": "bounce"
+    },
+    "344": {
+      "move_id": 344,
+      "name": "볼트태클",
+      "type": "electric",
+      "damage_class": "physical",
+      "move_power": 120,
+      "paralysis": 3,
+      "drain_percent": -33
+    },
+    "345": {
+      "move_id": 345,
+      "name": "매지컬리프",
+      "type": "grass",
+      "damage_class": "special",
+      "move_power": 60
+    },
+    "347": {
+      "move_id": 347,
+      "name": "명상",
+      "type": "psychic",
+      "damage_class": "status",
+      "stat_changes": {
+        "special_attack": 1,
+        "special_defense": 1
+      },
+      "stat_target": "self"
+    },
+    "349": {
+      "move_id": 349,
+      "name": "용의춤",
+      "type": "dragon",
+      "damage_class": "status",
+      "stat_changes": {
+        "attack": 1,
+        "speed": 1
+      },
+      "stat_target": "self"
+    },
+    "350": {
+      "move_id": 350,
+      "name": "록블라스트",
+      "type": "rock",
+      "damage_class": "physical",
+      "move_power": 25,
+      "hits": 3
+    },
+    "352": {
+      "move_id": 352,
+      "name": "물의파동",
+      "type": "water",
+      "damage_class": "special",
+      "move_power": 60,
+      "confusion": 3
+    },
+    "355": {
+      "move_id": 355,
+      "name": "날개쉬기",
+      "type": "flying",
+      "damage_class": "status",
+      "heal": 8
+    },
+    "356": {
+      "move_id": 356,
+      "name": "중력",
+      "type": "psychic",
+      "damage_class": "status",
+      "field": "gravity"
+    },
+    "360": {
+      "move_id": 360,
+      "name": "자이로볼",
+      "type": "steel",
+      "damage_class": "physical",
+      "move_power": 1,
+      "variable": "gyro"
+    },
+    "362": {
+      "move_id": 362,
+      "name": "소금물",
+      "type": "water",
+      "damage_class": "special",
+      "move_power": 65,
+      "variable": "brine"
+    },
+    "368": {
+      "move_id": 368,
+      "name": "메탈버스트",
+      "type": "steel",
+      "damage_class": "physical",
+      "move_power": 1,
+      "variable": "metal_burst"
+    },
+    "369": {
+      "move_id": 369,
+      "name": "유턴",
+      "type": "bug",
+      "damage_class": "physical",
+      "move_power": 70
+    },
+    "370": {
+      "move_id": 370,
+      "name": "인파이트",
+      "type": "fighting",
+      "damage_class": "physical",
+      "move_power": 120,
+      "stat_changes": {
+        "defense": -1,
+        "special_defense": -1
+      },
+      "stat_target": "self"
+    },
+    "371": {
+      "move_id": 371,
+      "name": "보복",
+      "type": "dark",
+      "damage_class": "physical",
+      "move_power": 50,
+      "variable": "payback"
+    },
+    "372": {
+      "move_id": 372,
+      "name": "승부굳히기",
+      "type": "dark",
+      "damage_class": "physical",
+      "move_power": 60,
+      "variable": "assurance"
+    },
+    "389": {
+      "move_id": 389,
+      "name": "기습",
+      "type": "dark",
+      "damage_class": "physical",
+      "move_power": 70,
+      "unique": "sucker"
+    },
+    "394": {
+      "move_id": 394,
+      "name": "플레어드라이브",
+      "type": "fire",
+      "damage_class": "physical",
+      "move_power": 120,
+      "burn": 3,
+      "drain_percent": -33
+    },
+    "398": {
+      "move_id": 398,
+      "name": "독찌르기",
+      "type": "poison",
+      "damage_class": "physical",
+      "move_power": 80,
+      "poison": 3
+    },
+    "399": {
+      "move_id": 399,
+      "name": "악의파동",
+      "type": "dark",
+      "damage_class": "special",
+      "move_power": 80,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "400": {
+      "move_id": 400,
+      "name": "깜짝베기",
+      "type": "dark",
+      "damage_class": "physical",
+      "move_power": 70,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "402": {
+      "move_id": 402,
+      "name": "씨폭탄",
+      "type": "grass",
+      "damage_class": "physical",
+      "move_power": 80
+    },
+    "403": {
+      "move_id": 403,
+      "name": "에어슬래시",
+      "type": "flying",
+      "damage_class": "special",
+      "move_power": 75,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "404": {
+      "move_id": 404,
+      "name": "시저크로스",
+      "type": "bug",
+      "damage_class": "physical",
+      "move_power": 80
+    },
+    "405": {
+      "move_id": 405,
+      "name": "벌레의야단법석",
+      "type": "bug",
+      "damage_class": "special",
+      "move_power": 90,
+      "stat_changes": {
+        "special_defense": -1
+      },
+      "stat_target": "enemy"
+    },
+    "406": {
+      "move_id": 406,
+      "name": "용의파동",
+      "type": "dragon",
+      "damage_class": "special",
+      "move_power": 85
+    },
+    "407": {
+      "move_id": 407,
+      "name": "드래곤다이브",
+      "type": "dragon",
+      "damage_class": "physical",
+      "move_power": 100,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "408": {
+      "move_id": 408,
+      "name": "파워젬",
+      "type": "rock",
+      "damage_class": "special",
+      "move_power": 80
+    },
+    "409": {
+      "move_id": 409,
+      "name": "드레인펀치",
+      "type": "fighting",
+      "damage_class": "physical",
+      "move_power": 75,
+      "drain_percent": 50
+    },
+    "411": {
+      "move_id": 411,
+      "name": "기합구슬",
+      "type": "fighting",
+      "damage_class": "special",
+      "move_power": 120,
+      "stat_changes": {
+        "special_defense": -1
+      },
+      "stat_target": "enemy"
+    },
+    "412": {
+      "move_id": 412,
+      "name": "에너지볼",
+      "type": "grass",
+      "damage_class": "special",
+      "move_power": 90,
+      "stat_changes": {
+        "special_defense": -1
+      },
+      "stat_target": "enemy"
+    },
+    "413": {
+      "move_id": 413,
+      "name": "브레이브버드",
+      "type": "flying",
+      "damage_class": "physical",
+      "move_power": 120,
+      "drain_percent": -33
+    },
+    "414": {
+      "move_id": 414,
+      "name": "대지의힘",
+      "type": "ground",
+      "damage_class": "special",
+      "move_power": 90,
+      "stat_changes": {
+        "special_defense": -1
+      },
+      "stat_target": "enemy"
+    },
+    "416": {
+      "move_id": 416,
+      "name": "기가임팩트",
+      "type": "normal",
+      "damage_class": "physical",
+      "move_power": 150,
+      "recharge": true
+    },
+    "417": {
+      "move_id": 417,
+      "name": "나쁜음모",
+      "type": "dark",
+      "damage_class": "status",
+      "stat_changes": {
+        "special_attack": 2
+      },
+      "stat_target": "self"
+    },
+    "418": {
+      "move_id": 418,
+      "name": "불릿펀치",
+      "type": "steel",
+      "damage_class": "physical",
+      "move_power": 40,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "419": {
+      "move_id": 419,
+      "name": "눈사태",
+      "type": "ice",
+      "damage_class": "physical",
+      "move_power": 60,
+      "variable": "avalanche",
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "421": {
+      "move_id": 421,
+      "name": "섀도클로",
+      "type": "ghost",
+      "damage_class": "physical",
+      "move_power": 70,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "422": {
+      "move_id": 422,
+      "name": "번개엄니",
+      "type": "electric",
+      "damage_class": "physical",
+      "move_power": 65,
+      "paralysis": 3,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "423": {
+      "move_id": 423,
+      "name": "얼음엄니",
+      "type": "ice",
+      "damage_class": "physical",
+      "move_power": 65,
+      "sleep": 1,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "424": {
+      "move_id": 424,
+      "name": "불꽃엄니",
+      "type": "fire",
+      "damage_class": "physical",
+      "move_power": 65,
+      "burn": 3,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "427": {
+      "move_id": 427,
+      "name": "사이코커터",
+      "type": "psychic",
+      "damage_class": "physical",
+      "move_power": 70,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "428": {
+      "move_id": 428,
+      "name": "사념의박치기",
+      "type": "psychic",
+      "damage_class": "physical",
+      "move_power": 80,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "430": {
+      "move_id": 430,
+      "name": "러스터캐논",
+      "type": "steel",
+      "damage_class": "special",
+      "move_power": 80,
+      "stat_changes": {
+        "special_defense": -1
+      },
+      "stat_target": "enemy"
+    },
+    "431": {
+      "move_id": 431,
+      "name": "록클라임",
+      "type": "normal",
+      "damage_class": "physical",
+      "move_power": 90,
+      "confusion": 3
+    },
+    "437": {
+      "move_id": 437,
+      "name": "리프스톰",
+      "type": "grass",
+      "damage_class": "special",
+      "move_power": 130,
+      "stat_changes": {
+        "special_attack": -2
+      },
+      "stat_target": "enemy"
+    },
+    "438": {
+      "move_id": 438,
+      "name": "파워휩",
+      "type": "grass",
+      "damage_class": "physical",
+      "move_power": 120
+    },
+    "439": {
+      "move_id": 439,
+      "name": "암석포",
+      "type": "rock",
+      "damage_class": "physical",
+      "move_power": 150,
+      "recharge": true
+    },
+    "440": {
+      "move_id": 440,
+      "name": "크로스포이즌",
+      "type": "poison",
+      "damage_class": "physical",
+      "move_power": 70,
+      "poison": 3,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "442": {
+      "move_id": 442,
+      "name": "아이언헤드",
+      "type": "steel",
+      "damage_class": "physical",
+      "move_power": 80,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "444": {
+      "move_id": 444,
+      "name": "스톤에지",
+      "type": "rock",
+      "damage_class": "physical",
+      "move_power": 100,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "446": {
+      "move_id": 446,
+      "name": "스텔스록",
+      "type": "rock",
+      "damage_class": "status",
+      "hazard": "rocks"
+    },
+    "447": {
+      "move_id": 447,
+      "name": "풀묶기",
+      "type": "grass",
+      "damage_class": "special",
+      "move_power": 1,
+      "variable": "grass_knot"
+    },
+    "451": {
+      "move_id": 451,
+      "name": "차지빔",
+      "type": "electric",
+      "damage_class": "special",
+      "move_power": 50,
+      "stat_changes": {
+        "special_attack": 1
+      },
+      "stat_target": "self"
+    },
+    "452": {
+      "move_id": 452,
+      "name": "우드해머",
+      "type": "grass",
+      "damage_class": "physical",
+      "move_power": 120,
+      "drain_percent": -33
+    },
+    "453": {
+      "move_id": 453,
+      "name": "아쿠아제트",
+      "type": "water",
+      "damage_class": "physical",
+      "move_power": 40,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "457": {
+      "move_id": 457,
+      "name": "양날박치기",
+      "type": "rock",
+      "damage_class": "physical",
+      "move_power": 150,
+      "drain_percent": -50
+    },
+    "466": {
+      "move_id": 466,
+      "name": "괴상한바람",
+      "type": "ghost",
+      "damage_class": "special",
+      "move_power": 60,
+      "stat_changes": {
+        "attack": 1,
+        "defense": 1,
+        "special_attack": 1,
+        "special_defense": 1,
+        "speed": 1
+      },
+      "stat_target": "self"
+    },
+    "474": {
+      "move_id": 474,
+      "name": "베놈쇼크",
+      "type": "poison",
+      "damage_class": "special",
+      "move_power": 65,
+      "variable": "venoshock"
+    },
+    "482": {
+      "move_id": 482,
+      "name": "오물웨이브",
+      "type": "poison",
+      "damage_class": "special",
+      "move_power": 95,
+      "poison": 3
+    },
+    "483": {
+      "move_id": 483,
+      "name": "나비춤",
+      "type": "bug",
+      "damage_class": "status",
+      "stat_changes": {
+        "special_attack": 1,
+        "special_defense": 1,
+        "speed": 1
+      },
+      "stat_target": "self"
+    },
+    "484": {
+      "move_id": 484,
+      "name": "헤비봄버",
+      "type": "steel",
+      "damage_class": "physical",
+      "move_power": 1,
+      "variable": "heavy_slam"
+    },
+    "488": {
+      "move_id": 488,
+      "name": "니트로차지",
+      "type": "fire",
+      "damage_class": "physical",
+      "move_power": 50,
+      "stat_changes": {
+        "speed": 1
+      },
+      "stat_target": "self"
+    },
+    "498": {
+      "move_id": 498,
+      "name": "야금야금",
+      "type": "normal",
+      "damage_class": "physical",
+      "move_power": 70,
+      "ignore_defense": true
+    },
+    "503": {
+      "move_id": 503,
+      "name": "열탕",
+      "type": "water",
+      "damage_class": "special",
+      "move_power": 80,
+      "burn": 3
+    },
+    "506": {
+      "move_id": 506,
+      "name": "병상첨병",
+      "type": "ghost",
+      "damage_class": "special",
+      "move_power": 65,
+      "variable": "hex"
+    },
+    "510": {
+      "move_id": 510,
+      "name": "불태우기",
+      "type": "fire",
+      "damage_class": "special",
+      "move_power": 60,
+      "unique": "incinerate",
+      "adaptation": "열매/주얼 지닌 물건이 없는 현행 장비 목록에서는 파괴 대상 없음"
+    },
+    "514": {
+      "move_id": 514,
+      "name": "원수갚기",
+      "type": "normal",
+      "damage_class": "physical",
+      "move_power": 70,
+      "variable": "retaliate"
+    },
+    "521": {
+      "move_id": 521,
+      "name": "볼트체인지",
+      "type": "electric",
+      "damage_class": "special",
+      "move_power": 70,
+      "pivot_final": true
+    },
+    "522": {
+      "move_id": 522,
+      "name": "벌레의저항",
+      "type": "bug",
+      "damage_class": "special",
+      "move_power": 50,
+      "stat_changes": {
+        "special_attack": -1
+      },
+      "stat_target": "enemy"
+    },
+    "523": {
+      "move_id": 523,
+      "name": "땅고르기",
+      "type": "ground",
+      "damage_class": "physical",
+      "move_power": 60,
+      "stat_changes": {
+        "speed": -1
+      },
+      "stat_target": "enemy"
+    },
+    "525": {
+      "move_id": 525,
+      "name": "드래곤테일",
+      "type": "dragon",
+      "damage_class": "physical",
+      "move_power": 60,
+      "force_switch": true,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "526": {
+      "move_id": 526,
+      "name": "분발",
+      "type": "normal",
+      "damage_class": "status",
+      "stat_changes": {
+        "attack": 1,
+        "special_attack": 1
+      },
+      "stat_target": "self"
+    },
+    "530": {
+      "move_id": 530,
+      "name": "더블촙",
+      "type": "dragon",
+      "damage_class": "physical",
+      "move_power": 40,
+      "hits": 2
+    },
+    "533": {
+      "move_id": 533,
+      "name": "성스러운칼",
+      "type": "fighting",
+      "damage_class": "physical",
+      "move_power": 90,
+      "ignore_defense": true
+    },
+    "534": {
+      "move_id": 534,
+      "name": "셸블레이드",
+      "type": "water",
+      "damage_class": "physical",
+      "move_power": 75,
+      "stat_changes": {
+        "defense": -1
+      },
+      "stat_target": "enemy"
+    },
+    "538": {
+      "move_id": 538,
+      "name": "코튼가드",
+      "type": "grass",
+      "damage_class": "status",
+      "stat_changes": {
+        "defense": 3
+      },
+      "stat_target": "self"
+    },
+    "542": {
+      "move_id": 542,
+      "name": "폭풍",
+      "type": "flying",
+      "damage_class": "special",
+      "move_power": 110,
+      "confusion": 3
+    },
+    "555": {
+      "move_id": 555,
+      "name": "바크아웃",
+      "type": "dark",
+      "damage_class": "special",
+      "move_power": 55,
+      "stat_changes": {
+        "special_attack": -1
+      },
+      "stat_target": "enemy"
+    },
+    "556": {
+      "move_id": 556,
+      "name": "고드름떨구기",
+      "type": "ice",
+      "damage_class": "physical",
+      "move_power": 85,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "572": {
+      "move_id": 572,
+      "name": "꽃보라",
+      "type": "grass",
+      "damage_class": "physical",
+      "move_power": 90
+    },
+    "574": {
+      "move_id": 574,
+      "name": "차밍보이스",
+      "type": "fairy",
+      "damage_class": "special",
+      "move_power": 40
+    },
+    "577": {
+      "move_id": 577,
+      "name": "드레인키스",
+      "type": "fairy",
+      "damage_class": "special",
+      "move_power": 50,
+      "drain_percent": 75
+    },
+    "583": {
+      "move_id": 583,
+      "name": "치근거리기",
+      "type": "fairy",
+      "damage_class": "physical",
+      "move_power": 90,
+      "stat_changes": {
+        "attack": -1
+      },
+      "stat_target": "enemy"
+    },
+    "585": {
+      "move_id": 585,
+      "name": "문포스",
+      "type": "fairy",
+      "damage_class": "special",
+      "move_power": 95,
+      "stat_changes": {
+        "special_attack": -1
+      },
+      "stat_target": "enemy"
+    },
+    "586": {
+      "move_id": 586,
+      "name": "폭음파",
+      "type": "normal",
+      "damage_class": "special",
+      "move_power": 140
+    },
+    "588": {
+      "move_id": 588,
+      "name": "킹실드",
+      "type": "steel",
+      "damage_class": "status",
+      "guard_kind": "king",
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "595": {
+      "move_id": 595,
+      "name": "매지컬플레임",
+      "type": "fire",
+      "damage_class": "special",
+      "move_power": 75,
+      "stat_changes": {
+        "special_attack": -1
+      },
+      "stat_target": "enemy"
+    },
+    "605": {
+      "move_id": 605,
+      "name": "매지컬샤인",
+      "type": "fairy",
+      "damage_class": "special",
+      "move_power": 80
+    },
+    "611": {
+      "move_id": 611,
+      "name": "엉겨붙기",
+      "type": "bug",
+      "damage_class": "special",
+      "move_power": 20,
+      "trap": "bind"
+    },
+    "612": {
+      "move_id": 612,
+      "name": "그로우펀치",
+      "type": "fighting",
+      "damage_class": "physical",
+      "move_power": 40,
+      "stat_changes": {
+        "attack": 1
+      },
+      "stat_target": "self"
+    },
+    "663": {
+      "move_id": 663,
+      "name": "DD래리어트",
+      "type": "dark",
+      "damage_class": "physical",
+      "move_power": 85,
+      "ignore_defense": true
+    },
+    "665": {
+      "move_id": 665,
+      "name": "아이스해머",
+      "type": "ice",
+      "damage_class": "physical",
+      "move_power": 100,
+      "stat_changes": {
+        "speed": -1
+      },
+      "stat_target": "self"
+    },
+    "667": {
+      "move_id": 667,
+      "name": "10만마력",
+      "type": "ground",
+      "damage_class": "physical",
+      "move_power": 95
+    },
+    "675": {
+      "move_id": 675,
+      "name": "지옥찌르기",
+      "type": "dark",
+      "damage_class": "physical",
+      "move_power": 80,
+      "unique": "silence"
+    },
+    "679": {
+      "move_id": 679,
+      "name": "덤벼들기",
+      "type": "bug",
+      "damage_class": "physical",
+      "move_power": 80,
+      "stat_changes": {
+        "attack": -1
+      },
+      "stat_target": "enemy"
+    },
+    "680": {
+      "move_id": 680,
+      "name": "불꽃채찍",
+      "type": "fire",
+      "damage_class": "physical",
+      "move_power": 80,
+      "stat_changes": {
+        "defense": -1
+      },
+      "stat_target": "enemy"
+    },
+    "690": {
+      "move_id": 690,
+      "name": "부리캐논",
+      "type": "flying",
+      "damage_class": "physical",
+      "move_power": 100,
+      "unique": "beak"
+    },
+    "709": {
+      "move_id": 709,
+      "name": "액셀록",
+      "type": "rock",
+      "damage_class": "physical",
+      "move_power": 40,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "710": {
+      "move_id": 710,
+      "name": "아쿠아브레이크",
+      "type": "water",
+      "damage_class": "physical",
+      "move_power": 85,
+      "stat_changes": {
+        "defense": -1
+      },
+      "stat_target": "enemy"
+    },
+    "746": {
+      "move_id": 746,
+      "name": "물고버티기",
+      "type": "dark",
+      "damage_class": "physical",
+      "move_power": 80,
+      "trap": "lock"
+    },
+    "749": {
+      "move_id": 749,
+      "name": "타르샷",
+      "type": "rock",
+      "damage_class": "status",
+      "stat_changes": {
+        "speed": -1
+      },
+      "stat_target": "enemy",
+      "unique": "tar"
+    },
+    "776": {
+      "move_id": 776,
+      "name": "바디프레스",
+      "type": "fighting",
+      "damage_class": "physical",
+      "move_power": 80,
+      "variable": "body_press"
+    },
+    "786": {
+      "move_id": 786,
+      "name": "오버드라이브",
+      "type": "electric",
+      "damage_class": "special",
+      "move_power": 80
+    },
+    "789": {
+      "move_id": 789,
+      "name": "소울크래시",
+      "type": "fairy",
+      "damage_class": "physical",
+      "move_power": 75,
+      "stat_changes": {
+        "special_attack": -1
+      },
+      "stat_target": "enemy"
+    },
+    "791": {
+      "move_id": 791,
+      "name": "생명의물방울",
+      "type": "water",
+      "damage_class": "status",
+      "heal": 8
+    },
+    "792": {
+      "move_id": 792,
+      "name": "블로킹",
+      "type": "dark",
+      "damage_class": "status"
+    },
+    "801": {
+      "move_id": 801,
+      "name": "셸암즈",
+      "type": "poison",
+      "damage_class": "special",
+      "move_power": 90,
+      "poison": 3,
+      "unique": "shell_side"
+    },
+    "818": {
+      "move_id": 818,
+      "name": "수류연타",
+      "type": "water",
+      "damage_class": "physical",
+      "move_power": 25,
+      "hits": 3,
+      "unique": "critical"
+    },
+    "826": {
+      "move_id": 826,
+      "name": "섬뜩한주문",
+      "type": "psychic",
+      "damage_class": "special",
+      "move_power": 80,
+      "unique": "eerie"
+    },
+    "838": {
+      "move_id": 838,
+      "name": "들이받기",
+      "type": "ground",
+      "damage_class": "physical",
+      "move_power": 120,
+      "stat_changes": {
+        "defense": -1,
+        "special_defense": -1
+      },
+      "stat_target": "self"
+    },
+    "851": {
+      "move_id": 851,
+      "name": "테라버스트",
+      "type": "normal",
+      "damage_class": "special",
+      "move_power": 80,
+      "adaptation": "테라스탈 없음 · 노말 특수80 · 자기 능력 하락 없음"
+    },
+    "862": {
+      "move_id": 862,
+      "name": "대검돌격",
+      "type": "dragon",
+      "damage_class": "physical",
+      "move_power": 120,
+      "unique": "glaive"
+    },
+    "869": {
+      "move_id": 869,
+      "name": "도각참",
+      "type": "dark",
+      "damage_class": "physical",
+      "move_power": 85,
+      "order_note": "고정 턴 순서 · 우선도/풀죽음/급소·명중 추가 추첨 없음"
+    },
+    "885": {
+      "move_id": 885,
+      "name": "개척하기",
+      "type": "grass",
+      "damage_class": "physical",
+      "move_power": 50,
+      "stat_changes": {
+        "speed": 1
+      },
+      "stat_target": "self"
+    },
+    "892": {
+      "move_id": 892,
+      "name": "전광쌍격",
+      "type": "electric",
+      "damage_class": "physical",
+      "move_power": 120,
+      "unique": "double_shock"
+    },
+    "893": {
+      "move_id": 893,
+      "name": "거대해머",
+      "type": "steel",
+      "damage_class": "physical",
+      "move_power": 160,
+      "unique": "hammer"
+    },
+    "905": {
+      "move_id": 905,
+      "name": "일렉트로빔",
+      "type": "electric",
+      "damage_class": "special",
+      "move_power": 130,
+      "charge_weather": "rain"
+    },
+    "907": {
+      "move_id": 907,
+      "name": "변덕레이저",
+      "type": "dragon",
+      "damage_class": "special",
+      "move_power": 80,
+      "unique": "fickle"
+    },
+    "912": {
+      "move_id": 912,
+      "name": "하드프레스",
+      "type": "steel",
+      "damage_class": "physical",
+      "move_power": 1,
+      "variable": "hard_press"
+    },
+    "915": {
+      "move_id": 915,
+      "name": "열불내기",
+      "type": "fire",
+      "damage_class": "physical",
+      "move_power": 75,
+      "unique": "temper"
+    }
+  },
+  "profiles": {
+    "gym:brock:208": {
+      "boss": "gym:brock",
+      "species": 208,
+      "name": "웅",
+      "plan": "스텔스록으로 교대 비용을 예고한 뒤 바위·땅·강철 물리 공세",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 446
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 157
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 89
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 231
+        }
+      ]
+    },
+    "gym:misty:121": {
+      "boss": "gym:misty",
+      "species": 121,
+      "name": "이슬",
+      "plan": "파도타기 중심에 냉동빔·10만볼트·에스퍼 견제 · 회복형 제거",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 85
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 58
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 57
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:lt_surge:26": {
+      "boss": "gym:lt_surge",
+      "species": 26,
+      "name": "마티스",
+      "plan": "전기자석파로 속도를 늦추고 전기 공격 · 풀묶기로 땅 타입 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 86
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 85
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 98
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 447
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:erika:45": {
+      "boss": "gym:erika",
+      "species": 45,
+      "name": "민화",
+      "plan": "마비로 압박하고 풀·독 공격 · 쾌청/씨뿌리기를 근거 없이 강제하지 않음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 78
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 585
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 188
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 80
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:koga:49": {
+      "boss": "gym:koga",
+      "species": 49,
+      "name": "독수",
+      "plan": "관장은 메가드레인 회복과 벌레·독·에스퍼 특수 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 72
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 188
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 405
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:sabrina:65": {
+      "boss": "gym:sabrina",
+      "species": 65,
+      "name": "초련",
+      "plan": "중력을 예고하고 에스퍼·풀·격투 특수 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 356
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 411
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 412
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:blaine:59": {
+      "boss": "gym:blaine",
+      "species": 59,
+      "name": "강연",
+      "plan": "반동 불꽃 공격과 역린의 빈틈 · 악·페어리 물리 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 394
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 200
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 242
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 583
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:giovanni:464": {
+      "boss": "gym:giovanni",
+      "species": 464,
+      "name": "비주기",
+      "plan": "지진 중심 물리 공격 후 암석포의 재충전 빈틈",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 89
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 157
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 224
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 439
+        },
+        {
+          "kind": "recharge",
+          "value": 0,
+          "move_id": 0
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:janine:49": {
+      "boss": "gym:janine",
+      "species": 49,
+      "name": "도희",
+      "plan": "수면가루·회피 보조 뒤 벌레/에스퍼 공격 · 관장 독수와 차별화",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 79
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 104
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 405
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:blue:18": {
+      "boss": "gym:blue",
+      "species": 18,
+      "name": "그린",
+      "plan": "관장은 회피 보조와 비행/강철 공격 · 은혜갚기 위력 기준 명시",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 104
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 216
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 403
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 211
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:falkner:18": {
+      "boss": "gym:falkner",
+      "species": 18,
+      "name": "비상",
+      "plan": "뽐내기·회피와 날개쉬기의 지구전 · 관장 그린과 차별화",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 104
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 207
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 216
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 355
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:bugsy:212": {
+      "boss": "gym:bugsy",
+      "species": 212,
+      "name": "호일",
+      "plan": "칼춤 후 불릿펀치·시저크로스 · 엄청난힘의 자기 약화",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 14
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 418
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 404
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 276
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:chuck:62": {
+      "boss": "gym:chuck",
+      "species": 62,
+      "name": "사도",
+      "plan": "대타출동으로 준비하고 힘껏펀치를 예고 · 피격 중단 조건 명시",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 164
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 264
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 127
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 104
+        }
+      ]
+    },
+    "gym:jasmine:208": {
+      "boss": "gym:jasmine",
+      "species": 208,
+      "name": "규리",
+      "plan": "스텔스록 후 울부짖기와 강철 물리 공격 · 웅의 공격형과 구분",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 446
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 231
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 46
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 444
+        }
+      ]
+    },
+    "gym:pryce:473": {
+      "boss": "gym:pryce",
+      "species": 473,
+      "name": "류옹",
+      "plan": "땅·바위 공세와 눈사태 반격 예고 · 무조건 얼음 지속 피해 부여 금지",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 104
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 89
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 419
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 444
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:roxanne:476": {
+      "boss": "gym:roxanne",
+      "species": 476,
+      "name": "원규",
+      "plan": "암석봉인으로 속도 제어 후 철벽·특수 자속 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 334
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 317
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 408
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 430
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:wattson:462": {
+      "boss": "gym:wattson",
+      "species": 462,
+      "name": "암페어",
+      "plan": "혼란 후 전기·강철 공격 · 볼트체인지 교대는 대표 마지막 규칙 우선",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 48
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 521
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 430
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 85
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:winona:334": {
+      "boss": "gym:winona",
+      "species": 334,
+      "name": "은송",
+      "plan": "코튼가드·날개쉬기 후 땅/드래곤 견제 · 비행 공격 임의 추가 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 538
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 225
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 89
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 355
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:tate_liza:338": {
+      "boss": "gym:tate_liza",
+      "species": 338,
+      "name": "풍·란",
+      "plan": "쾌청·솔라빔·불꽃/에스퍼 특수 공세 · 루나톤과 순차 출전",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 241
+        },
+        {
+          "kind": "prepare",
+          "value": 0,
+          "move_id": 76
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 76
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 53
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:tate_liza:337": {
+      "boss": "gym:tate_liza",
+      "species": 337,
+      "name": "풍·란",
+      "plan": "빛의장막·명상·최면술 뒤 에스퍼 특수 공세 · 더블배틀 부활 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 113
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 95
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 347
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:wallace:350": {
+      "boss": "gym:wallace",
+      "species": 350,
+      "name": "윤진",
+      "plan": "관장은 회복하며 물·얼음·페어리 견제 · 챔피언의 맹독형과 구분",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 56
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 574
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 58
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 105
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:juan:230": {
+      "boss": "gym:juan",
+      "species": 230,
+      "name": "아단",
+      "plan": "잠자기와 회피 보조 · 물의파동/냉동빔 · 이향의 하품형과 구분",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 104
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 352
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 58
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 156
+        },
+        {
+          "kind": "wait",
+          "value": 0,
+          "move_id": 0
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:roark:409": {
+      "boss": "gym:roark",
+      "species": 409,
+      "name": "강석",
+      "plan": "양날박치기의 큰 반동과 강한 물리 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 457
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 428
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 419
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 89
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:gardenia:407": {
+      "boss": "gym:gardenia",
+      "species": 407,
+      "name": "유채",
+      "plan": "리프스톰 뒤 특공 하락 · 독/고스트 견제와 파괴광선 재충전",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 247
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 437
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 188
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 63
+        },
+        {
+          "kind": "recharge",
+          "value": 0,
+          "move_id": 0
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:maylene:448": {
+      "boss": "gym:maylene",
+      "species": 448,
+      "name": "자두",
+      "plan": "드레인펀치로 버티고 인파이트·신속·본러시",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 409
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 370
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 245
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 198
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:crasher_wake:419": {
+      "boss": "gym:crasher_wake",
+      "species": 419,
+      "name": "맥실러",
+      "plan": "소금물의 절반 HP 조건과 아쿠아제트 · 얼음/악 물리 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 362
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 423
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 242
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 453
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:fantina:429": {
+      "boss": "gym:fantina",
+      "species": 429,
+      "name": "멜리사",
+      "plan": "고스트·에스퍼·풀·전기 특수 공격 순환 · 독 상태 강제 제거",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 247
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 345
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 85
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:byron:411": {
+      "boss": "gym:byron",
+      "species": 411,
+      "name": "동관",
+      "plan": "철벽·잠자기로 버티고 메탈버스트 반격 조건 예고",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 334
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 246
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 368
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 156
+        },
+        {
+          "kind": "wait",
+          "value": 0,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:candice:460": {
+      "boss": "gym:candice",
+      "species": 460,
+      "name": "무청",
+      "plan": "풀피리·뿌리박기와 우드해머 반동 · 눈사태 반격 예고",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 320
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 275
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 419
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 452
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:volkner:405": {
+      "boss": "gym:volkner",
+      "species": 405,
+      "name": "전진",
+      "plan": "전기·얼음·불꽃 엄니와 깨물어부수기의 물리 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 423
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 422
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 242
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 424
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:cilan:512": {
+      "boss": "gym:cilan",
+      "species": 512,
+      "name": "덴트",
+      "plan": "분발 후 풀 공격 · 진화 전 덩굴채찍을 최종형 씨폭탄으로 교체",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 526
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 402
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 122
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 154
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:cress:516": {
+      "boss": "gym:cress",
+      "species": 516,
+      "name": "콘",
+      "plan": "분발 후 물 공세와 열탕 · 바오키/야나키와 타입 분리",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 526
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 503
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 57
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 154
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:lenora:505": {
+      "boss": "gym:lenora",
+      "species": 505,
+      "name": "알로에",
+      "plan": "최면술 뒤 원수갚기 · 직전 동료 기절 조건은 발동 시점 공개",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 95
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 514
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 242
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 43
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:burgh:542": {
+      "boss": "gym:burgh",
+      "species": 542,
+      "name": "아티",
+      "plan": "실뿜기·벌레의저항으로 속도/특공 약화 후 풀/벌레 공격",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 81
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 522
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 75
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 15
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:elesa:523": {
+      "boss": "gym:elesa",
+      "species": 523,
+      "name": "카밀레",
+      "plan": "니트로차지 가속 후 전기 공세 · 볼트체인지/따라가때리기 조건 공개",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 521
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 488
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 98
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 228
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:clay:530": {
+      "boss": "gym:clay",
+      "species": 530,
+      "name": "야콘",
+      "plan": "땅고르기의 속도 하락 후 강철·바위 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 523
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 232
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 163
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 157
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:skyla:581": {
+      "boss": "gym:skyla",
+      "species": 581,
+      "name": "풍란",
+      "plan": "깃털댄스와 날개쉬기로 물리 공세 완화 후 물/비행 공격",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 297
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 403
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 61
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 355
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:brycen:614": {
+      "boss": "gym:brycen",
+      "species": 614,
+      "name": "담죽",
+      "plan": "뽐내기 후 얼음·노말 공격 · 소금물 HP 조건",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 207
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 163
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 362
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 556
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:drayden:612": {
+      "boss": "gym:drayden",
+      "species": 612,
+      "name": "사간",
+      "plan": "용의춤 뒤 드래곤테일 · 강제 교대는 마지막 대표 규칙 우선",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 349
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 525
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 163
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 372
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:iris:612": {
+      "boss": "gym:iris",
+      "species": 612,
+      "name": "아이리스",
+      "plan": "관장은 용의춤·드래곤테일 · 챔피언의 더블촙형과 분리",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 349
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 163
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 525
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 372
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:cheren:508": {
+      "boss": "gym:cheren",
+      "species": 508,
+      "name": "체렌",
+      "plan": "분발 뒤 물리 공격 · 원수갚기 조건 공개",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 526
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 242
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 514
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 36
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:roxie:545": {
+      "boss": "gym:roxie",
+      "species": 545,
+      "name": "보미",
+      "plan": "방어 뒤 독찌르기→베놈쇼크 연계 · 무조건 독 부여로 위장하지 않음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 182
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 398
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 474
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 224
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:marlon:593": {
+      "boss": "gym:marlon",
+      "species": 593,
+      "name": "시즈",
+      "plan": "HP회복으로 버티며 열탕·소금물 · 괴상한바람의 단계 효과 구분",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 503
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 466
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 362
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 105
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:viola:666": {
+      "boss": "gym:viola",
+      "species": 666,
+      "name": "비올라",
+      "plan": "엉겨붙기의 구속 압박 · 최종형 나비춤·벌레/비행 공격 보강",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 483
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 611
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 405
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 314
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:grant:697": {
+      "boss": "gym:grant",
+      "species": 697,
+      "name": "자크로",
+      "plan": "암석봉인 뒤 바위·드래곤 물리 공세",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 317
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 242
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 337
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 157
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:korrina:448": {
+      "boss": "gym:korrina",
+      "species": 448,
+      "name": "코르니",
+      "plan": "마스터타워의 칼춤·그로우펀치·본러시 · 메가진화 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 14
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 612
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 319
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 198
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:ramos:673": {
+      "boss": "gym:ramos",
+      "species": 673,
+      "name": "후쿠지",
+      "plan": "땅고르기 속도 제어 후 풀묶기 · 돌진 반동",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 523
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 447
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 36
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:clemont:695": {
+      "boss": "gym:clemont",
+      "species": 695,
+      "name": "시트론",
+      "plan": "10만볼트 중심과 풀묶기 견제 · 전광석화는 턴 순서 우회 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 85
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 98
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 447
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:valerie:700": {
+      "boss": "gym:valerie",
+      "species": 700,
+      "name": "마슈",
+      "plan": "애교부리기 뒤 페어리/노말 특수 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 204
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 605
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 98
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 129
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:milo:830": {
+      "boss": "gym:milo",
+      "species": 830,
+      "name": "아킬",
+      "plan": "코튼가드·방어와 기가드레인의 지구전",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 538
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 202
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 304
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 182
+        }
+      ]
+    },
+    "gym:nessa:834": {
+      "boss": "gym:nessa",
+      "species": 834,
+      "name": "야청",
+      "plan": "아쿠아브레이크와 암석봉인 · 물고버티기 교대 제한",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 710
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 746
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 317
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 242
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:kabu:851": {
+      "boss": "gym:kabu",
+      "species": 851,
+      "name": "순무",
+      "plan": "불꽃채찍·덤벼들기로 방어/공격 약화 후 악/풀 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 680
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 679
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 242
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 438
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:allister:94": {
+      "boss": "gym:allister",
+      "species": 94,
+      "name": "어니언",
+      "plan": "최면술 뒤 고스트·독·악 특수 공세",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 95
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 247
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 188
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 399
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:opal:869": {
+      "boss": "gym:opal",
+      "species": 869,
+      "name": "포플러",
+      "plan": "녹기로 버티며 드레인키스 회복 · 천사의키스 혼란",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 151
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 186
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 577
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:melony:131": {
+      "boss": "gym:melony",
+      "species": 131,
+      "name": "멜론",
+      "plan": "생명의물방울 회복 뒤 얼음/물/전기 특수 견제 · 거다이맥스 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 791
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 59
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 56
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 87
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:raihan:1018": {
+      "boss": "gym:raihan",
+      "species": 1018,
+      "name": "금랑",
+      "plan": "원작 두랄루돈의 드래곤·강철·바위·바디프레스 · 브리두라스 진화만 반영",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 337
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 442
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 444
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 776
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:bede:858": {
+      "boss": "gym:bede",
+      "species": 858,
+      "name": "비트",
+      "plan": "명상 후 에스퍼·페어리·악 특수 공격",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 347
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 605
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 399
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:peony:879": {
+      "boss": "gym:peony",
+      "species": 879,
+      "name": "피오니",
+      "plan": "헤비봄버 체중 위력과 강철·페어리·땅·격투 물리 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 484
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 583
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 667
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 276
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:tyme:934": {
+      "boss": "gym:tyme",
+      "species": 934,
+      "name": "타임",
+      "plan": "학교 최강 선발 대회의 스톤에지·세 속성 펀치 · 소금절이형으로 임의 변경하지 않음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 444
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 7
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 8
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 9
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:brassius:185": {
+      "boss": "gym:brassius",
+      "species": 185,
+      "name": "콜사",
+      "plan": "개척하기 가속과 바위·불꽃·얼음 물리 견제 · 풀 테라스탈 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 885
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 444
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 7
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 8
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:iono:429": {
+      "boss": "gym:iono",
+      "species": 429,
+      "name": "모야모",
+      "plan": "차지빔 특공 강화와 고스트·불꽃·페어리 특수 견제 · 부유 특성 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 451
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 247
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 595
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 605
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:kofu:740": {
+      "boss": "gym:kofu",
+      "species": 740,
+      "name": "곤포",
+      "plan": "집게해머·아이스해머 후 인파이트 · 스피드/방어 하락 예고",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 152
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 665
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 428
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 370
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:ryme:10184": {
+      "boss": "gym:ryme",
+      "species": 10184,
+      "name": "라임",
+      "plan": "전기·노말 특수 공격과 병상첨병 조건 · 더블배틀 부활 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 786
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 506
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 586
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 188
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:tulip:671": {
+      "boss": "gym:tulip",
+      "species": 671,
+      "name": "리파",
+      "plan": "애교부리기 후 페어리·에스퍼 견제 · 꽃보라의 물리 분류 유지",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 204
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 585
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 572
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:grusha:334": {
+      "boss": "gym:grusha",
+      "species": 334,
+      "name": "그루샤",
+      "plan": "얼음·드래곤·페어리·비행 특수 견제 · 얼음 테라스탈 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 58
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 406
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 585
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 542
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:hala:740": {
+      "boss": "gym:hala",
+      "species": 740,
+      "name": "할라",
+      "plan": "관장은 그로우펀치 강화와 아이스해머 · 사천왕 인파이트형과 구분",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 43
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 612
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 228
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 665
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:olivia:10126": {
+      "boss": "gym:olivia",
+      "species": 10126,
+      "name": "라이치",
+      "plan": "관장은 원작 물기·돌떨구기의 짧은 공세 · 사천왕 스톤에지형과 구분",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 44
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 88
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:hapu:750": {
+      "boss": "gym:hapu",
+      "species": 750,
+      "name": "하푸우",
+      "plan": "보복의 후공 조건과 땅·강철 공격 · 두번차기 2타",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 484
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 89
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 24
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 371
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:lorelei:131": {
+      "boss": "elite:lorelei",
+      "species": 131,
+      "name": "칸나",
+      "plan": "물·얼음·드래곤 특수 견제 · 회복기를 근거 없이 넣지 않음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 56
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 59
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 406
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:bruno:68": {
+      "boss": "elite:bruno",
+      "species": 68,
+      "name": "시바",
+      "plan": "땅·격투·바위 물리 공세 · 엄청난힘 자기 약화",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 89
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 276
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 157
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:agatha:94": {
+      "boss": "elite:agatha",
+      "species": 94,
+      "name": "국화",
+      "plan": "고스트·독·페어리 특수 공세 · 원작에 없는 확정 독 부여 제거",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 605
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 247
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 188
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:lance:149": {
+      "boss": "elite:lance",
+      "species": 149,
+      "name": "목호",
+      "plan": "사천왕은 역린·불꽃펀치와 파괴광선 재충전",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 200
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 7
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 63
+        },
+        {
+          "kind": "recharge",
+          "value": 0,
+          "move_id": 0
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:will:178": {
+      "boss": "elite:will",
+      "species": 178,
+      "name": "일목",
+      "plan": "이상한빛 뒤 에스퍼·비행·고스트 견제 · 마지막 Lv.42 네이티오 기준",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 109
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 332
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 466
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:koga:169": {
+      "boss": "elite:koga",
+      "species": 169,
+      "name": "독수",
+      "plan": "사천왕은 맹독엄니·전광석화 물리 공세 · 교배 전광석화 계승 · 관장 도나리와 분리",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 104
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 98
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 17
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 305
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:karen:229": {
+      "boss": "elite:karen",
+      "species": 229,
+      "name": "카렌",
+      "plan": "나쁜음모 후 악의파동·화염방사 · 깨물어부수기는 물리 분류 유지",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 417
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 399
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 53
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 242
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:sidney:359": {
+      "boss": "elite:sidney",
+      "species": 359,
+      "name": "혁진",
+      "plan": "깜짝베기·사이코커터 중심 물리 견제 · 연타 수를 임의로 붙이지 않음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 332
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 400
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 427
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 163
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:phoebe:477": {
+      "boss": "elite:phoebe",
+      "species": 477,
+      "name": "회연",
+      "plan": "병상첨병은 상태 조건부 · 세 속성 펀치 물리 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 506
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 7
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 8
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 9
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:drake:373": {
+      "boss": "elite:drake",
+      "species": 373,
+      "name": "권수",
+      "plan": "아공이 교배 드래곤다이브를 계승한 드래곤 물리 공세와 에스퍼·악·전기 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 407
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 428
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 242
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 422
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:aaron:452": {
+      "boss": "elite:aaron",
+      "species": 452,
+      "name": "충호",
+      "plan": "독·벌레·얼음·비행 물리 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 404
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 440
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 423
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 332
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:flint:392": {
+      "boss": "elite:flint",
+      "species": 392,
+      "name": "대엽",
+      "plan": "플레어드라이브 반동과 마하펀치·전기·땅 물리 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 394
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 9
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 183
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 89
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:lucian:437": {
+      "boss": "elite:lucian",
+      "species": 437,
+      "name": "오엽",
+      "plan": "명상과 에스퍼·강철·땅 혼합 공격 · 자이로볼 속도 조건",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 347
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 360
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 89
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:shauntal:609": {
+      "boss": "elite:shauntal",
+      "species": 609,
+      "name": "망초",
+      "plan": "고스트·불꽃·풀·에스퍼 특수 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 412
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 126
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 247
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:grimsley:983": {
+      "boss": "elite:grimsley",
+      "species": 983,
+      "name": "블래리",
+      "plan": "대도각참의 도각참과 강철 물리 공격 · 총대장 특성 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 869
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 404
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 442
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 332
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:caitlin:576": {
+      "boss": "elite:caitlin",
+      "species": 576,
+      "name": "카틀레야",
+      "plan": "명상 뒤 에스퍼·고스트·전기 특수 공세",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 347
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 247
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 85
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:malva:663": {
+      "boss": "elite:malva",
+      "species": 663,
+      "name": "파키라",
+      "plan": "브레이브버드·플레어드라이브의 반동 · 바둥바둥 HP 조건",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 98
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 413
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 394
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 175
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:siebold:689": {
+      "boss": "elite:siebold",
+      "species": 689,
+      "name": "즈미",
+      "plan": "바위·물·격투·벌레 물리 공세 · 미사용 껍질깨기 추가 금지",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 444
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 534
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 238
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 404
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:wikstrom:681": {
+      "boss": "elite:wikstrom",
+      "species": 681,
+      "name": "간피",
+      "plan": "킹실드로 방어 후 강철·고스트·격투 공격 · 배틀 전용 폼 변화 제외",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 588
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 442
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 421
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 533
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:drasna:715": {
+      "boss": "elite:drasna",
+      "species": 715,
+      "name": "드라세나",
+      "plan": "드래곤·비행·불꽃·노말 특수 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 53
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 586
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 403
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 406
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:hala:740": {
+      "boss": "elite:hala",
+      "species": 740,
+      "name": "할라",
+      "plan": "사천왕은 아이스해머·인파이트의 큰 물리 공세와 자기 약화",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 665
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 370
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:olivia:10126": {
+      "boss": "elite:olivia",
+      "species": 10126,
+      "name": "라이치",
+      "plan": "사천왕은 카운터 뒤 바위·악·노말 공세 · 관장과 원작 기술 분리",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 242
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 444
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 68
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 431
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:acerola:770": {
+      "boss": "elite:acerola",
+      "species": 770,
+      "name": "아세로라",
+      "plan": "철벽 뒤 기가드레인 회복과 고스트·땅 특수 공격",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 334
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 247
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 414
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 202
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:rika:980": {
+      "boss": "elite:rika",
+      "species": 980,
+      "name": "칠리",
+      "plan": "맹독·방어와 지진/아쿠아브레이크 · 맹독의 누적 피해는 별도",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 92
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 182
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 89
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 710
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:amarys:376": {
+      "boss": "elite:amarys",
+      "species": 376,
+      "name": "네리네",
+      "plan": "하드프레스의 상대 HP 조건과 강철·얼음·에스퍼·격투 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 912
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 8
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 428
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 280
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:drayton:1018": {
+      "boss": "elite:drayton",
+      "species": 1018,
+      "name": "제빈",
+      "plan": "일렉트로빔 충전·특공 강화와 비 시 충전 생략 · 용·강철·악 특수 견제",
+      "intents": [
+        {
+          "kind": "prepare",
+          "value": 0,
+          "move_id": 905
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 905
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 406
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 430
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 555
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "champion:lance:149": {
+      "boss": "champion:lance",
+      "species": 149,
+      "name": "목호",
+      "plan": "챔피언은 신비의부적 뒤 역린과 불대문자·파괴광선 · Lv.50 망나뇽 기준",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 219
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 126
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 200
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 63
+        },
+        {
+          "kind": "recharge",
+          "value": 0,
+          "move_id": 0
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "champion:steven:376": {
+      "boss": "champion:steven",
+      "species": 376,
+      "name": "성호",
+      "plan": "코멧펀치·불릿펀치와 기가임팩트 재충전 · 메가진화 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 418
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 428
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 309
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 416
+        },
+        {
+          "kind": "recharge",
+          "value": 0,
+          "move_id": 0
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "champion:wallace:350": {
+      "boss": "champion:wallace",
+      "species": 350,
+      "name": "윤진",
+      "plan": "챔피언은 맹독·HP회복 지구전과 물/얼음 특수 공격",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 92
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 57
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 58
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 105
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "champion:cynthia:445": {
+      "boss": "champion:cynthia",
+      "species": 445,
+      "name": "난천",
+      "plan": "회복형 제거 · 땅·드래곤 물리 공세와 화염방사 얼음 견제 · 기가임팩트 빈틈",
+      "intents": [
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 89
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 53
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 407
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 416
+        },
+        {
+          "kind": "recharge",
+          "value": 0,
+          "move_id": 0
+        }
+      ]
+    },
+    "champion:alder:637": {
+      "boss": "champion:alder",
+      "species": 637,
+      "name": "노간주",
+      "plan": "나비춤 뒤 벌레·불꽃 특수 공세 · 오버히트 약화와 파괴광선 빈틈",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 483
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 315
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 405
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 63
+        },
+        {
+          "kind": "recharge",
+          "value": 0,
+          "move_id": 0
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "champion:iris:612": {
+      "boss": "champion:iris",
+      "species": 612,
+      "name": "아이리스",
+      "plan": "챔피언은 용의춤 후 더블촙 2타와 땅/벌레 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 349
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 530
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 89
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 404
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "champion:diantha:282": {
+      "boss": "champion:diantha",
+      "species": 282,
+      "name": "카르네",
+      "plan": "에스퍼·페어리·고스트·전기 특수 견제 · 메가/페어리스킨 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 85
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 585
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 247
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "champion:leon:6": {
+      "boss": "champion:leon",
+      "species": 6,
+      "name": "단델",
+      "plan": "불꽃·비행·풀·바위 특수 견제 · 솔라빔 충전 예고와 거다이맥스 제외",
+      "intents": [
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 126
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 403
+        },
+        {
+          "kind": "prepare",
+          "value": 0,
+          "move_id": 76
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 76
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 246
+        }
+      ]
+    },
+    "champion:kukui:745": {
+      "boss": "champion:kukui",
+      "species": 745,
+      "name": "쿠쿠이",
+      "plan": "스텔스록 뒤 액셀록·바위·악 공세 · 황혼/한밤중 폼 혼용 금지",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 446
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 709
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 242
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 444
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "champion:hau:10100": {
+      "boss": "champion:hau",
+      "species": 10100,
+      "name": "하우",
+      "plan": "알로라 라이츄의 전기·에스퍼·격투 특수 견제 · 서핑테일 특성 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 85
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 98
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 411
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "champion:red:26": {
+      "boss": "champion:red",
+      "species": 26,
+      "name": "레드",
+      "plan": "피카츄의 볼트태클·전광석화·10만볼트·아이언테일을 라이츄로 계승 · 볼트태클 반동",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 344
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 231
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 98
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 85
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:whitney:241": {
+      "boss": "gym:whitney",
+      "species": 241,
+      "name": "꼭두",
+      "plan": "HGSS 재대결의 잠자기·잠꼬대 지구전 · 구르기/우유마시기 혼용 금지",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 213
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 34
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 156
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 214
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 214
+        }
+      ]
+    },
+    "gym:morty:94": {
+      "boss": "gym:morty",
+      "species": 94,
+      "name": "유빈",
+      "plan": "마지막 팬텀의 대타출동과 길동무 예고 · 앞 팬텀 수면형과 구분",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 164
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 247
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 85
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 194
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:clair:230": {
+      "boss": "gym:clair",
+      "species": 230,
+      "name": "이향",
+      "plan": "하품의 지연 수면 뒤 물·얼음·드래곤 특수 공세",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 281
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 56
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 58
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 225
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:brawly:297": {
+      "boss": "gym:brawly",
+      "species": 297,
+      "name": "철구",
+      "plan": "벌크업 후 격투 연타 · 탁쳐서떨구기/인파이트의 부가효과 분리",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 339
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 292
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 282
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 370
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:flannery:324": {
+      "boss": "gym:flannery",
+      "species": 324,
+      "name": "민지",
+      "plan": "쾌청 후 오버히트 · 저주의 자기 스피드 하락과 특공 하락 구분",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 241
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 174
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 34
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 315
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:norman:289": {
+      "boss": "gym:norman",
+      "species": 289,
+      "name": "종길",
+      "plan": "원수갚기 강화 시점 공개 · 야금야금 회복 차단 · 게으름 특성 추가 금지",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 207
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 498
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 514
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 185
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:chili:514": {
+      "boss": "gym:chili",
+      "species": 514,
+      "name": "팟",
+      "plan": "분발 후 불꽃 공세 · 불태우기의 소지품 효과는 별도",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 526
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 510
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 53
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 154
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:olympia:10025": {
+      "boss": "gym:olympia",
+      "species": 10025,
+      "name": "고지카",
+      "plan": "명상 후 에스퍼·고스트 특수 견제 · 속이기 첫 행동 조건 공개",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 347
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 252
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 247
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:wulfric:713": {
+      "boss": "gym:wulfric",
+      "species": 713,
+      "name": "우르프",
+      "plan": "저주로 물리 내구 강화 · 자이로볼/눈사태 조건을 예고",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 174
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 419
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 242
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 360
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:bea:68": {
+      "boss": "gym:bea",
+      "species": 68,
+      "name": "채두",
+      "plan": "크로스촙 중심과 불꽃/얼음/악 물리 견제 · 원작 특성 효과 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 7
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 282
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 238
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 8
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:gordie:839": {
+      "boss": "gym:gordie",
+      "species": 839,
+      "name": "마쿠와",
+      "plan": "타르샷의 속도 하락·불꽃 약점 노출 후 플레어드라이브",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 749
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 394
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 89
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 444
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:piers:862": {
+      "boss": "gym:piers",
+      "species": 862,
+      "name": "두송",
+      "plan": "블로킹 후 카운터/고스트 공격 · 지옥찌르기 소리기술 봉인",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 792
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 68
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 675
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 421
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:marnie:861": {
+      "boss": "gym:marnie",
+      "species": 861,
+      "name": "마리",
+      "plan": "벌크업 후 페어리·악 물리 공격 · 소울크래시 특공 약화",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 339
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 789
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 663
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 583
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:klara:10165": {
+      "boss": "gym:klara",
+      "species": 10165,
+      "name": "도정",
+      "plan": "가라르 야도란의 셸암즈와 물·격투·에스퍼 특수 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 503
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 801
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 411
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 94
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:avery:10172": {
+      "boss": "gym:avery",
+      "species": 10172,
+      "name": "세이버리",
+      "plan": "가라르 야도킹의 섬뜩한주문과 물·바위·얼음 특수 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 503
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 826
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 408
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 59
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:mustard:10191": {
+      "boss": "gym:mustard",
+      "species": 10191,
+      "name": "마스터드",
+      "plan": "수류연타 3타를 사전 공개 · 인파이트 자기 약화 · 연격 고정",
+      "intents": [
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 818
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 398
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 370
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 442
+        }
+      ]
+    },
+    "gym:katy:901": {
+      "boss": "gym:katy",
+      "species": 901,
+      "name": "단풍",
+      "plan": "다투곰의 물리 공세 · 원작 테라스탈 벌레 약점 변경 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 163
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 838
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 583
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 242
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:larry:398": {
+      "boss": "gym:larry",
+      "species": 398,
+      "name": "청목",
+      "plan": "관장은 객기·브레이브버드 · 상태 보너스와 반동 구분",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 263
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 413
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 370
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 168
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "gym:nanu:10108": {
+      "boss": "gym:nanu",
+      "species": 10108,
+      "name": "나누",
+      "plan": "속이기 첫 행동과 악/바위 특수 견제 · 알로라 폼 유지",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 408
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 252
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 399
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:glacia:365": {
+      "boss": "elite:glacia",
+      "species": 365,
+      "name": "미혜",
+      "plan": "얼음·물과 누르기 · 절대영도는 즉사 대신 공개 강공격 각색",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 57
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 34
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 59
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 329
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:bertha:450": {
+      "boss": "elite:bertha",
+      "species": 450,
+      "name": "들국화",
+      "plan": "하품의 지연 수면 뒤 땅·바위·악 물리 공세 · 특성 모래날림 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 281
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 89
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 444
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 242
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:marshal:620": {
+      "boss": "elite:marshal",
+      "species": 620,
+      "name": "연무",
+      "plan": "무릎차기 실패 위험과 유턴·뛰어오르기 · 원수갚기 조건 공개",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 136
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 369
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 340
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 514
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:kahili:733": {
+      "boss": "elite:kahili",
+      "species": 733,
+      "name": "카일리",
+      "plan": "싫은소리 뒤 두 종류 연속기 · 부리캐논 준비 중 접촉 화상은 별도",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 103
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 331
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 350
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 690
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:poppy:959": {
+      "boss": "elite:poppy",
+      "species": 959,
+      "name": "뽀삐",
+      "plan": "거대해머의 연속 사용 제한을 행동 순서에 반영",
+      "intents": [
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 893
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 583
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 280
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 444
+        }
+      ]
+    },
+    "elite:larry:973": {
+      "boss": "elite:larry",
+      "species": 973,
+      "name": "청목",
+      "plan": "사천왕은 비행·격투·악·물 공격 · 관장 찌르호크와 분리",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 413
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 370
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 675
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 710
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:hassel:998": {
+      "boss": "elite:hassel",
+      "species": 998,
+      "name": "팔자크",
+      "plan": "대검돌격의 다음 피격 위험을 공개 · 얼음/격투 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 556
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 280
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 862
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:molayne:10106": {
+      "boss": "elite:molayne",
+      "species": 10106,
+      "name": "멀레인",
+      "plan": "알로라 닥트리오의 강철·땅 물리 공격 · 기습 조건과 땅가르기 강공격 각색",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 89
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 442
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 389
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 90
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:crispin:257": {
+      "boss": "elite:crispin",
+      "species": 257,
+      "name": "하솔",
+      "plan": "불꽃·격투 혼합 공세 · 열불내기 추가효과 별도 · 테라스탈 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 444
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 411
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 915
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 421
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "elite:lacey:530": {
+      "boss": "elite:lacey",
+      "species": 530,
+      "name": "타로",
+      "plan": "강철·땅 물리 공세와 암석봉인 · 테라버스트는 미변신 노말 특수로 구분",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 851
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 442
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 317
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 667
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "champion:blue:18": {
+      "boss": "champion:blue",
+      "species": 18,
+      "name": "그린",
+      "plan": "챔피언은 원작 날개치기·불새와 따라하기/날려버리기 · 관장 그린과 다른 구성",
+      "intents": [
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 18
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 17
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 119
+        },
+        {
+          "kind": "prepare",
+          "value": 0,
+          "move_id": 143
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 143
+        }
+      ]
+    },
+    "champion:geeta:970": {
+      "boss": "champion:geeta",
+      "species": 970,
+      "name": "테사",
+      "plan": "독·땅·페어리 특수 견제 · 테라버스트는 미변신 노말 · 독치장 특성 없음",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 851
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 482
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 414
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 605
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    },
+    "champion:nemona:923": {
+      "boss": "champion:nemona",
+      "species": 923,
+      "name": "네모",
+      "plan": "전광쌍격 뒤 전기 타입 상실을 공개 · 격투/얼음 견제와 인파이트 약화",
+      "intents": [
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 892
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 370
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 8
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 98
+        }
+      ]
+    },
+    "champion:kieran:1019": {
+      "boss": "champion:kieran",
+      "species": 1019,
+      "name": "카지",
+      "plan": "변덕레이저의 위력 변동을 예고 · 테라버스트는 미변신 노말 · 자이로볼/땅 견제",
+      "intents": [
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 907
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 360
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 851
+        },
+        {
+          "kind": "move",
+          "value": 0,
+          "move_id": 414
+        },
+        {
+          "kind": "guard",
+          "value": 6,
+          "move_id": 0
+        }
+      ]
+    }
+  },
+  "deferred": {},
+  "weights": {
+    "1": 69,
+    "2": 130,
+    "3": 1000,
+    "4": 85,
+    "5": 190,
+    "6": 905,
+    "7": 90,
+    "8": 225,
+    "9": 855,
+    "10": 29,
+    "11": 99,
+    "12": 320,
+    "13": 32,
+    "14": 100,
+    "15": 295,
+    "16": 18,
+    "17": 300,
+    "18": 395,
+    "19": 35,
+    "20": 185,
+    "21": 20,
+    "22": 380,
+    "23": 69,
+    "24": 650,
+    "25": 60,
+    "26": 300,
+    "27": 120,
+    "28": 295,
+    "29": 70,
+    "30": 200,
+    "31": 600,
+    "32": 90,
+    "33": 195,
+    "34": 620,
+    "35": 75,
+    "36": 400,
+    "37": 99,
+    "38": 199,
+    "39": 55,
+    "40": 120,
+    "41": 75,
+    "42": 550,
+    "43": 54,
+    "44": 86,
+    "45": 186,
+    "46": 54,
+    "47": 295,
+    "48": 300,
+    "49": 125,
+    "50": 8,
+    "51": 333,
+    "52": 42,
+    "53": 320,
+    "54": 196,
+    "55": 766,
+    "56": 280,
+    "57": 320,
+    "58": 190,
+    "59": 1550,
+    "60": 124,
+    "61": 200,
+    "62": 540,
+    "63": 195,
+    "64": 565,
+    "65": 480,
+    "66": 195,
+    "67": 705,
+    "68": 1300,
+    "69": 40,
+    "70": 64,
+    "71": 155,
+    "72": 455,
+    "73": 550,
+    "74": 200,
+    "75": 1050,
+    "76": 3000,
+    "77": 300,
+    "78": 950,
+    "79": 360,
+    "80": 785,
+    "81": 60,
+    "82": 600,
+    "83": 150,
+    "84": 392,
+    "85": 852,
+    "86": 900,
+    "87": 1200,
+    "88": 300,
+    "89": 300,
+    "90": 40,
+    "91": 1325,
+    "92": 1,
+    "93": 1,
+    "94": 405,
+    "95": 2100,
+    "96": 324,
+    "97": 756,
+    "98": 65,
+    "99": 600,
+    "100": 104,
+    "101": 666,
+    "102": 25,
+    "103": 1200,
+    "104": 65,
+    "105": 450,
+    "106": 498,
+    "107": 502,
+    "108": 655,
+    "109": 10,
+    "110": 95,
+    "111": 1150,
+    "112": 1200,
+    "113": 346,
+    "114": 350,
+    "115": 800,
+    "116": 80,
+    "117": 250,
+    "118": 150,
+    "119": 390,
+    "120": 345,
+    "121": 800,
+    "122": 545,
+    "123": 560,
+    "124": 406,
+    "125": 300,
+    "126": 445,
+    "127": 550,
+    "128": 884,
+    "129": 100,
+    "130": 2350,
+    "131": 2200,
+    "132": 40,
+    "133": 65,
+    "134": 290,
+    "135": 245,
+    "136": 250,
+    "137": 365,
+    "138": 75,
+    "139": 350,
+    "140": 115,
+    "141": 405,
+    "142": 590,
+    "143": 4600,
+    "144": 554,
+    "145": 526,
+    "146": 600,
+    "147": 33,
+    "148": 165,
+    "149": 2100,
+    "150": 1220,
+    "151": 40,
+    "152": 64,
+    "153": 158,
+    "154": 1005,
+    "155": 79,
+    "156": 190,
+    "157": 795,
+    "158": 95,
+    "159": 250,
+    "160": 888,
+    "161": 60,
+    "162": 325,
+    "163": 212,
+    "164": 408,
+    "165": 108,
+    "166": 356,
+    "167": 85,
+    "168": 335,
+    "169": 750,
+    "170": 120,
+    "171": 225,
+    "172": 20,
+    "173": 30,
+    "174": 10,
+    "175": 15,
+    "176": 32,
+    "177": 20,
+    "178": 150,
+    "179": 78,
+    "180": 133,
+    "181": 615,
+    "182": 58,
+    "183": 85,
+    "184": 285,
+    "185": 380,
+    "186": 339,
+    "187": 5,
+    "188": 10,
+    "189": 30,
+    "190": 115,
+    "191": 18,
+    "192": 85,
+    "193": 380,
+    "194": 85,
+    "195": 750,
+    "196": 265,
+    "197": 270,
+    "198": 21,
+    "199": 795,
+    "200": 10,
+    "201": 50,
+    "202": 285,
+    "203": 415,
+    "204": 72,
+    "205": 1258,
+    "206": 140,
+    "207": 648,
+    "208": 4000,
+    "209": 78,
+    "210": 487,
+    "211": 39,
+    "212": 1180,
+    "213": 205,
+    "214": 540,
+    "215": 280,
+    "216": 88,
+    "217": 1258,
+    "218": 350,
+    "219": 550,
+    "220": 65,
+    "221": 558,
+    "222": 50,
+    "223": 120,
+    "224": 285,
+    "225": 160,
+    "226": 2200,
+    "227": 505,
+    "228": 108,
+    "229": 350,
+    "230": 1520,
+    "231": 335,
+    "232": 1200,
+    "233": 325,
+    "234": 712,
+    "235": 580,
+    "236": 210,
+    "237": 480,
+    "238": 60,
+    "239": 235,
+    "240": 214,
+    "241": 755,
+    "242": 468,
+    "243": 1780,
+    "244": 1980,
+    "245": 1870,
+    "246": 720,
+    "247": 1520,
+    "248": 2020,
+    "249": 2160,
+    "250": 1990,
+    "251": 50,
+    "252": 50,
+    "253": 216,
+    "254": 522,
+    "255": 25,
+    "256": 195,
+    "257": 520,
+    "258": 76,
+    "259": 280,
+    "260": 819,
+    "261": 136,
+    "262": 370,
+    "263": 175,
+    "264": 325,
+    "265": 36,
+    "266": 100,
+    "267": 284,
+    "268": 115,
+    "269": 316,
+    "270": 26,
+    "271": 325,
+    "272": 550,
+    "273": 40,
+    "274": 280,
+    "275": 596,
+    "276": 23,
+    "277": 198,
+    "278": 95,
+    "279": 280,
+    "280": 66,
+    "281": 202,
+    "282": 484,
+    "283": 17,
+    "284": 36,
+    "285": 45,
+    "286": 392,
+    "287": 240,
+    "288": 465,
+    "289": 1305,
+    "290": 55,
+    "291": 120,
+    "292": 12,
+    "293": 163,
+    "294": 405,
+    "295": 840,
+    "296": 864,
+    "297": 2538,
+    "298": 20,
+    "299": 970,
+    "300": 110,
+    "301": 326,
+    "302": 110,
+    "303": 115,
+    "304": 600,
+    "305": 1200,
+    "306": 3600,
+    "307": 112,
+    "308": 315,
+    "309": 152,
+    "310": 402,
+    "311": 42,
+    "312": 42,
+    "313": 177,
+    "314": 177,
+    "315": 20,
+    "316": 103,
+    "317": 800,
+    "318": 208,
+    "319": 888,
+    "320": 1300,
+    "321": 3980,
+    "322": 240,
+    "323": 2200,
+    "324": 804,
+    "325": 306,
+    "326": 715,
+    "327": 50,
+    "328": 150,
+    "329": 153,
+    "330": 820,
+    "331": 513,
+    "332": 774,
+    "333": 12,
+    "334": 206,
+    "335": 403,
+    "336": 525,
+    "337": 1680,
+    "338": 1540,
+    "339": 19,
+    "340": 236,
+    "341": 115,
+    "342": 328,
+    "343": 215,
+    "344": 1080,
+    "345": 238,
+    "346": 604,
+    "347": 125,
+    "348": 682,
+    "349": 74,
+    "350": 1620,
+    "351": 8,
+    "352": 220,
+    "353": 23,
+    "354": 125,
+    "355": 150,
+    "356": 306,
+    "357": 1000,
+    "358": 10,
+    "359": 470,
+    "360": 140,
+    "361": 168,
+    "362": 2565,
+    "363": 395,
+    "364": 876,
+    "365": 1506,
+    "366": 525,
+    "367": 270,
+    "368": 226,
+    "369": 234,
+    "370": 87,
+    "371": 421,
+    "372": 1105,
+    "373": 1026,
+    "374": 952,
+    "375": 2025,
+    "376": 5500,
+    "377": 2300,
+    "378": 1750,
+    "379": 2050,
+    "380": 400,
+    "381": 600,
+    "382": 3520,
+    "383": 9500,
+    "384": 2065,
+    "385": 11,
+    "386": 608,
+    "387": 102,
+    "388": 970,
+    "389": 3100,
+    "390": 62,
+    "391": 220,
+    "392": 550,
+    "393": 52,
+    "394": 230,
+    "395": 845,
+    "396": 20,
+    "397": 155,
+    "398": 249,
+    "399": 200,
+    "400": 315,
+    "401": 22,
+    "402": 255,
+    "403": 95,
+    "404": 305,
+    "405": 420,
+    "406": 12,
+    "407": 145,
+    "408": 315,
+    "409": 1025,
+    "410": 570,
+    "411": 1495,
+    "412": 34,
+    "413": 65,
+    "414": 233,
+    "415": 55,
+    "416": 385,
+    "417": 39,
+    "418": 295,
+    "419": 335,
+    "420": 33,
+    "421": 93,
+    "422": 63,
+    "423": 299,
+    "424": 203,
+    "425": 12,
+    "426": 150,
+    "427": 55,
+    "428": 333,
+    "429": 44,
+    "430": 273,
+    "431": 39,
+    "432": 438,
+    "433": 6,
+    "434": 192,
+    "435": 380,
+    "436": 605,
+    "437": 1870,
+    "438": 150,
+    "439": 130,
+    "440": 244,
+    "441": 19,
+    "442": 1080,
+    "443": 205,
+    "444": 560,
+    "445": 950,
+    "446": 1050,
+    "447": 202,
+    "448": 540,
+    "449": 495,
+    "450": 3000,
+    "451": 120,
+    "452": 615,
+    "453": 230,
+    "454": 444,
+    "455": 270,
+    "456": 70,
+    "457": 240,
+    "458": 650,
+    "459": 505,
+    "460": 1355,
+    "461": 340,
+    "462": 1800,
+    "463": 1400,
+    "464": 2828,
+    "465": 1286,
+    "466": 1386,
+    "467": 680,
+    "468": 380,
+    "469": 515,
+    "470": 255,
+    "471": 259,
+    "472": 425,
+    "473": 2910,
+    "474": 340,
+    "475": 520,
+    "476": 3400,
+    "477": 1066,
+    "478": 266,
+    "479": 3,
+    "480": 3,
+    "481": 3,
+    "482": 3,
+    "483": 6830,
+    "484": 3360,
+    "485": 4300,
+    "486": 4200,
+    "487": 7500,
+    "488": 856,
+    "489": 31,
+    "490": 14,
+    "491": 505,
+    "492": 21,
+    "493": 3200,
+    "494": 40,
+    "495": 81,
+    "496": 160,
+    "497": 630,
+    "498": 99,
+    "499": 555,
+    "500": 1500,
+    "501": 59,
+    "502": 245,
+    "503": 946,
+    "504": 116,
+    "505": 270,
+    "506": 41,
+    "507": 147,
+    "508": 610,
+    "509": 101,
+    "510": 375,
+    "511": 105,
+    "512": 305,
+    "513": 110,
+    "514": 280,
+    "515": 135,
+    "516": 290,
+    "517": 233,
+    "518": 605,
+    "519": 21,
+    "520": 150,
+    "521": 290,
+    "522": 298,
+    "523": 795,
+    "524": 180,
+    "525": 1020,
+    "526": 2600,
+    "527": 21,
+    "528": 105,
+    "529": 85,
+    "530": 404,
+    "531": 310,
+    "532": 125,
+    "533": 400,
+    "534": 870,
+    "535": 45,
+    "536": 170,
+    "537": 620,
+    "538": 555,
+    "539": 510,
+    "540": 25,
+    "541": 73,
+    "542": 205,
+    "543": 53,
+    "544": 585,
+    "545": 2005,
+    "546": 6,
+    "547": 66,
+    "548": 66,
+    "549": 163,
+    "550": 180,
+    "551": 152,
+    "552": 334,
+    "553": 963,
+    "554": 375,
+    "555": 929,
+    "556": 280,
+    "557": 145,
+    "558": 2000,
+    "559": 118,
+    "560": 300,
+    "561": 140,
+    "562": 15,
+    "563": 765,
+    "564": 165,
+    "565": 810,
+    "566": 95,
+    "567": 320,
+    "568": 310,
+    "569": 1073,
+    "570": 125,
+    "571": 811,
+    "572": 58,
+    "573": 75,
+    "574": 58,
+    "575": 180,
+    "576": 440,
+    "577": 10,
+    "578": 80,
+    "579": 201,
+    "580": 55,
+    "581": 242,
+    "582": 57,
+    "583": 410,
+    "584": 575,
+    "585": 195,
+    "586": 925,
+    "587": 50,
+    "588": 59,
+    "589": 330,
+    "590": 10,
+    "591": 105,
+    "592": 330,
+    "593": 1350,
+    "594": 316,
+    "595": 6,
+    "596": 143,
+    "597": 188,
+    "598": 1100,
+    "599": 210,
+    "600": 510,
+    "601": 810,
+    "602": 3,
+    "603": 220,
+    "604": 805,
+    "605": 90,
+    "606": 345,
+    "607": 31,
+    "608": 130,
+    "609": 343,
+    "610": 180,
+    "611": 360,
+    "612": 1055,
+    "613": 85,
+    "614": 2600,
+    "615": 1480,
+    "616": 77,
+    "617": 253,
+    "618": 110,
+    "619": 200,
+    "620": 355,
+    "621": 1390,
+    "622": 920,
+    "623": 3300,
+    "624": 102,
+    "625": 700,
+    "626": 946,
+    "627": 105,
+    "628": 410,
+    "629": 90,
+    "630": 395,
+    "631": 580,
+    "632": 330,
+    "633": 173,
+    "634": 500,
+    "635": 1600,
+    "636": 288,
+    "637": 460,
+    "638": 2500,
+    "639": 2600,
+    "640": 2000,
+    "641": 630,
+    "642": 610,
+    "643": 3300,
+    "644": 3450,
+    "645": 680,
+    "646": 3250,
+    "647": 485,
+    "648": 65,
+    "649": 825,
+    "650": 90,
+    "651": 290,
+    "652": 900,
+    "653": 94,
+    "654": 145,
+    "655": 390,
+    "656": 70,
+    "657": 109,
+    "658": 400,
+    "659": 50,
+    "660": 424,
+    "661": 17,
+    "662": 160,
+    "663": 245,
+    "664": 25,
+    "665": 84,
+    "666": 170,
+    "667": 135,
+    "668": 815,
+    "669": 1,
+    "670": 9,
+    "671": 100,
+    "672": 310,
+    "673": 910,
+    "674": 80,
+    "675": 1360,
+    "676": 280,
+    "677": 35,
+    "678": 85,
+    "679": 20,
+    "680": 45,
+    "681": 530,
+    "682": 5,
+    "683": 155,
+    "684": 35,
+    "685": 50,
+    "686": 35,
+    "687": 470,
+    "688": 310,
+    "689": 960,
+    "690": 73,
+    "691": 815,
+    "692": 83,
+    "693": 353,
+    "694": 60,
+    "695": 210,
+    "696": 260,
+    "697": 2700,
+    "698": 252,
+    "699": 2250,
+    "700": 235,
+    "701": 215,
+    "702": 22,
+    "703": 57,
+    "704": 28,
+    "705": 175,
+    "706": 1505,
+    "707": 30,
+    "708": 70,
+    "709": 710,
+    "710": 50,
+    "711": 125,
+    "712": 995,
+    "713": 5050,
+    "714": 80,
+    "715": 850,
+    "717": 2030,
+    "718": 3050,
+    "719": 88,
+    "720": 90,
+    "721": 1950,
+    "722": 15,
+    "723": 160,
+    "724": 366,
+    "725": 43,
+    "726": 250,
+    "727": 830,
+    "728": 75,
+    "729": 175,
+    "730": 440,
+    "731": 12,
+    "732": 148,
+    "733": 260,
+    "734": 60,
+    "735": 142,
+    "736": 44,
+    "737": 105,
+    "738": 450,
+    "739": 70,
+    "740": 1800,
+    "741": 34,
+    "742": 2,
+    "743": 5,
+    "744": 92,
+    "745": 250,
+    "746": 3,
+    "747": 80,
+    "748": 145,
+    "749": 1100,
+    "750": 9200,
+    "751": 40,
+    "752": 820,
+    "753": 15,
+    "754": 185,
+    "755": 15,
+    "756": 115,
+    "757": 48,
+    "758": 222,
+    "759": 68,
+    "760": 1350,
+    "761": 32,
+    "762": 82,
+    "763": 214,
+    "764": 3,
+    "765": 760,
+    "766": 828,
+    "767": 120,
+    "768": 1080,
+    "769": 700,
+    "770": 2500,
+    "771": 12,
+    "772": 1205,
+    "773": 1005,
+    "774": 400,
+    "775": 199,
+    "776": 2120,
+    "777": 33,
+    "778": 7,
+    "779": 190,
+    "780": 1850,
+    "781": 2100,
+    "782": 297,
+    "783": 470,
+    "784": 782,
+    "785": 205,
+    "786": 186,
+    "787": 455,
+    "788": 212,
+    "789": 1,
+    "790": 9999,
+    "791": 2300,
+    "792": 1200,
+    "793": 555,
+    "794": 3336,
+    "795": 250,
+    "796": 1000,
+    "797": 9999,
+    "798": 1,
+    "799": 8880,
+    "800": 2300,
+    "801": 805,
+    "802": 222,
+    "803": 18,
+    "804": 1500,
+    "805": 8200,
+    "806": 130,
+    "807": 445,
+    "808": 80,
+    "809": 8000,
+    "810": 50,
+    "811": 140,
+    "812": 900,
+    "813": 45,
+    "814": 90,
+    "815": 330,
+    "816": 40,
+    "817": 115,
+    "818": 452,
+    "819": 25,
+    "820": 60,
+    "821": 18,
+    "822": 160,
+    "823": 750,
+    "824": 80,
+    "825": 195,
+    "826": 408,
+    "827": 89,
+    "828": 199,
+    "829": 22,
+    "830": 25,
+    "831": 60,
+    "832": 430,
+    "833": 85,
+    "834": 1155,
+    "835": 135,
+    "836": 340,
+    "837": 120,
+    "838": 780,
+    "839": 3105,
+    "840": 5,
+    "841": 10,
+    "842": 130,
+    "843": 76,
+    "844": 655,
+    "845": 180,
+    "846": 10,
+    "847": 300,
+    "848": 110,
+    "849": 400,
+    "850": 10,
+    "851": 1200,
+    "852": 40,
+    "853": 390,
+    "854": 2,
+    "855": 4,
+    "856": 34,
+    "857": 48,
+    "858": 51,
+    "859": 55,
+    "860": 125,
+    "861": 610,
+    "862": 460,
+    "863": 280,
+    "864": 4,
+    "865": 1170,
+    "866": 582,
+    "867": 666,
+    "868": 3,
+    "869": 5,
+    "870": 620,
+    "871": 10,
+    "872": 38,
+    "873": 420,
+    "874": 5200,
+    "875": 890,
+    "876": 280,
+    "877": 30,
+    "878": 1000,
+    "879": 6500,
+    "880": 1900,
+    "881": 1500,
+    "882": 2150,
+    "883": 1750,
+    "884": 400,
+    "885": 20,
+    "886": 110,
+    "887": 500,
+    "888": 1100,
+    "889": 2100,
+    "890": 9500,
+    "891": 120,
+    "892": 1050,
+    "893": 700,
+    "894": 1450,
+    "895": 2000,
+    "896": 8000,
+    "897": 445,
+    "898": 77,
+    "899": 951,
+    "900": 890,
+    "901": 2900,
+    "902": 1100,
+    "903": 430,
+    "904": 605,
+    "905": 480,
+    "906": 41,
+    "907": 122,
+    "908": 312,
+    "909": 98,
+    "910": 307,
+    "911": 3265,
+    "912": 61,
+    "913": 215,
+    "914": 619,
+    "915": 102,
+    "916": 1200,
+    "917": 40,
+    "918": 165,
+    "919": 10,
+    "920": 175,
+    "921": 25,
+    "922": 65,
+    "923": 410,
+    "924": 18,
+    "925": 28,
+    "926": 109,
+    "927": 149,
+    "928": 65,
+    "929": 119,
+    "930": 482,
+    "931": 24,
+    "932": 160,
+    "933": 1050,
+    "934": 2400,
+    "935": 105,
+    "936": 850,
+    "937": 620,
+    "938": 4,
+    "939": 1130,
+    "940": 36,
+    "941": 386,
+    "942": 160,
+    "943": 610,
+    "944": 7,
+    "945": 272,
+    "946": 6,
+    "947": 60,
+    "948": 330,
+    "949": 580,
+    "950": 790,
+    "951": 30,
+    "952": 150,
+    "953": 10,
+    "954": 35,
+    "955": 15,
+    "956": 900,
+    "957": 89,
+    "958": 591,
+    "959": 1128,
+    "960": 18,
+    "961": 54,
+    "962": 429,
+    "963": 602,
+    "964": 602,
+    "965": 350,
+    "966": 1200,
+    "967": 630,
+    "968": 3100,
+    "969": 80,
+    "970": 450,
+    "971": 350,
+    "972": 150,
+    "973": 370,
+    "974": 450,
+    "975": 7000,
+    "976": 900,
+    "977": 2200,
+    "978": 80,
+    "979": 560,
+    "980": 2230,
+    "981": 1600,
+    "982": 392,
+    "983": 1200,
+    "984": 3200,
+    "985": 80,
+    "986": 210,
+    "987": 40,
+    "988": 920,
+    "989": 600,
+    "990": 2400,
+    "991": 110,
+    "992": 3807,
+    "993": 1110,
+    "994": 360,
+    "995": 3030,
+    "996": 170,
+    "997": 300,
+    "998": 2100,
+    "999": 50,
+    "1000": 300,
+    "1001": 742,
+    "1002": 1522,
+    "1003": 6997,
+    "1004": 49,
+    "1005": 3800,
+    "1006": 350,
+    "1007": 3030,
+    "1008": 2400,
+    "1009": 2800,
+    "1010": 1250,
+    "1011": 97,
+    "1012": 11,
+    "1013": 22,
+    "1014": 922,
+    "1015": 122,
+    "1016": 301,
+    "1017": 398,
+    "1018": 600,
+    "1019": 930,
+    "1020": 5900,
+    "1021": 4800,
+    "1022": 1625,
+    "1023": 1560,
+    "1024": 65,
+    "1025": 3,
+    "30001": 50,
+    "30002": 50,
+    "30003": 50,
+    "30004": 50,
+    "30005": 50,
+    "30006": 50,
+    "30007": 50,
+    "30008": 50,
+    "30009": 50,
+    "30010": 50,
+    "30011": 50,
+    "30012": 50,
+    "30013": 50,
+    "30014": 50,
+    "30015": 50,
+    "30016": 50,
+    "30017": 50,
+    "30018": 50,
+    "30019": 50,
+    "30020": 50,
+    "30021": 50,
+    "30022": 50,
+    "30023": 50,
+    "30024": 50,
+    "30025": 50,
+    "30026": 50,
+    "30027": 50,
+    "10001": 608,
+    "10002": 608,
+    "10003": 608,
+    "30034": 34,
+    "30035": 34,
+    "10004": 65,
+    "10005": 65,
+    "30039": 63,
+    "30040": 299,
+    "30041": 3200,
+    "30042": 3200,
+    "30043": 3200,
+    "30044": 3200,
+    "30045": 3200,
+    "30046": 3200,
+    "30047": 3200,
+    "30048": 3200,
+    "30049": 3200,
+    "30050": 3200,
+    "30051": 3200,
+    "30052": 3200,
+    "30053": 3200,
+    "30054": 3200,
+    "30055": 3200,
+    "30056": 3200,
+    "10008": 3,
+    "10009": 3,
+    "10010": 3,
+    "10011": 3,
+    "10012": 3,
+    "10007": 6500,
+    "10006": 52,
+    "30065": 20,
+    "10016": 180,
+    "30068": 195,
+    "30069": 195,
+    "30070": 195,
+    "30071": 925,
+    "30072": 925,
+    "30073": 925,
+    "30075": 825,
+    "30076": 825,
+    "30077": 825,
+    "30078": 825,
+    "10019": 630,
+    "10020": 610,
+    "10021": 680,
+    "10022": 3250,
+    "10023": 3250,
+    "10024": 485,
+    "30085": 3200,
+    "30086": 170,
+    "30087": 170,
+    "30088": 170,
+    "30089": 170,
+    "30090": 170,
+    "30091": 170,
+    "30092": 170,
+    "30093": 170,
+    "30094": 170,
+    "30095": 170,
+    "30096": 170,
+    "30097": 170,
+    "30098": 170,
+    "30099": 170,
+    "30100": 170,
+    "30101": 170,
+    "30102": 170,
+    "30103": 1,
+    "30104": 1,
+    "30105": 1,
+    "30106": 1,
+    "30107": 9,
+    "30108": 9,
+    "30109": 9,
+    "30110": 9,
+    "30111": 100,
+    "30112": 100,
+    "30113": 100,
+    "30114": 100,
+    "30115": 280,
+    "30116": 280,
+    "30117": 280,
+    "30118": 280,
+    "30119": 280,
+    "30120": 280,
+    "30121": 280,
+    "30122": 280,
+    "30123": 280,
+    "10025": 85,
+    "10027": 35,
+    "10028": 75,
+    "10029": 150,
+    "10030": 95,
+    "10031": 140,
+    "10032": 390,
+    "716": 2150,
+    "30161": 170,
+    "30162": 170,
+    "10061": 9,
+    "10080": 60,
+    "10081": 60,
+    "10082": 60,
+    "10083": 60,
+    "10084": 60,
+    "10085": 60,
+    "10086": 4900,
+    "10091": 38,
+    "10092": 255,
+    "10093": 1050,
+    "10094": 60,
+    "10095": 60,
+    "10096": 60,
+    "10097": 60,
+    "10098": 60,
+    "10099": 60,
+    "10100": 210,
+    "10101": 400,
+    "10102": 550,
+    "10103": 99,
+    "10104": 199,
+    "10105": 10,
+    "10106": 666,
+    "10107": 42,
+    "10108": 330,
+    "10109": 203,
+    "10110": 1100,
+    "10111": 3160,
+    "10112": 420,
+    "10113": 520,
+    "10114": 4156,
+    "10115": 340,
+    "10116": 400,
+    "10118": 335,
+    "10119": 3050,
+    "10121": 600,
+    "10122": 1475,
+    "10123": 34,
+    "10124": 34,
+    "10125": 34,
+    "10126": 250,
+    "10128": 580,
+    "10129": 810,
+    "30232": 1005,
+    "30233": 1005,
+    "30234": 1005,
+    "30235": 1005,
+    "30236": 1005,
+    "30237": 1005,
+    "30238": 1005,
+    "30239": 1005,
+    "30240": 1005,
+    "30241": 1005,
+    "30242": 1005,
+    "30243": 1005,
+    "30244": 1005,
+    "30245": 1005,
+    "30246": 1005,
+    "30247": 1005,
+    "30248": 1005,
+    "10130": 400,
+    "10131": 400,
+    "10132": 400,
+    "10133": 400,
+    "10134": 400,
+    "10135": 400,
+    "10136": 3,
+    "10137": 3,
+    "10138": 3,
+    "10139": 3,
+    "10140": 3,
+    "10141": 3,
+    "10142": 3,
+    "10144": 28,
+    "10146": 2075,
+    "10147": 805,
+    "10148": 60,
+    "10149": 980,
+    "30269": 233,
+    "30270": 233,
+    "30271": 25,
+    "30272": 25,
+    "30273": 25,
+    "30274": 25,
+    "30275": 25,
+    "30276": 25,
+    "30277": 25,
+    "30278": 25,
+    "30279": 25,
+    "30280": 25,
+    "30281": 25,
+    "30282": 25,
+    "30283": 25,
+    "30284": 25,
+    "30285": 25,
+    "30286": 25,
+    "30287": 25,
+    "30288": 25,
+    "30289": 25,
+    "30290": 84,
+    "30291": 84,
+    "30292": 84,
+    "30293": 84,
+    "30294": 84,
+    "30295": 84,
+    "30296": 84,
+    "30297": 84,
+    "30298": 84,
+    "30299": 84,
+    "30300": 84,
+    "30301": 84,
+    "30302": 84,
+    "30303": 84,
+    "30304": 84,
+    "30305": 84,
+    "30306": 84,
+    "30307": 84,
+    "30308": 84,
+    "10150": 20,
+    "10151": 92,
+    "10152": 250,
+    "10153": 2175,
+    "10154": 130,
+    "10155": 4600,
+    "10156": 3500,
+    "10158": 60,
+    "10159": 65,
+    "10160": 60,
+    "10161": 75,
+    "10162": 240,
+    "10163": 800,
+    "10164": 360,
+    "10165": 705,
+    "10166": 420,
+    "10167": 160,
+    "10168": 568,
+    "10169": 509,
+    "10170": 582,
+    "10171": 660,
+    "10172": 795,
+    "10173": 5,
+    "10174": 175,
+    "10175": 325,
+    "10176": 400,
+    "10177": 1200,
+    "10179": 15,
+    "10180": 205,
+    "10181": 335,
+    "10184": 400,
+    "30344": 2,
+    "30345": 4,
+    "30346": 5,
+    "30347": 5,
+    "30348": 5,
+    "30349": 5,
+    "30350": 5,
+    "30351": 5,
+    "30352": 5,
+    "30353": 5,
+    "10186": 280,
+    "10191": 1050,
+    "10192": 700,
+    "10193": 8091,
+    "10194": 536,
+    "10229": 227,
+    "10230": 1680,
+    "10231": 130,
+    "10232": 710,
+    "10233": 698,
+    "10234": 39,
+    "10235": 270,
+    "10236": 582,
+    "10237": 192,
+    "10238": 125,
+    "10239": 730,
+    "10240": 434,
+    "10241": 685,
+    "10242": 3341,
+    "10243": 2624,
+    "10244": 370,
+    "10245": 8487,
+    "10246": 6590,
+    "10247": 180,
+    "10248": 1100,
+    "10249": 480,
+    "10250": 1150,
+    "10251": 850,
+    "10252": 1100,
+    "10253": 110,
+    "10254": 1200,
+    "10255": 474,
+    "10257": 23,
+    "10258": 80,
+    "10259": 80,
+    "10260": 24,
+    "10261": 24,
+    "10262": 24,
+    "10263": 10,
+    "10272": 2900,
+    "10273": 398,
+    "10274": 398,
+    "10275": 398,
+    "30447": 11,
+    "30448": 22,
+    "30449": 5,
+    "30450": 5,
+    "30451": 5,
+    "30452": 5,
+    "30453": 5,
+    "30454": 5,
+    "30455": 5,
+    "30456": 5,
+    "30457": 5,
+    "30458": 5,
+    "30459": 5,
+    "30460": 5,
+    "30461": 5,
+    "30462": 5,
+    "30463": 5,
+    "30464": 5,
+    "30465": 5,
+    "30466": 5,
+    "30467": 5,
+    "30468": 5,
+    "30469": 5,
+    "30470": 5,
+    "30471": 5,
+    "30472": 5,
+    "30473": 5,
+    "30474": 5,
+    "30475": 5,
+    "30476": 5,
+    "30477": 5,
+    "30478": 5,
+    "30479": 5,
+    "30480": 5,
+    "30481": 5,
+    "30482": 5,
+    "30483": 5,
+    "30484": 5,
+    "30485": 5,
+    "30486": 5,
+    "30487": 5,
+    "30488": 5,
+    "30489": 5,
+    "30490": 5,
+    "30491": 5,
+    "30492": 5,
+    "30493": 5,
+    "30494": 5,
+    "30495": 5,
+    "30496": 5,
+    "30497": 5,
+    "30498": 5,
+    "30499": 5,
+    "30500": 5,
+    "30501": 5,
+    "30502": 5,
+    "30551": 815,
+    "30552": 330,
+    "30553": 1350
+  },
+  "move_flags": {
+    "1": [
+      1,
+      4,
+      7
+    ],
+    "2": [
+      1,
+      4,
+      7
+    ],
+    "3": [
+      1,
+      4,
+      7
+    ],
+    "4": [
+      1,
+      4,
+      7
+    ],
+    "5": [
+      1,
+      4,
+      7
+    ],
+    "6": [
+      4,
+      7
+    ],
+    "7": [
+      1,
+      4,
+      7
+    ],
+    "8": [
+      1,
+      4,
+      7
+    ],
+    "9": [
+      1,
+      4,
+      7
+    ],
+    "10": [
+      1,
+      4,
+      7
+    ],
+    "11": [
+      1,
+      4,
+      7
+    ],
+    "12": [
+      1,
+      4,
+      7
+    ],
+    "13": [
+      4,
+      7
+    ],
+    "15": [
+      1,
+      4,
+      7
+    ],
+    "16": [
+      4,
+      7
+    ],
+    "17": [
+      1,
+      4,
+      7
+    ],
+    "18": [
+      7,
+      14
+    ],
+    "19": [
+      1,
+      4,
+      7,
+      10
+    ],
+    "20": [
+      1,
+      4,
+      7
+    ],
+    "21": [
+      1,
+      4,
+      7
+    ],
+    "22": [
+      1,
+      4,
+      7
+    ],
+    "23": [
+      1,
+      4,
+      7
+    ],
+    "24": [
+      1,
+      4,
+      7
+    ],
+    "25": [
+      1,
+      4,
+      7
+    ],
+    "26": [
+      1,
+      4,
+      7,
+      10
+    ],
+    "27": [
+      1,
+      4,
+      7
+    ],
+    "28": [
+      4,
+      7
+    ],
+    "29": [
+      1,
+      4,
+      7
+    ],
+    "30": [
+      1,
+      4,
+      7
+    ],
+    "31": [
+      1,
+      4,
+      7
+    ],
+    "32": [
+      1,
+      4,
+      7
+    ],
+    "33": [
+      1,
+      4,
+      7
+    ],
+    "34": [
+      1,
+      4,
+      7
+    ],
+    "35": [
+      1,
+      4,
+      7
+    ],
+    "36": [
+      1,
+      4,
+      7
+    ],
+    "37": [
+      1,
+      4,
+      7
+    ],
+    "38": [
+      1,
+      4,
+      7
+    ],
+    "39": [
+      4,
+      7
+    ],
+    "40": [
+      4,
+      7
+    ],
+    "41": [
+      4,
+      7
+    ],
+    "42": [
+      4,
+      7
+    ],
+    "43": [
+      4,
+      7
+    ],
+    "44": [
+      1,
+      4,
+      7
+    ],
+    "45": [
+      4,
+      7,
+      9,
+      14
+    ],
+    "46": [
+      7,
+      9,
+      14
+    ],
+    "47": [
+      4,
+      7,
+      9,
+      14
+    ],
+    "48": [
+      4,
+      7,
+      9,
+      14
+    ],
+    "49": [
+      4,
+      7
+    ],
+    "50": [
+      4,
+      7,
+      14
+    ],
+    "51": [
+      4,
+      7
+    ],
+    "52": [
+      4,
+      7
+    ],
+    "53": [
+      4,
+      7
+    ],
+    "55": [
+      4,
+      7
+    ],
+    "56": [
+      4,
+      7
+    ],
+    "57": [
+      4,
+      7
+    ],
+    "58": [
+      4,
+      7
+    ],
+    "59": [
+      4,
+      7
+    ],
+    "60": [
+      4,
+      7
+    ],
+    "61": [
+      4,
+      7
+    ],
+    "62": [
+      4,
+      7
+    ],
+    "63": [
+      4,
+      7
+    ],
+    "64": [
+      1,
+      4,
+      7
+    ],
+    "65": [
+      1,
+      4,
+      7
+    ],
+    "66": [
+      1,
+      4,
+      7
+    ],
+    "67": [
+      1,
+      4,
+      7
+    ],
+    "68": [
+      1,
+      4
+    ],
+    "69": [
+      1,
+      4,
+      7
+    ],
+    "70": [
+      1,
+      4,
+      7
+    ],
+    "71": [
+      4,
+      7
+    ],
+    "72": [
+      4,
+      7
+    ],
+    "73": [
+      4,
+      7
+    ],
+    "75": [
+      4,
+      7
+    ],
+    "76": [
+      4,
+      7
+    ],
+    "77": [
+      4,
+      7
+    ],
+    "78": [
+      4,
+      7
+    ],
+    "79": [
+      4,
+      7
+    ],
+    "80": [
+      1,
+      4,
+      7
+    ],
+    "81": [
+      4,
+      7
+    ],
+    "82": [
+      4,
+      7
+    ],
+    "83": [
+      4,
+      7
+    ],
+    "84": [
+      4,
+      7
+    ],
+    "85": [
+      4,
+      7
+    ],
+    "86": [
+      4,
+      7
+    ],
+    "87": [
+      4,
+      7
+    ],
+    "88": [
+      4,
+      7
+    ],
+    "89": [
+      4,
+      7
+    ],
+    "90": [
+      4,
+      7
+    ],
+    "91": [
+      1,
+      4,
+      7
+    ],
+    "92": [
+      4,
+      7
+    ],
+    "93": [
+      4,
+      7
+    ],
+    "94": [
+      4,
+      7
+    ],
+    "95": [
+      4,
+      7
+    ],
+    "98": [
+      1,
+      4,
+      7
+    ],
+    "99": [
+      1,
+      4,
+      7
+    ],
+    "101": [
+      4,
+      7
+    ],
+    "102": [
+      4,
+      14
+    ],
+    "103": [
+      4,
+      7,
+      9,
+      14
+    ],
+    "108": [
+      4,
+      7
+    ],
+    "109": [
+      4,
+      7
+    ],
+    "114": [
+      14
+    ],
+    "117": [
+      1,
+      4
+    ],
+    "120": [
+      4,
+      7
+    ],
+    "121": [
+      4,
+      7
+    ],
+    "122": [
+      1,
+      4,
+      7
+    ],
+    "123": [
+      4,
+      7
+    ],
+    "124": [
+      4,
+      7
+    ],
+    "125": [
+      4,
+      7
+    ],
+    "126": [
+      4,
+      7
+    ],
+    "127": [
+      1,
+      4,
+      7
+    ],
+    "128": [
+      1,
+      4,
+      7
+    ],
+    "129": [
+      4,
+      7
+    ],
+    "130": [
+      1,
+      4,
+      7
+    ],
+    "131": [
+      4,
+      7
+    ],
+    "132": [
+      1,
+      4,
+      7
+    ],
+    "134": [
+      4,
+      7
+    ],
+    "136": [
+      1,
+      4,
+      7,
+      10
+    ],
+    "137": [
+      4,
+      7
+    ],
+    "138": [
+      4,
+      7
+    ],
+    "139": [
+      4,
+      7
+    ],
+    "140": [
+      4,
+      7
+    ],
+    "141": [
+      1,
+      4,
+      7
+    ],
+    "142": [
+      4,
+      7
+    ],
+    "143": [
+      4,
+      7
+    ],
+    "145": [
+      4,
+      7
+    ],
+    "146": [
+      1,
+      4,
+      7
+    ],
+    "147": [
+      4,
+      7
+    ],
+    "148": [
+      4,
+      7
+    ],
+    "149": [
+      4,
+      7
+    ],
+    "150": [
+      10
+    ],
+    "152": [
+      1,
+      4,
+      7
+    ],
+    "153": [
+      4,
+      7
+    ],
+    "154": [
+      1,
+      4,
+      7
+    ],
+    "155": [
+      4,
+      7
+    ],
+    "157": [
+      4,
+      7
+    ],
+    "158": [
+      1,
+      4,
+      7
+    ],
+    "161": [
+      4,
+      7
+    ],
+    "162": [
+      1,
+      4,
+      7
+    ],
+    "163": [
+      1,
+      4,
+      7
+    ],
+    "165": [
+      1,
+      4
+    ],
+    "166": [
+      14
+    ],
+    "167": [
+      1,
+      4,
+      7
+    ],
+    "168": [
+      1,
+      4,
+      7
+    ],
+    "169": [
+      4,
+      7
+    ],
+    "170": [
+      4,
+      7
+    ],
+    "171": [
+      4,
+      7
+    ],
+    "172": [
+      1,
+      4,
+      7
+    ],
+    "173": [
+      4,
+      7,
+      9,
+      14
+    ],
+    "174": [
+      14
+    ],
+    "175": [
+      1,
+      4,
+      7
+    ],
+    "176": [
+      14
+    ],
+    "177": [
+      4,
+      7
+    ],
+    "178": [
+      4,
+      7
+    ],
+    "179": [
+      1,
+      4,
+      7
+    ],
+    "180": [
+      4,
+      7,
+      14
+    ],
+    "181": [
+      4,
+      7
+    ],
+    "183": [
+      1,
+      4,
+      7
+    ],
+    "184": [
+      4,
+      7
+    ],
+    "185": [
+      1,
+      4,
+      7
+    ],
+    "186": [
+      4,
+      7
+    ],
+    "188": [
+      4,
+      7
+    ],
+    "189": [
+      4,
+      7
+    ],
+    "190": [
+      4,
+      7
+    ],
+    "192": [
+      4,
+      7
+    ],
+    "193": [
+      4,
+      7,
+      14
+    ],
+    "194": [
+      14
+    ],
+    "195": [
+      9,
+      14
+    ],
+    "196": [
+      4,
+      7
+    ],
+    "198": [
+      4,
+      7
+    ],
+    "199": [
+      4,
+      7
+    ],
+    "200": [
+      1,
+      4,
+      7
+    ],
+    "202": [
+      4,
+      7
+    ],
+    "204": [
+      4,
+      7
+    ],
+    "205": [
+      1,
+      4,
+      7
+    ],
+    "206": [
+      1,
+      4,
+      7
+    ],
+    "207": [
+      4,
+      7
+    ],
+    "209": [
+      1,
+      4,
+      7
+    ],
+    "210": [
+      1,
+      4,
+      7
+    ],
+    "211": [
+      1,
+      4,
+      7
+    ],
+    "212": [
+      7
+    ],
+    "213": [
+      4,
+      7,
+      14
+    ],
+    "215": [
+      9,
+      14
+    ],
+    "216": [
+      1,
+      4,
+      7
+    ],
+    "217": [
+      4,
+      7
+    ],
+    "218": [
+      1,
+      4,
+      7
+    ],
+    "220": [
+      4,
+      7
+    ],
+    "221": [
+      4,
+      7
+    ],
+    "222": [
+      4,
+      7
+    ],
+    "223": [
+      1,
+      4,
+      7
+    ],
+    "224": [
+      1,
+      4,
+      7
+    ],
+    "225": [
+      4,
+      7
+    ],
+    "227": [
+      4,
+      7,
+      14
+    ],
+    "228": [
+      1,
+      4,
+      7
+    ],
+    "229": [
+      1,
+      4,
+      7
+    ],
+    "230": [
+      4,
+      7
+    ],
+    "231": [
+      1,
+      4,
+      7
+    ],
+    "232": [
+      1,
+      4,
+      7
+    ],
+    "233": [
+      1,
+      4,
+      7
+    ],
+    "237": [
+      4,
+      7
+    ],
+    "238": [
+      1,
+      4,
+      7
+    ],
+    "239": [
+      4,
+      7
+    ],
+    "242": [
+      1,
+      4,
+      7
+    ],
+    "243": [
+      4
+    ],
+    "244": [
+      14
+    ],
+    "245": [
+      1,
+      4,
+      7
+    ],
+    "246": [
+      4,
+      7
+    ],
+    "247": [
+      4,
+      7
+    ],
+    "249": [
+      1,
+      4,
+      7
+    ],
+    "250": [
+      4,
+      7
+    ],
+    "251": [
+      4,
+      7
+    ],
+    "252": [
+      1,
+      4,
+      7
+    ],
+    "253": [
+      4,
+      7,
+      9,
+      14
+    ],
+    "255": [
+      4
+    ],
+    "257": [
+      4,
+      7
+    ],
+    "259": [
+      4,
+      7,
+      14
+    ],
+    "260": [
+      4,
+      7
+    ],
+    "261": [
+      4,
+      7
+    ],
+    "262": [
+      4,
+      7
+    ],
+    "263": [
+      1,
+      4,
+      7
+    ],
+    "264": [
+      1,
+      4
+    ],
+    "265": [
+      1,
+      4,
+      7
+    ],
+    "269": [
+      4,
+      7,
+      14
+    ],
+    "270": [
+      14
+    ],
+    "271": [
+      4,
+      7
+    ],
+    "272": [
+      14
+    ],
+    "276": [
+      1,
+      4,
+      7
+    ],
+    "279": [
+      1,
+      4,
+      7
+    ],
+    "280": [
+      1,
+      4,
+      7
+    ],
+    "281": [
+      4,
+      7
+    ],
+    "282": [
+      1,
+      4,
+      7
+    ],
+    "283": [
+      1,
+      4,
+      7
+    ],
+    "284": [
+      4,
+      7
+    ],
+    "285": [
+      4,
+      7,
+      14
+    ],
+    "286": [
+      14
+    ],
+    "288": [
+      14
+    ],
+    "289": [
+      14
+    ],
+    "290": [
+      4,
+      7
+    ],
+    "291": [
+      1,
+      4,
+      7
+    ],
+    "292": [
+      1,
+      4,
+      7
+    ],
+    "295": [
+      4,
+      7
+    ],
+    "296": [
+      4,
+      7
+    ],
+    "297": [
+      4,
+      7
+    ],
+    "298": [
+      4,
+      7
+    ],
+    "299": [
+      1,
+      4,
+      7
+    ],
+    "301": [
+      1,
+      4,
+      7
+    ],
+    "302": [
+      1,
+      4,
+      7
+    ],
+    "304": [
+      4,
+      7,
+      9,
+      14
+    ],
+    "305": [
+      1,
+      4,
+      7
+    ],
+    "306": [
+      1,
+      4,
+      7
+    ],
+    "307": [
+      4,
+      7
+    ],
+    "308": [
+      4,
+      7
+    ],
+    "309": [
+      1,
+      4,
+      7
+    ],
+    "310": [
+      1,
+      4,
+      7
+    ],
+    "311": [
+      4,
+      7
+    ],
+    "313": [
+      4,
+      7
+    ],
+    "314": [
+      4,
+      7
+    ],
+    "315": [
+      4,
+      7
+    ],
+    "316": [
+      4,
+      7,
+      14
+    ],
+    "317": [
+      4,
+      7
+    ],
+    "318": [
+      4,
+      7
+    ],
+    "319": [
+      4,
+      7,
+      9,
+      14
+    ],
+    "320": [
+      4,
+      7,
+      9,
+      14
+    ],
+    "321": [
+      4,
+      7
+    ],
+    "323": [
+      4,
+      7
+    ],
+    "324": [
+      4,
+      7
+    ],
+    "325": [
+      1,
+      4,
+      7
+    ],
+    "326": [
+      4,
+      7
+    ],
+    "327": [
+      1,
+      4,
+      7
+    ],
+    "328": [
+      4,
+      7
+    ],
+    "329": [
+      4,
+      7
+    ],
+    "330": [
+      4,
+      7
+    ],
+    "331": [
+      4,
+      7
+    ],
+    "332": [
+      1,
+      4,
+      7
+    ],
+    "333": [
+      4,
+      7
+    ],
+    "335": [
+      7
+    ],
+    "336": [
+      9
+    ],
+    "337": [
+      1,
+      4,
+      7
+    ],
+    "338": [
+      4,
+      7
+    ],
+    "340": [
+      1,
+      4,
+      7,
+      10
+    ],
+    "341": [
+      4,
+      7
+    ],
+    "342": [
+      1,
+      4,
+      7
+    ],
+    "343": [
+      1,
+      4,
+      7
+    ],
+    "344": [
+      1,
+      4,
+      7
+    ],
+    "345": [
+      4,
+      7
+    ],
+    "348": [
+      1,
+      4,
+      7
+    ],
+    "350": [
+      4,
+      7
+    ],
+    "351": [
+      4,
+      7
+    ],
+    "352": [
+      4,
+      7
+    ],
+    "354": [
+      4,
+      7
+    ],
+    "357": [
+      4,
+      7,
+      14
+    ],
+    "358": [
+      1,
+      4,
+      7
+    ],
+    "359": [
+      1,
+      4,
+      7
+    ],
+    "360": [
+      1,
+      4,
+      7
+    ],
+    "362": [
+      4,
+      7
+    ],
+    "363": [
+      4,
+      7
+    ],
+    "364": [
+      7
+    ],
+    "365": [
+      1,
+      4,
+      7
+    ],
+    "368": [
+      4,
+      7
+    ],
+    "369": [
+      1,
+      4,
+      7
+    ],
+    "370": [
+      1,
+      4,
+      7
+    ],
+    "371": [
+      1,
+      4,
+      7
+    ],
+    "372": [
+      1,
+      4,
+      7
+    ],
+    "373": [
+      4,
+      7
+    ],
+    "374": [
+      4,
+      7
+    ],
+    "375": [
+      4,
+      7
+    ],
+    "376": [
+      1,
+      4,
+      7
+    ],
+    "377": [
+      4,
+      7
+    ],
+    "378": [
+      1,
+      4,
+      7
+    ],
+    "380": [
+      4,
+      7
+    ],
+    "382": [
+      4,
+      14
+    ],
+    "384": [
+      4,
+      7,
+      14
+    ],
+    "385": [
+      4,
+      7,
+      14
+    ],
+    "386": [
+      1,
+      4,
+      7
+    ],
+    "387": [
+      1,
+      4,
+      7
+    ],
+    "388": [
+      4,
+      7
+    ],
+    "389": [
+      1,
+      4,
+      7
+    ],
+    "391": [
+      4,
+      7,
+      14
+    ],
+    "393": [
+      10
+    ],
+    "394": [
+      1,
+      4,
+      7
+    ],
+    "395": [
+      1,
+      4,
+      7
+    ],
+    "396": [
+      4,
+      7
+    ],
+    "398": [
+      1,
+      4,
+      7
+    ],
+    "399": [
+      4,
+      7
+    ],
+    "400": [
+      1,
+      4,
+      7
+    ],
+    "401": [
+      1,
+      4,
+      7
+    ],
+    "402": [
+      4,
+      7
+    ],
+    "403": [
+      4,
+      7
+    ],
+    "404": [
+      1,
+      4,
+      7
+    ],
+    "405": [
+      4,
+      7,
+      9,
+      14
+    ],
+    "406": [
+      4,
+      7
+    ],
+    "407": [
+      1,
+      4,
+      7
+    ],
+    "408": [
+      4,
+      7
+    ],
+    "409": [
+      1,
+      4,
+      7
+    ],
+    "410": [
+      4,
+      7
+    ],
+    "411": [
+      4,
+      7
+    ],
+    "412": [
+      4,
+      7
+    ],
+    "413": [
+      1,
+      4,
+      7
+    ],
+    "414": [
+      4,
+      7
+    ],
+    "415": [
+      4,
+      7
+    ],
+    "416": [
+      1,
+      4,
+      7
+    ],
+    "418": [
+      1,
+      4,
+      7
+    ],
+    "419": [
+      1,
+      4,
+      7
+    ],
+    "420": [
+      4,
+      7
+    ],
+    "421": [
+      1,
+      4,
+      7
+    ],
+    "422": [
+      1,
+      4,
+      7
+    ],
+    "423": [
+      1,
+      4,
+      7
+    ],
+    "424": [
+      1,
+      4,
+      7
+    ],
+    "425": [
+      1,
+      4,
+      7
+    ],
+    "426": [
+      4,
+      7
+    ],
+    "427": [
+      4,
+      7
+    ],
+    "428": [
+      1,
+      4,
+      7
+    ],
+    "429": [
+      4,
+      7
+    ],
+    "430": [
+      4,
+      7
+    ],
+    "431": [
+      1,
+      4,
+      7
+    ],
+    "432": [
+      4,
+      7,
+      14
+    ],
+    "433": [
+      7
+    ],
+    "434": [
+      4,
+      7
+    ],
+    "435": [
+      4,
+      7
+    ],
+    "436": [
+      4,
+      7
+    ],
+    "437": [
+      4,
+      7
+    ],
+    "438": [
+      1,
+      4,
+      7
+    ],
+    "439": [
+      4,
+      7
+    ],
+    "440": [
+      1,
+      4,
+      7
+    ],
+    "441": [
+      4,
+      7
+    ],
+    "442": [
+      1,
+      4,
+      7
+    ],
+    "443": [
+      4,
+      7
+    ],
+    "444": [
+      4,
+      7
+    ],
+    "445": [
+      4,
+      7
+    ],
+    "447": [
+      1,
+      4,
+      7
+    ],
+    "448": [
+      4,
+      7,
+      9,
+      14
+    ],
+    "449": [
+      4,
+      7
+    ],
+    "450": [
+      1,
+      4,
+      7
+    ],
+    "451": [
+      4,
+      7
+    ],
+    "452": [
+      1,
+      4,
+      7
+    ],
+    "453": [
+      1,
+      4,
+      7
+    ],
+    "454": [
+      4,
+      7
+    ],
+    "457": [
+      1,
+      4,
+      7
+    ],
+    "458": [
+      1,
+      4,
+      7
+    ],
+    "459": [
+      4,
+      7
+    ],
+    "460": [
+      4,
+      7
+    ],
+    "462": [
+      1,
+      4,
+      7
+    ],
+    "463": [
+      4,
+      7
+    ],
+    "464": [
+      4,
+      7
+    ],
+    "465": [
+      4,
+      7
+    ],
+    "466": [
+      4,
+      7
+    ],
+    "467": [
+      1,
+      7
+    ],
+    "470": [
+      4
+    ],
+    "471": [
+      4
+    ],
+    "472": [
+      7
+    ],
+    "473": [
+      4,
+      7
+    ],
+    "474": [
+      4,
+      7
+    ],
+    "477": [
+      4,
+      7,
+      10
+    ],
+    "478": [
+      7
+    ],
+    "479": [
+      4,
+      7
+    ],
+    "480": [
+      1,
+      4,
+      7
+    ],
+    "481": [
+      4,
+      7
+    ],
+    "482": [
+      4,
+      7
+    ],
+    "484": [
+      1,
+      4,
+      7
+    ],
+    "485": [
+      4,
+      7
+    ],
+    "486": [
+      4,
+      7
+    ],
+    "487": [
+      4,
+      7
+    ],
+    "488": [
+      1,
+      4,
+      7
+    ],
+    "490": [
+      1,
+      4,
+      7
+    ],
+    "491": [
+      4,
+      7
+    ],
+    "492": [
+      1,
+      4,
+      7
+    ],
+    "493": [
+      4,
+      7
+    ],
+    "494": [
+      4,
+      7
+    ],
+    "495": [
+      14
+    ],
+    "496": [
+      4,
+      7,
+      9,
+      14
+    ],
+    "497": [
+      4,
+      7,
+      9,
+      14
+    ],
+    "498": [
+      1,
+      4,
+      7
+    ],
+    "499": [
+      4,
+      7
+    ],
+    "500": [
+      4,
+      7
+    ],
+    "503": [
+      4,
+      7
+    ],
+    "505": [
+      4
+    ],
+    "506": [
+      4,
+      7
+    ],
+    "507": [
+      1,
+      4,
+      7,
+      10
+    ],
+    "509": [
+      1,
+      4,
+      7
+    ],
+    "510": [
+      4,
+      7
+    ],
+    "511": [
+      4,
+      7
+    ],
+    "512": [
+      1,
+      4,
+      7
+    ],
+    "513": [
+      4,
+      14
+    ],
+    "514": [
+      1,
+      4,
+      7
+    ],
+    "515": [
+      4
+    ],
+    "516": [
+      7,
+      14
+    ],
+    "517": [
+      4,
+      7
+    ],
+    "518": [
+      4,
+      7
+    ],
+    "519": [
+      4,
+      7
+    ],
+    "520": [
+      4,
+      7
+    ],
+    "521": [
+      4,
+      7
+    ],
+    "522": [
+      4,
+      7
+    ],
+    "523": [
+      4,
+      7
+    ],
+    "524": [
+      4,
+      7
+    ],
+    "525": [
+      1,
+      4,
+      7
+    ],
+    "527": [
+      4,
+      7
+    ],
+    "528": [
+      1,
+      4,
+      7
+    ],
+    "529": [
+      1,
+      4,
+      7
+    ],
+    "530": [
+      1,
+      4,
+      7
+    ],
+    "531": [
+      1,
+      4,
+      7
+    ],
+    "532": [
+      1,
+      4,
+      7
+    ],
+    "533": [
+      1,
+      4,
+      7
+    ],
+    "534": [
+      1,
+      4,
+      7
+    ],
+    "535": [
+      1,
+      4,
+      7
+    ],
+    "536": [
+      4,
+      7
+    ],
+    "537": [
+      1,
+      4,
+      7
+    ],
+    "539": [
+      4,
+      7
+    ],
+    "540": [
+      4,
+      7
+    ],
+    "541": [
+      1,
+      4,
+      7
+    ],
+    "542": [
+      4,
+      7
+    ],
+    "543": [
+      1,
+      4,
+      7
+    ],
+    "544": [
+      1,
+      4,
+      7
+    ],
+    "545": [
+      4,
+      7
+    ],
+    "546": [
+      4,
+      7
+    ],
+    "547": [
+      4,
+      7,
+      9,
+      14
+    ],
+    "548": [
+      4,
+      7
+    ],
+    "549": [
+      4,
+      7
+    ],
+    "550": [
+      1,
+      4,
+      7
+    ],
+    "551": [
+      4,
+      7
+    ],
+    "552": [
+      4,
+      7
+    ],
+    "553": [
+      4,
+      7
+    ],
+    "554": [
+      4,
+      7
+    ],
+    "555": [
+      4,
+      7,
+      9,
+      14
+    ],
+    "556": [
+      4,
+      7
+    ],
+    "557": [
+      1,
+      4,
+      7
+    ],
+    "558": [
+      4,
+      7
+    ],
+    "559": [
+      4,
+      7
+    ],
+    "560": [
+      1,
+      4,
+      7,
+      10
+    ],
+    "562": [
+      4
+    ],
+    "565": [
+      1,
+      4,
+      7
+    ],
+    "566": [
+      1,
+      7
+    ],
+    "567": [
+      4,
+      7
+    ],
+    "568": [
+      4,
+      7,
+      9,
+      14
+    ],
+    "570": [
+      4,
+      7
+    ],
+    "571": [
+      4,
+      7
+    ],
+    "572": [
+      4,
+      7
+    ],
+    "573": [
+      4,
+      7
+    ],
+    "574": [
+      4,
+      7,
+      9,
+      14
+    ],
+    "575": [
+      4,
+      7,
+      9,
+      14
+    ],
+    "576": [
+      4,
+      7
+    ],
+    "577": [
+      1,
+      4,
+      7
+    ],
+    "582": [
+      4,
+      7
+    ],
+    "583": [
+      1,
+      4,
+      7
+    ],
+    "584": [
+      4,
+      7
+    ],
+    "585": [
+      4,
+      7
+    ],
+    "586": [
+      4,
+      7,
+      9,
+      14
+    ],
+    "587": [
+      7,
+      14
+    ],
+    "589": [
+      7,
+      14
+    ],
+    "590": [
+      7,
+      9,
+      14
+    ],
+    "591": [
+      4,
+      7
+    ],
+    "592": [
+      4,
+      7
+    ],
+    "593": [
+      7,
+      14
+    ],
+    "594": [
+      4,
+      7
+    ],
+    "595": [
+      4,
+      7
+    ],
+    "597": [
+      14
+    ],
+    "598": [
+      4,
+      7
+    ],
+    "599": [
+      4,
+      7
+    ],
+    "600": [
+      4,
+      7,
+      14
+    ],
+    "602": [
+      14
+    ],
+    "605": [
+      4,
+      7
+    ],
+    "607": [
+      14
+    ],
+    "608": [
+      4,
+      7
+    ],
+    "609": [
+      1,
+      4,
+      7
+    ],
+    "610": [
+      1,
+      4,
+      7
+    ],
+    "611": [
+      1,
+      4,
+      7
+    ],
+    "612": [
+      1,
+      4,
+      7
+    ],
+    "613": [
+      4,
+      7
+    ],
+    "614": [
+      4,
+      7
+    ],
+    "615": [
+      4,
+      7
+    ],
+    "616": [
+      4,
+      7
+    ],
+    "617": [
+      4,
+      7
+    ],
+    "618": [
+      4,
+      7
+    ],
+    "619": [
+      4,
+      7
+    ],
+    "620": [
+      1,
+      4,
+      7
+    ],
+    "621": [
+      7,
+      14
+    ],
+    "658": [
+      1
+    ],
+    "660": [
+      1,
+      4,
+      7
+    ],
+    "662": [
+      4,
+      7
+    ],
+    "663": [
+      1,
+      4,
+      7
+    ],
+    "664": [
+      4,
+      7,
+      9,
+      14
+    ],
+    "665": [
+      1,
+      4,
+      7
+    ],
+    "666": [
+      4
+    ],
+    "667": [
+      1,
+      4,
+      7
+    ],
+    "668": [
+      4,
+      7
+    ],
+    "669": [
+      1,
+      4,
+      7
+    ],
+    "670": [
+      4,
+      7
+    ],
+    "671": [
+      4
+    ],
+    "672": [
+      4,
+      7
+    ],
+    "674": [
+      14
+    ],
+    "675": [
+      1,
+      4,
+      7
+    ],
+    "676": [
+      4,
+      7
+    ],
+    "677": [
+      1,
+      4,
+      7
+    ],
+    "679": [
+      1,
+      4,
+      7
+    ],
+    "680": [
+      1,
+      4,
+      7
+    ],
+    "681": [
+      1,
+      4,
+      7
+    ],
+    "682": [
+      4,
+      7
+    ],
+    "683": [
+      4,
+      7,
+      14
+    ],
+    "684": [
+      1,
+      4,
+      7
+    ],
+    "685": [
+      4
+    ],
+    "686": [
+      4,
+      7
+    ],
+    "687": [
+      4,
+      7
+    ],
+    "688": [
+      1,
+      4,
+      7
+    ],
+    "689": [
+      4,
+      14
+    ],
+    "690": [
+      4
+    ],
+    "691": [
+      4,
+      7,
+      9,
+      14
+    ],
+    "692": [
+      1,
+      4,
+      7
+    ],
+    "693": [
+      1,
+      4,
+      7
+    ],
+    "696": [
+      1
+    ],
+    "699": [
+      1
+    ],
+    "701": [
+      1
+    ],
+    "704": [
+      4
+    ],
+    "705": [
+      4,
+      7
+    ],
+    "706": [
+      1,
+      4,
+      7
+    ],
+    "707": [
+      1,
+      4,
+      7
+    ],
+    "708": [
+      4,
+      7
+    ],
+    "709": [
+      1,
+      4,
+      7
+    ],
+    "710": [
+      1,
+      4,
+      7
+    ],
+    "711": [
+      4,
+      7
+    ],
+    "712": [
+      1,
+      4,
+      7,
+      14
+    ],
+    "713": [
+      1,
+      4,
+      7
+    ],
+    "714": [
+      4,
+      7
+    ],
+    "715": [
+      7
+    ],
+    "716": [
+      1,
+      4,
+      7
+    ],
+    "717": [
+      4,
+      7
+    ],
+    "718": [
+      1,
+      4,
+      7
+    ],
+    "720": [
+      4,
+      7
+    ],
+    "721": [
+      1,
+      4,
+      7
+    ],
+    "722": [
+      4,
+      7
+    ],
+    "724": [
+      1
+    ],
+    "726": [
+      1
+    ],
+    "728": [
+      9,
+      14
+    ],
+    "729": [
+      1,
+      4,
+      7
+    ],
+    "730": [
+      4,
+      7
+    ],
+    "731": [
+      1,
+      4,
+      7,
+      10
+    ],
+    "732": [
+      4,
+      7
+    ],
+    "733": [
+      4,
+      7
+    ],
+    "734": [
+      4,
+      7
+    ],
+    "735": [
+      1,
+      4,
+      7
+    ],
+    "736": [
+      4,
+      7
+    ],
+    "737": [
+      4,
+      7
+    ],
+    "738": [
+      4,
+      7
+    ],
+    "739": [
+      4,
+      7
+    ],
+    "740": [
+      4,
+      7
+    ],
+    "741": [
+      1,
+      4,
+      7
+    ],
+    "742": [
+      1,
+      4,
+      7
+    ],
+    "744": [
+      4
+    ],
+    "745": [
+      4,
+      7
+    ],
+    "746": [
+      1,
+      4,
+      7
+    ],
+    "749": [
+      4,
+      7
+    ],
+    "750": [
+      4,
+      7
+    ],
+    "751": [
+      4,
+      7
+    ],
+    "752": [
+      14
+    ],
+    "753": [
+      4,
+      7
+    ],
+    "754": [
+      1,
+      4,
+      7
+    ],
+    "755": [
+      1,
+      4,
+      7
+    ],
+    "756": [
+      7
+    ],
+    "775": [
+      9
+    ],
+    "776": [
+      1,
+      4,
+      7
+    ],
+    "778": [
+      4,
+      7
+    ],
+    "779": [
+      1,
+      4,
+      7
+    ],
+    "780": [
+      4,
+      7
+    ],
+    "781": [
+      1,
+      4,
+      7
+    ],
+    "782": [
+      1,
+      4,
+      7
+    ],
+    "783": [
+      4,
+      7
+    ],
+    "784": [
+      1,
+      4,
+      7
+    ],
+    "785": [
+      1,
+      4,
+      7
+    ],
+    "786": [
+      4,
+      7,
+      9,
+      14
+    ],
+    "787": [
+      4,
+      7
+    ],
+    "788": [
+      4,
+      7
+    ],
+    "789": [
+      1,
+      4,
+      7
+    ],
+    "790": [
+      4,
+      7
+    ],
+    "791": [
+      14
+    ],
+    "793": [
+      1,
+      4,
+      7
+    ],
+    "794": [
+      4,
+      7
+    ],
+    "795": [
+      4,
+      7
+    ],
+    "796": [
+      4,
+      7
+    ],
+    "797": [
+      4,
+      7
+    ],
+    "798": [
+      1,
+      4,
+      7
+    ],
+    "799": [
+      4,
+      7
+    ],
+    "800": [
+      4,
+      7
+    ],
+    "801": [
+      4,
+      7
+    ],
+    "802": [
+      4,
+      7
+    ],
+    "803": [
+      1,
+      4,
+      7
+    ],
+    "804": [
+      4,
+      7
+    ],
+    "805": [
+      4,
+      7
+    ],
+    "806": [
+      1,
+      4,
+      7
+    ],
+    "807": [
+      4,
+      7
+    ],
+    "808": [
+      1,
+      4,
+      7
+    ],
+    "809": [
+      4,
+      7
+    ],
+    "810": [
+      4,
+      7
+    ],
+    "811": [
+      14
+    ],
+    "812": [
+      1,
+      4,
+      7
+    ],
+    "813": [
+      1,
+      4,
+      7
+    ],
+    "814": [
+      1,
+      4,
+      7
+    ],
+    "815": [
+      4,
+      7
+    ],
+    "816": [
+      14
+    ],
+    "817": [
+      1,
+      4,
+      7
+    ],
+    "818": [
+      1,
+      4,
+      7
+    ],
+    "819": [
+      4,
+      7
+    ],
+    "820": [
+      4,
+      7
+    ],
+    "821": [
+      4,
+      7
+    ],
+    "822": [
+      4,
+      7
+    ],
+    "823": [
+      1,
+      4,
+      7
+    ],
+    "824": [
+      4,
+      7
+    ],
+    "825": [
+      4,
+      7
+    ],
+    "826": [
+      4,
+      7,
+      9,
+      14
+    ],
+    "10001": [
+      1,
+      4
+    ],
+    "10002": [
+      4
+    ],
+    "10003": [
+      1,
+      4,
+      7
+    ],
+    "10004": [
+      4
+    ],
+    "10005": [
+      1,
+      4,
+      7
+    ],
+    "10006": [
+      4,
+      7
+    ],
+    "10007": [
+      1,
+      4,
+      7
+    ],
+    "10008": [
+      4,
+      7
+    ],
+    "10009": [
+      4,
+      7
+    ],
+    "10010": [
+      4
+    ],
+    "10011": [
+      4
+    ],
+    "10012": [
+      4,
+      7
+    ],
+    "10013": [
+      4
+    ],
+    "10014": [
+      4,
+      7
+    ],
+    "10015": [
+      4,
+      7
+    ],
+    "10016": [
+      4,
+      7,
+      9
+    ],
+    "10017": [
+      4
+    ],
+    "10018": [
+      4
+    ]
+  },
+  "flag_source": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/pokeapi/5ee47a9a9c1229632ec4b473a9c1c53026e005dd/data/v2/csv/move_flag_map.csv",
+    "sha256": "399cf005933418f406b94729903bd1528e9088bddc3bc1966be6c442a625da1b"
+  },
+  "effect_sources": {
+    "pokeapi_pin": "5ee47a9a9c1229632ec4b473a9c1c53026e005dd",
+    "prose_sha256": "f6d9bf0d28433a010a8b8b6a0a14d1ef72fbfcb997717f71b0e34483b7ee9697",
+    "supplemental": [
+      "https://pokemondb.net/move/headlong-rush",
+      "https://pokemondb.net/move/temper-flare",
+      "https://pokemondb.net/move/fickle-beam",
+      "https://bulbapedia.bulbagarden.net/wiki/Glaive_Rush_(move)",
+      "https://bulbapedia.bulbagarden.net/wiki/Gigaton_Hammer_(move)",
+      "https://bulbapedia.bulbagarden.net/wiki/Double_Shock_(move)"
+    ]
+  }
+}

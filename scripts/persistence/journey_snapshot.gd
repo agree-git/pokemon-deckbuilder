@@ -206,16 +206,17 @@ static func validate(data: Variant) -> bool:
     if b["turn_speed_owner_uid"] not in b["party"] or b["turn_speed_target_uid"] not in b["enemies"]: return false
     if b["turn_energy_bonus"] != (1 if b["turn_speed_actor"] > b["turn_speed_enemy"] else 0): return false
     if b["enemy_states"].size() != b["enemies"].size() or b["enemy_definitions"].size() != b["enemies"].size(): return false
-    if b["_pending"] not in ["","player","enemy","hazard"]: return false
+    if b["_pending"] not in ["","player","enemy","hazard","card"]: return false
+    if b["_pending"]=="card" and (int(data.get("route_version",1))<9 or b["phase"]!=TacticalBattle.REPLACE or not b.has("boss_context")):return false
     if b["_pending"]=="hazard" and (int(data.get("route_version",1))<8 or b["phase"]!=TacticalBattle.REPLACE or not b.has("boss_context")):return false
-    if b.has("boss_context") and (int(data.get("route_version",1))<8 or not BossBattleEffects.valid_context(b["boss_context"],b)):return false
+    if b.has("boss_context") and (int(data.get("route_version",1))<(9 if b["enemy_definitions"].any(func(d:Variant):return d is Dictionary and d.get("boss_moves_version")==4) else 8) or not BossBattleRules.valid_context(b["boss_context"],b)):return false
     if b["phase"] == TacticalBattle.REPLACE and b["_pending"].is_empty(): return false
     for definition: Variant in b["enemy_definitions"]:
         if not definition is Dictionary or not definition.get("intents") is Array or definition["intents"].is_empty(): return false
         if definition.has("tactic") and (not definition["tactic"] is String or not EnemyTactics.PROFILES.has(definition["tactic"])): return false
         if (definition.has("boss") or definition.has("boss_style")) and not BossTactics.valid(definition): return false
         if definition.has("boss_moves_version"):
-            if int(data.get("route_version",1)) < (8 if definition["boss_moves_version"] == 3 else (7 if definition["boss_moves_version"] == 2 else 6)) or not BossEffects.valid(definition): return false
+            if int(data.get("route_version",1)) < (9 if definition["boss_moves_version"] == 4 else (8 if definition["boss_moves_version"] == 3 else (7 if definition["boss_moves_version"] == 2 else 6))) or not BossEffects.valid(definition): return false
             continue
         for intent: Variant in definition["intents"]:
             if not intent is Dictionary or not intent.get("kind") is String or intent["kind"] not in ["attack","charge","block","boost","barrage","fortify","recover","status"]: return false
@@ -244,6 +245,8 @@ static func validate(data: Variant) -> bool:
         if not event is Dictionary or not event.get("kind") is String or not event.get("text") is String: return false
     for i in b["enemy_states"].size():
         var state: Variant = b["enemy_states"][i]
+        if state is Dictionary and state.has("effects_v4"):
+            if b["enemy_definitions"][i].get("boss_moves_version") != 4 or not BossMoveEffectsP3.valid_state(state,b["enemy_definitions"][i]):return false
         if state is Dictionary and state.has("effects_v3"):
             if b["enemy_definitions"][i].get("boss_moves_version") != 3 or not BossMoveEffectsP2.valid_state(state,b["enemy_definitions"][i]):return false
         if state is Dictionary and state.has("effects_v2"):

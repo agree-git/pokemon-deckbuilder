@@ -67,7 +67,7 @@ static func role_title(definition: Dictionary) -> String:
 static func pattern_text(definition: Dictionary) -> String:
     var actions: Array[String] = []
     for action: Dictionary in definition["intents"]:
-        if definition.get("boss_moves_version") in [2,3] and action["kind"] in ["prepare","recharge","wait"]:
+        if definition.get("boss_moves_version") in [2,3,4] and action["kind"] in ["prepare","recharge","wait"]:
             actions.append({"prepare":"충전","recharge":"재충전","wait":"휴식"}[action["kind"]])
             continue
         if action["kind"] in ["move","guard"]:

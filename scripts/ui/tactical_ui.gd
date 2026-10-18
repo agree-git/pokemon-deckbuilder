@@ -750,7 +750,7 @@ func _refresh() -> void:
     var action: Dictionary = _visual_frame.get("intent",battle.intent())
     var names := {"charge":"강공격","attack":"공격","block":"방어","boost":"강화","barrage":"연타","fortify":"방벽","recover":"회복","status":"상태 지시","move":"기술","guard":"전술 방어","prepare":"충전","recharge":"재충전","wait":"휴식"}
     var intent_icon := {"charge":"attack","attack":"attack","block":"shield","boost":"boost","barrage":"attack","fortify":"shield","recover":"heal","status":"counter","move":"attack","guard":"shield","prepare":"boost","recharge":"counter","wait":"counter"}
-    var cancelled: bool = action.get("asleep",false) or (action.get("boss_moves_version")==3 and (action.get("failed_move",false) or action.get("failed_charge",false)))
+    var cancelled: bool = action.get("asleep",false) or (action.get("boss_moves_version") in [3,4] and (action.get("failed_move",false) or action.get("failed_charge",false)))
     var intent_signature := str([battle.enemy().uid,action,cancelled])
     if _shown_intent != intent_signature:
         UiMotion.pulse(get_node("Intent/Icon"))
@@ -804,7 +804,7 @@ func _refresh() -> void:
         W.fill_bar(party_bars[i],pokemon.hp,pokemon.max_hp)
         button.disabled = busy or not battle.switch_reason(pokemon.uid).is_empty()
         button.tooltip_text = "%d · %s · Lv.%d · %s\n%s XP\n%s\n%s" % [i+1,pokemon.display_name,pokemon.level,catalog.type_name(pokemon.type),TacticalGrowth.progress_text(pokemon),PokemonStats.summary(pokemon),"출전 중" if pokemon.uid == ally.uid else (battle.switch_reason(pokemon.uid) if not battle.switch_reason(pokemon.uid).is_empty() else switch_label.text)]
-        if BossBattleEffects.active_in(battle) and pokemon.uid != ally.uid and BossBattleEffects.entry_damage(battle,pokemon)>0:button.tooltip_text += "\n스텔스록 입장 피해 HP -%d" % BossBattleEffects.entry_damage(battle,pokemon)
+        if BossBattleRules.active_in(battle) and pokemon.uid != ally.uid and BossBattleRules.entry_damage(battle,pokemon)>0:button.tooltip_text += "\n스텔스록 입장 피해 HP -%d" % BossBattleRules.entry_damage(battle,pokemon)
         if not pokemon.held_item.is_empty(): button.tooltip_text += "\n"+str(TacticalContent.HELD_ITEMS[pokemon.held_item]["name"])+" · "+str(TacticalContent.HELD_ITEMS[pokemon.held_item]["description"])
         var border := MINT if pokemon.uid == ally.uid else Color("3d555a")
         button.add_theme_stylebox_override("disabled",W.box(Color("203a3d") if pokemon.uid == ally.uid else Color("17262e"),border))
@@ -918,6 +918,10 @@ func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
     else:
         if board.get("rocks",false):items.append(["rock","설치","스텔스록 · 교대 시 최대HP/8 × 바위 상성"])
         if board.get("traps",{}).has(pokemon.uid):items.append(["counter",str(board["traps"][pokemon.uid]["turns"]) if board["traps"][pokemon.uid]["dot"] else "구속","구속 · 교대 제한 · 고스트는 교대 가능"])
+    var extra_names:Dictionary={"drowsy":"하품 · 다음 아군턴 종료 시 수면 · 교대 시 해제","infatuation":"헤롱헤롱 · 시전자 대상 기술 피해 절반 · 교대 시 해제","silence":"지옥찌르기 · 음성 기술 봉인","seals":"섬뜩한주문 · 마지막 기술 봉인3턴","curses":"저주 · 매턴 최대HP/4 · 교대 시 해제","tar":"타르샷 · 받는 불꽃 상성2배 · 교대 시 해제","vulnerable":"대검돌격 · 다음 자기 행동까지 받는 기술 피해2배","destiny":"길동무 · 직접 기술로 쓰러뜨리면 동반 기절","airborne":"뛰어오르기 · 공중 회피 중","spent_electric":"전광쌍격 · 전기 타입 소모","removed_items":"장비 무효 · 전투 종료 시 복구"}
+    var extra_labels:Dictionary={"drowsy":"졸림","infatuation":"매혹","silence":"침묵","seals":"봉인","curses":"저주","tar":"타르","vulnerable":"취약","destiny":"동반","airborne":"공중","spent_electric":"방전","removed_items":"무효"}
+    for key:String in extra_names:
+        if board.get(key,{}).has(pokemon.uid):items.append(["counter",extra_labels[key],extra_names[key]])
     if board.get("gravity",0)>0:items.append(["ground",str(board["gravity"]),"중력 · 비행의 땅 무효 해제 · 공중 기술 제한"])
 
     var signature := str([pokemon.uid,items])
