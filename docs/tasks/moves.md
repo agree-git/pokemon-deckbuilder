@@ -18,8 +18,9 @@
 | v16/8 | `player_move_traps.gd` | `player_move_traps_v16.json` | `trap_context` |
 | v17/9 | `player_move_items.gd`,`player_move_item_math.gd` | `player_move_items_v17.json` | `item_context` |
 | v18/10 | `player_move_assist.gd`,`player_move_assist_math.gd` | `player_move_assist_v18.json` | `assist_context` |
+| v19/11 | `player_move_fate.gd` | `player_move_fate_v19.json` | `fate_context` |
 
-정확한 각색은 해당 버전만 조회: [v10](../player-move-cards.md) / [v11](../player-move-tactics.md) / [v12](../player-move-exchange.md) / [v13](../player-move-fields.md) / [v14](../player-move-seals.md) / [v15](../player-move-altitude.md) / [v16](../player-move-traps.md) / [v17](../player-move-items.md) / [v18](../player-move-assist.md). 전체919기술을 원작 그대로 재현한다는 뜻이 아니다. 추가 보완 목록 밖의 기술도 기본 공격/부가효과로 동작할 수 있다.
+정확한 각색은 해당 버전만 조회: [v10](../player-move-cards.md) / [v11](../player-move-tactics.md) / [v12](../player-move-exchange.md) / [v13](../player-move-fields.md) / [v14](../player-move-seals.md) / [v15](../player-move-altitude.md) / [v16](../player-move-traps.md) / [v17](../player-move-items.md) / [v18](../player-move-assist.md) / [v19](../player-move-fate.md). 전체919기술을 원작 그대로 재현한다는 뜻이 아니다. 추가 보완 목록 밖의 기술도 기본 공격/부가효과로 동작할 수 있다.
 
 ## 변경이 연결되는 지점
 
@@ -28,19 +29,20 @@
 | 정의/본문/미리보기 | `scripts/tactics/tactical_content.gd`,해당 효과의 `definition/prepare/lines` |
 | 접지/부유 | `PlayerMoveAltitude.grounded/affinity`;필드의 접지 의존 함수는 `PlayerMoveAirFields` (동결 소스에서 파생) |
 | 식별/조준·동료 보조 | `PlayerMoveAssist.affinity/prepare/after_card`;조준한 보스 훅은 동결 소스에서 파생한 `PlayerMoveAssistMath`. 실제 타입/보호/대타·기술ID 유지 |
+| 수면/기절·치유 인계 | `PlayerMoveFate.tick/after_enemy/on_knockout/on_switch`;수면 감소 전 악몽·날씨 후 카운트·입장 피해 뒤 회복. 기절 동시 판정/기존 강제 교대 보존 |
 | 소지품 지속 효과 | `TacticalBattle.effective_item()`;v17 변경 장비는 `item_context.base`로 전투 종료 시 복구 |
 | 피해/행동/교대/턴/입장 | `scripts/tactics/tactical_battle.gd`의 해당 훅,필요 시 `pokemon_stats.gd` |
 | 새 원정에만 적용 | `scripts/tactics/campaign_route.gd` + `player_techniques.gd` |
 | 저장/복원/검증 | `scripts/persistence/journey_snapshot.gd`,`journey_save.gd`;기존 선택 필드를 필수 필드로 만들지 않음 |
 | 연출 중 상태/배지 | `scripts/tactics/battle_frame.gd`,`scripts/ui/tactical_ui.gd`의 해당 함수 |
-| 생성/출처 | `tools/import_player_move_assist.py`,`tools/derive_player_assist_math.py` 등 해당 생성기와 고정CSV 지문;원본 CSV는 커밋하지 않음 |
+| 생성/출처 | `tools/import_player_move_fate.py` 등 해당 생성기와 고정CSV 지문;원본 CSV는 커밋하지 않음 |
 
 보존 계약: 미리보기는 상태/UID/RNG를 바꾸지 않는다. 카드 사용 거절은 교대/자원/손패를 바꾸지 않는다. 자동/수동/필수 교대·동시 기절·다음 상대 입장을 구분한다. 승인 파티/마지막 대표,학습 슬롯/카드 UID·강화,기존 원정과 영구 포켓몬 정보를 보존한다. 효과의 원작 차이는 카드 설명과 자료에 명시한다.
 
 ## 필요한 검사 선택
 
 - **최신 사용자 지시: 검사 횟수 최소화.** 변경 효과·실제 저장·직접 관련된 이전 동작을 작은 핵심 검사에 묶어 기본1회 실행한다. 전체919기술/전체 suite를 매번 돌리지 않는다.
-- 현재 기본 명령: `python3 .dev-materials/tools/check.py --game-dir . --suite player-assist --godot /path/to/godot-4.7.2` (식별/조준/동료 보조·저장·관련 이전 동작 한 스크립트).
+- 현재 기본 명령: `python3 .dev-materials/tools/check.py --game-dir . --suite player-fate --godot /path/to/godot-4.7.2` (악몽/멸망/치유 인계·저장·관련 이전 동작 한 스크립트).
 - 실패/구체적 미확인 위험에만 관련 검사를 추가한다. 과거 넓은 회귀는 `--suite player-altitude` 등이며 자동 필수 절차가 아니다. 통과 뒤 이유 없이 반복하지 않는다. 후속 효과도 해당 변경의 최소 묶음을 새로 선택한다.
 - 단일 스크립트 직접 실행도 개인 저장과 분리된 XDG/APPDATA 환경을 사용한다. 격리 방법이 불명확하면 `check.py`의 임시 사용자/게임 사본 방식을 따른다.
 - 문서/목록만 변경하면 링크·ID·경로·diff만 확인한다. 실제 창/native/X11·EXE/빌드/export/Windows CI는 사용자 지시대로 보류한다.
