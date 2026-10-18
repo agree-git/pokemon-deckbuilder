@@ -12,6 +12,8 @@ import uuid
 
 ROOT = Path(__file__).resolve().parents[1]
 SUITES = {
+    'player-altitude-new': ['test_player_move_altitude.gd','test_player_altitude_saves.gd'],
+    'player-altitude': ['test_player_move_altitude.gd','test_player_altitude_saves.gd'],
     'player-seals-new': ['test_player_move_seals.gd','test_player_seal_saves.gd'],
     'player-seals': ['test_player_move_seals.gd','test_player_seal_saves.gd'],
     'player-fields': ['test_player_move_fields.gd','test_player_field_saves.gd','test_player_move_exchange.gd','test_player_exchange_saves.gd','test_player_move_tactics.gd','test_player_tactics_saves.gd','test_player_move_cards.gd','test_player_move_edges.gd','test_player_move_saves.gd','test_boss_move_effects_p3.gd','test_boss_v8_compatibility.gd','test_boss_routes.gd','test_battle.gd','test_stats.gd','test_weather.gd','test_save.gd','test_national_progression.gd','test_deck_run.gd','test_machines.gd','test_start.gd'],
@@ -34,6 +36,7 @@ SUITES = {
              'test_visibility.gd','test_compatibility.gd','test_growth.gd','test_audio.gd'],
 }
 SUITES['player-seals'] += SUITES['player-fields']
+SUITES['player-altitude'] += SUITES['player-seals']
 ERROR = re.compile(r'SCRIPT ERROR:|(?:^|\n)ERROR:|leaked at exit', re.I)
 SUMMARY = re.compile(r'(\d+)\s+(?:checks?|decoded)\s*(?:/|,)\s*(\d+)\s+failures?')
 
