@@ -123,7 +123,7 @@ const RELICS := {
     "cycle_bookmark":{"name":"보존 책갈피","icon":"energy","description":"손패 카드를 실제로 보존해 턴을 마치면 다음 아군 턴 에너지 +1. 여러 장이어도 한 번."},
     "status_lens":{"name":"상태 관측경","icon":"counter","description":"매 턴 처음 새로운 상태이상을 걸면 에너지 +1."},
 }
-const HELD_ITEMS := {
+const LEGACY_HELD_ITEMS := {
     "power_band":{"name":"힘의 머리띠","icon":"attack","description":"장착한 포켓몬의 공격 추가 피해 · 최대 HP의 6.3%."},
     "guard_charm":{"name":"수호 부적","icon":"shield","description":"장착한 포켓몬이 카드의 기본 효과로 얻는 보호막 추가 · 최대 HP의 8.3%."},
     "relay_ribbon":{"name":"교대 리본","icon":"switch","description":"매 턴 처음 교대해 출전할 때 최대 HP의 10.4% 보호막 획득."},
@@ -131,6 +131,8 @@ const HELD_ITEMS := {
     "seed_charm":{"name":"생명의 부적","icon":"seed","description":"적에게 화상·독·씨앗이 있으면 턴 종료 시 장착자 최대 HP의 4.2% 회복."},
     "healing_bell":{"name":"치유의 방울","icon":"heal","description":"장착한 포켓몬이 도구 카드로 받는 회복 추가 · 최대 HP의 12.5%."},
 }
+
+static var HELD_ITEMS:Dictionary=LEGACY_HELD_ITEMS.merged(HeldItems.catalog())
 
 static func definition(card: BattleCardInstance,player_version := 1) -> Dictionary:
     var result: Dictionary = ((PlayerTechniques.definition(card.key,player_version) if player_version>=2 else TacticalMoves.definition(card.key)) if card.owner_uid != 0 else CARDS.get(card.key,{})).duplicate(true)

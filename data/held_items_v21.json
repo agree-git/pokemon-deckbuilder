@@ -1,0 +1,835 @@
+{
+  "schema_version": 1,
+  "route_version": 21,
+  "source": {
+    "pokeapi_commit": "6fd69dfe90465ba96534f6816fc817737d1f97f6",
+    "csv_sha256": {
+      "items.csv": "f08cd6dc30b447cb91cbe9232c79052e8521f32f6105bb1489b5bfabf4ca3241",
+      "item_names.csv": "c4ad0b446e395c378d8ba75d6900f051cc9ebb99431d4000adeac35f492852f0",
+      "item_prose.csv": "510fc4a9e58951dcaacf156d4cc6655dce1b173dcaea45495a29f6f343076373"
+    },
+    "sprites_commit": "7a7d66b1620e646f69afd48dc1273da9033ede9c"
+  },
+  "consumption": "permanent-until-recycled",
+  "items": {
+    "choice_band": {
+      "name": "구애머리띠",
+      "description": "공격1.5배 · 교대 전까지 처음 쓴 기술만 사용",
+      "icon": "held:choice-band",
+      "source_id": 197,
+      "identifier": "choice-band",
+      "fling_power": 10,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Increases Attack by 50%, but restricts the holder to only one move.",
+      "sprite_sha256": "17840fdb9791faebc8254396b3b440fc81ca6398f9375701fea526685397d97d",
+      "rule": "choice",
+      "stats": {
+        "attack": 1.5
+      }
+    },
+    "choice_specs": {
+      "name": "구애안경",
+      "description": "특공1.5배 · 교대 전까지 처음 쓴 기술만 사용",
+      "icon": "held:choice-specs",
+      "source_id": 274,
+      "identifier": "choice-specs",
+      "fling_power": 10,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Increases Special Attack by 50%, but restricts the holder to only one move.",
+      "sprite_sha256": "296e7f9beb6fca1e6f3f300fc595d855371da2afdda7b8aef4261d98986e9469",
+      "rule": "choice",
+      "stats": {
+        "special_attack": 1.5
+      }
+    },
+    "choice_scarf": {
+      "name": "구애스카프",
+      "description": "스피드1.5배 · 교대 전까지 처음 쓴 기술만 사용",
+      "icon": "held:choice-scarf",
+      "source_id": 264,
+      "identifier": "choice-scarf",
+      "fling_power": 10,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Increases Speed by 50%, but restricts the holder to only one move.",
+      "sprite_sha256": "b9e564e71ff8369fca2764f243168655a89ea82444ae1ec367da13405b0d11c7",
+      "rule": "choice",
+      "stats": {
+        "speed": 1.5
+      }
+    },
+    "muscle_band": {
+      "name": "힘의머리띠",
+      "description": "물리 기술 피해1.1배",
+      "icon": "held:muscle-band",
+      "source_id": 243,
+      "identifier": "muscle-band",
+      "fling_power": 10,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Boosts the damage of physical moves used by the holder by 10%.",
+      "sprite_sha256": "5dd40cc2c6129b84b7a882e1adff80b6cfea5f204e537dd4466baca9403683a3",
+      "rule": "physical",
+      "factor": 1.1
+    },
+    "wise_glasses": {
+      "name": "박식안경",
+      "description": "특수 기술 피해1.1배",
+      "icon": "held:wise-glasses",
+      "source_id": 244,
+      "identifier": "wise-glasses",
+      "fling_power": 10,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Boosts the damage of special moves used by the holder by 1/10 (10%).",
+      "sprite_sha256": "dffccb7b6634ee002b20aecb441e3746160ea767adcce6caace565b68be1e211",
+      "rule": "special",
+      "factor": 1.1
+    },
+    "expert_belt": {
+      "name": "달인의띠",
+      "description": "효과가 굉장한 공격 피해1.2배",
+      "icon": "held:expert-belt",
+      "source_id": 245,
+      "identifier": "expert-belt",
+      "fling_power": 10,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Holder’s Super Effective moves do 20% extra damage.",
+      "sprite_sha256": "3811a302b525bce42baed337b6288a7c9687b0741d7ee1a543187c6d11bfcba1",
+      "rule": "expert",
+      "factor": 1.2
+    },
+    "life_orb": {
+      "name": "생명의구슬",
+      "description": "공격 기술 피해1.3배 · 명중한 공격 뒤 최대HP의1/10 반동",
+      "icon": "held:life-orb",
+      "source_id": 247,
+      "identifier": "life-orb",
+      "fling_power": 30,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Holder’s moves inflict 30% extra damage, but cost 10% max HP.",
+      "sprite_sha256": "6a9aed6825c88c6ecce1f96c7584c32dc82f18873e6550303d1ae620982c38ef",
+      "rule": "life",
+      "factor": 1.3
+    },
+    "assault_vest": {
+      "name": "돌격조끼",
+      "description": "특방1.5배 · 자신의 변화 기술 카드 사용 불가",
+      "icon": "held:assault-vest",
+      "source_id": 683,
+      "identifier": "assault-vest",
+      "fling_power": 80,
+      "fling_effect_id": 0,
+      "source_effect": "Raises the holder’s Special Defense to 1.5×.  Prevents the holder from selecting a status move.",
+      "sprite_sha256": "1460feea1310ecffceb7d3b157f53a4b0f9f38e68db12de880412dc97b2ef3a2",
+      "rule": "vest",
+      "stats": {
+        "special_defense": 1.5
+      }
+    },
+    "eviolite": {
+      "name": "진화의휘석",
+      "description": "진화할 수 있는 포켓몬의 방어/특방1.5배",
+      "icon": "held:eviolite",
+      "source_id": 581,
+      "identifier": "eviolite",
+      "fling_power": 40,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Holder has 1.5× Defense and Special Defense, as long as it’s not fully evolved.",
+      "sprite_sha256": "d506d4001770a478cf1ca2b4d60d48dd80bf130ec58a785f8be4a3c7120594b0",
+      "rule": "eviolite",
+      "stats": {
+        "defense": 1.5,
+        "special_defense": 1.5
+      }
+    },
+    "leftovers": {
+      "name": "먹다남은음식",
+      "description": "출전 중 턴 종료마다 최대HP의1/16 회복",
+      "icon": "held:leftovers",
+      "source_id": 211,
+      "identifier": "leftovers",
+      "fling_power": 10,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Restores 1/16 (6.25%) holder’s max HP at the end of each turn.",
+      "sprite_sha256": "3ea874aaa17bbcb682131876763ca2f9a896644f7a2b5d9c51ea234f7aace558",
+      "rule": "leftovers"
+    },
+    "black_sludge": {
+      "name": "검은오물",
+      "description": "출전 중 턴 종료에 독 타입은 최대HP의1/16 회복 · 나머지는1/8 피해",
+      "icon": "held:black-sludge",
+      "source_id": 258,
+      "identifier": "black-sludge",
+      "fling_power": 30,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Poison-type holder recovers 1/16 (6.25%) max HP each turn. Non-Poison-Types take 1/8 (12.5%) max HP damage.",
+      "sprite_sha256": "abdceb134cb9cbde477175bbd4f78c44b315a6ff7f3395ebc90757908eccdf4f",
+      "rule": "sludge"
+    },
+    "shell_bell": {
+      "name": "조개껍질방울",
+      "description": "공격으로 상대에게 준 실제 HP 피해의1/8 회복",
+      "icon": "held:shell-bell",
+      "source_id": 230,
+      "identifier": "shell-bell",
+      "fling_power": 30,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Holder receives 1/8 of the damage it deals when attacking.",
+      "sprite_sha256": "82a838e863d883178d77fec09fa6825d4e4cf7144a40d931afb360e71bf76238",
+      "rule": "shell"
+    },
+    "rocky_helmet": {
+      "name": "울퉁불퉁멧",
+      "description": "접촉 기술로 HP 피해를 받으면 공격자에게 최대HP의1/6 피해",
+      "icon": "held:rocky-helmet",
+      "source_id": 583,
+      "identifier": "rocky-helmet",
+      "fling_power": 60,
+      "fling_effect_id": 0,
+      "source_effect": "Held: When the holder is hit by a contact move, the attacking Pokémon takes 1/6 its max HP in damage.",
+      "sprite_sha256": "6b1f4ed993bfa0d06e3c80b2c9732c621fc4ba69d166fd570e31783f059878e3",
+      "rule": "helmet"
+    },
+    "focus_sash": {
+      "name": "기합의띠",
+      "description": "HP가 가득 찼을 때 공격으로 기절할 피해를 받으면 HP1로 생존 후 소모 · 연타 후속타는 유지 · 사용 후 다시 획득해야 함",
+      "icon": "held:focus-sash",
+      "source_id": 252,
+      "identifier": "focus-sash",
+      "fling_power": 10,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Holder survives any single-hit attack at 1 HP if at max HP, then the item is consumed.",
+      "sprite_sha256": "8a8ab615483640419ca3ddf42c88944cb93b3d5d8286f07717dfbf4f1b562727",
+      "rule": "sash",
+      "consumable": true
+    },
+    "weakness_policy": {
+      "name": "약점보험",
+      "description": "효과가 굉장한 기술로 HP 피해를 받고 살아남으면 공격/특공+2 후 소모 · 사용 후 다시 획득해야 함",
+      "icon": "held:weakness-policy",
+      "source_id": 682,
+      "identifier": "weakness-policy",
+      "fling_power": 80,
+      "fling_effect_id": 0,
+      "source_effect": "Held: When the holder is hit by a super effective move, its Attack and Special Attack raise by two stages.",
+      "sprite_sha256": "40812e3783b8d51f32c84466dd3b42731ddef358b7259d106a25f2770cb0c8a7",
+      "rule": "weakness",
+      "consumable": true
+    },
+    "white_herb": {
+      "name": "하양허브",
+      "description": "능력 단계가 내려가면 음수 단계만0으로 복구 후 소모 · 사용 후 다시 획득해야 함",
+      "icon": "held:white-herb",
+      "source_id": 191,
+      "identifier": "white-herb",
+      "fling_power": 10,
+      "fling_effect_id": 4,
+      "source_effect": "Held: Resets all lowered stats to normal at end of turn. Consumed after use.",
+      "sprite_sha256": "0c7b2787c9badff20c5daeaa5c17e26af1a15017b3cc8fcfc53a3879bf671d38",
+      "rule": "white",
+      "consumable": true
+    },
+    "clear_amulet": {
+      "name": "클리어참",
+      "description": "상대 기술에 의한 음수 능력 단계 변화 방지",
+      "icon": "held:clear-amulet",
+      "source_id": 1698,
+      "identifier": "clear-amulet",
+      "fling_power": 30,
+      "fling_effect_id": 0,
+      "source_effect": "Prevents stat reduction caused by other Pokemon.",
+      "sprite_sha256": "c2d5604f359c80e141d97fb97d8e3a7318e997429c36205c15a54318ccd114ed",
+      "rule": "clear",
+      "effect_reference": "https://bulbapedia.bulbagarden.net/wiki/Clear_Amulet"
+    },
+    "flame_orb": {
+      "name": "화염구슬",
+      "description": "출전 중 턴 종료에 자신에게 화상 · 기존 지속 횟수 규칙 사용",
+      "icon": "held:flame-orb",
+      "source_id": 250,
+      "identifier": "flame-orb",
+      "fling_power": 30,
+      "fling_effect_id": 2,
+      "source_effect": "Held: Inflicts Burn on the holder at the end of the turn. Activates after Burn damage would occur.",
+      "sprite_sha256": "cba2a8def19286e2bb91969f41672c33ea92c07035567997c01d38889764b62f",
+      "rule": "orb",
+      "status": "burn"
+    },
+    "toxic_orb": {
+      "name": "맹독구슬",
+      "description": "출전 중 턴 종료에 자신에게 독 · 맹독 단계 대신 기존 독 지속 피해 사용",
+      "icon": "held:toxic-orb",
+      "source_id": 249,
+      "identifier": "toxic-orb",
+      "fling_power": 30,
+      "fling_effect_id": 1,
+      "source_effect": "Held: Inflicts Toxic on the holder at the end of the turn. Activates after Poison damage would occur.",
+      "sprite_sha256": "a5f28fd5d39b328696648bab2f3d1c7d60bf219c985627cb81e8ac8b04963ebb",
+      "rule": "orb",
+      "status": "poison"
+    },
+    "light_ball": {
+      "name": "전기구슬",
+      "description": "피카츄의 공격/특공2배",
+      "icon": "held:light-ball",
+      "source_id": 213,
+      "identifier": "light-ball",
+      "fling_power": 30,
+      "fling_effect_id": 5,
+      "source_effect": "Doubles Pikachu’s Attack and Special Attack. Breed on Pikachu or Raichu: Pichu Egg will have Volt Tackle.",
+      "sprite_sha256": "244a301fdd43aac1a7ae6ff163491de8cb04e5e79684d3a7bf5fb45f2f76b3b9",
+      "rule": "species",
+      "species": [
+        25
+      ],
+      "stats": {
+        "attack": 2.0,
+        "special_attack": 2.0
+      }
+    },
+    "thick_club": {
+      "name": "굵은뼈",
+      "description": "탕구리/텅구리의 공격2배 · 지역폼 포함",
+      "icon": "held:thick-club",
+      "source_id": 235,
+      "identifier": "thick-club",
+      "fling_power": 90,
+      "fling_effect_id": 0,
+      "source_effect": "Doubles Cubone or Marowak’s Attack.",
+      "sprite_sha256": "3dd383bb7f5cef4ba687415ebca0f649d9e05d09c898e31deb2cafce8c2b9139",
+      "rule": "species",
+      "species": [
+        104,
+        105
+      ],
+      "stats": {
+        "attack": 2.0
+      }
+    },
+    "deep_sea_tooth": {
+      "name": "심해의이빨",
+      "description": "진주몽의 특공2배",
+      "icon": "held:deep-sea-tooth",
+      "source_id": 203,
+      "identifier": "deep-sea-tooth",
+      "fling_power": 90,
+      "fling_effect_id": 0,
+      "source_effect": "Doubles Clamperl’s Special Attack. Traded on a Clamperl: Holder evolves into Huntail.",
+      "sprite_sha256": "2e3de67d55b774ce8302280deb8a19b44715806806dd290363b55b56d4213374",
+      "rule": "species",
+      "species": [
+        366
+      ],
+      "stats": {
+        "special_attack": 2.0
+      }
+    },
+    "deep_sea_scale": {
+      "name": "심해의비늘",
+      "description": "진주몽의 특방2배",
+      "icon": "held:deep-sea-scale",
+      "source_id": 204,
+      "identifier": "deep-sea-scale",
+      "fling_power": 30,
+      "fling_effect_id": 0,
+      "source_effect": "Doubles Clamperl’s Special Defense. Traded on a Clamperl: Holder evolves into Gorebyss.",
+      "sprite_sha256": "45548b19e82837db6bb3ee7290eb3e4709ce46d14adda31e1cb4ec4448c6dc8d",
+      "rule": "species",
+      "species": [
+        366
+      ],
+      "stats": {
+        "special_defense": 2.0
+      }
+    },
+    "soul_dew": {
+      "name": "마음의물방울",
+      "description": "라티아스/라티오스의 에스퍼/드래곤 기술 피해1.2배",
+      "icon": "held:soul-dew",
+      "source_id": 202,
+      "identifier": "soul-dew",
+      "fling_power": 30,
+      "fling_effect_id": 0,
+      "source_effect": "Raises Latias and Latios’s Special Attack and Special Defense by 50%.",
+      "sprite_sha256": "417cb68e3d96ec52e6742cb63a8dedf808454016dcc9e7c7648630deffabf0b8",
+      "rule": "type",
+      "species": [
+        380,
+        381
+      ],
+      "types": [
+        "psychic",
+        "dragon"
+      ],
+      "factor": 1.2
+    },
+    "silk_scarf": {
+      "name": "실크스카프",
+      "description": "노말 기술 피해1.2배",
+      "icon": "held:silk-scarf",
+      "source_id": 228,
+      "identifier": "silk-scarf",
+      "fling_power": 10,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Normal-Type moves from holder do 20% more damage.",
+      "sprite_sha256": "54a6a86917ff7a5b7b309b47ffcd3355e8494404cd6a7ec30a1119c62c320000",
+      "rule": "type",
+      "types": [
+        "normal"
+      ],
+      "factor": 1.2
+    },
+    "charcoal": {
+      "name": "목탄",
+      "description": "불꽃 기술 피해1.2배",
+      "icon": "held:charcoal",
+      "source_id": 226,
+      "identifier": "charcoal",
+      "fling_power": 30,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Fire-Type moves from holder do 20% more damage.",
+      "sprite_sha256": "c5182215d365c29a3d604c69ec3e2dd269f5a4b9d50a85d820c9c0dc70011c6e",
+      "rule": "type",
+      "types": [
+        "fire"
+      ],
+      "factor": 1.2
+    },
+    "mystic_water": {
+      "name": "신비의물방울",
+      "description": "물 기술 피해1.2배",
+      "icon": "held:mystic-water",
+      "source_id": 220,
+      "identifier": "mystic-water",
+      "fling_power": 30,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Water-Type moves from holder do 20% more damage.",
+      "sprite_sha256": "50db9161bf64687ab5998060c3b08f36300d1eef059e50b11cd36c4c3a58b789",
+      "rule": "type",
+      "types": [
+        "water"
+      ],
+      "factor": 1.2
+    },
+    "magnet": {
+      "name": "자석",
+      "description": "전기 기술 피해1.2배",
+      "icon": "held:magnet",
+      "source_id": 219,
+      "identifier": "magnet",
+      "fling_power": 30,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Electric-Type moves from holder do 20% more damage.",
+      "sprite_sha256": "6f05827802c3947cbc5a51204a7499537dfe91f69d231b95cafd807e38e29b9b",
+      "rule": "type",
+      "types": [
+        "electric"
+      ],
+      "factor": 1.2
+    },
+    "miracle_seed": {
+      "name": "기적의씨",
+      "description": "풀 기술 피해1.2배",
+      "icon": "held:miracle-seed",
+      "source_id": 216,
+      "identifier": "miracle-seed",
+      "fling_power": 30,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Grass-Type moves from holder do 20% more damage.",
+      "sprite_sha256": "2fa7c32270c089d858976f0f262b436d1feca44d6469dabdb4c8250444163cf1",
+      "rule": "type",
+      "types": [
+        "grass"
+      ],
+      "factor": 1.2
+    },
+    "never_melt_ice": {
+      "name": "녹지않는얼음",
+      "description": "얼음 기술 피해1.2배",
+      "icon": "held:never-melt-ice",
+      "source_id": 223,
+      "identifier": "never-melt-ice",
+      "fling_power": 30,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Ice-Type moves from holder do 20% more damage.",
+      "sprite_sha256": "abf2fe57c80d03a417e42eb0bccd35cf5c34ae3246f84116873220150a4ec123",
+      "rule": "type",
+      "types": [
+        "ice"
+      ],
+      "factor": 1.2
+    },
+    "black_belt": {
+      "name": "검은띠",
+      "description": "격투 기술 피해1.2배",
+      "icon": "held:black-belt",
+      "source_id": 218,
+      "identifier": "black-belt",
+      "fling_power": 30,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Fighting-Type moves from holder do 20% more damage.",
+      "sprite_sha256": "b59e45d1720bcabc91dd4bc5ecc7ef9401d5e130fc8dcb8e911fa897c8a3ac9b",
+      "rule": "type",
+      "types": [
+        "fighting"
+      ],
+      "factor": 1.2
+    },
+    "poison_barb": {
+      "name": "독바늘",
+      "description": "독 기술 피해1.2배",
+      "icon": "held:poison-barb",
+      "source_id": 222,
+      "identifier": "poison-barb",
+      "fling_power": 70,
+      "fling_effect_id": 6,
+      "source_effect": "Held: Poison-Type moves from holder do 20% more damage.",
+      "sprite_sha256": "01abc73e0c0d9016339cddcdf780969339734a51508003f4c659c5a4e3b7fd46",
+      "rule": "type",
+      "types": [
+        "poison"
+      ],
+      "factor": 1.2
+    },
+    "soft_sand": {
+      "name": "부드러운모래",
+      "description": "땅 기술 피해1.2배",
+      "icon": "held:soft-sand",
+      "source_id": 214,
+      "identifier": "soft-sand",
+      "fling_power": 10,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Ground-Type moves from holder do 20% more damage.",
+      "sprite_sha256": "add60c77b9475e06647c443a323c0260a8da406c1de46d01b92be6d70cd25508",
+      "rule": "type",
+      "types": [
+        "ground"
+      ],
+      "factor": 1.2
+    },
+    "sharp_beak": {
+      "name": "예리한부리",
+      "description": "비행 기술 피해1.2배",
+      "icon": "held:sharp-beak",
+      "source_id": 221,
+      "identifier": "sharp-beak",
+      "fling_power": 50,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Flying-Type moves from holder do 20% more damage.",
+      "sprite_sha256": "92d7e794946fb27d1161a4a4c1aaa39fdacc2c45c6339007c197ead96d8b5806",
+      "rule": "type",
+      "types": [
+        "flying"
+      ],
+      "factor": 1.2
+    },
+    "twisted_spoon": {
+      "name": "휘어진스푼",
+      "description": "에스퍼 기술 피해1.2배",
+      "icon": "held:twisted-spoon",
+      "source_id": 225,
+      "identifier": "twisted-spoon",
+      "fling_power": 30,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Psychic-Type moves from holder do 20% more damage.",
+      "sprite_sha256": "39c2ef9e5b055f44a43cd8fbbc4fe86658c65477c2c9b323f471b59def1930ea",
+      "rule": "type",
+      "types": [
+        "psychic"
+      ],
+      "factor": 1.2
+    },
+    "silver_powder": {
+      "name": "은빛가루",
+      "description": "벌레 기술 피해1.2배",
+      "icon": "held:silver-powder",
+      "source_id": 199,
+      "identifier": "silver-powder",
+      "fling_power": 10,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Bug-Type moves from holder do 20% more damage.",
+      "sprite_sha256": "045bbc3e3c2b60cca3ba9e24d7dc43b5c7d72ac17e2b9765b87e5dc8fcbbd115",
+      "rule": "type",
+      "types": [
+        "bug"
+      ],
+      "factor": 1.2
+    },
+    "hard_stone": {
+      "name": "딱딱한돌",
+      "description": "바위 기술 피해1.2배",
+      "icon": "held:hard-stone",
+      "source_id": 215,
+      "identifier": "hard-stone",
+      "fling_power": 100,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Rock-Type moves from holder do 20% more damage.",
+      "sprite_sha256": "e76b5895ec2976cd5abae3e216b8c8eacf68ebd040d5fb697b42f37af3cb70d4",
+      "rule": "type",
+      "types": [
+        "rock"
+      ],
+      "factor": 1.2
+    },
+    "spell_tag": {
+      "name": "저주의부적",
+      "description": "고스트 기술 피해1.2배",
+      "icon": "held:spell-tag",
+      "source_id": 224,
+      "identifier": "spell-tag",
+      "fling_power": 30,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Ghost-Type moves from holder do 20% more damage.",
+      "sprite_sha256": "00febed5a51cffe753a83bb25d03a39585bc06a439ec0d9affcd14186bd33c78",
+      "rule": "type",
+      "types": [
+        "ghost"
+      ],
+      "factor": 1.2
+    },
+    "dragon_fang": {
+      "name": "용의이빨",
+      "description": "드래곤 기술 피해1.2배",
+      "icon": "held:dragon-fang",
+      "source_id": 227,
+      "identifier": "dragon-fang",
+      "fling_power": 70,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Dragon-Type moves from holder do 20% more damage.",
+      "sprite_sha256": "9bcca1e7a0c2710e49cfc1f6f305716c38a2f2bf7a003a59668bb593424c03e6",
+      "rule": "type",
+      "types": [
+        "dragon"
+      ],
+      "factor": 1.2
+    },
+    "black_glasses": {
+      "name": "검은안경",
+      "description": "악 기술 피해1.2배",
+      "icon": "held:black-glasses",
+      "source_id": 217,
+      "identifier": "black-glasses",
+      "fling_power": 30,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Dark-Type moves from holder do 20% more damage.",
+      "sprite_sha256": "da56b1cd8e4056396116d85d23adcbd1eee331be13207ae28e705c0bea77e62d",
+      "rule": "type",
+      "types": [
+        "dark"
+      ],
+      "factor": 1.2
+    },
+    "metal_coat": {
+      "name": "금속코트",
+      "description": "강철 기술 피해1.2배",
+      "icon": "held:metal-coat",
+      "source_id": 210,
+      "identifier": "metal-coat",
+      "fling_power": 30,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Steel-Type moves from holder do 20% more damage.",
+      "sprite_sha256": "1330f67b135121a15e27e17d3da64ae9065dfbda5ea85f4ad7bc5285c6aaa92c",
+      "rule": "type",
+      "types": [
+        "steel"
+      ],
+      "factor": 1.2
+    },
+    "pixie_plate": {
+      "name": "정령플레이트",
+      "description": "페어리 기술 피해1.2배",
+      "icon": "held:pixie-plate",
+      "source_id": 684,
+      "identifier": "pixie-plate",
+      "fling_power": 90,
+      "fling_effect_id": 0,
+      "source_effect": "Held: Fairy-Type moves from holder do 20% more damage. Changes Arceus’s and Judgment’s type to Fairy.",
+      "sprite_sha256": "ba374c3451099fe36eff4be7225609841559137694d6d74469fa163be09385f7",
+      "rule": "type",
+      "types": [
+        "fairy"
+      ],
+      "factor": 1.2
+    },
+    "cheri_berry": {
+      "name": "버치열매",
+      "description": "마비 해제 후 소모 · 사용 후 다시 획득해야 함",
+      "icon": "held:cheri-berry",
+      "source_id": 126,
+      "identifier": "cheri-berry",
+      "fling_power": 10,
+      "fling_effect_id": 3,
+      "source_effect": "Held: Consumed when paralyzed to cure paralysis.",
+      "sprite_sha256": "949f8cb36532f09ff97ca41f97db3104abc16c209496181fea38839d79c5ce00",
+      "rule": "cure",
+      "status": "paralysis",
+      "consumable": true
+    },
+    "chesto_berry": {
+      "name": "유루열매",
+      "description": "수면 해제 후 소모 · 사용 후 다시 획득해야 함",
+      "icon": "held:chesto-berry",
+      "source_id": 127,
+      "identifier": "chesto-berry",
+      "fling_power": 10,
+      "fling_effect_id": 3,
+      "source_effect": "Held: Consumed when asleep to cure sleep.",
+      "sprite_sha256": "6620e6507a3bc28c08f5f264e5b461cad0db9dce647d3cab0a4f5421e36abafd",
+      "rule": "cure",
+      "status": "sleep",
+      "consumable": true
+    },
+    "pecha_berry": {
+      "name": "복슝열매",
+      "description": "독 해제 후 소모 · 사용 후 다시 획득해야 함",
+      "icon": "held:pecha-berry",
+      "source_id": 128,
+      "identifier": "pecha-berry",
+      "fling_power": 10,
+      "fling_effect_id": 3,
+      "source_effect": "Held: Consumed when poisoned to cure poison.",
+      "sprite_sha256": "9efb16dc703ef654ce0532329613d51150dcc3c9a77f0101f33d54b15a00028a",
+      "rule": "cure",
+      "status": "poison",
+      "consumable": true
+    },
+    "rawst_berry": {
+      "name": "복분열매",
+      "description": "화상 해제 후 소모 · 사용 후 다시 획득해야 함",
+      "icon": "held:rawst-berry",
+      "source_id": 129,
+      "identifier": "rawst-berry",
+      "fling_power": 10,
+      "fling_effect_id": 3,
+      "source_effect": "Held: Consumed when burned to cure a burn.",
+      "sprite_sha256": "3c3976d2121647f4c1b19673de8424baa80f59f5d4ea91e447c14fef5da64066",
+      "rule": "cure",
+      "status": "burn",
+      "consumable": true
+    },
+    "persim_berry": {
+      "name": "시몬열매",
+      "description": "혼란 해제 후 소모 · 사용 후 다시 획득해야 함",
+      "icon": "held:persim-berry",
+      "source_id": 133,
+      "identifier": "persim-berry",
+      "fling_power": 10,
+      "fling_effect_id": 3,
+      "source_effect": "Held: Consumed when confused to cure confusion.",
+      "sprite_sha256": "e09597ca2770a12a55683e4e631361093491883a111363641a9b46f4b8929b2d",
+      "rule": "cure",
+      "status": "confusion",
+      "consumable": true
+    },
+    "lum_berry": {
+      "name": "리샘열매",
+      "description": "상태이상/혼란 해제 후 소모 · 사용 후 다시 획득해야 함",
+      "icon": "held:lum-berry",
+      "source_id": 134,
+      "identifier": "lum-berry",
+      "fling_power": 10,
+      "fling_effect_id": 3,
+      "source_effect": "Held: Consumed to cure any status condition or confusion.",
+      "sprite_sha256": "eab0124365d18b7439b553edd5cf02e17297b72495a79e37114ee5398d0e3996",
+      "rule": "cure",
+      "status": "all",
+      "consumable": true
+    },
+    "oran_berry": {
+      "name": "오랭열매",
+      "description": "HP½ 이하에 HP10 회복 후 소모 · 사용 후 다시 획득해야 함",
+      "icon": "held:oran-berry",
+      "source_id": 132,
+      "identifier": "oran-berry",
+      "fling_power": 10,
+      "fling_effect_id": 3,
+      "source_effect": "Held: Consumed at 1/2 max HP to recover 10 HP.",
+      "sprite_sha256": "4d4d31e7c29a4540d5f438b87bb1762bf3cd7b0920e523fc9020f6c0bace1c1a",
+      "rule": "heal",
+      "amount": 10,
+      "consumable": true
+    },
+    "sitrus_berry": {
+      "name": "자뭉열매",
+      "description": "HP½ 이하에 최대HP¼ 회복 후 소모 · 사용 후 다시 획득해야 함",
+      "icon": "held:sitrus-berry",
+      "source_id": 135,
+      "identifier": "sitrus-berry",
+      "fling_power": 10,
+      "fling_effect_id": 3,
+      "source_effect": "Held: Consumed at 1/2 max HP to recover 1/4 max HP.",
+      "sprite_sha256": "934d9dcfdc189fd01987f1e0356e079cf32d4d3aafac89ca3e77158c8f44c10e",
+      "rule": "heal",
+      "amount": 0,
+      "consumable": true
+    },
+    "liechi_berry": {
+      "name": "치리열매",
+      "description": "HP¼ 이하에 공격+1 후 소모 · 사용 후 다시 획득해야 함",
+      "icon": "held:liechi-berry",
+      "source_id": 178,
+      "identifier": "liechi-berry",
+      "fling_power": 10,
+      "fling_effect_id": 3,
+      "source_effect": "Held: Consumed at 1/4 max HP to boost Attack.",
+      "sprite_sha256": "e6278b9b9db67497cf5833c964b960453cb81a34b914b8ad27cf545fec550fd1",
+      "rule": "stat",
+      "stat": "attack",
+      "consumable": true
+    },
+    "ganlon_berry": {
+      "name": "용아열매",
+      "description": "HP¼ 이하에 방어+1 후 소모 · 사용 후 다시 획득해야 함",
+      "icon": "held:ganlon-berry",
+      "source_id": 179,
+      "identifier": "ganlon-berry",
+      "fling_power": 10,
+      "fling_effect_id": 3,
+      "source_effect": "Held: Consumed at 1/4 max HP to boost Defense.",
+      "sprite_sha256": "4f51fee468b67db200a44a3920b27cd2c9215a5fd7507f6ff1f0f7652822ad54",
+      "rule": "stat",
+      "stat": "defense",
+      "consumable": true
+    },
+    "salac_berry": {
+      "name": "캄라열매",
+      "description": "HP¼ 이하에 스피드+1 후 소모 · 사용 후 다시 획득해야 함",
+      "icon": "held:salac-berry",
+      "source_id": 180,
+      "identifier": "salac-berry",
+      "fling_power": 10,
+      "fling_effect_id": 3,
+      "source_effect": "Held: Consumed at 1/4 max HP to boost Speed.",
+      "sprite_sha256": "822648e085456e3df9de8d342bb6969790ee7981492c4ffd0cbf68100f483a01",
+      "rule": "stat",
+      "stat": "speed",
+      "consumable": true
+    },
+    "petaya_berry": {
+      "name": "야타비열매",
+      "description": "HP¼ 이하에 특공+1 후 소모 · 사용 후 다시 획득해야 함",
+      "icon": "held:petaya-berry",
+      "source_id": 181,
+      "identifier": "petaya-berry",
+      "fling_power": 10,
+      "fling_effect_id": 3,
+      "source_effect": "Held: Consumed at 1/4 max HP to boost Special Attack.",
+      "sprite_sha256": "f955acdb9b3bdc652400d17d469c9e7fa5a766eabf8b680daef2e6b751e439e8",
+      "rule": "stat",
+      "stat": "special_attack",
+      "consumable": true
+    },
+    "apicot_berry": {
+      "name": "규살열매",
+      "description": "HP¼ 이하에 특방+1 후 소모 · 사용 후 다시 획득해야 함",
+      "icon": "held:apicot-berry",
+      "source_id": 182,
+      "identifier": "apicot-berry",
+      "fling_power": 10,
+      "fling_effect_id": 3,
+      "source_effect": "Held: Consumed at 1/4 max HP to boost Special Defense.",
+      "sprite_sha256": "e76593848f83824a10e36efb40899d3b38f2c44a3e4db0ed1ca54a4edc09170a",
+      "rule": "stat",
+      "stat": "special_defense",
+      "consumable": true
+    }
+  }
+}

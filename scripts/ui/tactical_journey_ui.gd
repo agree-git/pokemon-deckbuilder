@@ -658,13 +658,15 @@ func _evolution_reveal() -> void:
     W.button(body,Rect2(290,540,320,64),_close_evolution,"계속").name = "CloseEvolution"
     UiMotion.appear(overlay)
 func _gear() -> void:
-    W.label(page,"지닌 물건 · 동료당 하나, 야영지에서 자유롭게 교환",Rect2(550,354,1190,36),21,W.GOLD)
+    var heading:="지닌 물건 · 동료당 하나 · 소모품은 사용 후 다시 획득 · 야영지에서 교환" if journey.route.generation>=21 else "지닌 물건 · 동료당 하나, 야영지에서 자유롭게 교환"
+    W.label(page,heading,Rect2(550,354,1190,36),21,W.GOLD)
     for i in journey.party.size():
         var pokemon := journey.party[i]
         var y := 406+i*100
         W.label(page,pokemon.display_name,Rect2(550,y,250,40),22)
         var selector := W.button(page,Rect2(830,y,440,52),_open_gear.bind(pokemon.uid),"물건 선택" if pokemon.held_item.is_empty() else str(TacticalContent.HELD_ITEMS[pokemon.held_item]["name"]))
         selector.name = "Equipment_%d" % pokemon.uid
+        selector.tooltip_text=TacticalContent.HELD_ITEMS.get(pokemon.held_item,{}).get("description","")
         if not pokemon.held_item.is_empty():
             W.label(page,TacticalContent.HELD_ITEMS[pokemon.held_item]["description"],Rect2(550,y+52,1190,34),17,W.MUTED)
     W.label(page,"파티 유물 · %d개" % journey.relics.size(),Rect2(550,732,1190,36),21,W.GOLD)
@@ -707,7 +709,9 @@ func _gear_picker() -> void:
         button.name = "Equip_"+key
         W.icon(button,definition["icon"],Rect2(18,28,36,36))
         W.label(button,definition["name"],Rect2(76,10,850,36),22,W.TEXT)
-        W.label(button,definition["description"],Rect2(76,52,850,36),17,W.MUTED)
+        var detail:=W.label(button,definition["description"],Rect2(76,48,850,46),17,W.MUTED)
+        detail.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+        button.tooltip_text=definition["description"]
 func _equip(key: String,uid: int) -> void:
     var reason := journey.equip_held(key,uid)
     camp_notice = reason if not reason.is_empty() else "지닌 물건을 정리했습니다."

@@ -145,3 +145,7 @@ Windows 시험 빌드는 공식 Godot **4.7.2** 엔진을 포함합니다. Godot
 ## 플레이어 기술 카드 v20
 
 `data/player_move_reactions_v20.json`은 동결v10~v19 정의와 같은 PokéAPI 고정CSV4종을 대조한3카드 추가 정의입니다. 플라스마샤워·송전·분진은 기존 카드 전투 각색이며 새 이미지/음원은 없습니다. 기반/원본 SHA256은 JSON에 기록했습니다. [효과/각색](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-reactions.md), [정의 생성기](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/import_player_move_reactions.py), [NPC 타입 계산 파생기](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/derive_player_reaction_math.py).
+
+## 원작 지닌 물건55종 · v21
+
+`data/held_items_v21.json`의 한국어 이름·원본 ID·효과/내던지기 자료는 [PokéAPI pokeapi](https://github.com/PokeAPI/pokeapi/tree/6fd69dfe90465ba96534f6816fc817737d1f97f6/data/v2/csv)의 `items.csv`/`item_names.csv`/`item_prose.csv`에서 대조했습니다. 클리어참의 효과/내던지기는 해당 CSV에 빠져 있어 [별도 참조](https://bulbapedia.bulbagarden.net/wiki/Clear_Amulet)를 명시했습니다. `assets/items/*.png` 55개는 [PokeAPI/sprites 고정 커밋](https://github.com/PokeAPI/sprites/tree/7a7d66b1620e646f69afd48dc1273da9033ede9c/sprites/items)에서 받은 원작 도구 아이콘입니다. CSV/그림 SHA256과 고정 커밋은 JSON에 기록했습니다. Pokémon 이미지의 권리는 기존 Pokémon 에셋과 같습니다. [각색/소모/호환 계약](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/held-items.md), [정의 생성기](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/import_held_items.py), [계산 파생기](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/tools/derive_held_item_math.py).

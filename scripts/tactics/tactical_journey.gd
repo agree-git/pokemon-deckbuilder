@@ -253,7 +253,7 @@ func _prepare_rewards() -> void:
     if not available.is_empty() and (current()["kind"] in ["veteran","gym","elite"] or roll < 0.12):
         reward_options.append({"kind":"relic","key":available[rng.randi_range(0,available.size()-1)]})
     elif roll < 0.65 or current()["kind"] in ["veteran","gym","elite"]:
-        var held: Array = TacticalContent.HELD_ITEMS.keys()
+        var held: Array = HeldItems.reward_keys(route.generation)
         reward_options.append({"kind":"held","key":held[rng.randi_range(0,held.size()-1)]})
     else:
         commons.erase(first)
