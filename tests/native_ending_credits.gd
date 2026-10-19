@@ -40,6 +40,20 @@ func run() -> void:
     var before := JourneySnapshot.encode(j)
     var saved := FileAccess.get_file_as_bytes(JourneySave.SAVE_PATH)
     var ui: TacticalJourneyUI=load("res://scenes/tactical_journey.tscn").instantiate()
+    if OS.get_environment("ENDING_GEOMETRY_ONLY")=="1":
+        ui.journey=j;ui._credits_run_id=j.run_id;root.add_child(ui);current_scene=ui
+        await wait_ui()
+        var button: Control=ui.find_child("ReplayCredits",true,false)
+        check(Rect2(96,886,340,62).is_equal_approx(button.get_rect()),"Replay button uses left menu")
+        for i in j.growth_reports.size():
+            check(not button.get_rect().intersects(Rect2(550+i*404,832,382,140)),"Replay stays clear of actual growth panels")
+        check(not button.get_rect().intersects(ui.actions[2].get_rect()),"Home and replay have separate hit areas")
+        await shot("04-result-layout.png")
+        ui.free();current_scene=null
+        for node_name: String in ["GameMusic","GameAmbience","GameAudio","GameCries"]:root.get_node(node_name).stop_all()
+        await wait_ui()
+        print("ENDING_LAYOUT ",checks," checks / ",failures," failures")
+        quit(0 if failures==0 else 1);return
     ui.journey=j;root.add_child(ui);current_scene=ui
     await wait_ui()
     var credits=ui.credits
