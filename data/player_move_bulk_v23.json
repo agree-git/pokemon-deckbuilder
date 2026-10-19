@@ -1,0 +1,6220 @@
+{
+  "schema_version": 1,
+  "route_version": 23,
+  "player_moves_version": 15,
+  "base_sha256": {
+    "player_move_cards_v10.json": "cb17b795f6e3ee8309a1f8151846bbc0a79a06cf1127d01739539e276aaf1255",
+    "player_move_tactics_v11.json": "ee46cbac553dd2736ff20c4781205c3024fe39e4ef52b8c1761a54d95666ab53",
+    "player_move_exchange_v12.json": "1586ae99131c89cac7a0d3c4e95f89261b2865e89a1c5be6b4191b50b3b0fc33",
+    "player_move_fields_v13.json": "4a970fc9f58ab132138d42ab53b2d779fb2fbcc9d3a414cb520be5d4ec9716d1",
+    "player_move_seals_v14.json": "b9e3a818e2f359c9aa2582ca988c36f2b1c2251419dd18c65867e6451c408543",
+    "player_move_altitude_v15.json": "596e9b74d5cb953481ffbec6abf8f1a7f10870681abc42bcfd4d7980354851aa",
+    "player_move_traps_v16.json": "1784987e13a8d2a405a48e1983f4a9637a8b36c7b7be8795f2343115a1347103",
+    "player_move_items_v17.json": "5165abda6c87b7274ea1f7dcd57c23c03b9dd9b40b33a13163adeacf51f02251",
+    "player_move_assist_v18.json": "2f84e8a18ee1b46d3e9ded28bacf53a34d577911dca79c2ed20bf24923c30b9c",
+    "player_move_fate_v19.json": "5aa55a74d9382b115f43f616e7f2e40e4cbba151084b1d62a529a6abe6a5970c",
+    "player_move_reactions_v20.json": "ffd3bfb2485c4e61790d0e2ee09629b079dbeb72e9305aebb9a6d49e7b03b283",
+    "player_move_training_v22.json": "21ba4e654916749d6acf9049e02913cb92610bd22e616123e97ec746f0091686"
+  },
+  "scope": "Original move traits adapted to the existing card battle; no new PP, abilities or battle-only forms.",
+  "source": {
+    "pokeapi_commit": "5ee47a9a9c1229632ec4b473a9c1c53026e005dd",
+    "csv_sha256": {
+      "moves.csv": "8aafd37bf78f19471495c05b201545180f50f0a08a2a2a844d69f9837dd39ac9",
+      "move_meta.csv": "93b92d5bddf4fc1536ca0a647c20453bf92e6389010f33ca6fc4c5e9c54363be",
+      "move_flag_map.csv": "399cf005933418f406b94729903bd1528e9088bddc3bc1966be6c442a625da1b",
+      "move_effect_prose.csv": "f6d9bf0d28433a010a8b8b6a0a14d1ef72fbfcb997717f71b0e34483b7ee9697"
+    }
+  },
+  "moves": {
+    "144": {
+      "move_id": 144,
+      "name": "변신",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대의 타입·능력치·단계를 복사하고 자신의 기술 카드를 상대 기술 슬롯으로 전환 · HP/장비/영구 학습 유지 · 교대 시 해제"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "transform"
+    },
+    "180": {
+      "move_id": 180,
+      "name": "원한",
+      "type": "ghost",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "PP 대신 상대 직전 기술을 2상대턴 봉인"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "spite"
+    },
+    "266": {
+      "move_id": 266,
+      "name": "날따름",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "주목을 끌어 이번 상대 행동의 파티 직접 피해½ · 교대 후에도 유지 · 실제 대상 변경은 하지 않음"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "cover"
+    },
+    "272": {
+      "move_id": 272,
+      "name": "역할",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "특성 대신 상대의 양수 능력 단계를 자신에게 복사 · 음수 단계는 유지"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "role"
+    },
+    "277": {
+      "move_id": 277,
+      "name": "매직코트",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "이번 상대 행동의 반사 가능한 대상 변화 효과를 상대에게 반사 · 공격/필드/자기 강화 제외"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "reflect"
+    },
+    "285": {
+      "move_id": 285,
+      "name": "스킬스왑",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "특성 대신 양쪽의 양수 능력 단계와 양수 위력 강화를 교환 · 음수 단계 유지"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "swap"
+    },
+    "286": {
+      "move_id": 286,
+      "name": "봉인",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "출전 중 자신이 배운 기술과 같은 상대 기술 봉인 · 자신 교대/기절 시 해제"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "imprison"
+    },
+    "288": {
+      "move_id": 288,
+      "name": "원념",
+      "type": "ghost",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "다음 자신의 기술 전까지 직접 공격에 기절하면 그 상대 기술을 이 전투 동안 봉인 · PP 대신 기술 봉인"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "grudge"
+    },
+    "289": {
+      "move_id": 289,
+      "name": "가로채기",
+      "type": "dark",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "이번 상대 행동의 자기 능력 강화/직접 회복을 취소하고 자신이 받음 · 공격 부가효과 제외"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "snatch"
+    },
+    "380": {
+      "move_id": 380,
+      "name": "위액",
+      "type": "poison",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "특성 대신 상대의 양수 능력 단계와 양수 위력 강화를 제거"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "suppress"
+    },
+    "388": {
+      "move_id": 388,
+      "name": "고민씨",
+      "type": "grass",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상대 수면 해제 · 3상대턴 동안 수면 방지 · 새 특성 시스템 없음"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "insomnia"
+    },
+    "476": {
+      "move_id": 476,
+      "name": "분노가루",
+      "type": "bug",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "풀 타입 상대는 무효 · 이번 상대 행동의 파티 직접 피해½ · 대상 변경 대신 피해 경감"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "powder_cover"
+    },
+    "493": {
+      "move_id": 493,
+      "name": "심플빔",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "다음 3상대턴 상대에게 생기는 능력 단계 변화량2배 · ±6 상한 유지 · 새 특성 시스템 없음"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "simple"
+    },
+    "494": {
+      "move_id": 494,
+      "name": "동료만들기",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "특성 대신 자신의 양수 능력 단계를 상대에게 덮어씀 · 양쪽 음수 단계 유지"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "give"
+    },
+    "502": {
+      "move_id": 502,
+      "name": "사이드체인지",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "다음 살아 있는 대기 동료로 무료 교대 · 구속/입장 피해 제한 유지"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "ally_switch"
+    },
+    "561": {
+      "move_id": 561,
+      "name": "마룻바닥세워막기",
+      "type": "fighting",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "첫 턴에만 이번 상대 행동의 파티 공격 피해 차단 · 변화 효과 제외"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "mat"
+    },
+    "606": {
+      "move_id": 606,
+      "name": "축하",
+      "type": "normal",
+      "cost": 0,
+      "damage_class": "status",
+      "card_notes": [
+        "축하 메시지 · 원작처럼 전투 효과 없음 · 비용0"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "celebrate"
+    },
+    "607": {
+      "move_id": 607,
+      "name": "손에손잡기",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "함께 손을 잡은 동료 전원에게 최대HP⅛ 보호막 · 다른 살아 있는 동료 필요"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "hands"
+    },
+    "671": {
+      "move_id": 671,
+      "name": "스포트라이트",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "더블배틀 대상 변경 대신 다른 동료 전원의 다음 공격 확정 급소"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "spotlight"
+    },
+    "673": {
+      "move_id": 673,
+      "name": "예민해지기",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "다음 자신의 공격 확정 급소 · 교대 시 해제"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "laser"
+    },
+    "752": {
+      "move_id": 752,
+      "name": "다과회",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "양쪽 출전 포켓몬의 유효한 소지 나무열매를 즉시 먹음 · 조건 무시/영구 소모 · 리사이클 가능"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "tea"
+    },
+    "849": {
+      "move_id": 849,
+      "name": "초승달의기도",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "살아 있는 동료 전원 최대HP¼ 회복 및 상태이상 치료 · 회복 감소/봉인 적용"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "lunar",
+      "exhaust": true
+    },
+    "863": {
+      "move_id": 863,
+      "name": "회생의기도",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "첫 기절 동료 최대HP½로 회생 · 사용 동료당 전투1회 · 기절로 소진된 기술은 버린 더미로 복귀 · 부상 유지"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "revive",
+      "exhaust": true
+    },
+    "867": {
+      "move_id": 867,
+      "name": "배껴그리기",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "특성 대신 상대의 양수 능력 단계를 살아 있는 동료 전원에게 복사"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "doodle"
+    },
+    "913": {
+      "move_id": 913,
+      "name": "드래곤옐",
+      "type": "dragon",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "다른 동료 전원의 다음 공격 확정 급소 · 드래곤의 추가 급소 단계는 별도 추첨 없이 통합"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "cheer"
+    },
+    "230": {
+      "move_id": 230,
+      "name": "달콤한향기",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "회피 단계 대신 상대 취약3턴 · 받는 공격 피해 증가"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "expose": 1
+    },
+    "603": {
+      "move_id": 603,
+      "name": "해피타임",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "상금 대신 보급 카드2장 뽑기 · 전투 중 소진 · 상금/경제 변경 없음"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "draw": 2,
+      "exhaust": true
+    },
+    "743": {
+      "move_id": 743,
+      "name": "다이월",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "다이맥스 없이 사용하는 보호 · 이번 상대 행동 피해/상태 차단"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "guard": "protect"
+    },
+    "883": {
+      "move_id": 883,
+      "name": "설경",
+      "type": "ice",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "양쪽에 눈5턴 · 얼음 타입 물리 방어1.5배 · 날씨 교체"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "weather": "snow"
+    },
+    "37": {
+      "move_id": 37,
+      "name": "난동부리기",
+      "type": "normal",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 120,
+      "upgrade": {
+        "move_power": 135
+      },
+      "card_notes": [
+        "같은 기술3회 연속 사용 후 자신 혼란 · 다른 기술 불가/교대로 해제"
+      ],
+      "bulk_rule": "rampage"
+    },
+    "80": {
+      "move_id": 80,
+      "name": "꽃잎댄스",
+      "type": "grass",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 120,
+      "upgrade": {
+        "move_power": 135
+      },
+      "card_notes": [
+        "같은 기술3회 연속 사용 후 자신 혼란 · 다른 기술 불가/교대로 해제"
+      ],
+      "bulk_rule": "rampage"
+    },
+    "200": {
+      "move_id": 200,
+      "name": "역린",
+      "type": "dragon",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 120,
+      "upgrade": {
+        "move_power": 135
+      },
+      "card_notes": [
+        "같은 기술3회 연속 사용 후 자신 혼란 · 다른 기술 불가/교대로 해제"
+      ],
+      "bulk_rule": "rampage"
+    },
+    "99": {
+      "move_id": 99,
+      "name": "분노",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 20,
+      "upgrade": {
+        "move_power": 35
+      },
+      "card_notes": [
+        "이후 직접 피해를 받을 때 공격+1 · 다음 다른 자기 기술/교대 시 해제"
+      ],
+      "bulk_rule": "rage"
+    },
+    "128": {
+      "move_id": 128,
+      "name": "껍질끼우기",
+      "type": "water",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 35,
+      "upgrade": {
+        "move_power": 50
+      },
+      "card_notes": [
+        "명중 시4회 구속 · 상대 교대/시전자 이탈 규칙 유지"
+      ],
+      "extension": "bind"
+    },
+    "161": {
+      "move_id": 161,
+      "name": "트라이어택",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 80,
+      "upgrade": {
+        "move_power": 95
+      },
+      "card_notes": [
+        "확률 대신 화상/마비/독 중 유효한 상태 하나를 기술 사용 횟수에 따라 순환 · 얼음 상태는 독으로 각색"
+      ],
+      "bulk_rule": "tri"
+    },
+    "206": {
+      "move_id": 206,
+      "name": "칼등치기",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 40,
+      "upgrade": {
+        "move_power": 55
+      },
+      "card_notes": [
+        "직접 피해로 상대 HP를1 미만으로 내리지 않음"
+      ],
+      "bulk_rule": "false_swipe"
+    },
+    "610": {
+      "move_id": 610,
+      "name": "적당히손봐주기",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 40,
+      "upgrade": {
+        "move_power": 55
+      },
+      "card_notes": [
+        "직접 피해로 상대 HP를1 미만으로 내리지 않음"
+      ],
+      "bulk_rule": "false_swipe"
+    },
+    "217": {
+      "move_id": 217,
+      "name": "프레젠트",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 40,
+      "upgrade": {
+        "move_power": 55
+      },
+      "card_notes": [
+        "추첨 대신 위력40→80→120→상대HP¼ 회복의 공개4회 주기"
+      ],
+      "bulk_rule": "present"
+    },
+    "237": {
+      "move_id": 237,
+      "name": "잠재파워",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 60,
+      "upgrade": {
+        "move_power": 75
+      },
+      "card_notes": [
+        "개체값 없이 자신의 첫 타입 · 위력60 고정"
+      ],
+      "bulk_rule": "hidden"
+    },
+    "248": {
+      "move_id": 248,
+      "name": "미래예지",
+      "type": "psychic",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 120,
+      "upgrade": {
+        "move_power": 135
+      },
+      "card_notes": [
+        "공격을 예고한 뒤 두 번째 상대 행동 종료에 발동 · 그때 출전 상대/상성/보호 적용 · 시전자 기절에도 유지"
+      ],
+      "bulk_rule": "future"
+    },
+    "353": {
+      "move_id": 353,
+      "name": "파멸의소원",
+      "type": "steel",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 140,
+      "upgrade": {
+        "move_power": 155
+      },
+      "card_notes": [
+        "공격을 예고한 뒤 두 번째 상대 행동 종료에 발동 · 그때 출전 상대/상성/보호 적용 · 시전자 기절에도 유지"
+      ],
+      "bulk_rule": "future"
+    },
+    "253": {
+      "move_id": 253,
+      "name": "소란피기",
+      "type": "normal",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 90,
+      "upgrade": {
+        "move_power": 105
+      },
+      "card_notes": [
+        "자기 소란3턴 · 양쪽 출전 수면 해제/방지 · 연속 사용 강제는 생략"
+      ],
+      "bulk_rule": "uproar"
+    },
+    "265": {
+      "move_id": 265,
+      "name": "정신차리기",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 70,
+      "upgrade": {
+        "move_power": 85
+      },
+      "card_notes": [
+        "대상의 해당 상태라면 위력2배 · 명중 후 상태 치료"
+      ],
+      "bulk_rule": "wake",
+      "condition_status": "paralysis"
+    },
+    "358": {
+      "move_id": 358,
+      "name": "잠깨움뺨치기",
+      "type": "fighting",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 70,
+      "upgrade": {
+        "move_power": 85
+      },
+      "card_notes": [
+        "대상의 해당 상태라면 위력2배 · 명중 후 상태 치료"
+      ],
+      "bulk_rule": "wake",
+      "condition_status": "sleep"
+    },
+    "279": {
+      "move_id": 279,
+      "name": "리벤지",
+      "type": "fighting",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 60,
+      "upgrade": {
+        "move_power": 75
+      },
+      "card_notes": [
+        "직전 상대 행동에 자신이 직접 피해를 받았으면 위력2배"
+      ],
+      "variable": "avalanche"
+    },
+    "280": {
+      "move_id": 280,
+      "name": "깨뜨리다",
+      "type": "fighting",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 75,
+      "upgrade": {
+        "move_power": 90
+      },
+      "card_notes": [
+        "피해 계산 전에 상대 빛의장막/리플렉터/오로라베일 제거"
+      ],
+      "bulk_rule": "break_screens"
+    },
+    "706": {
+      "move_id": 706,
+      "name": "사이코팽",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 85,
+      "upgrade": {
+        "move_power": 100
+      },
+      "card_notes": [
+        "피해 계산 전에 상대 빛의장막/리플렉터/오로라베일 제거"
+      ],
+      "bulk_rule": "break_screens"
+    },
+    "290": {
+      "move_id": 290,
+      "name": "비밀의힘",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 70,
+      "upgrade": {
+        "move_power": 85
+      },
+      "card_notes": [
+        "현재 필드에 따라 마비/수면/특공 저하/공격 저하 · 필드 없으면 마비"
+      ],
+      "bulk_rule": "secret"
+    },
+    "343": {
+      "move_id": 343,
+      "name": "탐내다",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 60,
+      "upgrade": {
+        "move_power": 75
+      },
+      "card_notes": [
+        "명중 후 상대 소지품 제거 · 소유권 복구는 기존 전투 규칙"
+      ],
+      "special": "thief"
+    },
+    "363": {
+      "move_id": 363,
+      "name": "자연의은혜",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 40,
+      "upgrade": {
+        "move_power": 55
+      },
+      "card_notes": [
+        "자신의 나무열매별 위력/타입으로 공격 후 영구 소모"
+      ],
+      "bulk_rule": "gift"
+    },
+    "365": {
+      "move_id": 365,
+      "name": "쪼아대기",
+      "type": "flying",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 60,
+      "upgrade": {
+        "move_power": 75
+      },
+      "card_notes": [
+        "명중 시 상대 나무열매를 먹고 효과를 자신에게 적용 · 원래 물건 영구 소모"
+      ],
+      "bulk_rule": "eat"
+    },
+    "450": {
+      "move_id": 450,
+      "name": "벌레먹기",
+      "type": "bug",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 60,
+      "upgrade": {
+        "move_power": 75
+      },
+      "card_notes": [
+        "명중 시 상대 나무열매를 먹고 효과를 자신에게 적용 · 원래 물건 영구 소모"
+      ],
+      "bulk_rule": "eat"
+    },
+    "387": {
+      "move_id": 387,
+      "name": "비장의무기",
+      "type": "normal",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 140,
+      "upgrade": {
+        "move_power": 155
+      },
+      "card_notes": [
+        "자신의 다른 습득 기술을 이 전투에서 모두 사용한 뒤 사용 가능"
+      ],
+      "bulk_rule": "last_resort"
+    },
+    "449": {
+      "move_id": 449,
+      "name": "심판의뭉치",
+      "type": "normal",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 100,
+      "upgrade": {
+        "move_power": 115
+      },
+      "card_notes": [
+        "지원하는 타입 강화 소지품이 있으면 해당 타입 · 없으면 원래 타입"
+      ],
+      "bulk_rule": "item_type"
+    },
+    "546": {
+      "move_id": 546,
+      "name": "테크노버스터",
+      "type": "normal",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 120,
+      "upgrade": {
+        "move_power": 135
+      },
+      "card_notes": [
+        "지원하는 타입 강화 소지품이 있으면 해당 타입 · 없으면 원래 타입"
+      ],
+      "bulk_rule": "item_type"
+    },
+    "718": {
+      "move_id": 718,
+      "name": "멀티어택",
+      "type": "normal",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 120,
+      "upgrade": {
+        "move_power": 135
+      },
+      "card_notes": [
+        "지원하는 타입 강화 소지품이 있으면 해당 타입 · 없으면 원래 타입"
+      ],
+      "bulk_rule": "item_type"
+    },
+    "473": {
+      "move_id": 473,
+      "name": "사이코쇼크",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 80,
+      "upgrade": {
+        "move_power": 95
+      },
+      "card_notes": [
+        "특수 공격력으로 상대 물리 방어를 계산 · 특수 기술 분류 유지"
+      ],
+      "defense_stat": "defense"
+    },
+    "540": {
+      "move_id": 540,
+      "name": "사이코브레이크",
+      "type": "psychic",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 100,
+      "upgrade": {
+        "move_power": 115
+      },
+      "card_notes": [
+        "특수 공격력으로 상대 물리 방어를 계산 · 특수 기술 분류 유지"
+      ],
+      "defense_stat": "defense"
+    },
+    "548": {
+      "move_id": 548,
+      "name": "신비의칼",
+      "type": "fighting",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 85,
+      "upgrade": {
+        "move_power": 100
+      },
+      "card_notes": [
+        "특수 공격력으로 상대 물리 방어를 계산 · 특수 기술 분류 유지"
+      ],
+      "defense_stat": "defense"
+    },
+    "474": {
+      "move_id": 474,
+      "name": "베놈쇼크",
+      "type": "poison",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 65,
+      "upgrade": {
+        "move_power": 80
+      },
+      "card_notes": [
+        "상대가 독이면 위력2배"
+      ],
+      "bulk_rule": "poison_double"
+    },
+    "485": {
+      "move_id": 485,
+      "name": "싱크로노이즈",
+      "type": "psychic",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 120,
+      "upgrade": {
+        "move_power": 135
+      },
+      "card_notes": [
+        "자신과 같은 타입을 하나 이상 가진 상대에게만 명중"
+      ],
+      "bulk_rule": "shared_type"
+    },
+    "496": {
+      "move_id": 496,
+      "name": "돌림노래",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 60,
+      "upgrade": {
+        "move_power": 75
+      },
+      "card_notes": [
+        "이번 턴 이미 다른 동료가 돌림노래를 썼으면 위력2배"
+      ],
+      "bulk_rule": "round"
+    },
+    "507": {
+      "move_id": 507,
+      "name": "프리폴",
+      "type": "flying",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 60,
+      "upgrade": {
+        "move_power": 75
+      },
+      "card_notes": [
+        "200kg 이상/비행 상대 실패 · 동시 들어올리기 대신 명중 후 이번 상대 직접 피해½"
+      ],
+      "bulk_rule": "sky_drop"
+    },
+    "510": {
+      "move_id": 510,
+      "name": "불태우기",
+      "type": "fire",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 60,
+      "upgrade": {
+        "move_power": 75
+      },
+      "card_notes": [
+        "명중 시 상대 나무열매를 태워 영구 소모 · 열매 효과는 발동하지 않음"
+      ],
+      "bulk_rule": "incinerate"
+    },
+    "518": {
+      "move_id": 518,
+      "name": "물의맹세",
+      "type": "water",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 80,
+      "upgrade": {
+        "move_power": 95
+      },
+      "card_notes": [
+        "같은 턴 다른 동료의 다른 맹세와 조합하면 위력2배 · 두 기술에 따라 습지/불바다/무지개4턴"
+      ],
+      "bulk_rule": "pledge"
+    },
+    "519": {
+      "move_id": 519,
+      "name": "불꽃의맹세",
+      "type": "fire",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 80,
+      "upgrade": {
+        "move_power": 95
+      },
+      "card_notes": [
+        "같은 턴 다른 동료의 다른 맹세와 조합하면 위력2배 · 두 기술에 따라 습지/불바다/무지개4턴"
+      ],
+      "bulk_rule": "pledge"
+    },
+    "520": {
+      "move_id": 520,
+      "name": "풀의맹세",
+      "type": "grass",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 80,
+      "upgrade": {
+        "move_power": 95
+      },
+      "card_notes": [
+        "같은 턴 다른 동료의 다른 맹세와 조합하면 위력2배 · 두 기술에 따라 습지/불바다/무지개4턴"
+      ],
+      "bulk_rule": "pledge"
+    },
+    "558": {
+      "move_id": 558,
+      "name": "크로스플레임",
+      "type": "fire",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 100,
+      "upgrade": {
+        "move_power": 115
+      },
+      "card_notes": [
+        "이번 턴 앞서 반대 크로스 기술을 사용했다면 위력2배"
+      ],
+      "bulk_rule": "fusion",
+      "partner": 559
+    },
+    "559": {
+      "move_id": 559,
+      "name": "크로스썬더",
+      "type": "electric",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 100,
+      "upgrade": {
+        "move_power": 115
+      },
+      "card_notes": [
+        "이번 턴 앞서 반대 크로스 기술을 사용했다면 위력2배"
+      ],
+      "bulk_rule": "fusion",
+      "partner": 558
+    },
+    "560": {
+      "move_id": 560,
+      "name": "플라잉프레스",
+      "type": "fighting",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 100,
+      "upgrade": {
+        "move_power": 115
+      },
+      "card_notes": [
+        "격투와 비행 상성을 곱해 계산 · 격투 타입 자속 유지"
+      ],
+      "bulk_rule": "flying_press"
+    },
+    "562": {
+      "move_id": 562,
+      "name": "트림",
+      "type": "poison",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 120,
+      "upgrade": {
+        "move_power": 135
+      },
+      "card_notes": [
+        "이번 전투에 자신이 나무열매를 소모한 뒤에만 사용 가능"
+      ],
+      "bulk_rule": "belch"
+    },
+    "565": {
+      "move_id": 565,
+      "name": "마지막일침",
+      "type": "bug",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 50,
+      "upgrade": {
+        "move_power": 65
+      },
+      "card_notes": [
+        "이 공격으로 상대를 쓰러뜨리면 공격+3"
+      ],
+      "bulk_rule": "fell"
+    },
+    "662": {
+      "move_id": 662,
+      "name": "그림자꿰매기",
+      "type": "ghost",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 80,
+      "upgrade": {
+        "move_power": 95
+      },
+      "card_notes": [
+        "명중 후 상대 자발 교대 봉쇄 · 시전자/대상 이탈·기절 시 해제"
+      ],
+      "bulk_rule": "lock"
+    },
+    "677": {
+      "move_id": 677,
+      "name": "앵커샷",
+      "type": "steel",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 80,
+      "upgrade": {
+        "move_power": 95
+      },
+      "card_notes": [
+        "명중 후 상대 자발 교대 봉쇄 · 시전자/대상 이탈·기절 시 해제"
+      ],
+      "bulk_rule": "lock"
+    },
+    "664": {
+      "move_id": 664,
+      "name": "물거품아리아",
+      "type": "water",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 90,
+      "upgrade": {
+        "move_power": 105
+      },
+      "card_notes": [
+        "명중 후 상대 화상 치료"
+      ],
+      "bulk_rule": "cure_burn"
+    },
+    "686": {
+      "move_id": 686,
+      "name": "잠재댄스",
+      "type": "normal",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 90,
+      "upgrade": {
+        "move_power": 105
+      },
+      "card_notes": [
+        "자신의 첫 타입으로 공격"
+      ],
+      "bulk_rule": "hidden"
+    },
+    "687": {
+      "move_id": 687,
+      "name": "코어퍼니셔",
+      "type": "dragon",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 100,
+      "upgrade": {
+        "move_power": 115
+      },
+      "card_notes": [
+        "특성 대신 명중 후 상대 양수 능력 단계 제거"
+      ],
+      "bulk_rule": "suppress"
+    },
+    "698": {
+      "move_id": 698,
+      "name": "알로라의수호자",
+      "type": "fairy",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 40,
+      "upgrade": {
+        "move_power": 55
+      },
+      "card_notes": [
+        "상대 현재HP의¾ 고정 피해 · 타입 무효/보호 적용"
+      ],
+      "bulk_rule": "guardian"
+    },
+    "703": {
+      "move_id": 703,
+      "name": "오리진즈슈퍼노바",
+      "type": "psychic",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 185,
+      "upgrade": {
+        "move_power": 200
+      },
+      "card_notes": [
+        "명중 후 사이코필드5턴"
+      ],
+      "bulk_rule": "terrain_psychic"
+    },
+    "704": {
+      "move_id": 704,
+      "name": "트랩셸",
+      "type": "fire",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 150,
+      "upgrade": {
+        "move_power": 165
+      },
+      "card_notes": [
+        "직전 상대 행동에 물리 직접 피해를 받은 경우에만 사용 가능"
+      ],
+      "bulk_rule": "shell_trap"
+    },
+    "707": {
+      "move_id": 707,
+      "name": "분함의발구르기",
+      "type": "ground",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 75,
+      "upgrade": {
+        "move_power": 90
+      },
+      "card_notes": [
+        "직전 자기 기술의 효과가 실패했으면 위력2배"
+      ],
+      "bulk_rule": "stomping"
+    },
+    "721": {
+      "move_id": 721,
+      "name": "플라스마피스트",
+      "type": "electric",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 100,
+      "upgrade": {
+        "move_power": 115
+      },
+      "card_notes": [
+        "명중 후 이번 턴 양쪽 노말 기술을 전기로 변환 · 발버둥 제외"
+      ],
+      "bulk_rule": "plasma"
+    },
+    "723": {
+      "move_id": 723,
+      "name": "하늘을태우는멸망의빛",
+      "type": "psychic",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 200,
+      "upgrade": {
+        "move_power": 215
+      },
+      "card_notes": [
+        "현재 보정된 공격/특공 중 높은 쪽으로 물리/특수 분류 선택"
+      ],
+      "bulk_rule": "higher_offense"
+    },
+    "727": {
+      "move_id": 727,
+      "name": "레이디얼에지스톰",
+      "type": "rock",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 190,
+      "upgrade": {
+        "move_power": 205
+      },
+      "card_notes": [
+        "명중 후 모든 필드 제거"
+      ],
+      "bulk_rule": "clear_terrain"
+    },
+    "757": {
+      "move_id": 757,
+      "name": "다이번",
+      "type": "fire",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 100,
+      "upgrade": {
+        "move_power": 115
+      },
+      "card_notes": [
+        "명중 후 해당 날씨5턴 · 다이맥스 변신 없이 카드 효과 적용"
+      ],
+      "bulk_rule": "max_weather",
+      "after_weather": "sun"
+    },
+    "763": {
+      "move_id": 763,
+      "name": "다이아이스",
+      "type": "ice",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 10,
+      "upgrade": {
+        "move_power": 25
+      },
+      "card_notes": [
+        "명중 후 해당 날씨5턴 · 다이맥스 변신 없이 카드 효과 적용"
+      ],
+      "bulk_rule": "max_weather",
+      "after_weather": "snow"
+    },
+    "765": {
+      "move_id": 765,
+      "name": "다이스트림",
+      "type": "water",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 10,
+      "upgrade": {
+        "move_power": 25
+      },
+      "card_notes": [
+        "명중 후 해당 날씨5턴 · 다이맥스 변신 없이 카드 효과 적용"
+      ],
+      "bulk_rule": "max_weather",
+      "after_weather": "rain"
+    },
+    "770": {
+      "move_id": 770,
+      "name": "다이록",
+      "type": "rock",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 10,
+      "upgrade": {
+        "move_power": 25
+      },
+      "card_notes": [
+        "명중 후 해당 날씨5턴 · 다이맥스 변신 없이 카드 효과 적용"
+      ],
+      "bulk_rule": "max_weather",
+      "after_weather": "sand"
+    },
+    "759": {
+      "move_id": 759,
+      "name": "다이썬더",
+      "type": "electric",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 10,
+      "upgrade": {
+        "move_power": 25
+      },
+      "card_notes": [
+        "명중 후 해당 필드5턴 · 다이맥스 변신 없이 카드 효과 적용"
+      ],
+      "bulk_rule": "max_terrain",
+      "after_terrain": "electric"
+    },
+    "767": {
+      "move_id": 767,
+      "name": "다이페어리",
+      "type": "fairy",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 10,
+      "upgrade": {
+        "move_power": 25
+      },
+      "card_notes": [
+        "명중 후 해당 필드5턴 · 다이맥스 변신 없이 카드 효과 적용"
+      ],
+      "bulk_rule": "max_terrain",
+      "after_terrain": "misty"
+    },
+    "769": {
+      "move_id": 769,
+      "name": "다이사이코",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 10,
+      "upgrade": {
+        "move_power": 25
+      },
+      "card_notes": [
+        "명중 후 해당 필드5턴 · 다이맥스 변신 없이 카드 효과 적용"
+      ],
+      "bulk_rule": "max_terrain",
+      "after_terrain": "psychic"
+    },
+    "773": {
+      "move_id": 773,
+      "name": "다이그래스",
+      "type": "grass",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 10,
+      "upgrade": {
+        "move_power": 25
+      },
+      "card_notes": [
+        "명중 후 해당 필드5턴 · 다이맥스 변신 없이 카드 효과 적용"
+      ],
+      "bulk_rule": "max_terrain",
+      "after_terrain": "grassy"
+    },
+    "758": {
+      "move_id": 758,
+      "name": "다이웜",
+      "type": "bug",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 10,
+      "upgrade": {
+        "move_power": 25
+      },
+      "card_notes": [
+        "명중 후 상대 능력-1"
+      ],
+      "bulk_rule": "max_drop",
+      "after_stat": "special_attack"
+    },
+    "760": {
+      "move_id": 760,
+      "name": "다이어택",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 10,
+      "upgrade": {
+        "move_power": 25
+      },
+      "card_notes": [
+        "명중 후 상대 능력-1"
+      ],
+      "bulk_rule": "max_drop",
+      "after_stat": "speed"
+    },
+    "761": {
+      "move_id": 761,
+      "name": "다이너클",
+      "type": "fighting",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 10,
+      "upgrade": {
+        "move_power": 25
+      },
+      "card_notes": [
+        "명중 후 아군 전원 능력+1"
+      ],
+      "bulk_rule": "party_stat",
+      "after_stat": "attack"
+    },
+    "762": {
+      "move_id": 762,
+      "name": "다이할로우",
+      "type": "ghost",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 10,
+      "upgrade": {
+        "move_power": 25
+      },
+      "card_notes": [
+        "명중 후 상대 능력-1"
+      ],
+      "bulk_rule": "max_drop",
+      "after_stat": "defense"
+    },
+    "764": {
+      "move_id": 764,
+      "name": "다이애시드",
+      "type": "poison",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 10,
+      "upgrade": {
+        "move_power": 25
+      },
+      "card_notes": [
+        "명중 후 아군 전원 능력+1"
+      ],
+      "bulk_rule": "party_stat",
+      "after_stat": "special_attack"
+    },
+    "766": {
+      "move_id": 766,
+      "name": "다이제트",
+      "type": "flying",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 10,
+      "upgrade": {
+        "move_power": 25
+      },
+      "card_notes": [
+        "명중 후 아군 전원 능력+1"
+      ],
+      "bulk_rule": "party_stat",
+      "after_stat": "speed"
+    },
+    "768": {
+      "move_id": 768,
+      "name": "다이드라군",
+      "type": "dragon",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 10,
+      "upgrade": {
+        "move_power": 25
+      },
+      "card_notes": [
+        "명중 후 상대 능력-1"
+      ],
+      "bulk_rule": "max_drop",
+      "after_stat": "attack"
+    },
+    "771": {
+      "move_id": 771,
+      "name": "다이어스",
+      "type": "ground",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 10,
+      "upgrade": {
+        "move_power": 25
+      },
+      "card_notes": [
+        "명중 후 아군 전원 능력+1"
+      ],
+      "bulk_rule": "party_stat",
+      "after_stat": "special_defense"
+    },
+    "772": {
+      "move_id": 772,
+      "name": "다이아크",
+      "type": "dark",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 10,
+      "upgrade": {
+        "move_power": 25
+      },
+      "card_notes": [
+        "명중 후 상대 능력-1"
+      ],
+      "bulk_rule": "max_drop",
+      "after_stat": "special_defense"
+    },
+    "774": {
+      "move_id": 774,
+      "name": "다이스틸",
+      "type": "steel",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 10,
+      "upgrade": {
+        "move_power": 25
+      },
+      "card_notes": [
+        "명중 후 아군 전원 능력+1"
+      ],
+      "bulk_rule": "party_stat",
+      "after_stat": "defense"
+    },
+    "754": {
+      "move_id": 754,
+      "name": "전격부리",
+      "type": "electric",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 85,
+      "upgrade": {
+        "move_power": 100
+      },
+      "card_notes": [
+        "현재 스피드가 상대보다 높으면 위력2배 · 순서 대신 스피드 조건"
+      ],
+      "bulk_rule": "faster"
+    },
+    "755": {
+      "move_id": 755,
+      "name": "아가미물기",
+      "type": "water",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 85,
+      "upgrade": {
+        "move_power": 100
+      },
+      "card_notes": [
+        "현재 스피드가 상대보다 높으면 위력2배 · 순서 대신 스피드 조건"
+      ],
+      "bulk_rule": "faster"
+    },
+    "808": {
+      "move_id": 808,
+      "name": "분풀이",
+      "type": "dark",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 75,
+      "upgrade": {
+        "move_power": 90
+      },
+      "card_notes": [
+        "현재 자신의 음수 능력 단계가 있으면 위력2배 · 원작 해당 턴 감소 조건 각색"
+      ],
+      "bulk_rule": "negative"
+    },
+    "809": {
+      "move_id": 809,
+      "name": "폴터가이스트",
+      "type": "ghost",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 110,
+      "upgrade": {
+        "move_power": 125
+      },
+      "card_notes": [
+        "상대가 소지품을 지니고 있어야 사용 가능 · 물건 무효 상태와 별개"
+      ],
+      "bulk_rule": "poltergeist"
+    },
+    "827": {
+      "move_id": 827,
+      "name": "페이탈클로",
+      "type": "poison",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 80,
+      "upgrade": {
+        "move_power": 95
+      },
+      "card_notes": [
+        "화상/독/마비 중 유효한 상태를 공개 순환으로 부여"
+      ],
+      "bulk_rule": "fatal"
+    },
+    "828": {
+      "move_id": 828,
+      "name": "배리어러시",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 70,
+      "upgrade": {
+        "move_power": 85
+      },
+      "card_notes": [
+        "공격 후 자신의 방어+1"
+      ],
+      "stat_changes": {
+        "defense": 1
+      },
+      "stat_target": "self"
+    },
+    "830": {
+      "move_id": 830,
+      "name": "암석액스",
+      "type": "rock",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 65,
+      "upgrade": {
+        "move_power": 80
+      },
+      "card_notes": [
+        "명중 후 스텔스록 설치"
+      ],
+      "extension": "rocks",
+      "high_crit": true
+    },
+    "831": {
+      "move_id": 831,
+      "name": "봄의폭풍",
+      "type": "fairy",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 100,
+      "upgrade": {
+        "move_power": 115
+      },
+      "card_notes": [
+        "공격 후 상대 공격-1"
+      ],
+      "stat_changes": {
+        "attack": -1
+      },
+      "stat_target": "enemy"
+    },
+    "832": {
+      "move_id": 832,
+      "name": "신비의힘",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 70,
+      "upgrade": {
+        "move_power": 85
+      },
+      "card_notes": [
+        "공격 후 자신의 특공+1"
+      ],
+      "stat_changes": {
+        "special_attack": 1
+      },
+      "stat_target": "self"
+    },
+    "833": {
+      "move_id": 833,
+      "name": "대격분",
+      "type": "fire",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 120,
+      "upgrade": {
+        "move_power": 135
+      },
+      "card_notes": [
+        "실제 HP 피해의⅓ 자기 반동"
+      ],
+      "drain_percent": -33
+    },
+    "834": {
+      "move_id": 834,
+      "name": "웨이브태클",
+      "type": "water",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 120,
+      "upgrade": {
+        "move_power": 135
+      },
+      "card_notes": [
+        "실제 HP 피해의⅓ 자기 반동"
+      ],
+      "drain_percent": -33
+    },
+    "835": {
+      "move_id": 835,
+      "name": "클로로블라스트",
+      "type": "grass",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 150,
+      "upgrade": {
+        "move_power": 165
+      },
+      "card_notes": [
+        "사용 후 자신 최대HP½ 반동 · 명중 여부와 무관"
+      ],
+      "bulk_rule": "chloroblast"
+    },
+    "836": {
+      "move_id": 836,
+      "name": "빙산바람",
+      "type": "ice",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 100,
+      "upgrade": {
+        "move_power": 115
+      },
+      "card_notes": [
+        "공격 후 상대 스피드-1"
+      ],
+      "stat_changes": {
+        "speed": -1
+      },
+      "stat_target": "enemy"
+    },
+    "839": {
+      "move_id": 839,
+      "name": "독침천발",
+      "type": "poison",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 60,
+      "upgrade": {
+        "move_power": 75
+      },
+      "card_notes": [
+        "상대 상태이상 시 위력2배 · 독3회 부여"
+      ],
+      "variable": "hex",
+      "poison": 3
+    },
+    "844": {
+      "move_id": 844,
+      "name": "백귀야행",
+      "type": "ghost",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 60,
+      "upgrade": {
+        "move_power": 75
+      },
+      "card_notes": [
+        "상대 상태이상 시 위력2배 · 독3회 부여"
+      ],
+      "variable": "hex",
+      "poison": 3
+    },
+    "840": {
+      "move_id": 840,
+      "name": "오라윙",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 80,
+      "upgrade": {
+        "move_power": 95
+      },
+      "card_notes": [
+        "확률 대신 공격 후 자신의 공격/특공 중 높은 쪽+1"
+      ],
+      "bulk_rule": "esper"
+    },
+    "841": {
+      "move_id": 841,
+      "name": "천추지한",
+      "type": "ghost",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 75,
+      "upgrade": {
+        "move_power": 90
+      },
+      "card_notes": [
+        "공격 후 상대 특방-1"
+      ],
+      "stat_changes": {
+        "special_defense": -1
+      },
+      "stat_target": "enemy"
+    },
+    "843": {
+      "move_id": 843,
+      "name": "3연화살",
+      "type": "fighting",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 90,
+      "upgrade": {
+        "move_power": 105
+      },
+      "card_notes": [
+        "높은 급소율·상대 방어-1·풀죽음 대신 피해 경감"
+      ],
+      "high_crit": true,
+      "pressure_down": true,
+      "stat_changes": {
+        "defense": -1
+      },
+      "stat_target": "enemy"
+    },
+    "845": {
+      "move_id": 845,
+      "name": "비검천중파",
+      "type": "dark",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 65,
+      "upgrade": {
+        "move_power": 80
+      },
+      "card_notes": [
+        "명중 후 압정 설치"
+      ],
+      "extension": "spikes"
+    },
+    "846": {
+      "move_id": 846,
+      "name": "찬바람폭풍",
+      "type": "flying",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 100,
+      "upgrade": {
+        "move_power": 115
+      },
+      "card_notes": [
+        "공격 후 상대 스피드-1"
+      ],
+      "stat_changes": {
+        "speed": -1
+      },
+      "stat_target": "enemy"
+    },
+    "847": {
+      "move_id": 847,
+      "name": "번개폭풍",
+      "type": "electric",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 100,
+      "upgrade": {
+        "move_power": 115
+      },
+      "card_notes": [
+        "명중 후 마비3회"
+      ],
+      "paralysis": 3
+    },
+    "848": {
+      "move_id": 848,
+      "name": "열사의폭풍",
+      "type": "ground",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 100,
+      "upgrade": {
+        "move_power": 115
+      },
+      "card_notes": [
+        "명중 후 화상3회"
+      ],
+      "burn": 3
+    },
+    "852": {
+      "move_id": 852,
+      "name": "스레드트랩",
+      "type": "bug",
+      "cost": 1,
+      "damage_class": "status",
+      "card_notes": [
+        "이번 상대 행동 보호 · 접촉 기술 사용자는 스피드-1"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "guard": "protect",
+      "bulk_rule": "silk"
+    },
+    "853": {
+      "move_id": 853,
+      "name": "발꿈치찍기",
+      "type": "fighting",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 120,
+      "upgrade": {
+        "move_power": 135
+      },
+      "card_notes": [
+        "풀죽음 대신 이번 상대 공격 피해20% 감소 · 명중 추첨 없음"
+      ],
+      "pressure_down": true
+    },
+    "854": {
+      "move_id": 854,
+      "name": "성묘",
+      "type": "ghost",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 50,
+      "upgrade": {
+        "move_power": 65
+      },
+      "card_notes": [
+        "이번 전투에 기절한 아군 수마다 위력+50 · 현재 기절 상태 기준/최대150 추가"
+      ],
+      "bulk_rule": "last_respects"
+    },
+    "856": {
+      "move_id": 856,
+      "name": "한판내기",
+      "type": "dragon",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 80,
+      "upgrade": {
+        "move_power": 95
+      },
+      "card_notes": [
+        "물속 상대에게도 명중 · 2배 위력 · 삼키기/싸리용은 별도 구현하지 않음"
+      ],
+      "bulk_rule": "order"
+    },
+    "864": {
+      "move_id": 864,
+      "name": "소금절이",
+      "type": "rock",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 40,
+      "upgrade": {
+        "move_power": 55
+      },
+      "card_notes": [
+        "매 상대 행동 뒤 대상 최대HP⅛ 지속 피해 · 물/강철은¼ · 이탈/기절 시 해제"
+      ],
+      "bulk_rule": "salt"
+    },
+    "865": {
+      "move_id": 865,
+      "name": "트리플다이브",
+      "type": "water",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 30,
+      "upgrade": {
+        "move_power": 45
+      },
+      "card_notes": [
+        "같은 상대에게 개별3타 · 강화는 타당 위력+15"
+      ],
+      "hit_weights": [
+        1,
+        1,
+        1
+      ]
+    },
+    "868": {
+      "move_id": 868,
+      "name": "제살깎기",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "stat_changes": {
+        "attack": 2,
+        "special_attack": 2,
+        "speed": 2
+      },
+      "stat_target": "self",
+      "card_notes": [
+        "자신 최대HP½를 소비한 뒤 공격/특공/스피드+2 · HP가 절반보다 많아야 사용"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "shed_tail_cost"
+    },
+    "869": {
+      "move_id": 869,
+      "name": "도각참",
+      "type": "dark",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 85,
+      "upgrade": {
+        "move_power": 100
+      },
+      "card_notes": [
+        "반드시 급소 · 방어 단계/공격 감소 무시"
+      ],
+      "critical": true
+    },
+    "873": {
+      "move_id": 873,
+      "name": "레이징불",
+      "type": "normal",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 90,
+      "upgrade": {
+        "move_power": 105
+      },
+      "card_notes": [
+        "종별 타입 결정 유지 · 상대 장막을 피해 전에 제거"
+      ],
+      "bulk_rule": "break_screens"
+    },
+    "875": {
+      "move_id": 875,
+      "name": "사이코블레이드",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 80,
+      "upgrade": {
+        "move_power": 95
+      },
+      "card_notes": [
+        "일렉트릭필드에서 접지한 자신 위력1.5배"
+      ],
+      "bulk_rule": "psyblade"
+    },
+    "878": {
+      "move_id": 878,
+      "name": "엑셀브레이크",
+      "type": "fighting",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 100,
+      "upgrade": {
+        "move_power": 115
+      },
+      "card_notes": [
+        "효과가 굉장하면 위력4/3배"
+      ],
+      "bulk_rule": "super"
+    },
+    "879": {
+      "move_id": 879,
+      "name": "라이트닝드라이브",
+      "type": "electric",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 100,
+      "upgrade": {
+        "move_power": 115
+      },
+      "card_notes": [
+        "효과가 굉장하면 위력4/3배"
+      ],
+      "bulk_rule": "super"
+    },
+    "882": {
+      "move_id": 882,
+      "name": "정리정돈",
+      "type": "normal",
+      "cost": 1,
+      "damage_class": "status",
+      "stat_changes": {
+        "attack": 1,
+        "speed": 1
+      },
+      "stat_target": "self",
+      "card_notes": [
+        "양쪽 설치/대타 제거 · 자신 공격/스피드+1 유지"
+      ],
+      "upgrade": {
+        "cost": 0
+      },
+      "bulk_rule": "tidy"
+    },
+    "887": {
+      "move_id": 887,
+      "name": "하이퍼드릴",
+      "type": "normal",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 100,
+      "upgrade": {
+        "move_power": 115
+      },
+      "card_notes": [
+        "보호를 관통하고 그 보호를 제거"
+      ],
+      "bulk_rule": "drill"
+    },
+    "888": {
+      "move_id": 888,
+      "name": "트윈빔",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 40,
+      "upgrade": {
+        "move_power": 55
+      },
+      "card_notes": [
+        "같은 상대에게 개별2타 · 강화는 타당 위력+15"
+      ],
+      "hit_weights": [
+        1,
+        1
+      ]
+    },
+    "891": {
+      "move_id": 891,
+      "name": "원념의칼",
+      "type": "fire",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 90,
+      "upgrade": {
+        "move_power": 105
+      },
+      "card_notes": [
+        "실제 HP 피해의½ 흡수 회복"
+      ],
+      "drain_percent": 50
+    },
+    "895": {
+      "move_id": 895,
+      "name": "아쿠아커터",
+      "type": "water",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 70,
+      "upgrade": {
+        "move_power": 85
+      },
+      "card_notes": [
+        "높은 급소율 · 추첨 대신 기존 급소 보정"
+      ],
+      "high_crit": true
+    },
+    "896": {
+      "move_id": 896,
+      "name": "번액셀",
+      "type": "fire",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 80,
+      "upgrade": {
+        "move_power": 95
+      },
+      "card_notes": [
+        "자동차 계열은 원작 부가효과를 카드 효과로 연결 · 확률 대신 확정/기존 각색"
+      ],
+      "burn": 3
+    },
+    "897": {
+      "move_id": 897,
+      "name": "다크액셀",
+      "type": "dark",
+      "cost": 1,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 80,
+      "upgrade": {
+        "move_power": 95
+      },
+      "card_notes": [
+        "자동차 계열은 원작 부가효과를 카드 효과로 연결 · 확률 대신 확정/기존 각색"
+      ],
+      "pressure_down": true
+    },
+    "898": {
+      "move_id": 898,
+      "name": "포이즌액셀",
+      "type": "poison",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 100,
+      "upgrade": {
+        "move_power": 115
+      },
+      "card_notes": [
+        "자동차 계열은 원작 부가효과를 카드 효과로 연결 · 확률 대신 확정/기존 각색"
+      ],
+      "poison": 3
+    },
+    "899": {
+      "move_id": 899,
+      "name": "파이트액셀",
+      "type": "fighting",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 100,
+      "upgrade": {
+        "move_power": 115
+      },
+      "card_notes": [
+        "자동차 계열은 원작 부가효과를 카드 효과로 연결 · 확률 대신 확정/기존 각색"
+      ],
+      "stat_changes": {
+        "defense": -1
+      },
+      "stat_target": "enemy"
+    },
+    "900": {
+      "move_id": 900,
+      "name": "매지컬액셀",
+      "type": "fairy",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 100,
+      "upgrade": {
+        "move_power": 115
+      },
+      "card_notes": [
+        "자동차 계열은 원작 부가효과를 카드 효과로 연결 · 확률 대신 확정/기존 각색"
+      ],
+      "confusion": 3
+    },
+    "901": {
+      "move_id": 901,
+      "name": "블러드문",
+      "type": "normal",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 140,
+      "upgrade": {
+        "move_power": 155
+      },
+      "card_notes": [
+        "자신이 이 기술을 쓴 직후에는 같은 기술 사용 불가 · 다른 기술/교대 후 가능"
+      ],
+      "bulk_rule": "bloodmoon"
+    },
+    "902": {
+      "move_id": 902,
+      "name": "휘적휘적포",
+      "type": "grass",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 80,
+      "upgrade": {
+        "move_power": 95
+      },
+      "card_notes": [
+        "실제 HP 피해의½ 회복 · 원작 낮은 확률 대신 매4회째 자신 최대HP⅓ 반동 추가"
+      ],
+      "drain_percent": 50,
+      "bulk_rule": "matcha"
+    },
+    "903": {
+      "move_id": 903,
+      "name": "시럽봄",
+      "type": "grass",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 60,
+      "upgrade": {
+        "move_power": 75
+      },
+      "card_notes": [
+        "이후3상대턴 종료마다 상대 스피드-1 · 즉시 감소는 하지 않음"
+      ],
+      "bulk_rule": "syrup"
+    },
+    "904": {
+      "move_id": 904,
+      "name": "덩굴방망이",
+      "type": "grass",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 100,
+      "upgrade": {
+        "move_power": 115
+      },
+      "card_notes": [
+        "종별 타입 결정 유지 · 높은 급소율"
+      ],
+      "high_crit": true
+    },
+    "906": {
+      "move_id": 906,
+      "name": "테라클러스터",
+      "type": "normal",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 120,
+      "upgrade": {
+        "move_power": 135
+      },
+      "card_notes": [
+        "전투 전용 테라폼 없이 원래 타입/위력120의 특수 공격 · 추가 폼 효과 없음"
+      ],
+      "bulk_rule": "plain"
+    },
+    "910": {
+      "move_id": 910,
+      "name": "파워풀에지",
+      "type": "rock",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 95,
+      "upgrade": {
+        "move_power": 110
+      },
+      "card_notes": [
+        "공격 후 상대 공격-1"
+      ],
+      "stat_changes": {
+        "attack": -1
+      },
+      "stat_target": "enemy"
+    },
+    "914": {
+      "move_id": 914,
+      "name": "매혹의보이스",
+      "type": "fairy",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 80,
+      "upgrade": {
+        "move_power": 95
+      },
+      "card_notes": [
+        "상대에게 양수 능력 단계가 있으면 혼란3회"
+      ],
+      "bulk_rule": "alluring"
+    },
+    "916": {
+      "move_id": 916,
+      "name": "썬더다이브",
+      "type": "electric",
+      "cost": 2,
+      "damage_class": "physical",
+      "damage": 1,
+      "move_power": 100,
+      "upgrade": {
+        "move_power": 115
+      },
+      "card_notes": [
+        "명중/빗나감 추첨 대신 확정 명중 · 보호/타입 무효로 실패하면 최대HP½ 충돌 피해"
+      ],
+      "bulk_rule": "crash"
+    },
+    "917": {
+      "move_id": 917,
+      "name": "사이코노이즈",
+      "type": "psychic",
+      "cost": 1,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 75,
+      "upgrade": {
+        "move_power": 90
+      },
+      "card_notes": [
+        "명중 후 상대 회복2턴 봉인"
+      ],
+      "bulk_rule": "noise"
+    },
+    "919": {
+      "move_id": 919,
+      "name": "악독사슬",
+      "type": "poison",
+      "cost": 2,
+      "damage_class": "special",
+      "damage": 1,
+      "move_power": 100,
+      "upgrade": {
+        "move_power": 115
+      },
+      "card_notes": [
+        "명중 후 독5회 · 별도 맹독 누적 대신 지속 시간으로 각색"
+      ],
+      "poison": 5
+    }
+  },
+  "audit": {
+    "1": {
+      "name": "막치기",
+      "mode": "standard"
+    },
+    "2": {
+      "name": "태권당수",
+      "mode": "signature"
+    },
+    "3": {
+      "name": "연속뺨치기",
+      "mode": "signature"
+    },
+    "4": {
+      "name": "연속펀치",
+      "mode": "signature"
+    },
+    "5": {
+      "name": "메가톤펀치",
+      "mode": "standard"
+    },
+    "6": {
+      "name": "고양이돈받기",
+      "mode": "standard"
+    },
+    "7": {
+      "name": "불꽃펀치",
+      "mode": "standard"
+    },
+    "8": {
+      "name": "냉동펀치",
+      "mode": "standard"
+    },
+    "9": {
+      "name": "번개펀치",
+      "mode": "standard"
+    },
+    "10": {
+      "name": "할퀴기",
+      "mode": "standard"
+    },
+    "11": {
+      "name": "찝기",
+      "mode": "standard"
+    },
+    "12": {
+      "name": "가위자르기",
+      "mode": "signature"
+    },
+    "13": {
+      "name": "칼바람",
+      "mode": "signature"
+    },
+    "14": {
+      "name": "칼춤",
+      "mode": "standard"
+    },
+    "15": {
+      "name": "풀베기",
+      "mode": "standard"
+    },
+    "16": {
+      "name": "바람일으키기",
+      "mode": "standard"
+    },
+    "17": {
+      "name": "날개치기",
+      "mode": "standard"
+    },
+    "18": {
+      "name": "날려버리기",
+      "mode": "signature"
+    },
+    "19": {
+      "name": "공중날기",
+      "mode": "signature"
+    },
+    "20": {
+      "name": "조이기",
+      "mode": "signature"
+    },
+    "21": {
+      "name": "힘껏치기",
+      "mode": "standard"
+    },
+    "22": {
+      "name": "덩굴채찍",
+      "mode": "standard"
+    },
+    "23": {
+      "name": "짓밟기",
+      "mode": "signature"
+    },
+    "24": {
+      "name": "두번차기",
+      "mode": "signature"
+    },
+    "25": {
+      "name": "메가톤킥",
+      "mode": "standard"
+    },
+    "26": {
+      "name": "점프킥",
+      "mode": "signature"
+    },
+    "27": {
+      "name": "돌려차기",
+      "mode": "signature"
+    },
+    "28": {
+      "name": "모래뿌리기",
+      "mode": "signature"
+    },
+    "29": {
+      "name": "박치기",
+      "mode": "signature"
+    },
+    "30": {
+      "name": "뿔찌르기",
+      "mode": "standard"
+    },
+    "31": {
+      "name": "마구찌르기",
+      "mode": "signature"
+    },
+    "32": {
+      "name": "뿔드릴",
+      "mode": "signature"
+    },
+    "33": {
+      "name": "몸통박치기",
+      "mode": "standard"
+    },
+    "34": {
+      "name": "누르기",
+      "mode": "standard"
+    },
+    "35": {
+      "name": "김밥말이",
+      "mode": "signature"
+    },
+    "36": {
+      "name": "돌진",
+      "mode": "signature"
+    },
+    "37": {
+      "name": "난동부리기",
+      "mode": "batch"
+    },
+    "38": {
+      "name": "이판사판태클",
+      "mode": "signature"
+    },
+    "39": {
+      "name": "꼬리흔들기",
+      "mode": "standard"
+    },
+    "40": {
+      "name": "독침",
+      "mode": "standard"
+    },
+    "41": {
+      "name": "더블니들",
+      "mode": "signature"
+    },
+    "42": {
+      "name": "바늘미사일",
+      "mode": "signature"
+    },
+    "43": {
+      "name": "째려보기",
+      "mode": "standard"
+    },
+    "44": {
+      "name": "물기",
+      "mode": "signature"
+    },
+    "45": {
+      "name": "울음소리",
+      "mode": "standard"
+    },
+    "46": {
+      "name": "울부짖기",
+      "mode": "signature"
+    },
+    "47": {
+      "name": "노래하기",
+      "mode": "standard"
+    },
+    "48": {
+      "name": "초음파",
+      "mode": "standard"
+    },
+    "49": {
+      "name": "소닉붐",
+      "mode": "signature"
+    },
+    "50": {
+      "name": "사슬묶기",
+      "mode": "signature"
+    },
+    "51": {
+      "name": "용해액",
+      "mode": "standard"
+    },
+    "52": {
+      "name": "불꽃세례",
+      "mode": "standard"
+    },
+    "53": {
+      "name": "화염방사",
+      "mode": "standard"
+    },
+    "54": {
+      "name": "흰안개",
+      "mode": "signature"
+    },
+    "55": {
+      "name": "물대포",
+      "mode": "standard"
+    },
+    "56": {
+      "name": "하이드로펌프",
+      "mode": "standard"
+    },
+    "57": {
+      "name": "파도타기",
+      "mode": "standard"
+    },
+    "58": {
+      "name": "냉동빔",
+      "mode": "standard"
+    },
+    "59": {
+      "name": "눈보라",
+      "mode": "standard"
+    },
+    "60": {
+      "name": "환상빔",
+      "mode": "standard"
+    },
+    "61": {
+      "name": "거품광선",
+      "mode": "standard"
+    },
+    "62": {
+      "name": "오로라빔",
+      "mode": "standard"
+    },
+    "63": {
+      "name": "파괴광선",
+      "mode": "signature"
+    },
+    "64": {
+      "name": "쪼기",
+      "mode": "standard"
+    },
+    "65": {
+      "name": "회전부리",
+      "mode": "standard"
+    },
+    "66": {
+      "name": "지옥의바퀴",
+      "mode": "signature"
+    },
+    "67": {
+      "name": "안다리걸기",
+      "mode": "signature"
+    },
+    "68": {
+      "name": "카운터",
+      "mode": "signature"
+    },
+    "69": {
+      "name": "지구던지기",
+      "mode": "signature"
+    },
+    "70": {
+      "name": "괴력",
+      "mode": "standard"
+    },
+    "71": {
+      "name": "흡수",
+      "mode": "signature"
+    },
+    "72": {
+      "name": "메가드레인",
+      "mode": "signature"
+    },
+    "73": {
+      "name": "씨뿌리기",
+      "mode": "standard"
+    },
+    "74": {
+      "name": "성장",
+      "mode": "standard"
+    },
+    "75": {
+      "name": "잎날가르기",
+      "mode": "signature"
+    },
+    "76": {
+      "name": "솔라빔",
+      "mode": "signature"
+    },
+    "77": {
+      "name": "독가루",
+      "mode": "standard"
+    },
+    "78": {
+      "name": "저리가루",
+      "mode": "standard"
+    },
+    "79": {
+      "name": "수면가루",
+      "mode": "standard"
+    },
+    "80": {
+      "name": "꽃잎댄스",
+      "mode": "batch"
+    },
+    "81": {
+      "name": "실뿜기",
+      "mode": "standard"
+    },
+    "82": {
+      "name": "용의분노",
+      "mode": "signature"
+    },
+    "83": {
+      "name": "회오리불꽃",
+      "mode": "signature"
+    },
+    "84": {
+      "name": "전기쇼크",
+      "mode": "standard"
+    },
+    "85": {
+      "name": "10만볼트",
+      "mode": "standard"
+    },
+    "86": {
+      "name": "전기자석파",
+      "mode": "standard"
+    },
+    "87": {
+      "name": "번개",
+      "mode": "standard"
+    },
+    "88": {
+      "name": "돌떨구기",
+      "mode": "standard"
+    },
+    "89": {
+      "name": "지진",
+      "mode": "standard"
+    },
+    "90": {
+      "name": "땅가르기",
+      "mode": "signature"
+    },
+    "91": {
+      "name": "구멍파기",
+      "mode": "signature"
+    },
+    "92": {
+      "name": "맹독",
+      "mode": "standard"
+    },
+    "93": {
+      "name": "염동력",
+      "mode": "standard"
+    },
+    "94": {
+      "name": "사이코키네시스",
+      "mode": "standard"
+    },
+    "95": {
+      "name": "최면술",
+      "mode": "standard"
+    },
+    "96": {
+      "name": "요가포즈",
+      "mode": "standard"
+    },
+    "97": {
+      "name": "고속이동",
+      "mode": "standard"
+    },
+    "98": {
+      "name": "전광석화",
+      "mode": "signature"
+    },
+    "99": {
+      "name": "분노",
+      "mode": "batch"
+    },
+    "100": {
+      "name": "순간이동",
+      "mode": "signature"
+    },
+    "101": {
+      "name": "나이트헤드",
+      "mode": "signature"
+    },
+    "102": {
+      "name": "흉내내기",
+      "mode": "signature"
+    },
+    "103": {
+      "name": "싫은소리",
+      "mode": "standard"
+    },
+    "104": {
+      "name": "그림자분신",
+      "mode": "standard"
+    },
+    "105": {
+      "name": "HP회복",
+      "mode": "signature"
+    },
+    "106": {
+      "name": "단단해지기",
+      "mode": "standard"
+    },
+    "107": {
+      "name": "작아지기",
+      "mode": "standard"
+    },
+    "108": {
+      "name": "연막",
+      "mode": "signature"
+    },
+    "109": {
+      "name": "이상한빛",
+      "mode": "standard"
+    },
+    "110": {
+      "name": "껍질에숨기",
+      "mode": "standard"
+    },
+    "111": {
+      "name": "웅크리기",
+      "mode": "standard"
+    },
+    "112": {
+      "name": "배리어",
+      "mode": "standard"
+    },
+    "113": {
+      "name": "빛의장막",
+      "mode": "signature"
+    },
+    "114": {
+      "name": "흑안개",
+      "mode": "signature"
+    },
+    "115": {
+      "name": "리플렉터",
+      "mode": "signature"
+    },
+    "116": {
+      "name": "기충전",
+      "mode": "signature"
+    },
+    "117": {
+      "name": "참기",
+      "mode": "signature"
+    },
+    "118": {
+      "name": "손가락흔들기",
+      "mode": "signature"
+    },
+    "119": {
+      "name": "따라하기",
+      "mode": "signature"
+    },
+    "120": {
+      "name": "자폭",
+      "mode": "signature"
+    },
+    "121": {
+      "name": "알폭탄",
+      "mode": "standard"
+    },
+    "122": {
+      "name": "핥기",
+      "mode": "standard"
+    },
+    "123": {
+      "name": "스모그",
+      "mode": "standard"
+    },
+    "124": {
+      "name": "오물공격",
+      "mode": "standard"
+    },
+    "125": {
+      "name": "뼈다귀치기",
+      "mode": "signature"
+    },
+    "126": {
+      "name": "불대문자",
+      "mode": "standard"
+    },
+    "127": {
+      "name": "폭포오르기",
+      "mode": "signature"
+    },
+    "128": {
+      "name": "껍질끼우기",
+      "mode": "batch"
+    },
+    "129": {
+      "name": "스피드스타",
+      "mode": "standard"
+    },
+    "130": {
+      "name": "로켓박치기",
+      "mode": "signature"
+    },
+    "131": {
+      "name": "가시대포",
+      "mode": "signature"
+    },
+    "132": {
+      "name": "휘감기",
+      "mode": "standard"
+    },
+    "133": {
+      "name": "망각술",
+      "mode": "standard"
+    },
+    "134": {
+      "name": "숟가락휘기",
+      "mode": "signature"
+    },
+    "135": {
+      "name": "알낳기",
+      "mode": "signature"
+    },
+    "136": {
+      "name": "무릎차기",
+      "mode": "signature"
+    },
+    "137": {
+      "name": "뱀눈초리",
+      "mode": "standard"
+    },
+    "138": {
+      "name": "꿈먹기",
+      "mode": "signature"
+    },
+    "139": {
+      "name": "독가스",
+      "mode": "standard"
+    },
+    "140": {
+      "name": "구슬던지기",
+      "mode": "signature"
+    },
+    "141": {
+      "name": "흡혈",
+      "mode": "signature"
+    },
+    "142": {
+      "name": "악마의키스",
+      "mode": "standard"
+    },
+    "143": {
+      "name": "불새",
+      "mode": "signature"
+    },
+    "144": {
+      "name": "변신",
+      "mode": "batch"
+    },
+    "145": {
+      "name": "거품",
+      "mode": "standard"
+    },
+    "146": {
+      "name": "잼잼펀치",
+      "mode": "standard"
+    },
+    "147": {
+      "name": "버섯포자",
+      "mode": "standard"
+    },
+    "148": {
+      "name": "플래시",
+      "mode": "signature"
+    },
+    "149": {
+      "name": "사이코웨이브",
+      "mode": "signature"
+    },
+    "150": {
+      "name": "튀어오르기",
+      "mode": "standard"
+    },
+    "151": {
+      "name": "녹기",
+      "mode": "standard"
+    },
+    "152": {
+      "name": "집게해머",
+      "mode": "signature"
+    },
+    "153": {
+      "name": "대폭발",
+      "mode": "signature"
+    },
+    "154": {
+      "name": "마구할퀴기",
+      "mode": "signature"
+    },
+    "155": {
+      "name": "뼈다귀부메랑",
+      "mode": "signature"
+    },
+    "156": {
+      "name": "잠자기",
+      "mode": "signature"
+    },
+    "157": {
+      "name": "스톤샤워",
+      "mode": "signature"
+    },
+    "158": {
+      "name": "필살앞니",
+      "mode": "signature"
+    },
+    "159": {
+      "name": "각지기",
+      "mode": "standard"
+    },
+    "160": {
+      "name": "텍스처",
+      "mode": "signature"
+    },
+    "161": {
+      "name": "트라이어택",
+      "mode": "batch"
+    },
+    "162": {
+      "name": "분노의앞니",
+      "mode": "signature"
+    },
+    "163": {
+      "name": "베어가르기",
+      "mode": "signature"
+    },
+    "164": {
+      "name": "대타출동",
+      "mode": "signature"
+    },
+    "165": {
+      "name": "발버둥",
+      "mode": "signature"
+    },
+    "166": {
+      "name": "스케치",
+      "mode": "signature"
+    },
+    "167": {
+      "name": "트리플킥",
+      "mode": "signature"
+    },
+    "168": {
+      "name": "도둑질",
+      "mode": "signature"
+    },
+    "169": {
+      "name": "거미집",
+      "mode": "signature"
+    },
+    "170": {
+      "name": "마음의눈",
+      "mode": "signature"
+    },
+    "171": {
+      "name": "악몽",
+      "mode": "signature"
+    },
+    "172": {
+      "name": "화염바퀴",
+      "mode": "standard"
+    },
+    "173": {
+      "name": "코골기",
+      "mode": "signature"
+    },
+    "174": {
+      "name": "저주",
+      "mode": "signature"
+    },
+    "175": {
+      "name": "바둥바둥",
+      "mode": "signature"
+    },
+    "176": {
+      "name": "텍스처2",
+      "mode": "signature"
+    },
+    "177": {
+      "name": "에어로블라스트",
+      "mode": "signature"
+    },
+    "178": {
+      "name": "목화포자",
+      "mode": "standard"
+    },
+    "179": {
+      "name": "기사회생",
+      "mode": "signature"
+    },
+    "180": {
+      "name": "원한",
+      "mode": "batch"
+    },
+    "181": {
+      "name": "눈싸라기",
+      "mode": "standard"
+    },
+    "182": {
+      "name": "방어",
+      "mode": "signature"
+    },
+    "183": {
+      "name": "마하펀치",
+      "mode": "signature"
+    },
+    "184": {
+      "name": "겁나는얼굴",
+      "mode": "standard"
+    },
+    "185": {
+      "name": "속여때리기",
+      "mode": "standard"
+    },
+    "186": {
+      "name": "천사의키스",
+      "mode": "standard"
+    },
+    "187": {
+      "name": "배북",
+      "mode": "signature"
+    },
+    "188": {
+      "name": "오물폭탄",
+      "mode": "standard"
+    },
+    "189": {
+      "name": "진흙뿌리기",
+      "mode": "signature"
+    },
+    "190": {
+      "name": "대포무노포",
+      "mode": "signature"
+    },
+    "191": {
+      "name": "압정뿌리기",
+      "mode": "signature"
+    },
+    "192": {
+      "name": "전자포",
+      "mode": "standard"
+    },
+    "193": {
+      "name": "꿰뚫어보기",
+      "mode": "signature"
+    },
+    "194": {
+      "name": "길동무",
+      "mode": "signature"
+    },
+    "195": {
+      "name": "멸망의노래",
+      "mode": "signature"
+    },
+    "196": {
+      "name": "얼어붙은바람",
+      "mode": "standard"
+    },
+    "197": {
+      "name": "판별",
+      "mode": "signature"
+    },
+    "198": {
+      "name": "본러시",
+      "mode": "signature"
+    },
+    "199": {
+      "name": "록온",
+      "mode": "signature"
+    },
+    "200": {
+      "name": "역린",
+      "mode": "batch"
+    },
+    "201": {
+      "name": "모래바람",
+      "mode": "standard"
+    },
+    "202": {
+      "name": "기가드레인",
+      "mode": "signature"
+    },
+    "203": {
+      "name": "버티기",
+      "mode": "signature"
+    },
+    "204": {
+      "name": "애교부리기",
+      "mode": "standard"
+    },
+    "205": {
+      "name": "구르기",
+      "mode": "signature"
+    },
+    "206": {
+      "name": "칼등치기",
+      "mode": "batch"
+    },
+    "207": {
+      "name": "뽐내기",
+      "mode": "standard"
+    },
+    "208": {
+      "name": "우유마시기",
+      "mode": "signature"
+    },
+    "209": {
+      "name": "스파크",
+      "mode": "standard"
+    },
+    "210": {
+      "name": "연속자르기",
+      "mode": "signature"
+    },
+    "211": {
+      "name": "강철날개",
+      "mode": "standard"
+    },
+    "212": {
+      "name": "검은눈빛",
+      "mode": "signature"
+    },
+    "213": {
+      "name": "헤롱헤롱",
+      "mode": "signature"
+    },
+    "214": {
+      "name": "잠꼬대",
+      "mode": "signature"
+    },
+    "215": {
+      "name": "치료방울",
+      "mode": "signature"
+    },
+    "216": {
+      "name": "은혜갚기",
+      "mode": "signature"
+    },
+    "217": {
+      "name": "프레젠트",
+      "mode": "batch"
+    },
+    "218": {
+      "name": "화풀이",
+      "mode": "signature"
+    },
+    "219": {
+      "name": "신비의부적",
+      "mode": "signature"
+    },
+    "220": {
+      "name": "아픔나누기",
+      "mode": "signature"
+    },
+    "221": {
+      "name": "성스러운불꽃",
+      "mode": "standard"
+    },
+    "222": {
+      "name": "매그니튜드",
+      "mode": "signature"
+    },
+    "223": {
+      "name": "폭발펀치",
+      "mode": "standard"
+    },
+    "224": {
+      "name": "메가혼",
+      "mode": "standard"
+    },
+    "225": {
+      "name": "용의숨결",
+      "mode": "standard"
+    },
+    "226": {
+      "name": "배턴터치",
+      "mode": "signature"
+    },
+    "227": {
+      "name": "앙코르",
+      "mode": "signature"
+    },
+    "228": {
+      "name": "따라가때리기",
+      "mode": "standard"
+    },
+    "229": {
+      "name": "고속스핀",
+      "mode": "signature"
+    },
+    "230": {
+      "name": "달콤한향기",
+      "mode": "batch"
+    },
+    "231": {
+      "name": "아이언테일",
+      "mode": "standard"
+    },
+    "232": {
+      "name": "메탈클로",
+      "mode": "standard"
+    },
+    "233": {
+      "name": "받아던지기",
+      "mode": "standard"
+    },
+    "234": {
+      "name": "아침햇살",
+      "mode": "signature"
+    },
+    "235": {
+      "name": "광합성",
+      "mode": "signature"
+    },
+    "236": {
+      "name": "달빛",
+      "mode": "signature"
+    },
+    "237": {
+      "name": "잠재파워",
+      "mode": "batch"
+    },
+    "238": {
+      "name": "크로스촙",
+      "mode": "signature"
+    },
+    "239": {
+      "name": "회오리",
+      "mode": "signature"
+    },
+    "240": {
+      "name": "비바라기",
+      "mode": "standard"
+    },
+    "241": {
+      "name": "쾌청",
+      "mode": "standard"
+    },
+    "242": {
+      "name": "깨물어부수기",
+      "mode": "standard"
+    },
+    "243": {
+      "name": "미러코트",
+      "mode": "signature"
+    },
+    "244": {
+      "name": "자기암시",
+      "mode": "signature"
+    },
+    "245": {
+      "name": "신속",
+      "mode": "signature"
+    },
+    "246": {
+      "name": "원시의힘",
+      "mode": "standard"
+    },
+    "247": {
+      "name": "섀도볼",
+      "mode": "standard"
+    },
+    "248": {
+      "name": "미래예지",
+      "mode": "batch"
+    },
+    "249": {
+      "name": "바위깨기",
+      "mode": "standard"
+    },
+    "250": {
+      "name": "바다회오리",
+      "mode": "signature"
+    },
+    "251": {
+      "name": "집단구타",
+      "mode": "signature"
+    },
+    "252": {
+      "name": "속이기",
+      "mode": "signature"
+    },
+    "253": {
+      "name": "소란피기",
+      "mode": "batch"
+    },
+    "254": {
+      "name": "비축하기",
+      "mode": "signature"
+    },
+    "255": {
+      "name": "토해내기",
+      "mode": "signature"
+    },
+    "256": {
+      "name": "꿀꺽",
+      "mode": "signature"
+    },
+    "257": {
+      "name": "열풍",
+      "mode": "standard"
+    },
+    "258": {
+      "name": "싸라기눈",
+      "mode": "standard"
+    },
+    "259": {
+      "name": "트집",
+      "mode": "signature"
+    },
+    "260": {
+      "name": "부추기기",
+      "mode": "standard"
+    },
+    "261": {
+      "name": "도깨비불",
+      "mode": "standard"
+    },
+    "262": {
+      "name": "추억의선물",
+      "mode": "signature"
+    },
+    "263": {
+      "name": "객기",
+      "mode": "signature"
+    },
+    "264": {
+      "name": "힘껏펀치",
+      "mode": "signature"
+    },
+    "265": {
+      "name": "정신차리기",
+      "mode": "batch"
+    },
+    "266": {
+      "name": "날따름",
+      "mode": "batch"
+    },
+    "267": {
+      "name": "자연의힘",
+      "mode": "signature"
+    },
+    "268": {
+      "name": "충전",
+      "mode": "standard"
+    },
+    "269": {
+      "name": "도발",
+      "mode": "signature"
+    },
+    "270": {
+      "name": "도우미",
+      "mode": "signature"
+    },
+    "271": {
+      "name": "트릭",
+      "mode": "signature"
+    },
+    "272": {
+      "name": "역할",
+      "mode": "batch"
+    },
+    "273": {
+      "name": "희망사항",
+      "mode": "signature"
+    },
+    "274": {
+      "name": "조수",
+      "mode": "signature"
+    },
+    "275": {
+      "name": "뿌리박기",
+      "mode": "signature"
+    },
+    "276": {
+      "name": "엄청난힘",
+      "mode": "signature"
+    },
+    "277": {
+      "name": "매직코트",
+      "mode": "batch"
+    },
+    "278": {
+      "name": "리사이클",
+      "mode": "signature"
+    },
+    "279": {
+      "name": "리벤지",
+      "mode": "batch"
+    },
+    "280": {
+      "name": "깨뜨리다",
+      "mode": "batch"
+    },
+    "281": {
+      "name": "하품",
+      "mode": "signature"
+    },
+    "282": {
+      "name": "탁쳐서떨구기",
+      "mode": "signature"
+    },
+    "283": {
+      "name": "죽기살기",
+      "mode": "signature"
+    },
+    "284": {
+      "name": "분화",
+      "mode": "signature"
+    },
+    "285": {
+      "name": "스킬스왑",
+      "mode": "batch"
+    },
+    "286": {
+      "name": "봉인",
+      "mode": "batch"
+    },
+    "287": {
+      "name": "리프레시",
+      "mode": "signature"
+    },
+    "288": {
+      "name": "원념",
+      "mode": "batch"
+    },
+    "289": {
+      "name": "가로채기",
+      "mode": "batch"
+    },
+    "290": {
+      "name": "비밀의힘",
+      "mode": "batch"
+    },
+    "291": {
+      "name": "다이빙",
+      "mode": "signature"
+    },
+    "292": {
+      "name": "손바닥치기",
+      "mode": "signature"
+    },
+    "293": {
+      "name": "보호색",
+      "mode": "signature"
+    },
+    "294": {
+      "name": "반딧불",
+      "mode": "standard"
+    },
+    "295": {
+      "name": "러스터퍼지",
+      "mode": "standard"
+    },
+    "296": {
+      "name": "미스트볼",
+      "mode": "standard"
+    },
+    "297": {
+      "name": "깃털댄스",
+      "mode": "standard"
+    },
+    "298": {
+      "name": "흔들흔들댄스",
+      "mode": "standard"
+    },
+    "299": {
+      "name": "블레이즈킥",
+      "mode": "signature"
+    },
+    "300": {
+      "name": "흙놀이",
+      "mode": "signature"
+    },
+    "301": {
+      "name": "아이스볼",
+      "mode": "signature"
+    },
+    "302": {
+      "name": "바늘팔",
+      "mode": "signature"
+    },
+    "303": {
+      "name": "게으름피우기",
+      "mode": "signature"
+    },
+    "304": {
+      "name": "하이퍼보이스",
+      "mode": "standard"
+    },
+    "305": {
+      "name": "맹독엄니",
+      "mode": "standard"
+    },
+    "306": {
+      "name": "브레이크클로",
+      "mode": "standard"
+    },
+    "307": {
+      "name": "블라스트번",
+      "mode": "signature"
+    },
+    "308": {
+      "name": "하이드로캐논",
+      "mode": "signature"
+    },
+    "309": {
+      "name": "코멧펀치",
+      "mode": "standard"
+    },
+    "310": {
+      "name": "놀래키기",
+      "mode": "signature"
+    },
+    "311": {
+      "name": "웨더볼",
+      "mode": "signature"
+    },
+    "312": {
+      "name": "아로마테라피",
+      "mode": "signature"
+    },
+    "313": {
+      "name": "거짓울음",
+      "mode": "standard"
+    },
+    "314": {
+      "name": "에어커터",
+      "mode": "signature"
+    },
+    "315": {
+      "name": "오버히트",
+      "mode": "signature"
+    },
+    "316": {
+      "name": "냄새구별",
+      "mode": "signature"
+    },
+    "317": {
+      "name": "암석봉인",
+      "mode": "standard"
+    },
+    "318": {
+      "name": "은빛바람",
+      "mode": "standard"
+    },
+    "319": {
+      "name": "금속음",
+      "mode": "standard"
+    },
+    "320": {
+      "name": "풀피리",
+      "mode": "standard"
+    },
+    "321": {
+      "name": "간지르기",
+      "mode": "standard"
+    },
+    "322": {
+      "name": "코스믹파워",
+      "mode": "standard"
+    },
+    "323": {
+      "name": "해수스파우팅",
+      "mode": "signature"
+    },
+    "324": {
+      "name": "시그널빔",
+      "mode": "standard"
+    },
+    "325": {
+      "name": "섀도펀치",
+      "mode": "standard"
+    },
+    "326": {
+      "name": "신통력",
+      "mode": "signature"
+    },
+    "327": {
+      "name": "스카이어퍼",
+      "mode": "standard"
+    },
+    "328": {
+      "name": "모래지옥",
+      "mode": "signature"
+    },
+    "329": {
+      "name": "절대영도",
+      "mode": "signature"
+    },
+    "330": {
+      "name": "탁류",
+      "mode": "signature"
+    },
+    "331": {
+      "name": "씨기관총",
+      "mode": "signature"
+    },
+    "332": {
+      "name": "제비반환",
+      "mode": "standard"
+    },
+    "333": {
+      "name": "고드름침",
+      "mode": "signature"
+    },
+    "334": {
+      "name": "철벽",
+      "mode": "standard"
+    },
+    "335": {
+      "name": "블록",
+      "mode": "signature"
+    },
+    "336": {
+      "name": "멀리짖기",
+      "mode": "standard"
+    },
+    "337": {
+      "name": "드래곤클로",
+      "mode": "standard"
+    },
+    "338": {
+      "name": "하드플랜트",
+      "mode": "signature"
+    },
+    "339": {
+      "name": "벌크업",
+      "mode": "standard"
+    },
+    "340": {
+      "name": "뛰어오르기",
+      "mode": "signature"
+    },
+    "341": {
+      "name": "머드샷",
+      "mode": "standard"
+    },
+    "342": {
+      "name": "포이즌테일",
+      "mode": "signature"
+    },
+    "343": {
+      "name": "탐내다",
+      "mode": "batch"
+    },
+    "344": {
+      "name": "볼트태클",
+      "mode": "signature"
+    },
+    "345": {
+      "name": "매지컬리프",
+      "mode": "standard"
+    },
+    "346": {
+      "name": "물놀이",
+      "mode": "signature"
+    },
+    "347": {
+      "name": "명상",
+      "mode": "standard"
+    },
+    "348": {
+      "name": "리프블레이드",
+      "mode": "signature"
+    },
+    "349": {
+      "name": "용의춤",
+      "mode": "standard"
+    },
+    "350": {
+      "name": "록블라스트",
+      "mode": "signature"
+    },
+    "351": {
+      "name": "전격파",
+      "mode": "standard"
+    },
+    "352": {
+      "name": "물의파동",
+      "mode": "standard"
+    },
+    "353": {
+      "name": "파멸의소원",
+      "mode": "batch"
+    },
+    "354": {
+      "name": "사이코부스트",
+      "mode": "signature"
+    },
+    "355": {
+      "name": "날개쉬기",
+      "mode": "signature"
+    },
+    "356": {
+      "name": "중력",
+      "mode": "signature"
+    },
+    "357": {
+      "name": "미라클아이",
+      "mode": "signature"
+    },
+    "358": {
+      "name": "잠깨움뺨치기",
+      "mode": "batch"
+    },
+    "359": {
+      "name": "암해머",
+      "mode": "signature"
+    },
+    "360": {
+      "name": "자이로볼",
+      "mode": "signature"
+    },
+    "361": {
+      "name": "치유소원",
+      "mode": "signature"
+    },
+    "362": {
+      "name": "소금물",
+      "mode": "signature"
+    },
+    "363": {
+      "name": "자연의은혜",
+      "mode": "batch"
+    },
+    "364": {
+      "name": "페인트",
+      "mode": "signature"
+    },
+    "365": {
+      "name": "쪼아대기",
+      "mode": "batch"
+    },
+    "366": {
+      "name": "순풍",
+      "mode": "signature"
+    },
+    "367": {
+      "name": "경혈찌르기",
+      "mode": "signature"
+    },
+    "368": {
+      "name": "메탈버스트",
+      "mode": "signature"
+    },
+    "369": {
+      "name": "유턴",
+      "mode": "signature"
+    },
+    "370": {
+      "name": "인파이트",
+      "mode": "signature"
+    },
+    "371": {
+      "name": "보복",
+      "mode": "signature"
+    },
+    "372": {
+      "name": "승부굳히기",
+      "mode": "signature"
+    },
+    "373": {
+      "name": "금제",
+      "mode": "signature"
+    },
+    "374": {
+      "name": "내던지기",
+      "mode": "signature"
+    },
+    "375": {
+      "name": "사이코시프트",
+      "mode": "signature"
+    },
+    "376": {
+      "name": "마지막수단",
+      "mode": "signature"
+    },
+    "377": {
+      "name": "회복봉인",
+      "mode": "signature"
+    },
+    "378": {
+      "name": "쥐어짜기",
+      "mode": "signature"
+    },
+    "379": {
+      "name": "파워트릭",
+      "mode": "signature"
+    },
+    "380": {
+      "name": "위액",
+      "mode": "batch"
+    },
+    "381": {
+      "name": "주술",
+      "mode": "signature"
+    },
+    "382": {
+      "name": "선취",
+      "mode": "signature"
+    },
+    "383": {
+      "name": "흉내쟁이",
+      "mode": "signature"
+    },
+    "384": {
+      "name": "파워스왑",
+      "mode": "signature"
+    },
+    "385": {
+      "name": "가드스왑",
+      "mode": "signature"
+    },
+    "386": {
+      "name": "혼내기",
+      "mode": "signature"
+    },
+    "387": {
+      "name": "비장의무기",
+      "mode": "batch"
+    },
+    "388": {
+      "name": "고민씨",
+      "mode": "batch"
+    },
+    "389": {
+      "name": "기습",
+      "mode": "signature"
+    },
+    "390": {
+      "name": "독압정",
+      "mode": "signature"
+    },
+    "391": {
+      "name": "하트스왑",
+      "mode": "signature"
+    },
+    "392": {
+      "name": "아쿠아링",
+      "mode": "signature"
+    },
+    "393": {
+      "name": "전자부유",
+      "mode": "signature"
+    },
+    "394": {
+      "name": "플레어드라이브",
+      "mode": "signature"
+    },
+    "395": {
+      "name": "발경",
+      "mode": "standard"
+    },
+    "396": {
+      "name": "파동탄",
+      "mode": "standard"
+    },
+    "397": {
+      "name": "록커트",
+      "mode": "standard"
+    },
+    "398": {
+      "name": "독찌르기",
+      "mode": "standard"
+    },
+    "399": {
+      "name": "악의파동",
+      "mode": "signature"
+    },
+    "400": {
+      "name": "깜짝베기",
+      "mode": "signature"
+    },
+    "401": {
+      "name": "아쿠아테일",
+      "mode": "standard"
+    },
+    "402": {
+      "name": "씨폭탄",
+      "mode": "standard"
+    },
+    "403": {
+      "name": "에어슬래시",
+      "mode": "signature"
+    },
+    "404": {
+      "name": "시저크로스",
+      "mode": "standard"
+    },
+    "405": {
+      "name": "벌레의야단법석",
+      "mode": "standard"
+    },
+    "406": {
+      "name": "용의파동",
+      "mode": "standard"
+    },
+    "407": {
+      "name": "드래곤다이브",
+      "mode": "signature"
+    },
+    "408": {
+      "name": "파워젬",
+      "mode": "standard"
+    },
+    "409": {
+      "name": "드레인펀치",
+      "mode": "signature"
+    },
+    "410": {
+      "name": "진공파",
+      "mode": "signature"
+    },
+    "411": {
+      "name": "기합구슬",
+      "mode": "standard"
+    },
+    "412": {
+      "name": "에너지볼",
+      "mode": "standard"
+    },
+    "413": {
+      "name": "브레이브버드",
+      "mode": "signature"
+    },
+    "414": {
+      "name": "대지의힘",
+      "mode": "standard"
+    },
+    "415": {
+      "name": "바꿔치기",
+      "mode": "signature"
+    },
+    "416": {
+      "name": "기가임팩트",
+      "mode": "signature"
+    },
+    "417": {
+      "name": "나쁜음모",
+      "mode": "standard"
+    },
+    "418": {
+      "name": "불릿펀치",
+      "mode": "signature"
+    },
+    "419": {
+      "name": "눈사태",
+      "mode": "signature"
+    },
+    "420": {
+      "name": "얼음뭉치",
+      "mode": "signature"
+    },
+    "421": {
+      "name": "섀도클로",
+      "mode": "signature"
+    },
+    "422": {
+      "name": "번개엄니",
+      "mode": "signature"
+    },
+    "423": {
+      "name": "얼음엄니",
+      "mode": "signature"
+    },
+    "424": {
+      "name": "불꽃엄니",
+      "mode": "signature"
+    },
+    "425": {
+      "name": "야습",
+      "mode": "signature"
+    },
+    "426": {
+      "name": "진흙폭탄",
+      "mode": "signature"
+    },
+    "427": {
+      "name": "사이코커터",
+      "mode": "signature"
+    },
+    "428": {
+      "name": "사념의박치기",
+      "mode": "signature"
+    },
+    "429": {
+      "name": "미러샷",
+      "mode": "signature"
+    },
+    "430": {
+      "name": "러스터캐논",
+      "mode": "standard"
+    },
+    "431": {
+      "name": "록클라임",
+      "mode": "standard"
+    },
+    "432": {
+      "name": "안개제거",
+      "mode": "signature"
+    },
+    "433": {
+      "name": "트릭룸",
+      "mode": "signature"
+    },
+    "434": {
+      "name": "용성군",
+      "mode": "signature"
+    },
+    "435": {
+      "name": "방전",
+      "mode": "standard"
+    },
+    "436": {
+      "name": "분연",
+      "mode": "standard"
+    },
+    "437": {
+      "name": "리프스톰",
+      "mode": "signature"
+    },
+    "438": {
+      "name": "파워휩",
+      "mode": "standard"
+    },
+    "439": {
+      "name": "암석포",
+      "mode": "signature"
+    },
+    "440": {
+      "name": "크로스포이즌",
+      "mode": "signature"
+    },
+    "441": {
+      "name": "더스트슈트",
+      "mode": "standard"
+    },
+    "442": {
+      "name": "아이언헤드",
+      "mode": "signature"
+    },
+    "443": {
+      "name": "마그넷봄",
+      "mode": "standard"
+    },
+    "444": {
+      "name": "스톤에지",
+      "mode": "signature"
+    },
+    "445": {
+      "name": "유혹",
+      "mode": "standard"
+    },
+    "446": {
+      "name": "스텔스록",
+      "mode": "signature"
+    },
+    "447": {
+      "name": "풀묶기",
+      "mode": "signature"
+    },
+    "448": {
+      "name": "수다",
+      "mode": "standard"
+    },
+    "449": {
+      "name": "심판의뭉치",
+      "mode": "batch"
+    },
+    "450": {
+      "name": "벌레먹기",
+      "mode": "batch"
+    },
+    "451": {
+      "name": "차지빔",
+      "mode": "standard"
+    },
+    "452": {
+      "name": "우드해머",
+      "mode": "signature"
+    },
+    "453": {
+      "name": "아쿠아제트",
+      "mode": "signature"
+    },
+    "454": {
+      "name": "공격지령",
+      "mode": "signature"
+    },
+    "455": {
+      "name": "방어지령",
+      "mode": "standard"
+    },
+    "456": {
+      "name": "회복지령",
+      "mode": "signature"
+    },
+    "457": {
+      "name": "양날박치기",
+      "mode": "signature"
+    },
+    "458": {
+      "name": "더블어택",
+      "mode": "signature"
+    },
+    "459": {
+      "name": "시간의포효",
+      "mode": "signature"
+    },
+    "460": {
+      "name": "공간절단",
+      "mode": "signature"
+    },
+    "461": {
+      "name": "초승달춤",
+      "mode": "signature"
+    },
+    "462": {
+      "name": "묵사발",
+      "mode": "signature"
+    },
+    "463": {
+      "name": "마그마스톰",
+      "mode": "signature"
+    },
+    "464": {
+      "name": "다크홀",
+      "mode": "standard"
+    },
+    "465": {
+      "name": "시드플레어",
+      "mode": "standard"
+    },
+    "466": {
+      "name": "괴상한바람",
+      "mode": "standard"
+    },
+    "467": {
+      "name": "섀도다이브",
+      "mode": "signature"
+    },
+    "468": {
+      "name": "손톱갈기",
+      "mode": "standard"
+    },
+    "469": {
+      "name": "와이드가드",
+      "mode": "signature"
+    },
+    "470": {
+      "name": "가드셰어",
+      "mode": "signature"
+    },
+    "471": {
+      "name": "파워셰어",
+      "mode": "signature"
+    },
+    "472": {
+      "name": "원더룸",
+      "mode": "signature"
+    },
+    "473": {
+      "name": "사이코쇼크",
+      "mode": "batch"
+    },
+    "474": {
+      "name": "베놈쇼크",
+      "mode": "batch"
+    },
+    "475": {
+      "name": "바디퍼지",
+      "mode": "standard"
+    },
+    "476": {
+      "name": "분노가루",
+      "mode": "batch"
+    },
+    "477": {
+      "name": "텔레키네시스",
+      "mode": "signature"
+    },
+    "478": {
+      "name": "매직룸",
+      "mode": "signature"
+    },
+    "479": {
+      "name": "떨어뜨리기",
+      "mode": "standard"
+    },
+    "480": {
+      "name": "업어후리기",
+      "mode": "signature"
+    },
+    "481": {
+      "name": "불꽃튀기기",
+      "mode": "standard"
+    },
+    "482": {
+      "name": "오물웨이브",
+      "mode": "standard"
+    },
+    "483": {
+      "name": "나비춤",
+      "mode": "standard"
+    },
+    "484": {
+      "name": "헤비봄버",
+      "mode": "signature"
+    },
+    "485": {
+      "name": "싱크로노이즈",
+      "mode": "batch"
+    },
+    "486": {
+      "name": "일렉트릭볼",
+      "mode": "signature"
+    },
+    "487": {
+      "name": "물붓기",
+      "mode": "signature"
+    },
+    "488": {
+      "name": "니트로차지",
+      "mode": "standard"
+    },
+    "489": {
+      "name": "똬리틀기",
+      "mode": "standard"
+    },
+    "490": {
+      "name": "로킥",
+      "mode": "standard"
+    },
+    "491": {
+      "name": "애시드봄",
+      "mode": "standard"
+    },
+    "492": {
+      "name": "속임수",
+      "mode": "signature"
+    },
+    "493": {
+      "name": "심플빔",
+      "mode": "batch"
+    },
+    "494": {
+      "name": "동료만들기",
+      "mode": "batch"
+    },
+    "495": {
+      "name": "당신먼저",
+      "mode": "signature"
+    },
+    "496": {
+      "name": "돌림노래",
+      "mode": "batch"
+    },
+    "497": {
+      "name": "에코보이스",
+      "mode": "signature"
+    },
+    "498": {
+      "name": "야금야금",
+      "mode": "signature"
+    },
+    "499": {
+      "name": "클리어스모그",
+      "mode": "signature"
+    },
+    "500": {
+      "name": "어시스트파워",
+      "mode": "signature"
+    },
+    "501": {
+      "name": "패스트가드",
+      "mode": "signature"
+    },
+    "502": {
+      "name": "사이드체인지",
+      "mode": "batch"
+    },
+    "503": {
+      "name": "열탕",
+      "mode": "standard"
+    },
+    "504": {
+      "name": "껍질깨기",
+      "mode": "standard"
+    },
+    "505": {
+      "name": "치유파동",
+      "mode": "signature"
+    },
+    "506": {
+      "name": "병상첨병",
+      "mode": "signature"
+    },
+    "507": {
+      "name": "프리폴",
+      "mode": "batch"
+    },
+    "508": {
+      "name": "기어체인지",
+      "mode": "standard"
+    },
+    "509": {
+      "name": "배대뒤치기",
+      "mode": "signature"
+    },
+    "510": {
+      "name": "불태우기",
+      "mode": "batch"
+    },
+    "511": {
+      "name": "순서미루기",
+      "mode": "signature"
+    },
+    "512": {
+      "name": "애크러뱃",
+      "mode": "signature"
+    },
+    "513": {
+      "name": "미러타입",
+      "mode": "signature"
+    },
+    "514": {
+      "name": "원수갚기",
+      "mode": "signature"
+    },
+    "515": {
+      "name": "목숨걸기",
+      "mode": "signature"
+    },
+    "516": {
+      "name": "기프트패스",
+      "mode": "signature"
+    },
+    "517": {
+      "name": "연옥",
+      "mode": "standard"
+    },
+    "518": {
+      "name": "물의맹세",
+      "mode": "batch"
+    },
+    "519": {
+      "name": "불꽃의맹세",
+      "mode": "batch"
+    },
+    "520": {
+      "name": "풀의맹세",
+      "mode": "batch"
+    },
+    "521": {
+      "name": "볼트체인지",
+      "mode": "signature"
+    },
+    "522": {
+      "name": "벌레의저항",
+      "mode": "standard"
+    },
+    "523": {
+      "name": "땅고르기",
+      "mode": "standard"
+    },
+    "524": {
+      "name": "얼음숨결",
+      "mode": "signature"
+    },
+    "525": {
+      "name": "드래곤테일",
+      "mode": "signature"
+    },
+    "526": {
+      "name": "분발",
+      "mode": "standard"
+    },
+    "527": {
+      "name": "일렉트릭네트",
+      "mode": "standard"
+    },
+    "528": {
+      "name": "와일드볼트",
+      "mode": "signature"
+    },
+    "529": {
+      "name": "드릴라이너",
+      "mode": "signature"
+    },
+    "530": {
+      "name": "더블촙",
+      "mode": "signature"
+    },
+    "531": {
+      "name": "하트스탬프",
+      "mode": "signature"
+    },
+    "532": {
+      "name": "우드혼",
+      "mode": "signature"
+    },
+    "533": {
+      "name": "성스러운칼",
+      "mode": "signature"
+    },
+    "534": {
+      "name": "셸블레이드",
+      "mode": "standard"
+    },
+    "535": {
+      "name": "히트스탬프",
+      "mode": "signature"
+    },
+    "536": {
+      "name": "그래스믹서",
+      "mode": "signature"
+    },
+    "537": {
+      "name": "하드롤러",
+      "mode": "signature"
+    },
+    "538": {
+      "name": "코튼가드",
+      "mode": "standard"
+    },
+    "539": {
+      "name": "나이트버스트",
+      "mode": "signature"
+    },
+    "540": {
+      "name": "사이코브레이크",
+      "mode": "batch"
+    },
+    "541": {
+      "name": "스위프뺨치기",
+      "mode": "signature"
+    },
+    "542": {
+      "name": "폭풍",
+      "mode": "standard"
+    },
+    "543": {
+      "name": "아프로브레이크",
+      "mode": "signature"
+    },
+    "544": {
+      "name": "기어소서",
+      "mode": "signature"
+    },
+    "545": {
+      "name": "화염탄",
+      "mode": "standard"
+    },
+    "546": {
+      "name": "테크노버스터",
+      "mode": "batch"
+    },
+    "547": {
+      "name": "옛노래",
+      "mode": "standard"
+    },
+    "548": {
+      "name": "신비의칼",
+      "mode": "batch"
+    },
+    "549": {
+      "name": "얼어붙은세계",
+      "mode": "standard"
+    },
+    "550": {
+      "name": "뇌격",
+      "mode": "standard"
+    },
+    "551": {
+      "name": "푸른불꽃",
+      "mode": "standard"
+    },
+    "552": {
+      "name": "불꽃춤",
+      "mode": "standard"
+    },
+    "553": {
+      "name": "프리즈볼트",
+      "mode": "signature"
+    },
+    "554": {
+      "name": "콜드플레어",
+      "mode": "signature"
+    },
+    "555": {
+      "name": "바크아웃",
+      "mode": "standard"
+    },
+    "556": {
+      "name": "고드름떨구기",
+      "mode": "signature"
+    },
+    "557": {
+      "name": "V제너레이트",
+      "mode": "signature"
+    },
+    "558": {
+      "name": "크로스플레임",
+      "mode": "batch"
+    },
+    "559": {
+      "name": "크로스썬더",
+      "mode": "batch"
+    },
+    "560": {
+      "name": "플라잉프레스",
+      "mode": "batch"
+    },
+    "561": {
+      "name": "마룻바닥세워막기",
+      "mode": "batch"
+    },
+    "562": {
+      "name": "트림",
+      "mode": "batch"
+    },
+    "563": {
+      "name": "일구기",
+      "mode": "standard"
+    },
+    "564": {
+      "name": "끈적끈적네트",
+      "mode": "signature"
+    },
+    "565": {
+      "name": "마지막일침",
+      "mode": "batch"
+    },
+    "566": {
+      "name": "고스트다이브",
+      "mode": "signature"
+    },
+    "567": {
+      "name": "핼러윈",
+      "mode": "signature"
+    },
+    "568": {
+      "name": "부르짖기",
+      "mode": "standard"
+    },
+    "569": {
+      "name": "플라스마샤워",
+      "mode": "signature"
+    },
+    "570": {
+      "name": "파라볼라차지",
+      "mode": "signature"
+    },
+    "571": {
+      "name": "숲의저주",
+      "mode": "signature"
+    },
+    "572": {
+      "name": "꽃보라",
+      "mode": "standard"
+    },
+    "573": {
+      "name": "프리즈드라이",
+      "mode": "standard"
+    },
+    "574": {
+      "name": "차밍보이스",
+      "mode": "standard"
+    },
+    "575": {
+      "name": "막말내뱉기",
+      "mode": "signature"
+    },
+    "576": {
+      "name": "뒤집어엎기",
+      "mode": "signature"
+    },
+    "577": {
+      "name": "드레인키스",
+      "mode": "signature"
+    },
+    "578": {
+      "name": "트릭가드",
+      "mode": "signature"
+    },
+    "579": {
+      "name": "플라워가드",
+      "mode": "standard"
+    },
+    "580": {
+      "name": "그래스필드",
+      "mode": "signature"
+    },
+    "581": {
+      "name": "미스트필드",
+      "mode": "signature"
+    },
+    "582": {
+      "name": "송전",
+      "mode": "signature"
+    },
+    "583": {
+      "name": "치근거리기",
+      "mode": "standard"
+    },
+    "584": {
+      "name": "요정의바람",
+      "mode": "standard"
+    },
+    "585": {
+      "name": "문포스",
+      "mode": "standard"
+    },
+    "586": {
+      "name": "폭음파",
+      "mode": "standard"
+    },
+    "587": {
+      "name": "페어리록",
+      "mode": "signature"
+    },
+    "588": {
+      "name": "킹실드",
+      "mode": "signature"
+    },
+    "589": {
+      "name": "친해지기",
+      "mode": "standard"
+    },
+    "590": {
+      "name": "비밀이야기",
+      "mode": "standard"
+    },
+    "591": {
+      "name": "다이아스톰",
+      "mode": "standard"
+    },
+    "592": {
+      "name": "스팀버스트",
+      "mode": "standard"
+    },
+    "593": {
+      "name": "이차원홀",
+      "mode": "standard"
+    },
+    "594": {
+      "name": "물수리검",
+      "mode": "signature"
+    },
+    "595": {
+      "name": "매지컬플레임",
+      "mode": "standard"
+    },
+    "596": {
+      "name": "니들가드",
+      "mode": "signature"
+    },
+    "597": {
+      "name": "아로마미스트",
+      "mode": "standard"
+    },
+    "598": {
+      "name": "괴전파",
+      "mode": "standard"
+    },
+    "599": {
+      "name": "베놈트랩",
+      "mode": "standard"
+    },
+    "600": {
+      "name": "분진",
+      "mode": "signature"
+    },
+    "601": {
+      "name": "지오컨트롤",
+      "mode": "signature"
+    },
+    "602": {
+      "name": "자기장조작",
+      "mode": "standard"
+    },
+    "603": {
+      "name": "해피타임",
+      "mode": "batch"
+    },
+    "604": {
+      "name": "일렉트릭필드",
+      "mode": "signature"
+    },
+    "605": {
+      "name": "매지컬샤인",
+      "mode": "standard"
+    },
+    "606": {
+      "name": "축하",
+      "mode": "batch"
+    },
+    "607": {
+      "name": "손에손잡기",
+      "mode": "batch"
+    },
+    "608": {
+      "name": "초롱초롱눈동자",
+      "mode": "standard"
+    },
+    "609": {
+      "name": "볼부비부비",
+      "mode": "standard"
+    },
+    "610": {
+      "name": "적당히손봐주기",
+      "mode": "batch"
+    },
+    "611": {
+      "name": "엉겨붙기",
+      "mode": "signature"
+    },
+    "612": {
+      "name": "그로우펀치",
+      "mode": "standard"
+    },
+    "613": {
+      "name": "데스윙",
+      "mode": "signature"
+    },
+    "614": {
+      "name": "사우전드애로",
+      "mode": "signature"
+    },
+    "615": {
+      "name": "사우전드웨이브",
+      "mode": "signature"
+    },
+    "616": {
+      "name": "그라운드포스",
+      "mode": "standard"
+    },
+    "617": {
+      "name": "파멸의빛",
+      "mode": "signature"
+    },
+    "618": {
+      "name": "근원의파동",
+      "mode": "standard"
+    },
+    "619": {
+      "name": "단애의칼",
+      "mode": "standard"
+    },
+    "620": {
+      "name": "화룡점정",
+      "mode": "signature"
+    },
+    "621": {
+      "name": "이차원러시",
+      "mode": "signature"
+    },
+    "622": {
+      "name": "울트라대시어택",
+      "mode": "standard"
+    },
+    "623": {
+      "name": "울트라대시어택",
+      "mode": "standard"
+    },
+    "624": {
+      "name": "전력무쌍격렬권",
+      "mode": "standard"
+    },
+    "625": {
+      "name": "전력무쌍격렬권",
+      "mode": "standard"
+    },
+    "626": {
+      "name": "파이널다이브클래시",
+      "mode": "standard"
+    },
+    "627": {
+      "name": "파이널다이브클래시",
+      "mode": "standard"
+    },
+    "628": {
+      "name": "애시드포이즌딜리트",
+      "mode": "standard"
+    },
+    "629": {
+      "name": "애시드포이즌딜리트",
+      "mode": "standard"
+    },
+    "630": {
+      "name": "라이징랜드오버",
+      "mode": "standard"
+    },
+    "631": {
+      "name": "라이징랜드오버",
+      "mode": "standard"
+    },
+    "632": {
+      "name": "월즈엔드폴",
+      "mode": "standard"
+    },
+    "633": {
+      "name": "월즈엔드폴",
+      "mode": "standard"
+    },
+    "634": {
+      "name": "절대포식회전참",
+      "mode": "standard"
+    },
+    "635": {
+      "name": "절대포식회전참",
+      "mode": "standard"
+    },
+    "636": {
+      "name": "무한암야로의유인",
+      "mode": "standard"
+    },
+    "637": {
+      "name": "무한암야로의유인",
+      "mode": "standard"
+    },
+    "638": {
+      "name": "초월나선연격",
+      "mode": "standard"
+    },
+    "639": {
+      "name": "초월나선연격",
+      "mode": "standard"
+    },
+    "640": {
+      "name": "다이내믹풀플레임",
+      "mode": "standard"
+    },
+    "641": {
+      "name": "다이내믹풀플레임",
+      "mode": "standard"
+    },
+    "642": {
+      "name": "슈퍼아쿠아토네이도",
+      "mode": "standard"
+    },
+    "643": {
+      "name": "슈퍼아쿠아토네이도",
+      "mode": "standard"
+    },
+    "644": {
+      "name": "블룸샤인엑스트라",
+      "mode": "standard"
+    },
+    "645": {
+      "name": "블룸샤인엑스트라",
+      "mode": "standard"
+    },
+    "646": {
+      "name": "스파킹기가볼트",
+      "mode": "standard"
+    },
+    "647": {
+      "name": "스파킹기가볼트",
+      "mode": "standard"
+    },
+    "648": {
+      "name": "맥시멈사이브레이커",
+      "mode": "standard"
+    },
+    "649": {
+      "name": "맥시멈사이브레이커",
+      "mode": "standard"
+    },
+    "650": {
+      "name": "레이징지오프리즈",
+      "mode": "standard"
+    },
+    "651": {
+      "name": "레이징지오프리즈",
+      "mode": "standard"
+    },
+    "652": {
+      "name": "얼티메이트드래곤번",
+      "mode": "standard"
+    },
+    "653": {
+      "name": "얼티메이트드래곤번",
+      "mode": "standard"
+    },
+    "654": {
+      "name": "블랙홀이클립스",
+      "mode": "standard"
+    },
+    "655": {
+      "name": "블랙홀이클립스",
+      "mode": "standard"
+    },
+    "656": {
+      "name": "러블리스타임팩트",
+      "mode": "standard"
+    },
+    "657": {
+      "name": "러블리스타임팩트",
+      "mode": "standard"
+    },
+    "658": {
+      "name": "필살피카슛",
+      "mode": "standard"
+    },
+    "659": {
+      "name": "모래모으기",
+      "mode": "signature"
+    },
+    "660": {
+      "name": "만나자마자",
+      "mode": "signature"
+    },
+    "661": {
+      "name": "토치카",
+      "mode": "signature"
+    },
+    "662": {
+      "name": "그림자꿰매기",
+      "mode": "batch"
+    },
+    "663": {
+      "name": "DD래리어트",
+      "mode": "signature"
+    },
+    "664": {
+      "name": "물거품아리아",
+      "mode": "batch"
+    },
+    "665": {
+      "name": "아이스해머",
+      "mode": "signature"
+    },
+    "666": {
+      "name": "플라워힐",
+      "mode": "signature"
+    },
+    "667": {
+      "name": "10만마력",
+      "mode": "standard"
+    },
+    "668": {
+      "name": "힘흡수",
+      "mode": "signature"
+    },
+    "669": {
+      "name": "솔라블레이드",
+      "mode": "signature"
+    },
+    "670": {
+      "name": "나뭇잎",
+      "mode": "standard"
+    },
+    "671": {
+      "name": "스포트라이트",
+      "mode": "batch"
+    },
+    "672": {
+      "name": "독실",
+      "mode": "standard"
+    },
+    "673": {
+      "name": "예민해지기",
+      "mode": "batch"
+    },
+    "674": {
+      "name": "어시스트기어",
+      "mode": "standard"
+    },
+    "675": {
+      "name": "지옥찌르기",
+      "mode": "signature"
+    },
+    "676": {
+      "name": "꽃가루경단",
+      "mode": "standard"
+    },
+    "677": {
+      "name": "앵커샷",
+      "mode": "batch"
+    },
+    "678": {
+      "name": "사이코필드",
+      "mode": "signature"
+    },
+    "679": {
+      "name": "덤벼들기",
+      "mode": "standard"
+    },
+    "680": {
+      "name": "불꽃채찍",
+      "mode": "standard"
+    },
+    "681": {
+      "name": "기어오르기",
+      "mode": "signature"
+    },
+    "682": {
+      "name": "불사르기",
+      "mode": "signature"
+    },
+    "683": {
+      "name": "스피드스왑",
+      "mode": "signature"
+    },
+    "684": {
+      "name": "스마트혼",
+      "mode": "standard"
+    },
+    "685": {
+      "name": "정화",
+      "mode": "signature"
+    },
+    "686": {
+      "name": "잠재댄스",
+      "mode": "batch"
+    },
+    "687": {
+      "name": "코어퍼니셔",
+      "mode": "batch"
+    },
+    "688": {
+      "name": "트로피컬킥",
+      "mode": "standard"
+    },
+    "689": {
+      "name": "지휘",
+      "mode": "signature"
+    },
+    "690": {
+      "name": "부리캐논",
+      "mode": "signature"
+    },
+    "691": {
+      "name": "스케일노이즈",
+      "mode": "standard"
+    },
+    "692": {
+      "name": "드래곤해머",
+      "mode": "standard"
+    },
+    "693": {
+      "name": "세차게휘두르기",
+      "mode": "standard"
+    },
+    "694": {
+      "name": "오로라베일",
+      "mode": "signature"
+    },
+    "695": {
+      "name": "섀도애로우즈스트라이크",
+      "mode": "standard"
+    },
+    "696": {
+      "name": "하이퍼다크크러셔",
+      "mode": "standard"
+    },
+    "697": {
+      "name": "바다의심포니",
+      "mode": "standard"
+    },
+    "698": {
+      "name": "알로라의수호자",
+      "mode": "batch"
+    },
+    "699": {
+      "name": "칠성탈혼퇴",
+      "mode": "standard"
+    },
+    "700": {
+      "name": "라이트닝서프라이드",
+      "mode": "standard"
+    },
+    "701": {
+      "name": "진심의공격",
+      "mode": "standard"
+    },
+    "702": {
+      "name": "나인이볼부스트",
+      "mode": "standard"
+    },
+    "703": {
+      "name": "오리진즈슈퍼노바",
+      "mode": "batch"
+    },
+    "704": {
+      "name": "트랩셸",
+      "mode": "batch"
+    },
+    "705": {
+      "name": "플뢰르캐논",
+      "mode": "signature"
+    },
+    "706": {
+      "name": "사이코팽",
+      "mode": "batch"
+    },
+    "707": {
+      "name": "분함의발구르기",
+      "mode": "batch"
+    },
+    "708": {
+      "name": "섀도본",
+      "mode": "standard"
+    },
+    "709": {
+      "name": "액셀록",
+      "mode": "signature"
+    },
+    "710": {
+      "name": "아쿠아브레이크",
+      "mode": "standard"
+    },
+    "711": {
+      "name": "프리즘레이저",
+      "mode": "signature"
+    },
+    "712": {
+      "name": "섀도스틸",
+      "mode": "signature"
+    },
+    "713": {
+      "name": "메테오드라이브",
+      "mode": "standard"
+    },
+    "714": {
+      "name": "섀도레이",
+      "mode": "standard"
+    },
+    "715": {
+      "name": "눈물그렁그렁",
+      "mode": "standard"
+    },
+    "716": {
+      "name": "찌리리따끔따끔",
+      "mode": "signature"
+    },
+    "717": {
+      "name": "자연의분노",
+      "mode": "signature"
+    },
+    "718": {
+      "name": "멀티어택",
+      "mode": "batch"
+    },
+    "719": {
+      "name": "1000만볼트",
+      "mode": "signature"
+    },
+    "720": {
+      "name": "깜짝헤드",
+      "mode": "signature"
+    },
+    "721": {
+      "name": "플라스마피스트",
+      "mode": "batch"
+    },
+    "722": {
+      "name": "포톤가이저",
+      "mode": "signature"
+    },
+    "723": {
+      "name": "하늘을태우는멸망의빛",
+      "mode": "batch"
+    },
+    "724": {
+      "name": "선샤인스매셔",
+      "mode": "standard"
+    },
+    "725": {
+      "name": "문라이트블래스터",
+      "mode": "standard"
+    },
+    "726": {
+      "name": "투닥투닥프렌드타임",
+      "mode": "standard"
+    },
+    "727": {
+      "name": "레이디얼에지스톰",
+      "mode": "batch"
+    },
+    "728": {
+      "name": "브레이징소울비트",
+      "mode": "standard"
+    },
+    "729": {
+      "name": "파찌파찌액셀",
+      "mode": "signature"
+    },
+    "730": {
+      "name": "참방참방서핑",
+      "mode": "standard"
+    },
+    "731": {
+      "name": "둥실둥실폴",
+      "mode": "signature"
+    },
+    "732": {
+      "name": "피카피카썬더",
+      "mode": "standard"
+    },
+    "733": {
+      "name": "생생버블",
+      "mode": "signature"
+    },
+    "734": {
+      "name": "찌릿찌릿일렉",
+      "mode": "standard"
+    },
+    "735": {
+      "name": "이글이글번",
+      "mode": "standard"
+    },
+    "736": {
+      "name": "콸콸오라",
+      "mode": "standard"
+    },
+    "737": {
+      "name": "아그아그존",
+      "mode": "standard"
+    },
+    "738": {
+      "name": "쑥쑥봄버",
+      "mode": "standard"
+    },
+    "739": {
+      "name": "꽁꽁프로스트",
+      "mode": "standard"
+    },
+    "740": {
+      "name": "반짝반짝스톰",
+      "mode": "standard"
+    },
+    "741": {
+      "name": "브이브이브레이크",
+      "mode": "standard"
+    },
+    "742": {
+      "name": "더블펀처",
+      "mode": "signature"
+    },
+    "743": {
+      "name": "다이월",
+      "mode": "batch"
+    },
+    "744": {
+      "name": "다이맥스포",
+      "mode": "standard"
+    },
+    "745": {
+      "name": "노려맞히기",
+      "mode": "signature"
+    },
+    "746": {
+      "name": "물고버티기",
+      "mode": "signature"
+    },
+    "747": {
+      "name": "볼가득넣기",
+      "mode": "standard"
+    },
+    "748": {
+      "name": "배수의진",
+      "mode": "signature"
+    },
+    "749": {
+      "name": "타르샷",
+      "mode": "signature"
+    },
+    "750": {
+      "name": "마법가루",
+      "mode": "signature"
+    },
+    "751": {
+      "name": "드래곤애로",
+      "mode": "signature"
+    },
+    "752": {
+      "name": "다과회",
+      "mode": "batch"
+    },
+    "753": {
+      "name": "문어굳히기",
+      "mode": "signature"
+    },
+    "754": {
+      "name": "전격부리",
+      "mode": "batch"
+    },
+    "755": {
+      "name": "아가미물기",
+      "mode": "batch"
+    },
+    "756": {
+      "name": "코트체인지",
+      "mode": "signature"
+    },
+    "757": {
+      "name": "다이번",
+      "mode": "batch"
+    },
+    "758": {
+      "name": "다이웜",
+      "mode": "batch"
+    },
+    "759": {
+      "name": "다이썬더",
+      "mode": "batch"
+    },
+    "760": {
+      "name": "다이어택",
+      "mode": "batch"
+    },
+    "761": {
+      "name": "다이너클",
+      "mode": "batch"
+    },
+    "762": {
+      "name": "다이할로우",
+      "mode": "batch"
+    },
+    "763": {
+      "name": "다이아이스",
+      "mode": "batch"
+    },
+    "764": {
+      "name": "다이애시드",
+      "mode": "batch"
+    },
+    "765": {
+      "name": "다이스트림",
+      "mode": "batch"
+    },
+    "766": {
+      "name": "다이제트",
+      "mode": "batch"
+    },
+    "767": {
+      "name": "다이페어리",
+      "mode": "batch"
+    },
+    "768": {
+      "name": "다이드라군",
+      "mode": "batch"
+    },
+    "769": {
+      "name": "다이사이코",
+      "mode": "batch"
+    },
+    "770": {
+      "name": "다이록",
+      "mode": "batch"
+    },
+    "771": {
+      "name": "다이어스",
+      "mode": "batch"
+    },
+    "772": {
+      "name": "다이아크",
+      "mode": "batch"
+    },
+    "773": {
+      "name": "다이그래스",
+      "mode": "batch"
+    },
+    "774": {
+      "name": "다이스틸",
+      "mode": "batch"
+    },
+    "775": {
+      "name": "소울비트",
+      "mode": "signature"
+    },
+    "776": {
+      "name": "바디프레스",
+      "mode": "signature"
+    },
+    "777": {
+      "name": "데코레이션",
+      "mode": "standard"
+    },
+    "778": {
+      "name": "드럼어택",
+      "mode": "standard"
+    },
+    "779": {
+      "name": "집게덫",
+      "mode": "signature"
+    },
+    "780": {
+      "name": "화염볼",
+      "mode": "standard"
+    },
+    "781": {
+      "name": "거수참",
+      "mode": "standard"
+    },
+    "782": {
+      "name": "거수탄",
+      "mode": "standard"
+    },
+    "783": {
+      "name": "오라휠",
+      "mode": "standard"
+    },
+    "784": {
+      "name": "와이드브레이커",
+      "mode": "standard"
+    },
+    "785": {
+      "name": "가지찌르기",
+      "mode": "standard"
+    },
+    "786": {
+      "name": "오버드라이브",
+      "mode": "standard"
+    },
+    "787": {
+      "name": "사과산",
+      "mode": "standard"
+    },
+    "788": {
+      "name": "G의힘",
+      "mode": "standard"
+    },
+    "789": {
+      "name": "소울크래시",
+      "mode": "standard"
+    },
+    "790": {
+      "name": "원더스팀",
+      "mode": "standard"
+    },
+    "791": {
+      "name": "생명의물방울",
+      "mode": "signature"
+    },
+    "792": {
+      "name": "블로킹",
+      "mode": "signature"
+    },
+    "793": {
+      "name": "사죄의찌르기",
+      "mode": "standard"
+    },
+    "794": {
+      "name": "스타어설트",
+      "mode": "signature"
+    },
+    "795": {
+      "name": "무한다이빔",
+      "mode": "signature"
+    },
+    "796": {
+      "name": "철제광선",
+      "mode": "signature"
+    },
+    "797": {
+      "name": "와이드포스",
+      "mode": "signature"
+    },
+    "798": {
+      "name": "아이언롤러",
+      "mode": "signature"
+    },
+    "799": {
+      "name": "스케일샷",
+      "mode": "signature"
+    },
+    "800": {
+      "name": "메테오빔",
+      "mode": "signature"
+    },
+    "801": {
+      "name": "셸암즈",
+      "mode": "signature"
+    },
+    "802": {
+      "name": "미스트버스트",
+      "mode": "signature"
+    },
+    "803": {
+      "name": "그래스슬라이더",
+      "mode": "signature"
+    },
+    "804": {
+      "name": "라이징볼트",
+      "mode": "signature"
+    },
+    "805": {
+      "name": "대지의파동",
+      "mode": "signature"
+    },
+    "806": {
+      "name": "엄습하는일격",
+      "mode": "standard"
+    },
+    "807": {
+      "name": "질투의불꽃",
+      "mode": "signature"
+    },
+    "808": {
+      "name": "분풀이",
+      "mode": "batch"
+    },
+    "809": {
+      "name": "폴터가이스트",
+      "mode": "batch"
+    },
+    "810": {
+      "name": "부식가스",
+      "mode": "signature"
+    },
+    "811": {
+      "name": "코칭",
+      "mode": "standard"
+    },
+    "812": {
+      "name": "퀵턴",
+      "mode": "signature"
+    },
+    "813": {
+      "name": "트리플악셀",
+      "mode": "signature"
+    },
+    "814": {
+      "name": "더블윙",
+      "mode": "signature"
+    },
+    "815": {
+      "name": "열사의대지",
+      "mode": "standard"
+    },
+    "816": {
+      "name": "정글힐",
+      "mode": "signature"
+    },
+    "817": {
+      "name": "암흑강타",
+      "mode": "signature"
+    },
+    "818": {
+      "name": "수류연타",
+      "mode": "signature"
+    },
+    "819": {
+      "name": "썬더프리즌",
+      "mode": "signature"
+    },
+    "820": {
+      "name": "드래곤에너지",
+      "mode": "signature"
+    },
+    "821": {
+      "name": "얼어붙는시선",
+      "mode": "standard"
+    },
+    "822": {
+      "name": "타오르는분노",
+      "mode": "signature"
+    },
+    "823": {
+      "name": "천둥차기",
+      "mode": "standard"
+    },
+    "824": {
+      "name": "블리자드랜스",
+      "mode": "standard"
+    },
+    "825": {
+      "name": "아스트랄비트",
+      "mode": "standard"
+    },
+    "826": {
+      "name": "섬뜩한주문",
+      "mode": "signature"
+    },
+    "827": {
+      "name": "페이탈클로",
+      "mode": "batch"
+    },
+    "828": {
+      "name": "배리어러시",
+      "mode": "batch"
+    },
+    "829": {
+      "name": "파워시프트",
+      "mode": "signature"
+    },
+    "830": {
+      "name": "암석액스",
+      "mode": "batch"
+    },
+    "831": {
+      "name": "봄의폭풍",
+      "mode": "batch"
+    },
+    "832": {
+      "name": "신비의힘",
+      "mode": "batch"
+    },
+    "833": {
+      "name": "대격분",
+      "mode": "batch"
+    },
+    "834": {
+      "name": "웨이브태클",
+      "mode": "batch"
+    },
+    "835": {
+      "name": "클로로블라스트",
+      "mode": "batch"
+    },
+    "836": {
+      "name": "빙산바람",
+      "mode": "batch"
+    },
+    "837": {
+      "name": "승리의춤",
+      "mode": "signature"
+    },
+    "838": {
+      "name": "들이받기",
+      "mode": "signature"
+    },
+    "839": {
+      "name": "독침천발",
+      "mode": "batch"
+    },
+    "840": {
+      "name": "오라윙",
+      "mode": "batch"
+    },
+    "841": {
+      "name": "천추지한",
+      "mode": "batch"
+    },
+    "842": {
+      "name": "농성",
+      "mode": "signature"
+    },
+    "843": {
+      "name": "3연화살",
+      "mode": "batch"
+    },
+    "844": {
+      "name": "백귀야행",
+      "mode": "batch"
+    },
+    "845": {
+      "name": "비검천중파",
+      "mode": "batch"
+    },
+    "846": {
+      "name": "찬바람폭풍",
+      "mode": "batch"
+    },
+    "847": {
+      "name": "번개폭풍",
+      "mode": "batch"
+    },
+    "848": {
+      "name": "열사의폭풍",
+      "mode": "batch"
+    },
+    "849": {
+      "name": "초승달의기도",
+      "mode": "batch"
+    },
+    "850": {
+      "name": "브레이브차지",
+      "mode": "signature"
+    },
+    "851": {
+      "name": "테라버스트",
+      "mode": "signature"
+    },
+    "852": {
+      "name": "스레드트랩",
+      "mode": "batch"
+    },
+    "853": {
+      "name": "발꿈치찍기",
+      "mode": "batch"
+    },
+    "854": {
+      "name": "성묘",
+      "mode": "batch"
+    },
+    "855": {
+      "name": "루미나콜리전",
+      "mode": "standard"
+    },
+    "856": {
+      "name": "한판내기",
+      "mode": "batch"
+    },
+    "857": {
+      "name": "제트펀치",
+      "mode": "signature"
+    },
+    "858": {
+      "name": "하바네로엑기스",
+      "mode": "standard"
+    },
+    "859": {
+      "name": "휠스핀",
+      "mode": "standard"
+    },
+    "860": {
+      "name": "찍찍베기",
+      "mode": "signature"
+    },
+    "861": {
+      "name": "아이스스피너",
+      "mode": "signature"
+    },
+    "862": {
+      "name": "대검돌격",
+      "mode": "signature"
+    },
+    "863": {
+      "name": "회생의기도",
+      "mode": "batch"
+    },
+    "864": {
+      "name": "소금절이",
+      "mode": "batch"
+    },
+    "865": {
+      "name": "트리플다이브",
+      "mode": "batch"
+    },
+    "866": {
+      "name": "킬러스핀",
+      "mode": "signature"
+    },
+    "867": {
+      "name": "배껴그리기",
+      "mode": "batch"
+    },
+    "868": {
+      "name": "제살깎기",
+      "mode": "batch"
+    },
+    "869": {
+      "name": "도각참",
+      "mode": "batch"
+    },
+    "870": {
+      "name": "트릭플라워",
+      "mode": "signature"
+    },
+    "871": {
+      "name": "플레어송",
+      "mode": "standard"
+    },
+    "872": {
+      "name": "아쿠아스텝",
+      "mode": "standard"
+    },
+    "873": {
+      "name": "레이징불",
+      "mode": "batch"
+    },
+    "874": {
+      "name": "골드러시",
+      "mode": "signature"
+    },
+    "875": {
+      "name": "사이코블레이드",
+      "mode": "batch"
+    },
+    "876": {
+      "name": "하이드로스팀",
+      "mode": "signature"
+    },
+    "877": {
+      "name": "카타스트로피",
+      "mode": "signature"
+    },
+    "878": {
+      "name": "엑셀브레이크",
+      "mode": "batch"
+    },
+    "879": {
+      "name": "라이트닝드라이브",
+      "mode": "batch"
+    },
+    "880": {
+      "name": "꼬리자르기",
+      "mode": "signature"
+    },
+    "881": {
+      "name": "썰렁개그",
+      "mode": "signature"
+    },
+    "882": {
+      "name": "정리정돈",
+      "mode": "batch"
+    },
+    "883": {
+      "name": "설경",
+      "mode": "batch"
+    },
+    "884": {
+      "name": "달려들기",
+      "mode": "standard"
+    },
+    "885": {
+      "name": "개척하기",
+      "mode": "standard"
+    },
+    "886": {
+      "name": "찬물끼얹기",
+      "mode": "standard"
+    },
+    "887": {
+      "name": "하이퍼드릴",
+      "mode": "batch"
+    },
+    "888": {
+      "name": "트윈빔",
+      "mode": "batch"
+    },
+    "889": {
+      "name": "분노의주먹",
+      "mode": "signature"
+    },
+    "890": {
+      "name": "아머캐논",
+      "mode": "signature"
+    },
+    "891": {
+      "name": "원념의칼",
+      "mode": "batch"
+    },
+    "892": {
+      "name": "전광쌍격",
+      "mode": "signature"
+    },
+    "893": {
+      "name": "거대해머",
+      "mode": "signature"
+    },
+    "894": {
+      "name": "앙갚음",
+      "mode": "signature"
+    },
+    "895": {
+      "name": "아쿠아커터",
+      "mode": "batch"
+    },
+    "896": {
+      "name": "번액셀",
+      "mode": "batch"
+    },
+    "897": {
+      "name": "다크액셀",
+      "mode": "batch"
+    },
+    "898": {
+      "name": "포이즌액셀",
+      "mode": "batch"
+    },
+    "899": {
+      "name": "파이트액셀",
+      "mode": "batch"
+    },
+    "900": {
+      "name": "매지컬액셀",
+      "mode": "batch"
+    },
+    "901": {
+      "name": "블러드문",
+      "mode": "batch"
+    },
+    "902": {
+      "name": "휘적휘적포",
+      "mode": "batch"
+    },
+    "903": {
+      "name": "시럽봄",
+      "mode": "batch"
+    },
+    "904": {
+      "name": "덩굴방망이",
+      "mode": "batch"
+    },
+    "905": {
+      "name": "일렉트로빔",
+      "mode": "signature"
+    },
+    "906": {
+      "name": "테라클러스터",
+      "mode": "batch"
+    },
+    "907": {
+      "name": "변덕레이저",
+      "mode": "signature"
+    },
+    "908": {
+      "name": "화염의수호",
+      "mode": "signature"
+    },
+    "909": {
+      "name": "질풍신뢰",
+      "mode": "signature"
+    },
+    "910": {
+      "name": "파워풀에지",
+      "mode": "batch"
+    },
+    "911": {
+      "name": "타키온커터",
+      "mode": "signature"
+    },
+    "912": {
+      "name": "하드프레스",
+      "mode": "signature"
+    },
+    "913": {
+      "name": "드래곤옐",
+      "mode": "batch"
+    },
+    "914": {
+      "name": "매혹의보이스",
+      "mode": "batch"
+    },
+    "915": {
+      "name": "열불내기",
+      "mode": "signature"
+    },
+    "916": {
+      "name": "썬더다이브",
+      "mode": "batch"
+    },
+    "917": {
+      "name": "사이코노이즈",
+      "mode": "batch"
+    },
+    "918": {
+      "name": "기선제압",
+      "mode": "signature"
+    },
+    "919": {
+      "name": "악독사슬",
+      "mode": "batch"
+    }
+  },
+  "total_enhanced": 586,
+  "remaining_placeholder_status": 0
+}

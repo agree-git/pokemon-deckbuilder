@@ -714,7 +714,8 @@ func _refresh() -> void:
     _clear_action_preview()
     var foe := _view_enemy()
     var ally := _view_active()
-    stage.canvas.set_species(ally.species_id,foe.species_id,catalog,false)
+    var bulk:Dictionary=_visual_frame.get("bulk_context",battle.bulk_context if _visual_frame.is_empty() else {})
+    stage.canvas.set_species(PlayerMoveBulk.visual_species(bulk,ally),PlayerMoveBulk.visual_species(bulk,foe),catalog,false)
     _position_combat_hud()
     _position_intent()
     get_node("Intent").visible = (trainer_intro == null or not trainer_intro.visible) and (trainer_speech == null or not trainer_speech.visible) and (rare_speech == null or not rare_speech.visible)
@@ -1016,6 +1017,17 @@ func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
     if exchange.get("stats",{}).has(pokemon.uid):items.append(["boost","능력","기본 능력치 교환/공유 · 단계와 별개 · 교대/종료 시 복구"])
     if exchange.get("roost",{}).get(pokemon.uid,0)==turn_shown:items.append(["flying","착지","날개쉬기 · 이번 상대 행동까지 비행 타입 제거"])
     if exchange.get("copies",{}).has(pokemon.uid):items.append(["counter","복사","스케치 · 이번 전투 복사 공격 고정"])
+    var bulk_board:Dictionary=_visual_frame.get("bulk_context",battle.bulk_context if _visual_frame.is_empty() else {})
+    for key:String in ["forms","imprison","grudge","salt","syrup"]:
+        if bulk_board.get(key,{}).has(pokemon.uid):items.append(["counter",{"forms":"변신","imprison":"봉인","grudge":"원념","salt":"소금","syrup":"시럽"}[key],{"forms":"타입/능력/기술 카드 변신 · 교대 시 복구","imprison":"출전 중 자신의 습득 기술과 같은 상대 기술 봉인","grudge":"다음 자기 기술 전 직접 공격에 기절하면 그 기술 봉인","salt":"매 상대 행동 종료에HP⅛ · 물/강철은¼","syrup":"3상대 행동 종료마다 스피드-1"}[key]])
+    for key:String in ["insomnia","simple"]:
+        var until:int=int(bulk_board.get(key,{}).get(pokemon.uid,0))
+        if until>=turn_shown:items.append(["counter",str(until-turn_shown+1),"수면 방지" if key=="insomnia" else "능력 단계 변화량2배"])
+    if pokemon.uid>0:
+        if int(bulk_board.get("cover",0))==turn_shown:items.append(["shield","엄호","이번 상대 직접 피해 절반 · 파티 교대 후에도 유지"])
+        if int(bulk_board.get("mat",0))==turn_shown:items.append(["shield","방벽","이번 상대 공격 차단 · 변화 효과 제외"])
+        for pending:Dictionary in bulk_board.get("future",[]):
+            if pending["source"]==pokemon.uid:items.append(["counter",str(maxi(0,int(pending["due"])-turn_shown+1)),"지연 공격 · 두 번째 상대 행동 종료에 현재 상대에게 발동"])
     var signature := str([pokemon.uid,items])
     if row.get_meta("status_signature","") == signature: return
     row.set_meta("status_signature",signature)

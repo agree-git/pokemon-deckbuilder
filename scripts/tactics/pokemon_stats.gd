@@ -42,7 +42,8 @@ static func damage(actor: BattlePokemon, target: BattlePokemon, move: Dictionary
     if affinity <= 0: return 0
     var special: bool = move.get("damage_class","physical") == "special"
     var offense := offense_override if offense_override>0 else effective(actor,offense_stat if not offense_stat.is_empty() else ("special_attack" if special else "attack"))
-    var defense := maxi(1,floori(effective(target,"special_defense" if special else "defense")*BattleWeather.defense_factor(weather,target,special)))
+    var defense_key:String=move.get("defense_stat","special_defense" if special else "defense")
+    var defense := maxi(1,floori(effective(target,defense_key)*BattleWeather.defense_factor(weather,target,defense_key=="special_defense")))
     var power := maxi(1,int(move.get("move_power",40)))
     var level_factor := floori(2*actor.level/5.0)+2
     var raw := floori(floori(level_factor*power*offense/float(defense))/50.0)+2
