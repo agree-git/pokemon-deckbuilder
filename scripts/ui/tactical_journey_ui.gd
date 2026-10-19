@@ -841,7 +841,7 @@ func _result() -> void:
     _action("새 시드로 출발",Rect2(1160,710,470,76),_new_seed,"route")
     _action("시작 화면",Rect2(140,800,300,62),_home,"home")
     if cleared and journey.full_campaign:
-        W.button(page,Rect2(650,824,470,62),_open_credits,"엔딩 크레딧 다시 보기").name = "ReplayCredits"
+        W.button(page,Rect2(96,886,340,62),_open_credits,"엔딩 크레딧 다시 보기").name = "ReplayCredits"
 func _capture_choice() -> void:
     var caught := journey.pending_captures[0]
     W.sprite(page,caught.species_id,Rect2(1000,280,180,180))
