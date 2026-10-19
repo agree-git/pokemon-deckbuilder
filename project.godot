@@ -3,6 +3,7 @@ config_version=5
 
 [application]
 config/name="포켓몬 원정대"
+config/version="0.28.2"
 run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 boot_splash/bg_color=Color(0.03529412, 0.078431375, 0.11764706, 1)
