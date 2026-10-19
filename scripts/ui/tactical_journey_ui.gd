@@ -113,7 +113,7 @@ func refresh() -> void:
     settings_button = W.icon_button(page,"settings",Rect2(1708,18,64,44),func(): get_node("/root/Preferences").show_panel(self),"설정")
     W.icon_button(page,"home",Rect2(1788,18,64,44),_home,"시작 화면")
     var titles := {TacticalJourney.LEARN:"새로운 기술",TacticalJourney.REWARD:"전투 보상",TacticalJourney.CAPTURE:"새로운 동료",TacticalJourney.MAP:"다음 장소",TacticalJourney.REST:"잠시 쉬어갑니다",TacticalJourney.CLEARED:"새로운 챔피언 탄생!" if journey.full_campaign else "레인보배지 획득!",TacticalJourney.FAILED:"원정 종료"}
-    W.label(page,titles[journey.phase],Rect2(96,122,1728,70),40,W.GOLD)
+    W.label(page,titles[journey.phase],Rect2(96,122,1300 if journey.phase == TacticalJourney.REST else 1728,70),40,W.GOLD)
     _party()
     match journey.phase:
         TacticalJourney.LEARN: _learning()
@@ -368,10 +368,11 @@ func _rest() -> void:
         var key: String = keys[i]
         var action := _open_machines if key == "machines" else _camp_tab.bind(key)
         var button := W.button(page,Rect2(550+i*240,266,224,64),action,labels[i])
+        W.fit_button(button)
         if key == "machines": button.name = "CampMachinesButton"
         if key == camp_tab: button.add_theme_stylebox_override("normal",W.box(Color("29443f"),W.GOLD))
         camp_tabs[key] = button
-    W.button(page,Rect2(1110,354,150,44),_open_workshop,"포켓몬 연구").name = "PokedexWorkshopButton"
+    W.button(page,Rect2(1435,130,305,58),_open_workshop,"포켓몬 연구").name = "PokedexWorkshopButton"
     _action("준비 완료 · 출발",Rect2(1260,930,480,72),_leave_camp,"next")
     W.button(page,Rect2(550,930,650,72),_open_preparation,"다음 전투 준비").name = "EncounterPreparation"
     match camp_tab:
@@ -466,29 +467,41 @@ func _shop() -> void:
         button.disabled = not journey.shop_card_reason(i).is_empty()
         button.tooltip_text = ("원가 %d → %d 골드\n" % [offer["full_price"],offer["price"]] if offer["sale"] else "")+journey.shop_card_reason(i)
         actions.append(button)
-    var row := 0
+    var supply_scroll := ScrollContainer.new()
+    supply_scroll.name = "ShopSupplyScroll"
+    supply_scroll.position = Vector2(1250,390)
+    supply_scroll.size = Vector2(490,476)
+    supply_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+    page.add_child(supply_scroll)
+    var supplies := VBoxContainer.new()
+    supplies.name = "Supplies"
+    supplies.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+    supplies.add_theme_constant_override("separation",8)
+    supply_scroll.add_child(supplies)
     for key: String in journey.items():
         if journey.full_campaign and key not in journey.shop_items(): continue
         var item: Dictionary = journey.items()[key]
-        var y := 390+row*(122 if journey.full_campaign else 104)
-        var panel := W.panel(page,Rect2(1250,y,490,114 if journey.full_campaign else 100),Color("172d32"))
-        _item_sprite(panel,key,Rect2(16,15,54,54))
-        W.label(panel,"%s · %d골드" % [item["name"],item["price"]],Rect2(84,12,270,34),19,W.TEXT)
-        W.label(panel,"재고 %d · 보유 %d" % [journey.shop_stock.get(key,0),journey.quantity(key)],Rect2(84,52,270,28),16,W.MUTED)
-        var button := W.button(panel,Rect2(368,19,106,68),_buy.bind(key),"구매")
+        var panel := W.panel(supplies,Rect2(0,0,464,114),Color("172d32"))
+        panel.custom_minimum_size = Vector2(464,114)
+        _item_sprite(panel,key,Rect2(16,20,54,54))
+        W.fit_label(W.label(panel,item["name"],Rect2(84,10,250,30),19,W.TEXT),15)
+        W.label(panel,"가격 %d 골드" % item["price"],Rect2(84,43,250,26),16,W.TEXT)
+        W.label(panel,"재고 %d · 보유 %d" % [journey.shop_stock.get(key,0),journey.quantity(key)],Rect2(84,74,250,26),16,W.MUTED)
+        var button := W.button(panel,Rect2(350,23,100,68),_buy.bind(key),"구매")
         button.name = "Buy_"+key
         button.disabled = not journey.buy_reason(key).is_empty()
         button.tooltip_text = journey.buy_reason(key)
         panel.mouse_filter = Control.MOUSE_FILTER_PASS
         panel.tooltip_text = _item_description(key)
         actions.append(button)
-        row += 1
+    var supply_hint := W.label(supplies,"구매한 카드는 원정 덱에 추가됩니다.\n가방의 회복약을 쓰면 휴식 대신 강화할 수 있습니다.",Rect2(0,0,464,84),16,W.MUTED)
+    supply_hint.custom_minimum_size = Vector2(464,84)
+    supply_hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     var remove := W.button(page,Rect2(550,812,650,54),_select_deck_action.bind("remove"),"카드 제거 완료" if journey.camp().get("removed",false) else "카드 제거 · %d 골드" % journey.removal_price())
     remove.name = "Remove"
     remove.disabled = journey.camp().get("removed",false) or journey.gold < journey.removal_price()
     remove.tooltip_text = "상인당 1장 · 다음 제거 비용 +25골드. 휴식·강화 행동은 소비하지 않습니다."
     actions.append(remove)
-    if row <= 3: W.label(page,"구매한 카드는 원정 덱에 추가됩니다.\n가방의 회복약을 쓰면 휴식 대신 강화할 수 있습니다.",Rect2(1250,790,490,80),16,W.MUTED)
 func _item_sprite(parent: Node, key: String, rect: Rect2) -> TextureRect:
     var texture := TextureRect.new()
     texture.texture = load("res://assets/items/%s.png" % key)
@@ -670,10 +683,26 @@ func _gear() -> void:
         if not pokemon.held_item.is_empty():
             W.label(page,TacticalContent.HELD_ITEMS[pokemon.held_item]["description"],Rect2(550,y+52,1190,34),17,W.MUTED)
     W.label(page,"파티 유물 · %d개" % journey.relics.size(),Rect2(550,732,1190,36),21,W.GOLD)
-    for i in journey.relics.size():
-        var definition: Dictionary = TacticalContent.RELICS[journey.relics[i]]
-        var button := W.button(page,Rect2(550+(i%4)*298,780+floori(i/4.0)*46,282,40),func(): pass,definition["name"])
-        button.tooltip_text = definition["description"]
+    var scroll := ScrollContainer.new()
+    scroll.name = "RelicScroll"
+    scroll.position = Vector2(550,774)
+    scroll.size = Vector2(1190,90)
+    scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+    page.add_child(scroll)
+    var grid := GridContainer.new()
+    grid.columns = 4
+    grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+    grid.add_theme_constant_override("h_separation",14)
+    grid.add_theme_constant_override("v_separation",6)
+    scroll.add_child(grid)
+    for key: String in journey.relics:
+        var definition: Dictionary = TacticalContent.RELICS[key]
+        var button := W.button(grid,Rect2(0,0,276,40),func(): pass,definition["name"])
+        button.name = "Relic_"+key
+        button.custom_minimum_size = Vector2(276,40)
+        button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+        W.fit_button(button)
+        button.tooltip_text = str(definition["name"])+"\n"+str(definition["description"])
 func _open_gear(uid: int) -> void:
     gear_open_for = uid
     refresh()

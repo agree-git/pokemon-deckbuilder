@@ -128,3 +128,15 @@ static func fit_label(node: Label,minimum := 12) -> Label:
     node.add_theme_font_size_override("font_size",size)
     node.tooltip_text = node.text
     return node
+
+static func fit_button(node: Button,minimum := 14) -> Button:
+    # Keep long labels inside their button; the full name stays available on hover.
+    node.clip_text = true
+    node.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+    var font_size := node.get_theme_font_size("font_size")
+    var font := node.get_theme_font("font")
+    while font_size > minimum and font.get_string_size(node.text,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x > node.size.x-24:
+        font_size -= 1
+    node.add_theme_font_size_override("font_size",font_size)
+    if node.tooltip_text.is_empty(): node.tooltip_text = node.text
+    return node

@@ -29,12 +29,14 @@ func rebuild() -> void:
         var p: BattlePokemon = journey.party[i]
         var index := i
         var button := W.button(content,Rect2(32+i*446,86,426,64),func(): selected = index; slot = 0; rebuild(),p.display_name)
+        W.fit_button(button)
         button.name = "WorkshopParty_%d" % i
         if selected == i: button.add_theme_stylebox_override("normal",W.box(Color("29443f"),W.GOLD))
     var modes := ["evolution","forms","moves","machines"]
     for i in modes.size():
         var key: String = modes[i]
         var button := W.button(content,Rect2(32+i*334,168,318,52),func(): mode = key; query = ""; rebuild(),["진화 분기·준비","상시 폼","기술 훈련","기술머신"][i])
+        W.fit_button(button)
         button.name = "WorkshopTab_"+key
         if mode == key: button.add_theme_stylebox_override("normal",W.box(Color("29443f"),W.GOLD))
     var p := current()
@@ -57,6 +59,7 @@ func rebuild() -> void:
             var index := i
             var text := str(TacticalMoves.definition(p.learned_skills[i])["name"]) if i < p.learned_skills.size() else "빈 기술"
             var button := W.button(content,Rect2(648+i*180,312,166,44),func(): slot = index; rebuild(),text)
+            W.fit_button(button)
             button.name = "WorkshopSlot_%d" % i
             button.disabled = i > p.learned_skills.size()
             if i == slot: button.add_theme_stylebox_override("normal",W.box(Color("29443f"),W.GOLD))
@@ -152,7 +155,8 @@ func _use_machine(uid: int,move: int,index: int) -> void:
     notice = journey.train_move(uid,move,index,true)
     if notice.is_empty(): notice = "기술머신 1개를 사용해 기술을 배웠습니다."
     rebuild()
-func _unhandled_key_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
+    # The search field can consume Escape before unhandled input is dispatched.
     if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_ESCAPE:
         get_viewport().set_input_as_handled()
         closed.emit()
