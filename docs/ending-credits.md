@@ -1,35 +1,27 @@
 # 엔딩 크레딧
 
-사용자 요청으로 제작자는 **DO**로 표기한다. v0.28.4 전시용 UI이며 저장·전투·콘텐츠 버전을 올리지 않는다.
+최신 사용자 지시: 제작자는 **DO**. YOUNG의 Another Red Credit.txt를 참고하되 **처음 만든 명예의 전당·스크롤 화면 양식은 유지하고, 역할별 제작자·기여자 내용만 보완**한다. 문서형 상세 창/버튼이나 Name/Version/Website 양식을 게임 화면에 추가하지 않는다.
 
-## 파일과 동작
+## 최소 파일 지도
 
-- 게임 `scripts/ui/ending_credits.gd`: 고정 명예의 전당/실제 동료3마리·성적, 독립 자동 스크롤과 제작·에셋 출처. 애니메이션 스프라이트 재사용. 별도 음악 변경 없이 결과 화면의 기존 title 테마를 유지한다.
-- `tactical_journey_ui.gd`: 전체 원정 CLEARED에 도달한 화면에서 run_id별1회 자동 열기, 결과의 다시 보기 버튼. 짧은 원정/패배는 자동 열지 않는다. 표시 여부는 화면 메모리만 사용하고 저장하지 않는다.
-- `main_menu.gd`: 시작 화면의 크레딧 버튼. 원정 없이도 열고 닫는다.
-- Space/버튼 일시정지·재생, 화살표/휠 스크롤, Esc/Enter/버튼 복귀. 마지막 감사 문구에서 멈추고 처음부터 재생 가능. 전체 화면 모달이 하위 클릭·키를 차단한다. 크레딧을 닫는 Esc는 일시정지 메뉴를 열지 않는다.
-- 기존 ASSET_SOURCES.md/원문 고지는 배포에 유지하며 화면에는 요약 출처와 전체 고지 위치를 표시한다.
+- main `scripts/ui/ending_credits.gd`: 고정 명예의 전당/실제 동료·성적과 오른쪽 자동 스크롤. 부모 화면의 기존 음악을 이어 쓴다.
+- main `assets/sources/expedition_credits.json`: 24개 역할/기여자 절. DO/원작/데이터/개별 스프라이트 작가/음악/엔진/글꼴/구성 참고/감사. 실제 사용하는 자료만 기재한다.
+- main `Credit.txt`: 같은 역할별 목록과 TRAINER_FAN/EBDX/PokéRogue 원문 고지3개를 수정 없이 보존한다. 외부 텍스트 파일이며 게임 안에 문서 뷰어는 없다. 전체 권리/개별 파일 출처는 ASSET_SOURCES.md와 기존 고지를 유지한다.
+- `tactical_journey_ui.gd::_open_credits`: 전체 원정 CLEARED 화면에서 run_id별1회 자동 열기, 결과의 다시 보기. 짧은 원정/패배 제외. 표시 여부는 화면 메모리만 사용하고 저장하지 않는다.
+- `main_menu.gd::_open_credits`: 시작 화면 재생. 원정 없이도 열고 닫는다.
 
-## 최소 검사
+Space/버튼 정지·재생, ↑↓/휠 스크롤, Esc/Enter/버튼 결과 복귀. 끝의 감사 문구에서 멈추고 다시 재생 가능. 전체 화면 모달이 하위 클릭/키를 막는다. Esc는 크레딧만 닫고 일시정지 메뉴를 열지 않는다. 다시 보기 버튼은 왼쪽 x96,y886,w340,h62로 성장 패널(y832~972)과 겹치지 않는다.
 
-`tests/native_ending_credits.gd`: **28검사/0실패, 실제7클릭·4키**, Godot4.7.2/1920×1080/Dummy audio. 기존 공개 행동으로 실제69전 클리어한 v27 스냅샷을 복원해 자동 열기·3동료/통계·DO·하위 재출발 클릭 차단·정지·수동스크롤·재생·감사 문구의 화면 내부 배치·끝/다시 재생·건너뛰기·결과 다시보기·시작 크레딧·짧은 원정/패배 제외·원정/RNG/저장 바이트 불변을 함께 확인했다. 전체69전을 재실행한 결과는 아니다.
+## 실제 검사
 
-최초 시도는 PATH가 기본Godot4.6.3을 선택하고 검사 스크립트의 타입 추론 오류로 검사 전 로드 실패했다. 문자열 타입을 명시하고 공식4.7.2 PATH로 수정해 위 묶음1회 통과했다. 게임 동작 오류를 발견한 것으로 보고하지 않는다.
+공식Godot4.7.2/1920×1080/Dummy audio, 개인 데이터와 분리한 XDG. 이전 공개 행동의 실제69전 클리어 v27 스냅샷 `/tmp/pokemon-final-20261019/review/final.bin`을 복원했다. 전체69전/919기술을 재실행하지 않았다.
 
-현재 로컬 근거는 `/tmp/pokemon-ending-credits/native.log`, `01-ending.png`, `02-thank-you.png`, `03-title-credits.png`. 3PNG를 직접 보았다. 재검사 시 개인 데이터와 분리한 XDG를 사용하고 native_pointer가 PATH의 godot을 쓰는 점을 확인한다. 실제 전체 클리어 스냅샷은 `/tmp/pokemon-final-20261019/review/final.bin`; 없으면 완료 fixture라고 구분해서 만들고 실제69전으로 주장하지 않는다.
+- 최초 크레딧28/0, 위치 수정만7/0. 시험 태그v0.28.3은 미게시 상태로 보존한다.
+- 사용자가 보낸 파일을 문서 창 요청으로 잘못 해석해 만든 상세 뷰어는 최신 지시로 제거했다. 그때의72/0은 최종 UI 근거로 쓰지 않는다.
+- 최종 역할별 이름/기존 양식 복구 **80검사/0실패, 실제7클릭·4키**. DO/개별 작가/문서 버튼과 메타데이터 양식 없음/기존 버튼 좌표/모든 롤 문구 폭/3동료·69승·통계/하위 재시작 클릭 차단/정지·수동스크롤·끝·재생·건너뛰기/결과·시작 다시보기/짧은원정·패배 제외/정확한 원정·RNG·저장 바이트 불변을 함께 확인했다.
+- `/tmp/pokemon-ending-credits/native-cinematic-final.log`와 최종 `01-ending.png`,`02-thank-you.png`,`03-title-credits.png`. 성장 패널 수정은 `04-result-layout.png`.
+- 현재 루트 Credit.txt의24절/3원문과 JSON의 일치도 정적으로 확인한다. 배포 도구 `tools/build_windows.py`는 Credit.txt를 source hash/격리snapshot/PCK/외부폴더에 넣고, `tests/test_export.gd`는 packed DO/JSON/원문파일/마지막 정지를 확인한다.
 
-별도 배포 검사 `tests/test_export.gd`는 버전0.28.4/DO/스크롤 노드/마지막 정지의 packed 리소스 로드를 추가 확인한다. UI만 수정할 때 이 전체 배포 검사를 자동 반복하지 않는다.
+## 필요한 경우만 재실행
 
-결과 성장 패널(y832~972)과 다시 보기 버튼의 겹침을 발견해 버튼을 왼쪽 메뉴(x96,y886,w340,h62)로 옮겼다. 이전 시험 태그v0.28.3은 미게시 상태로 보존하고 수정 최종판을v0.28.4로 배포한다. v0.28.3의 진행 중 로컬 import 빌드는 중단했으며 그 빌드 검사를 통과했다고 보고하지 않는다. 최종 태그는 패키지 확인 뒤 준비한다.
-
-최종 배치 범위 `ENDING_GEOMETRY_ONLY=1`: **7검사/0실패**, 실제 완료 스냅샷의 성장 패널3개/시작 화면 버튼과 비중첩 확인 및 `04-result-layout.png` 확인. 전체28검사는 반복하지 않았다.
-
-## 첨부 Credit.txt 형식 반영
-
-사용자가 YOUNG의 Pokémon: Another Red Credit.txt를 제공해 같은 구성으로 요청했다. 우리 게임의 실제 자료만 Name/Version/Website/Credits/License별로 정리했다. 구성 참고에 YOUNG를 명시하고, 사용하지 않은 DBK·RPG Maker 플러그인이나 다른 게임의 테스트 인물을 이 게임 제작진으로 복사하지 않았다.
-
-원본 목록은 main `assets/sources/expedition_credits.json`의18개 절이다. 첫 제작자는 DO다. main `Credit.txt`에는 동일 절과 기존 TRAINER_FAN/EBDX/PokéRogue 원문 고지를 수정 없이 합쳐1,347줄로 보관한다. 고지를 포함한 다른 엔진 이름은 재사용 이미지의 원문 출처이며 게임 실행은 Godot임을 구분한다. `ending_credits.gd`가 JSON을 읽고 자동롤에 자료별 출처를 표시하며, ‘상세 크레딧’은 전체 Credit.txt를 읽는 RichTextLabel 뷰어다. 상세 창 중 자동롤 정지/휠스크롤/Esc 우선 닫기를 지원한다.
-
-`tools/build_windows.py`가 Credit.txt를 source hash에 넣고 격리 snapshot/PCK/외부 배포 폴더에 복사한다. `tests/test_export.gd`가 packed Credit.txt의 DO와 실제 로드를 확인한다. 18절·원문3파일의 원문 일치도 정적으로 확인했다.
-
-상세 뷰어 추가 후 관련 묶음 **72검사/0실패, 실제8클릭·5키**, 공식4.7.2. 전체 원문 표시·휠·자동롤 보류·Esc 우선 닫기·모든 롤 문구 폭·기존 원정/RNG/저장 바이트 불변 포함. 로그 `/tmp/pokemon-ending-credits/native-detailed.log`, `05-full-credit.png` 확인. 새 기능 추가에 따른 관련 묶음 실행이며 전체 UI/919기술/69전투는 반복하지 않았다.
+`native_pointer.py`는 PATH의 godot을 사용한다. 공식4.7.2를 먼저 PATH에 놓고 격리XDG/1920×1080 DISPLAY를 준비한 다음 `tests/native_ending_credits.gd` 묶음만 실행한다. 레이아웃만 확인할 때 `ENDING_GEOMETRY_ONLY=1`로 작은 위치 검사를 실행한다. 최초 시도는 기본PATH의4.6.3/검사 스크립트 타입 추론 오류로 로드 실패했고, 타입/PATH 수정 뒤4.7.2의 최종 결과만 사용한다.
