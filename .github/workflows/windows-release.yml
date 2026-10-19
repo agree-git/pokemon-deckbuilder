@@ -1,0 +1,134 @@
+name: Windows release
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: '새 릴리스 버전 (같은 버전을 덮어쓰지 않습니다)'
+        required: true
+        default: v0.28.0
+        type: string
+      game_revision:
+        description: '게임의 40자리 commit SHA'
+        required: true
+        default: 5b553653c6986239ab438a27ac8d299a4f65f75b
+        type: string
+      materials_revision:
+        description: '검사·배포 도구와 변경사항의 40자리 commit SHA'
+        required: true
+        default: bc083158128730b10cc9fd3ac2057d259137a69b
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: windows-release-${{ inputs.release_tag }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    env:
+      PYTHONUTF8: '1'
+      RELEASE_TAG: ${{ inputs.release_tag }}
+      GAME_REVISION: ${{ inputs.game_revision }}
+      MATERIALS_REVISION: ${{ inputs.materials_revision }}
+      RELEASE_REPOSITORY: ${{ github.repository }}
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - name: Validate explicit release inputs
+        run: |
+          if ($env:RELEASE_TAG -notmatch '^v[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9A-Za-z.-]+)?$') { throw 'Invalid release tag' }
+          foreach ($revision in @($env:GAME_REVISION, $env:MATERIALS_REVISION)) {
+            if ($revision -notmatch '^[0-9a-f]{40}$') { throw 'Use a complete commit SHA' }
+          }
+      - name: Refuse an existing tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $response = gh api "repos/$env:RELEASE_REPOSITORY/git/ref/tags/$env:RELEASE_TAG" --include 2>&1 | Out-String
+          if ($LASTEXITCODE -eq 0) { throw 'This tag already exists; choose a new version' }
+          if ($response -notmatch 'HTTP/[0-9.]+\s+404\b') { throw "Cannot check release tag: $response" }
+          exit 0
+      - name: Checkout exact game revision
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ inputs.game_revision }}
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Checkout exact release tools and notes
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ inputs.materials_revision }}
+          path: .dev-materials
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Check versioned notes
+        run: |
+          if (!(Test-Path ".dev-materials/docs/releases/$($env:RELEASE_TAG).md" -PathType Leaf)) { throw 'Release notes are missing' }
+      - name: Prepare official Godot 4.7.2
+        run: |
+          python .dev-materials/tools/prepare_godot.py --cache-dir "$env:RUNNER_TEMP/godot-4.7.2"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $toolchain = Get-Content "$env:RUNNER_TEMP/godot-4.7.2/toolchain.json" -Raw | ConvertFrom-Json
+          "GODOT=$($toolchain.godot)" >> $env:GITHUB_ENV
+          "GODOT_TOOLCHAIN=$env:RUNNER_TEMP/godot-4.7.2" >> $env:GITHUB_ENV
+      - name: Build Windows x86_64 release
+        run: |
+          python .dev-materials/tools/build_windows.py --game-dir . --godot "$env:GODOT" --toolchain-dir "$env:GODOT_TOOLCHAIN" --output-dir builds/windows-release
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Check the actual Windows EXE before publishing
+        run: |
+          python .dev-materials/tools/verify_export.py --bundle-dir builds/windows-release/PokemonExpedition --validation-dir builds/windows-release/validation --mode windows-native --report builds/windows-release/windows-native-report.json
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Keep verified download files
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: Windows-release-${{ inputs.release_tag }}
+          path: |
+            builds/windows-release/*.zip
+            builds/windows-release/SHA256SUMS.txt
+            builds/windows-release/windows-native-report.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: Create draft, upload files, then publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $archives = @(Get-ChildItem builds/windows-release/*.zip)
+          if ($archives.Count -ne 1) { throw 'Expected exactly one game ZIP' }
+          $archive = $archives[0]
+          $checksums = Get-Item builds/windows-release/SHA256SUMS.txt
+          $report = Get-Item builds/windows-release/windows-native-report.json
+          $attachments = @($archive.FullName, $checksums.FullName, $report.FullName)
+          gh release create $env:RELEASE_TAG --repo $env:RELEASE_REPOSITORY --target $env:GAME_REVISION --title "포켓몬 원정대 $env:RELEASE_TAG · 도전 원정" --notes-file ".dev-materials/docs/releases/$($env:RELEASE_TAG).md" --prerelease --draft @attachments
+          if ($LASTEXITCODE -ne 0) { throw 'Draft upload failed; no release was published' }
+          $json = gh release view $env:RELEASE_TAG --repo $env:RELEASE_REPOSITORY --json assets --jq '.assets'
+          if ($LASTEXITCODE -ne 0) { throw 'Could not inspect uploaded release files' }
+          $assets = @($json | ConvertFrom-Json)
+          if ($assets.Count -ne 3) { throw 'Unexpected release attachment count; keeping draft' }
+          foreach ($file in @($archive, $checksums, $report)) {
+            $asset = @($assets | Where-Object { $_.name -eq $file.Name })
+            if ($asset.Count -ne 1 -or $asset[0].size -ne $file.Length) { throw 'Release attachment mismatch; keeping draft' }
+          }
+          gh release edit $env:RELEASE_TAG --repo $env:RELEASE_REPOSITORY --draft=false
+          if ($LASTEXITCODE -ne 0) { throw 'Could not publish the verified draft' }
+          $url = gh release view $env:RELEASE_TAG --repo $env:RELEASE_REPOSITORY --json url --jq '.url'
+          if ($LASTEXITCODE -ne 0) { throw 'Could not confirm the published release URL' }
+          "Download: $url" >> $env:GITHUB_STEP_SUMMARY
+      - name: Keep diagnostic logs
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: Windows-release-logs-${{ inputs.release_tag }}
+          path: |
+            builds/windows-release/logs
+            builds/windows-release/*.log
+          if-no-files-found: ignore
+          retention-days: 7
