@@ -6,17 +6,17 @@ on:
       release_tag:
         description: '게임 SHA에 미리 준비한 태그 (기존 릴리스는 덮어쓰지 않습니다)'
         required: true
-        default: v0.28.2
+        default: v0.28.4
         type: string
       game_revision:
         description: '게임의 40자리 commit SHA'
         required: true
-        default: 84d06746db6387d8de1e4b4ee81b3f29f5e46e30
+        default: 83b32740e9988c3fbda39b20cc29b01f4fd1d614
         type: string
       materials_revision:
         description: '검사·배포 도구와 변경사항의 40자리 commit SHA'
         required: true
-        default: 4989eb4412d55d33d86f497ff41b137e973677d2
+        default: 12e0229419f0633afd3b4f8866cc05d5dd09f543
         type: string
 
 permissions:
