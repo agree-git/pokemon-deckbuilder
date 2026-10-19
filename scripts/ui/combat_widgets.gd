@@ -4,6 +4,10 @@ extends RefCounted
 const TEXT := Color("e8ede7")
 const MUTED := Color("9bafaf")
 const GOLD := Color("edcb80")
+const CONTROL_GAP := 24.0
+static func row_rect(area: Rect2,index: int,count: int,gap := CONTROL_GAP) -> Rect2:
+    var width := (area.size.x-gap*(count-1))/count
+    return Rect2(area.position+Vector2(index*(width+gap),0),Vector2(width,area.size.y))
 static var _icons: Dictionary = {}
 const POKEMON := preload("res://scripts/content/pokemon_animation.gd")
 static func texture(key: String) -> Texture2D:

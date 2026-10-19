@@ -87,14 +87,14 @@ func _title() -> void:
     var y := 505
     var journey: TacticalJourney = session.get("journey")
     if session.get("has_journey") and journey.phase not in [TacticalJourney.CLEARED,TacticalJourney.FAILED]:
-        continue_button = _button("이어하기",Rect2(144,y,470,80),_continue,"next")
-        W.label(page,journey.progress_title()+" · 배지 %d / 8" % journey.badges,Rect2(650,y,1120,80),19,W.MUTED)
-        y += 98
-    start_button = _button("새 원정",Rect2(144,y,470,80),_choose,"route")
-    tutorial_button = _button("튜토리얼 · 조작 연습",Rect2(144,y+92,470,64),_open_tutorial,"help")
+        continue_button = _button("이어하기",Rect2(144,y,856,80),_continue,"next")
+        W.label(page,journey.progress_title()+" · 배지 %d / 8" % journey.badges,Rect2(1040,y,760,80),19,W.MUTED)
+        y += 112
+    start_button = _button("새 원정",Rect2(144,y,856,80),_choose,"route")
+    tutorial_button = _button("튜토리얼 · 조작 연습",Rect2(144,y+112,416,64),_open_tutorial,"help")
     tutorial_button.name = "TutorialButton"
-    collection_button = _button("포획 도감",Rect2(144,y+170,470,64),_open_collection,"ball")
-    _button("게임 종료",Rect2(144,y+248,470,56),func(): get_tree().quit(),"close")
+    collection_button = _button("포획 도감",Rect2(584,y+112,416,64),_open_collection,"ball")
+    _button("게임 종료",Rect2(144,y+216,416,56),func(): get_tree().quit(),"close")
     W.label(page,"포획 %d / %d  ·  스타팅 %d종 해금" % [profile.captured_ids.size(),catalog.pokemon.size(),profile.unlocked_starters(catalog).size()],Rect2(144,940,1000,44),18,W.MUTED)
     var message := str(session.get("save_notice"))
     if not profile.last_error.is_empty(): message += (" · " if not message.is_empty() else "")+profile.last_error
@@ -169,8 +169,8 @@ func _collection() -> void:
     page.add_child(scroll)
     grid = GridContainer.new()
     grid.columns = 3
-    grid.add_theme_constant_override("h_separation",16)
-    grid.add_theme_constant_override("v_separation",16)
+    grid.add_theme_constant_override("h_separation",24)
+    grid.add_theme_constant_override("v_separation",24)
     scroll.add_child(grid)
     slots = W.panel(page,Rect2(1216,254,608,560),Color("142b32"),Color("405960"))
     counter = W.label(page,"",Rect2(1216,188,608,48),23,W.TEXT)
@@ -201,19 +201,19 @@ func _filter() -> void:
         if unknown and not query.is_empty() and query not in "???": continue
         if not allowed and not show_locked.button_pressed: continue
         if not unknown and not query.is_empty() and query not in str(species["name"]).to_lower() and query not in "%03d" % int(species.get("dex_id",id)): continue
-        var button := W.button(grid,Rect2(0,0,310,184),_select.bind(id))
-        button.custom_minimum_size = Vector2(310,184)
+        var button := W.button(grid,Rect2(0,0,300,184),_select.bind(id))
+        button.custom_minimum_size = Vector2(300,184)
         if unknown:
             W.label(button,"?",Rect2(18,34,88,104),64,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
-            W.label(button,"???",Rect2(112,35,184,38),22,W.MUTED)
-            W.label(button,"미발견",Rect2(112,76,184,28),15,W.MUTED)
+            W.label(button,"???",Rect2(112,35,174,38),22,W.MUTED)
+            W.label(button,"미발견",Rect2(112,76,174,28),15,W.MUTED)
         else:
             var sprite := W.sprite(button,id,Rect2(18,34,88,104))
             if not allowed and not encountered: sprite.modulate = Color(0,0,0,0.55)
-            W.fit_label(W.label(button,str(species["name"]) if allowed or encountered else "미해금",Rect2(112,35,184,38),22,W.TEXT if allowed else W.MUTED))
-            W.label(button,"#%03d" % int(species.get("dex_id",id)),Rect2(112,76,184,28),15,W.MUTED)
+            W.fit_label(W.label(button,str(species["name"]) if allowed or encountered else "미해금",Rect2(112,35,174,38),22,W.TEXT if allowed else W.MUTED))
+            W.label(button,"#%03d" % int(species.get("dex_id",id)),Rect2(112,76,174,28),15,W.MUTED)
             var types: Array = species["types"].map(func(key: String): return catalog.type_name(key))
-            W.label(button," / ".join(types),Rect2(112,111,184,28),15,VisualCatalog.type_color(species["types"][0]))
+            W.label(button," / ".join(types),Rect2(112,111,174,28),15,VisualCatalog.type_color(species["types"][0]))
         button.disabled = not allowed
         button.tooltip_text = "포획하면 해금됩니다." if not allowed else str(species["name"])
         species_buttons[id] = button

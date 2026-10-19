@@ -72,7 +72,7 @@ func _fit_sprites() -> void:
     for on_ally: bool in [true,false]:
         var zoom := sprite_zoom
         if frame_for_hand:
-            var roster := Rect2(36,104,240,252) if on_ally else Rect2(1644,104,240,450)
+            var roster := Rect2(36,104,240,288) if on_ally else Rect2(1644,104,240,522)
             while zoom > 2:
                 var rect := sprite_rect(on_ally,zoom).grow(8)
                 if rect.position.y >= 132 and not rect.intersects(roster): break

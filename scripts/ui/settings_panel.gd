@@ -24,39 +24,41 @@ func _ready() -> void:
     shade.color = Color(0.015, 0.035, 0.045, 0.82)
     shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     add_child(shade)
-    body = W.panel(self, Rect2(480, 78, 960, 924), Color("122a32"), Color("627573"), 16)
+    body = W.panel(self,Rect2(320,100,1280,880),Color("122a32"),Color("627573"),16)
     body.name = "Body"
     body.mouse_filter = Control.MOUSE_FILTER_STOP
-    W.icon(body, "settings", Rect2(40, 36, 36, 36))
-    W.label(body, "설정", Rect2(94, 22, 550, 60), 34, W.GOLD)
-    close_button = W.icon_button(body, "close", Rect2(862, 28, 58, 48), close, "닫기 · Esc")
-    W.label(body, "화면", Rect2(40, 94, 850, 34), 23)
-    var modes := ["windowed", "maximized", "fullscreen"]
-    var titles := ["창 모드", "최대화", "전체 화면"]
+    W.icon(body,"settings",Rect2(40,32,36,36))
+    W.label(body,"설정",Rect2(96,24,900,56),34,W.GOLD)
+    close_button = W.icon_button(body,"close",Rect2(1188,28,52,52),close,"닫기 · Esc")
+    W.panel(body,Rect2(640,112,1,648),Color("344b51"))
+    W.label(body,"화면",Rect2(48,112,528,40),23)
+    var modes := ["windowed","maximized","fullscreen"]
+    var titles := ["창 모드","최대화","전체 화면"]
     for i in modes.size():
-        mode_buttons[modes[i]] = _option(titles[i], Rect2(40 + i * 294, 136, 280, 54), preferences.set_display_mode.bind(modes[i]))
-    W.label(body, "화면 전환 F11 · 창 크기에 맞춰 화면 비율을 유지합니다.", Rect2(40, 198, 880, 34), 17, W.MUTED)
-    W.label(body, "전투 연출 속도", Rect2(40, 230, 850, 34), 23)
+        mode_buttons[modes[i]] = _option(titles[i],W.row_rect(Rect2(48,176,528,56),i,modes.size()),preferences.set_display_mode.bind(modes[i]))
+    W.label(body,"화면 전환 F11\n창 크기에 맞춰 화면 비율을 유지합니다.",Rect2(48,256,528,64),17,W.MUTED)
+    W.label(body,"전투 연출 속도",Rect2(48,352,528,40),23)
     for i in preferences.SPEEDS.size():
         var speed: float = preferences.SPEEDS[i]
-        speed_buttons[speed] = _option("%s배" % str(speed), Rect2(40 + i * 294, 274, 280, 54), preferences.set_battle_speed.bind(speed))
-    W.label(body, "공격·교대·카드 효과의 재생 속도에 적용됩니다.", Rect2(40, 336, 880, 34), 17, W.MUTED)
-    W.label(body, "피격 흔들림", Rect2(40, 374, 550, 44), 23)
-    motion_button = _option("", Rect2(678, 369, 240, 54), func(): preferences.set_hit_motion(not preferences.hit_motion))
-    W.label(body, "끄면 피격 시 흔들림을 줄입니다. 피해 숫자는 계속 표시됩니다.", Rect2(40, 431, 880, 34), 17, W.MUTED)
-    W.icon(body, "sound", Rect2(40, 480, 28, 28))
-    W.label(body, "소리", Rect2(82, 470, 500, 44), 23)
-    mute_button = _option("", Rect2(678, 469, 240, 48), func(): preferences.set_audio_muted(not preferences.audio_muted))
-    _audio_row("master", "전체 음량", 526)
-    _audio_row("effects", "효과음 음량", 578)
-    _audio_row("music", "음악 음량", 630)
-    _audio_row("cries", "울음소리 음량", 682)
-    _audio_row("ambience", "환경음 음량", 734)
-    preview_button = _option("효과음 듣기", Rect2(40, 786, 250, 48), func(): get_node("/root/GameAudio").play("shield"))
-    cry_preview_button = _option("울음소리 듣기", Rect2(310, 786, 250, 48), func(): get_node("/root/GameCries").play(25))
-    W.label(body, "피카츄 · 현재 음량으로 재생", Rect2(584, 786, 334, 48), 17, W.MUTED)
-    status = W.label(body, "", Rect2(40, 846, 680, 46), 16, W.MUTED)
-    retry_button = _option("다시 저장", Rect2(748, 846, 170, 46), preferences.save_preferences)
+        speed_buttons[speed] = _option("%s배" % str(speed),W.row_rect(Rect2(48,416,528,56),i,preferences.SPEEDS.size()),preferences.set_battle_speed.bind(speed))
+    W.label(body,"공격·교대·카드 효과의 재생 속도에 적용됩니다.",Rect2(48,496,528,40),17,W.MUTED)
+    W.label(body,"피격 흔들림",Rect2(48,584,288,56),23)
+    motion_button = _option("",Rect2(384,584,192,56),func(): preferences.set_hit_motion(not preferences.hit_motion))
+    W.label(body,"끄면 피격 시 흔들림을 줄입니다.\n피해 숫자는 계속 표시됩니다.",Rect2(48,664,528,64),17,W.MUTED)
+    W.icon(body,"sound",Rect2(688,124,28,28))
+    W.label(body,"소리",Rect2(736,112,256,56),23)
+    mute_button = _option("",Rect2(1048,112,192,56),func(): preferences.set_audio_muted(not preferences.audio_muted))
+    _audio_row("master","전체 음량",200)
+    _audio_row("effects","효과음 음량",288)
+    _audio_row("music","음악 음량",376)
+    _audio_row("cries","울음소리 음량",464)
+    _audio_row("ambience","환경음 음량",552)
+    preview_button = _option("효과음 듣기",Rect2(688,672,264,56),func(): get_node("/root/GameAudio").play("shield"))
+    cry_preview_button = _option("울음소리 듣기",Rect2(976,672,264,56),func(): get_node("/root/GameCries").play(25))
+    W.label(body,"피카츄 · 현재 음량으로 재생",Rect2(688,752,552,32),17,W.MUTED)
+    W.panel(body,Rect2(40,800,1200,1),Color("344b51"))
+    status = W.label(body,"",Rect2(48,816,928,40),16,W.MUTED)
+    retry_button = _option("다시 저장",Rect2(1048,816,192,48),preferences.save_preferences)
     preferences.changed.connect(_sync)
     get_tree().root.size_changed.connect(_sync)
     _sync()
@@ -69,10 +71,10 @@ func _option(title: String, rect: Rect2, action: Callable) -> Button:
     return button
 
 func _audio_row(channel: String, title: String, y: int) -> void:
-    W.label(body, title, Rect2(40, y, 190, 44), 20)
+    W.label(body, title, Rect2(688,y,400,32), 20)
     var slider := HSlider.new()
-    slider.position = Vector2(244, y + 6)
-    slider.size = Vector2(452, 32)
+    slider.position = Vector2(688,y+40)
+    slider.size = Vector2(552,32)
     slider.min_value = 0
     slider.max_value = 100
     slider.step = 1
@@ -85,7 +87,7 @@ func _audio_row(channel: String, title: String, y: int) -> void:
     slider.value_changed.connect(func(value: float): preferences.set_audio_volume(channel, value / 100.0))
     body.add_child(slider)
     volume_sliders[channel] = slider
-    volume_labels[channel] = W.label(body, "", Rect2(726, y, 192, 44), 21, W.GOLD, HORIZONTAL_ALIGNMENT_RIGHT)
+    volume_labels[channel] = W.label(body, "", Rect2(1128,y,112,32), 21, W.GOLD, HORIZONTAL_ALIGNMENT_RIGHT)
 
 func _selected(button: Button, selected: bool) -> void:
     button.add_theme_stylebox_override("normal", W.box(Color("304c47") if selected else Color("1b333b"), W.GOLD if selected else Color("4a6267")))

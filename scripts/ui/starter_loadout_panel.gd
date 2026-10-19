@@ -23,7 +23,7 @@ func _ready() -> void:
     W.label(body,"동료를 누르면 해당 기술 카드만 표시합니다.",Rect2(32,132,460,32),16,W.MUTED)
     for i in loadout.members.size():
         var p := loadout.members[i]
-        var row := W.button(body,Rect2(32,184+i*196,448,180),_filter.bind(p.uid))
+        var row := W.button(body,Rect2(32,184+i*204,448,180),_filter.bind(p.uid))
         row.name = "Member_%d" % p.uid
         W.sprite(row,p.species_id,Rect2(18,10,96,96))
         W.label(row,p.display_name,Rect2(134,14,292,40),24)
@@ -34,21 +34,21 @@ func _ready() -> void:
         filter_buttons[p.uid] = row
     for i in 2:
         var filter_key: int = [-1,0][i]
-        var button := W.button(body,Rect2(520+i*248,132,232,48),_filter.bind(filter_key),"전체 카드" if i == 0 else "공용 카드")
+        var button := W.button(body,Rect2(520+i*256,132,232,56),_filter.bind(filter_key),"전체 카드" if i == 0 else "공용 카드")
         button.name = "AllCards" if i == 0 else "CommonCards"
         filter_buttons[filter_key] = button
-    W.label(body,"실제 피해는 상대의 방어·상성에 따라 달라집니다.",Rect2(520,184,1008,28),16,W.MUTED)
+    W.label(body,"실제 피해는 상대의 방어·상성에 따라 달라집니다.",Rect2(520,204,1008,28),16,W.MUTED)
     scroll = ScrollContainer.new()
     scroll.name = "DeckScroll"
-    scroll.position = Vector2(520,222)
-    scroll.size = Vector2(1008,552)
+    scroll.position = Vector2(520,256)
+    scroll.size = Vector2(1008,518)
     scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
     body.add_child(scroll)
     card_grid = GridContainer.new()
     card_grid.name = "Cards"
     card_grid.columns = 4
-    card_grid.add_theme_constant_override("h_separation",24)
-    card_grid.add_theme_constant_override("v_separation",8)
+    card_grid.add_theme_constant_override("h_separation",48)
+    card_grid.add_theme_constant_override("v_separation",24)
     scroll.add_child(card_grid)
     W.label(body,"첫 번째 동료가 먼저 출전합니다.",Rect2(32,802,448,36),17,W.MUTED)
     W.label(body,loadout.note(),Rect2(520,790,1008,68),16,W.GOLD).name = "PreparationNote"

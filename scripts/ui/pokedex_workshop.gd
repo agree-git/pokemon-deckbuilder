@@ -21,21 +21,21 @@ func rebuild() -> void:
     W.clear(self)
     var dim := W.button(self,Rect2(0,0,1920,1080),func(): closed.emit(); queue_free())
     for state: String in ["normal","hover","pressed","focus"]: dim.add_theme_stylebox_override(state,W.box(Color(0.01,0.025,0.04,.88),Color.TRANSPARENT,0))
-    content = W.panel(self,Rect2(260,80,1400,920),Color("14282f"),W.GOLD)
+    content = W.panel(self,Rect2(160,64,1600,952),Color("14282f"),W.GOLD)
     content.mouse_filter = Control.MOUSE_FILTER_STOP
-    W.label(content,"포켓몬 연구",Rect2(32,20,800,48),30,W.GOLD)
-    W.icon_button(content,"close",Rect2(1312,20,48,48),func(): closed.emit(); queue_free(),"닫기 · Esc")
+    W.label(content,"포켓몬 연구",Rect2(40,24,1200,48),30,W.GOLD)
+    W.icon_button(content,"close",Rect2(1508,24,52,52),func(): closed.emit(); queue_free(),"닫기 · Esc")
     for i in journey.party.size():
         var p: BattlePokemon = journey.party[i]
         var index := i
-        var button := W.button(content,Rect2(32+i*446,86,426,64),func(): selected = index; slot = 0; rebuild(),p.display_name)
+        var button := W.button(content,W.row_rect(Rect2(40,96,1520,64),i,journey.party.size()),func(): selected = index; slot = 0; rebuild(),p.display_name)
         W.fit_button(button)
         button.name = "WorkshopParty_%d" % i
         if selected == i: button.add_theme_stylebox_override("normal",W.box(Color("29443f"),W.GOLD))
     var modes := ["evolution","forms","moves","machines"]
     for i in modes.size():
         var key: String = modes[i]
-        var button := W.button(content,Rect2(32+i*334,168,318,52),func(): mode = key; query = ""; rebuild(),["진화 분기·준비","상시 폼","기술 훈련","기술머신"][i])
+        var button := W.button(content,W.row_rect(Rect2(40,184,1520,56),i,modes.size()),func(): mode = key; query = ""; rebuild(),["진화 분기·준비","상시 폼","기술 훈련","기술머신"][i])
         W.fit_button(button)
         button.name = "WorkshopTab_"+key
         if mode == key: button.add_theme_stylebox_override("normal",W.box(Color("29443f"),W.GOLD))
@@ -44,51 +44,52 @@ func rebuild() -> void:
     if mode == "forms": description = "현재 지역 계통의 상시 폼을 준비합니다. 지역폼은 포획·진화로 획득하며 합체 폼은 두 포켓몬의 포획 기록이 필요합니다."
     elif mode == "moves": description = "레벨·기술머신·교배·가르침 습득 경로를 따릅니다. 훈련은 야영 행동 1회를 사용하며 선택한 기술의 덱 사본만 교체합니다."
     elif mode == "machines": description = "상인·야영 발견으로 기술머신을 획득합니다. 위에서 동료와 교체할 기술을 선택하세요. 사용 시 1개 소모하며 야영 행동은 사용하지 않습니다. · 골드 %d" % journey.gold
-    var help := W.label(content,description,Rect2(32,236,1336,66),19,W.MUTED)
+    var help := W.label(content,description,Rect2(40,264,1520,56),19,W.MUTED)
     help.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     var search := LineEdit.new()
     search.name = "WorkshopSearch"
-    search.position = Vector2(32,312)
-    search.size = Vector2(600,44)
+    search.position = Vector2(40,344)
+    search.size = Vector2(1520,52)
     search.placeholder_text = "이름·번호·타입 검색"
     search.text = query
     search.text_changed.connect(func(value: String): query = value; populate())
     content.add_child(search)
     if mode in ["moves","machines"]:
+        W.label(content,"교체할 기술",Rect2(40,420,168,56),19,W.MUTED)
         for i in 4:
             var index := i
             var text := str(TacticalMoves.definition(p.learned_skills[i])["name"]) if i < p.learned_skills.size() else "빈 기술"
-            var button := W.button(content,Rect2(648+i*180,312,166,44),func(): slot = index; rebuild(),text)
+            var button := W.button(content,W.row_rect(Rect2(232,420,1328,56),i,4),func(): slot = index; rebuild(),text)
             W.fit_button(button)
             button.name = "WorkshopSlot_%d" % i
             button.disabled = i > p.learned_skills.size()
             if i == slot: button.add_theme_stylebox_override("normal",W.box(Color("29443f"),W.GOLD))
     var scroll := ScrollContainer.new()
     scroll.name = "WorkshopScroll"
-    scroll.position = Vector2(32,374)
-    scroll.size = Vector2(1336,442)
+    scroll.position = Vector2(40,500 if mode in ["moves","machines"] else 420)
+    scroll.size = Vector2(1520,340 if mode in ["moves","machines"] else 420)
     scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
     content.add_child(scroll)
     rows = VBoxContainer.new()
     rows.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-    rows.add_theme_constant_override("separation",10)
+    rows.add_theme_constant_override("separation",24)
     scroll.add_child(rows)
     populate()
-    var result := W.label(content,notice,Rect2(32,840,1336,60),19,W.GOLD)
+    var result := W.label(content,notice,Rect2(40,864,1520,48),19,W.GOLD)
     result.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 func matches(text: String) -> bool: return query.strip_edges().is_empty() or text.to_lower().contains(query.strip_edges().to_lower())
 func row(title: String,detail: String,action: Callable,button_text: String,disabled := false,sprite_id := 0) -> void:
     var panel := Panel.new()
-    panel.custom_minimum_size = Vector2(1296,126)
+    panel.custom_minimum_size = Vector2(1480,148)
     panel.add_theme_stylebox_override("panel",W.box(Color("1c3339"),Color("3d555a")))
     rows.add_child(panel)
     if sprite_id > 0: panel.name = "WorkshopRow_%d" % sprite_id
-    var left := 128 if sprite_id > 0 else 20
-    if sprite_id > 0: W.sprite(panel,sprite_id,Rect2(16,16,96,96))
-    W.fit_label(W.label(panel,title,Rect2(left,8,968-left,36),22,W.TEXT))
-    var label := W.label(panel,detail,Rect2(left,48,968-left,68),17,W.MUTED)
+    var left := 144 if sprite_id > 0 else 24
+    if sprite_id > 0: W.sprite(panel,sprite_id,Rect2(24,24,96,96))
+    W.fit_label(W.label(panel,title,Rect2(left,20,1136-left,36),22,W.TEXT))
+    var label := W.label(panel,detail,Rect2(left,64,1136-left,64),17,W.MUTED)
     label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-    var button := W.button(panel,Rect2(994,32,272,60),action,button_text)
+    var button := W.button(panel,Rect2(1168,42,288,64),action,button_text)
     button.name = "WorkshopAction"
     button.disabled = disabled
 func populate() -> void:
