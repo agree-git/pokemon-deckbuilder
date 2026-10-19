@@ -100,6 +100,9 @@ var discard_count: Label
 var switch_label: Label
 var _notice_tween: Tween
 var motion := CombatMotion.new()
+const STATUS_FEEDBACK = preload("res://scripts/ui/status_feedback.gd")
+var status_feedback := STATUS_FEEDBACK.new()
+var _pending_status_cause: Dictionary = {}
 var _visual_frame: Dictionary = {}
 var _visual_members: Dictionary = {}
 var _sequence: Tween
@@ -132,6 +135,8 @@ func _ready() -> void:
     stage.canvas.effect.speed = 2.4
     motion.canvas = stage.canvas
     stage.canvas.add_child(motion)
+    status_feedback.canvas = stage.canvas
+    stage.canvas.add_child(status_feedback)
     _build()
     add_child(action_preview)
     action_preview.bind_bars(ally_bar,enemy_bar)
@@ -1171,6 +1176,7 @@ func _present(reason: String) -> void:
     if _opening_cry != null and _opening_cry.is_valid(): _opening_cry.kill()
     busy = true
     playback_kinds.clear()
+    _pending_status_cause.clear()
     _close_overlays(true)
     _apply_frame(_action_before)
     notice.text = ""
@@ -1218,7 +1224,12 @@ func _play_event(event: Dictionary) -> void:
     BattleSoundCues.play(self,BattleSoundCues.for_event(event))
     var kind: String = event["kind"]
     playback_kinds.append(kind)
+    var previous_frame := _visual_frame
     _apply_frame(event.get("frame",{}))
+    _show_new_statuses(previous_frame,_visual_frame)
+    if kind in ["status_tick","weather_tick"]:
+        _pending_status_cause = {"target":int(event.get("target",0)),"cause":STATUS_FEEDBACK.from_text(str(event["text"]))}
+    elif kind not in ["damage","relic","heal","item"]: _pending_status_cause.clear()
     if kind in ["skill","card","enemy_action","enemy_hit"]:
         _announce(event["text"])
         var from_enemy := kind in ["enemy_action","enemy_hit"]
@@ -1234,6 +1245,8 @@ func _play_event(event: Dictionary) -> void:
     elif kind in ["damage","shield","heal"]:
         var on_ally := int(event["target"]) > 0
         var amount := int(event["amount"])
+        var cause := str(event.get("cause",_pending_status_cause.get("cause","") if int(_pending_status_cause.get("target",0)) == int(event["target"]) else "")) if kind == "damage" else ""
+        if kind == "damage": _pending_status_cause.clear()
         if int(event["target"]) not in [_view_active().uid,_view_enemy().uid]:
             for i in battle.party.size():
                 if battle.party[i].uid == int(event["target"]): UiMotion.pulse(party_buttons[i])
@@ -1242,8 +1255,10 @@ func _play_event(event: Dictionary) -> void:
             var blocked := int(event.get("blocked",0))
             if amount > 0 or blocked > 0:
                 motion.hit(on_ally,amount == 0)
+                if amount > 0 and STATUS_FEEDBACK.COLORS.has(cause): status_feedback.burst(cause,on_ally)
                 _float_value("−%d" % amount if amount > 0 else str(blocked),on_ally,Color("fff3d4") if amount > 0 else Color("9edfff"),"attack" if amount > 0 else "shield")
         elif amount > 0:
+            if kind == "heal" and STATUS_FEEDBACK.from_text(str(event["text"])) == "seed": status_feedback.burst("seed",on_ally)
             _float_value("+%d" % amount,on_ally,Color("9edfff") if kind == "shield" else MINT,"shield" if kind == "shield" else "heal")
             if kind == "shield": UiMotion.pulse(shield_badges[0 if on_ally else 1])
     elif kind == "knockout":
@@ -1251,7 +1266,20 @@ func _play_event(event: Dictionary) -> void:
         # The frame shows zero HP before the combatant disappears.
         var target := int(event.get("target",0))
         if target == _view_active().uid or target == _view_enemy().uid: motion.faint(target > 0)
-    elif kind in ["relic","power","cancel","turn","capture","status","stat","shield_spent","cards_returned","cards_discarded","weather","weather_tick","weather_turn","weather_end"]: _announce(event["text"])
+    elif kind in ["relic","power","cancel","turn","capture","status","stat","shield_spent","cards_returned","cards_discarded","weather","weather_tick","weather_turn","weather_end"]:
+        _announce(event["text"])
+        if kind == "cancel" and STATUS_FEEDBACK.from_text(str(event["text"])) == "sleep": status_feedback.burst("sleep",int(event.get("target",_view_enemy().uid))>0)
+
+func _show_new_statuses(before: Dictionary,after: Dictionary) -> void:
+    if before.is_empty() or after.is_empty(): return
+    var old: Dictionary = {}
+    for member: Dictionary in before.get("party",[])+before.get("enemies",[]): old[int(member["uid"])] = member.get("statuses",{})
+    for pokemon: BattlePokemon in [_view_active(),_view_enemy()]:
+        if not old.has(pokemon.uid): continue
+        for key: String in pokemon.statuses:
+            if old[pokemon.uid].has(key) or not STATUS_FEEDBACK.COLORS.has(key): continue
+            status_feedback.burst(key,pokemon.uid>0)
+
 func _float_value(text: String,on_ally: bool,color: Color,icon_key := "") -> void:
     var at := stage.canvas.source_anchor if on_ally else stage.canvas.target_anchor
     var number := CardEffectText.label(damage_layer,Rect2(at.x-170,at.y-120,340,90),42,color)
@@ -1291,6 +1319,8 @@ func restart(selected_relic: String = "") -> void:
         return
     if _sequence != null and _sequence.is_valid(): _sequence.kill()
     stage.canvas.clear_effects()
+    status_feedback.clear()
+    _pending_status_cause.clear()
     motion.reset()
     if _shake: _shake.kill()
     if _banner_tween: _banner_tween.kill()

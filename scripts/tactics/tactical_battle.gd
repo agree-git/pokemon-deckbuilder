@@ -791,7 +791,7 @@ func _tick(pokemon: BattlePokemon) -> void:
 func _status_hit(pokemon: BattlePokemon,key: String,status: Dictionary) -> void:
     var health_before := pokemon.hp
     if pokemon.uid < 0 and key in ["burn","seed","poison"] and has_relic("status_core"): _record("relic","침식 촉매 · 지속 피해 +50%",{"relic_key":"status_core"})
-    _damage(pokemon,status_damage(pokemon,key),true)
+    _damage(pokemon,status_damage(pokemon,key),true,"",false,key)
     BuildConceptRules.status_hit(self,pokemon,key,health_before-pokemon.hp)
     if key == "seed":
         var owner := member(int(status["source_uid"]))
@@ -804,7 +804,7 @@ func _status_hit(pokemon: BattlePokemon,key: String,status: Dictionary) -> void:
             else:
                 owner.hp += recovered
                 if recovered > 0: _record("heal","씨앗 흡수 · "+owner.display_name,{"target":owner.uid,"amount":recovered})
-func _damage(target: BattlePokemon, amount: int, piercing := false,damage_class := "",bypass_substitute := false) -> void:
+func _damage(target: BattlePokemon, amount: int, piercing := false,damage_class := "",bypass_substitute := false,effect_cause := "") -> void:
     var interaction_target:bool=player_moves_version>=16 and not held_attack.is_empty() and int(held_attack.get("target",0))==target.uid
     var guard_bypass:bool=interaction_target and PlayerMoveInteractions.bypasses_guard(PlayerMoveInteractions.move_id(held_attack["view"]))
     if interaction_target and not piercing and PlayerMoveInteractions.bypasses_sub(held_attack["view"]):bypass_substitute=true
@@ -826,7 +826,9 @@ func _damage(target: BattlePokemon, amount: int, piercing := false,damage_class 
     if BossBattleRules.active_in(self):BossBattleRules.track(self,target,lost,damage_class)
     _stat("damage_taken" if target.uid > 0 else "damage_dealt",lost)
     if target.uid > 0: _stat("shield_absorbed",blocked)
-    _record("damage","%s · 피해 %d" % [target.display_name,lost],{"target":target.uid,"amount":lost,"blocked":blocked})
+    var damage_event := {"target":target.uid,"amount":lost,"blocked":blocked}
+    if not effect_cause.is_empty(): damage_event["cause"] = effect_cause
+    _record("damage","%s · 피해 %d" % [target.display_name,lost],damage_event)
     if phase == "enemy" and target.uid > 0 and blocked > 0 and lost == 0 and has_relic("shield_battery") and not turn_flags.has("shield_battery"):
         turn_flags["shield_battery"] = true
         _record("status","축전 방패 충전 · 다음 아군 턴 에너지 +1",{"target":target.uid})
