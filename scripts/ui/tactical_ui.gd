@@ -510,18 +510,22 @@ func _modal(title: String,rect: Rect2) -> Control:
     return overlay
 
 func _build_menu() -> Control:
-    var overlay := _modal("메뉴",Rect2(1112,88,760,920))
+    var overlay := _modal("메뉴",Rect2(300,88,1320,920))
     get_node("/root/Preferences").watch_pause_menu(overlay)
     var body: Panel = overlay.get_node("Body")
-    _label("파티 유물",Rect2(40,96,680,32),17,W.MUTED,HORIZONTAL_ALIGNMENT_LEFT,body)
+    var music_player := preload("res://scripts/ui/music_player_panel.gd").new()
+    music_player.position = Vector2(40,112)
+    music_player.size = Vector2(600,360)
+    body.add_child(music_player)
+    _label("파티 유물",Rect2(40,504,600,32),17,W.MUTED,HORIZONTAL_ALIGNMENT_LEFT,body)
     var relic_scroll := ScrollContainer.new()
     relic_scroll.name = "RelicScroll"
-    relic_scroll.position = Vector2(40,144)
-    relic_scroll.size = Vector2(680,192)
+    relic_scroll.position = Vector2(40,552)
+    relic_scroll.size = Vector2(600,272)
     relic_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
     body.add_child(relic_scroll)
     var relic_list := VBoxContainer.new()
-    relic_list.custom_minimum_size.x = 652
+    relic_list.custom_minimum_size.x = 572
     relic_list.add_theme_constant_override("separation",12)
     relic_scroll.add_child(relic_list)
     var ordered := battle.relics.duplicate()
@@ -532,14 +536,14 @@ func _build_menu() -> Control:
     for key: String in ordered:
         var definition: Dictionary = TacticalContent.RELICS[key]
         var row := Control.new()
-        row.custom_minimum_size = Vector2(652,36)
+        row.custom_minimum_size = Vector2(572,36)
         relic_list.add_child(row)
         W.icon(row,definition["icon"],Rect2(4,6,24,24))
-        var label := W.label(row,("핵심 · " if key in CoreRelics.KEYS else "")+str(definition["name"]),Rect2(44,0,608,36),17,W.GOLD if key in CoreRelics.KEYS else W.TEXT)
+        var label := W.label(row,("핵심 · " if key in CoreRelics.KEYS else "")+str(definition["name"]),Rect2(44,0,528,36),17,W.GOLD if key in CoreRelics.KEYS else W.TEXT)
         label.mouse_filter = Control.MOUSE_FILTER_PASS
         label.tooltip_text = definition["description"]
-    W.panel(body,Rect2(40,360,680,1),Color("344b51"))
-    var y := 392
+    W.panel(body,Rect2(664,112,1,712),Color("344b51"))
+    var y := 112
     if run_mode:
         bag_button = _menu_action(body,"heal","가방","",y,_show_bag)
         y += 88
@@ -550,14 +554,14 @@ func _build_menu() -> Control:
     home_button = _menu_action(body,"home","시작 화면","",y,_home)
     y += 88
     restart_button = _menu_action(body,"restart","다시 시작","",y,restart)
-    _label("1 / 2 / 3 교대 · Q / W / E / R 손패 1~4장",Rect2(40,864,680,32),16,W.MUTED,HORIZONTAL_ALIGNMENT_LEFT,body)
+    _label("1 / 2 / 3 교대 · Q / W / E / R 손패 1~4장",Rect2(40,864,1240,32),16,W.MUTED,HORIZONTAL_ALIGNMENT_LEFT,body)
     return overlay
 
 func _menu_action(body: Node,icon_key: String,title: String,key: String,y: int,action: Callable) -> Button:
-    var button := W.button(body,Rect2(40,y,680,64),action)
+    var button := W.button(body,Rect2(688,y,592,64),action)
     W.icon(button,icon_key,Rect2(24,16,32,32))
-    W.label(button,title,Rect2(80,0,440,64),19)
-    W.label(button,key,Rect2(560,0,88,64),15,W.MUTED,HORIZONTAL_ALIGNMENT_RIGHT)
+    W.label(button,title,Rect2(80,0,352,64),19)
+    W.label(button,key,Rect2(472,0,88,64),15,W.MUTED,HORIZONTAL_ALIGNMENT_RIGHT)
     return button
 
 func _build_help() -> Control:

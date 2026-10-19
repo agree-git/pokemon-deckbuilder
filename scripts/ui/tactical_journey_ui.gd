@@ -3,6 +3,7 @@ extends Control
 const W = preload("res://scripts/ui/combat_widgets.gd")
 var save_button: Button
 var settings_button: Button
+var pause_menu: Control
 var _save_session: Node
 var journey: TacticalJourney
 var battle_ui: TacticalUI
@@ -62,6 +63,7 @@ func _ready() -> void:
         _save_status()
     refresh()
 func refresh() -> void:
+    if is_instance_valid(pause_menu): pause_menu.hide()
     get_node("/root/GameMusic").select_region(journey)
     W.clear(page)
     battle_ui = null
@@ -122,7 +124,7 @@ func refresh() -> void:
         TacticalJourney.REST: _rest()
         TacticalJourney.CAPTURE: _capture_choice()
         _: _result()
-    W.label(page,"ESC 시작 화면     F11 전체 화면",Rect2(96,1014,1728,34),15,W.MUTED)
+    W.label(page,"ESC 메뉴 · 음악 플레이어     F11 전체 화면",Rect2(96,1014,1728,34),15,W.MUTED)
     if deck_open: _deck()
     if deck_open and upgrade_preview_uid != 0: _upgrade_preview()
     if deck_open and removal_preview_uid != 0: _removal_preview()
@@ -1056,9 +1058,42 @@ func _new_seed() -> void:
     refresh()
 func _home() -> void:
     get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+func _open_pause_menu() -> void:
+    if not is_instance_valid(pause_menu):
+        pause_menu = Control.new()
+        pause_menu.name = "PauseMenu"
+        pause_menu.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+        pause_menu.z_index = 90
+        add_child(pause_menu)
+        var close := func(): UiMotion.close(pause_menu)
+        var dismiss := W.button(pause_menu,Rect2(0,0,1920,1080),close)
+        for state: String in ["normal","hover","pressed","focus","disabled"]:
+            dismiss.add_theme_stylebox_override(state,W.box(Color(0.01,0.025,0.04,0.65),Color.TRANSPARENT,0))
+        var body := W.panel(pause_menu,Rect2(300,88,1320,520),Color("142831"),Color("536b6e"),12)
+        body.name = "Body"
+        body.mouse_filter = Control.MOUSE_FILTER_STOP
+        W.label(body,"메뉴",Rect2(40,22,600,46),27)
+        W.icon_button(body,"close",Rect2(1244,22,44,44),close,"닫기 · Esc")
+        var music_player := preload("res://scripts/ui/music_player_panel.gd").new()
+        music_player.position = Vector2(40,112)
+        music_player.size = Vector2(600,360)
+        body.add_child(music_player)
+        W.panel(body,Rect2(664,112,1,360),Color("344b51"))
+        W.button(body,Rect2(688,112,592,64),close,"계속하기 · Esc")
+        W.button(body,Rect2(688,200,592,64),func(): get_node("/root/Preferences").show_panel(self),"설정").name = "Settings"
+        W.button(body,Rect2(688,312,592,64),_home,"시작 화면")
+        pause_menu.hide()
+        get_node("/root/Preferences").watch_pause_menu(pause_menu)
+    UiMotion.open(pause_menu)
+
 func _unhandled_key_input(event: InputEvent) -> void:
     if travelling: return
     if journey.phase == TacticalJourney.BATTLE or not event is InputEventKey or not event.pressed or event.echo: return
+    if is_instance_valid(pause_menu) and pause_menu.visible:
+        if event.keycode == KEY_ESCAPE: UiMotion.close(pause_menu)
+        get_viewport().set_input_as_handled()
+        return
     if learning_compare_slot >= 0:
         if event.keycode == KEY_ESCAPE: _close_learning_comparison()
         elif event.keycode in [KEY_Q,KEY_W,KEY_E,KEY_R] and is_instance_valid(learning_comparison):
@@ -1110,7 +1145,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
         get_viewport().set_input_as_handled()
         return
     match event.keycode:
-        KEY_ESCAPE: _home()
+        KEY_ESCAPE:
+            _open_pause_menu()
+            get_viewport().set_input_as_handled()
 
 func _save_status() -> void:
     if not is_instance_valid(save_button): return
