@@ -12,6 +12,7 @@ import uuid
 
 ROOT = Path(__file__).resolve().parents[1]
 SUITES = {
+    'player-completion': ['test_player_move_completion.gd'],
     'player-adaptive': ['test_player_move_adaptive.gd'],
     'player-support': ['test_player_move_support.gd'],
     'player-interactions': ['test_player_move_interactions.gd'],

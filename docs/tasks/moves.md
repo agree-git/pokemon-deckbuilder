@@ -1,5 +1,7 @@
 # 기술 작업: 필요한 파일부터
 
+현재 카드 규칙의 전체919분류는v27에서 정리했고,분류/설정 대기 목록은 비어 있다. 기본 카드 분류를 미구현으로 세거나 소규모 기술 배치를 자동으로 추가하지 않는다.
+
 현재/다음 작업과 최신 검증 수치는 [HANDOFF](../../HANDOFF.md) 한 곳에서 확인한다. 모든 기술 문서나 이전 엔진을 먼저 읽지 않는다.
 
 ## 진입점과 동결 범위
@@ -26,8 +28,9 @@
 | v24/16 | `player_move_interactions.gd`,`player_interaction_hooks.gd` | `player_move_interactions_v24.json` | 새 문맥 없음;기존 문맥 재사용 |
 | v25/17 | `player_move_support.gd` | `player_move_support_v25.json` | 새 문맥 없음;기존 단계/타입/날씨 재사용 |
 | v26/18 | `player_move_adaptive.gd`,`player_adaptive_math.gd` | `player_move_adaptive_v26.json` | 새 문맥 없음;기존 타입/폼·단계/물건 재사용 |
+| v27/19 | `player_move_completion.gd`,`player_completion_hooks.gd` | `player_move_completion_v27.json` | `completion_context`:충전/웅크림/작아짐/경량화/입장·첫 기술 |
 
-정확한 각색은 해당 버전만 조회: [v10](../player-move-cards.md) / [v11](../player-move-tactics.md) / [v12](../player-move-exchange.md) / [v13](../player-move-fields.md) / [v14](../player-move-seals.md) / [v15](../player-move-altitude.md) / [v16](../player-move-traps.md) / [v17](../player-move-items.md) / [v18](../player-move-assist.md) / [v19](../player-move-fate.md) / [v20](../player-move-reactions.md) / [v21 물건](../held-items.md) / [v22](../player-move-training.md) / [v23 일괄](../player-move-bulk.md) / [v24 상호작용](../player-move-interactions.md) / [v25 지원/분말](../player-move-support.md) / [v26 동적 타입](../player-move-adaptive.md). 전체919기술을 원작 그대로 재현한다는 뜻이 아니다. 추가 보완 목록 밖의 기술도 기본 공격/부가효과로 동작할 수 있다.
+정확한 각색은 해당 버전만 조회: [v10](../player-move-cards.md) / [v11](../player-move-tactics.md) / [v12](../player-move-exchange.md) / [v13](../player-move-fields.md) / [v14](../player-move-seals.md) / [v15](../player-move-altitude.md) / [v16](../player-move-traps.md) / [v17](../player-move-items.md) / [v18](../player-move-assist.md) / [v19](../player-move-fate.md) / [v20](../player-move-reactions.md) / [v21 물건](../held-items.md) / [v22](../player-move-training.md) / [v23 일괄](../player-move-bulk.md) / [v24 상호작용](../player-move-interactions.md) / [v25 지원/분말](../player-move-support.md) / [v26 동적 타입](../player-move-adaptive.md) / [v27 일괄 정리](../player-move-completion.md). 전체919기술을 원작 그대로 재현한다는 뜻이 아니다. 추가 보완 목록 밖의 기술도 기본 공격/부가효과로 동작할 수 있다.
 
 ## 변경이 연결되는 지점
 
@@ -42,6 +45,7 @@
 | 접촉·음성·대타/보호 관통 | `PlayerMoveInteractions`의 플래그/순수 최종 미리보기 + `PlayerInteractionHooks`의19개 SHA 고정 파생 훅;[v24 계약](../player-move-interactions.md) |
 | 조건부 변화/동료 지원·분말 | `PlayerMoveSupport.prepare/reason/after_card/enemy_preview`;대상 UID는 순수 미리보기만 사용,[v25 계약](../player-move-support.md) |
 | 동적 타입/물리·특수/프리즈드라이 | `PlayerMoveAdaptive.seed/resolved_type/category/contact/affinity/raw_damage`;`PlayerAdaptiveMath`는26개 SHA 고정 파생 수식/훅,[v26 계약](../player-move-adaptive.md) |
+| 남은 설정/919분류·연계/조건/상태 치료 | `PlayerMoveCompletion`의 해당 함수와JSON의 필요한ID만 조회. [v27 계약](../player-move-completion.md)·`audit/policy_notes/deltas/removed`를 사용하며 전체JSON은 읽지 않음 |
 | 자기 능력 강화/파워시프트 | `PlayerMoveTraining.prepare/reason/after_card`;기존 단계/`PlayerMoveExchange.set_stat`/교대 정리 재사용 |
 | 소지품 지속 효과 | `TacticalBattle.effective_item()`;v17 변경은 `item_context.base`로 복구. v21은 [물건 계약](../held-items.md)의 원 소유권/영구 소비를 마지막에 적용 |
 | 피해/행동/교대/턴/입장 | `scripts/tactics/tactical_battle.gd`의 해당 훅,필요 시 `pokemon_stats.gd` |
@@ -55,7 +59,7 @@
 ## 필요한 검사 선택
 
 - **최신 사용자 지시: 검사 횟수 최소화.** 변경 효과·실제 저장·직접 관련된 이전 동작을 작은 핵심 검사에 묶어 기본1회 실행한다. 전체919기술/전체 suite를 매번 돌리지 않는다.
-- 최신 기술 묶음 명령(지닌 물건 작업은 `--suite held-items`): `python3 .dev-materials/tools/check.py --game-dir . --suite player-adaptive --godot /path/to/godot-4.7.2` (동적 타입/분류13종·접촉/특수 상성·저장·관련 이전 동작).
+- 최신 기술 묶음 명령(지닌 물건 작업은 `--suite held-items`): `python3 .dev-materials/tools/check.py --game-dir . --suite player-completion --godot /path/to/godot-4.7.2` (92개 미리보기·변경 효과 계열/새 문맥·저장·관련 이전 동작).
 - 실패/구체적 미확인 위험에만 관련 검사를 추가한다. 과거 넓은 회귀는 `--suite player-altitude` 등이며 자동 필수 절차가 아니다. 통과 뒤 이유 없이 반복하지 않는다. 후속 효과도 해당 변경의 최소 묶음을 새로 선택한다.
 - 단일 스크립트 직접 실행도 개인 저장과 분리된 XDG/APPDATA 환경을 사용한다. 격리 방법이 불명확하면 `check.py`의 임시 사용자/게임 사본 방식을 따른다.
 - 문서/목록만 변경하면 링크·ID·경로·diff만 확인한다. 실제 창/native/X11·EXE/빌드/export/Windows CI는 사용자 지시대로 보류한다.
