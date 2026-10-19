@@ -40,7 +40,7 @@ func run() -> void:
                 "gym": gyms += 1
                 "elite": elites += 1
                 "champion": champions += 1
-        check(route.generation == 25 and route.stops.size() == 137 and gyms == 8 and elites == 4 and champions == 1,"New69-battle route keeps8/4/1 progression")
+        check(route.generation == 26 and route.stops.size() == 137 and gyms == 8 and elites == 4 and champions == 1,"New69-battle route keeps8/4/1 progression")
     check(shared_roles,"Same person may appear in different roles in new runs")
     for key: String in BossExpansion.data()["tactics"]:
         check(seen.has(key),"New boss actually reachable in route pool: "+key)
