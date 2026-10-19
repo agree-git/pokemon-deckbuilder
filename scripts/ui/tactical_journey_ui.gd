@@ -86,6 +86,8 @@ func refresh() -> void:
         battle_ui.run_background = BattleBackdrops.for_stop(journey.current(),battle_ui.run_biome)
         if journey.current()["kind"] in ["trainer","veteran","gym","elite","champion"]:
             battle_ui.opponent_trainer = TrainerDialogue.opponent(journey.current(),journey.biome())
+            if journey.current()["kind"] in ["trainer","veteran"]:
+                battle_ui.opponent_trainer["sprite_seed"] = (journey.run_id+":"+str(journey.step)).hash()
         battle_ui.capture_action = _capture
         battle_ui.capture_status = func(): return {"wild":journey.is_wild(),"balls":journey.balls,"reason":journey.capture_reason(),"help":journey.capture_help(),"cost":RareEncounter.rule(journey.battle.enemy().species_id)["balls"] if journey.current().get("rare",false) else 1}
         battle_ui.run_continue_requested.connect(_settle)
@@ -519,10 +521,10 @@ func _shop() -> void:
     actions.append(remove)
 func _item_sprite(parent: Node, key: String, rect: Rect2) -> TextureRect:
     var texture := TextureRect.new()
+    texture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
     texture.texture = load("res://assets/items/%s.png" % key)
     texture.position = rect.position
     texture.size = rect.size
-    texture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
     texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
     texture.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
     texture.mouse_filter = Control.MOUSE_FILTER_IGNORE

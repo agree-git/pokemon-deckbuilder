@@ -1,0 +1,212 @@
+{
+  "source": "https://github.com/smogon/sprites",
+  "revision": "a9214714f00974a8c28586829e6315d9ca5a6348",
+  "game": "Pokémon HeartGold / SoulSilver",
+  "rights": "Original canonical trainer sprites: Nintendo / GAME FREAK / The Pokémon Company. Unmodified PNG bytes. Existing Smogon collection notice retained.",
+  "entries": [
+    {
+      "id": "youngster",
+      "name": "반바지 꼬마",
+      "path": "assets/trainers/regular/youngster.png",
+      "bounds": [
+        0,
+        22,
+        35,
+        58
+      ],
+      "size": [
+        36,
+        80
+      ],
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/canonical/trainers/gen4/heartgold-soulsilver/Youngster.png",
+      "sha256": "eaa6f7c7c6f2d5418a0a0e2d2e807589220e0759221b8d8a1d8ca9b2b31bc9a8"
+    },
+    {
+      "id": "lass",
+      "name": "짧은 치마",
+      "path": "assets/trainers/regular/lass.png",
+      "bounds": [
+        0,
+        1,
+        46,
+        67
+      ],
+      "size": [
+        50,
+        68
+      ],
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/canonical/trainers/gen4/heartgold-soulsilver/Lass.png",
+      "sha256": "6ce2cff297b9badc6fefc62c07305ae19b4f021b8c30b5dc35fe4dfdf2b142bb"
+    },
+    {
+      "id": "bug-catcher",
+      "name": "곤충채집 소년",
+      "path": "assets/trainers/regular/bug-catcher.png",
+      "bounds": [
+        0,
+        9,
+        54,
+        71
+      ],
+      "size": [
+        56,
+        80
+      ],
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/canonical/trainers/gen4/heartgold-soulsilver/Bug_Catcher.png",
+      "sha256": "ae4267cd7c8eab7e8ce076f99ca16a1221acec3442b0f49ce9c041e80af047a2"
+    },
+    {
+      "id": "ace-m",
+      "name": "엘리트 트레이너 남",
+      "path": "assets/trainers/regular/ace-m.png",
+      "bounds": [
+        0,
+        0,
+        39,
+        76
+      ],
+      "size": [
+        54,
+        76
+      ],
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/canonical/trainers/gen4/heartgold-soulsilver/Ace_Trainer.png",
+      "sha256": "3bba1dc2f31a122a0d5b8b2c9a5d449dc2aeee5f412ebc40633d0f443458abed"
+    },
+    {
+      "id": "ace-f",
+      "name": "엘리트 트레이너 여",
+      "path": "assets/trainers/regular/ace-f.png",
+      "bounds": [
+        0,
+        1,
+        44,
+        75
+      ],
+      "size": [
+        46,
+        76
+      ],
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/canonical/trainers/gen4/heartgold-soulsilver/Ace_Trainer%7EF.png",
+      "sha256": "d541ed1147ba210c812176d622575581cb7c99e28eb6a48db50d3820f5deb605"
+    },
+    {
+      "id": "beauty",
+      "name": "아가씨",
+      "path": "assets/trainers/regular/beauty.png",
+      "bounds": [
+        3,
+        2,
+        43,
+        74
+      ],
+      "size": [
+        46,
+        76
+      ],
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/canonical/trainers/gen4/heartgold-soulsilver/Beauty.png",
+      "sha256": "7ea937ac6b08f9f26b7040416747657abf3ac09e8b7d2e46018f9b9353b24b88"
+    },
+    {
+      "id": "blackbelt",
+      "name": "태권왕",
+      "path": "assets/trainers/regular/blackbelt.png",
+      "bounds": [
+        4,
+        1,
+        50,
+        77
+      ],
+      "size": [
+        54,
+        78
+      ],
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/canonical/trainers/gen4/heartgold-soulsilver/Blackbelt.png",
+      "sha256": "1976a2aad395adccea223bbc4d9217a963017edc7b1199163c1bafabcd79683d"
+    },
+    {
+      "id": "gentleman",
+      "name": "신사",
+      "path": "assets/trainers/regular/gentleman.png",
+      "bounds": [
+        2,
+        2,
+        36,
+        76
+      ],
+      "size": [
+        38,
+        78
+      ],
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/canonical/trainers/gen4/heartgold-soulsilver/Gentleman.png",
+      "sha256": "393c410162f82c8f6754c60dc3a75798b7a0e60be4b016dafbc11c0946518900"
+    },
+    {
+      "id": "scientist",
+      "name": "연구원",
+      "path": "assets/trainers/regular/scientist.png",
+      "bounds": [
+        0,
+        4,
+        44,
+        74
+      ],
+      "size": [
+        48,
+        78
+      ],
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/canonical/trainers/gen4/heartgold-soulsilver/Scientist.png",
+      "sha256": "24bd43527365722c37a5bf65eb4ca3c2f3685db8bfff1cb1f955807dcaef35a8"
+    },
+    {
+      "id": "biker",
+      "name": "폭주족",
+      "path": "assets/trainers/regular/biker.png",
+      "bounds": [
+        1,
+        0,
+        75,
+        79
+      ],
+      "size": [
+        76,
+        80
+      ],
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/canonical/trainers/gen4/heartgold-soulsilver/Biker.png",
+      "sha256": "464a207c70987db6a985d318f159eebaa8eef193c0e8692255dfcabcc9f85793"
+    },
+    {
+      "id": "bird-keeper",
+      "name": "새 조련사",
+      "path": "assets/trainers/regular/bird-keeper.png",
+      "bounds": [
+        3,
+        5,
+        57,
+        69
+      ],
+      "size": [
+        60,
+        74
+      ],
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/canonical/trainers/gen4/heartgold-soulsilver/Bird_Keeper.png",
+      "sha256": "c72f3e449e0d6963f0ac6cdb937f89d9f0646d4ed744e237c6f67c4ddcb003db"
+    },
+    {
+      "id": "school-kid",
+      "name": "학원 끝난 아이",
+      "path": "assets/trainers/regular/school-kid.png",
+      "bounds": [
+        5,
+        4,
+        41,
+        56
+      ],
+      "size": [
+        46,
+        60
+      ],
+      "url": "https://raw.githubusercontent.com/smogon/sprites/a9214714f00974a8c28586829e6315d9ca5a6348/src/_uncategorized/canonical/trainers/gen4/heartgold-soulsilver/School_Kid.png",
+      "sha256": "d9e1f58c8cfbc1d8249de1393b6679e34fabc8cd4cb2fec343852ba4fc9bc620"
+    }
+  ]
+}

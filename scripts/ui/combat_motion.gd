@@ -8,6 +8,17 @@ var mode := ""
 var ally := true
 var ball_already_landed := false
 var last_profile := ""
+const CAPTURE = preload("res://scripts/ui/capture_motion.gd")
+var capture_animation: Node2D
+func _ready() -> void:
+    capture_animation = CAPTURE.new()
+    capture_animation.canvas = canvas
+    add_child(capture_animation)
+func capture() -> void:
+    settle_poses()
+    capture_animation.start()
+func finish_capture() -> void:
+    capture_animation.finish()
 func _process(_delta: float) -> void: queue_redraw()
 func recall(on_ally: bool) -> void:
     get_node("/root/GameCries").stop_side(on_ally)
@@ -99,6 +110,7 @@ func settle_poses() -> void:
     canvas.source_lean = 0
     canvas.target_lean = 0
 func reset() -> void:
+    if is_instance_valid(capture_animation): capture_animation.clear()
     for node: Node in [self,canvas]:
         var tracks: Dictionary = node.get_meta(UiMotion.META,{})
         for tween: Tween in tracks.values():

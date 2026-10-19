@@ -28,6 +28,7 @@ var result_next: Button
 var capture_action: Callable
 var capture_status: Callable
 var capture_button: Button
+var _capture_notice := ""
 var home_button: Button
 var run_journey: TacticalJourney
 var bag_panel: Control
@@ -1155,8 +1156,8 @@ func _capture() -> void:
     if busy or not capture_action.is_valid(): return
     _action_before = BattleFrame.capture(battle)
     var response: Dictionary = capture_action.call()
+    if str(response["reason"]).is_empty(): _capture_notice = str(response["notice"])
     _present(response["reason"])
-    if str(response["reason"]).is_empty(): _notify(response["notice"])
 func _view_member(p: BattlePokemon) -> BattlePokemon:
     return _visual_members.get(p.uid,p)
 func _view_active() -> BattlePokemon:
@@ -1184,7 +1185,17 @@ func _present(reason: String) -> void:
     _sequence = UiMotion.combat(self,"battle_sequence")
     for event: Dictionary in frames:
         var kind: String = event["kind"]
-        if kind in ["switch","enemy_switch"]:
+        if kind == "capture":
+            _sequence.tween_callback(func():
+                playback_kinds.append("capture_motion")
+                status_feedback.clear()
+                motion.capture())
+            _sequence.tween_interval(CombatMotion.CAPTURE.DURATION)
+            _sequence.tween_callback(func():
+                motion.finish_capture()
+                _play_event(event))
+            _sequence.tween_interval(.22)
+        elif kind in ["switch","enemy_switch"]:
             var on_ally := kind == "switch"
             _sequence.tween_callback(func():
                 playback_kinds.append(kind)
@@ -1307,6 +1318,9 @@ func _finished() -> void:
     _visual_members.clear()
     banner.modulate.a = 0
     _refresh()
+    if not _capture_notice.is_empty():
+        _notify(_capture_notice)
+        _capture_notice = ""
 func finish_presentation() -> void:
     # Deterministically finish the same playback tween in integration probes.
     if _sequence != null and _sequence.is_valid(): _sequence.custom_step(60.0)
@@ -1314,6 +1328,7 @@ func finish_presentation() -> void:
     UiMotion.finish_tree(stage.canvas)
     stage.canvas.effect.stop()
 func restart(selected_relic: String = "") -> void:
+    _capture_notice = ""
     if run_mode:
         run_restart_requested.emit(battle.relic if selected_relic.is_empty() else selected_relic)
         return
