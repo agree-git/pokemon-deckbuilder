@@ -60,6 +60,7 @@ def main():
     for folder in RUNTIME:
         inputs.extend(path for path in (game/folder).rglob('*') if path.is_file())
     inputs += [game/'project.godot',game/'export_presets.cfg',game/'ASSET_SOURCES.md']
+    if (game/'Credit.txt').is_file(): inputs.append(game/'Credit.txt')
     for source in sorted(inputs):
         source_hash.update(source.relative_to(game).as_posix().encode()+b'\0')
         source_hash.update(bytes.fromhex(digest(source)))
@@ -67,6 +68,7 @@ def main():
         temporary=Path(directory);snapshot=temporary/'game';snapshot.mkdir()
         for folder in RUNTIME:shutil.copytree(game/folder,snapshot/folder)
         shutil.copy2(game/'project.godot',snapshot/'project.godot')
+        if (game/'Credit.txt').is_file(): shutil.copy2(game/'Credit.txt',snapshot/'Credit.txt')
         preset=(game/'export_presets.cfg').read_text(encoding='utf-8')
         for mode in ['debug','release']:
             template=(toolchain/'templates'/f'windows_{mode}_x86_64.exe').as_posix()
@@ -108,7 +110,7 @@ def main():
     notice_files=[game/'ASSET_SOURCES.md',game/'assets/fonts/OFL.txt',game/'assets/audio/cries/UPSTREAM_LICENSE',game/'assets/audio/cries/UPSTREAM_README.md']
     notice_files += [path for path in (game/'assets/sources').rglob('*') if path.is_file()]
     notice_files += [path for path in (game/'licenses').rglob('*') if path.is_file()]
-    notice_files += [game/name for name in ['PLAY_GUIDE.md','CHANGELOG.md'] if (game/name).is_file()]
+    notice_files += [game/name for name in ['PLAY_GUIDE.md','CHANGELOG.md','Credit.txt'] if (game/name).is_file()]
     for source in notice_files:
         target=bundle/source.relative_to(game);target.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(source,target)
     licenses=bundle/'licenses';licenses.mkdir(exist_ok=True)
