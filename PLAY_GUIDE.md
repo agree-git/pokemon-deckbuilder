@@ -1,15 +1,6 @@
 # 실행 및 플레이 안내
 
-현재 최신 버전은 원정 v28입니다. Windows 배포 ZIP은 전체를 압축 해제한 뒤 `PokemonExpedition/PokemonExpedition.exe`를 실행합니다. Godot 설치는 필요 없으며 옆의 `.pck`를 함께 둡니다. 아래 Godot 실행 방법은 소스로 실행할 때 사용합니다.
-
-## 실행
-
-1. 저장소 전체를 내려받아 압축을 풉니다. `project.godot`과 `assets`, `data`, `scenes`, `scripts` 폴더를 함께 둡니다.
-2. **Godot 4.7.2**의 프로젝트 관리자에서 `project.godot`을 가져와 엽니다.
-3. 첫 리소스 가져오기가 끝나면 **F5**를 누릅니다. 시작 씬은 `scenes/main_menu.tscn`입니다.
-4. **새 원정**에서 해금된 스타팅을 최대 세 마리 선택하고 출발합니다. 진행 중인 원정이 있으면 **이어하기**로 복원합니다.
-
-명령줄에서 실행할 때는 저장소 폴더에서 `godot --path .`를 사용합니다. Godot 버전은 `godot --version`으로 확인합니다.
+현재 최신 버전은 원정 v28입니다. Windows 배포 ZIP은 전체를 압축 해제한 뒤 `PokemonExpedition/PokemonExpedition.exe`를 실행합니다. Godot 설치는 필요 없으며 옆의 `.pck`를 함께 둡니다.
 
 ## 처음이라면 튜토리얼
 
@@ -54,7 +45,7 @@
 
 원정 행동과 설정은 자동 저장됩니다. 화면 위 저장 상태를 확인하고 오류가 표시되면 저장 재시도를 사용합니다. 완료되거나 패배한 원정은 이어하기 대상에서 제외됩니다. 포획 도감과 스타팅 해금은 원정 저장과 별도로 유지됩니다.
 
-Windows 저장 폴더는 `%APPDATA%\Godot\app_userdata\포켓몬 원정대`입니다. 주요 파일은 `journey.json`(원정), `collection.json`(포획·해금), `settings.cfg`(설정)입니다. 백업할 때는 저장 폴더 전체를 복사해 백업·완료 표시 파일도 함께 보관하세요.
+Windows 저장 폴더는 `%APPDATA%\PokemonExpedition`입니다. 이전 버전의 `%APPDATA%\Godot\app_userdata\포켓몬 원정대`에 있는 저장·도감·설정은 처음 실행할 때 자동으로 복사하며 원본은 남겨둡니다. 새 폴더에 이미 있는 데이터는 덮어쓰지 않습니다. 주요 파일은 `journey.json`(원정), `collection.json`(포획·해금), `settings.cfg`(설정)입니다. 백업할 때는 저장 폴더 전체를 복사해 백업·완료 표시 파일도 함께 보관하세요.
 
 업데이트 전에 저장 폴더를 백업해 두면 좋습니다. 지원하는 이전 원정은 시작 당시의 전투 규칙과 경로로 복원하며 새 원정은 현재 규칙을 사용합니다.
 
@@ -64,7 +55,7 @@ Windows 저장 폴더는 `%APPDATA%\Godot\app_userdata\포켓몬 원정대`입�
 
 v28에서는 동일 시드의 자동 진행이69승을 유지하면서 기절0→6회,215→257턴으로 늘었습니다. 다른 두 시드는 첫 관장에서 실패했습니다. 소수 자동 정책의 결과이며 실제 플레이어의 평균 클리어율은 아직 측정하지 않았습니다. Windows EXE 구조·에셋과 동일 PCK 실행 확인은 Windows 실기 검사와 구분합니다.
 
-최신 변경은 [변경사항](CHANGELOG.md), 개발 검사와 재현 방법은 [검증 기록](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/validation.md)을 참고하세요. 문제를 기록할 때는 지역/상대, 사용한 카드·물건, 기대한 결과와 실제 결과, 저장 상태 및 화면을 함께 남기면 재현하기 쉽습니다.
+최신 변경은 [GitHub Releases](https://github.com/agree-git/pokemon-deckbuilder/releases), 개발 검사와 재현 방법은 [검증 기록](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/validation.md)을 참고하세요. 문제를 기록할 때는 지역/상대, 사용한 카드·물건, 기대한 결과와 실제 결과, 저장 상태 및 화면을 함께 남기면 재현하기 쉽습니다.
 
 ### 음악 플레이어
 
@@ -74,4 +65,4 @@ v28에서는 동일 시드의 자동 진행이69승을 유지하면서 기절0�
 
 챔피언 격파 후 동료 포켓몬과 성적을 담은 엔딩 크레딧이 자동 재생됩니다. Space 또는 일시정지 버튼으로 멈추고, ↑↓ 키나 마우스 휠로 스크롤할 수 있습니다. Esc·Enter 또는 돌아가기 버튼으로 원정 결과를 확인합니다. 결과 화면의 다시 보기와 시작 화면의 크레딧에서도 재생할 수 있습니다.
 
-크레딧은 역할별 제작자·자료 기여자 이름을 소개합니다. 전체 원문 고지와 출처는 배포 폴더의 Credit.txt와 ASSET_SOURCES.md에서 확인할 수 있습니다.
+크레딧은 역할별 제작자·자료 기여자 이름을 소개합니다. 전체 원문 고지와 출처는 배포 폴더의 Credit.txt와 assets/sources에서 확인할 수 있습니다.

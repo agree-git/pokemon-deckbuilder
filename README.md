@@ -2,7 +2,7 @@
 
 포켓몬 최대 세 마리로 덱을 구성하고 여덟 바이옴의 배지를 모아 사천왕과 챔피언에게 도전하는 팬게임입니다.
 
-최신 버전의 실행·조작·저장은 **[플레이 안내](PLAY_GUIDE.md)**, 최근 수정은 [변경사항](CHANGELOG.md)을 참고하세요.
+최신 버전의 실행·조작·저장은 **[플레이 안내](PLAY_GUIDE.md)**, 최근 수정은 [GitHub Releases](https://github.com/agree-git/pokemon-deckbuilder/releases)을 참고하세요.
 
 ## Windows 다운로드 · GitHub Releases
 
@@ -10,7 +10,7 @@
 
 튜토리얼이 포함된 v0.28.1 릴리스 게시 작업을 준비했습니다. 아직 실행하지 않았다면 저장소 관리자가 **[Windows release](https://github.com/agree-git/pokemon-deckbuilder/actions/workflows/windows-release.yml) → Run workflow**를 기본값으로 한 번 실행하면 됩니다. 공식 Godot4.7.2로 Windows 빌드·실제 EXE headless 실행 검사를 통과한 뒤 ZIP·`SHA256SUMS.txt`·`windows-native-report.json`을 시험 릴리스에 게시합니다. main push/태그 push로 자동 실행하지 않습니다. [배포 안내](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/github-releases.md).
 
-저장·설정은 `%APPDATA%\Godot\app_userdata\포켓몬 원정대`에 보관합니다. 새 빌드는 별도 폴더에 풀어도 기존 저장을 이어서 읽습니다. 실물 PC의 화면·소리·긴 수동 플레이 검증은 별도입니다. `linux-pack-report.json`은 동일 PCK의 Linux 검사이며 Windows 실기 검사가 아닙니다.
+저장·설정은 `%APPDATA%\PokemonExpedition`에 보관합니다. 새 빌드는 별도 폴더에 풀어도 기존 저장을 이어서 읽습니다. 실물 PC의 화면·소리·긴 수동 플레이 검증은 별도입니다. `linux-pack-report.json`은 동일 PCK의 Linux 검사이며 Windows 실기 검사가 아닙니다.
 
 기존 **[Windows preview](https://github.com/agree-git/pokemon-deckbuilder/actions/workflows/windows-preview.yml)**도 수동 실행으로 유지하며,임시 아티팩트의 보관 기간은14일입니다.
 
@@ -53,7 +53,7 @@
 
 `development-materials`는 문서·현재 검사만 둡니다. 과거 갤러리·ZIP·CSV·수집 도구는 [보관 링크](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/history.md)로 열 수 있습니다. 최신 게임 코드는 이 `main`이 기준입니다.
 
-에셋의 권리와 출처는 [ASSET_SOURCES.md](ASSET_SOURCES.md)를 확인하세요.
+에셋의 권리와 출처는 [Credit.txt](Credit.txt)와 assets/sources·licenses의 원문 고지를 확인하세요.
 
 야영지의 **포켓몬 연구**에서 진화 분기·상시 폼·기술 훈련을 준비할 수 있습니다. 기술은 해당 포켓몬의 습득 경로와 레벨을 따르며 기존 카드 전투 규칙으로 사용합니다. 장소·통신·특수 조작 진화는 화면에 표시한 야영 행동으로 준비합니다. 지역폼은 별도 계통을 포획·진화하고, 합체 폼은 두 포켓몬의 포획 기록이 필요합니다. 기존 원정은 이전 경로를 복원하며 새 원정부터 전 세대 조우를 사용합니다.
 
