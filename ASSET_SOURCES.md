@@ -157,3 +157,7 @@ Windows 시험 빌드는 공식 Godot **4.7.2** 엔진을 포함합니다. Godot
 ## 조건부 변화·동료 지원·분말 · v25
 
 `data/player_move_support_v25.json`은 위와 같은 Pokémon Showdown 고정 커밋 `7b02eb39878f4b486f658a752b38c161379bd352`의 `data/moves.ts`와 기존v10/v24 정의를 대조한16개 오버레이입니다. 기존 MIT 고지를 유지합니다. 새 이미지/음원/특성 시스템은 추가하지 않았으며,동료/특성 의존 효과의 카드 전투 각색과 출처 SHA는 [v25 계약](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-support.md) 및 JSON에 기록했습니다.
+
+## 동적 타입·분류·특수 상성 · v26
+
+`data/player_move_adaptive_v26.json`은 기존v10/v25 정의 및 위 Pokémon Showdown 고정 커밋 `7b02eb39878f4b486f658a752b38c161379bd352`의 `data/moves.ts`와 대조한13종 연동 자료입니다. 프리즈드라이의 물 상성,잠재댄스의 현재 타입,포톤가이저/셸암즈의 분류와 접촉 조건을 참고했습니다. 기존 MIT 고지와 카드 전투 각색을 유지합니다. 새 그림/음원/폼/특성/물건은 추가하지 않았으며[효과·생성기 계약](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-adaptive.md)에 범위를 기록했습니다.

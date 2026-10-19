@@ -52,8 +52,10 @@ v23에서는 전체919개 기술 설정을 분류하고 **156개를 일괄 조�
 
 v24에서는 **36개 기술의 접촉·음성·대타 판정39건**을 추가 보완했습니다. 하이퍼드릴·파워풀에지는 보호를 해제하지 않고 관통하며, 공격 실패/무효 시 명중 뒤 능력 변화도 적용하지 않습니다. [상호작용과 호환 범위](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-interactions.md).
 
-현재 새 원정 v25는 **조건부 변화·동료 지원9종과 가루·포자7종**을 보완했습니다. 성장의 쾌청 강화, 일구기·플라워가드의 조건, 베놈트랩의 독 조건, 동료 강화의 대상과 풀 타입의 분말 면역을 연결했습니다. [효과·각색 범위](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-support.md).
+v25에서는 **조건부 변화·동료 지원9종과 가루·포자7종**을 보완했습니다. 성장의 쾌청 강화, 일구기·플라워가드의 조건, 베놈트랩의 독 조건, 동료 강화의 대상과 풀 타입의 분말 면역을 연결했습니다. [효과·각색 범위](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-support.md).
 
-보스는 v9의 검토한 대표138마리/실전233기술 효과를 그대로 사용합니다. 기존 v1~v24 원정 저장과 미래 전투는 이전 규칙을 유지합니다. [보스 적용 현황](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/boss-move-effects.md). 사용자 요청으로 실제 창 검사는 기술 구현 뒤 일괄 진행하며 EXE 생성은 계속 보류합니다.
+현재 새 원정 v26은 **13종의 동적 타입·물리/특수·특수 상성**을 보완했습니다. 프리즈드라이의 물 상성, 소지품·날씨·변신에 따른 기술 타입, 포톤가이저·셸암즈의 분류와 셸암즈의 조건부 접촉을 연결했습니다. [범위와 각색](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-adaptive.md).
+
+보스는 v9의 검토한 대표138마리/실전233기술 효과를 그대로 사용합니다. 기존 v1~v25 원정 저장과 미래 전투는 이전 규칙을 유지합니다. [보스 적용 현황](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/boss-move-effects.md). 사용자 요청으로 실제 창 검사는 기술 구현 뒤 일괄 진행하며 EXE 생성은 계속 보류합니다.
 
 새 원정 v21부터 지닌 물건 보상은 **원작 물건55종**을 사용합니다. 구애 시리즈·생명의구슬·먹다남은음식·기합의띠·타입 강화 도구·나무열매 등의 효과와 실제 아이콘을 적용했습니다. 야영지에서 동료당 하나를 장착하며,소모품은 사용 후 사라져 다시 획득해야 합니다. 리사이클로 복구하면 소모도 취소합니다. 이전 원정은 기존6종과 전투 규칙을 유지합니다. [전체 목록과 각색 범위](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/held-items.md).

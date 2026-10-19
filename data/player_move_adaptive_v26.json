@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "route_version": 26,
+  "player_moves_version": 18,
+  "base_sha256": {
+    "player_move_cards_v10.json": "cb17b795f6e3ee8309a1f8151846bbc0a79a06cf1127d01739539e276aaf1255",
+    "player_move_support_v25.json": "fa42f8466048ddeeb0c22d320925232053cd7303c7053574eaf362251ee5ae6c"
+  },
+  "source": {
+    "repository": "smogon/pokemon-showdown",
+    "commit": "7b02eb39878f4b486f658a752b38c161379bd352",
+    "path": "data/moves.ts",
+    "sha256": "61ab107dae9628d79ac61da16c72e8565f6a1211874298e00c77c5c0ac9755a7"
+  },
+  "moves": {
+    "237": {
+      "adaptive_note": "개체값 없이 현재 첫 타입 · 변신/타입 변경 반영"
+    },
+    "311": {
+      "adaptive_note": "날씨별 타입/위력 · 최종 타입으로 면역/부가효과 판정"
+    },
+    "363": {
+      "adaptive_note": "자신 나무열매별 타입/위력 · 실제 소모/리사이클 유지"
+    },
+    "449": {
+      "adaptive_note": "지원 타입 강화 물건 우선 · 없으면 현재 종/폼 기준"
+    },
+    "546": {
+      "adaptive_note": "지원 타입 강화 물건 우선 · 없으면 현재 드라이브 폼 기준"
+    },
+    "560": {
+      "adaptive_note": "격투/비행 이중 상성 · 최종 피해와 보호/대타 일치"
+    },
+    "573": {
+      "adaptive_note": "물 타입 상성을 항상 2배로 계산 · 다른 타입 상성은 곱함 · 기존 얼음 상태의 수면 각색 유지"
+    },
+    "686": {
+      "adaptive_note": "현재 첫 타입으로 공격 · 변신/전투 타입 변경 반영"
+    },
+    "718": {
+      "adaptive_note": "지원 타입 강화 물건 우선 · 없으면 현재 종/폼 기준"
+    },
+    "722": {
+      "adaptive_note": "물건/룸을 반영한 공격과 특공 중 높은 쪽으로 물리/특수 선택 · 동률 특수"
+    },
+    "801": {
+      "adaptive_note": "물건/룸 반영 공격×상대특방과 특공×상대방어 비교 · 물리일 때만 접촉 · 동률 특수"
+    },
+    "805": {
+      "adaptive_note": "접지한 자신은 현재 필드 타입 · 최종 타입으로 면역/부가효과 판정"
+    },
+    "873": {
+      "adaptive_note": "현재 변신 종/폼에 맞는 레이징불 타입 · 장막 제거 유지"
+    }
+  }
+}

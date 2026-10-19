@@ -176,6 +176,7 @@ func intent_for(defender: BattlePokemon) -> Dictionary:
     if result["kind"] in ["attack","charge","barrage"]:
         var move := TacticalMoves.definition(TacticalMoves.key_for(int(result["move_id"]))).duplicate(true)
         move["type"] = result.get("type",move.get("type","normal"))
+        if player_moves_version>=18:move=PlayerMoveAdaptive.enemy_move(self,enemy(),defender,move)
         if player_moves_version>=12:move=PlayerMoveReactions.move_type(self,enemy(),move);result["type"]=move["type"]
         result["damage_class"] = move.get("damage_class","physical")
         var pressure := 0.55 if result["kind"] == "barrage" else (1.2 if result["kind"] == "charge" else 1.0)
@@ -199,7 +200,7 @@ func card_view(card: BattleCardInstance) -> Dictionary:
     if actor != null:
         if PlayerTechniques.active(self):view=PlayerTechniques.prepare(self,actor,view)
         if actor.content_version >= 2 and card.owner_uid != 0 and view.has("move_id"):
-            view["type"] = PokedexExpansion.move_type(actor.species_id,int(view["move_id"]),str(view.get("type","normal")))
+            view["type"] = PlayerMoveAdaptive.resolved_type(self,actor,view) if player_moves_version>=18 else PokedexExpansion.move_type(actor.species_id,int(view["move_id"]),str(view.get("type","normal")))
         if player_moves_version>=12:view=PlayerMoveReactions.card_type(self,actor,view)
         if player_moves_version>=16:view=PlayerMoveInteractions.finalize(self,actor,view)
         if card.owner_uid == turn_speed_owner_uid and has_relic("ace_core") and not turn_flags.has("ace_core"):
@@ -210,7 +211,8 @@ func card_view(card: BattleCardInstance) -> Dictionary:
             view["cost"] = maxi(0,int(view["cost"])-1)
         if view.has("damage"): view["preview_damage"] = attack_damage(view,actor)
         if PlayerTechniques.active(self) and card.owner_uid!=0:PlayerMoveCards.after_preview(self,actor,view)
-        if player_moves_version>=16:PlayerInteractionHooks.item_preview(self,actor,view)
+        if player_moves_version>=18:PlayerAdaptiveMath.item_preview(self,actor,view)
+        elif player_moves_version>=16:PlayerInteractionHooks.item_preview(self,actor,view)
         elif player_moves_version>=13:HeldItems.after_preview(self,actor,view)
         if player_moves_version>=15:PlayerMoveBulk.after_preview(self,actor,view)
         if view.has("shield_attack"): view["preview_damage"] = BossBattleRules.player_damage(self,view,actor.block)
@@ -286,7 +288,7 @@ func card_reason(uid: int) -> String:
             if BossBattleRules.entry_damage(self,actor)>=actor.hp:return "스텔스록 입장 피해로 기절해 기술을 쓸 수 없습니다. 다른 동료를 선택하세요."
     if BossBattleRules.modern(self):
         var actor:=member(card.owner_uid) if card.owner_uid!=0 else active()
-        var why:=PlayerInteractionHooks.boss_card_reason(self,card_view(card),actor) if player_moves_version>=16 else BossBattleEffectsP3.card_reason(self,card_view(card),actor)
+        var why:=PlayerAdaptiveMath.boss_card_reason(self,card_view(card),actor) if player_moves_version>=18 else PlayerInteractionHooks.boss_card_reason(self,card_view(card),actor) if player_moves_version>=16 else BossBattleEffectsP3.card_reason(self,card_view(card),actor)
         if not why.is_empty():return why
     if PlayerTechniques.active(self):
         if card.owner_uid!=0 and member(card.owner_uid)!=active() and PlayerMoveRules.rooted(self):return "뿌리박기 중에는 기술 카드로 교대할 수 없습니다."
@@ -332,7 +334,8 @@ func play_card(uid: int) -> String:
         next_attack_bonus = 0
         switch_bonus.erase(actor.uid)
         if card.owner_uid != 0: turn_flags.erase("finisher_%d" % actor.uid)
-        if player_moves_version>=16 and card.owner_uid!=0:PlayerInteractionHooks.player_hits(self,view,actor,target,hit_values)
+        if player_moves_version>=18 and card.owner_uid!=0:PlayerAdaptiveMath.player_hits(self,view,actor,target,hit_values)
+        elif player_moves_version>=16 and card.owner_uid!=0:PlayerInteractionHooks.player_hits(self,view,actor,target,hit_values)
         elif player_moves_version>=13 and card.owner_uid!=0:HeldItems.deal_damage(self,view,actor,target,hit_values)
         elif PlayerTechniques.active(self) and card.owner_uid!=0:PlayerMoveRules.deal_damage(self,view,actor,target,hit_values)
         else:_damage(target,amount,false,str(view.get("damage_class","physical")),BossBattleRules.flag(int(view["move_id"]),9) or BossBattleRules.flag(int(view["move_id"]),14) if BossBattleRules.active_in(self) else false)
@@ -699,7 +702,8 @@ func _enemy_action() -> void:
     var contact_foe_stages:=weather_foe.stat_stages.duplicate() if player_moves_version>=5 else {}
     if player_moves_version>=7:PlayerMoveAltitude.synchronize(self,player_actor,action)
     var saved_air:Dictionary=PlayerMoveTraps.air_charge(self,player_actor,action) if player_moves_version>=8 else {}
-    if player_moves_version>=16:PlayerInteractionHooks.player_after_enemy(self,weather_foe,player_actor,action,player_status,player_sub,player_stages,player_marks)
+    if player_moves_version>=18:PlayerAdaptiveMath.player_after_enemy(self,weather_foe,player_actor,action,player_status,player_sub,player_stages,player_marks)
+    elif player_moves_version>=16:PlayerInteractionHooks.player_after_enemy(self,weather_foe,player_actor,action,player_status,player_sub,player_stages,player_marks)
     elif PlayerTechniques.active(self):PlayerMoveRules.after_enemy(self,weather_foe,player_actor,action,player_status,player_sub,player_stages,player_marks)
     if not saved_air.is_empty() and player_actor.alive() and player_actor==active():PlayerMoveRules.write(self)["charges"][player_actor.uid]=saved_air
     if player_moves_version>=8:PlayerMoveTraps.after_enemy(self,weather_foe,player_actor,action,player_sub)
@@ -718,7 +722,8 @@ func _enemy_action() -> void:
     if player_moves_version>=13:HeldItems.end_round(self,weather_foe)
     if player_moves_version>=11:PlayerMoveFate.after_enemy(self)
     if player_moves_version>=12:PlayerMoveReactions.after_enemy(self)
-    if player_moves_version>=16:PlayerInteractionHooks.bulk_after_enemy(self,weather_foe,player_actor,action,bulk_foe_stages)
+    if player_moves_version>=18:PlayerAdaptiveMath.bulk_after_enemy(self,weather_foe,player_actor,action,bulk_foe_stages)
+    elif player_moves_version>=16:PlayerInteractionHooks.bulk_after_enemy(self,weather_foe,player_actor,action,bulk_foe_stages)
     elif player_moves_version>=15:PlayerMoveBulk.after_enemy(self,weather_foe,player_actor,action,bulk_foe_stages)
     if _outcome(): return
     if not active().alive():
@@ -801,7 +806,8 @@ func _damage(target: BattlePokemon, amount: int, piercing := false,damage_class 
     target.block -= blocked
     var lost := mini(target.hp,maxi(0,amount-blocked))
     if BossBattleRules.active_in(self):lost=BossBattleRules.absorb(self,target,lost,piercing,bypass_substitute)
-    if player_moves_version>=16:lost=PlayerInteractionHooks.player_absorb(self,target,lost,piercing,bypass_substitute)
+    if player_moves_version>=18:lost=PlayerAdaptiveMath.player_absorb(self,target,lost,piercing,bypass_substitute)
+    elif player_moves_version>=16:lost=PlayerInteractionHooks.player_absorb(self,target,lost,piercing,bypass_substitute)
     elif PlayerTechniques.active(self):lost=PlayerMoveRules.absorb(self,target,lost,piercing,bypass_substitute)
     if player_moves_version>=15 and not piercing and target.uid<0 and held_attack.get("view",{}).get("bulk_rule")=="false_swipe":lost=mini(lost,maxi(0,target.hp-1))
     if player_moves_version>=13:lost=HeldItems.cap_damage(self,target,lost,piercing)
@@ -818,7 +824,8 @@ func _damage(target: BattlePokemon, amount: int, piercing := false,damage_class 
         turn_flags["shield_battery"] = true
         _record("status","축전 방패 충전 · 다음 아군 턴 에너지 +1",{"target":target.uid})
     BuildConceptRules.full_guard(self,target,blocked,lost)
-    if player_moves_version>=16:PlayerInteractionHooks.held_damage(self,target,lost,piercing,amount-blocked>0)
+    if player_moves_version>=18:PlayerAdaptiveMath.held_damage(self,target,lost,piercing,amount-blocked>0)
+    elif player_moves_version>=16:PlayerInteractionHooks.held_damage(self,target,lost,piercing,amount-blocked>0)
     elif player_moves_version>=13:HeldItems.on_damage(self,target,lost,piercing,amount-blocked>0)
     if player_moves_version>=15:PlayerMoveBulk.on_damage(self,target,lost,piercing)
     if target.alive() or target.knocked_out: return
@@ -967,7 +974,8 @@ func multiplier(attack: String, target: BattlePokemon,move_id:=0) -> float:
     if PlayerTechniques.active(self):affinity=PlayerMoveRules.affinity(self,attack,target,affinity)
     if player_moves_version>=7:affinity=PlayerMoveAltitude.affinity(self,attack,target,affinity)
     if player_moves_version>=9:affinity=PlayerMoveItems.affinity(self,attack,target,affinity,move_id)
-    return PlayerMoveAssist.affinity(self,attack,target,affinity) if player_moves_version>=10 else affinity
+    if player_moves_version>=10:affinity=PlayerMoveAssist.affinity(self,attack,target,affinity)
+    return PlayerMoveAdaptive.affinity(self,attack,target,affinity,move_id) if player_moves_version>=18 else affinity
 func notify_changed() -> String:
     changed.emit()
     return ""

@@ -10,11 +10,13 @@ static func read(b: TacticalBattle) -> Dictionary:
 static func write(b: TacticalBattle) -> Dictionary:
     return BossBattleEffectsP3.write(b) if modern(b) else BossBattleEffects.write(b)
 static func player_damage(b: TacticalBattle,v: Dictionary,amount: int) -> int:
+    if modern(b) and b.player_moves_version>=18:return PlayerMoveAdaptive.boss_damage(b,v,amount)
     if modern(b) and b.player_moves_version>=16:return PlayerMoveInteractions.boss_damage(b,v,amount)
     if modern(b) and b.player_moves_version>=10 and v.get("aimed",false):return PlayerMoveAssistMath.boss_player_damage(b,v,amount)
     v=PlayerMoveItems.boss_proxy(b,v)
     return BossBattleEffectsP3.player_damage(b,v,amount) if modern(b) else BossBattleEffects.player_damage(b,v,amount)
 static func card_notice(b: TacticalBattle,v: Dictionary,actor: BattlePokemon) -> String:
+    if modern(b) and b.player_moves_version>=18:return PlayerMoveAdaptive.boss_notice(b,v,actor)
     if modern(b) and b.player_moves_version>=16:return PlayerMoveInteractions.boss_notice(b,v,actor)
     if modern(b) and b.player_moves_version>=10 and v.get("aimed",false):return PlayerMoveAssistMath.boss_card_notice(b,v,actor)
     v=PlayerMoveItems.boss_proxy(b,v)
@@ -24,6 +26,8 @@ static func trapped(b: TacticalBattle) -> bool:
 static func entry_damage(b: TacticalBattle,p: BattlePokemon) -> int:
     return BossBattleEffectsP3.entry_damage(b,p) if modern(b) else BossBattleEffects.entry_damage(b,p)
 static func on_card(b: TacticalBattle,v: Dictionary,actor: BattlePokemon) -> void:
+    if modern(b) and b.player_moves_version>=18:
+        PlayerMoveAdaptive.boss_on_card(b,v,actor);return
     if modern(b) and b.player_moves_version>=16:
         PlayerMoveInteractions.boss_on_card(b,v,actor);return
     if modern(b) and b.player_moves_version>=9 and int(v.get("move_id",0))==614:PlayerMoveItems.boss_card(b,v,actor)
@@ -31,13 +35,15 @@ static func on_card(b: TacticalBattle,v: Dictionary,actor: BattlePokemon) -> voi
     elif modern(b):BossBattleEffectsP3.on_card(b,v,actor)
     else:BossBattleEffects.on_card(b,v,actor)
 static func filter_view(b: TacticalBattle,v: Dictionary) -> Dictionary:
+    if modern(b) and b.player_moves_version>=18:return PlayerMoveAdaptive.boss_filter(b,v)
     if modern(b) and b.player_moves_version>=16:return PlayerMoveInteractions.boss_filter(b,v)
     if modern(b) and b.player_moves_version>=10 and v.get("aimed",false):return PlayerMoveAssistMath.boss_filter_view(b,v)
     var result:=BossBattleEffectsP3.filter_view(b,PlayerMoveItems.boss_proxy(b,v)) if modern(b) else BossBattleEffects.filter_view(b,v)
     if b.player_moves_version>=9 and int(v.get("move_id",0))==614:result["move_id"]=614
     return result
 static func after_card(b: TacticalBattle,v: Dictionary,actor: BattlePokemon) -> void:
-    if modern(b) and b.player_moves_version>=16:PlayerInteractionHooks.boss_after_card(b,v,actor)
+    if modern(b) and b.player_moves_version>=18:PlayerAdaptiveMath.boss_after_card(b,v,actor)
+    elif modern(b) and b.player_moves_version>=16:PlayerInteractionHooks.boss_after_card(b,v,actor)
     elif modern(b):BossBattleEffectsP3.after_card(b,v,actor)
     else:BossBattleEffects.after_card(b,v,actor)
 static func on_switch(b: TacticalBattle,uid: int) -> void:
