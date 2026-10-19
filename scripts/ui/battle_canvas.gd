@@ -15,6 +15,10 @@ var source_motion := Vector2.ZERO
 var target_motion := Vector2.ZERO
 var source_factor := 1.0
 var target_factor := 1.0
+var source_stretch := Vector2.ONE
+var target_stretch := Vector2.ONE
+var source_lean := 0.0
+var target_lean := 0.0
 var source_sprite := Sprite2D.new()
 var target_sprite := Sprite2D.new()
 var effect := MoveEffect.new()
@@ -100,7 +104,9 @@ func _grounded_position(sprite: Sprite2D,on_ally: bool) -> Vector2:
     var center := sprite.texture.get_size()/2
     var offset := Vector2(bounds.position.x+bounds.size.x/2.0,bounds.end.y)-center
     var zoom := zoom_for(on_ally)*(source_factor if on_ally else target_factor)
-    return (foot_anchor(on_ally)-offset*zoom+(source_motion if on_ally else target_motion)).round()
+    var stretch := source_stretch if on_ally else target_stretch
+    var lean := source_lean if on_ally else target_lean
+    return (foot_anchor(on_ally)-(offset*zoom*stretch).rotated(lean)+(source_motion if on_ally else target_motion)).round()
 
 func _ready() -> void:
     font.base_font = preload("res://assets/fonts/NotoSansKR.ttf")
@@ -122,8 +128,10 @@ func _process(delta: float) -> void:
     weather_layer.size = Vector2(canvas_size.x,maxf(0,bottom-top))
     source_sprite.position = _grounded_position(source_sprite,true)
     target_sprite.position = _grounded_position(target_sprite,false)
-    source_sprite.scale = Vector2.ONE*zoom_for(true)*source_factor
-    target_sprite.scale = Vector2.ONE*zoom_for(false)*target_factor
+    source_sprite.scale = source_stretch*zoom_for(true)*source_factor
+    target_sprite.scale = target_stretch*zoom_for(false)*target_factor
+    source_sprite.rotation = source_lean
+    target_sprite.rotation = target_lean
     queue_redraw()
 
 func set_species(source_id: int, target_id: int, catalog: VisualCatalog, clear: bool = true) -> void:
@@ -202,7 +210,8 @@ func _contact_shadow(on_ally: bool) -> void:
     if factor < 0.05 or sprite.texture == null: return
     var bounds := sprite_bounds(sprite.texture)
     var radius := clampf(bounds.size.x*zoom_for(on_ally)*0.42,28,108)*factor
-    var point := foot_anchor(on_ally)+(source_motion if on_ally else target_motion)+Vector2(0,-4)
+    var displacement := source_motion if on_ally else target_motion
+    var point := foot_anchor(on_ally)+Vector2(displacement.x,0)+Vector2(0,-4)
     # Stepped ellipse strips retain crisp 4px edges at the native UI resolution.
     for y in range(-16,17,4):
         var half := floorf(sqrt(maxf(0,1-pow(y/20.0,2)))*radius/4)*4

@@ -1230,9 +1230,7 @@ func _play_event(event: Dictionary) -> void:
             var finish := stage.canvas.source_anchor if from_enemy else stage.canvas.target_anchor
             stage.canvas.effect.speed = 2.4 * UiMotion.combat_speed(self)
             stage.canvas.effect.play(definition,start,finish)
-            var is_attack: bool = TacticalMoves.definition(TacticalMoves.key_for(id)).has("damage")
-            if from_enemy: is_attack = event.get("action","") in ["attack","charge","barrage"]
-            if is_attack: motion.attack(from_enemy,str(definition.get("category")) in ["2","physical"])
+            motion.use_move(from_enemy,definition)
     elif kind in ["damage","shield","heal"]:
         var on_ally := int(event["target"]) > 0
         var amount := int(event["amount"])
@@ -1275,6 +1273,7 @@ func _finished() -> void:
     if battle.phase == TacticalBattle.WON and "capture" not in playback_kinds: BattleSoundCues.play(self,"victory")
     elif battle.phase == TacticalBattle.LOST: BattleSoundCues.play(self,"defeat")
     stage.canvas.effect.stop()
+    motion.settle_poses()
     busy = false
     _visual_frame.clear()
     _visual_members.clear()
