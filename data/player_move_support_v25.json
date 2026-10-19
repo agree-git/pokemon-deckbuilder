@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "route_version": 25,
+  "player_moves_version": 17,
+  "base_sha256": {
+    "data/player_move_cards_v10.json": "cb17b795f6e3ee8309a1f8151846bbc0a79a06cf1127d01739539e276aaf1255",
+    "data/player_move_interactions_v24.json": "9cda3ca64e304c33c24777c90ed83b54a3e897db4d3e17d7ae1b51bc70003341"
+  },
+  "source": {
+    "repository": "smogon/pokemon-showdown",
+    "commit": "7b02eb39878f4b486f658a752b38c161379bd352",
+    "path": "data/moves.ts",
+    "sha256": "61ab107dae9628d79ac61da16c72e8565f6a1211874298e00c77c5c0ac9755a7",
+    "license": "licenses/pokemon-showdown-MIT.txt"
+  },
+  "powder": [
+    77,
+    78,
+    79,
+    147,
+    178,
+    600,
+    750
+  ],
+  "moves": {
+    "74": {
+      "support_rule": "growth",
+      "card_notes": [
+        "쾌청이면 공격/특공+2 · 그 외 +1"
+      ]
+    },
+    "563": {
+      "support_rule": "till",
+      "card_notes": [
+        "양쪽 출전 중 접지한 풀 타입 공격/특공+1 · 대타/보호와 무관"
+      ],
+      "support_changes": {
+        "attack": 1,
+        "special_attack": 1
+      }
+    },
+    "579": {
+      "support_rule": "flower",
+      "card_notes": [
+        "양쪽 출전 중 풀 타입 방어+1 · 대타/보호와 무관"
+      ],
+      "support_changes": {
+        "defense": 1
+      }
+    },
+    "597": {
+      "support_rule": "mist",
+      "card_notes": [
+        "살아 있는 다른 동료 전원 특방+1 · 적은 강화하지 않음"
+      ],
+      "support_changes": {
+        "special_defense": 1
+      }
+    },
+    "599": {
+      "support_rule": "venom",
+      "card_notes": [
+        "독 상태인 상대만 공격/특공/스피드-1 · 보호/대타/흰안개/클리어참 적용"
+      ]
+    },
+    "602": {
+      "support_rule": "flux",
+      "card_notes": [
+        "특성 대신 살아 있는 전기/강철 동료 전원 방어/특방+1 · 자신 포함"
+      ],
+      "support_changes": {
+        "defense": 1,
+        "special_defense": 1
+      }
+    },
+    "674": {
+      "support_rule": "gear",
+      "card_notes": [
+        "특성 대신 살아 있는 전기/강철 동료 전원 공격/특공+1 · 자신 포함"
+      ],
+      "support_changes": {
+        "attack": 1,
+        "special_attack": 1
+      }
+    },
+    "777": {
+      "support_rule": "decorate",
+      "card_notes": [
+        "살아 있는 다른 동료 전원 공격/특공+2 · 적은 강화하지 않음"
+      ],
+      "support_changes": {
+        "attack": 2,
+        "special_attack": 2
+      }
+    },
+    "811": {
+      "support_rule": "coach",
+      "card_notes": [
+        "살아 있는 다른 동료 전원 공격/방어+1 · 자신 제외"
+      ],
+      "support_changes": {
+        "attack": 1,
+        "defense": 1
+      }
+    },
+    "77": {
+      "card_notes": [
+        "가루/포자 기술 · 풀 타입에게 무효 · 미리보기와 양쪽 실행에 적용"
+      ]
+    },
+    "78": {
+      "card_notes": [
+        "가루/포자 기술 · 풀 타입에게 무효 · 미리보기와 양쪽 실행에 적용"
+      ]
+    },
+    "79": {
+      "card_notes": [
+        "가루/포자 기술 · 풀 타입에게 무효 · 미리보기와 양쪽 실행에 적용"
+      ]
+    },
+    "147": {
+      "card_notes": [
+        "가루/포자 기술 · 풀 타입에게 무효 · 미리보기와 양쪽 실행에 적용"
+      ]
+    },
+    "178": {
+      "card_notes": [
+        "가루/포자 기술 · 풀 타입에게 무효 · 미리보기와 양쪽 실행에 적용"
+      ]
+    },
+    "600": {
+      "card_notes": [
+        "가루/포자 기술 · 풀 타입에게 무효 · 미리보기와 양쪽 실행에 적용"
+      ]
+    },
+    "750": {
+      "card_notes": [
+        "가루/포자 기술 · 풀 타입에게 무효 · 미리보기와 양쪽 실행에 적용"
+      ]
+    }
+  }
+}

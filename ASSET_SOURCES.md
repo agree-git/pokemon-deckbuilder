@@ -153,3 +153,7 @@ Windows 시험 빌드는 공식 Godot **4.7.2** 엔진을 포함합니다. Godot
 ## 기술 상호작용 사실 · v24
 
 `data/player_move_interactions_v24.json`의 접촉·음성·대타 관통 정보와 보호 관통 대조에는 [smogon/pokemon-showdown의 data/moves.ts](https://github.com/smogon/pokemon-showdown/blob/7b02eb39878f4b486f658a752b38c161379bd352/data/moves.ts)를 사용했습니다. 고정 커밋 `7b02eb39878f4b486f658a752b38c161379bd352`,blob `d240d3e4d4e32fa9ded709110d80a20133b105ce`,SHA256 `61ab107dae9628d79ac61da16c72e8565f6a1211874298e00c77c5c0ac9755a7`. [MIT 고지](licenses/pokemon-showdown-MIT.txt)를 보존합니다. 원본 TypeScript를 실행하지 않고 필요한 필드만 추출했으며,901개 원본 ID와 기존919개 플래그를 대조해36개 기술/39개 사실을 보완했습니다. 별도 ID가 없는18개 특수 Z기술은 기존 정보를 유지합니다. [범위·생성기](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-interactions.md).
+
+## 조건부 변화·동료 지원·분말 · v25
+
+`data/player_move_support_v25.json`은 위와 같은 Pokémon Showdown 고정 커밋 `7b02eb39878f4b486f658a752b38c161379bd352`의 `data/moves.ts`와 기존v10/v24 정의를 대조한16개 오버레이입니다. 기존 MIT 고지를 유지합니다. 새 이미지/음원/특성 시스템은 추가하지 않았으며,동료/특성 의존 효과의 카드 전투 각색과 출처 SHA는 [v25 계약](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-support.md) 및 JSON에 기록했습니다.

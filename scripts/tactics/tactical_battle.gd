@@ -638,8 +638,8 @@ func _enemy_action() -> void:
     var player_sub:bool=PlayerTechniques.active(self) and PlayerMoveRules.read(self)["substitutes"].get(player_actor.uid,0)>0
     if player_moves_version>=13:HeldItems.begin_action(self,weather_foe,player_actor,action)
     var p1: bool = enemy_definitions[enemy_index].get("boss_moves_version") in [2,3,4]
-    if PlayerTechniques.active(self) and action.get("player_sealed",false):
-        _record("cancel","봉인 효과 · 상대 기술 사용 불가")
+    if PlayerTechniques.active(self) and (action.get("player_sealed",false) or action.has("support_cancel")):
+        _record("cancel",str(action.get("support_cancel","봉인 효과 · 상대 기술 사용 불가")))
         for key:String in ["effects_v4","effects_v3","effects_v2"]:
             if state.has(key):state[key].merge({"charge":0,"recharge":false,"lock":0,"lock_left":0},true)
         if state.has("effects_v4"):
