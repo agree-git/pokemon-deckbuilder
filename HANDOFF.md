@@ -2,21 +2,17 @@
 
 ## 현재 상태
 
-- main `7b3ee86`: 상태이상 시각 효과 강화. [상태 효과 지도](docs/status-vfx.md)부터 읽는다. 앞선 [기술 모션](docs/combat-motion.md)/[연구 버튼 축소](docs/workshop-layout.md)/[음악 플레이어](docs/music-player.md)/전종 애니메이션/야영 겹침/진화 레벨 수정도 포함한다.
-- **사용자 최종 정정: 원인 문구 없이 이펙트만 늘린다.** 새 피해 원인 라벨·상태 이름은 추가하지 않았다. 기존 피해 숫자/배너/상태 배지/전투 기록은 유지한다.
-- 적용 순간과 지속 피해 때 독방울/불꽃/전기 등의 확대 입자·색 파동·스프라이트 색 반응. 수면/씨앗/혼란/구속·저주/날씨도 같은 시각 경로다. 원정·전투 RNG를 사용하지 않는다.
-- 마지막 tick에서도 효과를 알 수 있도록 기존 damage event에 내부 cause 키만 덧붙인다. 피해/방어/턴·상태 규칙·통계·기록 문구는 유지한다. 일반 공격은 상태 피해로 오인하지 않는다. 동결 엔진/게시JSON/저장 fingerprint/UID·배경 좌표/에셋은 바꾸지 않았다.
-- **새 버전·EXE·빌드/export·Windows CI·Release는 사용자가 다시 요청할 때만 진행한다.** 태그/버전/워크플로 기본값 변경 없음.
+- 사용자 2026-10-19 새 릴리스 빌드를 명시적으로 요청했다. 이번 v0.28.2 빌드·수동Windows CI·배포 준비는 승인됐다. 이후 새 버전은 다시 요청받는다.
+- 게임 소스 `84d06746db6387d8de1e4b4ee81b3f29f5e46e30`: 버전0.28.2/Windows 리소스 버전/누적 CHANGELOG/최신 Esc 안내. [릴리스 변경사항](docs/releases/v0.28.2.md).
+- 앞선 [상태 효과](docs/status-vfx.md),[기술 모션](docs/combat-motion.md),[연구 UI](docs/workshop-layout.md),[음악 플레이어](docs/music-player.md),전종 애니메이션/야영겹침/진화단계 수정 포함. 상태 원인 문구는 추가하지 않는다.
+- GitHub 공개 릴리스는 현재v0.28.0만 확인했다. v0.28.2 태그는 존재하지 않는다. Git HTTPS는 가능하지만 gh API는Forbidden, 현재 커넥터는Release 조회만 가능하고 게시/수동실행 도구는 없다. 수동 workflow 트리거는 유지한다.
 
-## 실제 검증
+## 진행 중인 검증
 
-- Godot4.7.2 실제X11/1920×1080/Dummy `native_status_feedback.gd` **사용자 정정 후 최종32검사/0실패**. 독·화상·씨앗·혼란의 마지막 tick 피해/만료/RNG/기록 유지, 확대 효과/원래 텍스트·카운터 유지/일반 공격 오인 방지/구속·날씨 문맥/씨앗 회복/2배속·복구를 확인했다.
-- 실제 OS Enter로 독·화상이 이어지는 턴의 효과를 확인했다. 직접 계산한 기준 snapshot과 정확히 같고 실제 원정/UID·RNG/저장 바이트·기존 snapshot 복원도 불변이다.
-- PNG3장 독/화상/마비 모두 시각 확인. 증거 `/tmp/pokemon-status-feedback/`, 최종 로그 `/tmp/pokemon-status-feedback-final.log` 오류/누수 없음. 기존 소프트웨어 VSync 안내만 있다. 상태 적용 frame은 검사 fixture다.
-- 초기 검사 RNG 필드 오타를 보정했다. 원인 라벨 방식은 사용자 정정으로 폐기하고 효과 전용 범위를 검사했다. 전체919/69전투/전종 애니메이션/기존 전체 UI·모션·오디오/빌드·패키지는 반복하지 않았다. EXE/태그/CI/Release 생성·실행 없음.
+- 공식4.7.2 캐시 `/workspace/pokemon-build-cache`를 사용해 격리 import/Windows EXE/PCK/검사용별도export를 만든다. 출력 예정 `builds/windows-v0.28.2-84d0674`.
+- `test_export.gd`에 새 버전/2,824애니메이션뷰·import존재/대표아틀라스8뷰디코딩/실제전투애니메이션·음악플레이어·상태VFX스크립트포함 검사를 추가했다. 아직 제작·패키지 검사는 완료하지 않았다.
+- 앞선 기능별 실제창 검사는 [고정 이전 인계](https://github.com/agree-git/pokemon-deckbuilder/blob/94ea16325c99358b31d89d375f39ad905f0e5dac/HANDOFF.md)와 작업별 지도에 있다. 이번에 전체기능·기술·69전투·기존 전체창을 반복하지 않는다.
 
 ## 다음 한 단계
 
-효과 크기·색·타이밍의 실제 플레이 피드백을 우선한다. 원인 문구를 새로 붙이지 않는다. 배포 재요청 전 기존v0.28.1/태그/워크플로 기본값을 유지한다. 요청 시 누적 수정의 소스·자료 SHA/새 태그를 한 번에 갱신하고 공식 import/패키지를 검증한다.
-
-이전 근거는 [고정 이전 인계](https://github.com/agree-git/pokemon-deckbuilder/blob/6859259e8d7762525abc06be70539108a4bf72f9/HANDOFF.md)를 필요할 때만 읽는다.
+공식 Windows 제작 뒤 linux-pack의동일PCK/시작/저장·리소스검사를실행한다. 결과/보고서를자료에보관하고 main 수동Release기본값을v0.28.2/정확한게임·자료SHA로갱신한다. Windows 실제실행과GitHub게시가완료됐다고보고하지않는다.

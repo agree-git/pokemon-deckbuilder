@@ -17,6 +17,7 @@ func run() -> void:
         get_tree().quit(2)
         return
     check(not OS.has_feature("editor"),"Actual export template, not editor")
+    check(ProjectSettings.get_setting("application/config/version","")=="0.28.2","Packed release version v0.28.2")
     var args := OS.get_cmdline_user_args()
     check(args.size() == 1 and OS.get_name() == args[0],"Expected target operating system")
     check(Engine.get_version_info()["string"].begins_with("4.7.2"),"Pinned engine version")
@@ -32,6 +33,16 @@ func run() -> void:
         check(FileAccess.file_exists(path) and JSON.parse_string(FileAccess.get_file_as_string(path)) != null,"Packed data readable: "+path)
     var catalog := VisualCatalog.new()
     check(catalog.pokemon.size() == 1412 and catalog.biomes.size() == 18,"Complete shipped catalog")
+    var animation = preload("res://scripts/content/pokemon_animation.gd")
+    var views: Dictionary = animation.data()["views"]
+    var sheets_ok := views.size()==2824
+    for record: Dictionary in views.values():
+        if not ResourceLoader.exists(record["sheet"]) or record["frames"].size()<2:sheets_ok=false
+    check(sheets_ok,"All 2824 animated views and imported sheets are packed")
+    for id: int in [1,25,1007,1025]:
+        for back: bool in [false,true]:
+            var animated: AtlasTexture = animation.texture(id,back)
+            check(animated.atlas!=null and animated.region.size.x>0,"Packed animated atlas decodes "+str(id)+"/"+str(back))
     var regional := RegionMusic.tracks()
     check(regional.size() == 35,"All supplied regional recordings are packed")
     for entry: Dictionary in regional:
@@ -97,6 +108,8 @@ func run() -> void:
     root.add_child(view)
     await get_tree().process_frame
     check(view.battle_ui != null and view.battle_ui.hand_row.get_child_count() > 0,"Exported battle scene constructs hand and stage")
+    check(view.battle_ui.stage.canvas.source_sprite.has_node("PokemonAnimation") and view.battle_ui.stage.canvas.target_sprite.has_node("PokemonAnimation"),"Packed battle binds both animated Pokemon views")
+    check(view.battle_ui.menu_panel.find_child("MusicPlayer",true,false)!=null and view.battle_ui.status_feedback!=null,"Packed pause player and status VFX scripts construct")
     var music := root.get_node("GameMusic")
     var region_key: String = music.current_key
     check(region_key.begins_with("region_"),"Exported ordinary battle uses supplied regional music")
