@@ -2,6 +2,7 @@ class_name CampaignRoute
 extends RefCounted
 ## Route RNG is independent from battle draws and card rewards.
 const VERSION := 28
+const EVOLUTION := preload("res://scripts/tactics/enemy_evolution.gd")
 var generation := VERSION
 var signature := ""
 var stops: Array[Dictionary] = []
@@ -103,13 +104,14 @@ func _append(title: String, kind: String, chapter: int, biome: Dictionary, ids: 
     if kind == "rest": node["camp"] = CampContent.generate(_run_seed,stops.size())
     stops.append(node)
     if kind != "rest": _battle_index += 1
-func opponents(step: int) -> Array:
+func opponents(step: int,match_level := false) -> Array:
     var node := stops[step]
     var result: Array = []
     for i in node["party"].size():
         var id := int(node["party"][i])
-        var species := _catalog.species(id)
         var level := int(node["level"])
+        if match_level: id = EVOLUTION.at_level(id,level)
+        var species := _catalog.species(id)
         var hp := PokemonStats.value(id,level,"hp")
         var definition := {"id":id,"name":species["name"],"type":species["types"][0],"types":species["types"],"max_hp":hp,"level":level}
         definition.merge(EnemyTactics.build(id,level,species["types"],node["kind"],i,node["party"].size(),generation >= 4))

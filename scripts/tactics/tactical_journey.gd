@@ -105,7 +105,7 @@ func restart(run_seed: int = 2026, selected_relic: String = "field_kit", selecte
         if full_campaign: pokemon.types.assign(_capture_catalog.species(pokemon.species_id)["types"])
     deck.assign(TacticalContent.starting_deck(party))
     _next_card_uid = deck.size()+1
-    var opponents := route.opponents(0) if full_campaign else TacticalJourneyContent.opponents(0)
+    var opponents := route.opponents(0,route.generation>=28) if full_campaign else TacticalJourneyContent.opponents(0)
     if party.size() == 1: opponents = [opponents[0]]
     battle.player_moves_version=PlayerTechniques.version(route.generation) if full_campaign else 1
     battle.start_with(party,deck,opponents,seed_value,relic,true,relics)
@@ -121,7 +121,8 @@ func opponents_at(index: int) -> Array:
     if full_campaign and rare_hunt.get("battle_step",-1) == index:
         var definitions:=RareEncounter.opponents(route.stops[index],int(rare_hunt["target"]))
         return CampaignChallenge.decorate(definitions,route.stops[index]) if route.generation>=28 else definitions
-    return route.opponents(index) if full_campaign else TacticalJourneyContent.opponents(index)
+    # Saved active battles stay intact; apply the correction when creating the next one.
+    return route.opponents(index,route.generation>=28) if full_campaign else TacticalJourneyContent.opponents(index)
 func _collect_deck() -> void:
     deck.clear()
     for pile: Array in [battle.hand,battle.draw_pile,battle.discard,battle.exhausted]: deck.append_array(pile)
