@@ -52,6 +52,7 @@
 | 새 원정에만 적용 | `scripts/tactics/campaign_route.gd` + `player_techniques.gd` |
 | 저장/복원/검증 | `scripts/persistence/journey_snapshot.gd`,`journey_save.gd`;기존 선택 필드를 필수 필드로 만들지 않음 |
 | 연출 중 상태/배지 | `scripts/tactics/battle_frame.gd`,`scripts/ui/tactical_ui.gd`의 해당 함수 |
+| 실제 호버 예측/카드 요약·그림 | `scripts/content/battle_card_preview.gd`,`scripts/ui/battle_action_preview.gd`,`card_effect_text.gd`,`trainer_action_card.gd`;[현재 창 검사](../native-review.md). 새 문맥 추가 시 예측 복제도 깊게 복사 |
 | 생성/출처 | `tools/import_player_move_reactions.py`,`tools/derive_player_reaction_math.py` 등 해당 생성기와 고정CSV 지문;원본 CSV는 커밋하지 않음 |
 
 보존 계약: 미리보기는 상태/UID/RNG를 바꾸지 않는다. 카드 사용 거절은 교대/자원/손패를 바꾸지 않는다. 자동/수동/필수 교대·동시 기절·다음 상대 입장을 구분한다. 승인 파티/마지막 대표,학습 슬롯/카드 UID·강화,기존 원정과 영구 포켓몬 정보를 보존한다. 효과의 원작 차이는 카드 설명과 자료에 명시한다.
@@ -62,6 +63,6 @@
 - 최신 기술 묶음 명령(지닌 물건 작업은 `--suite held-items`): `python3 .dev-materials/tools/check.py --game-dir . --suite player-completion --godot /path/to/godot-4.7.2` (92개 미리보기·변경 효과 계열/새 문맥·저장·관련 이전 동작).
 - 실패/구체적 미확인 위험에만 관련 검사를 추가한다. 과거 넓은 회귀는 `--suite player-altitude` 등이며 자동 필수 절차가 아니다. 통과 뒤 이유 없이 반복하지 않는다. 후속 효과도 해당 변경의 최소 묶음을 새로 선택한다.
 - 단일 스크립트 직접 실행도 개인 저장과 분리된 XDG/APPDATA 환경을 사용한다. 격리 방법이 불명확하면 `check.py`의 임시 사용자/게임 사본 방식을 따른다.
-- 문서/목록만 변경하면 링크·ID·경로·diff만 확인한다. 실제 창/native/X11·EXE/빌드/export/Windows CI는 사용자 지시대로 보류한다.
+- 문서/목록만 변경하면 링크·ID·경로·diff만 확인한다. 기술 구현 뒤 실제 창 대표 검사는 완료했으며 [재현/범위](../native-review.md)를 따른다. 통과한 native 검사를 이유 없이 반복하지 않고 EXE/빌드/export/Windows CI는 별도 재개 전 보류한다.
 
 큰 JSON은 `json.load()`로 필요한 기술ID만 추출한다. 실패 로그는 오류와 앞뒤 호출만 읽는다. 작업 후 최신 상태는 HANDOFF에 짧게 남기고 파일/문맥/검사 계약이 바뀔 때만 이 지도를 갱신한다.

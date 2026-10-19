@@ -12,7 +12,7 @@
 | 지닌 물건/소모/장착 | [원작 지닌 물건](docs/held-items.md)의 계약/해당 효과 | `scripts/tactics/held_items.gd`,`held_item_math.gd`;보상/장착이면 `tactical_journey.gd` | `tools/check.py --suite held-items` |
 | 기술머신/야영 | `rules`의 야영 기술머신/야영지 절 | `scripts/tactics/technical_machines.gd`,`tactical_journey.gd` | `tests/test_machines.gd` |
 | BGM/환경음/일시정지 소리 | `development`의 바이옴 음원 절,사용자 제공곡이면 해당 manifest | `scripts/audio/region_music.gd`,`boss_music.gd`,`game_ambience.gd`,`game_audio.gd` 중 관련 파일 | `tools/check.py --suite soundscape` |
-| 카드/화면/배치 | `rules`의 표시·조작 절 | `scripts/ui/tactical_ui.gd`,`battle_hand_layout.gd`,`scripts/content/battlefield_layout.gd` 중 관련 파일 | 소스/파서;실제 창 보류 |
+| 카드/화면/배치·실제 입력 검사 | [현재 화면 검사](docs/native-review.md),필요 시 `rules` 표시·조작 절 | `scripts/ui/tactical_ui.gd`,`trainer_action_card.gd`,`card_effect_text.gd`,`scripts/content/battle_card_preview.gd` 중 관련 파일 | 해당 문제만 native 대표 재검사;EXE 보류 |
 | 설치/실행 환경 | [환경 준비](docs/setup.md) | `project.godot` | 필요 시 `tools/check.py --suite smoke` |
 | 문서/읽기 비용 개선 | [START_HERE](START_HERE.md) | 이 파일 + 해당 문서 | 링크/경로/변경 범위 확인;게임 검사 없음 |
 
