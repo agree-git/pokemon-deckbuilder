@@ -21,3 +21,10 @@
 - `tests/test_export.gd`에는배포튜토리얼/야영하위UI구성·실제첫카드사용가능·원정불변의작은3검사를추가했다. 최종배포결과는인계를본다. 전체919/69전투/과거전체창검사는반복하지않는다.
 
 `source env.sh`,`source enable-display.sh`후격리XDG와함께 `python3 .dev-materials/tools/native_pointer.py --project-dir . --script .dev-materials/tests/native_tutorial.gd`로재현한다. PNG/개인저장/긴로그/캐시/EXE는커밋하지않는다. 발표노트는 `docs/releases/v0.28.1.md`다.
+
+## 배포 완료
+
+- 게임소스 `a000509fbfef57b8ceeb6ff1456909d39f4e5810` clean,자료/빌더 `13b7cf70cfd259f0908eea0c81d8a4d5208640d1`,공식Godot4.7.2로Windows EXE/PCK·6크기아이콘·필수라이선스/가이드포함제작.
+- [실제동일PCK보고서](reports/windows-v0.28.1-linux-pack.json):24배포파일 SHA/9,700동일게임항목/시작화면/5,128실행검사/0실패/분리프로필삭제. 새튜토리얼·야영상속UI와원정불변도포함. 실제Windows/GPU/스피커검사는아니다.
+- ZIP `PokemonExpedition-Windows-x86_64-a000509.zip`,294265853바이트,SHA256 `58cf0e0e8aa1b43cd758a8ad22b453571277bf0e226d5dec8c1a698102817f60`. ZIP CRC/경로/체크섬검사통과. 로컬폴더 `/workspace/pokemon-deckbuilder/builds/windows-tutorial-a000509/`.
+- main `ca884c3`에서수동Release기본값을v0.28.1/위게임·자료SHA로갱신했다. 이전v0.28.0은변경하지않는다. API차단으로이세션에서Release실행/게시/Windows CI확인은못한다. 사용자가Windows release→Run workflow를기본값으로실행한다.

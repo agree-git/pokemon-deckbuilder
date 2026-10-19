@@ -1,0 +1,29 @@
+{
+  "verifier_sha256": "438c32f2740a495fd583577301b067e1d8953480cab06ac38caf925da62f2937",
+  "mode": "linux-pack",
+  "actual_os": "Linux",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "source_revision": "a000509fbfef57b8ceeb6ff1456909d39f4e5810",
+  "source_sha256": "5cf348cfa85921a870cf2e8236e3094e1b9ec8b04d45d24c2a175db7d2e9e12e",
+  "distribution_files_verified": 24,
+  "packed_game_entries_matched": 9700,
+  "windows_icon_sizes_verified": [
+    16,
+    32,
+    48,
+    64,
+    128,
+    256
+  ],
+  "shipped_title_launch": true,
+  "title_shutdown_diagnostic": null,
+  "title_exit_clean": true,
+  "runtime_checks": 5128,
+  "failures": 0,
+  "profile_isolated": true,
+  "profile_removed": true,
+  "limitations": [
+    "Headless launch; no physical GPU/audio or full playthrough",
+    "Deep checks use a separate test export; shipped game entries are byte-matched except project settings and UID cache"
+  ]
+}
