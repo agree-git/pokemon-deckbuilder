@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-20",
+  "source_revision": "5d4145ce244ab7e846e56e751a9ef80e43ea2af0",
+  "engine": "Godot 4.7.2 official",
+  "build_executed": false,
+  "windows_ci_executed": false,
+  "release_created": false,
+  "save_location": {
+    "parent_checks": 24,
+    "child_first_launch_checks": 6,
+    "failures": 0,
+    "log": "/tmp/pokemon-docs-savepath/test.log",
+    "platform": "Linux headless with isolated XDG; actual Windows OS not exercised"
+  },
+  "presentation": {
+    "initial_checks": 176,
+    "failures": 0,
+    "os_keys": 2,
+    "log": "/tmp/pokemon-presentation-polish/native.log",
+    "fixture_cleanup_warning": "Two unattached factory pages were freed explicitly after initial check"
+  },
+  "capture_followup": {
+    "checks": 27,
+    "failures": 0,
+    "os_keys": 2,
+    "log": "/tmp/pokemon-presentation-polish/capture-final.log",
+    "clean_exit": true,
+    "scope": "Capture notice timing fix and fixture cleanup only; full item/trainer bundle not repeated"
+  },
+  "items": 112,
+  "regular_trainer_sprites": 12,
+  "scope_limits": "No full 919 moves, 69 battles, all UI, full project import, export or actual Windows executable checks."
+}

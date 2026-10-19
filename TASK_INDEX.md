@@ -7,7 +7,9 @@
 | 플레이어 기술 구현/남은 기술 | [기술 작업](docs/tasks/moves.md) | `scripts/tactics/player_techniques.gd` + 최신 효과 모듈 | 해당 효과/저장 검사 |
 | 관장·사천왕·챔피언 기술 | [보스 효과](docs/boss-move-effects.md)의 해당 기술 | `scripts/tactics/boss_battle_rules.gd` + 해당 버전 엔진 | `tests/test_boss_move_effects_p3.gd` |
 | 트레이너 명단/파티/대표 | [승인 파티](docs/boss-party-review.md),명단이면 [roster](docs/boss-roster.md) | `scripts/content/boss_parties.gd`,`data/boss_parties.json` | `tests/test_boss_parties.gd` |
+| 저장 위치 변경/기존 파일 이전 | [저장 위치 지도](docs/save-location.md) | `scripts/persistence/save_location.gd`,`project.godot`; 배포는 자료 `build_windows.py`,`verify_export.py` | `tests/test_save_location.gd` 한 묶음; 빌드 금지 |
 | 저장/불러오기/호환 | [기술 작업의 저장 지도](docs/tasks/moves.md) 또는 `rules`의 저장 절 | `scripts/persistence/journey_save.gd`,`journey_snapshot.gd` | `tests/test_save.gd` + 관련 효과 저장 |
+| 아이템 이미지 크기/일반 트레이너/포획 모션 | [연출 지도](docs/presentation-polish.md) | `_item_sprite`,`trainer_sprites.gd`,`capture_motion.gd`,`tactical_ui.gd::_present` | `tests/native_presentation_polish.gd`; 포획만 `POLISH_CAPTURE_ONLY=1` |
 | 포켓몬 이미지/움직이는 스프라이트 | [포켓몬 애니메이션](docs/pokemon-animation.md) | `scripts/content/pokemon_animation.gd`,`scripts/ui/pokemon_animation_player.gd`,`battle_canvas.gd`,`combat_widgets.gd` | `tools/pokemon_animations.py`;`tests/native_pokemon_animation.gd` |
 | 기술 사용 동작/돌진·몸통·자세 복귀 | [기술 사용 모션](docs/combat-motion.md) | `scripts/ui/combat_motion.gd`,`battle_canvas.gd`,`tactical_ui.gd::_play_event` | `tests/native_combat_motion.gd`;종료 문제만 `native_combat_motion_flow.gd` |
 | 독·마비·화상 등 상태이상 이펙트 | [효과 전용 지도](docs/status-vfx.md);원인 문구 추가 금지 | `scripts/ui/status_feedback.gd`,`tactical_ui.gd::_play_event`;내부 tick 키만 `tactical_battle.gd` | `tests/native_status_feedback.gd` 한 묶음 |

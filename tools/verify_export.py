@@ -108,14 +108,14 @@ def main():
             appdata=ctypes.create_unicode_buffer(32768)
             if ctypes.windll.shell32.SHGetFolderPathW(None,26,None,0,appdata)!=0:raise RuntimeError('Cannot resolve AppData')
             data=Path(appdata.value)
-            player=data/'Godot/app_userdata/포켓몬 원정대'
+            player=data/'PokemonExpedition'
             product=[str(bundle/'PokemonExpedition.exe')]
             harness=[str(validation/'ExportCheck.exe')]
             expected_os='Windows'
         else:
             for key,folder in [('XDG_DATA_HOME','data'),('XDG_CONFIG_HOME','config'),('XDG_CACHE_HOME','cache')]:
                 value=temporary/folder;value.mkdir();env[key]=str(value)
-            data=temporary/'data';player=data/'godot/app_userdata/포켓몬 원정대'
+            data=temporary/'data';player=data/'PokemonExpedition'
             product=[];harness=[]
             # Release templates discover the sibling PCK automatically. Preserve
             # the official engine's disabled external path/script overrides.
