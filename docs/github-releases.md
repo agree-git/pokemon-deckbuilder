@@ -1,5 +1,7 @@
 # GitHub Releases 수동 배포
 
+**현재 사용자 지시: 수정 완료 후 사용자가 요청할 때까지 새 버전·EXE·CI·Release 생성을 보류한다.** 아래 workflow는 기존 v0.28.1 배포를 위해 준비한 것이며 이번 미배포 야영 UI 수정은 포함하지 않는다. 재개 시 누적 수정의 소스·자료 SHA와 새 태그를 한 번에 갱신한다.
+
 사용자가 EXE를 GitHub Releases에 버전별로 정리하도록 요청했다. 로컬v28 ZIP은 이미 완성했고,현재 연결에는Release/asset게시도구가 없으며`gh api`의 저장소조회도Forbidden으로 거부된다. Git접근과GitHub API접근은 별개다. 접근제한을 우회하거나토큰을요청하지않는다.
 
 main의 `.github/workflows/windows-release.yml`은 **workflow_dispatch만** 사용한다. [Windows release](https://github.com/agree-git/pokemon-deckbuilder/actions/workflows/windows-release.yml)에서 **Run workflow**를 한 번 실행하면 Windows에서 공식4.7.2제작→실제EXE headless 검사→초안릴리스/ZIP·SHA·보고서첨부→첨부파일명/크기확인→공개한다. 검사 실패 시 공개하지 않는다. main push/태그 push는 실행조건이 아니며 기존 preview도 그대로 수동이다.

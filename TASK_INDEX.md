@@ -13,6 +13,7 @@
 | 기술머신/야영 | `rules`의 야영 기술머신/야영지 절 | `scripts/tactics/technical_machines.gd`,`tactical_journey.gd` | `tests/test_machines.gd` |
 | BGM/환경음/일시정지 소리 | `development`의 바이옴 음원 절,사용자 제공곡이면 해당 manifest | `scripts/audio/region_music.gd`,`boss_music.gd`,`game_ambience.gd`,`game_audio.gd` 중 관련 파일 | `tools/check.py --suite soundscape` |
 | 튜토리얼/첫 플레이 | [튜토리얼 지도](docs/tutorial.md) | `scripts/ui/tutorial_ui.gd`,`scripts/content/tutorial_lesson.gd`;권유는 `main_menu.gd` | `tests/native_tutorial.gd`;문구만수정하면layout만 |
+| 야영지 버튼/글자 겹침 | [야영지 UI](docs/camp-layout.md) | `scripts/ui/tactical_journey_ui.gd`,`pokedex_workshop.gd`,`combat_widgets.gd` | `tests/native_camp_layout.gd`;새 버전/EXE 보류 |
 | 카드/화면/배치·실제 입력 검사 | [현재 화면 검사](docs/native-review.md),필요 시 `rules` 표시·조작 절 | `scripts/ui/tactical_ui.gd`,`trainer_action_card.gd`,`card_effect_text.gd`,`scripts/content/battle_card_preview.gd` 중 관련 파일 | 해당 문제만 native 대표 재검사;전체 자동 반복 금지 |
 | 최종 원정/마무리·실행 안내 | [최종 원정 확인](docs/final-review.md) | `scripts/tactics/tactical_journey.gd`,`scripts/ui/tactical_journey_ui.gd`;main의 `PLAY_GUIDE.md`,`CHANGELOG.md` | 단일 `test_final_campaign.gd`;종료/새 원정은 `native_final_campaign.gd` |
 | GitHub Releases 게시 | [수동 릴리스](docs/github-releases.md) | `.github/workflows/windows-release.yml`;자료의 `docs/releases/<tag>.md` | Windows runner 실제EXE 검사 후 게시;실행 전 게시완료로 보고하지 않는다 |
