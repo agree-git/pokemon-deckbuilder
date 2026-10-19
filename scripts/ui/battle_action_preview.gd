@@ -5,6 +5,7 @@ const W = preload("res://scripts/ui/combat_widgets.gd")
 var title: Label
 var target: RichTextLabel
 var actor: RichTextLabel
+var allies: Array[RichTextLabel] = []
 var resources: RichTextLabel
 var capture: Label
 var ally_forecast: ColorRect
@@ -19,6 +20,7 @@ func _ready() -> void:
     title = W.label(self,"",Rect2(14,6,352,26),16,W.GOLD)
     target = CardEffectText.label(self,Rect2(14,34,352,25),16)
     actor = CardEffectText.label(self,Rect2(14,60,352,25),16)
+    for i in 2: allies.append(CardEffectText.label(self,Rect2(14,86+i*26,352,25),16))
     resources = CardEffectText.label(self,Rect2(14,86,352,25),16,W.MUTED)
     capture = W.label(self,"",Rect2(14,112,352,26),16,W.GOLD)
     hide()
@@ -67,6 +69,14 @@ func display(value: Dictionary,current_actor_uid: int) -> void:
     actor.text = str(own_after["name"])+"  "+actor_change
     target.visible = not target_change.is_empty()
     actor.visible = not actor_change.is_empty()
+    for line: RichTextLabel in allies: line.hide()
+    var changed := 0
+    for entry: Dictionary in value.get("allies",[]):
+        var change := _vitals(entry["before"],entry["after"])
+        if change.is_empty() or changed >= allies.size(): continue
+        allies[changed].text = str(entry["after"]["name"])+"  "+change
+        allies[changed].show()
+        changed += 1
     var intent: Dictionary = value["intent"]
     var next := "다음 상대 " if value["enemy_changed"] else "다음 "
     var incoming := "전투 승리" if value["won"] else (next+CardEffectText.icon("attack")+str(int(intent["value"])) if intent["kind"] in ["attack","charge","barrage"] else ("상대 교대" if value["enemy_changed"] else ""))
@@ -81,9 +91,11 @@ func display(value: Dictionary,current_actor_uid: int) -> void:
     capture.visible = value["capture_shown"]
     capture.text = "포획 가능 · 사용 후 C" if value["capture_reason"] == "" else str(value["capture_reason"])
     var row_y := 34.0
-    for line: Control in [target,actor,resources,capture]:
+    for line: Control in [target,actor]+allies+[resources,capture]:
         line.position.y = row_y
         if line.visible: row_y += 26
+    size.y = maxf(150,row_y+12)
+    position.y = 718-size.y
     _bar(enemy_forecast,before,after)
     if int(own_after["uid"]) == current_actor_uid: _bar(ally_forecast,own_before,own_after)
     show()

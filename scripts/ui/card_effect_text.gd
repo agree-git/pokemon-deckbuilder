@@ -20,8 +20,29 @@ static func label(parent: Node,rect: Rect2,font_size := 15,color := W.TEXT) -> R
     return node
 static func amount(view: Dictionary,field: String) -> String:
     return str(view["preview_"+field]) if view.has("preview_"+field) else PokemonStats.percent(int(view[field]))
+static func technique_rows(view: Dictionary) -> Array[String]:
+    var rows := PlayerTechniques.lines(view)
+    if int(view.get("player_rules",1)) < 19: return rows
+    var tag := str(view.get("completion_rule",""))
+    var extra: Array[String] = []
+    if view.has("stat_changes") and not view.get("preparing",false):
+        rows.erase(("자신" if view["stat_target"]=="self" else "상대")+" 능력 단계 변경")
+        for stat: String in view["stat_changes"]:
+            extra.append(("자신 " if view["stat_target"]=="self" else "상대 ")+str(PokemonStats.TITLES[stat])+" %+d"%int(view["stat_changes"][stat]))
+    if tag in ["ally_heal","pollen"] and not view.has("damage"):
+        rows.clear()
+        extra.assign(["부상 동료 자동 선택","HP %d까지 회복"%int(view["completion_heal_amount"])] if view.has("completion_heal_amount") else ["부상 동료 HP½ 회복","풀밭이면 HP⅔" if int(view["move_id"])==666 else "대상 없으면 사용 불가"])
+    var summary := {"charge":"다음 전기 위력×2","curl":"구르기·아이스볼×2","minimize":"짓밟기 계열 피해×2","lighten":"몸무게-100kg · 교대 시 복구","entry":"입장 첫 턴·첫 자기 기술","sucker":"상대 직접 공격 예고 시","upper":"상대 선공 공격 예고 시","pursuit":"상대 교대 예고 위력×2","draw":"명중 시 카드1장","break_guard":"발사 시 보호 관통·해제","screen":"빛의장막5턴 · 특수 피해½","reflect":"리플렉터5턴 · 물리 피해½","haze":"양쪽 출전 능력 초기화","party_cure":"동료 주요 상태 치료","stuff":"소지 나무열매 소비"}
+    if summary.has(tag): extra.append(summary[tag])
+    if not extra.is_empty():
+        rows.erase("상세 규칙은 툴팁")
+        rows.erase("효과 없음")
+    var result: Array[String] = []
+    result.append_array(rows)
+    result.append_array(extra)
+    return result.slice(0,5)
 static func render(view: Dictionary) -> String:
-    if view.get("player_rules",1)>=2 and (not view.has("weather") or view.has("extension")):return "[center]"+"\n".join(PlayerTechniques.lines(view))+"[/center]"
+    if view.get("player_rules",1)>=2 and (not view.has("weather") or view.has("extension")):return "[center]"+"\n".join(technique_rows(view))+"[/center]"
     var rows: Array[String] = []
     if view.has("weather"):
         var key := str(view["weather"])

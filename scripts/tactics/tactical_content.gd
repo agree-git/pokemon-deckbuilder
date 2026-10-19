@@ -226,7 +226,12 @@ static func description(view: Dictionary) -> String:
     if view.has("power"): parts.append({"relay":"지속: 기술로 교대 시 최대 HP의 6.3% 보호막","ace":"지속: 출전 유지 시 다음 턴 위력 보정 +20%","supply":"지속: 도구 사용 시 최대 HP의 10.4% 보호막","attrition":"지속: 아군이 건 화상·독·씨앗의 매회 피해 + 상대 최대 HP의 2.1%"}.get(view["power"],BuildConceptContent.POWER_TEXT.get(view["power"],"")))
     if view.has("cleanse"): parts.append("상태이상 해제")
     if view.get("exhaust",false): parts.append("소진")
-    if view.get("player_rules",1)>=2:parts.append_array(view.get("card_notes",[]))
+    if view.get("player_rules",1)>=2:
+        for note: String in view.get("card_notes",[]):
+            if int(view.get("player_rules",1))>=19:
+                if view.get("completion_rule")=="entry" and note=="이 동료의 전투 첫 기술에서만 성공": continue
+                if view.get("completion_rule")=="sucker" and note.begins_with("카드 전투에서는 직전 상대턴에 이 동료가 직접 HP 피해"): continue
+            parts.append(note)
     return " · ".join(parts) if not parts.is_empty() else str(view.get("description","효과 없음"))
 
 static func starting_deck(members: Array[BattlePokemon]) -> Array[BattleCardInstance]:

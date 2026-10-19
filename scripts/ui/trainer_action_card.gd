@@ -15,6 +15,8 @@ var cost_label: Label
 var title_label: Label
 var effect_label: RichTextLabel
 var category_label: Label
+var art_frame: Panel
+var _art_signature := ""
 var _accent := Color("aebedd")
 var _hovered := false
 var _available := true
@@ -34,18 +36,8 @@ func _ready() -> void:
     face = W.panel(self,Rect2(HOME,FACE_SIZE),Color("172c34"),_accent,11)
     face.pivot_offset = Vector2(FACE_SIZE.x/2,FACE_SIZE.y)
     W.panel(face,Rect2(4,4,178,258),Color.TRANSPARENT,_accent.darkened(0.48),8)
-    var art_frame := W.panel(face,Rect2(9,52,168,60),_accent.darkened(0.72),_accent.darkened(0.25),0)
+    art_frame = W.panel(face,Rect2(9,52,168,60),_accent.darkened(0.72),_accent.darkened(0.25),0)
     art_frame.clip_contents = true
-    if int(definition.get("species_id",0)) > 0:
-        W.sprite(art_frame,int(definition["species_id"]),Rect2(36,0,96,60))
-        W.icon(art_frame,definition.get("type","normal"),Rect2(138,30,24,24))
-    else:
-        var art := TrainerCardArt.new()
-        art.card_key = key
-        # Preserve the full central emblem while cropping decorative scenery.
-        art.position = Vector2(0,-8)
-        art.size = Vector2(168,96)
-        art_frame.add_child(art)
     title_label = W.label(face,"",Rect2(43,8,132,34),17,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
     W.panel(face,Rect2(-2,-2,42,42),Color("2b3e43"),_accent,21)
     cost_label = W.label(face,"",Rect2(-2,-2,42,42),25,Color("f1d58c"),HORIZONTAL_ALIGNMENT_CENTER)
@@ -58,7 +50,8 @@ func _ready() -> void:
     update_card(definition,"",false)
 func update_card(view: Dictionary,reason: String,locked: bool) -> void:
     definition = view
-    UiMotion.text(cost_label,str(view["cost"]))
+    _refresh_art(view)
+    UiMotion.text(cost_label,str(int(view["cost"])))
     title_label.text = view["name"]
     var category: String = view.get("category","trainer")
     var caption: String = {"technique":"기술","tool":"도구","trainer":"트레이너","status":"상태"}.get(category,"트레이너")
@@ -84,6 +77,23 @@ func update_card(view: Dictionary,reason: String,locked: bool) -> void:
     disabled = not _available
     face.modulate = Color.WHITE if _available else Color(0.65,0.71,0.72)
     if locked: _set_hover(false)
+func _refresh_art(view: Dictionary) -> void:
+    var species := int(view.get("species_id",0))
+    var type_name := str(view.get("type","normal"))
+    var signature := str([species,type_name,key])
+    if signature == _art_signature: return
+    _art_signature = signature
+    W.clear(art_frame)
+    if species > 0:
+        W.sprite(art_frame,species,Rect2(36,0,96,60)).name = "Portrait"
+        W.icon(art_frame,type_name,Rect2(138,30,24,24)).name = "TypeIcon"
+    else:
+        var art := TrainerCardArt.new()
+        art.card_key = key
+        # Preserve the full central emblem while cropping decorative scenery.
+        art.position = Vector2(0,-8)
+        art.size = Vector2(168,96)
+        art_frame.add_child(art)
 func _has_point(point: Vector2) -> bool:
     if not is_instance_valid(face) or face.self_modulate.a < 0.35 or self_modulate.a < 0.35: return false
     var exposed := Vector2(minf(FACE_SIZE.x,hand_exposed_width) if hand_exposed_width >= 0 else FACE_SIZE.x,FACE_SIZE.y)

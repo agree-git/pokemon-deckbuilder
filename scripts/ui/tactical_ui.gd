@@ -1038,9 +1038,9 @@ func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
     row.set_meta("status_signature",signature)
     W.clear(row)
     for i in items.size():
-        var chip := W.button(row,Rect2((i%4)*68,floori(i/4.0)*34,62,30),func(): pass)
+        var chip := W.button(row,Rect2((i%4)*92,floori(i/4.0)*34,86,30),func(): pass)
         W.icon(chip,items[i][0],Rect2(7,5,20,20))
-        W.label(chip,items[i][1],Rect2(30,0,28,30),14,CREAM,HORIZONTAL_ALIGNMENT_CENTER)
+        W.label(chip,items[i][1],Rect2(30,0,52,30),14,CREAM,HORIZONTAL_ALIGNMENT_CENTER)
         chip.tooltip_text = items[i][2]
         UiMotion.appear(chip,i*0.025)
 
