@@ -73,6 +73,18 @@ func run() -> void:
     check(main_menu.get_child_count() > 0,"Exported title scene constructs")
     main_menu.free()
     var session := root.get_node("BattleSession")
+    var tutorial_before := JourneySnapshot.encode(session.journey)
+    var tutorial_has_run: bool = session.has_journey
+    var tutorial: TutorialUI = load("res://scenes/tutorial.tscn").instantiate()
+    root.add_child(tutorial)
+    check(tutorial.step == 0 and tutorial.practice.battle.card_reason(TutorialLesson.FIRST_CARD).is_empty(),"Packed practice scene and real first card construct")
+    tutorial.step = 8
+    tutorial._camp()
+    await get_tree().process_frame
+    check(tutorial.camp_view != null and not tutorial.camp_view.rest_button.disabled,"Packed camp practice subclass constructs")
+    tutorial.queue_free()
+    await get_tree().process_frame
+    check(session.has_journey == tutorial_has_run and JourneySnapshot.encode(session.journey) == tutorial_before,"Practice leaves exported campaign state untouched")
     var starters: Array[int] = [1,4,7]
     check(session.start_journey(starters,47123).is_empty(),"Start a new real campaign")
     var journey: TacticalJourney = session.journey
