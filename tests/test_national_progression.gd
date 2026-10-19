@@ -23,7 +23,7 @@ func run() -> void:
         check(old.route.signature == golden[seed_value] and old.party.all(func(p: BattlePokemon): return p.content_version == 1),"v3 routes/RNG and legacy learnsets preserved")
         checkpoint(old)
     var j := fixture([906,909,912])
-    check(j.party[0].species_id == 906 and j.party[0].content_version == 2 and j.route.generation == 20,"Generation9 starters use expanded route and original modern learning")
+    check(j.party[0].species_id == 906 and j.party[0].content_version == 2 and j.route.generation == 21,"Generation9 starters use expanded route and original modern learning")
     checkpoint(j)
     var member := j.party[0]
     member.level = 15
