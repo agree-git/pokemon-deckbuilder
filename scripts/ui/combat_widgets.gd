@@ -5,7 +5,7 @@ const TEXT := Color("e8ede7")
 const MUTED := Color("9bafaf")
 const GOLD := Color("edcb80")
 static var _icons: Dictionary = {}
-static var _portraits: Dictionary = {}
+const POKEMON := preload("res://scripts/content/pokemon_animation.gd")
 static func texture(key: String) -> Texture2D:
     if key.begins_with("held:"):
         if not _icons.has(key):_icons[key]=load("res://assets/items/%s.png" % key.trim_prefix("held:"))
@@ -55,13 +55,7 @@ static func icon(parent: Node, key: String, rect: Rect2) -> TextureRect:
     parent.add_child(node)
     return node
 static func sprite(parent: Node, species: int, rect: Rect2) -> TextureRect:
-    if not _portraits.has(species):
-        var source: Texture2D = load(VisualCatalog.sprite_path(species))
-        var atlas := AtlasTexture.new()
-        atlas.atlas = source
-        atlas.region = source.get_image().get_used_rect()
-        _portraits[species] = atlas
-    var portrait: AtlasTexture = _portraits[species]
+    var portrait := POKEMON.texture(species)
     var fit := minf(rect.size.x/portrait.region.size.x,rect.size.y/portrait.region.size.y)
     # Large evolved species also need to fit a 48px roster portrait.
     # Use integer zoom or reciprocal integer reduction, keeping nearest sampling.
@@ -75,6 +69,7 @@ static func sprite(parent: Node, species: int, rect: Rect2) -> TextureRect:
     node.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
     node.mouse_filter = Control.MOUSE_FILTER_IGNORE
     parent.add_child(node)
+    POKEMON.bind(node,species)
     return node
 static func button(parent: Node, rect: Rect2, action: Callable, title := "") -> Button:
     var node := Button.new()

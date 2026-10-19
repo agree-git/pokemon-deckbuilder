@@ -165,3 +165,15 @@ Windows 시험 빌드는 공식 Godot **4.7.2** 엔진을 포함합니다. Godot
 ## 남은 기술 일괄 정리 · v27
 
 `data/player_move_completion_v27.json`은 게시된16개 기술 입력과 위 Pokémon Showdown 고정 `data/moves.ts`를 대조한92종 입력 및919개 카드 분류입니다. 원본 커밋 `7b02eb39878f4b486f658a752b38c161379bd352`,SHA256 `61ab107dae9628d79ac61da16c72e8565f6a1211874298e00c77c5c0ac9755a7` 및 기존 MIT 고지를 유지합니다. 충전/무게·조건부 사용·상태/회복·파트너 기술 등 설정39종과 공통 효과를 보완하고,새 특성/폼/PP·명중/경제 시스템이 없는 차이를 명시했습니다. [생성·분류·각색 계약](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/player-move-completion.md). 새 그림/음원은 없습니다.
+
+## 포켓몬 프레임 애니메이션
+
+사용자가 지정한 [Pokémon Showdown Gen5 애니메이션](https://play.pokemonshowdown.com/sprites/gen5ani/)과 뒷모습 계열을 기준으로 합니다. 전종/지역·상시폼1,412항목의 앞·뒤2,824개는 모두 실제로 서로 다른 프레임을 갖는2D 애니메이션입니다. 정지 이미지·3D 모델·절차적인 숨쉬기 동작으로 대체하지 않았습니다. 트레이너·배경·기존 정적 PNG는 변경하지 않았습니다.
+
+- [Smogon/sprites 고정 원본](https://github.com/smogon/sprites/tree/a9214714f00974a8c28586829e6315d9ca5a6348)의 `src/sprites/gen5/*.gif`:1,451개 표시 뷰. 기존 [Smogon 고지](assets/sources/SMOGON_SPRITES_LICENSE.txt)를 유지합니다. 후속 세대 정적 PNG나 `models` 디렉터리를 이 애니메이션으로 오인하지 않았습니다.
+- [PokéRogue 에셋 고정 원본](https://github.com/pagefaultgames/pokerogue-assets/tree/009cac30c39d3615c7b2c320c3984af368871031)의 `images/pokemon`·`exp`·`back` 프레임 시트:988뷰. [README](assets/sources/POKEROGUE_ANIMATION_README.md.txt),[루트 REUSE](assets/sources/POKEROGUE_ANIMATION_ROOT_REUSE.toml.txt),[이미지 REUSE](assets/sources/POKEROGUE_IMAGES_ANIMATION_REUSE.toml.txt),[CC BY-NC-SA 고지](assets/sources/POKEROGUE_ASSETS_CC_BY_NC_SA_4.txt),[고정 제작자 명단](assets/sources/POKEROGUE_ANIMATION_CREDITS.md.txt)을 보관합니다. 해당 에셋에 적용되는 원본 권리와 예외는 이 고지를 따릅니다.
+- [EBDX 커뮤니티 배포본 고정 원본](https://github.com/ChromeValiant/Pokemon-Essentials-21-With-Unofficial-EBDX/tree/4bd3abfe4185af0561f01d6dcd448bc1d02e0f8d)의 `Graphics/Pokemon/Front`·`Back` 프레임 스트립:385뷰. [배포 안내](https://www.eeveeexpo.com/resources/1831/),[원본 전체 제작자 고지](assets/sources/ANIMATED_POKEMON_EBDX_CREDITS.txt)에 RetroNC·hellfire0raptor·Ghasty001·mangalos810 등 원화/애니메이션/기반 제작자를 포함합니다. 이 프로젝트의 코드·음원·다른 화면은 가져오지 않았습니다.
+
+[애니메이션 매니페스트](assets/pokemon/animated/manifest.json)에 모든 실제 입력 URL·고정 커밋·입력/출력 SHA256·프레임 좌표/시간·매핑을 기록합니다. RGBA 프레임을 복원하고 모든 프레임의 공통 알파 영역으로 자른 뒤 동일 이미지만 중복 제거해2,734장의 PNG 아틀라스로 묶었습니다. 색/실루엣을 다시 그리지 않았습니다. GIF 원본 시간은 유지하고 시간이 없는 스트립/시트는12fps로 재생합니다. 생성 도구는 `development-materials`의 `tools/pokemon_animations.py`이며 Pillow12.3.0 기준입니다.
+
+피카츄 의상/모자는 원본 정적 이미지와 시각 대조했으며 호바귀/펌킨인은 크기별 시트를 구분합니다. 알로라 주인 텅구리는 알로라 외형입니다. 유대변화 특성 개굴닌자(전투 전 변신),나메일의 출신 도롱충이 계열,문양별 분이벌레/분떠도리,외부에서 안 보이는 찻잔 인증표처럼 실제 전투 외형이 같은 경우만 동일 애니메이션을 공유합니다. 메가진화/거다이맥스 등 제외한 전투 전용 폼을 일반 폼에 연결하지 않습니다. 원본 포켓몬 캐릭터의 권리는 Nintendo/Creatures/GAME FREAK 등 원래 권리자에게 있으며 코드 라이선스가 캐릭터 에셋을 대신하지 않습니다.

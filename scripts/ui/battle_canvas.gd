@@ -2,6 +2,7 @@ class_name BattleCanvas
 extends Node2D
 ## Only a visual stage; no HP, card, or combat rules are simulated here.
 
+const POKEMON := preload("res://scripts/content/pokemon_animation.gd")
 const SOURCE := Vector2(240, 320)
 const TARGET := Vector2(725, 280)
 var background: Texture2D
@@ -81,6 +82,7 @@ func _fit_sprites() -> void:
 
 func sprite_bounds(texture: Texture2D) -> Rect2i:
     if texture == null: return Rect2i(0,0,96,96)
+    if texture.has_meta("pokemon_bounds"): return texture.get_meta("pokemon_bounds")
     var key := texture.get_instance_id()
     if not _opaque_bounds.has(key):
         var pixels := texture.get_image()
@@ -127,8 +129,8 @@ func _process(delta: float) -> void:
 func set_species(source_id: int, target_id: int, catalog: VisualCatalog, clear: bool = true) -> void:
     source_species = source_id
     target_species = target_id
-    source_sprite.texture = load(VisualCatalog.sprite_path(source_id, back_view))
-    target_sprite.texture = load(VisualCatalog.sprite_path(target_id))
+    POKEMON.bind(source_sprite,source_id,back_view)
+    POKEMON.bind(target_sprite,target_id)
     _fit_sprites()
     source_name = catalog.species(source_id)["name"]
     target_name = catalog.species(target_id)["name"]
