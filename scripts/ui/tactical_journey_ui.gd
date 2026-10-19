@@ -266,7 +266,7 @@ func _growth_summary() -> void:
         if not report["evolutions"].is_empty(): title = report["name"]+" → "+str(report["evolutions"].back()["name"])
         W.label(panel,title,Rect2(54,10,312,40),19,W.GOLD)
         W.label(panel,"+%s XP  ·  최대 HP +%d" % [String.num(report["xp"],1).trim_suffix(".0"),report["hp"]],Rect2(18,58,348,28),16,W.MUTED)
-        W.label(panel,report.get("companion"," · ".join(report["learned"])+" 습득" if not report["learned"].is_empty() else ("자동 진화!" if not report["evolutions"].is_empty() else "다음 레벨을 향해!")),Rect2(18,96,348,28),17,W.TEXT)
+        W.label(panel,report.get("companion"," · ".join(report["learned"])+" 습득" if not report["learned"].is_empty() else ("자동 진화!" if not report["evolutions"].is_empty() else ("최대 레벨에 도달했습니다." if int(report["after"])>=TacticalGrowth.MAX_LEVEL else "다음 레벨을 향해!"))),Rect2(18,96,348,28),17,W.TEXT)
 func _map() -> void:
     W.label(page,journey.progress_title(),Rect2(550,225,1200,48),24)
     var stops: Array = journey.route.stops if journey.full_campaign else TacticalJourneyContent.STOPS

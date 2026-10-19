@@ -2,9 +2,11 @@
 
 포켓몬 최대 세 마리로 덱을 구성하고 여덟 바이옴의 배지를 모아 사천왕과 챔피언에게 도전하는 팬게임입니다.
 
+최신 버전의 실행·조작·저장은 **[플레이 안내](PLAY_GUIDE.md)**, 최근 수정은 [변경사항](CHANGELOG.md)을 참고하세요.
+
 ## Windows 시험 빌드
 
-현재 EXE 생성은 보류 중이며 main 반영으로 자동 빌드되지 않습니다. Windows preview는 수동 실행 전용입니다.
+현재 EXE 생성은 보류 중이며 main 반영으로 자동 빌드되지 않습니다. 최신 main은 아래 Godot 실행 방법을 사용하세요. 기존 Windows preview 아티팩트는 현재 main과 버전이 다를 수 있으며 수동 실행 전용입니다.
 
 [Windows preview](https://github.com/agree-git/pokemon-deckbuilder/actions/workflows/windows-preview.yml)의 성공한 실행에서 `PokemonExpedition-Windows-x86_64-…` 아티팩트를 받습니다(GitHub 로그인 필요, 보관14일). 압축을 풀고 `PokemonExpedition` 폴더의 `PokemonExpedition.exe`를 실행합니다. Godot 설치는 필요하지 않으며 옆의 `.pck` 파일을 함께 둡니다.
 
@@ -38,7 +40,7 @@
 
 ## 저장소
 
-`main`에는 사용하는 게임 코드·씬·데이터·에셋과 필수 출처/라이선스가 있습니다. Windows 내보내기 설정과 자동 시험 빌드 절차를 포함합니다. 상세 검증 범위와 한계는 [검증 현황](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/validation.md)에 기록합니다.
+`main`에는 사용하는 게임 코드·씬·데이터·에셋과 필수 출처/라이선스가 있습니다. Windows 내보내기 설정과 수동 실행 전용 시험 빌드 절차를 포함합니다. 상세 검증 범위와 한계는 [검증 현황](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/validation.md)에 기록합니다.
 
 개발을 이어갈 때는 **[START_HERE.md](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/START_HERE.md)**부터 읽으세요. 이어서 [현재 상태](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/HANDOFF.md)와 [작업별 파일 지도](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/TASK_INDEX.md)에서 필요한 항목만 확인합니다.
 
@@ -52,6 +54,6 @@
 
 변신·복사·부활·지연 공격·설치/구속·필드/룸·타입/능력 교환·소지품 조작과 실제 HP 기준 흡수/반동을 카드 전투로 구현합니다. 원작의 PP/특성/명중률 추첨·전투 전용 폼처럼 이 게임에 없는 시스템은 설명에 각색 범위를 명시합니다. 모든919개 원작 효과의 완전 복제를 뜻하지 않습니다.
 
-보스는 v9의 검토한 대표138마리/실전233기술 효과를 그대로 사용합니다. 기존 v1~v26 원정 저장과 미래 전투는 이전 규칙을 유지합니다. [보스 적용 현황](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/boss-move-effects.md). 사용자 요청으로 실제 창 검사는 기술 구현 뒤 일괄 진행하며 EXE 생성은 계속 보류합니다.
+보스는 v9의 검토한 대표138마리/실전233기술 효과를 그대로 사용합니다. 기존 v1~v26 원정 저장과 미래 전투는 이전 규칙을 유지합니다. [보스 적용 현황](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/boss-move-effects.md). 기술 구현 뒤 대표 실제 창 검사와 단일 시드 69전투 진행 확인을 마쳤으며 EXE 생성은 계속 보류합니다.
 
 새 원정 v21부터 지닌 물건 보상은 **원작 물건55종**을 사용합니다. 구애 시리즈·생명의구슬·먹다남은음식·기합의띠·타입 강화 도구·나무열매 등의 효과와 실제 아이콘을 적용했습니다. 야영지에서 동료당 하나를 장착하며,소모품은 사용 후 사라져 다시 획득해야 합니다. 리사이클로 복구하면 소모도 취소합니다. 이전 원정은 기존6종과 전투 규칙을 유지합니다. [전체 목록과 각색 범위](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/held-items.md).
