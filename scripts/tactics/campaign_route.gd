@@ -1,7 +1,7 @@
 class_name CampaignRoute
 extends RefCounted
 ## Route RNG is independent from battle draws and card rewards.
-const VERSION := 27
+const VERSION := 28
 var generation := VERSION
 var signature := ""
 var stops: Array[Dictionary] = []
@@ -117,6 +117,6 @@ func opponents(step: int) -> Array:
             var trainer_id: String = node["trainer"]["leader_id"] if node["kind"] == "gym" else node["trainer"]["id"]
             definition.merge(BossTactics.build(str(node["kind"])+":"+trainer_id,i,id,level,species["types"],generation >= 4,generation >= 6,4 if generation >= 9 else (3 if generation >= 8 else (2 if generation >= 7 else 1))),true)
         result.append(definition)
-    return result
+    return CampaignChallenge.decorate(result,node) if generation>=28 else result
 func experience_reward(step: int,species_id := 1) -> float:
     return 0.0 if stops[step]["kind"] == "rest" else CampaignBalance.experience_reward(int(stops[step]["battle_index"]),species_id)

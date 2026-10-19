@@ -396,7 +396,7 @@ func _rest() -> void:
                     time_button.add_theme_color_override("font_disabled_color",W.GOLD)
                 time_button.tooltip_text = "이브이의 다음 레벨업 진화에 적용 · 낮: 에브이 / 밤: 블래키\n휴식·강화 행동이나 친밀도를 소비하지 않습니다."
             W.icon(page,"heal",Rect2(1065,420,96,96))
-            W.label(page,"전원 체력 50% 회복 · 기절 회복 · 부상 제거 · 친밀도 +5",Rect2(550,530,1190,60),25,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
+            W.label(page,"전원 체력 %d%% 회복 · 기절 회복 · 부상 제거 · 친밀도 +5"%CampaignChallenge.rest_percent(journey),Rect2(550,530,1190,60),25,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
             W.label(page,"휴식·카드 강화·희귀 조우 단서 조사 중 하나를 선택하세요.
 가방·장비·만남은 별도로 이용할 수 있습니다.",Rect2(550,610,1190,90),20,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
             rest_button = W.button(page,Rect2(650,742,500,78),_camp_rest,"야영 행동 사용 완료" if journey.step in journey.rested_steps else "휴식하기")

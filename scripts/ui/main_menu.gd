@@ -81,6 +81,7 @@ func _title() -> void:
     W.label(page,"POKÉMON EXPEDITION",Rect2(144,165,700,50),21,W.MUTED)
     W.label(page,"포켓몬 원정대",Rect2(138,227,1130,116),82,W.GOLD)
     W.label(page,"배지 8개를 모으고, 사천왕과 챔피언에게 도전하세요.",Rect2(146,365,1030,46),23,W.TEXT)
+    W.label(page,"새 원정 · 도전 난도: 상성·교대·야영 준비가 중요합니다.",Rect2(146,417,1030,40),18,W.MUTED)
     var y := 505
     var journey: TacticalJourney = session.get("journey")
     if session.get("has_journey") and journey.phase not in [TacticalJourney.CLEARED,TacticalJourney.FAILED]:

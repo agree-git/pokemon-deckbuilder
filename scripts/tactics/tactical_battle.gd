@@ -105,6 +105,7 @@ func start_with(members: Array[BattlePokemon], cards: Array[BattleCardInstance],
     for i in opponents.size():
         enemies.append(BattlePokemon.new(opponents[i],-i-1))
         PokemonStats.apply(enemies[-1],true)
+        if opponents[i].get("challenge_version",0)==28:enemies[-1].block=int(opponents[i]["challenge_block"])
         enemy_states.append({"intent":0})
     active_index = 0
     for i in party.size():
@@ -171,7 +172,7 @@ func intent_for(defender: BattlePokemon) -> Dictionary:
     var result: Dictionary = definitions[int(opening()["intent"]) % definitions.size()].duplicate(true)
     if enemy_definitions[enemy_index].has("boss_moves_version"):
         var authored:=BossEffects.preview(self,defender,result)
-        return PlayerTechniques.enemy_preview(self,defender,authored) if PlayerTechniques.active(self) else authored
+        return CampaignChallenge.intent(self,PlayerTechniques.enemy_preview(self,defender,authored) if PlayerTechniques.active(self) else authored)
     result["tactic"] = str(enemy_definitions[enemy_index].get("tactic",""))
     result["boss_style"] = str(enemy_definitions[enemy_index].get("boss_style",""))
     if result["kind"] in ["attack","charge","barrage"]:
@@ -190,7 +191,7 @@ func intent_for(defender: BattlePokemon) -> Dictionary:
         if result["kind"] == "fortify": result["stat_delta"] = mini(1,6-int(enemy().stat_stages.get(result["stat"],0)))
     elif result["kind"] == "recover": result["value"] = mini(enemy().max_hp-enemy().hp,PokemonStats.scale(enemy(),int(result["value"])))
     if enemy().statuses.has("sleep"): result["asleep"] = true
-    return PlayerTechniques.enemy_preview(self,defender,result) if PlayerTechniques.active(self) else result
+    return CampaignChallenge.intent(self,PlayerTechniques.enemy_preview(self,defender,result) if PlayerTechniques.active(self) else result)
 func card_view(card: BattleCardInstance) -> Dictionary:
     var view := TacticalContent.definition(card,player_moves_version)
     var actor := member(card.owner_uid) if card.owner_uid != 0 else active()

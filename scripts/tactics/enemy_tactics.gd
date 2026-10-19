@@ -76,6 +76,11 @@ static func pattern_text(definition: Dictionary) -> String:
         actions.append({"attack":"공격","charge":"강공격","block":"방어","boost":"강화","barrage":"연타","fortify":"방벽","recover":"회복","status":"상태 부여"}[action["kind"]])
     return " → ".join(actions)
 static func description(definition: Dictionary) -> String:
+    var result:=base_description(definition)
+    if definition.get("challenge_version",0)==28:
+        result+="\n도전 원정 · 직접 공격 압박 %d%% · 개시 보호막 %d"%[definition["challenge_pressure"],definition["challenge_block"]]
+    return result
+static func base_description(definition: Dictionary) -> String:
     if definition.has("boss_moves_version"):
         var authored := BossEffects.profile(definition)
         return "%s\n%s\n순서: %s" % [BossTactics.heading(definition),authored["plan"],pattern_text(definition)]

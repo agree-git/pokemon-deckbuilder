@@ -119,7 +119,8 @@ func current() -> Dictionary:
     return route.stops[step] if full_campaign else TacticalJourneyContent.STOPS[step]
 func opponents_at(index: int) -> Array:
     if full_campaign and rare_hunt.get("battle_step",-1) == index:
-        return RareEncounter.opponents(route.stops[index],int(rare_hunt["target"]))
+        var definitions:=RareEncounter.opponents(route.stops[index],int(rare_hunt["target"]))
+        return CampaignChallenge.decorate(definitions,route.stops[index]) if route.generation>=28 else definitions
     return route.opponents(index) if full_campaign else TacticalJourneyContent.opponents(index)
 func _collect_deck() -> void:
     deck.clear()
@@ -381,7 +382,7 @@ func rest(action: String = "heal", card_uid: int = 0) -> String:
     for pokemon: BattlePokemon in party:
         var hp_before := pokemon.hp
         FriendshipEvolution.change(pokemon,FriendshipEvolution.REST)
-        pokemon.hp = mini(pokemon.max_hp,pokemon.hp+ceili(pokemon.max_hp*0.5))
+        pokemon.hp = mini(pokemon.max_hp,pokemon.hp+ceili(pokemon.max_hp*CampaignChallenge.rest_percent(self)/100.0))
         _stat("camp_healing",pokemon.hp-hp_before)
         pokemon.knocked_out = false
         pokemon.block = 0

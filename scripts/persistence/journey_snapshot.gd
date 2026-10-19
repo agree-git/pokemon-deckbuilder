@@ -317,6 +317,8 @@ static func validate(data: Variant) -> bool:
     if r["badge_records"].size() != r["badges"]: return false
     var route := CampaignRoute.new(r["seed_value"],int(data.get("route_version",1)))
     if not data.get("route") is String or data["route"] != route.signature: return false
+    for definition:Dictionary in b["enemy_definitions"]:
+        if not CampaignChallenge.valid(definition,route,int(b["seed_value"])-int(r["seed_value"])):return false
     if r.has("rare_hunt"):
         if not RareEncounter.valid(r["rare_hunt"],r,route): return false
         var hunt: Dictionary = r["rare_hunt"]
