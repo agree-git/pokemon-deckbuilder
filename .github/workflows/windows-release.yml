@@ -6,17 +6,17 @@ on:
       release_tag:
         description: '새 릴리스 버전 (같은 버전을 덮어쓰지 않습니다)'
         required: true
-        default: v0.28.1
+        default: v0.28.2
         type: string
       game_revision:
         description: '게임의 40자리 commit SHA'
         required: true
-        default: a000509fbfef57b8ceeb6ff1456909d39f4e5810
+        default: 84d06746db6387d8de1e4b4ee81b3f29f5e46e30
         type: string
       materials_revision:
         description: '검사·배포 도구와 변경사항의 40자리 commit SHA'
         required: true
-        default: 13b7cf70cfd259f0908eea0c81d8a4d5208640d1
+        default: 4989eb4412d55d33d86f497ff41b137e973677d2
         type: string
 
 permissions:
