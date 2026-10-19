@@ -77,6 +77,9 @@ func run() -> void:
     check(session.start_journey(starters,47123).is_empty(),"Start a new real campaign")
     var journey: TacticalJourney = session.journey
     check(journey.full_campaign and journey.route.stops.size() == 137 and journey.party.size() == 3,"Real 69-battle route and selected starters")
+    check(journey.route.generation == 28 and CampaignChallenge.rest_percent(journey) == 40 and journey.battle.enemy_definitions[0].get("challenge_version") == 28,"Packed new expedition uses challenge v28")
+    var champion := journey.route.opponents(136)
+    check(champion.all(func(d: Dictionary): return CampaignChallenge.valid(d,journey.route,136) and d["challenge_pressure"] == 210 and d["challenge_block"] > 0),"Packed champion difficulty data and every opening shield")
     var view: TacticalJourneyUI = load("res://scenes/tactical_journey.tscn").instantiate()
     view.journey = journey
     root.add_child(view)

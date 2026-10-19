@@ -107,12 +107,14 @@ def main():
     # Keep attribution files outside the executable so players can read them.
     notice_files=[game/'ASSET_SOURCES.md',game/'assets/fonts/OFL.txt',game/'assets/audio/cries/UPSTREAM_LICENSE',game/'assets/audio/cries/UPSTREAM_README.md']
     notice_files += [path for path in (game/'assets/sources').rglob('*') if path.is_file()]
+    notice_files += [path for path in (game/'licenses').rglob('*') if path.is_file()]
+    notice_files += [game/name for name in ['PLAY_GUIDE.md','CHANGELOG.md'] if (game/name).is_file()]
     for source in notice_files:
         target=bundle/source.relative_to(game);target.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(source,target)
-    licenses=bundle/'licenses';licenses.mkdir()
+    licenses=bundle/'licenses';licenses.mkdir(exist_ok=True)
     for name in ['LICENSE.txt','COPYRIGHT.txt']:
         shutil.copy2(toolchain/'godot-notices'/name,licenses/('Godot-'+name))
-    readme='''포켓몬 원정대 · Windows 초기 알파\n\n1. ZIP 전체를 새 폴더에 압축 해제합니다.\n2. PokemonExpedition.exe를 실행합니다. Godot 설치는 필요하지 않습니다.\n3. PokemonExpedition.pck는 실행 파일과 같은 폴더에 둡니다.\n\n마우스로 카드를 선택합니다. 1/2/3 교대, Q/W/E/R 손패, Enter 턴 종료,\nC 포획, Esc 메뉴, F1 도움말, F11 전체 화면입니다.\n\n저장/설정 위치: %APPDATA%\\Godot\\app_userdata\\포켓몬 원정대\n새 빌드는 다른 폴더에 풀어도 같은 사용자 저장을 이어서 읽습니다.\n실행 폴더와 PCK를 삭제해도 사용자 저장은 별도로 남습니다.\n\n이 빌드는 완성된 정식 출시판이 아닙니다.\n에셋 권리/출처는 ASSET_SOURCES.md와 assets 폴더, 엔진 고지는 licenses 폴더를 확인하세요.\n'''
+    readme='''포켓몬 원정대 · Windows 도전 원정 v28\n\n1. ZIP 전체를 새 폴더에 압축 해제합니다.\n2. PokemonExpedition.exe를 실행합니다. Godot 설치는 필요하지 않습니다.\n3. PokemonExpedition.pck는 실행 파일과 같은 폴더에 둡니다.\n\n마우스로 카드를 선택합니다. 1/2/3 교대, Q/W/E/R 손패, Enter 턴 종료,\nC 포획, Esc 메뉴, F1 도움말, F11 전체 화면입니다.\n\n저장/설정 위치: %APPDATA%\\Godot\\app_userdata\\포켓몬 원정대\n새 빌드는 다른 폴더에 풀어도 같은 사용자 저장을 이어서 읽습니다.\n실행 폴더와 PCK를 삭제해도 사용자 저장은 별도로 남습니다.\n\n새 원정은 도전 난도입니다. 상성·교대·야영지 강화와 회복약을 준비하세요.\n기존 원정은 시작 당시 난도를 유지합니다. 자세한 내용은 PLAY_GUIDE.md를 확인하세요.\n\n이 빌드는 완성된 정식 출시판이 아닙니다.\n에셋 권리/출처는 ASSET_SOURCES.md와 assets 폴더, 엔진 고지는 licenses 폴더를 확인하세요.\n'''
     (bundle/'README-Windows.txt').write_text(readme,encoding='utf-8-sig')
     metadata={'engine':version,'target':'Windows x86_64','source_revision':revision,'source_dirty':dirty,
               'source_sha256':source_hash.hexdigest(),'materials_revision':subprocess.check_output(['git','-C',str(ROOT if (ROOT/'.git').exists() else game),'rev-parse','HEAD' if (ROOT/'.git').exists() else 'origin/development-materials'],text=True).strip(),
