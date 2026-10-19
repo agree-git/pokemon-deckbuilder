@@ -13,7 +13,7 @@
 | 도감/진화/습득 | [전국도감](docs/pokedex-expansion.md)의 해당 절 | `scripts/content/pokedex_expansion.gd`,`scripts/ui/pokedex_workshop.gd` | `tests/test_national_progression.gd` |
 | 지닌 물건/소모/장착 | [원작 지닌 물건](docs/held-items.md)의 계약/해당 효과 | `scripts/tactics/held_items.gd`,`held_item_math.gd`;보상/장착이면 `tactical_journey.gd` | `tools/check.py --suite held-items` |
 | 기술머신/야영 | `rules`의 야영 기술머신/야영지 절 | `scripts/tactics/technical_machines.gd`,`tactical_journey.gd` | `tests/test_machines.gd` |
-| BGM/환경음/일시정지 소리 | `development`의 바이옴 음원 절,사용자 제공곡이면 해당 manifest | `scripts/audio/region_music.gd`,`boss_music.gd`,`game_ambience.gd`,`game_audio.gd` 중 관련 파일 | `tools/check.py --suite soundscape` |
+| BGM/환경음/Esc 음악 플레이어 | [플레이어·최소 검사](docs/music-player.md),음원 자체를 바꾸면 해당 manifest | `scripts/audio/game_music.gd`,`scripts/ui/music_player_panel.gd`;환경음은 `game_ambience.gd` | `tests/native_music_player.gd` 관련 범위;전체 soundscape는 필요한 경우만 |
 | 튜토리얼/첫 플레이 | [튜토리얼 지도](docs/tutorial.md) | `scripts/ui/tutorial_ui.gd`,`scripts/content/tutorial_lesson.gd`;권유는 `main_menu.gd` | `tests/native_tutorial.gd`;문구만수정하면layout만 |
 | UI 간격/공간 활용/설정·메뉴 배치 | [UI 간격 지도](docs/ui-spacing.md) | `scripts/ui/combat_widgets.gd`,`tactical_journey_ui.gd`,`pokedex_workshop.gd`,`settings_panel.gd`와 해당 화면 | `tests/native_ui_spacing.gd`;새 버전/EXE 보류 |
 | 야영지 버튼/글자 겹침 | [야영지 UI](docs/camp-layout.md) | `scripts/ui/tactical_journey_ui.gd`,`pokedex_workshop.gd`,`combat_widgets.gd` | `tests/native_camp_layout.gd`;새 버전/EXE 보류 |
