@@ -2,7 +2,7 @@
 
 ## 현재 상태
 
-- main `5b553653c6986239ab438a27ac8d299a4f65f75b`: 새 원정v28 도전 난도와 사용자 요청 Windows EXE 제작 완료. 플레이어 효과19 유지. [난도/배포 지도](docs/campaign-challenge.md)만 먼저 읽는다.
+- main `39c92af5ddb127ed7468f0161764c81646312e10`: 새 원정v28/수동Releases배포 준비까지 반영. EXE의 실제 소스는 `5b553653c6986239ab438a27ac8d299a4f65f75b`이며 로컬제작/검증을 완료했다. 플레이어 효과19 유지. [난도/배포 지도](docs/campaign-challenge.md)만 먼저 읽는다.
 - 트레이너/보스 각 상대 개시 보호막·지역/역할별 직접 공격 압박·야영40→35→30% 회복과 실제 예고/피해/제목/전술/야영 안내를 연결했다. 고정 피해는 배율 제외다.
 - 기존v27이하 난도/50%휴식/저장/미래 상대·동일 입력/RNG,승인137대진/138대표·경험치·레벨·보상가격/기술/에셋은 유지한다. 새JSON은v28 게시 입력으로 동결한다.
 - main·자료 push 승인 범위로 반영했다. EXE 제작은 최신 사용자 요청으로 재개됐지만 매 main push의 자동 빌드는 아니다. 수동workflow 유지.
@@ -24,6 +24,6 @@
 
 ## 다음 한 단계
 
-로컬 난도/EXE 작업은 완료다. 최신 사용자는 GitHub Releases 정리를 요청했다. API Forbidden으로 직접 게시할 수 없어 [수동 배포 지도](docs/github-releases.md)의workflow와버전별변경사항을준비한다. 실제게시/Windows CI는 아직미실행이다. ZIP 전체를 풀어 EXE와PCK를 함께 두면 Godot설치 없이 실행한다. 난도변경은 새원정부터 적용된다. Windows 실제플레이의 실행/난도 피드백을 받고 해당 문제만 수정한다. 전체검사/원정/EXE를 자동 반복하지 않는다.
+로컬 난도/EXE 작업은 완료다. 최신 사용자는 GitHub Releases 정리를 요청했다. API Forbidden으로 직접 게시할 수 없어 [수동 배포 지도](docs/github-releases.md)의workflow와버전별변경사항을main/자료에준비했다. [Windows release](https://github.com/agree-git/pokemon-deckbuilder/actions/workflows/windows-release.yml)→기본값Run workflow 한 번이 남았다. workflow는자료 `bc083158128730b10cc9fd3ac2057d259137a69b`와게임빌드SHA를고정하고 Windows검사/초안첨부검증 뒤공개한다. YAML/수동조건/입력/검사선행/404종료처리만확인했고 실제게시/Windows CI는 아직미실행이다. ZIP 전체를 풀어 EXE와PCK를 함께 두면 Godot설치 없이 실행한다. 난도변경은 새원정부터 적용된다. Windows 실제플레이의 실행/난도 피드백을 받고 해당 문제만 수정한다. 전체검사/원정/EXE를 자동 반복하지 않는다.
 
 이전v27마무리는 [고정 인계](https://github.com/agree-git/pokemon-deckbuilder/blob/6d03099c975253789ec987eb72b225aefb79ea3b/HANDOFF.md).

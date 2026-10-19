@@ -9,3 +9,5 @@ v0.28.0의 기본게임SHA는 로컬검증소스 `5b553653c6986239ab438a27ac8d29
 변경사항은 `docs/releases/v0.28.0.md`이며 최종첨부는빌더ZIP·`SHA256SUMS.txt`·`windows-native-report.json`이다. GitHub Source code 자동ZIP과게임실행ZIP을혼동하지않도록안내한다. Release asset은일반artifact의14일보관과달리release가남는동안유지된다.
 
 현재 API차단때문에 이세션에서workflow시작/릴리스게시를확인할수없다. 사용자 실행전까지**Releases게시완료로보고하지않는다**. Windows CI가만드는ZIP은로컬Linux에서만든ZIP과동일소스여도엔진export/압축시점의메타데이터로해시가다를수있으므로게시된각ZIP의체크섬을사용한다. 로컬 ZIP을재게시했다고하지않는다.
+
+구현은 main `39c92af5ddb127ed7468f0161764c81646312e10`에 반영했다. YAML파싱/수동트리거만허용/기본게임·자료SHA/변경사항경로/검사선행/초안첨부/입력을환경변수로전달/태그404예상오류의exit0을확인했다. Windows실행은미실행이다. 사용자에게위workflow기본값실행링크와완성된로컬ZIP을안내한다. 워크플로실행을회피하기위한자동태그트리거는추가하지않았다.
