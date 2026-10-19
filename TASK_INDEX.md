@@ -8,6 +8,7 @@
 | 관장·사천왕·챔피언 기술 | [보스 효과](docs/boss-move-effects.md)의 해당 기술 | `scripts/tactics/boss_battle_rules.gd` + 해당 버전 엔진 | `tests/test_boss_move_effects_p3.gd` |
 | 트레이너 명단/파티/대표 | [승인 파티](docs/boss-party-review.md),명단이면 [roster](docs/boss-roster.md) | `scripts/content/boss_parties.gd`,`data/boss_parties.json` | `tests/test_boss_parties.gd` |
 | 저장/불러오기/호환 | [기술 작업의 저장 지도](docs/tasks/moves.md) 또는 `rules`의 저장 절 | `scripts/persistence/journey_save.gd`,`journey_snapshot.gd` | `tests/test_save.gd` + 관련 효과 저장 |
+| 포켓몬 이미지/움직이는 스프라이트 | [포켓몬 애니메이션](docs/pokemon-animation.md) | `scripts/content/pokemon_animation.gd`,`scripts/ui/pokemon_animation_player.gd`,`battle_canvas.gd`,`combat_widgets.gd` | `tools/pokemon_animations.py`;`tests/native_pokemon_animation.gd` |
 | 상대 레벨/진화 단계 | [상대 진화 단계](docs/enemy-evolution.md) | `scripts/tactics/enemy_evolution.gd`,`campaign_route.gd`,`tactical_journey.gd` | `tests/test_enemy_evolution.gd`;새 버전/EXE 보류 |
 | 도감/진화/습득 | [전국도감](docs/pokedex-expansion.md)의 해당 절 | `scripts/content/pokedex_expansion.gd`,`scripts/ui/pokedex_workshop.gd` | `tests/test_national_progression.gd` |
 | 지닌 물건/소모/장착 | [원작 지닌 물건](docs/held-items.md)의 계약/해당 효과 | `scripts/tactics/held_items.gd`,`held_item_math.gd`;보상/장착이면 `tactical_journey.gd` | `tools/check.py --suite held-items` |
