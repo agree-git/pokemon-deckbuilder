@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       release_tag:
-        description: '새 릴리스 버전 (같은 버전을 덮어쓰지 않습니다)'
+        description: '게임 SHA에 미리 준비한 태그 (기존 릴리스는 덮어쓰지 않습니다)'
         required: true
         default: v0.28.2
         type: string
@@ -48,13 +48,19 @@ jobs:
           foreach ($revision in @($env:GAME_REVISION, $env:MATERIALS_REVISION)) {
             if ($revision -notmatch '^[0-9a-f]{40}$') { throw 'Use a complete commit SHA' }
           }
-      - name: Refuse an existing tag
+      # A historical SHA without a ref can require workflows:write when creating
+      # a release. Prepare the exact source tag through normal Git before dispatch.
+      # GITHUB_TOKEN only publishes it; it never creates or moves source tags.
+      - name: Verify source tag and refuse an existing release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          $response = gh api "repos/$env:RELEASE_REPOSITORY/git/ref/tags/$env:RELEASE_TAG" --include 2>&1 | Out-String
-          if ($LASTEXITCODE -eq 0) { throw 'This tag already exists; choose a new version' }
-          if ($response -notmatch 'HTTP/[0-9.]+\s+404\b') { throw "Cannot check release tag: $response" }
+          $tagSha = gh api "repos/$env:RELEASE_REPOSITORY/git/ref/tags/$env:RELEASE_TAG" --jq '.object.sha'
+          if ($LASTEXITCODE -ne 0) { throw 'Prepare a lightweight source tag before running this workflow' }
+          if ($tagSha.Trim() -cne $env:GAME_REVISION) { throw 'The source tag does not match the requested game SHA' }
+          $response = gh api "repos/$env:RELEASE_REPOSITORY/releases/tags/$env:RELEASE_TAG" --include 2>&1 | Out-String
+          if ($LASTEXITCODE -eq 0) { throw 'This release already exists; inspect it before choosing a new version' }
+          if ($response -notmatch 'HTTP/[0-9.]+\s+404\b') { throw "Cannot check existing release: $response" }
           exit 0
       - name: Checkout exact game revision
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
@@ -107,7 +113,7 @@ jobs:
           $checksums = Get-Item builds/windows-release/SHA256SUMS.txt
           $report = Get-Item builds/windows-release/windows-native-report.json
           $attachments = @($archive.FullName, $checksums.FullName, $report.FullName)
-          gh release create $env:RELEASE_TAG --repo $env:RELEASE_REPOSITORY --target $env:GAME_REVISION --title "포켓몬 원정대 $env:RELEASE_TAG" --notes-file ".dev-materials/docs/releases/$($env:RELEASE_TAG).md" --prerelease --draft @attachments
+          gh release create $env:RELEASE_TAG --repo $env:RELEASE_REPOSITORY --verify-tag --title "포켓몬 원정대 $env:RELEASE_TAG" --notes-file ".dev-materials/docs/releases/$($env:RELEASE_TAG).md" --prerelease --draft @attachments
           if ($LASTEXITCODE -ne 0) { throw 'Draft upload failed; no release was published' }
           $json = gh release view $env:RELEASE_TAG --repo $env:RELEASE_REPOSITORY --json assets --jq '.assets'
           if ($LASTEXITCODE -ne 0) { throw 'Could not inspect uploaded release files' }
