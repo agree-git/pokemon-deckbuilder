@@ -15,7 +15,7 @@
 | 기술머신/야영 | `rules`의 야영 기술머신/야영지 절 | `scripts/tactics/technical_machines.gd`,`tactical_journey.gd` | `tests/test_machines.gd` |
 | BGM/환경음/Esc 음악 플레이어 | [플레이어·최소 검사](docs/music-player.md),음원 자체를 바꾸면 해당 manifest | `scripts/audio/game_music.gd`,`scripts/ui/music_player_panel.gd`;환경음은 `game_ambience.gd` | `tests/native_music_player.gd` 관련 범위;전체 soundscape는 필요한 경우만 |
 | 튜토리얼/첫 플레이 | [튜토리얼 지도](docs/tutorial.md) | `scripts/ui/tutorial_ui.gd`,`scripts/content/tutorial_lesson.gd`;권유는 `main_menu.gd` | `tests/native_tutorial.gd`;문구만수정하면layout만 |
-| UI 간격/공간 활용/설정·메뉴 배치 | [UI 간격 지도](docs/ui-spacing.md) | `scripts/ui/combat_widgets.gd`,`tactical_journey_ui.gd`,`pokedex_workshop.gd`,`settings_panel.gd`와 해당 화면 | `tests/native_ui_spacing.gd`;새 버전/EXE 보류 |
+| UI 간격/공간 활용/설정·메뉴 배치 | [UI 간격 지도](docs/ui-spacing.md);연구의 긴 버튼은 [연구 화면 지도](docs/workshop-layout.md) | 연구는 `scripts/ui/pokedex_workshop.gd`;그 외 해당 UI 파일 | 연구는 `tests/native_workshop_compact.gd` 한 묶음;전체 UI 검사는 필요할 때만.새 버전/EXE 보류 |
 | 야영지 버튼/글자 겹침 | [야영지 UI](docs/camp-layout.md) | `scripts/ui/tactical_journey_ui.gd`,`pokedex_workshop.gd`,`combat_widgets.gd` | `tests/native_camp_layout.gd`;새 버전/EXE 보류 |
 | 카드/화면/배치·실제 입력 검사 | [현재 화면 검사](docs/native-review.md),필요 시 `rules` 표시·조작 절 | `scripts/ui/tactical_ui.gd`,`trainer_action_card.gd`,`card_effect_text.gd`,`scripts/content/battle_card_preview.gd` 중 관련 파일 | 해당 문제만 native 대표 재검사;전체 자동 반복 금지 |
 | 최종 원정/마무리·실행 안내 | [최종 원정 확인](docs/final-review.md) | `scripts/tactics/tactical_journey.gd`,`scripts/ui/tactical_journey_ui.gd`;main의 `PLAY_GUIDE.md`,`CHANGELOG.md` | 단일 `test_final_campaign.gd`;종료/새 원정은 `native_final_campaign.gd` |

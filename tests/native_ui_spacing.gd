@@ -96,7 +96,7 @@ func run() -> void:
     var search: Control = workshop.content.find_child("WorkshopSearch",true,false)
     var slots: Array = []
     for i in 4:slots.append(workshop.content.find_child("WorkshopSlot_%d"%i,true,false))
-    check(horizontal(slots) and slots[0].size.x>300,"Technique choices have separate spacious row")
+    check(horizontal(slots) and slots[0].size.x==176,"Technique choices use compact buttons with 24px gutters")
     check(slots[0].get_global_rect().position.y-search.get_global_rect().end.y>=23.9,"Search and technique rows are separated")
     var rows: ScrollContainer = workshop.content.find_child("WorkshopScroll",true,false)
     check(rows.get_global_rect().position.y-slots[0].get_global_rect().end.y>=23.9,"Technique selection clears result list")
