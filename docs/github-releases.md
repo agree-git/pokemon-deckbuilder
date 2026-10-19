@@ -1,7 +1,14 @@
-# 현재 빌드 방침
+# v0.28.5 GitHub 릴리스
 
-최신 사용자 지시: **앞으로 빌드는 GitHub Actions·Releases에서만 실행하고, 로컬 빌드/export/ZIP 제작·전달은 하지 않는다.** 문서 수정·저장 경로 이전 작업은 새 버전/Release 요청이 아니다. 현재 빌드를 실행하지 않는다.
+2026-10-20 사용자 “릴리스” 요청으로 준비했다. **빌드·실행 검사·ZIP 제작·배포는 GitHub Actions·Releases에서만** 수행한다. 로컬 export/빌드·ZIP 전달 금지. 수동 트리거는 유지한다.
 
-2026-10-20 첨부 안내문/크레딧 반영, ASSET_SOURCES.md·CHANGELOG.md 제거, 실제 custom user dir 및 이전 기능을 적용했다. [저장 위치와 도구 연결](save-location.md). 다음 릴리스 명시 요청이 오면 새 버전/게임SHA/자료SHA/태그를 준비하고 수동 Windows workflow로 검증·게시한다. 게시된 v0.28.4 태그/기본 입력을 수정하거나 재게시하지 않는다.
+- 게임 고정 SHA: `2560d2da269074e4444b4644ab69cad40dd6cf75` / 새 lightweight 태그 `v0.28.5`.
+- 자료 SHA는 main의 `.github/workflows/windows-release.yml` 기본값에 고정한다. 검사·도구·[릴리스 노트](releases/v0.28.5.md)를 같은 자료 커밋에서 읽는다.
+- [Windows release](https://github.com/agree-git/pokemon-deckbuilder/actions/workflows/windows-release.yml) → **Run workflow → main → 기본값 그대로 Run workflow**. 과거 실행을 재실행하지 않는다.
+- 현재 연결은 새 workflow dispatch/Release 게시 도구를 제공하지 않는다. 준비와 push 후 사용자가 새 수동 실행을 시작해야 한다. 준비 완료를 게시 완료로 보고하지 않는다.
+- 공식 Godot4.7.2 Windows 제작·실제 EXE 검사 통과 후 draft에 ZIP·SHA256SUMS.txt·windows-native-report.json 세 첨부를 검증하고 게시한다. 실패하면 draft를 게시하지 않는다.
+- 기존 태그·릴리스를 이동/덮어쓰지 않는다. 미리 준비한 정확한 소스 태그와 `--verify-tag`로 과거 workflow 수정 SHA의 권한 문제를 피한다.
 
-이전 v0.28.4 제작·검증·403 해결·수동 게시 근거는 [고정 릴리스 지도](https://github.com/agree-git/pokemon-deckbuilder/blob/12e0229419f0633afd3b4f8866cc05d5dd09f543/docs/github-releases.md)를 필요할 때만 읽는다. 수동 workflow를 자동 트리거로 바꾸지 않는다. 현재 도구에 새 실행/게시 기능이 없으면 사용자 Run workflow로 시작하고 GET으로 결과를 확인한다.
+이번 변경은 [저장 이전](save-location.md), [연출](presentation-polish.md), [제공된 크레딧](ending-credits.md)을 포함한다. ASSET_SOURCES.md·CHANGELOG.md는 복구하지 않는다. 제작 도구가 사용자 README-Windows.txt를 그대로 복사하고 검사용 프로필을 별도로 쓰도록 반영했다.
+
+이전 배포·403 근거는 [고정 지도](https://github.com/agree-git/pokemon-deckbuilder/blob/12e0229419f0633afd3b4f8866cc05d5dd09f543/docs/github-releases.md)에 보관한다.
