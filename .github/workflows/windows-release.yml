@@ -6,17 +6,17 @@ on:
       release_tag:
         description: '새 릴리스 버전 (같은 버전을 덮어쓰지 않습니다)'
         required: true
-        default: v0.28.0
+        default: v0.28.1
         type: string
       game_revision:
         description: '게임의 40자리 commit SHA'
         required: true
-        default: 5b553653c6986239ab438a27ac8d299a4f65f75b
+        default: a000509fbfef57b8ceeb6ff1456909d39f4e5810
         type: string
       materials_revision:
         description: '검사·배포 도구와 변경사항의 40자리 commit SHA'
         required: true
-        default: bc083158128730b10cc9fd3ac2057d259137a69b
+        default: 13b7cf70cfd259f0908eea0c81d8a4d5208640d1
         type: string
 
 permissions:
@@ -107,7 +107,7 @@ jobs:
           $checksums = Get-Item builds/windows-release/SHA256SUMS.txt
           $report = Get-Item builds/windows-release/windows-native-report.json
           $attachments = @($archive.FullName, $checksums.FullName, $report.FullName)
-          gh release create $env:RELEASE_TAG --repo $env:RELEASE_REPOSITORY --target $env:GAME_REVISION --title "포켓몬 원정대 $env:RELEASE_TAG · 도전 원정" --notes-file ".dev-materials/docs/releases/$($env:RELEASE_TAG).md" --prerelease --draft @attachments
+          gh release create $env:RELEASE_TAG --repo $env:RELEASE_REPOSITORY --target $env:GAME_REVISION --title "포켓몬 원정대 $env:RELEASE_TAG" --notes-file ".dev-materials/docs/releases/$($env:RELEASE_TAG).md" --prerelease --draft @attachments
           if ($LASTEXITCODE -ne 0) { throw 'Draft upload failed; no release was published' }
           $json = gh release view $env:RELEASE_TAG --repo $env:RELEASE_REPOSITORY --json assets --jq '.assets'
           if ($LASTEXITCODE -ne 0) { throw 'Could not inspect uploaded release files' }
