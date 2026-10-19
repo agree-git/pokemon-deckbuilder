@@ -38,6 +38,8 @@ var travelling := false
 var travel: JourneyTravel
 var encounter_buttons: Array[Button] = []
 var rare_reaction: Dictionary = {}
+var credits: Control
+var _credits_run_id := ""
 
 func _ready() -> void:
     set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -155,6 +157,15 @@ func refresh() -> void:
         reaction.event = rare_reaction["event"]
         reaction.closed.connect(_close_rare_reaction)
         page.add_child(reaction)
+    if journey.phase == TacticalJourney.CLEARED and journey.full_campaign and _credits_run_id != journey.run_id:
+        _open_credits.call_deferred()
+func _open_credits() -> void:
+    if is_instance_valid(credits) or journey.phase != TacticalJourney.CLEARED or not journey.full_campaign: return
+    _credits_run_id = journey.run_id
+    credits = preload("res://scripts/ui/ending_credits.gd").new()
+    credits.set("journey",journey)
+    credits.closed.connect(func(): credits = null)
+    add_child(credits)
 func _close_rare_reaction() -> void:
     rare_reaction.clear()
     refresh()
@@ -829,6 +840,8 @@ func _result() -> void:
     _action("같은 시드로 다시 출발",Rect2(650,710,470,76),_restart.bind(journey.relic),"restart")
     _action("새 시드로 출발",Rect2(1160,710,470,76),_new_seed,"route")
     _action("시작 화면",Rect2(140,800,300,62),_home,"home")
+    if cleared and journey.full_campaign:
+        W.button(page,Rect2(650,824,470,62),_open_credits,"엔딩 크레딧 다시 보기").name = "ReplayCredits"
 func _capture_choice() -> void:
     var caught := journey.pending_captures[0]
     W.sprite(page,caught.species_id,Rect2(1000,280,180,180))

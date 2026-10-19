@@ -28,6 +28,7 @@ var counter: Label
 var notice: Label
 var loadout_button: Button
 var loadout_panel: StarterLoadoutPanel
+var credits: Control
 
 func _ready() -> void:
     set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -95,6 +96,7 @@ func _title() -> void:
     tutorial_button.name = "TutorialButton"
     collection_button = _button("포획 도감",Rect2(584,y+112,416,64),_open_collection,"ball")
     _button("게임 종료",Rect2(144,y+216,416,56),func(): get_tree().quit(),"close")
+    _button("크레딧",Rect2(584,y+216,416,56),_open_credits,"badge").name = "OpenCredits"
     W.label(page,"포획 %d / %d  ·  스타팅 %d종 해금" % [profile.captured_ids.size(),catalog.pokemon.size(),profile.unlocked_starters(catalog).size()],Rect2(144,940,1000,44),18,W.MUTED)
     var message := str(session.get("save_notice"))
     if not profile.last_error.is_empty(): message += (" · " if not message.is_empty() else "")+profile.last_error
@@ -143,6 +145,11 @@ func _close_tutorial_offer() -> void:
     tutorial_prompt = null
 func _open_tutorial() -> void:
     get_tree().change_scene_to_file("res://scenes/tutorial.tscn")
+func _open_credits() -> void:
+    if is_instance_valid(credits): return
+    credits = preload("res://scripts/ui/ending_credits.gd").new()
+    credits.closed.connect(func(): credits = null)
+    add_child(credits)
 func _open_collection() -> void:
     mode = "collection"
     render()
