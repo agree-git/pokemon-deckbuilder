@@ -56,13 +56,17 @@ def launch(command,cwd,env,log,timeout=180,title=False):
     if title and result.returncode==0:
         instances=set(re.findall(r'Leaked instance: ([A-Za-z0-9_]+):',text))
         resources=set(re.findall(r'Resource still in use: (res://[^\n]+?) \(',text))
-        # This exact forced-quit audio cleanup issue stays visible in the report.
-        # stdout/stderr can interleave within a line, so diagnostics need not start
-        # a line. No other errors or resources are accepted. Deep checks stay strict.
-        if instances=={'AudioStreamWAV','AudioStreamPlaybackWAV'} and resources=={'res://assets/audio/music/title.wav'}:
-            inspected=re.sub(r'ERROR: 1 resources still in use at exit\.?[^\n]*','',text)
-            inspected=re.sub(r'WARNING: 2 ObjectDB instances were leaked at exit[^\n]*','',inspected)
-            diagnostic='Forced headless title exit retains title.wav AudioStreamWAV/AudioStreamPlaybackWAV (exit 0); clean shutdown is not established'
+        # Preserve exact known forced-quit audio diagnostics in the report.
+        # The title changed from the old WAV to this supplied Ogg; do not accept
+        # any other leaked types, tracks, resource counts or execution errors.
+        title_ogg='res://assets/audio/region_music/20_oras_littleroot_town.ogg'
+        wav=instances=={'AudioStreamWAV','AudioStreamPlaybackWAV'} and resources=={'res://assets/audio/music/title.wav'}
+        ogg=instances=={'OggPacketSequence','AudioStreamOggVorbis','AudioStreamPlaybackOggVorbis','OggPacketSequencePlayback'} and len(resources)==2 and title_ogg in resources and any(re.fullmatch(re.escape(title_ogg)+r'::OggPacketSequence_[A-Za-z0-9]+',name) for name in resources)
+        if wav or ogg:
+            resource_count,instance_count=(1,2) if wav else (2,4)
+            inspected=re.sub(r'ERROR: '+str(resource_count)+r' resources still in use at exit\.?[^\n]*','',text)
+            inspected=re.sub(r'WARNING: '+str(instance_count)+r' ObjectDB instances were leaked at exit[^\n]*','',inspected)
+            diagnostic='Forced headless title exit retains '+('title.wav WAV playback' if wav else '20_oras_littleroot_town.ogg Ogg playback')+' (exit 0); clean shutdown is not established'
     if result.returncode or ERROR.search(inspected):raise RuntimeError(f'Export process failed (exit {result.returncode}): '+str(log)+'\n'+text[-5000:])
     return text,diagnostic
 
@@ -140,7 +144,7 @@ def main():
             reported=re.search(r'EXPORT_USER_DIR (.+)',text)
             if not summary or int(summary[2]) or not reported or Path(reported[1].strip()).resolve()!=isolated.resolve():
                 raise RuntimeError('Missing/failed runtime summary or profile isolation; see '+str(runtime_log))
-            report={'mode':args.mode,'actual_os':expected_os,'engine':metadata['engine'],
+            report={'verifier_sha256':sha256(Path(__file__).resolve()),'mode':args.mode,'actual_os':expected_os,'engine':metadata['engine'],
                     'source_revision':metadata['source_revision'],'source_sha256':metadata['source_sha256'],
                     'distribution_files_verified':checked,'packed_game_entries_matched':matched,
                     'windows_icon_sizes_verified':[16,32,48,64,128,256],

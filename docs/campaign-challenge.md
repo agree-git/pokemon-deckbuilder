@@ -38,3 +38,12 @@
 공식4.7.2캐시와 `tools/build_windows.py`로 격리소스 import/Windows x86_64 release 및 별도 검사용 export를 만든다. 게임 아이콘6크기/PE/PCK를 확인하며 안내·변경사항·에셋 출처·폰트/울음소리/Showdown/엔진 라이선스를 함께 배포한다. ZIP은 `PokemonExpedition.exe`와 `.pck`를 함께 풀어서 실행하며 Godot 설치는 필요 없다.
 
 `tools/verify_export.py --mode linux-pack`는 배포 파일 SHA/실제 배포 PCK와 검사 PCK의 게임 항목 일치/정상 시작/리소스·저장·설정 동작을 공식 Linux release template로 확인한다. Windows EXE 자체의 실기 실행을 뜻하지 않는다. 현재 환경의 GitHub API 접근이 Forbidden여서 Windows CI를 실행하지 못했다. 수동 workflow를 자동화로 바꾸거나 제한을 우회하지 않는다. 실제 배포 결과는 인계의 EXE 기록을 확인한다.
+
+### 실제 배포 결과 · 2026-10-19
+
+- 게임 `5b553653c6986239ab438a27ac8d299a4f65f75b`의 clean source,빌드자료 `808678e9a19d0fca9d4d86d58aa7daf43bb3ce76`로 공식4.7.2 Windows x86_64 EXE/PCK 제작 완료. 빌드 당시 도구 해시는 `build-info.json`에 있다.
+- ZIP `PokemonExpedition-Windows-x86_64-5b55365.zip`,294,249,161바이트,SHA256 `30e160e079bc3fa392ef578faa97ba2a99593b40185ad450b69fe22b19f966d8`. 최종 ZIP CRC/경로/해시도 통과했다.
+- 로컬 배포물: `/workspace/pokemon-deckbuilder/builds/windows-v28-5b55365/`. ZIP/EXE/PCK/긴 로그는 커밋하지 않는다. 프로젝트 반영만으로 GitHub에 바이너리가 게시되는 것은 아니다.
+- [실제 동일PCK 보고서](reports/windows-v28-linux-pack.json):24배포파일 SHA·9,690동일게임항목·6크기Windows아이콘·시작화면·5,125실행검사/0실패.1412항목 앞뒤/울음소리,35지역곡/36보스곡,승인 파티/저장/설정과v28난도 JSON/메타데이터 포함. 개인 저장과 분리한 프로필은 삭제했다.
+- 최초 강제 title종료는 exit0에도 제공된 Littleroot Ogg의4객체/2리소스 정리 경고를 냈다. 기존 검사가 예전 title.wav만 알려진 경고로 인식했기에 실패했다. 검사는 해당 Ogg경로·4개타입·2리소스 조합만 정확히 식별해 보고하도록 갱신했고 다른 오류는 계속 거부한다. 재확인한 실제 최종 실행은 그 경고 없이 `title_exit_clean=true`였다. 이는 모든 PC/강제종료의 정리 보장을 뜻하지 않는다.
+- 제작 후 검사기만 수정했으며 게임 EXE/PCK는 동일하다. 실제 검사기 SHA는 보고서의 `verifier_sha256`이며 빌드 당시 도구 해시와 구분한다. Windows 실기/실물 GPU·오디오/수동 평균 난도는 미확인이다. 전체919/기존 전체창/전체원정은 추가 반복하지 않았다.
