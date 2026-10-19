@@ -12,6 +12,8 @@ var starting := false
 var departure: JourneyTravel
 var selection: Array[int] = []
 var species_buttons: Dictionary = {}
+var tutorial_button: Button
+var tutorial_prompt: Control
 var start_button: Button
 var continue_button: Button
 var collection_button: Button
@@ -89,11 +91,15 @@ func _title() -> void:
         W.label(page,journey.progress_title()+" · 배지 %d / 8" % journey.badges,Rect2(650,y,1120,80),19,W.MUTED)
         y += 98
     start_button = _button("새 원정",Rect2(144,y,470,80),_choose,"route")
-    collection_button = _button("포획 도감",Rect2(144,y+98,470,72),_open_collection,"ball")
-    _button("게임 종료",Rect2(144,y+188,470,64),func(): get_tree().quit(),"close")
+    tutorial_button = _button("튜토리얼 · 조작 연습",Rect2(144,y+92,470,64),_open_tutorial,"help")
+    tutorial_button.name = "TutorialButton"
+    collection_button = _button("포획 도감",Rect2(144,y+170,470,64),_open_collection,"ball")
+    _button("게임 종료",Rect2(144,y+248,470,56),func(): get_tree().quit(),"close")
     W.label(page,"포획 %d / %d  ·  스타팅 %d종 해금" % [profile.captured_ids.size(),catalog.pokemon.size(),profile.unlocked_starters(catalog).size()],Rect2(144,940,1000,44),18,W.MUTED)
     var message := str(session.get("save_notice"))
     if not profile.last_error.is_empty(): message += (" · " if not message.is_empty() else "")+profile.last_error
+    var preferences := get_node("/root/Preferences")
+    if not preferences.last_error.is_empty(): message += (" · " if not message.is_empty() else "")+preferences.last_error
     if not message.is_empty(): W.label(page,message,Rect2(144,989,1550,34),16,W.GOLD)
     for i in 3:
         var sprite := W.sprite(page,[1,4,7][i],Rect2(1110+i*205,655+(35 if i == 1 else 0),190,190))
@@ -102,9 +108,41 @@ func _title() -> void:
         floating.tween_property(sprite,"position:y",home.y-8,1.3+i*0.15).set_trans(Tween.TRANS_SINE)
         floating.tween_property(sprite,"position:y",home.y,1.3+i*0.15).set_trans(Tween.TRANS_SINE)
 func _choose() -> void:
+    if get_node("/root/Preferences").tutorial_status == "new":
+        _offer_tutorial()
+        return
+    _choose_starters()
+func _choose_starters() -> void:
     mode = "starters"
     selection.clear()
     render()
+func _offer_tutorial() -> void:
+    if is_instance_valid(tutorial_prompt): return
+    tutorial_prompt = Control.new()
+    tutorial_prompt.name = "TutorialOffer"
+    tutorial_prompt.z_index = 100
+    tutorial_prompt.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+    page.add_child(tutorial_prompt)
+    var shade := ColorRect.new()
+    shade.color = Color(0.01,0.025,0.04,0.86)
+    shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+    tutorial_prompt.add_child(shade)
+    var panel := W.panel(tutorial_prompt,Rect2(480,280,960,520),Color("14282f"),W.GOLD,14)
+    panel.mouse_filter = Control.MOUSE_FILTER_STOP
+    W.label(panel,"처음이라면 조작부터 연습해 볼까요?",Rect2(40,44,880,70),32,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
+    W.label(panel,"카드 사용 · 자동 교대 · 방어와 턴 종료 · 포획 · 야영지 준비\n실제 버튼을 눌러 익히는 별도 연습입니다.\n진행 중인 원정과 도감은 바뀌지 않으며 언제든 나올 수 있습니다.",Rect2(50,142,860,138),22,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
+    W.button(panel,Rect2(80,334,380,70),_open_tutorial,"연습하고 시작").name = "OfferPractice"
+    W.button(panel,Rect2(500,334,380,70),func():
+        get_node("/root/Preferences").set_tutorial_status("skipped")
+        _close_tutorial_offer()
+        _choose_starters(),"바로 스타팅 선택").name = "OfferSkip"
+    W.label(panel,"시작 화면의 ‘튜토리얼 · 조작 연습’에서 언제든 다시 할 수 있습니다.",Rect2(40,430,880,42),17,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
+func _close_tutorial_offer() -> void:
+    if not is_instance_valid(tutorial_prompt): return
+    tutorial_prompt.queue_free()
+    tutorial_prompt = null
+func _open_tutorial() -> void:
+    get_tree().change_scene_to_file("res://scenes/tutorial.tscn")
 func _open_collection() -> void:
     mode = "collection"
     render()
@@ -257,6 +295,10 @@ func _back() -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
     if starting: return
     if not event is InputEventKey or not event.pressed or event.echo: return
+    if is_instance_valid(tutorial_prompt):
+        if event.keycode == KEY_ESCAPE: _close_tutorial_offer()
+        get_viewport().set_input_as_handled()
+        return
     if is_instance_valid(loadout_panel):
         if event.keycode == KEY_ESCAPE: loadout_panel.close()
         get_viewport().set_input_as_handled()

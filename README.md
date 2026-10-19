@@ -8,11 +8,13 @@
 
 실행 파일은 **[Releases](https://github.com/agree-git/pokemon-deckbuilder/releases)**에서 버전별 변경사항과 함께 관리합니다. Assets의 `PokemonExpedition-Windows-x86_64-….zip`을 받아 전체를 압축 해제하고 `PokemonExpedition.exe`를 실행하세요. 옆의 `.pck`를 함께 두며 **Godot 설치는 필요 없습니다**. GitHub의 자동 생성 Source code ZIP은 게임 실행 파일이 아닙니다.
 
-v0.28.0 릴리스 게시 작업을 준비했습니다. 아직 실행하지 않았다면 저장소 관리자가 **[Windows release](https://github.com/agree-git/pokemon-deckbuilder/actions/workflows/windows-release.yml) → Run workflow**를 기본값으로 한 번 실행하면 됩니다. 공식 Godot4.7.2로 Windows 빌드·실제 EXE headless 실행 검사를 통과한 뒤 ZIP·`SHA256SUMS.txt`·`windows-native-report.json`을 시험 릴리스에 게시합니다. main push/태그 push로 자동 실행하지 않습니다. [배포 안내](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/github-releases.md).
+튜토리얼이 포함된 v0.28.1 릴리스 게시 작업을 준비했습니다. 아직 실행하지 않았다면 저장소 관리자가 **[Windows release](https://github.com/agree-git/pokemon-deckbuilder/actions/workflows/windows-release.yml) → Run workflow**를 기본값으로 한 번 실행하면 됩니다. 공식 Godot4.7.2로 Windows 빌드·실제 EXE headless 실행 검사를 통과한 뒤 ZIP·`SHA256SUMS.txt`·`windows-native-report.json`을 시험 릴리스에 게시합니다. main push/태그 push로 자동 실행하지 않습니다. [배포 안내](https://github.com/agree-git/pokemon-deckbuilder/blob/development-materials/docs/github-releases.md).
 
 저장·설정은 `%APPDATA%\Godot\app_userdata\포켓몬 원정대`에 보관합니다. 새 빌드는 별도 폴더에 풀어도 기존 저장을 이어서 읽습니다. 실물 PC의 화면·소리·긴 수동 플레이 검증은 별도입니다. `linux-pack-report.json`은 동일 PCK의 Linux 검사이며 Windows 실기 검사가 아닙니다.
 
 기존 **[Windows preview](https://github.com/agree-git/pokemon-deckbuilder/actions/workflows/windows-preview.yml)**도 수동 실행으로 유지하며,임시 아티팩트의 보관 기간은14일입니다.
+
+처음 플레이한다면 시작 화면의 **튜토리얼 · 조작 연습**을 선택하세요. 카드 사용·자동 교대·방어/턴 종료·포획·야영 휴식/강화를 실제로 연습합니다. 본 원정과 도감에는 반영하지 않으며 언제든 건너뛰거나 다시 할 수 있습니다.
 
 ## Godot에서 실행
 

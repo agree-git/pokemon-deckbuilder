@@ -14,6 +14,7 @@ var music_volume := 0.55
 var ambience_volume := 0.55
 var cries_volume := 0.75
 var audio_muted := false
+var tutorial_status := "new"
 var last_error := ""
 var panel: Control
 var _background_menus: Dictionary = {}
@@ -32,6 +33,7 @@ func load_preferences() -> void:
     ambience_volume = 0.55
     cries_volume = 0.75
     audio_muted = false
+    tutorial_status = "new"
     last_error = ""
     var config := ConfigFile.new()
     var error := config.load(path)
@@ -52,6 +54,8 @@ func load_preferences() -> void:
             set(channel + "_volume", float(volume))
     var muted: Variant = config.get_value("audio", "muted", false)
     if muted is bool: audio_muted = muted
+    var tutorial: Variant = config.get_value("tutorial", "status", "new")
+    if tutorial is String and tutorial in ["new","skipped","completed"]: tutorial_status = tutorial
 
 func save_preferences() -> Error:
     var config := ConfigFile.new()
@@ -64,12 +68,18 @@ func save_preferences() -> Error:
     config.set_value("audio", "ambience", ambience_volume)
     config.set_value("audio", "cries", cries_volume)
     config.set_value("audio", "muted", audio_muted)
+    config.set_value("tutorial", "status", tutorial_status)
     var error := config.save(path + ".tmp")
     if error == OK:
         error = DirAccess.rename_absolute(path + ".tmp", path)
     last_error = "" if error == OK else "설정을 저장하지 못했습니다. 현재 실행에는 적용됩니다."
     changed.emit()
     return error
+
+func set_tutorial_status(value: String) -> void:
+    if value not in ["new","skipped","completed"] or value == tutorial_status: return
+    tutorial_status = value
+    save_preferences()
 
 func set_battle_speed(value: float) -> void:
     if value not in SPEEDS or value == battle_speed: return
