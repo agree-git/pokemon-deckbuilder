@@ -1,0 +1,28 @@
+{
+  "tag": "v0.28.2",
+  "game": "84d06746db6387d8de1e4b4ee81b3f29f5e46e30",
+  "build_materials": "2e33c07ba5fbc1570fec50bb689e5a6f612e60bc",
+  "bytes": 326788599,
+  "sha256": "552a54d0e21ee9b34beecc527a0cf92d879b3ad54d968495e58e92abf3f8f225",
+  "zip_integrity": "PASS",
+  "windows_version_resource": "0.28.2",
+  "provenance_repair": {
+    "previous_remote_tracking_revision": "94ea16325c99358b31d89d375f39ad905f0e5dac",
+    "verified_actual_materials": "2e33c07ba5fbc1570fec50bb689e5a6f612e60bc",
+    "all_recorded_tool_hashes_match": true,
+    "game_binaries_unchanged": true
+  },
+  "archive_name": "PokemonExpedition-Windows-x86_64-84d0674.zip",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "source_sha256": "3a4125456618a9c02ca221296ed76e796d5334915576436a0648a1a06fb5a2b6",
+  "materials_files_sha256": {
+    "tools/build_windows.py": "5632788fb041b25a2350d2aa4edeb00e80a34d2bfc7b59ae5b701e23710ca0a5",
+    "tools/prepare_godot.py": "90ac5b9668958b7608205b74f66f52c36f774e82e8765cd974ae3ee242c7b59c",
+    "tools/verify_export.py": "438c32f2740a495fd583577301b067e1d8953480cab06ac38caf925da62f2937",
+    "tools/windows_resources.py": "677251c5fc876002b0c7738a073f61801dc34e6a34a1b32127db2aaa8f9c35d5",
+    "tests/test_export.gd": "9b65d6aaab362d243ae14a95cbd6f39ff229dc0847f9b805897054e8c070e4b9"
+  },
+  "verification_report": "windows-v0.28.2-linux-pack.json",
+  "windows_native_executed": false,
+  "github_release_published": false
+}
