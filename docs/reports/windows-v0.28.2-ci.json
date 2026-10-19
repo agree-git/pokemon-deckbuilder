@@ -1,0 +1,26 @@
+{
+  "run_id": 39253172946,
+  "job_id": 118061777519,
+  "run_url": "https://github.com/agree-git/pokemon-deckbuilder/actions/runs/39253172946",
+  "game_revision": "84d06746db6387d8de1e4b4ee81b3f29f5e46e30",
+  "materials_revision": "4989eb4412d55d33d86f497ff41b137e973677d2",
+  "observed_log_summary": {
+    "mode": "windows-native",
+    "distribution_files": 29,
+    "identical_pack_entries": 15184,
+    "title_startup": true,
+    "runtime_checks": 5140,
+    "fresh_profiles_removed": true
+  },
+  "windows_archive_sha256": "5c01c4b701a5280a18768c27d596155c48e5d524e4bc77a3dc8e796e4250fb4c",
+  "artifact_id": 12187096428,
+  "artifact_retention_days": 14,
+  "failure_step": "Create draft, upload files, then publish",
+  "error": "HTTP 403: Resource not accessible by integration (POST releases)",
+  "logged_token_permissions": {
+    "Contents": "write",
+    "Metadata": "read"
+  },
+  "published": false,
+  "evidence": "GitHub workflow job steps and decoded job log; not a downloaded native-report.json"
+}

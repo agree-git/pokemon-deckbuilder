@@ -2,20 +2,22 @@
 
 ## 현재 상태
 
-- 사용자가2026-10-19 새릴리스빌드를명시요청했다. **이번v0.28.2 제작/수동Windows CI·배포준비는승인됐다.** 이후버전은재요청받는다. [릴리스지도](docs/github-releases.md)부터읽는다.
-- 빌드게임소스 `84d06746db6387d8de1e4b4ee81b3f29f5e46e30`. 버전0.28.2/Windows버전/누적CHANGELOG/PLAY_GUIDE갱신. main의별도커밋은수동워크플로기본값만갱신한다. 변경사항은[릴리스노트](docs/releases/v0.28.2.md).
-- 튜토리얼/전종애니메이션/야영겹침·UI·연구폭/음악플레이어/기술동작/상태효과/진화단계수정포함. 상태원인문구는추가하지않는다. 원정v28/효과19/기존저장·승인파티·RNG·배경좌표/게시JSON은유지한다.
+- 사용자 요청으로 v0.28.2 제작·Windows CI·게시 승인. 이후 버전은 재요청받는다. [릴리스 지도](docs/github-releases.md)부터 읽는다.
+- 게임 소스 `84d06746db6387d8de1e4b4ee81b3f29f5e46e30`, 자료 `4989eb4412d55d33d86f497ff41b137e973677d2`. main의 후속 변경은 수동 릴리스 설정만이다. [릴리스 노트](docs/releases/v0.28.2.md).
+- 튜토리얼/전종 애니메이션/야영·연구UI/음악플레이어/전투동작/상태VFX/상대 진화 단계 포함. 상태 원인 문구 추가 금지. 원정v28/효과19/저장·승인파티·RNG·배경좌표·게시JSON 보존.
 
-## 실제 제작·검증
+## 실제 검증
 
-- 공식4.7.2 SHA512확인,격리import/Windows EXE/PCK/별도검사용export완료. 아이콘6크기/PE버전0.28.2/외부PCK확인.
-- **linux-pack29배포파일/15,184동일게임항목/시작화면/5,140실행검사/0실패**,격리프로필제거/깨끗한종료.2,824애니메이션뷰import·대표8뷰디코딩/새UI스크립트/카탈로그·음원·저장·설정포함. [보고서](docs/reports/windows-v0.28.2-linux-pack.json).
-- ZIP `PokemonExpedition-Windows-x86_64-84d0674.zip` / 326,788,599바이트. SHA256 `552a54d0e21ee9b34beecc527a0cf92d879b3ad54d968495e58e92abf3f8f225`. `builds/windows-v0.28.2-84d0674`에있다. CRC/필수파일/최종SHA통과. [산출물정보](docs/reports/windows-v0.28.2-artifact.json)참조.
-- 로컬빌드자료 `2e33c07ba5fbc1570fec50bb689e5a6f612e60bc`. 로컬추적참조가낡아최초build-info의자료SHA만달랐다. 실제5도구파일의해시와Git blob을대조해기록만정정/ZIP재생성. 검증한EXE/PCK불변. 다음자료push후에는fetch뒤SHA를확인한다.
-- Windows실제OS실행·실물GPU/오디오/새장시간플레이는미실행. 전체919기술/69전투/기존전체UI·기능검사를반복하지않았다. 앞선실제창근거는[고정이전인계](https://github.com/agree-git/pokemon-deckbuilder/blob/94ea16325c99358b31d89d375f39ad905f0e5dac/HANDOFF.md)와작업별지도에있다.
+- 로컬 공식4.7.2 제작 및 linux-pack29파일/15,184동일항목/시작화면/5,140검사/0실패. [로컬 보고서](docs/reports/windows-v0.28.2-linux-pack.json),[산출물·provenance 정정](docs/reports/windows-v0.28.2-artifact.json). 자료 raw SHA push 후에는 fetch로 tracking ref를 갱신한다.
+- 사용자 실행 [39253172946](https://github.com/agree-git/pokemon-deckbuilder/actions/runs/39253172946): **Windows 빌드·실제 Windows EXE 검사 5,140개/0실패**. 29배포파일/15,184동일PCK항목/시작화면/프로필정리 통과. 실물 GPU/오디오/장시간 플레이는 미검사. [CI 관측 기록](docs/reports/windows-v0.28.2-ci.json).
+- 빌드 아티팩트 `12187096428`에 게임ZIP/체크섬/Windows보고서 보관(14일). Windows ZIP SHA256 `5c01c4b701a5280a18768c27d596155c48e5d524e4bc77a3dc8e796e4250fb4c`. 로컬 ZIP SHA와 구분한다.
 
-## 남은 한 단계
+## 게시 실패와 수정
 
-`gh api`Forbidden/현재커넥터에dispatch·release게시도구없음. GET으로공개v0.28.0만확인. **v0.28.2 workflow/태그/Release는아직실행·생성·게시하지못했다.** 자동태그트리거등우회는없다.
+- release 생성만403 `Resource not accessible by integration`. 이미 Contents:write였음. 과거 workflow 변경 커밋에 ref가 없어 추가 workflow 권한이 필요한 GitHub 제약과 일치한다. 공식 근거는 릴리스 지도에 있다.
+- 정확한 게임 SHA에 lightweight 태그v0.28.2를 정상 Git 경로로 준비한다. main workflow는 기존 태그 SHA 일치/기존 release 없음 확인 → `gh release create --verify-tag` 사용. 태그 이동/덮어쓰기/자동 실행 없음. 기존 게임 소스와 자료 입력은 유지한다.
+- 이번 수정은 YAML/게시 계약 정적 확인만 수행. 게임 재빌드/동일 기능 검사를 로컬에서 반복하지 않는다. 수정한 배포 경로의 Windows CI 실제 실행·게시 성공은 아직 미확인이다.
 
-사용자가[Windows release](https://github.com/agree-git/pokemon-deckbuilder/actions/workflows/windows-release.yml)에서main/기본값그대로Run workflow를실행하면실제Windows검사뒤게시한다. 실행됐다는회신이오면GET워크플로/릴리스조회로실제결과·3첨부파일을확인한다. 입력게임SHA는위값,자료SHA는main워크플로기본값의고정40자리다.
+## 다음 한 단계
+
+사용자가 [Windows release](https://github.com/agree-git/pokemon-deckbuilder/actions/workflows/windows-release.yml)에서 main/기본값으로 **새 Run workflow**를 실행한다. 예전 실행의 Re-run은 예전 태그 거부 로직이므로 쓰지 않는다. 환경의 gh API는 Forbidden/커넥터에 dispatch·게시 도구 없음. 실행 회신 뒤 GET으로 결과와 릴리스3첨부를 확인한다. 실패 시 재빌드보다 오류 직전 로그만 먼저 읽는다.
