@@ -50,6 +50,7 @@ var seed_value := 2026
 var relic := "field_kit"
 var relics: Array[String] = []
 var powers: Dictionary = {}
+var completion_context:Dictionary={}
 var bulk_context: Dictionary = {}
 var bulk_action: Dictionary = {}
 var turn_flags: Dictionary = {}
@@ -702,7 +703,8 @@ func _enemy_action() -> void:
     var contact_foe_stages:=weather_foe.stat_stages.duplicate() if player_moves_version>=5 else {}
     if player_moves_version>=7:PlayerMoveAltitude.synchronize(self,player_actor,action)
     var saved_air:Dictionary=PlayerMoveTraps.air_charge(self,player_actor,action) if player_moves_version>=8 else {}
-    if player_moves_version>=18:PlayerAdaptiveMath.player_after_enemy(self,weather_foe,player_actor,action,player_status,player_sub,player_stages,player_marks)
+    if player_moves_version>=19:PlayerCompletionHooks.player_after_enemy(self,weather_foe,player_actor,action,player_status,player_sub,player_stages,player_marks)
+    elif player_moves_version>=18:PlayerAdaptiveMath.player_after_enemy(self,weather_foe,player_actor,action,player_status,player_sub,player_stages,player_marks)
     elif player_moves_version>=16:PlayerInteractionHooks.player_after_enemy(self,weather_foe,player_actor,action,player_status,player_sub,player_stages,player_marks)
     elif PlayerTechniques.active(self):PlayerMoveRules.after_enemy(self,weather_foe,player_actor,action,player_status,player_sub,player_stages,player_marks)
     if not saved_air.is_empty() and player_actor.alive() and player_actor==active():PlayerMoveRules.write(self)["charges"][player_actor.uid]=saved_air
@@ -725,6 +727,7 @@ func _enemy_action() -> void:
     if player_moves_version>=18:PlayerAdaptiveMath.bulk_after_enemy(self,weather_foe,player_actor,action,bulk_foe_stages)
     elif player_moves_version>=16:PlayerInteractionHooks.bulk_after_enemy(self,weather_foe,player_actor,action,bulk_foe_stages)
     elif player_moves_version>=15:PlayerMoveBulk.after_enemy(self,weather_foe,player_actor,action,bulk_foe_stages)
+    if player_moves_version>=19:PlayerMoveCompletion.after_enemy(self,weather_foe,action)
     if _outcome(): return
     if not active().alive():
         phase = REPLACE
@@ -759,7 +762,8 @@ func _start_player() -> void:
         energy += 1
         _record("relic","축전 방패 · 에너지 +1",{"relic_key":"shield_battery"})
     BuildConceptRules.start_turn(self,previous_flags,stayed)
-    if PlayerTechniques.active(self):PlayerMoveRules.start_player(self)
+    if player_moves_version>=19:PlayerCompletionHooks.start_player(self)
+    elif PlayerTechniques.active(self):PlayerMoveRules.start_player(self)
 func status_damage(pokemon: BattlePokemon, key: String) -> int:
     var bonus := int(powers.get("attrition",0)) if pokemon.uid < 0 and key in ["burn","poison","seed"] else 0
     var amount := PokemonStats.scale(pokemon,2+bonus)
@@ -795,8 +799,10 @@ func _status_hit(pokemon: BattlePokemon,key: String,status: Dictionary) -> void:
                 if foe.uid == int(status["source_uid"]): owner = foe
         if owner != null and owner.alive():
             var recovered := mini(owner.max_hp-owner.hp,health_before-pokemon.hp)
-            owner.hp += recovered
-            if recovered > 0: _record("heal","씨앗 흡수 · "+owner.display_name,{"target":owner.uid,"amount":recovered})
+            if player_moves_version>=19:HeldItems.heal(self,owner,health_before-pokemon.hp)
+            else:
+                owner.hp += recovered
+                if recovered > 0: _record("heal","씨앗 흡수 · "+owner.display_name,{"target":owner.uid,"amount":recovered})
 func _damage(target: BattlePokemon, amount: int, piercing := false,damage_class := "",bypass_substitute := false) -> void:
     var interaction_target:bool=player_moves_version>=16 and not held_attack.is_empty() and int(held_attack.get("target",0))==target.uid
     var guard_bypass:bool=interaction_target and PlayerMoveInteractions.bypasses_guard(PlayerMoveInteractions.move_id(held_attack["view"]))
@@ -829,6 +835,7 @@ func _damage(target: BattlePokemon, amount: int, piercing := false,damage_class 
     elif player_moves_version>=13:HeldItems.on_damage(self,target,lost,piercing,amount-blocked>0)
     if player_moves_version>=15:PlayerMoveBulk.on_damage(self,target,lost,piercing)
     if target.alive() or target.knocked_out: return
+    if player_moves_version>=19:PlayerMoveCompletion.on_knockout(self,target.uid)
     if player_moves_version>=15:PlayerMoveBulk.on_knockout(self,target)
     target.knocked_out = true
     if player_moves_version>=11:PlayerMoveFate.on_knockout(self,target.uid)
@@ -966,6 +973,7 @@ func snapshot() -> Dictionary:
     if not fate_context.is_empty():state["fate_context"]=fate_context.duplicate(true)
     if not reaction_context.is_empty():state["reaction_context"]=reaction_context.duplicate(true)
     if not held_context.is_empty():state["held_context"]=held_context.duplicate(true)
+    if not completion_context.is_empty():state["completion_context"]=completion_context.duplicate(true)
     if not bulk_context.is_empty():state["bulk_context"]=bulk_context.duplicate(true)
     if not exchange_context.is_empty():state["exchange_context"]=exchange_context.duplicate(true)
     return state

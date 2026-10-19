@@ -1017,6 +1017,11 @@ func _refresh_statuses(row: Control,pokemon: BattlePokemon) -> void:
     if exchange.get("stats",{}).has(pokemon.uid):items.append(["boost","능력","기본 능력치 교환/공유 · 단계와 별개 · 교대/종료 시 복구"])
     if exchange.get("roost",{}).get(pokemon.uid,0)==turn_shown:items.append(["flying","착지","날개쉬기 · 이번 상대 행동까지 비행 타입 제거"])
     if exchange.get("copies",{}).has(pokemon.uid):items.append(["counter","복사","스케치 · 이번 전투 복사 공격 고정"])
+    var completion:Dictionary=_visual_frame.get("completion_context",battle.completion_context if _visual_frame.is_empty() else {})
+    if completion.get("charged",{}).get(pokemon.uid,false):items.append(["counter","충전","다음 전기 공격 위력2배 · 사용/교대 시 해제"])
+    if completion.get("curled",{}).get(pokemon.uid,false):items.append(["counter","웅크림","구르기/아이스볼 위력2배 · 교대 시 해제"])
+    if completion.get("small",{}).get(pokemon.uid,false):items.append(["counter","작아짐","짓밟기 계열에게 피해2배 · 교대 시 해제"])
+    if completion.get("weight_loss",{}).has(pokemon.uid):items.append(["counter","경량화","몸무게 -"+str(int(completion["weight_loss"][pokemon.uid])/10.0)+"kg · 최소0.1kg · 교대 시 복구"])
     var bulk_board:Dictionary=_visual_frame.get("bulk_context",battle.bulk_context if _visual_frame.is_empty() else {})
     for key:String in ["forms","imprison","grudge","salt","syrup"]:
         if bulk_board.get(key,{}).has(pokemon.uid):items.append(["counter",{"forms":"변신","imprison":"봉인","grudge":"원념","salt":"소금","syrup":"시럽"}[key],{"forms":"타입/능력/기술 카드 변신 · 교대 시 복구","imprison":"출전 중 자신의 습득 기술과 같은 상대 기술 봉인","grudge":"다음 자기 기술 전 직접 공격에 기절하면 그 기술 봉인","salt":"매 상대 행동 종료에HP⅛ · 물/강철은¼","syrup":"3상대 행동 종료마다 스피드-1"}[key]])

@@ -1,14 +1,15 @@
 class_name PlayerTechniques
 extends RefCounted
 ## Version dispatch keeps published v10 engines and definitions unchanged.
-static func version(route:int) -> int:return 18 if route>=26 else 17 if route>=25 else 16 if route>=24 else 15 if route>=23 else 14 if route>=22 else 13 if route>=21 else 12 if route>=20 else 11 if route>=19 else 10 if route>=18 else 9 if route>=17 else 8 if route>=16 else 7 if route>=15 else 6 if route>=14 else 5 if route>=13 else (4 if route>=12 else (3 if route>=11 else (2 if route>=10 else 1)))
+static func version(route:int) -> int:return 19 if route>=27 else 18 if route>=26 else 17 if route>=25 else 16 if route>=24 else 15 if route>=23 else 14 if route>=22 else 13 if route>=21 else 12 if route>=20 else 11 if route>=19 else 10 if route>=18 else 9 if route>=17 else 8 if route>=16 else 7 if route>=15 else 6 if route>=14 else 5 if route>=13 else (4 if route>=12 else (3 if route>=11 else (2 if route>=10 else 1)))
 static func active(b:TacticalBattle) -> bool:return b.player_moves_version>=2
-static func definition(key:String,v:int) -> Dictionary:return PlayerMoveAdaptive.definition(key) if v==18 else PlayerMoveSupport.definition(key) if v==17 else PlayerMoveInteractions.definition(key) if v==16 else PlayerMoveBulk.definition(key) if v==15 else PlayerMoveTraining.definition(key) if v==14 else HeldItems.definition(key) if v==13 else PlayerMoveReactions.definition(key) if v==12 else PlayerMoveFate.definition(key) if v==11 else PlayerMoveAssist.definition(key) if v==10 else PlayerMoveItems.definition(key) if v==9 else PlayerMoveTraps.definition(key) if v==8 else PlayerMoveAltitude.definition(key) if v==7 else PlayerMoveSeals.definition(key) if v==6 else PlayerMoveFields.definition(key) if v==5 else (PlayerMoveExchange.definition(key) if v==4 else (PlayerMoveTactics.definition(key) if v==3 else PlayerMoveCards.definition(key)))
+static func definition(key:String,v:int) -> Dictionary:return PlayerMoveCompletion.definition(key) if v==19 else PlayerMoveAdaptive.definition(key) if v==18 else PlayerMoveSupport.definition(key) if v==17 else PlayerMoveInteractions.definition(key) if v==16 else PlayerMoveBulk.definition(key) if v==15 else PlayerMoveTraining.definition(key) if v==14 else HeldItems.definition(key) if v==13 else PlayerMoveReactions.definition(key) if v==12 else PlayerMoveFate.definition(key) if v==11 else PlayerMoveAssist.definition(key) if v==10 else PlayerMoveItems.definition(key) if v==9 else PlayerMoveTraps.definition(key) if v==8 else PlayerMoveAltitude.definition(key) if v==7 else PlayerMoveSeals.definition(key) if v==6 else PlayerMoveFields.definition(key) if v==5 else (PlayerMoveExchange.definition(key) if v==4 else (PlayerMoveTactics.definition(key) if v==3 else PlayerMoveCards.definition(key)))
 static func prepare(b:TacticalBattle,p:BattlePokemon,v:Dictionary) -> Dictionary:
     if b.player_moves_version>=15:v=PlayerMoveBulk.expand(b,p,v)
     if b.player_moves_version>=5:v=PlayerMoveFields.expand(b,p,v)
     elif b.player_moves_version==4:v=PlayerMoveExchange.expand(b,p,v)
     if b.player_moves_version>=15:v=PlayerMoveBulk.upgrade_call(v)
+    if b.player_moves_version>=19:v=PlayerMoveCompletion.seed(b,v)
     if b.player_moves_version>=18:v=PlayerMoveAdaptive.seed(b,p,v)
     var result:=PlayerMoveCards.prepare(b,p,v)
     if b.player_moves_version>=3 and result.get("sleep_call",false):
@@ -38,7 +39,8 @@ static func prepare(b:TacticalBattle,p:BattlePokemon,v:Dictionary) -> Dictionary
     if b.player_moves_version>=15:result=PlayerMoveBulk.prepare(b,p,result)
     if b.player_moves_version>=16:result=PlayerMoveInteractions.prepare(b,p,result)
     if b.player_moves_version>=17:result=PlayerMoveSupport.prepare(b,p,result)
-    return PlayerMoveAdaptive.prepare(b,p,result) if b.player_moves_version>=18 else result
+    if b.player_moves_version>=18:result=PlayerMoveAdaptive.prepare(b,p,result)
+    return PlayerMoveCompletion.prepare(b,p,result) if b.player_moves_version>=19 else result
 static func reason(b:TacticalBattle,p:BattlePokemon,v:Dictionary) -> String:
     var why:=PlayerMoveRules.reason(b,p,v)
     if why.is_empty() and b.player_moves_version>=3:why=PlayerMoveTactics.reason(b,p,v)
@@ -54,6 +56,7 @@ static func reason(b:TacticalBattle,p:BattlePokemon,v:Dictionary) -> String:
     if why.is_empty() and b.player_moves_version>=14:why=PlayerMoveTraining.reason(p,v)
     if why.is_empty() and b.player_moves_version>=15:why=PlayerMoveBulk.reason(b,p,v)
     if why.is_empty() and b.player_moves_version>=17:why=PlayerMoveSupport.reason(v)
+    if why.is_empty() and b.player_moves_version>=19:why=PlayerMoveCompletion.reason(v)
     return why
 static func enemy_preview(b:TacticalBattle,p:BattlePokemon,a:Dictionary) -> Dictionary:
     var conversion:bool=b.player_moves_version>=12 and PlayerMoveReactions.conversion(b,b.enemy())
@@ -71,8 +74,10 @@ static func enemy_preview(b:TacticalBattle,p:BattlePokemon,a:Dictionary) -> Dict
     if b.player_moves_version>=8:result=PlayerMoveTraps.enemy_preview(b,p,result)
     if b.player_moves_version>=12:result=PlayerMoveReactions.enemy_preview(b,result)
     if b.player_moves_version>=15:result=PlayerMoveBulk.enemy_preview(b,result)
-    return PlayerMoveSupport.enemy_preview(b,p,result) if b.player_moves_version>=17 else result
+    if b.player_moves_version>=17:result=PlayerMoveSupport.enemy_preview(b,p,result)
+    return PlayerMoveCompletion.enemy_preview(b,p,result) if b.player_moves_version>=19 else result
 static func on_card(b:TacticalBattle,v:Dictionary,p:BattlePokemon,target:BattlePokemon) -> void:
+    if b.player_moves_version>=19:PlayerMoveCompletion.on_card(b,v,p,target)
     if b.player_moves_version>=15:PlayerMoveBulk.on_card(b,v,p,target)
     if b.player_moves_version>=18:PlayerAdaptiveMath.player_card(b,v,p,target)
     elif b.player_moves_version>=16:PlayerInteractionHooks.player_card(b,v,p,target)
@@ -85,7 +90,8 @@ static func after_card(b:TacticalBattle,v:Dictionary,p:BattlePokemon,target:Batt
         base=v.duplicate(true);base.erase("special")
     if b.player_moves_version>=13 and v.has("damage"):
         base=base.duplicate(true);base["target_hp_before"]=target.hp+int(b.held_attack.get("loss",0))
-    PlayerMoveRules.after_card(b,base,p,target)
+    if b.player_moves_version>=19:PlayerMoveCompletion.base_after_card(b,base,p,target)
+    else:PlayerMoveRules.after_card(b,base,p,target)
     if b.player_moves_version>=3:PlayerMoveTactics.after_card(b,v,p,target)
     if b.player_moves_version>=4:PlayerMoveExchange.after_card(b,v,p,target)
     if b.player_moves_version>=5:PlayerMoveFields.after_card(b,v,p,target)
@@ -100,8 +106,10 @@ static func after_card(b:TacticalBattle,v:Dictionary,p:BattlePokemon,target:Batt
     if b.player_moves_version>=17:PlayerMoveSupport.after_card(b,v,p)
     if b.player_moves_version>=15:PlayerMoveBulk.after_card(b,v,p,target)
     if b.player_moves_version>=13:HeldItems.after_card(b,v,p,target)
+    if b.player_moves_version>=19:PlayerMoveCompletion.after_card(b,v,p,target)
     if b.player_moves_version>=15 and p!=b.active():HeldItems.on_switch(b,p.uid)
 static func on_switch(b:TacticalBattle,old:int) -> void:
+    if b.player_moves_version>=19:PlayerMoveCompletion.on_switch(b,old)
     if b.player_moves_version>=15:PlayerMoveBulk.on_switch(b,old)
     if b.player_moves_version>=10:PlayerMoveAssist.on_switch(b,old)
     if b.player_moves_version>=9:PlayerMoveItems.on_switch(b,old)
@@ -126,6 +134,7 @@ static func raw_damage(b:TacticalBattle,p:BattlePokemon,target:BattlePokemon,v:D
     else:n=PlayerMoveExchange.raw_damage(b,p,target,v,bonus) if b.player_moves_version>=4 else PlayerMoveCards.raw_damage(b,p,target,v,bonus)
     return PlayerMoveAssist.damage(v,n) if b.player_moves_version>=10 else n
 static func lines(v:Dictionary) -> Array[String]:
+    if v.get("player_rules")==19:return PlayerMoveCompletion.lines(v)
     if v.get("player_rules")==18:return PlayerMoveAdaptive.lines(v)
     if v.get("player_rules")==17:return PlayerMoveSupport.lines(v)
     if v.get("player_rules")==16:return PlayerMoveInteractions.lines(v)
