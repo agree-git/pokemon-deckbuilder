@@ -1,0 +1,22 @@
+{
+  "version": "v0.28.4",
+  "source_revision": "83b32740e9988c3fbda39b20cc29b01f4fd1d614",
+  "materials_revision": "8e3a7a38b2df13a7a0c66591599a14aae1edf83c",
+  "source_dirty": false,
+  "archive": "PokemonExpedition-Windows-x86_64-83b3274.zip",
+  "archive_bytes": 326828107,
+  "sha256": "9308beb17217312db14ab4b28e4d4a2783fdf199b149d224b3cd532e0c43d3d6",
+  "zip_crc_valid": true,
+  "original_credit_text_and_json_match": true,
+  "materials_file_hashes_match_git": true,
+  "native_ending_checks": 80,
+  "native_ending_failures": 0,
+  "native_ending_os_clicks": 7,
+  "native_ending_os_keys": 4,
+  "windows_native_run": false,
+  "published": false,
+  "linux_pack_report": "windows-v0.28.4-linux-pack.json",
+  "linux_pack_runtime_checks": 5143,
+  "linux_pack_identical_entries": 15188,
+  "distribution_files": 31
+}
