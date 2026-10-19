@@ -21,21 +21,29 @@ func rebuild() -> void:
     W.clear(self)
     var dim := W.button(self,Rect2(0,0,1920,1080),func(): closed.emit(); queue_free())
     for state: String in ["normal","hover","pressed","focus"]: dim.add_theme_stylebox_override(state,W.box(Color(0.01,0.025,0.04,.88),Color.TRANSPARENT,0))
-    content = W.panel(self,Rect2(160,64,1600,952),Color("14282f"),W.GOLD)
+    content = W.panel(self,Rect2(320,80,1280,920),Color("14282f"),W.GOLD)
     content.mouse_filter = Control.MOUSE_FILTER_STOP
-    W.label(content,"포켓몬 연구",Rect2(40,24,1200,48),30,W.GOLD)
-    W.icon_button(content,"close",Rect2(1508,24,52,52),func(): closed.emit(); queue_free(),"닫기 · Esc")
+    W.label(content,"포켓몬 연구",Rect2(32,24,1120,48),30,W.GOLD)
+    W.icon_button(content,"close",Rect2(1196,24,52,52),func(): closed.emit(); queue_free(),"닫기 · Esc")
+    W.label(content,"연구할 동료",Rect2(32,96,232,32),18,W.MUTED)
+    W.panel(content,Rect2(288,104,1,704),Color("344b51"))
     for i in journey.party.size():
         var p: BattlePokemon = journey.party[i]
         var index := i
-        var button := W.button(content,W.row_rect(Rect2(40,96,1520,64),i,journey.party.size()),func(): selected = index; slot = 0; rebuild(),p.display_name)
-        W.fit_button(button)
+        var button := W.button(content,Rect2(32,152+i*112,232,88),func(): selected = index; slot = 0; rebuild())
+        W.sprite(button,p.species_id,Rect2(12,12,64,64))
+        var name_label := W.label(button,p.display_name,Rect2(88,12,128,36),19)
+        W.fit_label(name_label)
+        W.label(button,"Lv. %d" % p.level,Rect2(88,48,128,28),15,W.MUTED)
+        button.tooltip_text = p.display_name
         button.name = "WorkshopParty_%d" % i
         if selected == i: button.add_theme_stylebox_override("normal",W.box(Color("29443f"),W.GOLD))
     var modes := ["evolution","forms","moves","machines"]
     for i in modes.size():
         var key: String = modes[i]
-        var button := W.button(content,W.row_rect(Rect2(40,184,1520,56),i,modes.size()),func(): mode = key; query = ""; rebuild(),["진화 분기·준비","상시 폼","기술 훈련","기술머신"][i])
+        var x := 312 if i == 0 else 496+(i-1)*168
+        var button := W.button(content,Rect2(x,104,160 if i == 0 else 144,48),func(): mode = key; query = ""; rebuild(),["진화·준비","상시 폼","기술 훈련","기술머신"][i])
+        button.add_theme_font_size_override("font_size",18)
         W.fit_button(button)
         button.name = "WorkshopTab_"+key
         if mode == key: button.add_theme_stylebox_override("normal",W.box(Color("29443f"),W.GOLD))
@@ -44,30 +52,32 @@ func rebuild() -> void:
     if mode == "forms": description = "현재 지역 계통의 상시 폼을 준비합니다. 지역폼은 포획·진화로 획득하며 합체 폼은 두 포켓몬의 포획 기록이 필요합니다."
     elif mode == "moves": description = "레벨·기술머신·교배·가르침 습득 경로를 따릅니다. 훈련은 야영 행동 1회를 사용하며 선택한 기술의 덱 사본만 교체합니다."
     elif mode == "machines": description = "상인·야영 발견으로 기술머신을 획득합니다. 위에서 동료와 교체할 기술을 선택하세요. 사용 시 1개 소모하며 야영 행동은 사용하지 않습니다. · 골드 %d" % journey.gold
-    var help := W.label(content,description,Rect2(40,264,1520,56),19,W.MUTED)
+    var help := W.label(content,description,Rect2(312,184,936,64),18,W.MUTED)
     help.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     var search := LineEdit.new()
     search.name = "WorkshopSearch"
-    search.position = Vector2(40,344)
-    search.size = Vector2(1520,52)
+    search.position = Vector2(312,272)
+    search.size = Vector2(528,48)
     search.placeholder_text = "이름·번호·타입 검색"
     search.text = query
     search.text_changed.connect(func(value: String): query = value; populate())
     content.add_child(search)
     if mode in ["moves","machines"]:
-        W.label(content,"교체할 기술",Rect2(40,420,168,56),19,W.MUTED)
+        W.label(content,"교체할 기술",Rect2(312,344,104,56),17,W.MUTED)
         for i in 4:
             var index := i
             var text := str(TacticalMoves.definition(p.learned_skills[i])["name"]) if i < p.learned_skills.size() else "빈 기술"
-            var button := W.button(content,W.row_rect(Rect2(232,420,1328,56),i,4),func(): slot = index; rebuild(),text)
+            var button := W.button(content,Rect2(440+i*200,344,176,56),func(): slot = index; rebuild(),text)
+            button.add_theme_font_size_override("font_size",18)
+            button.tooltip_text = text
             W.fit_button(button)
             button.name = "WorkshopSlot_%d" % i
             button.disabled = i > p.learned_skills.size()
             if i == slot: button.add_theme_stylebox_override("normal",W.box(Color("29443f"),W.GOLD))
     var scroll := ScrollContainer.new()
     scroll.name = "WorkshopScroll"
-    scroll.position = Vector2(40,500 if mode in ["moves","machines"] else 420)
-    scroll.size = Vector2(1520,340 if mode in ["moves","machines"] else 420)
+    scroll.position = Vector2(312,432 if mode in ["moves","machines"] else 344)
+    scroll.size = Vector2(936,376 if mode in ["moves","machines"] else 464)
     scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
     content.add_child(scroll)
     rows = VBoxContainer.new()
@@ -75,21 +85,26 @@ func rebuild() -> void:
     rows.add_theme_constant_override("separation",24)
     scroll.add_child(rows)
     populate()
-    var result := W.label(content,notice,Rect2(40,864,1520,48),19,W.GOLD)
+    var result := W.label(content,notice,Rect2(312,840,936,48),18,W.GOLD)
     result.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 func matches(text: String) -> bool: return query.strip_edges().is_empty() or text.to_lower().contains(query.strip_edges().to_lower())
 func row(title: String,detail: String,action: Callable,button_text: String,disabled := false,sprite_id := 0) -> void:
     var panel := Panel.new()
-    panel.custom_minimum_size = Vector2(1480,148)
+    panel.custom_minimum_size = Vector2(896,144)
     panel.add_theme_stylebox_override("panel",W.box(Color("1c3339"),Color("3d555a")))
     rows.add_child(panel)
     if sprite_id > 0: panel.name = "WorkshopRow_%d" % sprite_id
-    var left := 144 if sprite_id > 0 else 24
-    if sprite_id > 0: W.sprite(panel,sprite_id,Rect2(24,24,96,96))
-    W.fit_label(W.label(panel,title,Rect2(left,20,1136-left,36),22,W.TEXT))
-    var label := W.label(panel,detail,Rect2(left,64,1136-left,64),17,W.MUTED)
+    var left := 128 if sprite_id > 0 else 24
+    if sprite_id > 0: W.sprite(panel,sprite_id,Rect2(24,28,80,80))
+    var heading := W.label(panel,title,Rect2(left,16,664-left,36),20,W.TEXT)
+    heading.mouse_filter = Control.MOUSE_FILTER_PASS
+    heading.tooltip_text = title
+    W.fit_label(heading)
+    var label := W.label(panel,detail,Rect2(left,60,664-left,64),17,W.MUTED)
     label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-    var button := W.button(panel,Rect2(1168,42,288,64),action,button_text)
+    var button := W.button(panel,Rect2(688,44,184,56),action,button_text)
+    button.add_theme_font_size_override("font_size",18)
+    W.fit_button(button)
     button.name = "WorkshopAction"
     button.disabled = disabled
 func populate() -> void:
@@ -101,7 +116,7 @@ func populate() -> void:
             var name := str(PokedexExpansion.species(target)["name"])
             if not matches(name+str(target)): continue
             var disabled: bool = p.evolution_prepared == target or (rule["prepare"] and journey.step in journey.rested_steps)
-            row(name,NationalEvolution.condition_text(rule),_prepare.bind(p.uid,target),"준비 완료" if p.evolution_prepared == target else ("야영 행동으로 준비" if rule["prepare"] else "분기 선택"),disabled,target)
+            row(name,NationalEvolution.condition_text(rule),_prepare.bind(p.uid,target),"준비 완료" if p.evolution_prepared == target else ("준비하기" if rule["prepare"] else "분기 선택"),disabled,target)
     elif mode == "forms":
         for target: int in PokedexExpansion.forms(p.species_id):
             var entry := PokedexExpansion.species(target)
@@ -119,7 +134,7 @@ func populate() -> void:
             var type := VisualCatalog.new().type_name(view["type"])
             if not matches(str(view["name"])+str(move)+type): continue
             var known := TacticalMoves.key_for(move) in p.learned_skills
-            row(str(view["name"])+" · "+type,str(view["description"]),_train.bind(p.uid,move,slot),"습득 완료" if known else "야영 행동으로 훈련",known or journey.step in journey.rested_steps)
+            row(str(view["name"])+" · "+type,str(view["description"]),_train.bind(p.uid,move,slot),"습득 완료" if known else "훈련하기",known or journey.step in journey.rested_steps)
     else:
         var offers: Array = journey.camp().get("machine_offers",[])
         for i in offers.size():
@@ -142,9 +157,9 @@ func populate() -> void:
             if not matches(str(view["name"])+str(move)+type): continue
             var known := TacticalMoves.key_for(move) in p.learned_skills
             var compatible := move in TechnicalMachines.moves(p.species_id)
-            row("보유 %d개 · %s · %s" % [count,view["name"],type],_machine_detail(move,p),_use_machine.bind(p.uid,move,slot),"습득 완료" if known else ("1개 사용 · 기술 배우기" if compatible else "사용 불가"),known or not compatible or not p.alive())
+            row("보유 %d개 · %s · %s" % [count,view["name"],type],_machine_detail(move,p),_use_machine.bind(p.uid,move,slot),"습득 완료" if known else ("배우기 · 1개" if compatible else "사용 불가"),known or not compatible or not p.alive())
             rows.get_child(-1).name = "MachineOwned_%d" % move
-    if rows.get_child_count() == 0: W.label(rows,"해당하는 항목이 없습니다.",Rect2(0,0,1200,72),22,W.MUTED)
+    if rows.get_child_count() == 0: W.label(rows,"해당하는 항목이 없습니다.",Rect2(0,0,896,72),22,W.MUTED)
 func _machine_detail(move: int,p: BattlePokemon) -> String:
     var compatible := move in TechnicalMachines.moves(p.species_id)
     return "%s · %s\n%s" % [p.display_name,"사용 가능" if compatible else "호환되지 않음",_move_definition(move)["description"]]
