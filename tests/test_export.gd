@@ -17,7 +17,7 @@ func run() -> void:
         get_tree().quit(2)
         return
     check(not OS.has_feature("editor"),"Actual export template, not editor")
-    check(ProjectSettings.get_setting("application/config/version","")=="0.28.2","Packed release version v0.28.2")
+    check(ProjectSettings.get_setting("application/config/version","")=="0.28.3","Packed release version v0.28.3")
     var args := OS.get_cmdline_user_args()
     check(args.size() == 1 and OS.get_name() == args[0],"Expected target operating system")
     check(Engine.get_version_info()["string"].begins_with("4.7.2"),"Pinned engine version")
@@ -110,6 +110,13 @@ func run() -> void:
     check(view.battle_ui != null and view.battle_ui.hand_row.get_child_count() > 0,"Exported battle scene constructs hand and stage")
     check(view.battle_ui.stage.canvas.source_sprite.has_node("PokemonAnimation") and view.battle_ui.stage.canvas.target_sprite.has_node("PokemonAnimation"),"Packed battle binds both animated Pokemon views")
     check(view.battle_ui.menu_panel.find_child("MusicPlayer",true,false)!=null and view.battle_ui.status_feedback!=null,"Packed pause player and status VFX scripts construct")
+    var ending = preload("res://scripts/ui/ending_credits.gd").new()
+    root.add_child(ending)
+    check(ending.SECTIONS[0][1]=="DO" and ending.viewport_panel.clip_contents,"Packed ending credits include DO and clipped roll")
+    ending._advance(ending.travel_distance)
+    check(ending.finished and ending.pause_button.text=="처음부터","Packed credits stop at final thanks")
+    ending.close()
+    await get_tree().process_frame
     var music := root.get_node("GameMusic")
     var region_key: String = music.current_key
     check(region_key.begins_with("region_"),"Exported ordinary battle uses supplied regional music")

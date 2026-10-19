@@ -20,6 +20,7 @@
 | UI 간격/공간 활용/설정·메뉴 배치 | [UI 간격 지도](docs/ui-spacing.md);연구의 긴 버튼은 [연구 화면 지도](docs/workshop-layout.md) | 연구는 `scripts/ui/pokedex_workshop.gd`;그 외 해당 UI 파일 | 연구는 `tests/native_workshop_compact.gd` 한 묶음;전체 UI 검사는 필요할 때만.새 버전/EXE 보류 |
 | 야영지 버튼/글자 겹침 | [야영지 UI](docs/camp-layout.md) | `scripts/ui/tactical_journey_ui.gd`,`pokedex_workshop.gd`,`combat_widgets.gd` | `tests/native_camp_layout.gd`;새 버전/EXE 보류 |
 | 카드/화면/배치·실제 입력 검사 | [현재 화면 검사](docs/native-review.md),필요 시 `rules` 표시·조작 절 | `scripts/ui/tactical_ui.gd`,`trainer_action_card.gd`,`card_effect_text.gd`,`scripts/content/battle_card_preview.gd` 중 관련 파일 | 해당 문제만 native 대표 재검사;전체 자동 반복 금지 |
+| 엔딩 크레딧/제작자 표시 | [엔딩 지도](docs/ending-credits.md) | `scripts/ui/ending_credits.gd`,`tactical_journey_ui.gd::_open_credits`,`main_menu.gd::_open_credits` | `tests/native_ending_credits.gd` 한 묶음 |
 | 최종 원정/마무리·실행 안내 | [최종 원정 확인](docs/final-review.md) | `scripts/tactics/tactical_journey.gd`,`scripts/ui/tactical_journey_ui.gd`;main의 `PLAY_GUIDE.md`,`CHANGELOG.md` | 단일 `test_final_campaign.gd`;종료/새 원정은 `native_final_campaign.gd` |
 | GitHub Releases 게시 | [수동 릴리스](docs/github-releases.md) | `.github/workflows/windows-release.yml`;자료의 `docs/releases/<tag>.md` | Windows runner 실제EXE 검사 후 게시;실행 전 게시완료로 보고하지 않는다 |
 | 난도/밸런스·EXE 제작 | [도전 난도/배포](docs/campaign-challenge.md) | `scripts/tactics/campaign_challenge.gd`,`data/campaign_challenge_v28.json` | `tests/test_challenge_contracts.gd`;실제 변경에 필요한 작은 시드/창만 검사 |
