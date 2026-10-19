@@ -2,150 +2,109 @@ Pokémon Expedition / 포켓몬 원정대
 Made by DO
 Version 0.28.4
 
-================================================================
-Made by
-================================================================
+기획 · 제작
 DO
 
-================================================================
-크레딧 구성 참고
-================================================================
-YOUNG · Pokémon: Another Red
-사용자가 제공한 Credit.txt의 구성 형식을 참고했습니다.
+개발 지원
+OpenAI Codex
 
-================================================================
+Pokémon 원작
+GAME FREAK · Creatures
+Nintendo · The Pokémon Company
+
+포켓몬 데이터 · 울음소리
+PokéAPI 프로젝트와 기여자
+원작 데이터 · 오디오의 제작자
+
+포켓몬 · 아이템 스프라이트
+GAME FREAK
+PokéAPI / sprites 기여자
+
+Gen 5 스타일 애니메이션
+Smogon / Pokémon Showdown!
+X/Y · Sun/Moon · Sword/Shield · Scarlet/Violet
+각 스프라이트 프로젝트의 모든 기여자
+
+추가 스프라이트 · 애니메이션 자료
+Pagefault Games / PokéRogue
+Smogon Sprite Project
+
+PokéRogue 애니메이션 자료 기여자
+AshnixsLaw · Azrita · bizcoeindoloro
+Caruban · Ebaru · EricLostie
+Fleimer_ · Franark122k · Hellfire0raptor
+
+PokéRogue 애니메이션 자료 기여자
+ItsYugen · kiriaura · kyledove
+lucasomi · mangalos810 · Nolo33
+OldSoulja · PKMarioG · Pkm Sinfonia
+
+PokéRogue 애니메이션 자료 기여자
+Poki Papillon · RetroNC · selstar
+Skyflyer · Sopita_Yorita
+그리고 각 스프라이트의 원작자
+
+Elite Battle: DX 이미지 자료
+Luka S.J. · Manurocker95
+GAME FREAK · Pokecheck.org · PinkCatDragon
+
+Pokémon Essentials 자료의 원문 기여자
+Poccil (Peter O.) · Maruno · Flameguru
+그리고 원문 크레딧에 명시된 모든 기여자
+
+트레이너 팬 스프라이트
+Gnomowladny · Beliot419 · Brumirage
+kyledove · ZacWeavile
+
+트레이너 이미지 컬렉션
+Smogon · SDM0 · PokéRogue
+각 트레이너 스프라이트의 원작자
+
+타입 아이콘
+duiker101
+Pokémon type SVG icons의 원 디자인 기여자
+
+음악
+Pokémon BGM의 작곡가 · 연주자 · 원권리자
+음원을 제공해 주신 DO
+
+배경 · UI · 게임 연출
+DO
+OpenAI 개발 및 이미지 생성 지원
+
+글꼴
+Noto Sans KR
+Noto 프로젝트의 모든 기여자
+
+게임 엔진
+Godot Engine
+Godot Engine의 모든 기여자
+
+크레딧 구성 참고
+YOUNG
+Pokémon: Another Red
+
 함께한 트레이너
-================================================================
 끝까지 원정대를 이끈 당신
 
-================================================================
-게임 엔진
-================================================================
-Name = Godot Engine
-Version = 4.7.2
-Website = https://godotengine.org
-Credits = Godot Engine contributors
-License = MIT
-
-================================================================
-포켓몬 데이터
-================================================================
-Name = PokéAPI / pokeapi
-Version = 5ee47a9a9c12 · 기존 자료 81d20919845b
-Website = https://github.com/PokeAPI/pokeapi
-Credits = PokéAPI contributors
-개별 데이터 출처와 지문은 assets/sources에 포함합니다.
-
-================================================================
-포켓몬 · 아이템 이미지
-================================================================
-Name = PokéAPI / sprites
-Version = 289e84236464 · 기존 자료 0dc105d5b124
-Website = https://github.com/PokeAPI/sprites
-Credits = 원작 이미지 권리자 · PokéAPI contributors
-
-================================================================
-포켓몬 울음소리
-================================================================
-Name = PokéAPI / cries
-Version = b3a9044bb839
-Website = https://github.com/PokeAPI/cries
-Credits = GAME FREAK · 각 원권리자 · PokéAPI contributors
-
-================================================================
-포켓몬 애니메이션 · 트레이너 이미지
-================================================================
-Name = Smogon / Pokémon Showdown! sprites
-Version = a9214714f009
-Website = https://github.com/smogon/sprites
-Credits = 원작 이미지 권리자 · 각 세대 스프라이트 프로젝트 기여자
-Gen 5/BW 스타일 애니메이션을 사용합니다.
-
-================================================================
-추가 포켓몬 애니메이션
-================================================================
-Name = Pagefault Games / PokéRogue assets
-Website = https://github.com/pagefaultgames/pokerogue-assets
-Credits = Pagefault Games · 스프라이트별 원작자 · 커뮤니티 기여자
-원문 작가 목록과 CC BY-NC-SA 4.0 고지를 함께 제공합니다.
-
-================================================================
-추가 포켓몬 스프라이트 자료
-================================================================
-Name = Elite Battle: DX / Pokémon Essentials asset collection
-Version = v21.1 자료
-Credits = Luka S.J. · Manurocker95 · GAME FREAK
-Pokecheck.org · PinkCatDragon · 원문에 명시된 모든 기여자
-이미지 자료를 재사용했으며, 게임 실행 엔진은 Godot입니다.
-
-================================================================
-트레이너 팬 스프라이트
-================================================================
-Credits = Gnomowladny · Beliot419 · Brumirage
-kyledove · ZacWeavile
-Collections = Smogon · SDM0 · PokéRogue
-인물별 출처·제작자·원본 지문은 trainer_sprites.json에 포함합니다.
-
-================================================================
-타입 아이콘
-================================================================
-Name = Pokémon type SVG icons
-Version = 5781623f147f
-Website = https://github.com/duiker101/pokemon-type-svg-icons
-Credits = duiker101 · 업스트림 원 디자인 기여자
-
-================================================================
-음악
-================================================================
-Name = 사용자가 제공한 Pokémon 지역·보스 BGM
-Credits = 각 곡의 작곡가 · 연주자 · 원권리자
-음악 목록과 제공 파일의 출처 기록을 함께 보관합니다.
-
-================================================================
-게임 화면 · 연출
-================================================================
-Name = 포켓몬 원정대 UI · 브랜딩 · 전투 연출
-Credits = DO · OpenAI Codex 개발 지원
-Backgrounds = 프로젝트용 image_gen 생성 배경
-기술 카드 · 원정 규칙 · UI 구성은 프로젝트에서 작성했습니다.
-
-================================================================
-글꼴
-================================================================
-Name = Noto Sans KR
-Website = https://fonts.google.com/noto/specimen/Noto+Sans+KR
-Credits = Noto project contributors
-License = SIL Open Font License 1.1
-
-================================================================
-상세 크레딧 · 원문 고지
-================================================================
+원문 기여자 · 출처
 Credit.txt · ASSET_SOURCES.md
-assets/sources · assets/fonts/OFL.txt · licenses
-원본 작가 목록·개별 파일 출처·라이선스를 포함합니다.
+각 자료의 전체 작가 목록과 원문 고지를 함께 제공합니다.
 
-================================================================
 Pokémon is owned by
-================================================================
-The Pokémon Company
-Nintendo · GAME FREAK · Creatures
-이 게임은 비공식 팬 프로젝트입니다.
-원작 게임을 응원해 주세요.
+The Pokémon Company · Nintendo
+GAME FREAK · Creatures
+비공식 팬 프로젝트입니다. 원작 게임을 응원해 주세요.
 
-================================================================
 THANK YOU FOR PLAYING
-================================================================
 포켓몬 원정대를 플레이해 주셔서 감사합니다.
 다음 원정에서도 다시 만나요.
 
 
 UPSTREAM RESOURCE NOTICES (PRESERVED ORIGINALS)
-이미지 자료의 원문 고지입니다. 아래의 다른 엔진/도구 이름은 원본 자료의 출처이며 이 게임이 해당 플러그인으로 실행된다는 뜻은 아닙니다.
+아래는 재사용한 이미지 자료의 원문 고지입니다. 원문에 나오는 다른 엔진이나 플러그인은 이 게임의 실행 엔진을 뜻하지 않습니다.
 
-
-################################################################
 SOURCE NOTICE: assets/sources/TRAINER_FAN_CREDITS.txt
-################################################################
 Credited community trainer pixel sprites
 
 Specific trainer gallery notice (verbatim):
@@ -226,9 +185,7 @@ The artist page could not be accessed in this environment. No additional art lic
 Boss expansion: Beliot419 — Nanu, Hapu, Molayne, Kukui, Hau (SDM0 mirror); kyledove — Crispin, Amarys, Lacey, Drayton, champion Kieran (PokeRogue assets mirror). Hala: Gnomowladny; Olivia: Beliot419 (existing images reused by role). Full pinned URLs, SHA256, gallery credits and usage notices: trainer_sprites.json. All PNG bytes preserved.
 
 
-################################################################
 SOURCE NOTICE: assets/sources/ANIMATED_POKEMON_EBDX_CREDITS.txt
-################################################################
 Pokémon is owned by: The Pokémon Company, Nintendo, & affiliated with Game Freak
 
 ==============================================================
@@ -566,9 +523,7 @@ Base sprites by *KingOfThe-X-Roads*. It's a bonus addition because some people a
 All original animations and sprites!
 
 
-################################################################
 SOURCE NOTICE: assets/sources/POKEROGUE_ANIMATION_CREDITS.md.txt
-################################################################
 <!--
 SPDX-FileCopyrightText: 2024-2026 Pagefault Games
 

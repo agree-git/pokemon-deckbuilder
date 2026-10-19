@@ -180,4 +180,4 @@ Windows 시험 빌드는 공식 Godot **4.7.2** 엔진을 포함합니다. Godot
 
 ## 엔딩 크레딧
 
-기획·제작 표기는 **DO**입니다. 사용자가 제공한 YOUNG의 Pokémon: Another Red Credit.txt에서 크레딧 구성 형식을 참고했습니다. 게임에 사용한 자료별 이름·고정 버전·웹사이트·기여자는 [크레딧 목록](assets/sources/expedition_credits.json)과 [Credit.txt](Credit.txt)에 정리했습니다. Credit.txt의 TRAINER_FAN/EBDX/PokéRogue 원문 고지는 기존 배포 자료를 그대로 보존합니다. 이미지 자료의 원문에 언급된 다른 엔진·플러그인을 이 게임의 실행 엔진으로 사용하는 것은 아닙니다. 게임은 Godot4.7.2로 실행됩니다.
+기획·제작 표기는 **DO**입니다. 사용자가 제공한 YOUNG의 Pokémon: Another Red Credit.txt에서 크레딧의 역할별 기여자 구성을 참고했습니다. 게임에 사용한 역할별 제작자·자료 기여자 목록은 [크레딧 목록](assets/sources/expedition_credits.json)과 [Credit.txt](Credit.txt)에 정리했습니다. Credit.txt의 TRAINER_FAN/EBDX/PokéRogue 원문 고지는 기존 배포 자료를 그대로 보존합니다. 이미지 자료의 원문에 언급된 다른 엔진·플러그인을 이 게임의 실행 엔진으로 사용하는 것은 아닙니다. 게임은 Godot4.7.2로 실행됩니다.

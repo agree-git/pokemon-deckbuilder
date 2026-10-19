@@ -5,72 +5,96 @@
   "version": "0.28.4",
   "sections": [
     [
-      "Made by",
+      "기획 · 제작",
       "DO"
     ],
     [
+      "개발 지원",
+      "OpenAI Codex"
+    ],
+    [
+      "Pokémon 원작",
+      "GAME FREAK · Creatures\nNintendo · The Pokémon Company"
+    ],
+    [
+      "포켓몬 데이터 · 울음소리",
+      "PokéAPI 프로젝트와 기여자\n원작 데이터 · 오디오의 제작자"
+    ],
+    [
+      "포켓몬 · 아이템 스프라이트",
+      "GAME FREAK\nPokéAPI / sprites 기여자"
+    ],
+    [
+      "Gen 5 스타일 애니메이션",
+      "Smogon / Pokémon Showdown!\nX/Y · Sun/Moon · Sword/Shield · Scarlet/Violet\n각 스프라이트 프로젝트의 모든 기여자"
+    ],
+    [
+      "추가 스프라이트 · 애니메이션 자료",
+      "Pagefault Games / PokéRogue\nSmogon Sprite Project"
+    ],
+    [
+      "PokéRogue 애니메이션 자료 기여자",
+      "AshnixsLaw · Azrita · bizcoeindoloro\nCaruban · Ebaru · EricLostie\nFleimer_ · Franark122k · Hellfire0raptor"
+    ],
+    [
+      "PokéRogue 애니메이션 자료 기여자",
+      "ItsYugen · kiriaura · kyledove\nlucasomi · mangalos810 · Nolo33\nOldSoulja · PKMarioG · Pkm Sinfonia"
+    ],
+    [
+      "PokéRogue 애니메이션 자료 기여자",
+      "Poki Papillon · RetroNC · selstar\nSkyflyer · Sopita_Yorita\n그리고 각 스프라이트의 원작자"
+    ],
+    [
+      "Elite Battle: DX 이미지 자료",
+      "Luka S.J. · Manurocker95\nGAME FREAK · Pokecheck.org · PinkCatDragon"
+    ],
+    [
+      "Pokémon Essentials 자료의 원문 기여자",
+      "Poccil (Peter O.) · Maruno · Flameguru\n그리고 원문 크레딧에 명시된 모든 기여자"
+    ],
+    [
+      "트레이너 팬 스프라이트",
+      "Gnomowladny · Beliot419 · Brumirage\nkyledove · ZacWeavile"
+    ],
+    [
+      "트레이너 이미지 컬렉션",
+      "Smogon · SDM0 · PokéRogue\n각 트레이너 스프라이트의 원작자"
+    ],
+    [
+      "타입 아이콘",
+      "duiker101\nPokémon type SVG icons의 원 디자인 기여자"
+    ],
+    [
+      "음악",
+      "Pokémon BGM의 작곡가 · 연주자 · 원권리자\n음원을 제공해 주신 DO"
+    ],
+    [
+      "배경 · UI · 게임 연출",
+      "DO\nOpenAI 개발 및 이미지 생성 지원"
+    ],
+    [
+      "글꼴",
+      "Noto Sans KR\nNoto 프로젝트의 모든 기여자"
+    ],
+    [
+      "게임 엔진",
+      "Godot Engine\nGodot Engine의 모든 기여자"
+    ],
+    [
       "크레딧 구성 참고",
-      "YOUNG · Pokémon: Another Red\n사용자가 제공한 Credit.txt의 구성 형식을 참고했습니다."
+      "YOUNG\nPokémon: Another Red"
     ],
     [
       "함께한 트레이너",
       "끝까지 원정대를 이끈 당신"
     ],
     [
-      "게임 엔진",
-      "Name = Godot Engine\nVersion = 4.7.2\nWebsite = https://godotengine.org\nCredits = Godot Engine contributors\nLicense = MIT"
-    ],
-    [
-      "포켓몬 데이터",
-      "Name = PokéAPI / pokeapi\nVersion = 5ee47a9a9c12 · 기존 자료 81d20919845b\nWebsite = https://github.com/PokeAPI/pokeapi\nCredits = PokéAPI contributors\n개별 데이터 출처와 지문은 assets/sources에 포함합니다."
-    ],
-    [
-      "포켓몬 · 아이템 이미지",
-      "Name = PokéAPI / sprites\nVersion = 289e84236464 · 기존 자료 0dc105d5b124\nWebsite = https://github.com/PokeAPI/sprites\nCredits = 원작 이미지 권리자 · PokéAPI contributors"
-    ],
-    [
-      "포켓몬 울음소리",
-      "Name = PokéAPI / cries\nVersion = b3a9044bb839\nWebsite = https://github.com/PokeAPI/cries\nCredits = GAME FREAK · 각 원권리자 · PokéAPI contributors"
-    ],
-    [
-      "포켓몬 애니메이션 · 트레이너 이미지",
-      "Name = Smogon / Pokémon Showdown! sprites\nVersion = a9214714f009\nWebsite = https://github.com/smogon/sprites\nCredits = 원작 이미지 권리자 · 각 세대 스프라이트 프로젝트 기여자\nGen 5/BW 스타일 애니메이션을 사용합니다."
-    ],
-    [
-      "추가 포켓몬 애니메이션",
-      "Name = Pagefault Games / PokéRogue assets\nWebsite = https://github.com/pagefaultgames/pokerogue-assets\nCredits = Pagefault Games · 스프라이트별 원작자 · 커뮤니티 기여자\n원문 작가 목록과 CC BY-NC-SA 4.0 고지를 함께 제공합니다."
-    ],
-    [
-      "추가 포켓몬 스프라이트 자료",
-      "Name = Elite Battle: DX / Pokémon Essentials asset collection\nVersion = v21.1 자료\nCredits = Luka S.J. · Manurocker95 · GAME FREAK\nPokecheck.org · PinkCatDragon · 원문에 명시된 모든 기여자\n이미지 자료를 재사용했으며, 게임 실행 엔진은 Godot입니다."
-    ],
-    [
-      "트레이너 팬 스프라이트",
-      "Credits = Gnomowladny · Beliot419 · Brumirage\nkyledove · ZacWeavile\nCollections = Smogon · SDM0 · PokéRogue\n인물별 출처·제작자·원본 지문은 trainer_sprites.json에 포함합니다."
-    ],
-    [
-      "타입 아이콘",
-      "Name = Pokémon type SVG icons\nVersion = 5781623f147f\nWebsite = https://github.com/duiker101/pokemon-type-svg-icons\nCredits = duiker101 · 업스트림 원 디자인 기여자"
-    ],
-    [
-      "음악",
-      "Name = 사용자가 제공한 Pokémon 지역·보스 BGM\nCredits = 각 곡의 작곡가 · 연주자 · 원권리자\n음악 목록과 제공 파일의 출처 기록을 함께 보관합니다."
-    ],
-    [
-      "게임 화면 · 연출",
-      "Name = 포켓몬 원정대 UI · 브랜딩 · 전투 연출\nCredits = DO · OpenAI Codex 개발 지원\nBackgrounds = 프로젝트용 image_gen 생성 배경\n기술 카드 · 원정 규칙 · UI 구성은 프로젝트에서 작성했습니다."
-    ],
-    [
-      "글꼴",
-      "Name = Noto Sans KR\nWebsite = https://fonts.google.com/noto/specimen/Noto+Sans+KR\nCredits = Noto project contributors\nLicense = SIL Open Font License 1.1"
-    ],
-    [
-      "상세 크레딧 · 원문 고지",
-      "Credit.txt · ASSET_SOURCES.md\nassets/sources · assets/fonts/OFL.txt · licenses\n원본 작가 목록·개별 파일 출처·라이선스를 포함합니다."
+      "원문 기여자 · 출처",
+      "Credit.txt · ASSET_SOURCES.md\n각 자료의 전체 작가 목록과 원문 고지를 함께 제공합니다."
     ],
     [
       "Pokémon is owned by",
-      "The Pokémon Company\nNintendo · GAME FREAK · Creatures\n이 게임은 비공식 팬 프로젝트입니다.\n원작 게임을 응원해 주세요."
+      "The Pokémon Company · Nintendo\nGAME FREAK · Creatures\n비공식 팬 프로젝트입니다. 원작 게임을 응원해 주세요."
     ],
     [
       "THANK YOU FOR PLAYING",

@@ -2,10 +2,8 @@ extends Control
 ## Presentation only: never settles battles, writes saves or consumes journey RNG.
 signal closed
 const W = preload("res://scripts/ui/combat_widgets.gd")
-const CREDIT_PATH := "res://Credit.txt"
 const CREDIT_DATA := "res://assets/sources/expedition_credits.json"
 var sections: Array = []
-var detail_panel: Control
 
 var journey: TacticalJourney
 var roll: Control
@@ -59,15 +57,14 @@ func _ready() -> void:
     for section: Array in sections:
         last_section_y = y
         W.label(roll,section[0],Rect2(24,y,904,42),20,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
-        var height: float = section[1].count("\n")*36+48
-        W.label(roll,section[1],Rect2(24,y+58,904,height),21,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
+        var height: float = section[1].count("\n")*40+48
+        W.label(roll,section[1],Rect2(24,y+58,904,height),24,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
         y += height+146
     travel_distance = viewport_panel.size.y-96+last_section_y-180
     roll.position.y = viewport_panel.size.y-96
     progress_bar = W.bar(self,Rect2(800,918,1000,3),W.GOLD).get_child(0)
     progress_bar.size.x = 0
-    W.label(self,"SPACE 일시정지 · ↑↓ 스크롤 · ESC 돌아가기",Rect2(120,958,790,50),17,W.MUTED)
-    W.button(self,Rect2(948,952,220,64),_open_details,"상세 크레딧").name = "DetailedCredits"
+    W.label(self,"SPACE 일시정지 · ↑↓ 스크롤 · ESC / ENTER 돌아가기",Rect2(120,958,1030,50),17,W.MUTED)
     pause_button = W.button(self,Rect2(1192,952,220,64),_toggle_pause,"일시정지")
     pause_button.name = "PauseCredits"
     close_button = W.button(self,Rect2(1436,952,364,64),close,"원정 결과로" if journey != null else "시작 화면으로")
@@ -93,7 +90,7 @@ func _companions() -> void:
             W.label(self,"Lv.%d" % journey.party[i].level,Rect2(x,826,168,28),16,W.MUTED,HORIZONTAL_ALIGNMENT_CENTER)
 
 func _process(delta: float) -> void:
-    if not paused and not finished and not is_instance_valid(detail_panel): _advance(delta*54.0)
+    if not paused and not finished: _advance(delta*54.0)
 
 func _advance(distance: float) -> void:
     elapsed_distance = clampf(elapsed_distance+distance,0,travel_distance)
@@ -112,11 +109,6 @@ func _toggle_pause() -> void:
 
 func _input(event: InputEvent) -> void:
     if closing: return
-    if is_instance_valid(detail_panel):
-        if event is InputEventKey and event.pressed and event.keycode in [KEY_ESCAPE,KEY_ENTER]:
-            _close_details()
-            get_viewport().set_input_as_handled()
-        return
     if event is InputEventKey and event.pressed:
         if event.keycode == KEY_F11: return
         get_viewport().set_input_as_handled()
@@ -129,39 +121,6 @@ func _input(event: InputEvent) -> void:
     elif event is InputEventMouseButton and event.pressed and event.button_index in [MOUSE_BUTTON_WHEEL_UP,MOUSE_BUTTON_WHEEL_DOWN]:
         _advance(-100 if event.button_index == MOUSE_BUTTON_WHEEL_UP else 100)
         get_viewport().set_input_as_handled()
-
-func _open_details() -> void:
-    if is_instance_valid(detail_panel): return
-    detail_panel = Control.new()
-    detail_panel.name = "DetailedCreditsPanel"
-    detail_panel.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-    detail_panel.mouse_filter = Control.MOUSE_FILTER_STOP
-    add_child(detail_panel)
-    var shade := ColorRect.new()
-    shade.color = Color(0.01,0.025,0.04,0.92)
-    shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-    detail_panel.add_child(shade)
-    var body := W.panel(detail_panel,Rect2(300,76,1320,928),Color("14282f"),W.GOLD,16)
-    body.mouse_filter = Control.MOUSE_FILTER_STOP
-    W.label(body,"Credit.txt · 제작 및 자료 출처",Rect2(40,28,950,56),28,W.GOLD)
-    W.button(body,Rect2(1100,28,180,56),_close_details,"닫기 · Esc").name = "CloseDetails"
-    var text := RichTextLabel.new()
-    text.name = "FullCreditText"
-    text.position = Vector2(40,112)
-    text.size = Vector2(1240,740)
-    text.bbcode_enabled = false
-    text.text = FileAccess.get_file_as_string(CREDIT_PATH)
-    text.add_theme_font_size_override("normal_font_size",18)
-    text.selection_enabled = true
-    text.focus_mode = Control.FOCUS_ALL
-    body.add_child(text)
-    text.grab_focus()
-    W.label(body,"마우스 휠 / Page Up·Down으로 전체 원문을 읽을 수 있습니다.",Rect2(40,868,1240,36),16,W.MUTED)
-
-func _close_details() -> void:
-    if not is_instance_valid(detail_panel): return
-    detail_panel.queue_free()
-    detail_panel = null
 
 func close() -> void:
     if closing: return
