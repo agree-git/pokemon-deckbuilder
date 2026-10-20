@@ -1,6 +1,6 @@
 Pokémon Expedition / 포켓몬 원정대
 Made by DO
-Version 0.28.5
+Version 0.28.6
 
 기획 · 제작
 DO
