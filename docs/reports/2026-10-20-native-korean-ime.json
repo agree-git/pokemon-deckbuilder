@@ -1,0 +1,40 @@
+{
+  "game_revision": "c255a3e172ff987ef08fff2a1d15422dc49ea397",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "platform": "Debian 13 Linux/X11/Xvfb 1920x1080",
+  "input": "Actual X11 XTest key/mouse events through xdotool, real Hangul engines; no Unicode injection/paste",
+  "results": [
+    {
+      "ime": "Fcitx5 5.1.12, Hangul5.1.6, UseOnTheSpot=False (default)",
+      "checks": 9,
+      "failures": 0,
+      "log": "/tmp/pokemon-native-ime/workshop-fcitx-external.log"
+    },
+    {
+      "ime": "Fcitx5 same, UseOnTheSpot=True",
+      "checks": 9,
+      "failures": 6,
+      "log": "/tmp/pokemon-native-ime/workshop-fcitx-inline.log"
+    },
+    {
+      "ime": "IBus 1.5.32 Hangul1.5.5 inline",
+      "result": "Syllable commit loss reproduced; first key also raced initial XIM context; not a clean pass",
+      "log": "/tmp/pokemon-native-ime/test.log"
+    }
+  ],
+  "baseline": "Unmodified TextEdit with no search/filter also loses inline syllable commits on Linux X11",
+  "screenshot": "/tmp/pokemon-native-ime/korean-search.png, viewed",
+  "limitations": [
+    "External composition final syllable appears only after native commit",
+    "Inline bug remains unresolved; suspected X11 engine handling is not proven by an engine patch",
+    "Microsoft Windows IME not tested; Windows execution capability unavailable",
+    "Current source input replacement not in immutable v0.28.7 source tag"
+  ],
+  "game_code_changed": false,
+  "build_export_ci_release": false,
+  "retained_test_verification": {
+    "log": "/tmp/pokemon-native-ime/recorded-test.log",
+    "checks": 9,
+    "failures": 0
+  }
+}
