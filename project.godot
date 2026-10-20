@@ -3,7 +3,7 @@ config_version=5
 
 [application]
 config/name="포켓몬 원정대"
-config/version="0.28.7"
+config/version="0.28.8"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="PokemonExpedition"
 run/main_scene="res://scenes/main_menu.tscn"
