@@ -50,7 +50,7 @@ func rebuild() -> void:
     var p := current()
     var description := "레벨·친밀도·시간·기술 조건을 충족하면 레벨업 시 자동 진화합니다. 분기를 선택할 필요가 없으며 진화 재료는 가방에서 사용합니다."
     if mode == "forms": description = "현재 지역 계통의 상시 폼을 준비합니다. 지역폼은 포획·진화로 획득하며 합체 폼은 두 포켓몬의 포획 기록이 필요합니다."
-    elif mode == "moves": description = "현재 레벨까지의 자력 습득 기술 중 최대 3개 제안 · 100골드 + 야영 행동 1회(휴식·강화·조사와 공유) · 골드 %d" % journey.gold
+    elif mode == "moves": description = "현재 레벨까지의 자력기 전체 100골드 · 그 외 호환 기술 200골드 · 야영 행동·횟수 제한 없음 · 골드 %d" % journey.gold
     elif mode == "machines": description = "상인·야영 발견으로 기술머신을 획득합니다. 위에서 동료와 교체할 기술을 선택하세요. 사용 시 1개 소모하며 야영 행동은 사용하지 않습니다. · 골드 %d" % journey.gold
     var help := W.label(content,description,Rect2(312,184,936,64),18,W.MUTED)
     help.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -142,7 +142,8 @@ func populate() -> void:
             var type := VisualCatalog.new().type_name(view["type"])
             if not matches(str(view["name"])+str(move)+type): continue
             var known := TacticalMoves.key_for(move) in p.learned_skills
-            row(str(view["name"])+" · "+type,str(view["description"]),_train.bind(p.uid,move,slot),"습득 완료" if known else "훈련 · 100골드",not journey.train_move_reason(p.uid,move,slot).is_empty())
+            var price := journey.train_move_price(p.uid,move)
+            row(("자력기" if price == 100 else "기타 습득")+" · "+str(view["name"])+" · "+type,str(view["description"]),_train.bind(p.uid,move,slot),"습득 완료" if known else "훈련 · %d골드" % price,not journey.train_move_reason(p.uid,move,slot).is_empty())
             rows.get_child(-1).get_node("WorkshopAction").tooltip_text = journey.train_move_reason(p.uid,move,slot)
     else:
         var offers: Array = journey.camp().get("machine_offers",[])
@@ -168,7 +169,7 @@ func populate() -> void:
             var compatible := move in TechnicalMachines.moves(p.species_id)
             row("보유 %d개 · %s · %s" % [count,view["name"],type],_machine_detail(move,p),_use_machine.bind(p.uid,move,slot),"습득 완료" if known else ("배우기 · 1개" if compatible else "사용 불가"),known or not compatible or not p.alive())
             rows.get_child(-1).name = "MachineOwned_%d" % move
-    if rows.get_child_count() == 0: W.label(rows,"이번 야영지에 제안된 훈련 기술이 없습니다." if mode == "moves" and query.is_empty() else "해당하는 항목이 없습니다.",Rect2(0,0,896,72),22,W.MUTED)
+    if rows.get_child_count() == 0: W.label(rows,"현재 배울 수 있는 훈련 기술이 없습니다." if mode == "moves" and query.is_empty() else "해당하는 항목이 없습니다.",Rect2(0,0,896,72),22,W.MUTED)
 func _machine_detail(move: int,p: BattlePokemon) -> String:
     var compatible := move in TechnicalMachines.moves(p.species_id)
     return "%s · %s\n%s" % [p.display_name,"사용 가능" if compatible else "호환되지 않음",_move_definition(move)["description"]]
@@ -193,7 +194,7 @@ func _form(uid: int,target: int) -> void:
     rebuild()
 func _train(uid: int,move: int,index: int) -> void:
     notice = journey.train_move(uid,move,index)
-    if notice.is_empty(): notice = "100골드와 야영 행동 1회를 사용해 기술을 훈련했습니다."
+    if notice.is_empty(): notice = "기술을 훈련했습니다. 골드만 소비하며 야영 행동은 유지됩니다."
     rebuild()
 
 func _move_definition(move:int) -> Dictionary:

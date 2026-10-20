@@ -159,7 +159,7 @@ func settle() -> String:
     var role: String = current()["kind"]
     var wild := is_wild()
     var boss: bool = role in ["gym","elite","champion"]
-    var coins := 180 if boss else (120 if role == "veteran" else (40 if wild else 80))
+    var coins := battle_gold_reward()
     var item := "revive" if boss else ("potion" if wild else "super_potion")
     if full_campaign and role == "gym":
         badge_records.append({"type":current()["biome"]["type"],"biome":current()["biome"]["id"],"leader_id":current()["trainer"]["leader_id"],"leader":current()["trainer"]["leader"],"step":step})
@@ -468,8 +468,27 @@ func buy(key: String) -> String:
     if key == "ball": balls += 1
     else: inventory[key] = int(inventory.get(key,0))+1
     return notify_changed()
+func gold_progression_percent() -> int:
+    if not full_campaign: return 100
+    # The linear route records departures through step; no new saved counter or RNG.
+    var departures := 0
+    for index in mini(step,route.stops.size()):
+        if route.stops[index]["kind"] == "rest": departures += 1
+    return 100+10*departures
+func scale_gold(base: int) -> int:
+    return ceili(base*gold_progression_percent()/100.0)
+func battle_gold_reward() -> int:
+    var role: String = current()["kind"]
+    return scale_gold(180 if role in ["gym","elite","champion"] else (120 if role == "veteran" else (40 if is_wild() else 80)))
 func shop_cards() -> Array:
-    return camp().get("card_offers",[])
+    # Stored offers remain in their original format for exact save validation.
+    var offers: Array = camp().get("card_offers",[]).duplicate(true)
+    var old_region_premium := 5*clampi(int(current().get("chapter",0)),0,8) if full_campaign else 0
+    for offer: Dictionary in offers:
+        # Remove the old region premium from the quote; only departures raise prices.
+        offer["price"] = scale_gold(int(offer["price"])-old_region_premium)
+        offer["full_price"] = scale_gold(int(offer["full_price"])-old_region_premium)
+    return offers
 func shop_card_reason(index: int) -> String:
     if phase != REST or camp().get("kind","") != "merchant": return "상인이 있는 야영지에서 카드를 구매하세요."
     var offers := shop_cards()
@@ -488,7 +507,7 @@ func buy_shop_card(index: int) -> String:
     _stat("gold_cards",int(offer["price"]))
     _stat("cards_bought")
     deck.append(card)
-    offer["sold"] = true
+    camp()["card_offers"][index]["sold"] = true
     var choice := "상인 카드 구매 · %s · %d 골드" % [TacticalContent.definition(card,PlayerTechniques.version(route.generation) if full_campaign else 1)["name"],offer["price"]]
     history.append(choice)
     _decision(choice)
@@ -552,8 +571,9 @@ func is_wild() -> bool:
 func items() -> Dictionary:
     var result := TacticalJourneyContent.ITEMS.duplicate(true)
     if full_campaign: result["ball"] = {"name":"몬스터볼","price":35,"stock":4}
-    if full_campaign: result.merge(EvolutionItems.all_items(),true)
-    if full_campaign: result.merge(SpecialEvolution.ITEMS,true)
+    if full_campaign: result.merge(EvolutionItems.all_items().duplicate(true),true)
+    if full_campaign: result.merge(SpecialEvolution.ITEMS.duplicate(true),true)
+    for item: Dictionary in result.values(): item["price"] = scale_gold(int(item["price"]))
     return result
 func quantity(key: String) -> int:
     return balls if key == "ball" else int(inventory.get(key,0))
@@ -594,7 +614,7 @@ func camp_choice_reason(choice: int) -> String:
     if choice == -1: return ""
     if state["kind"] not in ["event","discovery"]: return "선택할 특별한 만남이 없습니다."
     if choice < 0 or choice >= (2 if state["kind"] == "event" else 1): return "표시된 선택지를 고르세요."
-    if state.get("id","") == "lesson" and gold < 50: return "수업에는 50골드가 필요합니다."
+    if state.get("id","") == "lesson" and gold < scale_gold(50): return "수업에는 %d골드가 필요합니다." % scale_gold(50)
     return ""
 func resolve_camp(choice: int) -> String:
     var reason := camp_choice_reason(choice)
@@ -618,20 +638,22 @@ func resolve_camp(choice: int) -> String:
                 _camp_loot(state["title"],0,"super_potion",1)
                 outcome = "좋은상처약 1개를 담았습니다."
         elif state["id"] == "lesson":
-            gold -= 50
-            _stat("gold_events",50)
+            var fee := scale_gold(50)
+            gold -= fee
+            _stat("gold_events",fee)
             var key := "analysis" if choice == 0 else "counter"
             deck.append(_allocate_card(key))
             outcome = TacticalContent.CARDS[key]["name"]+" 카드를 덱에 추가했습니다."
-            _decision("전술 수업 · "+str(TacticalContent.CARDS[key]["name"])+" · 50 골드")
+            _decision("전술 수업 · %s · %d 골드" % [TacticalContent.CARDS[key]["name"],fee])
         elif state["id"] == "satchel":
             _camp_loot(state["title"],60 if choice == 1 else 0,"ball" if choice == 0 else "",2 if choice == 0 else 0)
-            outcome = "몬스터볼 2개 획득" if choice == 0 else "부품을 팔아 60골드를 얻었습니다."
+            outcome = "몬스터볼 2개 획득" if choice == 0 else "부품을 팔아 %d골드를 얻었습니다." % scale_gold(60)
     state["resolved"] = true
     state["outcome"] = outcome
     history.append(str(state["title"])+" · "+outcome)
     return notify_changed()
 func _camp_loot(title: String, coins: int, item: String, count: int) -> void:
+    coins = scale_gold(coins)
     gold += coins
     _stat("gold_earned",coins)
     if item == "ball": balls += count
@@ -656,7 +678,7 @@ func removal_price() -> int:
     var count := 0
     for state: Dictionary in camp_states.values():
         if state.get("removed",false): count += 1
-    return 50+count*25
+    return scale_gold(50+count*25)
 func remove_card(uid: int) -> String:
     var reason := remove_card_reason(uid)
     if not reason.is_empty(): return reason
@@ -761,22 +783,24 @@ func training_offers(uid: int) -> Array[int]:
     for pokemon: BattlePokemon in party:
         if pokemon.uid == uid: return TRAINING.offers(seed_value,step,pokemon)
     return []
+func train_move_price(uid: int,move_id: int) -> int:
+    for pokemon: BattlePokemon in party:
+        if pokemon.uid == uid: return TRAINING.price(pokemon,move_id)
+    return 0
 func train_move_reason(uid: int,move_id: int,slot: int,use_machine := false) -> String:
     if phase != REST: return "기술 훈련은 야영지에서 진행하세요."
     if use_machine:
         if not TechnicalMachines.valid(move_id) or int(machines.get(move_id,0)) <= 0: return "보유한 기술머신이 없습니다."
-    else:
-        if step in rested_steps: return "이번 야영 행동을 이미 사용했습니다."
-        if gold < TRAINING.PRICE: return "기술 훈련에는 %d골드가 필요합니다." % TRAINING.PRICE
     for pokemon: BattlePokemon in party:
         if pokemon.uid != uid: continue
         if not pokemon.alive(): return "기절한 동료를 먼저 회복하세요."
         var key := TacticalMoves.key_for(move_id)
         if use_machine:
             if move_id not in TechnicalMachines.moves(pokemon.species_id): return "이 포켓몬은 해당 기술머신을 사용할 수 없습니다."
-        elif move_id not in training_offers(uid): return "이번 야영지에서 제안한 자력 습득 기술만 훈련할 수 있습니다."
+        elif move_id not in training_offers(uid): return "현재 레벨의 자력기 또는 이 포켓몬의 습득 경로에 있는 기술만 훈련할 수 있습니다."
         if key in pokemon.learned_skills: return "이미 배운 기술입니다."
         if slot < 0 or slot > pokemon.learned_skills.size() or slot >= 4: return "교체할 기술을 선택하세요."
+        if not use_machine and gold < TRAINING.price(pokemon,move_id): return "기술 훈련에는 %d골드가 필요합니다." % TRAINING.price(pokemon,move_id)
         return ""
     return "파티의 동료를 선택하세요."
 func train_move(uid: int,move_id: int,slot: int,use_machine := false) -> String:
@@ -785,6 +809,7 @@ func train_move(uid: int,move_id: int,slot: int,use_machine := false) -> String:
     for pokemon: BattlePokemon in party:
         if pokemon.uid != uid: continue
         var key := TacticalMoves.key_for(move_id)
+        var fee := 0 if use_machine else TRAINING.price(pokemon,move_id)
         pokemon.content_version = 2
         var copies := 0
         if slot < pokemon.learned_skills.size():
@@ -798,11 +823,10 @@ func train_move(uid: int,move_id: int,slot: int,use_machine := false) -> String:
         if copies == 0: deck.append(_allocate_card(key,pokemon.uid))
         if use_machine: machines[move_id] = int(machines[move_id])-1
         else:
-            rested_steps.append(step)
-            gold -= TRAINING.PRICE
-            _stat("gold_events",TRAINING.PRICE)
+            gold -= fee
+            _stat("gold_events",fee)
         var choice := "%s · %s · %s" % ["기술머신 사용" if use_machine else "기술 훈련",pokemon.display_name,TacticalMoves.definition(key)["name"]]
-        if not use_machine: choice += " · %d 골드" % TRAINING.PRICE
+        if not use_machine: choice += " · %d 골드" % fee
         history.append(choice)
         _decision(choice)
         return notify_changed()

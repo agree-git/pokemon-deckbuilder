@@ -371,7 +371,9 @@ func _camp_tab(tab: String) -> void:
     refresh()
 func _rest() -> void:
     var encounter := journey.camp()
-    W.label(page,encounter.get("description","필요한 만큼 준비한 뒤 출발하세요."),Rect2(550,204,1190,40),20,W.MUTED)
+    var camp_description: String = encounter.get("description","필요한 만큼 준비한 뒤 출발하세요.")
+    if encounter.get("id","") == "lesson": camp_description = camp_description.replace("50골드","%d골드" % journey.scale_gold(50))
+    W.label(page,camp_description,Rect2(550,204,1190,40),20,W.MUTED)
     var encounter_tab := "shop" if encounter.get("kind","") == "merchant" else "encounter"
     var keys := ["rest",encounter_tab,"machines","bag","gear"]
     var machine_count := 0
@@ -517,7 +519,7 @@ func _shop() -> void:
     var remove := W.button(page,Rect2(550,812,650,54),_select_deck_action.bind("remove"),"카드 제거 완료" if journey.camp().get("removed",false) else "카드 제거 · %d 골드" % journey.removal_price())
     remove.name = "Remove"
     remove.disabled = journey.camp().get("removed",false) or journey.gold < journey.removal_price()
-    remove.tooltip_text = "상인당 1장 · 다음 제거 비용 +25골드. 휴식·강화 행동은 소비하지 않습니다."
+    remove.tooltip_text = "상인당 1장 · 제거 횟수·진행 지역에 따라 비용 증가. 휴식·강화 행동은 소비하지 않습니다."
     actions.append(remove)
 func _item_sprite(parent: Node, key: String, rect: Rect2) -> TextureRect:
     var texture := TextureRect.new()
@@ -765,6 +767,10 @@ func _encounter() -> void:
         W.label(page,encounter["outcome"],Rect2(550,580,1190,70),24,W.TEXT,HORIZONTAL_ALIGNMENT_CENTER)
         return
     var options: Array = encounter.get("choices",[]).duplicate()
+    if encounter.get("id","") == "lesson":
+        for i in options.size(): options[i] = str(options[i]).replace("50골드","%d골드" % journey.scale_gold(50))
+    elif encounter.get("id","") == "satchel" and options.size()>1:
+        options[1] = str(options[1]).replace("60골드","%d골드" % journey.scale_gold(60))
     if encounter["kind"] == "discovery": options = ["%s ×%d 줍기" % [journey.items()[encounter["item"]]["name"],encounter["quantity"]]]
     for i in options.size():
         var button := W.button(page,Rect2(650+i*550,588,520,76),_camp_choice.bind(i),options[i])
