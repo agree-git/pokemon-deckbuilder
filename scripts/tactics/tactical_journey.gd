@@ -53,8 +53,8 @@ var rare_hunt: Dictionary = {}
 
 func _init(run_seed: int = 2026, selected_relic: String = "field_kit", selected_starters: Array[int] = [], campaign := false,route_version: int = CampaignRoute.VERSION) -> void:
     full_campaign = campaign
-    restart(run_seed,selected_relic,selected_starters,route_version)
-func restart(run_seed: int = 2026, selected_relic: String = "field_kit", selected_starters: Array[int] = [],route_version: int = CampaignRoute.VERSION) -> void:
+    _initialize_run(run_seed,selected_relic,selected_starters,route_version)
+func _initialize_run(run_seed: int = 2026, selected_relic: String = "field_kit", selected_starters: Array[int] = [],route_version: int = CampaignRoute.VERSION) -> void:
     if not selected_starters.is_empty(): starter_ids.assign(selected_starters)
     run_id = Crypto.new().generate_random_bytes(16).hex_encode()
     seed_value = run_seed

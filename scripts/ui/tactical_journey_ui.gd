@@ -91,7 +91,6 @@ func refresh() -> void:
         battle_ui.capture_action = _capture
         battle_ui.capture_status = func(): return {"wild":journey.is_wild(),"balls":journey.balls,"reason":journey.capture_reason(),"help":journey.capture_help(),"cost":RareEncounter.rule(journey.battle.enemy().species_id)["balls"] if journey.current().get("rare",false) else 1}
         battle_ui.run_continue_requested.connect(_settle)
-        battle_ui.run_restart_requested.connect(_restart)
         page.add_child(battle_ui)
         return
     if journey.phase in [TacticalJourney.CLEARED, TacticalJourney.FAILED]:
@@ -832,9 +831,7 @@ func _result() -> void:
     _growth_summary()
     if journey.full_campaign:
         W.label(page,"배지 %d / 8  ·  사천왕 %d / 4" % [journey.badges,journey.elite_wins],Rect2(550,630,1190,42),23,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER)
-    _action("같은 시드로 다시 출발",Rect2(650,710,470,76),_restart.bind(journey.relic),"restart")
-    _action("새 시드로 출발",Rect2(1160,710,470,76),_new_seed,"route")
-    _action("시작 화면",Rect2(140,800,300,62),_home,"home")
+    _action("시작 화면",Rect2(880,710,540,76),_home,"home")
     if cleared and journey.full_campaign:
         W.button(page,Rect2(96,886,340,62),_open_credits,"엔딩 크레딧 다시 보기").name = "ReplayCredits"
 func _capture_choice() -> void:
@@ -1056,14 +1053,6 @@ func _enter() -> void:
         destination = "희귀 조우 · ???"
         heading = "정체를 알 수 없는 기척을 따라갑니다."
     travel.start(destination,scenery,journey.party,heading)
-func _restart(relic: String) -> void:
-    deck_open = false
-    report_open = false
-    journey.restart(journey.seed_value,relic)
-    refresh()
-func _new_seed() -> void:
-    journey.restart(int(Time.get_unix_time_from_system()) ^ Time.get_ticks_usec(),journey.relic)
-    refresh()
 func _home() -> void:
     get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 

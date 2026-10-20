@@ -23,7 +23,6 @@ var capture_quote: Label
 var dialogue_history: Array[Dictionary] = []
 var _dialogue_seen: Dictionary = {}
 signal run_continue_requested
-signal run_restart_requested(selected_relic: String)
 var result_next: Button
 var capture_action: Callable
 var capture_status: Callable
@@ -558,8 +557,9 @@ func _build_menu() -> Control:
     settings_button = _menu_action(body,"settings","설정","",y,_settings)
     y += 112
     home_button = _menu_action(body,"home","시작 화면","",y,_home)
-    y += 88
-    restart_button = _menu_action(body,"restart","다시 시작","",y,restart)
+    if not run_mode:
+        y += 88
+        restart_button = _menu_action(body,"restart","다시 시작","",y,restart)
     _label("1 / 2 / 3 교대 · Q / W / E / R 손패 1~4장",Rect2(40,864,1240,32),16,W.MUTED,HORIZONTAL_ALIGNMENT_LEFT,body)
     return overlay
 
@@ -618,8 +618,9 @@ func _build_result() -> void:
     capture_quote.name = "RareCaptureResultQuote"
     capture_quote.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     capture_quote.hide()
-    result_restart = W.button(body,Rect2(200,395,360,68),restart,"원정 다시 하기" if run_mode else "다시 하기")
-    result_next = W.button(body,Rect2(200,483,360,56),func():
+    if not run_mode:
+        result_restart = W.button(body,Rect2(200,395,360,68),restart,"다시 하기")
+    result_next = W.button(body,Rect2(200,395 if run_mode else 483,360,56),func():
         if run_mode: run_continue_requested.emit()
         else: _home(),"계속 진행" if run_mode else "시작 화면으로")
 
@@ -884,8 +885,9 @@ func _refresh() -> void:
         if battle.phase == TacticalBattle.WON: result_speech.present(opponent_trainer,"defeat")
         else: result_speech.hide()
         result_detail.position.y = 260 if result_speech.visible else 290
-        result_restart.position.y = 425 if result_speech.visible else 395
-        result_next.position.y = 513 if result_speech.visible else 483
+        var action_y := 425 if result_speech.visible else 395
+        if is_instance_valid(result_restart): result_restart.position.y = action_y
+        result_next.position.y = action_y if run_mode else action_y+88
         result_title.text = "승리!" if battle.phase == TacticalBattle.WON else "파티가 쓰러졌습니다"
         var captures := battle.enemy_states.filter(func(s: Dictionary): return s.get("captured",false)).size()
         var captured_rare := 0
@@ -898,8 +900,8 @@ func _refresh() -> void:
         if capture_quote.visible:
             result_title.text = "포획 성공!"
             result_detail.position.y = 260
-            result_restart.position.y = 425
-            result_next.position.y = 513
+            if is_instance_valid(result_restart): result_restart.position.y = 425
+            result_next.position.y = 425 if run_mode else 513
         result_detail.text = "%d턴  ·  격파 %d  ·  포획 %d" % [int(_visual_frame.get("turn",battle.turn)),battle.enemies.filter(func(p: BattlePokemon): return not p.alive()).size()-captures,captures]
     else:
         UiMotion.close(result,true)
@@ -1328,10 +1330,9 @@ func finish_presentation() -> void:
     UiMotion.finish_tree(stage.canvas)
     stage.canvas.effect.stop()
 func restart(selected_relic: String = "") -> void:
+    # Replaying an expedition from combat is no longer a supported action.
+    if run_mode: return
     _capture_notice = ""
-    if run_mode:
-        run_restart_requested.emit(battle.relic if selected_relic.is_empty() else selected_relic)
-        return
     if _sequence != null and _sequence.is_valid(): _sequence.kill()
     stage.canvas.clear_effects()
     status_feedback.clear()
