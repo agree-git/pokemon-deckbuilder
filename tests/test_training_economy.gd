@@ -62,7 +62,7 @@ func run() -> void:
     check(tm>0 and j.train_move(p.uid,tm,3,true).is_empty() and j.gold==0 and j.machines[tm]==0,"Owned TM remains usable for one consumable, no gold/action")
     roundtrip(j)
     var ui:=PokedexWorkshop.new();ui.journey=j;ui.mode="moves";root.add_child(ui)
-    check(ui.rows.get_child_count()==j.training_offers(p.uid).size(),"Training UI shows the entire legal catalog")
+    check(ui.rows.get_children().filter(func(panel:Control):return panel is Panel and panel.visible).size()==j.training_offers(p.uid).size(),"Training UI shows the entire legal catalog")
     ui.free()
     # Every camp departure multiplies the previous rate by 1.1, regardless of biome boundaries.
     var prior := 100.0

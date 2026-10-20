@@ -1,0 +1,17 @@
+{
+  "game_revision": "92d671e70e9ed67cb89b4220a28ebee731048597",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "mode": "isolated headless source with committed Unicode/key events",
+  "checks": 21,
+  "failures": 0,
+  "log": "/tmp/pokemon-workshop-search/after.log",
+  "limitation": "Original Windows Korean IME composition issue was not reproduced; pre-change committed-Unicode baseline also passed. Real IME behavior remains unverified.",
+  "not_run": [
+    "broader updated tests",
+    "native window",
+    "Windows IME",
+    "Windows EXE",
+    "build/export",
+    "GitHub CI/release"
+  ]
+}

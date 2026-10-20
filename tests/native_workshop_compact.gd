@@ -30,7 +30,8 @@ func shot(filename: String) -> void:
 func row_bounds(workshop: PokedexWorkshop) -> bool:
     for panel: Control in workshop.rows.get_children():
         if not panel is Panel: continue
-        var action: Control=panel.get_node("WorkshopAction")
+        var action: Control=panel.get_node_or_null("WorkshopAction")
+        if action==null:action=panel.get_node("AutomaticEvolution")
         if action.size.x>184.1 or not Rect2(Vector2.ZERO,panel.size).encloses(action.get_rect()):return false
         for child: Node in panel.get_children():
             if child is Label and child.get_rect().intersects(action.get_rect()):return false
@@ -86,7 +87,7 @@ func run() -> void:
     check(scroll.position.y-previous.get_rect().end.y>=24 and scroll.get_rect().end.y<840,"Result list clears move selection and notice footer")
     await shot("02-moves.png")
     await click(search);await key("z")
-    check(workshop.query=="z" and workshop.rows.get_child_count()==1 and workshop.rows.get_child(0) is Label,"Actual search displays bounded empty result")
+    check(workshop.query=="z" and workshop.empty_label.visible and not workshop.rows.get_children().any(func(panel:Control):return panel is Panel and panel.visible),"Actual search displays bounded empty result")
     await key("BackSpace")
     check(workshop.query.is_empty() and workshop.rows.get_child_count()>0,"Clearing search restores available techniques")
     await click(workshop.content.get_node("WorkshopTab_forms"))
