@@ -789,7 +789,7 @@ func train_move_price(uid: int,move_id: int) -> int:
         if pokemon.uid == uid: return TRAINING.price(pokemon,move_id)
     return 0
 func train_move_reason(uid: int,move_id: int,slot: int,use_machine := false) -> String:
-    if phase != REST: return "기술 훈련은 야영지에서 진행하세요."
+    if phase != REST: return "기술 가르침은 야영지에서 진행하세요."
     if use_machine:
         if not TechnicalMachines.valid(move_id) or int(machines.get(move_id,0)) <= 0: return "보유한 기술머신이 없습니다."
     for pokemon: BattlePokemon in party:
@@ -801,7 +801,7 @@ func train_move_reason(uid: int,move_id: int,slot: int,use_machine := false) -> 
         elif move_id not in training_offers(uid): return "현재 레벨의 자력기 또는 이 포켓몬의 습득 경로에 있는 기술만 훈련할 수 있습니다."
         if key in pokemon.learned_skills: return "이미 배운 기술입니다."
         if slot < 0 or slot > pokemon.learned_skills.size() or slot >= 4: return "교체할 기술을 선택하세요."
-        if not use_machine and gold < TRAINING.price(pokemon,move_id): return "기술 훈련에는 %d골드가 필요합니다." % TRAINING.price(pokemon,move_id)
+        if not use_machine and gold < TRAINING.price(pokemon,move_id): return "기술 가르침에는 %d골드가 필요합니다." % TRAINING.price(pokemon,move_id)
         return ""
     return "파티의 동료를 선택하세요."
 func train_move(uid: int,move_id: int,slot: int,use_machine := false) -> String:
@@ -826,7 +826,7 @@ func train_move(uid: int,move_id: int,slot: int,use_machine := false) -> String:
         else:
             gold -= fee
             _stat("gold_events",fee)
-        var choice := "%s · %s · %s" % ["기술머신 사용" if use_machine else "기술 훈련",pokemon.display_name,TacticalMoves.definition(key)["name"]]
+        var choice := "%s · %s · %s" % ["기술머신 사용" if use_machine else "기술 가르침",pokemon.display_name,TacticalMoves.definition(key)["name"]]
         if not use_machine: choice += " · %d 골드" % fee
         history.append(choice)
         _decision(choice)

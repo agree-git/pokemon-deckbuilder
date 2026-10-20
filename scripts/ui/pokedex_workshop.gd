@@ -13,7 +13,7 @@ var notice := ""
 var content: Control
 var rows: VBoxContainer
 var empty_label: Label
-var search: LineEdit
+var search: TextEdit
 func _ready() -> void:
     set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     z_index = 100
@@ -45,7 +45,7 @@ func rebuild() -> void:
     for i in modes.size():
         var key: String = modes[i]
         var x := 312 if i == 0 else 496+(i-1)*168
-        var button := W.button(content,Rect2(x,104,160 if i == 0 else 144,48),func(): mode = key; query = ""; rebuild(),["진화 안내","상시 폼","기술 훈련","기술머신"][i])
+        var button := W.button(content,Rect2(x,104,160 if i == 0 else 144,48),func(): mode = key; query = ""; rebuild(),["진화 안내","상시 폼","기술 가르침","기술머신"][i])
         button.add_theme_font_size_override("font_size",18)
         W.fit_button(button)
         button.name = "WorkshopTab_"+key
@@ -57,13 +57,13 @@ func rebuild() -> void:
     elif mode == "machines": description = "상인·야영 발견으로 기술머신을 획득합니다. 위에서 동료와 교체할 기술을 선택하세요. 사용 시 1개 소모하며 야영 행동은 사용하지 않습니다. · 골드 %d" % journey.gold
     var help := W.label(content,description,Rect2(312,184,936,64),18,W.MUTED)
     help.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-    search = LineEdit.new()
+    search = preload("res://scripts/ui/search_text_input.gd").new()
     search.name = "WorkshopSearch"
     search.position = Vector2(312,272)
     search.size = Vector2(528,48)
-    search.placeholder_text = "이름·번호·타입 검색"
+    search.set_placeholder("이름·번호·타입 검색")
     search.text = query
-    search.text_changed.connect(_search_changed)
+    search.connect("query_changed",_search_changed)
     content.add_child(search)
     if mode in ["moves","machines"]:
         W.label(content,"교체할 기술",Rect2(312,344,104,56),17,W.MUTED)
@@ -140,12 +140,17 @@ func populate() -> void:
             row(str(entry["name"]) if available else "미해금 합체 폼",detail,_form.bind(p.uid,target),"현재 모습" if target == p.species_id else "폼 준비",target == p.species_id or not available,target if available else 0)
             rows.get_child(-1).set_meta("search_terms",str(entry["name"])+str(target))
     elif mode == "moves":
-        for move: int in journey.training_offers(p.uid):
+        var moves := journey.training_offers(p.uid)
+        moves.sort_custom(func(a: int,b: int):
+            var known_a := TacticalMoves.key_for(a) in p.learned_skills
+            var known_b := TacticalMoves.key_for(b) in p.learned_skills
+            return known_a if known_a != known_b else a < b)
+        for move: int in moves:
             var view := _move_definition(move)
             var type := VisualCatalog.new().type_name(view["type"])
             var known := TacticalMoves.key_for(move) in p.learned_skills
             var price := journey.train_move_price(p.uid,move)
-            row(("자력기" if price == 100 else "기타 습득")+" · "+str(view["name"])+" · "+type,str(view["description"]),_train.bind(p.uid,move,slot),"습득 완료" if known else "훈련 · %d골드" % price,not journey.train_move_reason(p.uid,move,slot).is_empty())
+            row(("자력기" if price == 100 else "기타 습득")+" · "+str(view["name"])+" · "+type,str(view["description"]),_train.bind(p.uid,move,slot),"습득 완료" if known else "가르침 · %d골드" % price,not journey.train_move_reason(p.uid,move,slot).is_empty())
             rows.get_child(-1).get_node("WorkshopAction").tooltip_text = journey.train_move_reason(p.uid,move,slot)
             rows.get_child(-1).set_meta("search_terms",str(view["name"])+str(move)+type)
     else:
@@ -178,22 +183,21 @@ func populate() -> void:
     _filter_rows()
 func _search_changed(value: String) -> void:
     query = value
-    # text_changed can fire inside the OS IME commit; keep this callback non-visual.
+    # Keep native composition notifications non-visual; render the latest query next frame.
     set_process(true)
 func _process(_delta: float) -> void:
-    if is_instance_valid(search) and search.has_ime_text(): return
     set_process(false)
     if not is_instance_valid(search) or not is_instance_valid(rows): return
-    query = search.text
+    query = str(search.call("query_text"))
     _filter_rows()
 func _filter_rows() -> void:
-    # Do not rebuild nodes, rewrite LineEdit.text, grab focus or interrupt IME here.
+    # Do not rebuild nodes, rewrite the input text, grab focus or interrupt IME here.
     var count := 0
     for panel: Control in rows.get_children():
         if panel == empty_label: continue
         panel.visible = matches(str(panel.get_meta("search_terms","")))
         if panel.visible: count += 1
-    empty_label.text = "현재 배울 수 있는 훈련 기술이 없습니다." if mode == "moves" and query.is_empty() else "해당하는 항목이 없습니다."
+    empty_label.text = "현재 가르칠 수 있는 기술이 없습니다." if mode == "moves" and query.is_empty() else "해당하는 항목이 없습니다."
     empty_label.visible = count == 0
     (rows.get_parent() as ScrollContainer).scroll_vertical = 0
 func _machine_detail(move: int,p: BattlePokemon) -> String:
@@ -220,7 +224,7 @@ func _form(uid: int,target: int) -> void:
     rebuild()
 func _train(uid: int,move: int,index: int) -> void:
     notice = journey.train_move(uid,move,index)
-    if notice.is_empty(): notice = "기술을 훈련했습니다. 골드만 소비하며 야영 행동은 유지됩니다."
+    if notice.is_empty(): notice = "기술을 가르쳤습니다. 골드만 소비하며 야영 행동은 유지됩니다."
     rebuild()
 
 func _move_definition(move:int) -> Dictionary:
