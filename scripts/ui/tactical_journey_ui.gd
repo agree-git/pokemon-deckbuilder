@@ -283,41 +283,21 @@ func _growth_summary() -> void:
         W.label(panel,report.get("companion"," · ".join(report["learned"])+" 습득" if not report["learned"].is_empty() else ("자동 진화!" if not report["evolutions"].is_empty() else ("최대 레벨에 도달했습니다." if int(report["after"])>=TacticalGrowth.MAX_LEVEL else "다음 레벨을 향해!"))),Rect2(18,96,348,28),17,W.TEXT)
 func _map() -> void:
     W.label(page,journey.progress_title(),Rect2(550,225,1200,48),24)
-    var stops: Array = journey.route.stops if journey.full_campaign else TacticalJourneyContent.STOPS
-    var visible_steps: Array[int] = []
-    for i in stops.size():
-        if not journey.full_campaign or (stops[i]["chapter"] == journey.current()["chapter"] and (int(stops[i]["chapter"]) < 8 or stops[i]["kind"] != "rest")): visible_steps.append(i)
-    if journey.full_campaign:
-        visible_steps = visible_steps.filter(func(i: int): return stops[i]["kind"] != "rest")
-    var columns := 4 if journey.full_campaign else visible_steps.size()
-    var width := 1190.0/columns
-    for column in visible_steps.size():
-        var i := visible_steps[column]
-        var stop: Dictionary = stops[i]
-        if journey.full_campaign and journey.rare_hunt.get("battle_step",-1) == i:
-            stop = RareEncounter.node(stop,int(journey.rare_hunt["target"]))
-        var unknown: bool = stop.get("rare",false) and not RareEncounter.identity_known(journey)
-        if unknown:
-            stop = stop.duplicate()
-            stop["name"] = "희귀 조우 · ???"
-            stop["icon"] = "route"
-        var highlighted: bool = i == journey.step or (journey.current()["kind"] == "rest" and i == journey.step-1)
-        var height := 148.0 if journey.full_campaign else 220.0
-        var panel := W.panel(page,Rect2(550+(column%columns)*width,310+floori(column/float(columns))*164,width-12,height),Color("20383e") if highlighted else Color("14282f"),W.GOLD if highlighted else Color("405960"))
-        panel.name = "Encounter_%d" % i
-        W.icon(panel,"check" if i < journey.step else ("attack" if stop["kind"] in ["trainer","veteran"] else stop["icon"]),Rect2(18,20,34,34))
-        W.label(panel,str(column+1),Rect2(width-64,20,38,30),17,W.MUTED,HORIZONTAL_ALIGNMENT_RIGHT)
-        W.label(panel,stop["name"].replace(" · ","\n"),Rect2(18,62,width-48,60),17,W.TEXT)
-        if journey.full_campaign:
-            var final_battle: bool = stop["kind"] == "champion"
-            W.icon(panel,"badge" if final_battle else "heal",Rect2(width-42,height-28,16,16))
-            panel.mouse_filter = Control.MOUSE_FILTER_PASS
-            panel.tooltip_text = ("승리하면 챔피언 등극" if final_battle else "전투 후 야영지")+" · 적 Lv.%d" % stop["level"]
-            var opponents: Array = [] if unknown else journey.opponents_at(i)
-            if not opponents.is_empty() and opponents[0].has("boss"): panel.tooltip_text += "\n고유 전술 · "+BossTactics.heading(opponents[0])
-            for opponent: Dictionary in opponents:
-                panel.tooltip_text += "\n%s · %s · %s" % [opponent["name"],EnemyTactics.role_title(opponent),EnemyTactics.pattern_text(opponent)]
-    W.label(page,"장소에 마우스를 올리면 상대 전술을 확인할 수 있습니다.",Rect2(550,274,1190,28),14,W.MUTED)
+    var strip = preload("res://scripts/ui/journey_stage_strip.gd").new()
+    strip.journey = journey
+    strip.position = Vector2(550,310)
+    strip.size = Vector2(1190,312)
+    page.add_child(strip)
+    W.label(page,"스테이지 카드 4개씩 · 좌우 스크롤 · 카드에 마우스를 올리면 상대 전술 표시",Rect2(550,274,1010,28),14,W.MUTED)
+    var previous := W.button(page,Rect2(1598,266,64,38),strip.turn_page.bind(-1),"←")
+    previous.name = "PreviousStages"
+    var following := W.button(page,Rect2(1676,266,64,38),strip.turn_page.bind(1),"→")
+    following.name = "NextStages"
+    var sync := func(_value := 0.0):
+        previous.disabled = strip.scroll_horizontal <= 0
+        following.disabled = strip.scroll_horizontal >= strip.max_scroll()
+    strip.get_h_scroll_bar().value_changed.connect(sync)
+    sync.call()
     _action("%s로 이동" % RareEncounter.public_name(journey,journey.current()),Rect2(1120,670,620,64),_enter)
     W.button(page,Rect2(550,670,530,64),_open_preparation,"다음 전투 준비").name = "EncounterPreparation"
     if journey.full_campaign:

@@ -26,8 +26,13 @@ var next_button: Button
 var exit_button: Button
 var body_label: Label
 var _finishing := false
+var input_gate: Control
 func _ready() -> void:
     set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+    input_gate = preload("res://scripts/ui/tutorial_input_gate.gd").new()
+    input_gate.name = "TutorialInputGate"
+    input_gate.targets = input_targets
+    add_child(input_gate)
     restart_lesson()
 func _clear_stage() -> void:
     if is_instance_valid(stage_view):
@@ -97,6 +102,7 @@ func _build_coach() -> void:
     frame=Panel.new();frame.z_index=205;frame.mouse_filter=Control.MOUSE_FILTER_IGNORE
     var style:=W.box(Color.TRANSPARENT,W.GOLD,10);style.set_border_width_all(3)
     frame.add_theme_stylebox_override("panel",style);add_child(frame)
+    if is_instance_valid(input_gate): move_child(input_gate,get_child_count()-1)
 func advance() -> void:
     if step not in [0,1,6,9]:return
     step+=1
@@ -116,7 +122,7 @@ func _process(_delta:float) -> void:
         elif step==7 and b.phase==TacticalBattle.WON:
             step=8;_camp();return
     elif is_instance_valid(camp_view):
-        coach.visible=not camp_view.deck_open and camp_view.upgrade_preview_uid==0 and not is_instance_valid(get_node("/root/Preferences").panel)
+        coach.visible=not is_instance_valid(get_node("/root/Preferences").panel)
         frame.visible=coach.visible
         if step in [8,10] and practice.step in practice.rested_steps:
             if step==10:_complete();return
@@ -132,10 +138,65 @@ func _highlight() -> void:
             7:target=battle_view.capture_button
     elif is_instance_valid(camp_view):
         if step==8:target=camp_view.rest_button
-        elif step==10:target=camp_view.page.find_child("Upgrade",true,false)
+        elif step==10:
+            for control: Control in input_targets():
+                if control is BaseButton and control != exit_button:
+                    target=control;break
     if not is_instance_valid(target) or not target.is_visible_in_tree():frame.hide();return
     var rect:=target.get_global_rect().grow(5)
     frame.position=rect.position;frame.size=rect.size
+func input_targets() -> Array[Control]:
+    var allowed: Array[Control] = []
+    if is_instance_valid(exit_button) and exit_button.is_visible_in_tree(): allowed.append(exit_button)
+    if _finishing:
+        for key: String in ["TutorialHome","TutorialStartJourney"]:
+            var button := stage_view.find_child(key,true,false) as Control
+            if button != null: allowed.append(button)
+        return allowed
+    if is_instance_valid(next_button) and next_button.is_visible_in_tree(): allowed.append(next_button)
+    if is_instance_valid(battle_view):
+        if battle_view.busy or battle_view._overlay_open(): return allowed
+        var target: Control
+        match step:
+            2,3,4: target=battle_view.trainer_buttons.get([TutorialLesson.FIRST_CARD,TutorialLesson.SWITCH_CARD,TutorialLesson.GUARD_CARD][step-2])
+            5: target=battle_view.end_button
+            7: target=battle_view.capture_button
+        if is_instance_valid(target) and not (target as BaseButton).disabled: allowed.append(target)
+    elif is_instance_valid(camp_view):
+        if step==8 and is_instance_valid(camp_view.rest_button): allowed.append(camp_view.rest_button)
+        elif step==10:
+            if camp_view.upgrade_preview_uid!=0:
+                var confirm := camp_view.page.find_child("UpgradeConfirm",true,false) as Control
+                if confirm!=null: allowed.append(confirm)
+            elif camp_view.deck_open:
+                var browser := camp_view.page.find_child("JourneyDeckPanel",true,false) as JourneyDeckPanel
+                if browser!=null:
+                    for card: Node in browser.find_children("Card_*","BaseButton",true,false):
+                        if not card.disabled: allowed.append(card)
+                    allowed.append(browser.scroll)
+            else:
+                var upgrade := camp_view.page.find_child("Upgrade",true,false) as Control
+                if upgrade!=null: allowed.append(upgrade)
+    return allowed
+func _input(event: InputEvent) -> void:
+    if not event is InputEventKey: return
+    if event.keycode==KEY_F11: return
+    get_viewport().set_input_as_handled()
+    if not event.pressed or event.echo: return
+    if event.keycode==KEY_ESCAPE:
+        leave(false);return
+    var buttons: Array[Control] = input_targets().filter(func(control:Control):return control is BaseButton and not control.disabled and control.is_visible_in_tree())
+    if buttons.is_empty(): return
+    var focused := get_viewport().gui_get_focus_owner()
+    if event.keycode==KEY_TAB:
+        var index := buttons.find(focused)
+        buttons[posmod(index+(-1 if event.shift_pressed else 1),buttons.size())].grab_focus()
+    elif event.keycode in [KEY_SPACE,KEY_ENTER,KEY_KP_ENTER] and focused in buttons:
+        focused.pressed.emit()
+    elif event.keycode==KEY_C and step==7 and permits("capture"):
+        battle_view._capture()
+    elif event.keycode in [KEY_ENTER,KEY_KP_ENTER] and step==5 and permits("end"):
+        battle_view._end()
 func _complete() -> void:
     _finishing=true
     get_node("/root/Preferences").set_tutorial_status("completed")
