@@ -144,7 +144,7 @@ func run() -> void:
     check(vertical(battle.party_buttons,19.9),"Party rows have increased readable spacing")
     check(battle.ally_roster.get_global_rect().end.y<714,"Roster clears hand area")
     await click(battle.menu_button)
-    check(vertical([battle.bag_button,battle.settings_button,battle.home_button,battle.restart_button]),"Battle menu groups have roomy vertical spacing")
+    check(vertical([battle.bag_button,battle.settings_button,battle.home_button]),"Battle menu groups have roomy vertical spacing")
     check(contained([battle.menu_panel.get_node("Body")],screen),"Battle menu remains in viewport")
     await shot("07-battle-menu")
     await click(battle.settings_button)

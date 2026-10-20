@@ -60,7 +60,7 @@ func run() -> void:
         await process_frame
         check(j.rare_hunt["captured"] and id in profile.captured_ids and view.capture_quote.visible,"Actual capture records unlock before showing result text")
         check(view.capture_quote.text == data[str(id)]["capture"] and fits(view.capture_quote),"Captured species reaction fits battle result: "+str(id))
-        check(view.capture_quote.get_global_rect().end.y <= view.result_restart.global_position.y,"Result reaction clears buttons")
+        check(view.capture_quote.get_global_rect().end.y <= view.result_next.global_position.y,"Result reaction clears buttons")
         before = JourneySnapshot.encode(j)
         view._refresh()
         check(JourneySnapshot.encode(j) == before,"Refreshing capture result preserves resources, deck, UIDs and RNG")

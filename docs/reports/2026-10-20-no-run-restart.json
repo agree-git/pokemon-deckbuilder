@@ -1,0 +1,16 @@
+{
+  "game_revision": "364b19a1d418e88651d11823b3de54359bd6dbbb",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "mode": "isolated headless source",
+  "checks": 11,
+  "failures": 0,
+  "log": "/tmp/pokemon-remove-restart/test.log",
+  "scope": "Expedition restart entry points, result flow, constructor and exact save/RNG restore",
+  "not_run": [
+    "broader updated tests",
+    "native window",
+    "Windows EXE",
+    "build/export",
+    "new GitHub CI/release"
+  ]
+}

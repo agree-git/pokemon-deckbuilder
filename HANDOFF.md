@@ -1,23 +1,20 @@
 # 현재 작업 인계
 
-- 직전 구현 요청: 훈련 전체 자력기100골드/다른 호환기200골드,골드만 소모(휴식·강화·조사와 독립). TM 기존방식 유지. 골드 획득/일반 지출은 **지역이 아닌 야영지 출발마다 이전 금액의×1.1**. 100→110→121→133.1% 복리. 훈련비100/200과TM100·소비1개는 고정.
-- 게임 `81c600b8afe2be7cba294d1b7086e38d29e2e434`. [파일 지도](docs/camp-progression.md). **최신 요청 “릴리스”로 v0.28.6 준비·수동 GitHub 빌드·게시 승인.** 빌드는 명시 요청 때 GitHub에서만,로컬 export/ZIP 금지.
-- `camp_move_training.gd`: 현재 레벨 자력기 전체+해당 포켓몬의 TM/교배/가르침 등 법적 경로 전체,알려진 기술 포함. 가격100/200,제안 수·횟수·야영 행동 제한 없음. 법적 경로 없는 미래 자력기는 불가. UI 검색/자력·기타/가격/이미습득 비활성 표시.
-- `tactical_journey.gd`: REST/파티·생존/합법/슬롯/중복/자금 검증 후에만 훈련·덱 사본/골드 변경. rested_steps 불변. 소모TM은기존호환성/1개만소비·추가골드없음. 기존gold_events·결정 기록으로 통계 스키마 유지.
-- 경제 배율은 현재step 이전rest수로 유도,새 저장 필드/RNG 없음. 머무르기·refresh·load는 불변,leave_camp에 성공하면 다음 위치에서×1.1. 68회출발뒤약65268.3435%. 미세 부동소수점 오차 정리 후 금액 올림.
-- 전투/야영이벤트골드,보급품·진화재료/상인카드/제거/전술수업에 적용. 상인기존지역가산은견적에서제외(지역경계별도인상없음),제거횟수가산은유지. 초기소지금/과거지출·획득은소급변경없음. TM/훈련고정.
-- 상인카드/아이템견적은deep copy,저장원본가격불변·구매sold만원본반영. 기존MerchantContent검증유지. UI이벤트설명/선택지/지불액·PLAY_GUIDE동기화.
-- 이전 자동 진화·읽기전용안내 유지. 원정28/효과19/전투·경로RNG/게시JSON/저장형식/승인파티/배경좌표 유지.
+- 최신 요청: **원정 다시하기 버튼과 기능 제거**. 수정·main 반영만,새 버전/빌드/Release 요청 아님. 빌드는 명시 요청 때 GitHub에서만,로컬 build/export/ZIP 금지.
+- 게임 `364b19a1d418e88651d11823b3de54359bd6dbbb`. [원정 재시작 제거 지도](docs/no-run-restart.md)부터 읽는다.
+- 원정 pause 메뉴/전투 승패·포획 결과의 재시작 버튼 및 run_restart_requested 신호 제거. 원정에서 직접 TacticalUI.restart 호출도 무변경. 단독 전투 재연습/튜토리얼 자체 연습 재개는 유지.
+- 최종 결과의 같은 시드·새 시드 재출발 버튼/핸들러 제거,중앙 시작 화면 버튼1개로 정리. 클리어의 엔딩 크레딧 다시 보기 유지. 새 원정은 시작 화면의 스타팅 선택에서 시작한다.
+- TacticalJourney의 공개 restart API 제거,생성자 전용 `_initialize_run`으로 초기화. 기존 객체 재시작 없음. 새 객체 생성·저장 복원 경로 유지. UI 결과 배치의 null 참조 정리.
+- 저장 형식·내용/경로·전투 RNG/승인 파티/배경좌표/게시 JSON/진화·훈련·경제·게임 버전 불변. PLAY_GUIDE 동기화.
 
 ## 실제 검사
 
-- 공식4.7.2 격리headless소스 `tests/test_training_economy.gd` **217/0**,깨끗한종료. 전체훈련목록·100/200경계/불법무변경/반복/휴식과상호독립/소유카드/통계/TM/정확한저장·RNG,68야영출발배율,늦은상점·보급품·TM·이벤트·실제승리골드/중복정산무변경. `/tmp/pokemon-compound-gold/test.log`.
-- 사용자 정정으로 단리를 복리로 교체. 100→110→121 정확한 정수 반올림과68회복리,챔피언117484골드,고액전리품디스크저장·정확복원을 추가검증. 전리품골드검증상한은1억으로완화해후반저장실패방지. 저장필드·게시JSON·RNG불변.
-- 이전 진화67/0 근거는 재사용. `test_camp_progression.gd`의폐기훈련검사를제거해진화부분만남겼고 national progression의공유행동기대값도갱신했으나두검사는재실행하지않았다.
-- 전체919/69전투/실제창·WindowsEXE/로컬빌드/export/CI·새릴리스미실행.
+- 공식4.7.2 격리headless `tests/test_no_run_restart.gd` **11/0**,깨끗한 종료. 생성자·정확한 저장 복원,메뉴/승패 결과 버튼·신호 부재,직접 restart 무변경,실제 패배 계속 진행·run_id 유지,최종 제목 버튼/저장 복원/크레딧 재생 버튼 확인. `/tmp/pokemon-remove-restart/test.log`.
+- 기존 start/machines/rare_capture 검사의 재시작을 새 객체 생성으로 대체하고 native_ui_spacing/rare_reactions의 삭제 버튼 참조를 정리했다. 해당 검사들은 재실행하지 않았다.
+- 전체919/69전투/실제 창·Windows EXE/빌드/export/CI·새 릴리스 미실행.
 
-## 다음 단계
+## 배포·다음 단계
 
-- v0.28.6 lightweight 태그는 위 고정 소스 SHA. main의 별도 workflow 설정 커밋이 게임·자료 SHA/버전을 기본값으로 지정한다. [릴리스 지도](docs/github-releases.md),[노트](docs/releases/v0.28.6.md).
-- 준비·push 후 사용자가 Windows release의 main·기본값 그대로 **새 Run workflow**를 눌러야 한다. 현재 새 dispatch 도구 없음. Windows 실행·게시 완료로 보고하지 않는다. 다음은 해당 실행 GET 상태·실패 로그 확인. 기존v0.28.5 태그/배포 불변.
-- 직전 [고정 인계](https://github.com/agree-git/pokemon-deckbuilder/blob/c0c7fe3cf02463baa4db1b4cb596fc8caa4493f7/HANDOFF.md). ASSET_SOURCES.md·CHANGELOG.md 복구금지,DO·기존엔딩스크롤유지.
+- 기존 준비된 v0.28.6 태그=81c600b8afe2be7cba294d1b7086e38d29e2e434,workflow 입력/태그는 이동하지 않았다. 이번 수정은 그 버전에 포함되지 않는다. 새 빌드는 다시 명시 요청을 따른다.
+- 다음은 사용자 수정사항 대기. 다음 릴리스는 새 버전/게임·자료 SHA/새 태그로 GitHub 수동 준비. 새 dispatch 도구가 없으면 사용자 새 Run workflow 필요.
+- 직전 [고정 인계](https://github.com/agree-git/pokemon-deckbuilder/blob/c3deb7ea461e62ff68837c118ce2bfc87795d8a6/HANDOFF.md)에 진화/훈련·복리 경제/217검사·v0.28.6 준비 근거 보관. ASSET_SOURCES.md·CHANGELOG.md 복구금지,DO·기존 엔딩 양식 유지.

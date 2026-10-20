@@ -154,7 +154,7 @@ func run() -> void:
     unchanged(fresh,fresh.rest,"Investigation excludes both healing and upgrading")
     fresh = reload(fresh)
     unchanged(fresh,fresh.rest,"Reload cannot reset the shared camp action")
-    fresh.restart()
+    fresh = TacticalJourney.new(712,"field_kit",[1,4,7],true)
     check(fresh.rare_hunt.is_empty() and fresh.rested_steps.is_empty(),"New expedition resets only its own quest")
     print("RARE_ENCOUNTER: ",checks," checks, ",failures," failures")
     quit(0 if failures == 0 else 1)

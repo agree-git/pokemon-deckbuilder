@@ -112,7 +112,7 @@ func run() -> void:
     for camp: Dictionary in corrupt["run"]["camp_states"].values(): camp.erase("machine_offers")
     check(JourneySnapshot.validate(corrupt) and JourneySnapshot.restore(corrupt).machines.is_empty(),"Pre-TM save accepts absent optional state")
     check(JourneySave.compatible_content("7ce6e0d58dab102bb60728714b36d36cc417cedeb0ed92811261c6339ad15b89"),"Pre-TM content fingerprint remains accepted")
-    j.restart()
+    j = TacticalJourney.new(712,"field_kit",[1,4,7],true)
     check(j.machines.is_empty(),"New expedition clears machine inventory")
     print("Technical machines: %d checks / %d failures" % [checks,failures])
     quit(1 if failures else 0)
