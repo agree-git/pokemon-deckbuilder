@@ -1,0 +1,17 @@
+{
+  "game_revision": "c255a3e172ff987ef08fff2a1d15422dc49ea397",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "mode": "isolated headless source, Viewport GUI events",
+  "checks": 27,
+  "failures": 0,
+  "log": "/tmp/pokemon-tutorial-route/search.log",
+  "not_run": [
+    "native OS clicks/window/pixel review",
+    "Windows Korean IME",
+    "Windows EXE",
+    "full 919 moves/69-battle campaign",
+    "build/export",
+    "GitHub CI/release"
+  ],
+  "limitation": "Previous LineEdit attempt failed per user; native Windows IME cannot be verified here. Committed Unicode tests do not prove real IME composition."
+}

@@ -14,14 +14,14 @@
 | 기술 사용 동작/돌진·몸통·자세 복귀 | [기술 사용 모션](docs/combat-motion.md) | `scripts/ui/combat_motion.gd`,`battle_canvas.gd`,`tactical_ui.gd::_play_event` | `tests/native_combat_motion.gd`;종료 문제만 `native_combat_motion_flow.gd` |
 | 독·마비·화상 등 상태이상 이펙트 | [효과 전용 지도](docs/status-vfx.md);원인 문구 추가 금지 | `scripts/ui/status_feedback.gd`,`tactical_ui.gd::_play_event`;내부 tick 키만 `tactical_battle.gd` | `tests/native_status_feedback.gd` 한 묶음 |
 | 상대 레벨/진화 단계 | [상대 진화 단계](docs/enemy-evolution.md) | `scripts/tactics/enemy_evolution.gd`,`campaign_route.gd`,`tactical_journey.gd` | `tests/test_enemy_evolution.gd`;새 버전/EXE 보류 |
-| 기술 훈련 검색/한국어 한 글자 입력 | [검색·한글 조합](docs/workshop-search.md) | `pokedex_workshop.gd::_search_changed/_process/_filter_rows` | `tests/test_workshop_search.gd` 21/0; Windows IME 실기 미확인 |
+| 기술 가르침 검색/한글/습득 기술 정렬 | [검색·한글 조합](docs/workshop-search.md) | `search_text_input.gd`,`pokedex_workshop.gd` | `tests/test_workshop_search.gd` 27/0; Windows IME 실기 미확인 |
 | 원정 다시하기 제거/시작·결과 화면 | [원정 다시하기 제거](docs/no-run-restart.md) | `tactical_ui.gd`,`tactical_journey_ui.gd`,`tactical_journey.gd::_initialize_run` | `tests/test_no_run_restart.gd` 11/0; 새 빌드 보류 |
 | 자동 진화/훈련 전체 목록·야영 출발 경제 | [자동 진화·훈련](docs/camp-progression.md) | `national_evolution.gd`,`special_evolution.gd`,`camp_move_training.gd`,`tactical_journey.gd`,`pokedex_workshop.gd` | `tests/test_training_economy.gd` 217/0; 진화는 이전67/0 근거; 새 빌드 보류 |
 | 도감/진화/습득 | [전국도감](docs/pokedex-expansion.md)의 해당 절 | `scripts/content/pokedex_expansion.gd`,`scripts/ui/pokedex_workshop.gd` | `tests/test_national_progression.gd` |
 | 지닌 물건/소모/장착 | [원작 지닌 물건](docs/held-items.md)의 계약/해당 효과 | `scripts/tactics/held_items.gd`,`held_item_math.gd`;보상/장착이면 `tactical_journey.gd` | `tools/check.py --suite held-items` |
 | 기술머신/야영 | `rules`의 야영 기술머신/야영지 절 | `scripts/tactics/technical_machines.gd`,`tactical_journey.gd` | `tests/test_machines.gd` |
 | BGM/환경음/Esc 음악 플레이어 | [플레이어·최소 검사](docs/music-player.md),음원 자체를 바꾸면 해당 manifest | `scripts/audio/game_music.gd`,`scripts/ui/music_player_panel.gd`;환경음은 `game_ambience.gd` | `tests/native_music_player.gd` 관련 범위;전체 soundscape는 필요한 경우만 |
-| 튜토리얼/첫 플레이 | [튜토리얼 지도](docs/tutorial.md) | `scripts/ui/tutorial_ui.gd`,`scripts/content/tutorial_lesson.gd`;권유는 `main_menu.gd` | `tests/native_tutorial.gd`;문구만수정하면layout만 |
+| 튜토리얼 입력 제한/지역 내 스테이지 카드 | [튜토리얼·이동 카드](docs/tutorial-route-ui.md) | `tutorial_ui.gd`,`tutorial_input_gate.gd`,`journey_stage_strip.gd`,`tactical_journey_ui.gd::_map` | `tests/test_tutorial_route_ui.gd` 81/0; 실제 창 미검사 |
 | UI 간격/공간 활용/설정·메뉴 배치 | [UI 간격 지도](docs/ui-spacing.md);연구의 긴 버튼은 [연구 화면 지도](docs/workshop-layout.md) | 연구는 `scripts/ui/pokedex_workshop.gd`;그 외 해당 UI 파일 | 연구는 `tests/native_workshop_compact.gd` 한 묶음;전체 UI 검사는 필요할 때만.새 버전/EXE 보류 |
 | 야영지 버튼/글자 겹침 | [야영지 UI](docs/camp-layout.md) | `scripts/ui/tactical_journey_ui.gd`,`pokedex_workshop.gd`,`combat_widgets.gd` | `tests/native_camp_layout.gd`;새 버전/EXE 보류 |
 | 카드/화면/배치·실제 입력 검사 | [현재 화면 검사](docs/native-review.md),필요 시 `rules` 표시·조작 절 | `scripts/ui/tactical_ui.gd`,`trainer_action_card.gd`,`card_effect_text.gd`,`scripts/content/battle_card_preview.gd` 중 관련 파일 | 해당 문제만 native 대표 재검사;전체 자동 반복 금지 |

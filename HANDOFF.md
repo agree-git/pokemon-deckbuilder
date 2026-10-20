@@ -1,21 +1,21 @@
 # 현재 작업 인계
 
-- 직전 수정: 기술 훈련 검색창에서 한 글자만 입력되는 문제. 사용자가 **한국어에서만 발생**한다고 확인했다. **최신 요청 “릴리스”로 v0.28.7 준비·수동 GitHub 빌드·게시 승인.** 빌드는 명시 요청 때 GitHub에서만,로컬 build/export/ZIP 금지.
-- 게임 `71d914e5ca816e4c439a2b38d63bdfa339c96340`. [검색·한글 조합 지도](docs/workshop-search.md)부터 읽는다.
-- PokedexWorkshop의 text_changed는query/예약만,다음 process에서 has_ime_text가 false인 확정 시점에 실제 검색 문자열로 필터한다. 조합 중 기다리며 LineEdit.text·focus·caret를 덮어쓰지 않는다.
-- 탭별 항목은populate에서 한 번 생성. 검색은 search_terms에 따라visible만 변경,버튼·빈 안내 Label 삭제/재생성 없음. 이름·번호·타입/진화·폼·훈련·TM에 동일 적용. 명시적인 탭/동료/기술 변경은rebuild 유지.
-- 원정 다시하기 제거/자동 진화/훈련100·200골드·행동 독립/TM/야영 출발×1.1 복리 경제/저장·RNG·게시JSON/승인파티/배경좌표 유지. 버전만0.28.7로갱신,이전태그·게시JSON 불변.
+- 최신 요청: 튜토리얼 안내 버튼 외 입력 차단,지역 내4×2격자를 화살표 연결 가로 카드4개 viewport로 변경. 추가로 이전 패치에도 한글 입력이 안 됨·기술 가르침 명칭·이미 습득한 기술 최상단 요청. 수정·main 반영만,새 빌드/Release 요청 아님. GitHub 빌드만·로컬 export/ZIP 금지.
+- 게임 `c255a3e172ff987ef08fff2a1d15422dc49ea397`. [튜토리얼·이동 카드](docs/tutorial-route-ui.md),[입력·정렬](docs/workshop-search.md) 중 해당 파일부터 읽는다.
+- TutorialInputGate는 현재 허용 Control만 포인터 hole. TutorialUI는 단계별 카드/다음/턴종료/포획/휴식/강화열기→카드선택→확정만 허용,다른 메뉴·취소와 단축키 차단. Tab도허용버튼만,연습나가기·Esc/F11 유지. 기존 행동권한 검사도 유지.
+- JourneyStageStrip은260×280카드/50간격/1190×312viewport. 같은지역 전투8개·리그5개 원순서/화살표·완료/현재·전술 tooltip·희귀 정체 숨김 유지. 좌우4개 이동·스크롤/현재 구간 자동표시,실제경로·배지요약·이동액션불변.
+- 검색은 LineEdit→단일행 TextEdit, native get_line_with_ime으로 확정/조합 중 음절 모두 읽는다. 이전 조합 종료 대기는 폐기. native 텍스트·커서를 조합 중 덮어쓰지 않고 결과는기존노드visible만 변경. Enter는조합확정/줄바꿈차단,붙여넣기확정줄바꿈평탄화.
+- 기술 가르침 명칭은탭/액션/오류/이후기록·가이드에반영. 현재습득기술우선·그안ID순,이미습득비활성,새가르침후에도위로정렬. 내부 train_move/moves 키는유지. 가격100/200·야영행동독립/TM/복리경제/자동진화/재시작제거/저장·RNG/승인파티·배경·게시JSON불변.
 
-## 실제 검사와 한계
+## 실제 검증과 한계
 
-- 공식4.7.2 격리headless `tests/test_workshop_search.gd` **21/0**,깨끗한 종료. 실제 원정 UI 연구창에서 확정 한글 입력·포커스/커서·Control ID,숫자 키·전체선택/편집·삭제·복원/검색필터·빈안내/TM/Esc/저장·RNG 불변. `/tmp/pokemon-workshop-search/after.log`.
-- **Windows IME 실제 조합은 재현/검증 못했다.** 최초 headless 확정 Unicode 입력은 수정 전에도4/0. 실제 IME 해결을 단정하지 않는다. 조합 중 UI 갱신을 피하고 결과 노드를 유지하는 대응을 반영했다.
-- 중간 검사 실패는 지연 text_changed 타이밍과 피카츄 Lv.1 전광석화 fixture 기대값을 정리했다. 기존 training_economy/native_pokedex/native_workshop_compact의 visible 결과·폐기 액션 참조만 갱신,그 넓은 검사들은 재실행하지 않았다.
-- 전체919/69전투/실제 창·Windows IME/Windows EXE/빌드/export/CI·새 릴리스 미실행.
+- 공식4.7.2 격리headless `test_tutorial_route_ui.gd` **81/0**,깨끗한종료. Viewport GUI 마우스·키로금지입력/전체안내흐름완료·실제원정/저장바이트/도감·RNG보존,8지역+리그의4카드·단일행·화살표·좌우끝·현재구간·경로불변. `/tmp/pokemon-tutorial-route/test.log`.
+- `test_workshop_search.gd` **27/0**,깨끗한종료. 새TextEdit 확정한글/숫자/커서·포커스/필터·Enter·붙여넣기·노드유지·Esc,기술가르침명칭/기존·신규습득우선정렬·가격/야영행동불변. `/tmp/pokemon-tutorial-route/search.log`.
+- **Windows 한글 IME 실기는 여전히 재현·검증 못함.** 이전 LineEdit 대기는 사용자 확인상 실패해교체했다. 확정Unicode 이벤트통과를실제IME해결로단정하지않는다. 초기검사만동적배열타입/없는TextEdit속성정리후위범위검사했다.
+- 실제창·OS클릭/픽셀·Windows/전체919기술·69전투/빌드/export/CI·새릴리스미실행. 기존전체회귀는반복하지않았다.
 
 ## 다음 단계
 
-- v0.28.7 lightweight 태그는 위 게임 SHA. main의 별도 workflow 설정 커밋이 게임·자료 SHA/버전을 기본값으로 지정한다. [릴리스 지도](docs/github-releases.md),[노트](docs/releases/v0.28.7.md).
-- 현재 새 dispatch/게시 도구가 없어 준비·push 뒤 사용자가 Windows release에서 main·기본값 그대로 **새 Run workflow**를 눌러야 한다. 아직 새 Windows 실행/게시 미완료. 다음은 실행 GET 상태·실패 로그 확인.
-- GET으로 v0.28.6 게시 완료 확인. 해당 태그/배포는 동결. **Windows IME 실제 조합은 여전히 미검증**이며 native 실행 검사와 구분한다.
-- 이전 [고정 인계](https://github.com/agree-git/pokemon-deckbuilder/blob/e0bac38a2e688218dd891858fa7ebba933f1a471/HANDOFF.md)에 재시작 제거11/0·기존 작업 근거 보관. ASSET_SOURCES.md·CHANGELOG.md 복구금지,DO·기존 엔딩 양식 유지.
+- 사용자 수정사항대기. 실제Windows한글조합이계속안되면 그환경의native조합·확정/포커스상태확인필요. 새릴리스요청때새버전·태그·게임/자료SHA로GitHub수동준비한다.
+- 기존v0.28.7태그=71d914e5ca816e4c439a2b38d63bdfa339c96340/기본입력은동결,이번수정미포함. 과거실행재실행금지. 새dispatch도구없으면사용자새Run workflow필요.
+- 이전 [고정 인계](https://github.com/agree-git/pokemon-deckbuilder/blob/61f2d5503f46cbe1170a415eb1eb4ba110788d42/HANDOFF.md)에v0.28.7 준비·재시작제거·기존검색근거보관. ASSET_SOURCES.md·CHANGELOG.md 복구금지,DO·기존엔딩양식유지.

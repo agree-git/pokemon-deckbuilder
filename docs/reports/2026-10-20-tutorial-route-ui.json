@@ -1,0 +1,16 @@
+{
+  "game_revision": "ab0e76b7882c011015d3660a5b60cb13c5331d77",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "mode": "isolated headless source, Viewport GUI events",
+  "checks": 81,
+  "failures": 0,
+  "log": "/tmp/pokemon-tutorial-route/test.log",
+  "not_run": [
+    "native OS clicks/window/pixel review",
+    "Windows Korean IME",
+    "Windows EXE",
+    "full 919 moves/69-battle campaign",
+    "build/export",
+    "GitHub CI/release"
+  ]
+}
