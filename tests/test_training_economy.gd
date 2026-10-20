@@ -10,7 +10,7 @@ func fixture(at := 1) -> TacticalJourney:
     var j:=TacticalJourney.new(712,"field_kit",[133,4,7],true)
     j.step=at;j.phase=TacticalJourney.MAP
     check(j.enter_next().is_empty(),"Enter an actual campaign camp")
-    j.gold=10000
+    j.gold=10000000
     return j
 func roundtrip(j: TacticalJourney) -> void:
     var data:=JourneySnapshot.encode(j)
@@ -64,8 +64,8 @@ func run() -> void:
     var ui:=PokedexWorkshop.new();ui.journey=j;ui.mode="moves";root.add_child(ui)
     check(ui.rows.get_child_count()==j.training_offers(p.uid).size(),"Training UI shows the entire legal catalog")
     ui.free()
-    # Every camp departure adds 10% of the base, regardless of biome boundaries.
-    var prior := 100
+    # Every camp departure multiplies the previous rate by 1.1, regardless of biome boundaries.
+    var prior := 100.0
     var camp_count := 0
     for index in j.route.stops.size():
         if j.route.stops[index]["kind"] != "rest":continue
@@ -74,10 +74,15 @@ func run() -> void:
         probe.enter_next()
         var at_camp:=probe.gold_progression_percent()
         var untouched:=JourneySnapshot.encode(probe)
-        check(at_camp==100+10*camp_count and probe.gold_progression_percent()==prior and untouched==JourneySnapshot.encode(probe),"Staying/reopening at camp never changes the multiplier or RNG")
-        check(probe.leave_camp().is_empty() and probe.gold_progression_percent()==at_camp+10,"Leaving each camp increments gain and ordinary spending by 10 base percentage points")
+        check(is_equal_approx(at_camp,100*pow(1.1,camp_count)) and is_equal_approx(probe.gold_progression_percent(),prior) and untouched==JourneySnapshot.encode(probe),"Staying/reopening at camp never changes the multiplier or RNG")
+        check(probe.leave_camp().is_empty() and is_equal_approx(probe.gold_progression_percent(),at_camp*1.1),"Leaving each camp multiplies gain and ordinary spending by 1.1")
         prior=probe.gold_progression_percent();camp_count+=1
-    check(camp_count==68 and prior==780,"All 68 departures give 100% through 780% without exponential inflation")
+    check(camp_count==68 and is_equal_approx(prior,65268.3435371437),"68 departures preserve the requested compound growth")
+    var expected_prices := [100,110,121,134,147,162]
+    for n in expected_prices.size():
+        j.step = n*2
+        check(j.scale_gold(100)==expected_prices[n],"Early exact gold progression rounds without floating-point extra gold")
+    j.step=1
     for at in [1,35,129,135]:
         var c:=fixture(at)
         check(c.items()["ball"]["price"]==c.scale_gold(35) and c.removal_price()==c.scale_gold(50),"Supply and card-removal quotes share the departure multiplier")
@@ -131,5 +136,21 @@ func run() -> void:
     before=JourneySnapshot.encode(reward)
     check(reward.settle().is_empty() and before==JourneySnapshot.encode(reward),"Repeated settlement is a no-op and cannot duplicate gold")
     roundtrip(reward)
+    # A real champion reward now exceeds the old 100k per-loot validation cap.
+    var final:=TacticalJourney.new(712,"field_kit",[133,4,7],true)
+    final.step=136;final.badges=8;final.elite_wins=4
+    final.phase=TacticalJourney.MAP
+    check(final.enter_next().is_empty(),"Enter final champion at the maximum compound multiplier")
+    var champion_reward:=final.battle_gold_reward()
+    final.battle.phase=TacticalBattle.WON
+    check(final.settle().is_empty() and champion_reward==117484 and final.loot[-1]["gold"]==117484,"Final champion awards exact compound gold beyond 100k")
+    var high_save:=fixture(135)
+    high_save.gold+=champion_reward
+    high_save.loot.append({"name":"고액 전리품","gold":champion_reward,"item":"revive","quantity":1})
+    roundtrip(high_save)
+    var store:=JourneySave.new("user://compound-final.json")
+    check(store.save(high_save).is_empty(),"Actual compound reward can be saved to disk")
+    var loaded:=store.load_journey()
+    check(loaded!=null and JourneySnapshot.encode(loaded)==JourneySnapshot.encode(high_save),"Disk load retains exact six-digit loot/RNG")
     print("TRAINING_ECONOMY ",checks," checks / ",failures," failures")
     quit(0 if failures==0 else 1)

@@ -1,0 +1,25 @@
+{
+  "game_revision": "fb812e492a35ad962d6d5c786425ec5ecf5ee745",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "mode": "isolated headless source",
+  "checks": 217,
+  "failures": 0,
+  "log": "/tmp/pokemon-compound-gold/test.log",
+  "policy": {
+    "gold_percent": "100 * 1.1 ** departed_camps",
+    "rounding": "remove floating noise, then ceil whole gold",
+    "level_training": 100,
+    "other_training": 200,
+    "tm_price": 100,
+    "champion_reward": 117484
+  },
+  "save": "High-value loot validated and exactly restored through actual disk save; fields unchanged, loot gold maximum widened to 100000000",
+  "not_run": [
+    "full move regression",
+    "69-battle campaign",
+    "native window",
+    "Windows EXE",
+    "build/export",
+    "GitHub CI/release"
+  ]
+}
