@@ -1,0 +1,29 @@
+{
+  "release_tag": "v0.28.8",
+  "game_revision": "28b346fd994592cd1c4b9bdecc0de2932b2293f6",
+  "previous_release": "v0.28.7",
+  "previous_release_verified_published": true,
+  "reused_checks": {
+    "tutorial_route_ui": {
+      "checks": 81,
+      "failures": 0
+    },
+    "workshop_search": {
+      "checks": 27,
+      "failures": 0
+    },
+    "native_hangul_external": {
+      "checks": 9,
+      "failures": 0
+    }
+  },
+  "known_limitations": [
+    "Windows Microsoft Korean IME not tested",
+    "Linux inline composition loses syllable commits even in basic TextEdit"
+  ],
+  "local_build_export": false,
+  "github_dispatched": false,
+  "release_published": false,
+  "distribution": "GitHub Actions and Releases only",
+  "next_step": "New manual workflow dispatch on main using pinned defaults; tool unavailable in current connector"
+}

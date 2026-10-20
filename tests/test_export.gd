@@ -17,7 +17,7 @@ func run() -> void:
         get_tree().quit(2)
         return
     check(not OS.has_feature("editor"),"Actual export template, not editor")
-    check(ProjectSettings.get_setting("application/config/version","")=="0.28.7","Packed release version v0.28.7")
+    check(ProjectSettings.get_setting("application/config/version","")=="0.28.8","Packed release version v0.28.8")
     var args := OS.get_cmdline_user_args()
     check(args.size() == 1 and OS.get_name() == args[0],"Expected target operating system")
     check(Engine.get_version_info()["string"].begins_with("4.7.2"),"Pinned engine version")
