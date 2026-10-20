@@ -40,9 +40,9 @@ static func all_items() -> Dictionary:
             item["stock"] = int(item["stock"])
             _items[key] = item
     return _items
-static func target_for(key: String,pokemon: BattlePokemon) -> int:
+static func target_for(key: String,pokemon: BattlePokemon,time := "day") -> int:
     if pokemon.content_version < 2: return target(key,pokemon.species_id)
-    var rule := NationalEvolution.item_rule(key,pokemon)
+    var rule := NationalEvolution.item_rule(key,pokemon,time)
     return int(rule.get("to",0))
 static func target(key: String, species: int) -> int:
     var historical := int(ROUTES.get(species,{}).get(key,0))

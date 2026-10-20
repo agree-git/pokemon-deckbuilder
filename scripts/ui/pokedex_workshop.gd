@@ -1,6 +1,6 @@
 class_name PokedexWorkshop
 extends Control
-## Camp preparation for expanded evolution paths, permanent forms and legal moves.
+## Automatic evolution guide, permanent forms and limited move reminders.
 signal closed
 const W = preload("res://scripts/ui/combat_widgets.gd")
 var journey: TacticalJourney
@@ -42,15 +42,15 @@ func rebuild() -> void:
     for i in modes.size():
         var key: String = modes[i]
         var x := 312 if i == 0 else 496+(i-1)*168
-        var button := W.button(content,Rect2(x,104,160 if i == 0 else 144,48),func(): mode = key; query = ""; rebuild(),["진화·준비","상시 폼","기술 훈련","기술머신"][i])
+        var button := W.button(content,Rect2(x,104,160 if i == 0 else 144,48),func(): mode = key; query = ""; rebuild(),["진화 안내","상시 폼","기술 훈련","기술머신"][i])
         button.add_theme_font_size_override("font_size",18)
         W.fit_button(button)
         button.name = "WorkshopTab_"+key
         if mode == key: button.add_theme_stylebox_override("normal",W.box(Color("29443f"),W.GOLD))
     var p := current()
-    var description := "기본 조건은 유지합니다. 장소·통신·특수 조작은 야영 행동 1회로 준비하며, 레벨 진화는 다음 레벨업에 진행합니다."
+    var description := "레벨·친밀도·시간·기술 조건을 충족하면 레벨업 시 자동 진화합니다. 분기를 선택할 필요가 없으며 진화 재료는 가방에서 사용합니다."
     if mode == "forms": description = "현재 지역 계통의 상시 폼을 준비합니다. 지역폼은 포획·진화로 획득하며 합체 폼은 두 포켓몬의 포획 기록이 필요합니다."
-    elif mode == "moves": description = "레벨·기술머신·교배·가르침 습득 경로를 따릅니다. 훈련은 야영 행동 1회를 사용하며 선택한 기술의 덱 사본만 교체합니다."
+    elif mode == "moves": description = "현재 레벨까지의 자력 습득 기술 중 최대 3개 제안 · 100골드 + 야영 행동 1회(휴식·강화·조사와 공유) · 골드 %d" % journey.gold
     elif mode == "machines": description = "상인·야영 발견으로 기술머신을 획득합니다. 위에서 동료와 교체할 기술을 선택하세요. 사용 시 1개 소모하며 야영 행동은 사용하지 않습니다. · 골드 %d" % journey.gold
     var help := W.label(content,description,Rect2(312,184,936,64),18,W.MUTED)
     help.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -102,11 +102,18 @@ func row(title: String,detail: String,action: Callable,button_text: String,disab
     W.fit_label(heading)
     var label := W.label(panel,detail,Rect2(left,60,664-left,64),17,W.MUTED)
     label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-    var button := W.button(panel,Rect2(688,44,184,56),action,button_text)
-    button.add_theme_font_size_override("font_size",18)
-    W.fit_button(button)
-    button.name = "WorkshopAction"
-    button.disabled = disabled
+    label.max_lines_visible = 2
+    label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+    label.mouse_filter = Control.MOUSE_FILTER_PASS
+    label.tooltip_text = detail
+    if action.is_valid():
+        var button := W.button(panel,Rect2(688,44,184,56),action,button_text)
+        button.add_theme_font_size_override("font_size",18)
+        W.fit_button(button)
+        button.name = "WorkshopAction"
+        button.disabled = disabled
+    else:
+        W.label(panel,button_text,Rect2(688,44,184,56),18,W.GOLD,HORIZONTAL_ALIGNMENT_CENTER).name = "AutomaticEvolution"
 func populate() -> void:
     W.clear(rows)
     var p := current()
@@ -115,8 +122,9 @@ func populate() -> void:
             var target := int(rule["to"])
             var name := str(PokedexExpansion.species(target)["name"])
             if not matches(name+str(target)): continue
-            var disabled: bool = p.evolution_prepared == target or (rule["prepare"] and journey.step in journey.rested_steps)
-            row(name,NationalEvolution.condition_text(rule),_prepare.bind(p.uid,target),"준비 완료" if p.evolution_prepared == target else ("준비하기" if rule["prepare"] else "분기 선택"),disabled,target)
+            var detail := NationalEvolution.condition_text(rule)
+            if SpecialEvolution.eligible(p.species_id): detail = SpecialEvolution.summary(p,journey.party.size(),journey.balls,VisualCatalog.new())
+            row(name,detail,Callable(),"재료 사용" if rule["method"] == "item" else "자동 진화",false,target)
     elif mode == "forms":
         for target: int in PokedexExpansion.forms(p.species_id):
             var entry := PokedexExpansion.species(target)
@@ -129,12 +137,13 @@ func populate() -> void:
             if not partners.is_empty(): detail = "두 포켓몬의 포획 기록 확인" if available else "추가 포획 기록이 필요한 합체 폼입니다."
             row(str(entry["name"]) if available else "미해금 합체 폼",detail,_form.bind(p.uid,target),"현재 모습" if target == p.species_id else "폼 준비",target == p.species_id or not available,target if available else 0)
     elif mode == "moves":
-        for move: int in NationalEvolution.teachable_moves(p):
+        for move: int in journey.training_offers(p.uid):
             var view := _move_definition(move)
             var type := VisualCatalog.new().type_name(view["type"])
             if not matches(str(view["name"])+str(move)+type): continue
             var known := TacticalMoves.key_for(move) in p.learned_skills
-            row(str(view["name"])+" · "+type,str(view["description"]),_train.bind(p.uid,move,slot),"습득 완료" if known else "훈련하기",known or journey.step in journey.rested_steps)
+            row(str(view["name"])+" · "+type,str(view["description"]),_train.bind(p.uid,move,slot),"습득 완료" if known else "훈련 · 100골드",not journey.train_move_reason(p.uid,move,slot).is_empty())
+            rows.get_child(-1).get_node("WorkshopAction").tooltip_text = journey.train_move_reason(p.uid,move,slot)
     else:
         var offers: Array = journey.camp().get("machine_offers",[])
         for i in offers.size():
@@ -159,7 +168,7 @@ func populate() -> void:
             var compatible := move in TechnicalMachines.moves(p.species_id)
             row("보유 %d개 · %s · %s" % [count,view["name"],type],_machine_detail(move,p),_use_machine.bind(p.uid,move,slot),"습득 완료" if known else ("배우기 · 1개" if compatible else "사용 불가"),known or not compatible or not p.alive())
             rows.get_child(-1).name = "MachineOwned_%d" % move
-    if rows.get_child_count() == 0: W.label(rows,"해당하는 항목이 없습니다.",Rect2(0,0,896,72),22,W.MUTED)
+    if rows.get_child_count() == 0: W.label(rows,"이번 야영지에 제안된 훈련 기술이 없습니다." if mode == "moves" and query.is_empty() else "해당하는 항목이 없습니다.",Rect2(0,0,896,72),22,W.MUTED)
 func _machine_detail(move: int,p: BattlePokemon) -> String:
     var compatible := move in TechnicalMachines.moves(p.species_id)
     return "%s · %s\n%s" % [p.display_name,"사용 가능" if compatible else "호환되지 않음",_move_definition(move)["description"]]
@@ -178,17 +187,13 @@ func _input(event: InputEvent) -> void:
         closed.emit()
         queue_free()
 
-func _prepare(uid: int,target: int) -> void:
-    notice = journey.prepare_evolution(uid,target)
-    if notice.is_empty(): notice = "진화 분기를 준비했습니다. 남은 조건을 충족하세요."
-    rebuild()
 func _form(uid: int,target: int) -> void:
     notice = journey.change_form(uid,target,collection)
     if notice.is_empty(): notice = "폼을 준비했습니다."
     rebuild()
 func _train(uid: int,move: int,index: int) -> void:
     notice = journey.train_move(uid,move,index)
-    if notice.is_empty(): notice = "기술을 훈련했습니다."
+    if notice.is_empty(): notice = "100골드와 야영 행동 1회를 사용해 기술을 훈련했습니다."
     rebuild()
 
 func _move_definition(move:int) -> Dictionary:

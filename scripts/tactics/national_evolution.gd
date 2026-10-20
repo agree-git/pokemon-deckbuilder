@@ -1,6 +1,6 @@
 class_name NationalEvolution
 extends RefCounted
-## Expanded evolution conditions; external world actions have an explicit camp adaptation.
+## Automatic evolution conditions. External world actions require no camp selection.
 static var _rules: Dictionary = {}
 static func rules_for(id: int) -> Array:
     if _rules.is_empty():
@@ -15,7 +15,7 @@ static func gender(pokemon: BattlePokemon) -> int:
     var rate := int(PokedexExpansion.species(pokemon.species_id).get("gender_rate",-1))
     if rate < 0: return 0
     return 1 if posmod(pokemon.uid*1664525+1013904223,8) < rate else 2
-static func reason(pokemon: BattlePokemon,rule: Dictionary,time: String,prepared := true) -> String:
+static func reason(pokemon: BattlePokemon,rule: Dictionary,time: String,_prepared := true) -> String:
     if pokemon.level < int(rule["level"]): return "Lv.%d 이상이 필요합니다." % int(rule["level"])
     var conditions: Dictionary = rule["conditions"]
     if conditions.has("gender_id") and gender(pokemon) != int(conditions["gender_id"]): return "이 진화는 %s 동료의 분기입니다." % ("암컷" if int(conditions["gender_id"]) == 1 else "수컷")
@@ -29,30 +29,37 @@ static func reason(pokemon: BattlePokemon,rule: Dictionary,time: String,prepared
         var type: String = PokedexExpansion.data().get("type_ids",{}).get(str(int(conditions["known_move_type_id"])),"fairy")
         if not pokemon.learned_skills.any(func(key: String): return TacticalMoves.definition(key).get("type","") == type): return "%s 타입 기술을 배워야 합니다." % VisualCatalog.new().type_name(type)
     if conditions.has("minimum_beauty") and SpecialEvolution.beauty(pokemon) < int(conditions["minimum_beauty"]): return "아름다움 조건을 준비하세요."
-    if prepared and rule["prepare"] and pokemon.evolution_prepared != int(rule["to"]): return "야영지의 진화 연구로 준비하세요."
+    # No nature stats are added: identity only picks a permanent evolution branch.
+    var identity := ((SpecialEvolution.personality(pokemon)>>16) ^ (pokemon.uid*104729))&0xffffffff
+    if conditions.has("nature_bitmask") and (int(conditions["nature_bitmask"]) & (1 << (identity%25))) == 0: return "이 개체의 자동 진화 분기가 아닙니다."
+    if conditions.has("percentage_chance"):
+        var chance := int(conditions["percentage_chance"])
+        if chance == 1 and identity%100 != 0: return "이 개체의 자동 진화 분기가 아닙니다."
+        if chance == 99 and identity%100 == 0: return "이 개체의 자동 진화 분기가 아닙니다."
     return ""
-static func level_target(pokemon: BattlePokemon,time: String) -> int:
-    if pokemon.species_id in [236,265,349]: return 0 # Preserve authored legacy branches.
-    var candidates: Array = rules_for(pokemon.species_id).duplicate()
+static func _automatic_order(pokemon: BattlePokemon,candidates: Array) -> Array:
     candidates.sort_custom(func(a: Dictionary,b: Dictionary):
-        if int(a["to"]) == int(b["to"]): return false
-        if int(a["to"]) == pokemon.evolution_prepared: return true
-        if int(b["to"]) == pokemon.evolution_prepared: return false
-        return a["conditions"].has("known_move_type_id") and not b["conditions"].has("known_move_type_id"))
-    for rule: Dictionary in candidates:
-        if rule["method"] != "level" or rule["trigger"] == "shed": continue
-        if pokemon.evolution_prepared > 0 and int(rule["to"]) != pokemon.evolution_prepared: continue
+        # Sylveon's Fairy-move condition takes priority over ordinary friendship.
+        var fairy_a: bool = a["conditions"].has("known_move_type_id")
+        var fairy_b: bool = b["conditions"].has("known_move_type_id")
+        if fairy_a != fairy_b: return fairy_a
+        var score_a := (pokemon.uid*1103515245+int(a["to"])*2654435761)&0x7fffffff
+        var score_b := (pokemon.uid*1103515245+int(b["to"])*2654435761)&0x7fffffff
+        return score_a < score_b)
+    return candidates
+static func level_target(pokemon: BattlePokemon,time: String) -> int:
+    if pokemon.species_id in [236,265,349]: return 0 # Authored stat/personality/beauty rules.
+    var candidates := rules_for(pokemon.species_id).filter(func(rule: Dictionary): return rule["method"] == "level" and rule["trigger"] != "shed")
+    for rule: Dictionary in _automatic_order(pokemon,candidates):
         if reason(pokemon,rule,time).is_empty(): return int(rule["to"])
     return 0
-static func item_rule(key: String,pokemon: BattlePokemon) -> Dictionary:
-    var candidates: Array = rules_for(pokemon.species_id).filter(func(rule: Dictionary): return rule["item"] == key)
-    if pokemon.evolution_prepared > 0:
-        for rule: Dictionary in candidates:
-            if int(rule["to"]) == pokemon.evolution_prepared: return rule
-        return {}
+static func item_rule(key: String,pokemon: BattlePokemon,time := "day") -> Dictionary:
+    var candidates := rules_for(pokemon.species_id).filter(func(rule: Dictionary): return rule["item"] == key)
+    candidates = _automatic_order(pokemon,candidates)
     for rule: Dictionary in candidates:
-        if not rule["prepare"]: return rule
-    return {}
+        if reason(pokemon,rule,time).is_empty(): return rule
+    # Retain an unavailable rule so the caller can explain the actual condition.
+    return candidates[0] if not candidates.is_empty() else {}
 static func condition_text(rule: Dictionary) -> String:
     var parts: Array[String] = []
     if int(rule["level"]) > 1: parts.append("Lv.%d" % int(rule["level"]))
@@ -75,8 +82,8 @@ static func condition_text(rule: Dictionary) -> String:
     if not special.is_empty(): parts.append(special)
     if conditions.has("nature_bitmask"): parts.append("원작: 성향에 따른 분기")
     if conditions.has("percentage_chance"): parts.append("원작: 개체 분기 %d%%" % int(conditions["percentage_chance"]))
-    if rule["prepare"]: parts.append("외부 조건은 야영 행동 1회로 준비")
-    if rule["method"] == "level": parts.append("다음 레벨업 때 진화")
+    if rule["prepare"]: parts.append("장소·통신·특수 조작은 별도 준비 없이 자동 처리")
+    if rule["method"] == "level": parts.append("조건 충족 후 레벨업 시 자동 진화")
     return " · ".join(parts)
 static func teachable_moves(pokemon: BattlePokemon) -> Array[int]:
     var result: Array[int] = []

@@ -15,7 +15,9 @@ static func assign_personality(pokemon: BattlePokemon, run_seed: int) -> void:
     rng.seed = run_seed ^ (pokemon.uid*104729+49979687)
     pokemon.evolution_personality = rng.randi()
 static func choice(pokemon: BattlePokemon) -> int:
-    return pokemon.evolution_choice if pokemon.evolution_choice in TYROGUE_CHOICES else 237
+    var attack := PokemonStats.value(pokemon.species_id,pokemon.level,"attack")
+    var defense := PokemonStats.value(pokemon.species_id,pokemon.level,"defense")
+    return 106 if attack > defense else (107 if defense > attack else 237)
 static func target(pokemon: BattlePokemon) -> int:
     if pokemon.species_id == 236 and pokemon.level >= 20:
         return choice(pokemon)
@@ -30,7 +32,7 @@ static func summary(pokemon: BattlePokemon, party_size: int, balls: int, catalog
     match pokemon.species_id:
         236:
             var level := maxi(20,mini(100,pokemon.level+1))
-            return "Lv.%d 이상 레벨업 → %s\n진화할 모습을 선택하세요. 선택은 능력치를 바꾸지 않습니다." % [level,catalog.species(choice(pokemon))["name"]]
+            return "Lv.%d 이상 레벨업 → %s\n공격·방어 관계로 자동 진화합니다. 공격이 높으면 시라소몬, 방어가 높으면 홍수몬, 같으면 카포에라입니다." % [level,catalog.species(choice(pokemon))["name"]]
         265:
             var id := 266 if ((personality(pokemon)>>16)%10) < 5 else 268
             return "Lv.7 이상 레벨업 → %s\n개체마다 정해진 분기 · 다시 실행해도 바뀌지 않습니다." % catalog.species(id)["name"]

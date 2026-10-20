@@ -197,7 +197,7 @@ func _party() -> void:
         title.tooltip_text += "\n"+TacticalGrowth.progress_text(pokemon)+"\n"+FriendshipEvolution.summary(pokemon,journey.current_time(),_evolution_catalog)
         if SpecialEvolution.eligible(pokemon.species_id): title.tooltip_text += "\n"+SpecialEvolution.summary(pokemon,journey.party.size(),journey.balls,_evolution_catalog)
         for key: String in EvolutionItems.options(pokemon.species_id):
-            var target := EvolutionItems.target_for(key,pokemon)
+            var target := EvolutionItems.target_for(key,pokemon,journey.current_time())
             if target > 0: title.tooltip_text += "\n%s → %s · 야영지 가방" % [EvolutionItems.all_items()[key]["name"],_evolution_catalog.species(target)["name"]]
         var growth := "친밀 %d/220" % FriendshipEvolution.value(pokemon) if FriendshipEvolution.eligible(pokemon.species_id) else TacticalGrowth.progress_text(pokemon)
         if pokemon.species_id == 349: growth = "아름다움 %d/170" % SpecialEvolution.beauty(pokemon)
@@ -400,7 +400,7 @@ func _rest() -> void:
             if journey.party.any(func(p: BattlePokemon): return SpecialEvolution.eligible(p.species_id)):
                 W.button(page,Rect2(950,354,344,64),func():
                     special_open = true
-                    refresh(),"진화 준비").name = "SpecialEvolution"
+                    refresh(),"진화 안내").name = "SpecialEvolution"
             var time_panel := W.panel(page,Rect2(1340,354,400,64),Color("14282f"))
             W.label(time_panel,"시간",Rect2(16,10,72,44),17,W.MUTED)
             for i in 2:
@@ -562,7 +562,7 @@ func _item_picker() -> void:
         var preview := reason
         if reason.is_empty():
             if EvolutionItems.all_items().has(bag_item):
-                var target := EvolutionItems.target_for(bag_item,p)
+                var target := EvolutionItems.target_for(bag_item,p,journey.current_time())
                 preview = "→ %s · 진화하기" % _evolution_catalog.species(target)["name"]
                 W.sprite(button,target,Rect2(572,22,96,96))
             elif bag_item == "blue_pokeblock": preview = "아름다움 %d → %d / 170" % [SpecialEvolution.beauty(p),mini(255,SpecialEvolution.beauty(p)+60)]
@@ -574,7 +574,7 @@ func _item_picker() -> void:
         button.tooltip_text = reason
         if reason.is_empty() and EvolutionItems.all_items().has(bag_item):
             var next_moves: Array[String] = []
-            for entry: Dictionary in TacticalGrowth.species_data(EvolutionItems.target_for(bag_item,p),p.content_version >= 2)["learnset"]:
+            for entry: Dictionary in TacticalGrowth.species_data(EvolutionItems.target_for(bag_item,p,journey.current_time()),p.content_version >= 2)["learnset"]:
                 if int(entry["level"]) > p.level:
                     next_moves.append("Lv.%d · %s" % [entry["level"],TacticalMoves.definition(TacticalMoves.key_for(int(entry["move"])))["name"]])
             button.tooltip_text = "진화 후 레벨업 기술\n"+("새로 배울 기술이 없습니다. 필요한 기술을 먼저 배운 뒤 진화할 수 있습니다." if next_moves.is_empty() else "\n".join(next_moves))
@@ -640,7 +640,7 @@ func _special_picker() -> void:
     for state: String in ["normal","hover","pressed","focus"]: overlay.add_theme_stylebox_override(state,W.box(Color(0.01,0.025,0.04,0.8),Color.TRANSPARENT,0))
     var body := W.panel(overlay,Rect2(420,150,1080,780),Color("14282f"),W.GOLD)
     body.mouse_filter = Control.MOUSE_FILTER_STOP
-    W.label(body,"진화 준비",Rect2(32,24,900,52),30,W.GOLD)
+    W.label(body,"진화 안내",Rect2(32,24,900,52),30,W.GOLD)
     W.icon_button(body,"close",Rect2(1004,24,48,48),_close_special,"닫기 · Esc")
     var row := 0
     for p: BattlePokemon in journey.party:
@@ -651,21 +651,8 @@ func _special_picker() -> void:
         var detail := W.label(panel,SpecialEvolution.summary(p,journey.party.size(),journey.balls,_evolution_catalog),Rect2(152,54,840,86),18,W.MUTED)
         detail.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
         detail.name = "SpecialSummary_%d" % p.uid
-        if p.species_id == 236:
-            for i in 3:
-                var target: int = SpecialEvolution.TYROGUE_CHOICES[i]
-                var button := W.button(panel,Rect2(152+i*230,146,214,40),_choose_evolution.bind(p.uid,target),str(_evolution_catalog.species(target)["name"]))
-                button.name = "Evolution_%d_%d" % [p.uid,target]
-                button.disabled = SpecialEvolution.choice(p) == target or p.level >= 100
-                if SpecialEvolution.choice(p) == target:
-                    button.add_theme_stylebox_override("disabled",W.box(Color("29443f"),W.GOLD))
-                    button.add_theme_color_override("font_disabled_color",W.GOLD)
         row += 1
     UiMotion.appear(overlay)
-func _choose_evolution(uid: int, target: int) -> void:
-    var reason := journey.choose_evolution(uid,target)
-    if not reason.is_empty(): camp_notice = reason
-    refresh()
 func _close_evolution() -> void:
     evolution_result.clear()
     refresh()

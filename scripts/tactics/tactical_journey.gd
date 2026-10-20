@@ -449,18 +449,8 @@ func set_time(value: String) -> String:
     time_of_day = value
     _decision("원정 시간 · "+("낮" if value == "day" else "밤"))
     return notify_changed()
-func choose_evolution(uid: int, target: int) -> String:
-    if phase != REST: return "야영지에서 진화할 모습을 선택하세요."
-    if target not in SpecialEvolution.TYROGUE_CHOICES: return "시라소몬·카포에라·홍수몬 중 하나를 선택하세요."
-    for pokemon: BattlePokemon in party:
-        if pokemon.uid != uid: continue
-        if pokemon.species_id != 236 or pokemon.level >= 100: return "레벨업할 수 있는 배루키의 진화 선택입니다."
-        if target == SpecialEvolution.choice(pokemon): return "이미 선택한 모습입니다."
-        pokemon.evolution_choice = target
-        if _capture_catalog == null: _capture_catalog = VisualCatalog.new()
-        _decision("배루키 진화 선택 · "+str(_capture_catalog.species(target)["name"]))
-        return notify_changed()
-    return "파티의 배루키를 선택하세요."
+func choose_evolution(_uid: int, _target: int) -> String:
+    return "진화 분기는 따로 선택하지 않습니다. 조건을 만족하면 레벨업 시 자동 진화합니다."
 func buy_reason(key: String) -> String:
     if phase != REST: return "물건은 야영지에서 구매할 수 있습니다."
     if full_campaign and camp().get("kind","") != "merchant": return "이번 야영지에는 상인이 없습니다."
@@ -517,9 +507,9 @@ func item_reason(key: String,index: int) -> String:
         return ""
     if EvolutionItems.all_items().has(key):
         if not pokemon.alive(): return "기절한 동료를 먼저 회복하세요."
-        if EvolutionItems.target_for(key,pokemon) == 0: return "이 재료로 진화할 수 없는 동료입니다."
+        if EvolutionItems.target_for(key,pokemon,current_time()) == 0: return "이 재료로 진화할 수 없는 동료입니다."
         if pokemon.content_version >= 2:
-            var rule := NationalEvolution.item_rule(key,pokemon)
+            var rule := NationalEvolution.item_rule(key,pokemon,current_time())
             var condition := NationalEvolution.reason(pokemon,rule,current_time())
             if not condition.is_empty(): return condition
         return ""
@@ -540,7 +530,7 @@ func use_item(key: String,index: int) -> String:
         return notify_changed()
     if EvolutionItems.all_items().has(key):
         var previous := pokemon.display_name
-        TacticalGrowth.evolve(pokemon,EvolutionItems.target_for(key,pokemon),VisualCatalog.new())
+        TacticalGrowth.evolve(pokemon,EvolutionItems.target_for(key,pokemon,current_time()),VisualCatalog.new())
         inventory[key] = int(inventory[key])-1
         _stat("items_used")
         var choice := "%s → %s · %s" % [previous,pokemon.display_name,items()[key]["name"]]
@@ -722,27 +712,8 @@ func _allocate_pokemon_uid() -> int:
     _next_pokemon_uid += 1
     return allocated
 
-func prepare_evolution(uid: int,target: int) -> String:
-    if phase != REST: return "진화 준비는 야영지에서 진행하세요."
-    for pokemon: BattlePokemon in party:
-        if pokemon.uid != uid: continue
-        if not pokemon.alive(): return "기절한 동료를 먼저 회복하세요."
-        for rule: Dictionary in NationalEvolution.rules_for(pokemon.species_id):
-            if int(rule["to"]) != target: continue
-            if pokemon.evolution_prepared == target: return "이미 선택한 진화입니다."
-            if rule["conditions"].has("gender_id") and NationalEvolution.gender(pokemon) != int(rule["conditions"]["gender_id"]): return "해당 성별의 진화 분기가 아닙니다."
-            if rule["method"] == "level" and pokemon.level >= 100: return "다음 레벨업이 필요합니다. 최대 레벨에서는 준비할 수 없습니다."
-            if rule["prepare"]:
-                if step in rested_steps: return "이번 야영 행동을 이미 사용했습니다. 다음 야영지에서 준비하세요."
-                rested_steps.append(step)
-            pokemon.content_version = 2
-            pokemon.evolution_prepared = target
-            var choice := "진화 준비 · "+str(PokedexExpansion.species(target)["name"])
-            history.append(choice)
-            _decision(choice)
-            return notify_changed()
-        return "해당 동료의 진화 분기가 아닙니다."
-    return "파티의 동료를 선택하세요."
+func prepare_evolution(_uid: int,_target: int) -> String:
+    return "진화 준비는 필요하지 않습니다. 레벨업 또는 진화 재료 사용 시 조건에 따라 자동으로 결정됩니다."
 func change_form(uid: int,target: int,collection: Array = []) -> String:
     if phase != REST: return "폼은 야영지에서 준비하세요."
     for pokemon: BattlePokemon in party:
@@ -785,19 +756,35 @@ func take_machine(index: int) -> String:
     history.append(choice)
     _decision(choice)
     return notify_changed()
-func train_move(uid: int,move_id: int,slot: int,use_machine := false) -> String:
+const TRAINING = preload("res://scripts/tactics/camp_move_training.gd")
+func training_offers(uid: int) -> Array[int]:
+    for pokemon: BattlePokemon in party:
+        if pokemon.uid == uid: return TRAINING.offers(seed_value,step,pokemon)
+    return []
+func train_move_reason(uid: int,move_id: int,slot: int,use_machine := false) -> String:
     if phase != REST: return "기술 훈련은 야영지에서 진행하세요."
     if use_machine:
         if not TechnicalMachines.valid(move_id) or int(machines.get(move_id,0)) <= 0: return "보유한 기술머신이 없습니다."
-    elif step in rested_steps: return "이번 야영 행동을 이미 사용했습니다."
+    else:
+        if step in rested_steps: return "이번 야영 행동을 이미 사용했습니다."
+        if gold < TRAINING.PRICE: return "기술 훈련에는 %d골드가 필요합니다." % TRAINING.PRICE
     for pokemon: BattlePokemon in party:
         if pokemon.uid != uid: continue
         if not pokemon.alive(): return "기절한 동료를 먼저 회복하세요."
         var key := TacticalMoves.key_for(move_id)
-        if use_machine and move_id not in TechnicalMachines.moves(pokemon.species_id): return "이 포켓몬은 해당 기술머신을 사용할 수 없습니다."
-        if move_id not in NationalEvolution.teachable_moves(pokemon): return "현재 레벨과 해당 포켓몬의 습득 경로에 없는 기술입니다."
+        if use_machine:
+            if move_id not in TechnicalMachines.moves(pokemon.species_id): return "이 포켓몬은 해당 기술머신을 사용할 수 없습니다."
+        elif move_id not in training_offers(uid): return "이번 야영지에서 제안한 자력 습득 기술만 훈련할 수 있습니다."
         if key in pokemon.learned_skills: return "이미 배운 기술입니다."
         if slot < 0 or slot > pokemon.learned_skills.size() or slot >= 4: return "교체할 기술을 선택하세요."
+        return ""
+    return "파티의 동료를 선택하세요."
+func train_move(uid: int,move_id: int,slot: int,use_machine := false) -> String:
+    var reason := train_move_reason(uid,move_id,slot,use_machine)
+    if not reason.is_empty(): return reason
+    for pokemon: BattlePokemon in party:
+        if pokemon.uid != uid: continue
+        var key := TacticalMoves.key_for(move_id)
         pokemon.content_version = 2
         var copies := 0
         if slot < pokemon.learned_skills.size():
@@ -810,8 +797,12 @@ func train_move(uid: int,move_id: int,slot: int,use_machine := false) -> String:
         else: pokemon.learned_skills.append(key)
         if copies == 0: deck.append(_allocate_card(key,pokemon.uid))
         if use_machine: machines[move_id] = int(machines[move_id])-1
-        else: rested_steps.append(step)
+        else:
+            rested_steps.append(step)
+            gold -= TRAINING.PRICE
+            _stat("gold_events",TRAINING.PRICE)
         var choice := "%s · %s · %s" % ["기술머신 사용" if use_machine else "기술 훈련",pokemon.display_name,TacticalMoves.definition(key)["name"]]
+        if not use_machine: choice += " · %d 골드" % TRAINING.PRICE
         history.append(choice)
         _decision(choice)
         return notify_changed()
