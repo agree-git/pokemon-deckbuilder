@@ -1,6 +1,6 @@
 class_name PokedexWorkshop
 extends Control
-## Automatic evolution guide, permanent forms and limited move reminders.
+## Automatic evolution guide, permanent forms and full legal move training.
 signal closed
 const W = preload("res://scripts/ui/combat_widgets.gd")
 var journey: TacticalJourney
@@ -12,12 +12,15 @@ var query := ""
 var notice := ""
 var content: Control
 var rows: VBoxContainer
+var empty_label: Label
+var search: LineEdit
 func _ready() -> void:
     set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     z_index = 100
     rebuild()
 func current() -> BattlePokemon: return journey.party[clampi(selected,0,journey.party.size()-1)]
 func rebuild() -> void:
+    set_process(false)
     W.clear(self)
     var dim := W.button(self,Rect2(0,0,1920,1080),func(): closed.emit(); queue_free())
     for state: String in ["normal","hover","pressed","focus"]: dim.add_theme_stylebox_override(state,W.box(Color(0.01,0.025,0.04,.88),Color.TRANSPARENT,0))
@@ -54,13 +57,13 @@ func rebuild() -> void:
     elif mode == "machines": description = "상인·야영 발견으로 기술머신을 획득합니다. 위에서 동료와 교체할 기술을 선택하세요. 사용 시 1개 소모하며 야영 행동은 사용하지 않습니다. · 골드 %d" % journey.gold
     var help := W.label(content,description,Rect2(312,184,936,64),18,W.MUTED)
     help.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-    var search := LineEdit.new()
+    search = LineEdit.new()
     search.name = "WorkshopSearch"
     search.position = Vector2(312,272)
     search.size = Vector2(528,48)
     search.placeholder_text = "이름·번호·타입 검색"
     search.text = query
-    search.text_changed.connect(func(value: String): query = value; populate())
+    search.text_changed.connect(_search_changed)
     content.add_child(search)
     if mode in ["moves","machines"]:
         W.label(content,"교체할 기술",Rect2(312,344,104,56),17,W.MUTED)
@@ -121,14 +124,13 @@ func populate() -> void:
         for rule: Dictionary in NationalEvolution.rules_for(p.species_id):
             var target := int(rule["to"])
             var name := str(PokedexExpansion.species(target)["name"])
-            if not matches(name+str(target)): continue
             var detail := NationalEvolution.condition_text(rule)
             if SpecialEvolution.eligible(p.species_id): detail = SpecialEvolution.summary(p,journey.party.size(),journey.balls,VisualCatalog.new())
             row(name,detail,Callable(),"재료 사용" if rule["method"] == "item" else "자동 진화",false,target)
+            rows.get_child(-1).set_meta("search_terms",name+str(target))
     elif mode == "forms":
         for target: int in PokedexExpansion.forms(p.species_id):
             var entry := PokedexExpansion.species(target)
-            if not matches(str(entry["name"])+str(target)): continue
             var partners := PokedexExpansion.form_requirements(target)
             var known := collection.duplicate()
             for member: BattlePokemon in journey.party: known.append(member.species_id)
@@ -136,15 +138,16 @@ func populate() -> void:
             var detail := "상시 폼 · "+PokedexExpansion.ability_text(target)
             if not partners.is_empty(): detail = "두 포켓몬의 포획 기록 확인" if available else "추가 포획 기록이 필요한 합체 폼입니다."
             row(str(entry["name"]) if available else "미해금 합체 폼",detail,_form.bind(p.uid,target),"현재 모습" if target == p.species_id else "폼 준비",target == p.species_id or not available,target if available else 0)
+            rows.get_child(-1).set_meta("search_terms",str(entry["name"])+str(target))
     elif mode == "moves":
         for move: int in journey.training_offers(p.uid):
             var view := _move_definition(move)
             var type := VisualCatalog.new().type_name(view["type"])
-            if not matches(str(view["name"])+str(move)+type): continue
             var known := TacticalMoves.key_for(move) in p.learned_skills
             var price := journey.train_move_price(p.uid,move)
             row(("자력기" if price == 100 else "기타 습득")+" · "+str(view["name"])+" · "+type,str(view["description"]),_train.bind(p.uid,move,slot),"습득 완료" if known else "훈련 · %d골드" % price,not journey.train_move_reason(p.uid,move,slot).is_empty())
             rows.get_child(-1).get_node("WorkshopAction").tooltip_text = journey.train_move_reason(p.uid,move,slot)
+            rows.get_child(-1).set_meta("search_terms",str(view["name"])+str(move)+type)
     else:
         var offers: Array = journey.camp().get("machine_offers",[])
         for i in offers.size():
@@ -152,10 +155,10 @@ func populate() -> void:
             var move := int(offer["move"])
             var view := _move_definition(move)
             var type := VisualCatalog.new().type_name(view["type"])
-            if not matches(str(view["name"])+str(move)+type): continue
             var merchant: bool = journey.camp().get("kind","") == "merchant"
             var origin := "상인 판매" if merchant else "야영 발견"
             row(origin+" · "+str(view["name"])+" · "+type,_machine_detail(move,p),_take_machine.bind(i),"획득 완료" if offer["taken"] else ("%d 골드 · 구매" % TechnicalMachines.PRICE if merchant else "기술머신 줍기"),not journey.machine_offer_reason(i).is_empty())
+            rows.get_child(-1).set_meta("search_terms",str(view["name"])+str(move)+type)
             rows.get_child(-1).name = "MachineOffer_%d" % i
         var owned: Array = journey.machines.keys()
         owned.sort()
@@ -164,12 +167,35 @@ func populate() -> void:
             if count <= 0: continue
             var view := _move_definition(move)
             var type := VisualCatalog.new().type_name(view["type"])
-            if not matches(str(view["name"])+str(move)+type): continue
             var known := TacticalMoves.key_for(move) in p.learned_skills
             var compatible := move in TechnicalMachines.moves(p.species_id)
             row("보유 %d개 · %s · %s" % [count,view["name"],type],_machine_detail(move,p),_use_machine.bind(p.uid,move,slot),"습득 완료" if known else ("배우기 · 1개" if compatible else "사용 불가"),known or not compatible or not p.alive())
+            rows.get_child(-1).set_meta("search_terms",str(view["name"])+str(move)+type)
             rows.get_child(-1).name = "MachineOwned_%d" % move
-    if rows.get_child_count() == 0: W.label(rows,"현재 배울 수 있는 훈련 기술이 없습니다." if mode == "moves" and query.is_empty() else "해당하는 항목이 없습니다.",Rect2(0,0,896,72),22,W.MUTED)
+    empty_label = W.label(rows,"",Rect2(0,0,896,72),22,W.MUTED)
+    empty_label.name = "WorkshopEmpty"
+    empty_label.custom_minimum_size = Vector2(896,72)
+    _filter_rows()
+func _search_changed(value: String) -> void:
+    query = value
+    # text_changed can fire inside the OS IME commit; keep this callback non-visual.
+    set_process(true)
+func _process(_delta: float) -> void:
+    if is_instance_valid(search) and search.has_ime_text(): return
+    set_process(false)
+    if not is_instance_valid(search) or not is_instance_valid(rows): return
+    query = search.text
+    _filter_rows()
+func _filter_rows() -> void:
+    # Do not rebuild nodes, rewrite LineEdit.text, grab focus or interrupt IME here.
+    var count := 0
+    for panel: Control in rows.get_children():
+        if panel == empty_label: continue
+        panel.visible = matches(str(panel.get_meta("search_terms","")))
+        if panel.visible: count += 1
+    empty_label.text = "현재 배울 수 있는 훈련 기술이 없습니다." if mode == "moves" and query.is_empty() else "해당하는 항목이 없습니다."
+    empty_label.visible = count == 0
+    (rows.get_parent() as ScrollContainer).scroll_vertical = 0
 func _machine_detail(move: int,p: BattlePokemon) -> String:
     var compatible := move in TechnicalMachines.moves(p.species_id)
     return "%s · %s\n%s" % [p.display_name,"사용 가능" if compatible else "호환되지 않음",_move_definition(move)["description"]]
