@@ -347,7 +347,7 @@ static func validate(data: Variant) -> bool:
     for step: Variant in r["rested_steps"]:
         if not integer(step,0,136) or route.stops[step]["kind"] != "rest": return false
     for entry: Variant in r["loot"]:
-        if not entry is Dictionary or not entry.get("name") is String or not integer(entry.get("gold"),0,100000): return false
+        if not entry is Dictionary or not entry.get("name") is String or not integer(entry.get("gold"),0,100000000): return false
         if entry.get("item") not in ["","potion","super_potion","revive","ball"] or not integer(entry.get("quantity"),0,10000): return false
     for report: Variant in r["growth_reports"]:
         if not report is Dictionary or not same_shape(report,{"uid":0,"id":1,"name":"","before":5,"after":5,"xp":0.0,"hp":0,"learned":[],"offers":[],"evolutions":[]}): return false

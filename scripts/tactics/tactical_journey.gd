@@ -468,15 +468,16 @@ func buy(key: String) -> String:
     if key == "ball": balls += 1
     else: inventory[key] = int(inventory.get(key,0))+1
     return notify_changed()
-func gold_progression_percent() -> int:
+func gold_progression_percent() -> float:
     if not full_campaign: return 100
     # The linear route records departures through step; no new saved counter or RNG.
     var departures := 0
     for index in mini(step,route.stops.size()):
         if route.stops[index]["kind"] == "rest": departures += 1
-    return 100+10*departures
+    return 100.0*pow(1.1,departures)
 func scale_gold(base: int) -> int:
-    return ceili(base*gold_progression_percent()/100.0)
+    # Remove sub-cent floating noise before rounding whole gold upward (100→110→121).
+    return ceili(snappedf(base*gold_progression_percent()/100.0,0.0000001))
 func battle_gold_reward() -> int:
     var role: String = current()["kind"]
     return scale_gold(180 if role in ["gym","elite","champion"] else (120 if role == "veteran" else (40 if is_wild() else 80)))
