@@ -53,7 +53,7 @@ func run() -> void:
     for move: int in legal:
         if TacticalMoves.key_for(move) not in p.learned_skills: selected = move; break
     check(selected > 0 and training.train_move(p.uid,selected,0).is_empty(),"Teach one offered level move at camp")
-    check(p.learned_skills[0] == TacticalMoves.key_for(selected) and training.step in training.rested_steps,"Teaching replaces selected learned slot and spends one action")
+    check(p.learned_skills[0] == TacticalMoves.key_for(selected) and training.rested_steps.is_empty(),"Teaching replaces selected learned slot and preserves the camp action")
     check(not training.train_move(p.uid,919,0).is_empty(),"Repeated/illegal training cannot bypass action or learnset")
     checkpoint(training)
     var prepare := fixture([57])

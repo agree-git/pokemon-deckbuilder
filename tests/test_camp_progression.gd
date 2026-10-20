@@ -25,52 +25,7 @@ func run() -> void:
     if not OS.get_user_data_dir().begins_with("/tmp/pokemon-camp-auto/"): quit(2);return
     var j := fixture()
     var p := j.party[0]
-    var before := JourneySnapshot.encode(j)
-    var offers := j.training_offers(p.uid)
-    check(not offers.is_empty() and offers.size()<=3,"At most three level-move training offers")
-    check(offers.all(func(move: int): return move in TRAINING.level_moves(p) and TacticalMoves.key_for(move) not in p.learned_skills),"No machine/egg/tutor-only or already known moves in training")
-    check(j.training_offers(p.uid)==offers and JourneySnapshot.encode(j)==before,"Refresh cannot reroll offers or consume gameplay RNG")
-    roundtrip(j)
-    var restored := JourneySnapshot.restore(before)
-    check(restored.training_offers(p.uid)==offers,"Loading reproduces exact training choices")
-    if offers.is_empty(): quit(1);return
-    var move: int=offers[0]
-    j.gold=99
-    var denied := JourneySnapshot.encode(j)
-    check(not j.train_move(p.uid,move,0).is_empty() and JourneySnapshot.encode(j)==denied,"Insufficient gold rejects without mutation")
-    j.gold=300
-    denied=JourneySnapshot.encode(j)
-    check(not j.train_move(p.uid,move,4).is_empty() and JourneySnapshot.encode(j)==denied,"Invalid slot rejects without charging")
-    var nonlevel := 0
-    for candidate: int in NationalEvolution.teachable_moves(p):
-        if candidate not in TRAINING.level_moves(p) and TacticalMoves.key_for(candidate) not in p.learned_skills: nonlevel=candidate;break
-    check(nonlevel>0 and not j.train_move(p.uid,nonlevel,0).is_empty() and JourneySnapshot.encode(j)==denied,"Direct API cannot teach arbitrary nonlevel technique")
-    var old_key := p.learned_skills[0]
-    var copies := j.deck.filter(func(c: BattleCardInstance):return c.owner_uid==p.uid and c.key==old_key).size()
-    var other_cards := j.deck.filter(func(c: BattleCardInstance):return c.owner_uid!=p.uid).map(func(c: BattleCardInstance):return [c.uid,c.key,c.upgraded])
-    var gold_before:=j.gold
-    check(j.train_move(p.uid,move,0).is_empty(),"Accept an offered level technique")
-    check(j.gold==gold_before-100 and j.step in j.rested_steps,"Training charges 100 gold and the shared camp action")
-    check(p.learned_skills[0]==TacticalMoves.key_for(move) and j.deck.filter(func(c: BattleCardInstance):return c.owner_uid==p.uid and c.key==TacticalMoves.key_for(move)).size()==maxi(1,copies),"Selected owner's existing copies swap together")
-    check(other_cards==j.deck.filter(func(c: BattleCardInstance):return c.owner_uid!=p.uid).map(func(c: BattleCardInstance):return [c.uid,c.key,c.upgraded]),"Other party members' cards remain unchanged")
-    check(RunStatistics.spent(j.statistics)==100,"Training gold included in spending statistics")
-    denied=JourneySnapshot.encode(j)
-    check(not j.train_move(p.uid,move,0).is_empty() and JourneySnapshot.encode(j)==denied,"Repeated training is blocked without additional cost")
-    check(not j.rest().is_empty() and not j.investigate().is_empty(),"Training shares the rest/upgrade/investigation allowance")
-    roundtrip(j)
-    var rested:=fixture()
-    check(rested.rest().is_empty() and not rested.train_move(rested.party[0].uid,rested.training_offers(rested.party[0].uid)[0],0).is_empty(),"Resting also prevents training")
-    # A consumed TM remains the only way to directly request machine-only moves.
-    var tm:=0
-    for candidate: int in TechnicalMachines.moves(p.species_id):
-        if candidate not in TRAINING.level_moves(p) and TacticalMoves.key_for(candidate) not in p.learned_skills: tm=candidate;break
-    j.machines[tm]=1
-    gold_before=j.gold
-    check(tm>0 and j.train_move(p.uid,tm,1,true).is_empty(),"Owned compatible TM works after camp action was used")
-    check(j.machines[tm]==0 and j.gold==gold_before,"TM consumes exactly one copy without training fee")
-    denied=JourneySnapshot.encode(j)
-    check(not j.train_move(p.uid,tm,1,true).is_empty() and JourneySnapshot.encode(j)==denied,"Consumed TM cannot be reused")
-    roundtrip(j)
+    var denied: Dictionary
     # Evolution conditions resolve automatically on actual growth, not at camp.
     var sprigatito:=member(906,15)
     TacticalGrowth.award(sprigatito,TacticalGrowth.experience_floor(16,906)-sprigatito.experience)
@@ -115,8 +70,6 @@ func run() -> void:
     check(not j.prepare_evolution(p.uid,700).is_empty() and not j.choose_evolution(p.uid,106).is_empty() and JourneySnapshot.encode(j)==denied,"Retired selection APIs cannot spend camp actions or mutate saves")
     var ui:=PokedexWorkshop.new();ui.journey=j;root.add_child(ui)
     check(ui.rows.find_children("WorkshopAction","Button",true,false).is_empty() and not ui.rows.find_children("AutomaticEvolution","Label",true,false).is_empty(),"Evolution guide has no branch-selection buttons")
-    ui.mode="moves";ui.rebuild()
-    check(ui.rows.get_child_count()<=3 and ui.rows.find_children("WorkshopAction","Button",true,false).all(func(button: Button):return button.disabled),"Training UI uses the limited proposals and backend restrictions")
     ui.free()
     print("CAMP_PROGRESSION ",checks," checks / ",failures," failures")
     quit(0 if failures==0 else 1)

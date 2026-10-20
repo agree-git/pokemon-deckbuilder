@@ -1,0 +1,23 @@
+{
+  "game_revision": "69f2d4da541444984c40b1a6383d4dfd75a2c0b5",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "mode": "isolated headless source",
+  "checks": 204,
+  "failures": 0,
+  "log": "/tmp/pokemon-training-economy/test.log",
+  "policy": {
+    "level_training": 100,
+    "other_legal_training": 200,
+    "training_consumes_camp_action": false,
+    "gold_percent": "100 + 10 * departed_camps",
+    "fixed_tm_price": 100
+  },
+  "not_run": [
+    "full 919 moves",
+    "69-battle campaign",
+    "native window",
+    "Windows EXE",
+    "build/export",
+    "new GitHub CI/release"
+  ]
+}

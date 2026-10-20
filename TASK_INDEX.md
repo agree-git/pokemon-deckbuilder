@@ -14,7 +14,7 @@
 | 기술 사용 동작/돌진·몸통·자세 복귀 | [기술 사용 모션](docs/combat-motion.md) | `scripts/ui/combat_motion.gd`,`battle_canvas.gd`,`tactical_ui.gd::_play_event` | `tests/native_combat_motion.gd`;종료 문제만 `native_combat_motion_flow.gd` |
 | 독·마비·화상 등 상태이상 이펙트 | [효과 전용 지도](docs/status-vfx.md);원인 문구 추가 금지 | `scripts/ui/status_feedback.gd`,`tactical_ui.gd::_play_event`;내부 tick 키만 `tactical_battle.gd` | `tests/native_status_feedback.gd` 한 묶음 |
 | 상대 레벨/진화 단계 | [상대 진화 단계](docs/enemy-evolution.md) | `scripts/tactics/enemy_evolution.gd`,`campaign_route.gd`,`tactical_journey.gd` | `tests/test_enemy_evolution.gd`;새 버전/EXE 보류 |
-| 자동 진화/야영 기술 훈련 제한 | [자동 진화·훈련](docs/camp-progression.md) | `national_evolution.gd`,`special_evolution.gd`,`camp_move_training.gd`,`tactical_journey.gd`,`pokedex_workshop.gd` | `tests/test_camp_progression.gd` 67/0; 새 빌드 보류 |
+| 자동 진화/훈련 전체 목록·야영 출발 경제 | [자동 진화·훈련](docs/camp-progression.md) | `national_evolution.gd`,`special_evolution.gd`,`camp_move_training.gd`,`tactical_journey.gd`,`pokedex_workshop.gd` | `tests/test_training_economy.gd` 204/0; 진화는 이전67/0 근거; 새 빌드 보류 |
 | 도감/진화/습득 | [전국도감](docs/pokedex-expansion.md)의 해당 절 | `scripts/content/pokedex_expansion.gd`,`scripts/ui/pokedex_workshop.gd` | `tests/test_national_progression.gd` |
 | 지닌 물건/소모/장착 | [원작 지닌 물건](docs/held-items.md)의 계약/해당 효과 | `scripts/tactics/held_items.gd`,`held_item_math.gd`;보상/장착이면 `tactical_journey.gd` | `tools/check.py --suite held-items` |
 | 기술머신/야영 | `rules`의 야영 기술머신/야영지 절 | `scripts/tactics/technical_machines.gd`,`tactical_journey.gd` | `tests/test_machines.gd` |
