@@ -1,15 +1,13 @@
-# v0.28.6 GitHub 릴리스
+# v0.28.7 GitHub 릴리스
 
-후속 변경: [원정 다시하기 제거](no-run-restart.md)는 main에만 반영했고 v0.28.6 고정 태그에 포함되지 않는다. 이 변경으로 새 빌드를 실행하지 않는다.
+2026-10-20 사용자 “릴리스” 요청으로 준비했다. **빌드·실제 EXE 검사·ZIP 제작·게시 모두 GitHub에서만** 수행한다. 로컬 빌드/export/ZIP 제작·전달 금지. 수동 트리거 유지.
 
-2026-10-20 사용자 “릴리스” 요청으로 준비했다. **빌드·실제 EXE 검사·ZIP 제작·배포는 GitHub에서만** 진행한다. 로컬 build/export/ZIP 제작·전달 금지. 수동 트리거 유지.
+- 새 태그 `v0.28.7`,고정 게임 `71d914e5ca816e4c439a2b38d63bdfa339c96340`. 검사·도구·[노트](releases/v0.28.7.md)의 자료 SHA는 main workflow 기본값에 고정한다.
+- [Windows release](https://github.com/agree-git/pokemon-deckbuilder/actions/workflows/windows-release.yml) → **새 Run workflow → main → 기본값 그대로 Run workflow**. 과거 실행 재실행 금지.
+- 현재 연결은 새 workflow dispatch/Release 게시 도구를 제공하지 않는다. 준비·push 뒤 사용자가 새 실행을 시작해야 한다. 준비 완료를 빌드/게시 완료로 보고하지 않는다.
+- runner가 공식4.7.2 제작·실제 Windows EXE 검사를 통과한 뒤 ZIP·SHA256SUMS.txt·windows-native-report.json 세 첨부를 draft에서 검증하고 게시한다. 실패하면 게시하지 않는다.
+- 원정 재시작 제거11/0·검색21/0 소스 근거를 재사용했다. **Windows 한글 IME는 직접 재현·검증하지 못했으며 Windows native smoke도 IME 실기를 보증하지 않는다.** [입력 지도](workshop-search.md),[재시작 제거](no-run-restart.md).
+- v0.28.6 게시 완료는 GitHub GET으로 확인했다. 기존 태그/배포 불변,미리 준비한 소스 lightweight 태그·`--verify-tag`·수동 실행을 유지한다.
+- ASSET_SOURCES.md·CHANGELOG.md 복구 금지,사용자 문서·DO·기존 엔딩 양식 유지.
 
-- 새 태그 `v0.28.6`,고정 게임 SHA `81c600b8afe2be7cba294d1b7086e38d29e2e434`. 자료 SHA는 main workflow 기본값에 고정한다.
-- 같은 자료 커밋의 검사·도구·[릴리스 노트](releases/v0.28.6.md)를 사용한다. [현재 진화·훈련·경제](camp-progression.md).
-- [Windows release](https://github.com/agree-git/pokemon-deckbuilder/actions/workflows/windows-release.yml) → **새 Run workflow → main → 기본값 그대로 Run workflow**. 과거 실행을 재실행하지 않는다.
-- 현재 연결에는 새 workflow dispatch/Release 게시 도구가 없다. 모든 준비·push 후 사용자 클릭이 필요하며 준비 완료를 게시 완료로 보고하지 않는다.
-- GitHub Windows runner가 공식4.7.2 제작·실제 EXE 검사를 통과한 뒤 ZIP·SHA256SUMS.txt·windows-native-report.json 세 첨부를 draft에서 검증하고 게시한다. 실패하면 게시하지 않는다.
-- 기존 태그/릴리스 불변,소스 lightweight 태그를 미리 준비하고 `--verify-tag`를 유지한다. 수동 workflow를 자동 실행으로 바꾸지 않는다.
-- ASSET_SOURCES.md·CHANGELOG.md 복구 금지. 사용자 문서·DO·기존 엔딩 형식과 저장 위치 이전 유지.
-
-직전 배포 기록은 [고정 지도](https://github.com/agree-git/pokemon-deckbuilder/blob/47ff5f5d2f1e14b16347de0cd651e16b211d13dd/docs/github-releases.md)에 보관한다.
+이전 기록은 [고정 지도](https://github.com/agree-git/pokemon-deckbuilder/blob/58affce9ff35679db8093bf65a092e9082c480cc/docs/github-releases.md)에 보관한다.
