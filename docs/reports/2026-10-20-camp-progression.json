@@ -1,0 +1,13 @@
+{
+  "game_revision": "11fc9c40ca13232896c1771244f233965956af62",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "mode": "isolated headless source",
+  "checks": 67,
+  "failures": 0,
+  "log": "/tmp/pokemon-camp-auto/test.log",
+  "notes": [
+    "No build/export or new GitHub CI/release",
+    "Tooltip mouse filter was statically checked after the run",
+    "Broader national progression test expectations updated but not rerun"
+  ]
+}

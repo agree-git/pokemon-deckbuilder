@@ -1,22 +1,20 @@
 # 현재 작업 인계
 
-- 최신 요청: **“릴리스”**, v0.28.5 준비·GitHub 수동 빌드·게시 승인. 로컬 빌드/export/ZIP 제작·전달 금지. 수동 workflow를 자동으로 바꾸지 않는다.
-- 고정 게임 소스 `2560d2da269074e4444b4644ab69cad40dd6cf75` / 태그 `v0.28.5`. main의 별도 workflow 설정 커밋에서 이 게임 SHA와 자료 SHA를 기본값으로 지정한다.
-- 새 dispatch/게시 도구가 현재 연결에 없다. [Windows release](https://github.com/agree-git/pokemon-deckbuilder/actions/workflows/windows-release.yml)에서 main·기본값 그대로 **새 Run workflow**를 사용자가 시작해야 한다. 과거 job 재실행 금지. 실행/게시 완료로 보고하지 않는다.
-- Windows runner가 공식4.7.2 제작→실제 EXE 검사→3첨부 draft 검증→게시를 수행한다. 다음 단계는 새 실행의 GET 상태·실패 로그 확인이다. [릴리스 지도](docs/github-releases.md), [노트](docs/releases/v0.28.5.md).
+- 최신 요청: 야영지 진화 분기 선택 폐기·자동 진화, 기술 훈련에 더 제한. 수정·main push만 진행하며 새 버전/빌드/Release 요청은 아니다. **빌드는 명시 요청 때 GitHub에서만**, 로컬 export/ZIP 금지.
+- 게임 `11fc9c40ca13232896c1771244f233965956af62`. [자동 진화·훈련 지도](docs/camp-progression.md)부터 읽는다. 원정28/효과19/전투·경로 RNG/게시 JSON/저장 형식·승인 파티·배경좌표 유지.
+- 진화·준비/배루키 선택 버튼 제거, 읽기 전용 안내. 레벨·성별·낮밤·친밀도·필수 기술·아름다움 충족 후 레벨업에 자동 결정. 외부 장소·통신·특수 조작 준비 행동 제거. 님피아 우선/일레즌·희귀 개체 고정 분기. 배루키는 공격·방어 비교(현재 동률→카포에라). 기존 준비/선택 저장 필드는 남지만 판정을 강제하지 않는다.
+- 진화석 등은 가방에서 재료1개 소비, 현재 시간·개체 조건으로 자동 분기. 개무소 개체 분기/빈티나·껍질몬 조건/상시 폼 UI 유지. 폐기 선택 API는 안내 오류만 반환하며 무변경.
+- 훈련은 동료별 현재 레벨까지의 **자력 습득 기술 최대3개 제안**, seed/step/UID 전용 RNG로 refresh·로드 고정. **100골드+공유 야영 행동1회**, 휴식·강화·조사와 상호 제한. 서버 역할의 journey와 UI가 같은 검증을 사용한다.
+- TM/교배/가르침 전용 기술의 자유 선택 훈련 제거. 보유 호환 TM은1개 소비하며 훈련비/야영 행동 없음. 자연 습득·기술 교체 제안/동일 소유 카드 사본 교체 유지. 지출은 기존 gold_events·결정 기록에 포함해 통계 스키마 보존. PLAY_GUIDE 동기화.
 
-## 포함한 수정
+## 실제 검사와 한계
 
-- 첨부 Credit.txt/README-Windows.txt/PLAY_GUIDE.md 반영. Credit.txt는 버전만0.28.5로 갱신했고 내용9절/DO와 기존 명예의 전당·스크롤 양식을 유지했다. 문서 뷰어 금지.
-- ASSET_SOURCES.md·CHANGELOG.md 삭제와 도구/활성 링크 정리. 원래 assets/sources·licenses 고지는 보존. 배포 README는 사용자 파일 그대로 복사.
-- 저장 위치 **%APPDATA%\PokemonExpedition** + 첫 autoload SaveLocation의 비파괴 기존 저장 이전. 묶음 충돌 방지/중단 재개/완료 marker. [파일 지도](docs/save-location.md).
-- 아이템 expand_mode 순서 수정, 원작 HGSS 일반 트레이너12종(일반·베테랑만 표시용 해시), 몬스터볼 투척·명중·수납·착지·3흔들림과 연출 후 성공 안내. [파일 지도](docs/presentation-polish.md).
-- 원정28/효과19/저장 형식·RNG·승인 보스 파티·배경좌표/포획 비용·판정 유지. 상태 원인 문구 추가 금지.
+- 공식4.7.2 격리 headless 소스 `tests/test_camp_progression.gd`: **67/0**, 깨끗한 종료. 제안/비용·행동/불법 요청 무변경/실제 자동 레벨업·양분기·희귀 분기/TM·진화석 소비/정확한 저장·RNG/연구 UI 구성 확인. `/tmp/pokemon-camp-auto/test.log`.
+- 초기 검사에서 제안에 이미 아는 기술을 세어 빈 목록이 되는 문제와25모듈러 분기 편향을 찾아 고쳤다. 수정 후 같은 좁은 묶음 통과. 이후 tooltip mouse_filter 속성은 정적 확인만 했다.
+- 기존 national progression 검사에서 폐기된 수동 진화·전 기술 훈련 기대값을 현재 계약으로 갱신했으나 그 넓은 검사는 재실행하지 않았다. 전체919/69전투/실제 창·Windows EXE/빌드/export/CI·새 릴리스 미실행.
 
-## 검증
+## 배포 상태·다음 단계
 
-- 이전 소스 검사: 저장30/0, 연출176/0, 마지막 포획 수정27/0(깨끗한 종료), 5장 직접 확인. 자료 docs/reports/2026-10-20-save-and-presentation.json.
-- 이번 릴리스 준비는 버전·고정 SHA/태그·수동 YAML·패키징 연결 정적 확인만 한다. 이미 통과한 소스 검사를 반복하지 않는다.
-- 로컬 전체import/빌드/export/ZIP/Windows EXE 검사, 새 GitHub 실행·게시 미실행. 실제 Windows 결과는 향후 해당 workflow와 첨부 report 기준이다.
-
-이전 작업 기록은 [고정 인계](https://github.com/agree-git/pokemon-deckbuilder/blob/bd3fed3ef3a86967cc563541228f1ee539253c6e/HANDOFF.md)에 보관한다.
+- GitHub GET 확인: **v0.28.5 게시 완료**(2026-10-19T23:47:29Z). [릴리스](https://github.com/agree-git/pokemon-deckbuilder/releases/tag/v0.28.5). 그 태그 소스는2560d2d이며 이번 수정은 포함하지 않는다. 태그/게시 파일/과거 기본값을 이동·덮어쓰지 않았다.
+- 다음은 사용자 수정사항 대기. 새 릴리스 요청 시 새 버전/게임·자료 SHA/새 태그로 GitHub 수동 workflow를 준비한다. 새 dispatch 도구가 없으면 사용자가 Run workflow로 시작해야 한다.
+- 직전 저장 이전/아이템·NPC·포획 연출/첨부 문서 수정 근거는 [이전 고정 인계](https://github.com/agree-git/pokemon-deckbuilder/blob/e76f4129558eb7bead76a52fffb20bb3bcbb0859/HANDOFF.md)에 보관. ASSET_SOURCES.md·CHANGELOG.md 복구 금지. 제작자 DO·기존 엔딩 스크롤 양식 유지.

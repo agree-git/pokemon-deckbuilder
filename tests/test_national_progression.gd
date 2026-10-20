@@ -23,7 +23,7 @@ func run() -> void:
         check(old.route.signature == golden[seed_value] and old.party.all(func(p: BattlePokemon): return p.content_version == 1),"v3 routes/RNG and legacy learnsets preserved")
         checkpoint(old)
     var j := fixture([906,909,912])
-    check(j.party[0].species_id == 906 and j.party[0].content_version == 2 and j.route.generation == 27,"Generation9 starters use expanded route and original modern learning")
+    check(j.party[0].species_id == 906 and j.party[0].content_version == 2 and j.route.generation == 28,"Generation9 starters use expanded route and original modern learning")
     checkpoint(j)
     var member := j.party[0]
     member.level = 15
@@ -47,11 +47,12 @@ func run() -> void:
     # Teaching uses a legal source and swaps only that owner's old move copies.
     var training := fixture([133])
     var p := training.party[0]
-    var legal := NationalEvolution.teachable_moves(p)
+    training.gold = 300
+    var legal := training.training_offers(p.uid)
     var selected := 0
     for move: int in legal:
         if TacticalMoves.key_for(move) not in p.learned_skills: selected = move; break
-    check(selected > 0 and training.train_move(p.uid,selected,0).is_empty(),"Teach a legal machine/tutor move at camp")
+    check(selected > 0 and training.train_move(p.uid,selected,0).is_empty(),"Teach one offered level move at camp")
     check(p.learned_skills[0] == TacticalMoves.key_for(selected) and training.step in training.rested_steps,"Teaching replaces selected learned slot and spends one action")
     check(not training.train_move(p.uid,919,0).is_empty(),"Repeated/illegal training cannot bypass action or learnset")
     checkpoint(training)
@@ -65,11 +66,11 @@ func run() -> void:
     prepare.battle.start_with(prepare.party,prepare.deck,prepare.route.opponents(0),prepare.seed_value,prepare.relic,true)
     prepare.battle.full_type_chart = true
     prepare._collect_deck()
-    check(NationalEvolution.level_target(primeape,"day") == 0,"Special evolution never happens before explicit preparation")
-    check(prepare.prepare_evolution(primeape.uid,979).is_empty() and prepare.step in prepare.rested_steps,"Special original-world condition has a concrete camp adaptation")
+    check(NationalEvolution.level_target(primeape,"day") == 979,"Special evolution automatically checks the required learned move")
+    check(not prepare.prepare_evolution(primeape.uid,979).is_empty() and prepare.rested_steps.is_empty(),"Evolution no longer requires or consumes a preparation action")
     checkpoint(prepare)
     TacticalGrowth.award(primeape,TacticalGrowth.experience_floor(41,57)-primeape.experience)
-    check(primeape.species_id == 979 and primeape.evolution_prepared == 0,"Prepared Annihilape branch resolves on next level-up")
+    check(primeape.species_id == 979 and primeape.evolution_prepared == 0,"Automatic Annihilape resolves on next level-up")
     var item := fixture([133])
     item.inventory["ice_stone"] = 1
     check(item.use_item("ice_stone",0).is_empty() and item.party[0].species_id == 471,"New generation evolution item resolves to Glaceon")
@@ -84,18 +85,22 @@ func run() -> void:
     eevee.learned_skills.assign(["move_33"])
     eevee.evolution_prepared = 700
     TacticalGrowth.award(eevee,TacticalGrowth.experience_floor(6,133)-eevee.experience,"day")
-    check(eevee.species_id == 133,"Selected Sylveon branch cannot silently fall through to legacy Espeon without a Fairy move")
+    check(eevee.species_id == 196,"Obsolete selection no longer blocks automatic friendship evolution")
+    eevee = BattlePokemon.new(TacticalContent.member_definition(133,VisualCatalog.new()),133)
+    TacticalGrowth.initialize(eevee,true)
+    eevee.friendship = 255
     eevee.learned_skills.append("move_608")
     TacticalGrowth.award(eevee,TacticalGrowth.experience_floor(7,133)-eevee.experience,"day")
     check(eevee.species_id == 700,"Selected Sylveon evolves once the required Fairy technique is learned")
     var toxel := BattlePokemon.new(TacticalContent.member_definition(848,VisualCatalog.new()),848)
     toxel.level = 30
     TacticalGrowth.initialize(toxel,true)
-    check(NationalEvolution.level_target(toxel,"day") == 0,"Nature-based Toxtricity branch requires explicit camp adaptation")
+    var branch := NationalEvolution.level_target(toxel,"day")
+    check(branch in [849,10184],"Toxtricity individual branch is automatic")
     toxel.evolution_prepared = 849
-    check(NationalEvolution.level_target(toxel,"day") == 849,"Amped Toxtricity preparation keeps its own branch")
+    check(NationalEvolution.level_target(toxel,"day") == branch,"Obsolete Amped selection cannot override the individual branch")
     toxel.evolution_prepared = 10184
-    check(NationalEvolution.level_target(toxel,"day") == 10184,"Low Key Toxtricity preparation keeps its own branch")
+    check(NationalEvolution.level_target(toxel,"day") == branch,"Obsolete Low Key selection cannot override the individual branch")
     for key: String in EvolutionItems.all_items():
         check(EvolutionItems.all_items()[key]["stock"] is int and EvolutionItems.all_items()[key]["price"] is int,"Imported material stock/price remain save-safe integers")
     for seed_value in 30:
