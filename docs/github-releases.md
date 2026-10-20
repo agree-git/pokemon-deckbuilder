@@ -1,16 +1,13 @@
-# v0.28.5 GitHub 릴리스
+# v0.28.6 GitHub 릴리스
 
-**상태 갱신:** GET으로 v0.28.5 게시(2026-10-19T23:47:29Z)를 확인했다. 이후 [자동 진화·훈련 제한](camp-progression.md) 수정은 main에만 반영했으며 이 릴리스에 포함되지 않는다. 아래 고정 입력을 재실행하지 않는다. 다음 빌드는 새 버전·새 태그로 사용자 요청 후 진행한다.
+2026-10-20 사용자 “릴리스” 요청으로 준비했다. **빌드·실제 EXE 검사·ZIP 제작·배포는 GitHub에서만** 진행한다. 로컬 build/export/ZIP 제작·전달 금지. 수동 트리거 유지.
 
-2026-10-20 사용자 “릴리스” 요청으로 준비했다. **빌드·실행 검사·ZIP 제작·배포는 GitHub Actions·Releases에서만** 수행한다. 로컬 export/빌드·ZIP 전달 금지. 수동 트리거는 유지한다.
+- 새 태그 `v0.28.6`,고정 게임 SHA `81c600b8afe2be7cba294d1b7086e38d29e2e434`. 자료 SHA는 main workflow 기본값에 고정한다.
+- 같은 자료 커밋의 검사·도구·[릴리스 노트](releases/v0.28.6.md)를 사용한다. [현재 진화·훈련·경제](camp-progression.md).
+- [Windows release](https://github.com/agree-git/pokemon-deckbuilder/actions/workflows/windows-release.yml) → **새 Run workflow → main → 기본값 그대로 Run workflow**. 과거 실행을 재실행하지 않는다.
+- 현재 연결에는 새 workflow dispatch/Release 게시 도구가 없다. 모든 준비·push 후 사용자 클릭이 필요하며 준비 완료를 게시 완료로 보고하지 않는다.
+- GitHub Windows runner가 공식4.7.2 제작·실제 EXE 검사를 통과한 뒤 ZIP·SHA256SUMS.txt·windows-native-report.json 세 첨부를 draft에서 검증하고 게시한다. 실패하면 게시하지 않는다.
+- 기존 태그/릴리스 불변,소스 lightweight 태그를 미리 준비하고 `--verify-tag`를 유지한다. 수동 workflow를 자동 실행으로 바꾸지 않는다.
+- ASSET_SOURCES.md·CHANGELOG.md 복구 금지. 사용자 문서·DO·기존 엔딩 형식과 저장 위치 이전 유지.
 
-- 게임 고정 SHA: `2560d2da269074e4444b4644ab69cad40dd6cf75` / 새 lightweight 태그 `v0.28.5`.
-- 자료 SHA는 main의 `.github/workflows/windows-release.yml` 기본값에 고정한다. 검사·도구·[릴리스 노트](releases/v0.28.5.md)를 같은 자료 커밋에서 읽는다.
-- [Windows release](https://github.com/agree-git/pokemon-deckbuilder/actions/workflows/windows-release.yml) → **Run workflow → main → 기본값 그대로 Run workflow**. 과거 실행을 재실행하지 않는다.
-- 현재 연결은 새 workflow dispatch/Release 게시 도구를 제공하지 않는다. 준비와 push 후 사용자가 새 수동 실행을 시작해야 한다. 준비 완료를 게시 완료로 보고하지 않는다.
-- 공식 Godot4.7.2 Windows 제작·실제 EXE 검사 통과 후 draft에 ZIP·SHA256SUMS.txt·windows-native-report.json 세 첨부를 검증하고 게시한다. 실패하면 draft를 게시하지 않는다.
-- 기존 태그·릴리스를 이동/덮어쓰지 않는다. 미리 준비한 정확한 소스 태그와 `--verify-tag`로 과거 workflow 수정 SHA의 권한 문제를 피한다.
-
-이번 변경은 [저장 이전](save-location.md), [연출](presentation-polish.md), [제공된 크레딧](ending-credits.md)을 포함한다. ASSET_SOURCES.md·CHANGELOG.md는 복구하지 않는다. 제작 도구가 사용자 README-Windows.txt를 그대로 복사하고 검사용 프로필을 별도로 쓰도록 반영했다.
-
-이전 배포·403 근거는 [고정 지도](https://github.com/agree-git/pokemon-deckbuilder/blob/12e0229419f0633afd3b4f8866cc05d5dd09f543/docs/github-releases.md)에 보관한다.
+직전 배포 기록은 [고정 지도](https://github.com/agree-git/pokemon-deckbuilder/blob/47ff5f5d2f1e14b16347de0cd651e16b211d13dd/docs/github-releases.md)에 보관한다.

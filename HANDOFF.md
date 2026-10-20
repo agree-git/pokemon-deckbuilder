@@ -1,7 +1,7 @@
 # 현재 작업 인계
 
-- 최신 사용자 요청: 훈련 전체 자력기100골드/다른 호환기200골드,골드만 소모(휴식·강화·조사와 독립). TM 기존방식 유지. 골드 획득/일반 지출은 **지역이 아닌 야영지 출발마다 이전 금액의×1.1**. 100→110→121→133.1% 복리. 훈련비100/200과TM100·소비1개는 고정.
-- 게임 `fb812e492a35ad962d6d5c786425ec5ecf5ee745`. [파일 지도](docs/camp-progression.md). 이번은 수정·main push만,새 버전·빌드/Release 요청 아님. 빌드는 명시 요청 때 GitHub에서만,로컬 export/ZIP 금지.
+- 직전 구현 요청: 훈련 전체 자력기100골드/다른 호환기200골드,골드만 소모(휴식·강화·조사와 독립). TM 기존방식 유지. 골드 획득/일반 지출은 **지역이 아닌 야영지 출발마다 이전 금액의×1.1**. 100→110→121→133.1% 복리. 훈련비100/200과TM100·소비1개는 고정.
+- 게임 `81c600b8afe2be7cba294d1b7086e38d29e2e434`. [파일 지도](docs/camp-progression.md). **최신 요청 “릴리스”로 v0.28.6 준비·수동 GitHub 빌드·게시 승인.** 빌드는 명시 요청 때 GitHub에서만,로컬 export/ZIP 금지.
 - `camp_move_training.gd`: 현재 레벨 자력기 전체+해당 포켓몬의 TM/교배/가르침 등 법적 경로 전체,알려진 기술 포함. 가격100/200,제안 수·횟수·야영 행동 제한 없음. 법적 경로 없는 미래 자력기는 불가. UI 검색/자력·기타/가격/이미습득 비활성 표시.
 - `tactical_journey.gd`: REST/파티·생존/합법/슬롯/중복/자금 검증 후에만 훈련·덱 사본/골드 변경. rested_steps 불변. 소모TM은기존호환성/1개만소비·추가골드없음. 기존gold_events·결정 기록으로 통계 스키마 유지.
 - 경제 배율은 현재step 이전rest수로 유도,새 저장 필드/RNG 없음. 머무르기·refresh·load는 불변,leave_camp에 성공하면 다음 위치에서×1.1. 68회출발뒤약65268.3435%. 미세 부동소수점 오차 정리 후 금액 올림.
@@ -18,5 +18,6 @@
 
 ## 다음 단계
 
-- 사용자 수정사항 대기. 게시v0.28.5(태그2560d2d)는이번수정미포함·동결. 새릴리스요청이면새버전/게임·자료SHA/새태그로GitHub수동workflow준비. 현재새dispatch도구없음.
+- v0.28.6 lightweight 태그는 위 고정 소스 SHA. main의 별도 workflow 설정 커밋이 게임·자료 SHA/버전을 기본값으로 지정한다. [릴리스 지도](docs/github-releases.md),[노트](docs/releases/v0.28.6.md).
+- 준비·push 후 사용자가 Windows release의 main·기본값 그대로 **새 Run workflow**를 눌러야 한다. 현재 새 dispatch 도구 없음. Windows 실행·게시 완료로 보고하지 않는다. 다음은 해당 실행 GET 상태·실패 로그 확인. 기존v0.28.5 태그/배포 불변.
 - 직전 [고정 인계](https://github.com/agree-git/pokemon-deckbuilder/blob/c0c7fe3cf02463baa4db1b4cb596fc8caa4493f7/HANDOFF.md). ASSET_SOURCES.md·CHANGELOG.md 복구금지,DO·기존엔딩스크롤유지.
